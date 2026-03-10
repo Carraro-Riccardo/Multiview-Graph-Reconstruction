@@ -1,0 +1,106 @@
+[
+  {
+    "edge": [
+      "95#0",
+      "116#0"
+    ],
+    "codes": [
+      95,
+      116
+    ],
+    "confirmations": 1,
+    "confirm_ratio": 1.0,
+    "supporting_views": [
+      1
+    ],
+    "per_view": [
+      {
+        "view_index": 1,
+        "view_support": true,
+        "neighbor_codes": [
+          116,
+          15,
+          95
+        ]
+      }
+    ]
+  },
+  {
+    "edge": [
+      "15#0",
+      "95#2"
+    ],
+    "codes": [
+      15,
+      95
+    ],
+    "confirmations": 1,
+    "confirm_ratio": 1.0,
+    "supporting_views": [
+      1
+    ],
+    "per_view": [
+      {
+        "view_index": 1,
+        "view_support": true,
+        "neighbor_codes": [
+          95,
+          116,
+          95
+        ]
+      }
+    ]
+  },
+  {
+    "edge": [
+      "15#0",
+      "116#0"
+    ],
+    "codes": [
+      15,
+      116
+    ],
+    "confirmations": 1,
+    "confirm_ratio": 1.0,
+    "supporting_views": [
+      1
+    ],
+    "per_view": [
+      {
+        "view_index": 1,
+        "view_support": true,
+        "neighbor_codes": [
+          95,
+          116,
+          95
+        ]
+      }
+    ]
+  },
+  {
+    "edge": [
+      "95#1",
+      "116#0"
+    ],
+    "codes": [
+      95,
+      116
+    ],
+    "confirmations": 1,
+    "confirm_ratio": 1.0,
+    "supporting_views": [
+      1
+    ],
+    "per_view": [
+      {
+        "view_index": 1,
+        "view_support": true,
+        "neighbor_codes": [
+          116,
+          15,
+          95
+        ]
+      }
+    ]
+  }
+]

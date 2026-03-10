@@ -1,0 +1,112 @@
+[
+  {
+    "pair": [
+      15,
+      75
+    ],
+    "names": [
+      "Saracinesca",
+      "Riduzione"
+    ],
+    "score": 1.0
+  },
+  {
+    "pair": [
+      15,
+      95
+    ],
+    "names": [
+      "Saracinesca",
+      "Bout bic."
+    ],
+    "score": 1.0
+  },
+  {
+    "pair": [
+      15,
+      255
+    ],
+    "names": [
+      "Saracinesca",
+      "Tee rid."
+    ],
+    "score": 1.0
+  },
+  {
+    "pair": [
+      95,
+      255
+    ],
+    "names": [
+      "Bout bic.",
+      "Tee rid."
+    ],
+    "score": 1.0
+  },
+  {
+    "pair": [
+      11,
+      15
+    ],
+    "names": [
+      "Giunto",
+      "Saracinesca"
+    ],
+    "score": 0.8333333333333334
+  },
+  {
+    "pair": [
+      11,
+      53
+    ],
+    "names": [
+      "Giunto",
+      "Tubo"
+    ],
+    "score": 0.8333333333333334
+  },
+  {
+    "pair": [
+      53,
+      95
+    ],
+    "names": [
+      "Tubo",
+      "Bout bic."
+    ],
+    "score": 0.8333333333333334
+  },
+  {
+    "pair": [
+      75,
+      95
+    ],
+    "names": [
+      "Riduzione",
+      "Bout bic."
+    ],
+    "score": 0.6666666666666666
+  },
+  {
+    "pair": [
+      54,
+      95
+    ],
+    "names": [
+      "Curva 22",
+      "Bout bic."
+    ],
+    "score": 0.5
+  },
+  {
+    "pair": [
+      11,
+      255
+    ],
+    "names": [
+      "Giunto",
+      "Tee rid."
+    ],
+    "score": 0.16666666666666666
+  }
+]

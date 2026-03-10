@@ -1,0 +1,52 @@
+[
+  {
+    "view_index": 0,
+    "image": "node14_0001.jpg",
+    "score": 3.698018064101537,
+    "is_best": false,
+    "n_detections": 4,
+    "codes": [
+      83,
+      250,
+      119,
+      159
+    ]
+  },
+  {
+    "view_index": 1,
+    "image": "node14_0002.jpg",
+    "score": 3.807989537715912,
+    "is_best": true,
+    "n_detections": 3,
+    "codes": [
+      83,
+      159,
+      119
+    ]
+  },
+  {
+    "view_index": 2,
+    "image": "node14_0003.jpg",
+    "score": 3.763075351715088,
+    "is_best": false,
+    "n_detections": 3,
+    "codes": [
+      83,
+      159,
+      119
+    ]
+  },
+  {
+    "view_index": 3,
+    "image": "node14_0004.jpg",
+    "score": 3.8063916166623435,
+    "is_best": false,
+    "n_detections": 4,
+    "codes": [
+      83,
+      119,
+      159,
+      250
+    ]
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "view_index": 0,
+    "image": "node11_0003.jpg",
+    "score": 7.8112289650099616,
+    "is_best": false,
+    "n_detections": 8,
+    "codes": [
+      15,
+      95,
+      15,
+      114,
+      95,
+      95,
+      116,
+      15
+    ]
+  },
+  {
+    "view_index": 1,
+    "image": "node11_0004.jpg",
+    "score": 7.8157981634140015,
+    "is_best": false,
+    "n_detections": 8,
+    "codes": [
+      114,
+      15,
+      15,
+      95,
+      95,
+      15,
+      116,
+      95
+    ]
+  },
+  {
+    "view_index": 2,
+    "image": "node11_0006.jpg",
+    "score": 4.776422291994095,
+    "is_best": false,
+    "n_detections": 5,
+    "codes": [
+      116,
+      114,
+      95,
+      95,
+      15
+    ]
+  },
+  {
+    "view_index": 3,
+    "image": "node11_0007.jpg",
+    "score": 7.816355645656586,
+    "is_best": true,
+    "n_detections": 8,
+    "codes": [
+      15,
+      15,
+      95,
+      95,
+      15,
+      116,
+      95,
+      114
+    ]
+  }
+]

@@ -1,0 +1,1064 @@
+{
+  "view_support": {
+    "11": 1.0,
+    "15": 1.0,
+    "53": 1.0,
+    "54": 1.0,
+    "75": 0.8,
+    "95": 1.0,
+    "116": 1.0,
+    "195": 1.0,
+    "202": 1.0
+  },
+  "observed_codes": [
+    11,
+    15,
+    53,
+    54,
+    75,
+    95,
+    116,
+    195,
+    202
+  ],
+  "events": [
+    {
+      "det_index": 0,
+      "current_code": 15,
+      "current_name": "Saracinesca",
+      "current_support": 1.0,
+      "neighbor_codes": [
+        54,
+        15,
+        95
+      ],
+      "current_score": 1.086666666666667,
+      "alternatives": [
+        {
+          "code": 75,
+          "name": "Riduzione",
+          "view_support": 0.8,
+          "score": 6.79047619047619,
+          "pair_mean": 0.4666666666666666
+        },
+        {
+          "code": 95,
+          "name": "Bout bic.",
+          "view_support": 1.0,
+          "score": 4.575238095238094,
+          "pair_mean": 0.5333333333333333
+        },
+        {
+          "code": 202,
+          "name": "Antisfilo",
+          "view_support": 1.0,
+          "score": 3.5634920634920633,
+          "pair_mean": 0.3333333333333333
+        },
+        {
+          "code": 53,
+          "name": "Tubo",
+          "view_support": 1.0,
+          "score": 2.5904761904761906,
+          "pair_mean": 0.13333333333333333
+        },
+        {
+          "code": 195,
+          "name": "Curva 45P",
+          "view_support": 1.0,
+          "score": 2.5,
+          "pair_mean": 0.0
+        },
+        {
+          "code": 11,
+          "name": "Giunto",
+          "view_support": 1.0,
+          "score": -0.9682539682539684,
+          "pair_mean": 0.0
+        },
+        {
+          "code": 54,
+          "name": "Curva 22",
+          "view_support": 1.0,
+          "score": -2.404761904761905,
+          "pair_mean": 0.3333333333333333
+        }
+      ],
+      "action": "keep_supported"
+    },
+    {
+      "det_index": 1,
+      "current_code": 202,
+      "current_name": "Antisfilo",
+      "current_support": 1.0,
+      "neighbor_codes": [
+        195,
+        53,
+        11
+      ],
+      "current_score": 7.023809523809523,
+      "alternatives": [
+        {
+          "code": 15,
+          "name": "Saracinesca",
+          "view_support": 1.0,
+          "score": 2.351746031746032,
+          "pair_mean": 0.0
+        },
+        {
+          "code": 75,
+          "name": "Riduzione",
+          "view_support": 0.8,
+          "score": 2.2,
+          "pair_mean": 0.0
+        },
+        {
+          "code": 11,
+          "name": "Giunto",
+          "view_support": 1.0,
+          "score": 1.1904761904761902,
+          "pair_mean": 0.6666666666666666
+        },
+        {
+          "code": 195,
+          "name": "Curva 45P",
+          "view_support": 1.0,
+          "score": 1.0317460317460316,
+          "pair_mean": 0.3333333333333333
+        },
+        {
+          "code": 53,
+          "name": "Tubo",
+          "view_support": 1.0,
+          "score": 0.658730158730159,
+          "pair_mean": 0.3333333333333333
+        },
+        {
+          "code": 95,
+          "name": "Bout bic.",
+          "view_support": 1.0,
+          "score": 0.4704761904761905,
+          "pair_mean": 0.13333333333333333
+        },
+        {
+          "code": 54,
+          "name": "Curva 22",
+          "view_support": 1.0,
+          "score": -1.0,
+          "pair_mean": 0.0
+        }
+      ],
+      "action": "keep_supported"
+    },
+    {
+      "det_index": 2,
+      "current_code": 15,
+      "current_name": "Saracinesca",
+      "current_support": 1.0,
+      "neighbor_codes": [
+        53,
+        15,
+        95
+      ],
+      "current_score": 1.086666666666667,
+      "alternatives": [
+        {
+          "code": 75,
+          "name": "Riduzione",
+          "view_support": 0.8,
+          "score": 6.79047619047619,
+          "pair_mean": 0.4666666666666666
+        },
+        {
+          "code": 95,
+          "name": "Bout bic.",
+          "view_support": 1.0,
+          "score": 6.737142857142857,
+          "pair_mean": 0.3333333333333333
+        },
+        {
+          "code": 202,
+          "name": "Antisfilo",
+          "view_support": 1.0,
+          "score": 4.658730158730158,
+          "pair_mean": 0.6666666666666666
+        },
+        {
+          "code": 195,
+          "name": "Curva 45P",
+          "view_support": 1.0,
+          "score": 2.5,
+          "pair_mean": 0.0
+        },
+        {
+          "code": 11,
+          "name": "Giunto",
+          "view_support": 1.0,
+          "score": 0.1904761904761907,
+          "pair_mean": 0.3333333333333333
+        },
+        {
+          "code": 54,
+          "name": "Curva 22",
+          "view_support": 1.0,
+          "score": 0.0952380952380949,
+          "pair_mean": 0.3333333333333333
+        },
+        {
+          "code": 53,
+          "name": "Tubo",
+          "view_support": 1.0,
+          "score": 0.0904761904761906,
+          "pair_mean": 0.13333333333333333
+        }
+      ],
+      "action": "keep_supported"
+    },
+    {
+      "det_index": 3,
+      "current_code": 195,
+      "current_name": "Curva 45P",
+      "current_support": 1.0,
+      "neighbor_codes": [
+        202,
+        95,
+        202
+      ],
+      "current_score": 6.357142857142857,
+      "alternatives": [
+        {
+          "code": 53,
+          "name": "Tubo",
+          "view_support": 1.0,
+          "score": 6.447619047619049,
+          "pair_mean": 0.7999999999999999
+        },
+        {
+          "code": 15,
+          "name": "Saracinesca",
+          "view_support": 1.0,
+          "score": 3.586666666666667,
+          "pair_mean": 0.19999999999999998
+        },
+        {
+          "code": 75,
+          "name": "Riduzione",
+          "view_support": 0.8,
+          "score": 3.095238095238096,
+          "pair_mean": 0.26666666666666666
+        },
+        {
+          "code": 202,
+          "name": "Antisfilo",
+          "view_support": 1.0,
+          "score": 1.0634920634920633,
+          "pair_mean": 0.3333333333333333
+        },
+        {
+          "code": 54,
+          "name": "Curva 22",
+          "view_support": 1.0,
+          "score": 0.0952380952380949,
+          "pair_mean": 0.3333333333333333
+        },
+        {
+          "code": 95,
+          "name": "Bout bic.",
+          "view_support": 1.0,
+          "score": -0.4930158730158727,
+          "pair_mean": 0.6666666666666666
+        },
+        {
+          "code": 11,
+          "name": "Giunto",
+          "view_support": 1.0,
+          "score": -1.0,
+          "pair_mean": 0.0
+        }
+      ],
+      "action": "keep_supported"
+    },
+    {
+      "det_index": 4,
+      "current_code": 53,
+      "current_name": "Tubo",
+      "current_support": 1.0,
+      "neighbor_codes": [
+        202,
+        202,
+        195
+      ],
+      "current_score": 5.857142857142857,
+      "alternatives": [
+        {
+          "code": 195,
+          "name": "Curva 45P",
+          "view_support": 1.0,
+          "score": 6.357142857142857,
+          "pair_mean": 0.6666666666666666
+        },
+        {
+          "code": 202,
+          "name": "Antisfilo",
+          "view_support": 1.0,
+          "score": 4.595238095238095,
+          "pair_mean": 0.3333333333333333
+        },
+        {
+          "code": 95,
+          "name": "Bout bic.",
+          "view_support": 1.0,
+          "score": 4.506984126984127,
+          "pair_mean": 0.6666666666666666
+        },
+        {
+          "code": 15,
+          "name": "Saracinesca",
+          "view_support": 1.0,
+          "score": 3.3200000000000003,
+          "pair_mean": 0.0
+        },
+        {
+          "code": 75,
+          "name": "Riduzione",
+          "view_support": 0.8,
+          "score": 3.2,
+          "pair_mean": 0.0
+        },
+        {
+          "code": 11,
+          "name": "Giunto",
+          "view_support": 1.0,
+          "score": 2.5317460317460316,
+          "pair_mean": 0.3333333333333333
+        },
+        {
+          "code": 54,
+          "name": "Curva 22",
+          "view_support": 1.0,
+          "score": 1.5,
+          "pair_mean": 0.0
+        }
+      ],
+      "action": "keep_supported"
+    },
+    {
+      "det_index": 5,
+      "current_code": 11,
+      "current_name": "Giunto",
+      "current_support": 1.0,
+      "neighbor_codes": [
+        195,
+        202,
+        53
+      ],
+      "current_score": 1.1904761904761902,
+      "alternatives": [
+        {
+          "code": 202,
+          "name": "Antisfilo",
+          "view_support": 1.0,
+          "score": 4.523809523809523,
+          "pair_mean": 0.6666666666666666
+        },
+        {
+          "code": 53,
+          "name": "Tubo",
+          "view_support": 1.0,
+          "score": 3.095238095238095,
+          "pair_mean": 0.3333333333333333
+        },
+        {
+          "code": 15,
+          "name": "Saracinesca",
+          "view_support": 1.0,
+          "score": 2.3200000000000003,
+          "pair_mean": 0.0
+        },
+        {
+          "code": 75,
+          "name": "Riduzione",
+          "view_support": 0.8,
+          "score": 2.2,
+          "pair_mean": 0.0
+        },
+        {
+          "code": 95,
+          "name": "Bout bic.",
+          "view_support": 1.0,
+          "score": 1.5339682539682542,
+          "pair_mean": 0.4666666666666666
+        },
+        {
+          "code": 195,
+          "name": "Curva 45P",
+          "view_support": 1.0,
+          "score": 1.095238095238095,
+          "pair_mean": 0.3333333333333333
+        },
+        {
+          "code": 54,
+          "name": "Curva 22",
+          "view_support": 1.0,
+          "score": -1.0,
+          "pair_mean": 0.0
+        }
+      ],
+      "action": "keep_supported"
+    },
+    {
+      "det_index": 6,
+      "current_code": 195,
+      "current_name": "Curva 45P",
+      "current_support": 1.0,
+      "neighbor_codes": [
+        11,
+        202,
+        53
+      ],
+      "current_score": 6.2936507936507935,
+      "alternatives": [
+        {
+          "code": 53,
+          "name": "Tubo",
+          "view_support": 1.0,
+          "score": 4.253968253968254,
+          "pair_mean": 0.6666666666666666
+        },
+        {
+          "code": 15,
+          "name": "Saracinesca",
+          "view_support": 1.0,
+          "score": 2.351746031746032,
+          "pair_mean": 0.0
+        },
+        {
+          "code": 75,
+          "name": "Riduzione",
+          "view_support": 0.8,
+          "score": 2.2,
+          "pair_mean": 0.0
+        },
+        {
+          "code": 95,
+          "name": "Bout bic.",
+          "view_support": 1.0,
+          "score": 1.5339682539682542,
+          "pair_mean": 0.4666666666666666
+        },
+        {
+          "code": 202,
+          "name": "Antisfilo",
+          "view_support": 1.0,
+          "score": 1.095238095238095,
+          "pair_mean": 0.3333333333333333
+        },
+        {
+          "code": 54,
+          "name": "Curva 22",
+          "view_support": 1.0,
+          "score": -1.0,
+          "pair_mean": 0.0
+        },
+        {
+          "code": 11,
+          "name": "Giunto",
+          "view_support": 1.0,
+          "score": -2.341269841269841,
+          "pair_mean": 0.3333333333333333
+        }
+      ],
+      "action": "keep_supported"
+    },
+    {
+      "det_index": 7,
+      "current_code": 54,
+      "current_name": "Curva 22",
+      "current_support": 1.0,
+      "neighbor_codes": [
+        15,
+        95,
+        15
+      ],
+      "current_score": 0.0952380952380949,
+      "alternatives": [
+        {
+          "code": 75,
+          "name": "Riduzione",
+          "view_support": 0.8,
+          "score": 7.985714285714286,
+          "pair_mean": 0.6666666666666666
+        },
+        {
+          "code": 202,
+          "name": "Antisfilo",
+          "view_support": 1.0,
+          "score": 3.5634920634920633,
+          "pair_mean": 0.3333333333333333
+        },
+        {
+          "code": 53,
+          "name": "Tubo",
+          "view_support": 1.0,
+          "score": 2.5904761904761906,
+          "pair_mean": 0.13333333333333333
+        },
+        {
+          "code": 195,
+          "name": "Curva 45P",
+          "view_support": 1.0,
+          "score": 2.5,
+          "pair_mean": 0.0
+        },
+        {
+          "code": 15,
+          "name": "Saracinesca",
+          "view_support": 1.0,
+          "score": 1.086666666666667,
+          "pair_mean": 0.19999999999999998
+        },
+        {
+          "code": 95,
+          "name": "Bout bic.",
+          "view_support": 1.0,
+          "score": -0.08666666666666689,
+          "pair_mean": 0.39999999999999997
+        },
+        {
+          "code": 11,
+          "name": "Giunto",
+          "view_support": 1.0,
+          "score": -0.9365079365079365,
+          "pair_mean": 0.0
+        }
+      ],
+      "action": "keep_supported"
+    },
+    {
+      "det_index": 8,
+      "current_code": 15,
+      "current_name": "Saracinesca",
+      "current_support": 1.0,
+      "neighbor_codes": [
+        95,
+        54,
+        15
+      ],
+      "current_score": 3.586666666666667,
+      "alternatives": [
+        {
+          "code": 75,
+          "name": "Riduzione",
+          "view_support": 0.8,
+          "score": 6.79047619047619,
+          "pair_mean": 0.4666666666666666
+        },
+        {
+          "code": 202,
+          "name": "Antisfilo",
+          "view_support": 1.0,
+          "score": 3.5634920634920633,
+          "pair_mean": 0.3333333333333333
+        },
+        {
+          "code": 53,
+          "name": "Tubo",
+          "view_support": 1.0,
+          "score": 2.5904761904761906,
+          "pair_mean": 0.13333333333333333
+        },
+        {
+          "code": 195,
+          "name": "Curva 45P",
+          "view_support": 1.0,
+          "score": 2.5,
+          "pair_mean": 0.0
+        },
+        {
+          "code": 95,
+          "name": "Bout bic.",
+          "view_support": 1.0,
+          "score": 2.0752380952380944,
+          "pair_mean": 0.5333333333333333
+        },
+        {
+          "code": 11,
+          "name": "Giunto",
+          "view_support": 1.0,
+          "score": -0.9682539682539684,
+          "pair_mean": 0.0
+        },
+        {
+          "code": 54,
+          "name": "Curva 22",
+          "view_support": 1.0,
+          "score": -2.404761904761905,
+          "pair_mean": 0.3333333333333333
+        }
+      ],
+      "action": "keep_supported"
+    },
+    {
+      "det_index": 9,
+      "current_code": 75,
+      "current_name": "Riduzione",
+      "current_support": 0.8,
+      "neighbor_codes": [
+        95,
+        202,
+        116
+      ],
+      "current_score": 3.095238095238096,
+      "alternatives": [
+        {
+          "code": 15,
+          "name": "Saracinesca",
+          "view_support": 1.0,
+          "score": 11.100952380952382,
+          "pair_mean": 0.4666666666666666
+        },
+        {
+          "code": 53,
+          "name": "Tubo",
+          "view_support": 1.0,
+          "score": 3.685714285714286,
+          "pair_mean": 0.4666666666666666
+        },
+        {
+          "code": 195,
+          "name": "Curva 45P",
+          "view_support": 1.0,
+          "score": 3.595238095238095,
+          "pair_mean": 0.3333333333333333
+        },
+        {
+          "code": 202,
+          "name": "Antisfilo",
+          "view_support": 1.0,
+          "score": 1.0634920634920633,
+          "pair_mean": 0.3333333333333333
+        },
+        {
+          "code": 54,
+          "name": "Curva 22",
+          "view_support": 1.0,
+          "score": 0.0952380952380949,
+          "pair_mean": 0.3333333333333333
+        },
+        {
+          "code": 11,
+          "name": "Giunto",
+          "view_support": 1.0,
+          "score": -1.0,
+          "pair_mean": 0.0
+        },
+        {
+          "code": 95,
+          "name": "Bout bic.",
+          "view_support": 1.0,
+          "score": -1.5565079365079368,
+          "pair_mean": 0.3333333333333333
+        }
+      ],
+      "action": "keep_supported"
+    },
+    {
+      "det_index": 11,
+      "current_code": 202,
+      "current_name": "Antisfilo",
+      "current_support": 1.0,
+      "neighbor_codes": [
+        53,
+        195,
+        202
+      ],
+      "current_score": 7.023809523809523,
+      "alternatives": [
+        {
+          "code": 15,
+          "name": "Saracinesca",
+          "view_support": 1.0,
+          "score": 2.3200000000000003,
+          "pair_mean": 0.0
+        },
+        {
+          "code": 75,
+          "name": "Riduzione",
+          "view_support": 0.8,
+          "score": 2.2,
+          "pair_mean": 0.0
+        },
+        {
+          "code": 95,
+          "name": "Bout bic.",
+          "view_support": 1.0,
+          "score": 1.5339682539682542,
+          "pair_mean": 0.4666666666666666
+        },
+        {
+          "code": 11,
+          "name": "Giunto",
+          "view_support": 1.0,
+          "score": 1.1904761904761902,
+          "pair_mean": 0.6666666666666666
+        },
+        {
+          "code": 195,
+          "name": "Curva 45P",
+          "view_support": 1.0,
+          "score": 1.095238095238095,
+          "pair_mean": 0.3333333333333333
+        },
+        {
+          "code": 53,
+          "name": "Tubo",
+          "view_support": 1.0,
+          "score": 0.5952380952380949,
+          "pair_mean": 0.3333333333333333
+        },
+        {
+          "code": 54,
+          "name": "Curva 22",
+          "view_support": 1.0,
+          "score": -1.0,
+          "pair_mean": 0.0
+        }
+      ],
+      "action": "keep_supported"
+    },
+    {
+      "det_index": 12,
+      "current_code": 202,
+      "current_name": "Antisfilo",
+      "current_support": 1.0,
+      "neighbor_codes": [
+        95,
+        195,
+        75
+      ],
+      "current_score": 6.325396825396825,
+      "alternatives": [
+        {
+          "code": 15,
+          "name": "Saracinesca",
+          "view_support": 1.0,
+          "score": 4.281904761904762,
+          "pair_mean": 0.39999999999999997
+        },
+        {
+          "code": 75,
+          "name": "Riduzione",
+          "view_support": 0.8,
+          "score": 3.095238095238096,
+          "pair_mean": 0.26666666666666666
+        },
+        {
+          "code": 53,
+          "name": "Tubo",
+          "view_support": 1.0,
+          "score": 2.5904761904761906,
+          "pair_mean": 0.13333333333333333
+        },
+        {
+          "code": 54,
+          "name": "Curva 22",
+          "view_support": 1.0,
+          "score": 0.0952380952380949,
+          "pair_mean": 0.3333333333333333
+        },
+        {
+          "code": 11,
+          "name": "Giunto",
+          "view_support": 1.0,
+          "score": 0.03174603174603163,
+          "pair_mean": 0.3333333333333333
+        },
+        {
+          "code": 195,
+          "name": "Curva 45P",
+          "view_support": 1.0,
+          "score": 0.0,
+          "pair_mean": 0.0
+        },
+        {
+          "code": 95,
+          "name": "Bout bic.",
+          "view_support": 1.0,
+          "score": -1.724761904761905,
+          "pair_mean": 0.26666666666666666
+        }
+      ],
+      "action": "keep_supported"
+    },
+    {
+      "det_index": 13,
+      "current_code": 95,
+      "current_name": "Bout bic.",
+      "current_support": 1.0,
+      "neighbor_codes": [
+        15,
+        54,
+        116
+      ],
+      "current_score": 4.575238095238094,
+      "alternatives": [
+        {
+          "code": 75,
+          "name": "Riduzione",
+          "view_support": 0.8,
+          "score": 2.895238095238095,
+          "pair_mean": 0.19999999999999998
+        },
+        {
+          "code": 195,
+          "name": "Curva 45P",
+          "view_support": 1.0,
+          "score": 2.5,
+          "pair_mean": 0.0
+        },
+        {
+          "code": 202,
+          "name": "Antisfilo",
+          "view_support": 1.0,
+          "score": 2.5,
+          "pair_mean": 0.0
+        },
+        {
+          "code": 53,
+          "name": "Tubo",
+          "view_support": 1.0,
+          "score": 2.0,
+          "pair_mean": 0.0
+        },
+        {
+          "code": 15,
+          "name": "Saracinesca",
+          "view_support": 1.0,
+          "score": 1.0009523809523815,
+          "pair_mean": 0.26666666666666666
+        },
+        {
+          "code": 11,
+          "name": "Giunto",
+          "view_support": 1.0,
+          "score": -0.9682539682539684,
+          "pair_mean": 0.0
+        },
+        {
+          "code": 54,
+          "name": "Curva 22",
+          "view_support": 1.0,
+          "score": -3.5,
+          "pair_mean": 0.0
+        }
+      ],
+      "action": "keep_supported"
+    },
+    {
+      "det_index": 14,
+      "current_code": 116,
+      "current_name": "Tee FL",
+      "current_support": 1.0,
+      "neighbor_codes": [
+        75,
+        95,
+        95
+      ],
+      "current_score": 2.5,
+      "alternatives": [],
+      "action": "keep_supported"
+    },
+    {
+      "det_index": 16,
+      "current_code": 95,
+      "current_name": "Bout bic.",
+      "current_support": 1.0,
+      "neighbor_codes": [
+        202,
+        75,
+        195
+      ],
+      "current_score": 3.5053968253968257,
+      "alternatives": [
+        {
+          "code": 195,
+          "name": "Curva 45P",
+          "view_support": 1.0,
+          "score": 3.595238095238095,
+          "pair_mean": 0.3333333333333333
+        },
+        {
+          "code": 53,
+          "name": "Tubo",
+          "view_support": 1.0,
+          "score": 3.095238095238095,
+          "pair_mean": 0.3333333333333333
+        },
+        {
+          "code": 15,
+          "name": "Saracinesca",
+          "view_support": 1.0,
+          "score": 3.0152380952380957,
+          "pair_mean": 0.19999999999999998
+        },
+        {
+          "code": 202,
+          "name": "Antisfilo",
+          "view_support": 1.0,
+          "score": 1.095238095238095,
+          "pair_mean": 0.3333333333333333
+        },
+        {
+          "code": 11,
+          "name": "Giunto",
+          "view_support": 1.0,
+          "score": 0.03174603174603163,
+          "pair_mean": 0.3333333333333333
+        },
+        {
+          "code": 75,
+          "name": "Riduzione",
+          "view_support": 0.8,
+          "score": -0.2999999999999998,
+          "pair_mean": 0.0
+        },
+        {
+          "code": 54,
+          "name": "Curva 22",
+          "view_support": 1.0,
+          "score": -1.0,
+          "pair_mean": 0.0
+        }
+      ],
+      "action": "keep_supported"
+    },
+    {
+      "det_index": 17,
+      "current_code": 53,
+      "current_name": "Tubo",
+      "current_support": 1.0,
+      "neighbor_codes": [
+        95,
+        116,
+        15
+      ],
+      "current_score": 2.5904761904761906,
+      "alternatives": [
+        {
+          "code": 15,
+          "name": "Saracinesca",
+          "view_support": 1.0,
+          "score": 11.100952380952382,
+          "pair_mean": 0.4666666666666666
+        },
+        {
+          "code": 75,
+          "name": "Riduzione",
+          "view_support": 0.8,
+          "score": 6.79047619047619,
+          "pair_mean": 0.4666666666666666
+        },
+        {
+          "code": 202,
+          "name": "Antisfilo",
+          "view_support": 1.0,
+          "score": 3.5634920634920633,
+          "pair_mean": 0.3333333333333333
+        },
+        {
+          "code": 195,
+          "name": "Curva 45P",
+          "view_support": 1.0,
+          "score": 2.5,
+          "pair_mean": 0.0
+        },
+        {
+          "code": 54,
+          "name": "Curva 22",
+          "view_support": 1.0,
+          "score": 0.0952380952380949,
+          "pair_mean": 0.3333333333333333
+        },
+        {
+          "code": 11,
+          "name": "Giunto",
+          "view_support": 1.0,
+          "score": -0.9682539682539684,
+          "pair_mean": 0.0
+        },
+        {
+          "code": 95,
+          "name": "Bout bic.",
+          "view_support": 1.0,
+          "score": -1.3533333333333335,
+          "pair_mean": 0.19999999999999998
+        }
+      ],
+      "action": "keep_supported"
+    },
+    {
+      "det_index": 18,
+      "current_code": 95,
+      "current_name": "Bout bic.",
+      "current_support": 1.0,
+      "neighbor_codes": [
+        53,
+        116,
+        15
+      ],
+      "current_score": 6.737142857142857,
+      "alternatives": [
+        {
+          "code": 202,
+          "name": "Antisfilo",
+          "view_support": 1.0,
+          "score": 3.595238095238095,
+          "pair_mean": 0.3333333333333333
+        },
+        {
+          "code": 15,
+          "name": "Saracinesca",
+          "view_support": 1.0,
+          "score": 3.5009523809523815,
+          "pair_mean": 0.26666666666666666
+        },
+        {
+          "code": 75,
+          "name": "Riduzione",
+          "view_support": 0.8,
+          "score": 2.895238095238095,
+          "pair_mean": 0.19999999999999998
+        },
+        {
+          "code": 195,
+          "name": "Curva 45P",
+          "view_support": 1.0,
+          "score": 2.5,
+          "pair_mean": 0.0
+        },
+        {
+          "code": 11,
+          "name": "Giunto",
+          "view_support": 1.0,
+          "score": 0.1904761904761907,
+          "pair_mean": 0.3333333333333333
+        },
+        {
+          "code": 53,
+          "name": "Tubo",
+          "view_support": 1.0,
+          "score": -0.5,
+          "pair_mean": 0.0
+        },
+        {
+          "code": 54,
+          "name": "Curva 22",
+          "view_support": 1.0,
+          "score": -1.0,
+          "pair_mean": 0.0
+        }
+      ],
+      "action": "keep_supported"
+    }
+  ]
+}

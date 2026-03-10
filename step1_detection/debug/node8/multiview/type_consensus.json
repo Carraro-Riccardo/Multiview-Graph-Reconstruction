@@ -1,0 +1,57 @@
+[
+  {
+    "pair": [
+      11,
+      15
+    ],
+    "names": [
+      "Giunto",
+      "Saracinesca"
+    ],
+    "score": 1.0
+  },
+  {
+    "pair": [
+      11,
+      207
+    ],
+    "names": [
+      "Giunto",
+      "Bout norm."
+    ],
+    "score": 1.0
+  },
+  {
+    "pair": [
+      15,
+      95
+    ],
+    "names": [
+      "Saracinesca",
+      "Bout bic."
+    ],
+    "score": 1.0
+  },
+  {
+    "pair": [
+      15,
+      116
+    ],
+    "names": [
+      "Saracinesca",
+      "Tee FL"
+    ],
+    "score": 1.0
+  },
+  {
+    "pair": [
+      15,
+      207
+    ],
+    "names": [
+      "Saracinesca",
+      "Bout norm."
+    ],
+    "score": 1.0
+  }
+]

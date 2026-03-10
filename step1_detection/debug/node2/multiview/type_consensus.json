@@ -1,0 +1,101 @@
+[
+  {
+    "pair": [
+      11,
+      15
+    ],
+    "names": [
+      "Giunto",
+      "Saracinesca"
+    ],
+    "score": 1.0
+  },
+  {
+    "pair": [
+      11,
+      53
+    ],
+    "names": [
+      "Giunto",
+      "Tubo"
+    ],
+    "score": 1.0
+  },
+  {
+    "pair": [
+      15,
+      77
+    ],
+    "names": [
+      "Saracinesca",
+      "Tazza"
+    ],
+    "score": 1.0
+  },
+  {
+    "pair": [
+      15,
+      95
+    ],
+    "names": [
+      "Saracinesca",
+      "Bout bic."
+    ],
+    "score": 1.0
+  },
+  {
+    "pair": [
+      15,
+      116
+    ],
+    "names": [
+      "Saracinesca",
+      "Tee FL"
+    ],
+    "score": 1.0
+  },
+  {
+    "pair": [
+      53,
+      95
+    ],
+    "names": [
+      "Tubo",
+      "Bout bic."
+    ],
+    "score": 1.0
+  },
+  {
+    "pair": [
+      53,
+      202
+    ],
+    "names": [
+      "Tubo",
+      "Antisfilo"
+    ],
+    "score": 1.0
+  },
+  {
+    "pair": [
+      190,
+      202
+    ],
+    "names": [
+      "Curva 30",
+      "Antisfilo"
+    ],
+    "score": 1.0
+  },
+  {
+    "pair": [
+      95,
+      202
+    ],
+    "names": [
+      "Bout bic.",
+      "Antisfilo"
+    ],
+    "score": 0.8
+  }
+]

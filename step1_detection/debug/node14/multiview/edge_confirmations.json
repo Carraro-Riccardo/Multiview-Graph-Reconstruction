@@ -1,0 +1,94 @@
+[
+  {
+    "edge": [
+      "83#0",
+      "119#0"
+    ],
+    "codes": [
+      83,
+      119
+    ],
+    "confirmations": 3,
+    "confirm_ratio": 1.0,
+    "supporting_views": [
+      0,
+      2,
+      3
+    ],
+    "per_view": [
+      {
+        "view_index": 0,
+        "view_support": true,
+        "neighbor_codes": [
+          159,
+          119,
+          83
+        ]
+      },
+      {
+        "view_index": 2,
+        "view_support": true,
+        "neighbor_codes": [
+          159,
+          119,
+          83
+        ]
+      },
+      {
+        "view_index": 3,
+        "view_support": true,
+        "neighbor_codes": [
+          159,
+          119,
+          83
+        ]
+      }
+    ]
+  },
+  {
+    "edge": [
+      "159#0",
+      "119#0"
+    ],
+    "codes": [
+      159,
+      119
+    ],
+    "confirmations": 3,
+    "confirm_ratio": 1.0,
+    "supporting_views": [
+      0,
+      2,
+      3
+    ],
+    "per_view": [
+      {
+        "view_index": 0,
+        "view_support": true,
+        "neighbor_codes": [
+          119,
+          83,
+          159
+        ]
+      },
+      {
+        "view_index": 2,
+        "view_support": true,
+        "neighbor_codes": [
+          119,
+          83,
+          159
+        ]
+      },
+      {
+        "view_index": 3,
+        "view_support": true,
+        "neighbor_codes": [
+          119,
+          83,
+          159
+        ]
+      }
+    ]
+  }
+]

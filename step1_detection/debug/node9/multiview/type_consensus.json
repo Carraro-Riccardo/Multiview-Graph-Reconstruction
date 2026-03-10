@@ -1,0 +1,90 @@
+[
+  {
+    "pair": [
+      11,
+      15
+    ],
+    "names": [
+      "Giunto",
+      "Saracinesca"
+    ],
+    "score": 1.0
+  },
+  {
+    "pair": [
+      15,
+      95
+    ],
+    "names": [
+      "Saracinesca",
+      "Bout bic."
+    ],
+    "score": 1.0
+  },
+  {
+    "pair": [
+      15,
+      192
+    ],
+    "names": [
+      "Saracinesca",
+      "Croce"
+    ],
+    "score": 1.0
+  },
+  {
+    "pair": [
+      15,
+      255
+    ],
+    "names": [
+      "Saracinesca",
+      "Tee rid."
+    ],
+    "score": 1.0
+  },
+  {
+    "pair": [
+      95,
+      255
+    ],
+    "names": [
+      "Bout bic.",
+      "Tee rid."
+    ],
+    "score": 1.0
+  },
+  {
+    "pair": [
+      192,
+      255
+    ],
+    "names": [
+      "Croce",
+      "Tee rid."
+    ],
+    "score": 1.0
+  },
+  {
+    "pair": [
+      11,
+      255
+    ],
+    "names": [
+      "Giunto",
+      "Tee rid."
+    ],
+    "score": 0.8571428571428571
+  },
+  {
+    "pair": [
+      255,
+      255
+    ],
+    "names": [
+      "Tee rid.",
+      "Tee rid."
+    ],
+    "score": 0.14285714285714285
+  }
+]

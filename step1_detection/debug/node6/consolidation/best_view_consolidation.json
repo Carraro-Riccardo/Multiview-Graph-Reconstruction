@@ -1,0 +1,130 @@
+{
+  "view_support": {
+    "15": 1.0,
+    "54": 0.75,
+    "95": 1.0
+  },
+  "observed_codes": [
+    15,
+    54,
+    95
+  ],
+  "events": [
+    {
+      "det_index": 0,
+      "current_code": 15,
+      "current_name": "Saracinesca",
+      "current_support": 1.0,
+      "neighbor_codes": [
+        95,
+        95,
+        54
+      ],
+      "current_score": 7.320000000000001,
+      "alternatives": [
+        {
+          "code": 95,
+          "name": "Bout bic.",
+          "view_support": 1.0,
+          "score": 3.2252380952380952,
+          "pair_mean": 0.25
+        },
+        {
+          "code": 54,
+          "name": "Curva 22",
+          "view_support": 0.75,
+          "score": 2.8154761904761907,
+          "pair_mean": 0.5
+        }
+      ],
+      "action": "keep_supported"
+    },
+    {
+      "det_index": 1,
+      "current_code": 54,
+      "current_name": "Curva 22",
+      "current_support": 0.75,
+      "neighbor_codes": [
+        95,
+        95,
+        15
+      ],
+      "current_score": 2.8154761904761907,
+      "alternatives": [
+        {
+          "code": 15,
+          "name": "Saracinesca",
+          "view_support": 1.0,
+          "score": 7.320000000000001,
+          "pair_mean": 0.6666666666666666
+        },
+        {
+          "code": 95,
+          "name": "Bout bic.",
+          "view_support": 1.0,
+          "score": 4.046666666666667,
+          "pair_mean": 0.3333333333333333
+        }
+      ],
+      "action": "keep_supported"
+    },
+    {
+      "det_index": 3,
+      "current_code": 95,
+      "current_name": "Bout bic.",
+      "current_support": 1.0,
+      "neighbor_codes": [
+        15,
+        95,
+        54
+      ],
+      "current_score": 2.225238095238095,
+      "alternatives": [
+        {
+          "code": 15,
+          "name": "Saracinesca",
+          "view_support": 1.0,
+          "score": 1.4866666666666672,
+          "pair_mean": 0.3333333333333333
+        },
+        {
+          "code": 54,
+          "name": "Curva 22",
+          "view_support": 0.75,
+          "score": -0.5297619047619047,
+          "pair_mean": 0.25
+        }
+      ],
+      "action": "keep_supported"
+    },
+    {
+      "det_index": 4,
+      "current_code": 95,
+      "current_name": "Bout bic.",
+      "current_support": 1.0,
+      "neighbor_codes": [
+        54,
+        95,
+        15
+      ],
+      "current_score": 2.225238095238095,
+      "alternatives": [
+        {
+          "code": 15,
+          "name": "Saracinesca",
+          "view_support": 1.0,
+          "score": 3.9866666666666672,
+          "pair_mean": 0.3333333333333333
+        },
+        {
+          "code": 54,
+          "name": "Curva 22",
+          "view_support": 0.75,
+          "score": -3.0297619047619047,
+          "pair_mean": 0.25
+        }
+      ],
+      "action": "keep_supported"
+    }
+  ]
+}

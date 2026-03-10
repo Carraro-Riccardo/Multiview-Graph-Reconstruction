@@ -1,0 +1,57 @@
+[
+  {
+    "pair": [
+      11,
+      53
+    ],
+    "names": [
+      "Giunto",
+      "Tubo"
+    ],
+    "score": 1.0
+  },
+  {
+    "pair": [
+      53,
+      95
+    ],
+    "names": [
+      "Tubo",
+      "Bout bic."
+    ],
+    "score": 1.0
+  },
+  {
+    "pair": [
+      11,
+      15
+    ],
+    "names": [
+      "Giunto",
+      "Saracinesca"
+    ],
+    "score": 0.6
+  },
+  {
+    "pair": [
+      15,
+      95
+    ],
+    "names": [
+      "Saracinesca",
+      "Bout bic."
+    ],
+    "score": 0.6
+  },
+  {
+    "pair": [
+      15,
+      192
+    ],
+    "names": [
+      "Saracinesca",
+      "Croce"
+    ],
+    "score": 0.6
+  }
+]

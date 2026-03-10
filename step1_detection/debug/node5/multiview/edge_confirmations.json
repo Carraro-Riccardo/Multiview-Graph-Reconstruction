@@ -1,0 +1,651 @@
+[
+  {
+    "edge": [
+      "11#0",
+      "53#0"
+    ],
+    "codes": [
+      11,
+      53
+    ],
+    "confirmations": 4,
+    "confirm_ratio": 0.8,
+    "supporting_views": [
+      0,
+      2,
+      3,
+      4
+    ],
+    "per_view": [
+      {
+        "view_index": 0,
+        "view_support": true,
+        "neighbor_codes": [
+          53,
+          95,
+          15
+        ]
+      },
+      {
+        "view_index": 1,
+        "view_support": false,
+        "neighbor_codes": []
+      },
+      {
+        "view_index": 2,
+        "view_support": true,
+        "neighbor_codes": [
+          53,
+          95,
+          15
+        ]
+      },
+      {
+        "view_index": 3,
+        "view_support": true,
+        "neighbor_codes": [
+          53,
+          15,
+          255
+        ]
+      },
+      {
+        "view_index": 4,
+        "view_support": true,
+        "neighbor_codes": [
+          53,
+          95,
+          15
+        ]
+      }
+    ]
+  },
+  {
+    "edge": [
+      "53#0",
+      "95#1"
+    ],
+    "codes": [
+      53,
+      95
+    ],
+    "confirmations": 4,
+    "confirm_ratio": 0.8,
+    "supporting_views": [
+      0,
+      1,
+      2,
+      4
+    ],
+    "per_view": [
+      {
+        "view_index": 0,
+        "view_support": true,
+        "neighbor_codes": [
+          95,
+          11,
+          15
+        ]
+      },
+      {
+        "view_index": 1,
+        "view_support": true,
+        "neighbor_codes": [
+          95,
+          15,
+          255
+        ]
+      },
+      {
+        "view_index": 2,
+        "view_support": true,
+        "neighbor_codes": [
+          95,
+          15,
+          11
+        ]
+      },
+      {
+        "view_index": 3,
+        "view_support": false,
+        "neighbor_codes": [
+          15,
+          11,
+          255
+        ]
+      },
+      {
+        "view_index": 4,
+        "view_support": true,
+        "neighbor_codes": [
+          95,
+          11,
+          15
+        ]
+      }
+    ]
+  },
+  {
+    "edge": [
+      "95#0",
+      "15#0"
+    ],
+    "codes": [
+      95,
+      15
+    ],
+    "confirmations": 5,
+    "confirm_ratio": 1.0,
+    "supporting_views": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "per_view": [
+      {
+        "view_index": 0,
+        "view_support": true,
+        "neighbor_codes": [
+          15,
+          255,
+          75
+        ]
+      },
+      {
+        "view_index": 1,
+        "view_support": true,
+        "neighbor_codes": [
+          15,
+          255,
+          15
+        ]
+      },
+      {
+        "view_index": 2,
+        "view_support": true,
+        "neighbor_codes": [
+          15,
+          255,
+          15
+        ]
+      },
+      {
+        "view_index": 3,
+        "view_support": true,
+        "neighbor_codes": [
+          15,
+          255,
+          15
+        ]
+      },
+      {
+        "view_index": 4,
+        "view_support": true,
+        "neighbor_codes": [
+          15,
+          53,
+          255
+        ]
+      }
+    ]
+  },
+  {
+    "edge": [
+      "15#0",
+      "255#0"
+    ],
+    "codes": [
+      15,
+      255
+    ],
+    "confirmations": 5,
+    "confirm_ratio": 1.0,
+    "supporting_views": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "per_view": [
+      {
+        "view_index": 0,
+        "view_support": true,
+        "neighbor_codes": [
+          75,
+          95,
+          255
+        ]
+      },
+      {
+        "view_index": 1,
+        "view_support": true,
+        "neighbor_codes": [
+          95,
+          255,
+          15
+        ]
+      },
+      {
+        "view_index": 2,
+        "view_support": true,
+        "neighbor_codes": [
+          95,
+          255,
+          95
+        ]
+      },
+      {
+        "view_index": 3,
+        "view_support": true,
+        "neighbor_codes": [
+          95,
+          255,
+          15
+        ]
+      },
+      {
+        "view_index": 4,
+        "view_support": true,
+        "neighbor_codes": [
+          75,
+          95,
+          255
+        ]
+      }
+    ]
+  },
+  {
+    "edge": [
+      "95#1",
+      "15#2"
+    ],
+    "codes": [
+      95,
+      15
+    ],
+    "confirmations": 5,
+    "confirm_ratio": 1.0,
+    "supporting_views": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "per_view": [
+      {
+        "view_index": 0,
+        "view_support": true,
+        "neighbor_codes": [
+          15,
+          255,
+          75
+        ]
+      },
+      {
+        "view_index": 1,
+        "view_support": true,
+        "neighbor_codes": [
+          15,
+          255,
+          15
+        ]
+      },
+      {
+        "view_index": 2,
+        "view_support": true,
+        "neighbor_codes": [
+          15,
+          255,
+          15
+        ]
+      },
+      {
+        "view_index": 3,
+        "view_support": true,
+        "neighbor_codes": [
+          15,
+          255,
+          15
+        ]
+      },
+      {
+        "view_index": 4,
+        "view_support": true,
+        "neighbor_codes": [
+          15,
+          53,
+          255
+        ]
+      }
+    ]
+  },
+  {
+    "edge": [
+      "15#1",
+      "75#0"
+    ],
+    "codes": [
+      15,
+      75
+    ],
+    "confirmations": 5,
+    "confirm_ratio": 1.0,
+    "supporting_views": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "per_view": [
+      {
+        "view_index": 0,
+        "view_support": true,
+        "neighbor_codes": [
+          75,
+          95,
+          255
+        ]
+      },
+      {
+        "view_index": 1,
+        "view_support": true,
+        "neighbor_codes": [
+          75,
+          255,
+          95
+        ]
+      },
+      {
+        "view_index": 2,
+        "view_support": true,
+        "neighbor_codes": [
+          75,
+          255,
+          15
+        ]
+      },
+      {
+        "view_index": 3,
+        "view_support": true,
+        "neighbor_codes": [
+          75,
+          255,
+          15
+        ]
+      },
+      {
+        "view_index": 4,
+        "view_support": true,
+        "neighbor_codes": [
+          75,
+          95,
+          255
+        ]
+      }
+    ]
+  },
+  {
+    "edge": [
+      "15#1",
+      "255#0"
+    ],
+    "codes": [
+      15,
+      255
+    ],
+    "confirmations": 5,
+    "confirm_ratio": 1.0,
+    "supporting_views": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "per_view": [
+      {
+        "view_index": 0,
+        "view_support": true,
+        "neighbor_codes": [
+          75,
+          95,
+          255
+        ]
+      },
+      {
+        "view_index": 1,
+        "view_support": true,
+        "neighbor_codes": [
+          95,
+          255,
+          15
+        ]
+      },
+      {
+        "view_index": 2,
+        "view_support": true,
+        "neighbor_codes": [
+          95,
+          255,
+          95
+        ]
+      },
+      {
+        "view_index": 3,
+        "view_support": true,
+        "neighbor_codes": [
+          95,
+          255,
+          15
+        ]
+      },
+      {
+        "view_index": 4,
+        "view_support": true,
+        "neighbor_codes": [
+          75,
+          95,
+          255
+        ]
+      }
+    ]
+  },
+  {
+    "edge": [
+      "15#2",
+      "255#0"
+    ],
+    "codes": [
+      15,
+      255
+    ],
+    "confirmations": 5,
+    "confirm_ratio": 1.0,
+    "supporting_views": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "per_view": [
+      {
+        "view_index": 0,
+        "view_support": true,
+        "neighbor_codes": [
+          75,
+          95,
+          255
+        ]
+      },
+      {
+        "view_index": 1,
+        "view_support": true,
+        "neighbor_codes": [
+          95,
+          255,
+          15
+        ]
+      },
+      {
+        "view_index": 2,
+        "view_support": true,
+        "neighbor_codes": [
+          95,
+          255,
+          95
+        ]
+      },
+      {
+        "view_index": 3,
+        "view_support": true,
+        "neighbor_codes": [
+          95,
+          255,
+          15
+        ]
+      },
+      {
+        "view_index": 4,
+        "view_support": true,
+        "neighbor_codes": [
+          75,
+          95,
+          255
+        ]
+      }
+    ]
+  },
+  {
+    "edge": [
+      "75#0",
+      "95#2"
+    ],
+    "codes": [
+      75,
+      95
+    ],
+    "confirmations": 3,
+    "confirm_ratio": 0.6,
+    "supporting_views": [
+      0,
+      1,
+      4
+    ],
+    "per_view": [
+      {
+        "view_index": 0,
+        "view_support": true,
+        "neighbor_codes": [
+          15,
+          95,
+          45
+        ]
+      },
+      {
+        "view_index": 1,
+        "view_support": true,
+        "neighbor_codes": [
+          15,
+          95,
+          54
+        ]
+      },
+      {
+        "view_index": 2,
+        "view_support": false,
+        "neighbor_codes": [
+          15,
+          189,
+          255
+        ]
+      },
+      {
+        "view_index": 3,
+        "view_support": false,
+        "neighbor_codes": [
+          15,
+          54,
+          255
+        ]
+      },
+      {
+        "view_index": 4,
+        "view_support": true,
+        "neighbor_codes": [
+          15,
+          95,
+          54
+        ]
+      }
+    ]
+  },
+  {
+    "edge": [
+      "95#2",
+      "54#0"
+    ],
+    "codes": [
+      95,
+      54
+    ],
+    "confirmations": 2,
+    "confirm_ratio": 0.4,
+    "supporting_views": [
+      1,
+      4
+    ],
+    "per_view": [
+      {
+        "view_index": 0,
+        "view_support": false,
+        "neighbor_codes": [
+          45,
+          75,
+          15
+        ]
+      },
+      {
+        "view_index": 1,
+        "view_support": true,
+        "neighbor_codes": [
+          54,
+          75,
+          15
+        ]
+      },
+      {
+        "view_index": 2,
+        "view_support": false,
+        "neighbor_codes": [
+          15,
+          53,
+          255
+        ]
+      },
+      {
+        "view_index": 3,
+        "view_support": false,
+        "neighbor_codes": [
+          15,
+          255,
+          15
+        ]
+      },
+      {
+        "view_index": 4,
+        "view_support": true,
+        "neighbor_codes": [
+          54,
+          75,
+          15
+        ]
+      }
+    ]
+  }
+]

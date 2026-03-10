@@ -1,0 +1,266 @@
+{
+  "stage": "after_build",
+  "nodes": [
+    {
+      "nid": "11#0",
+      "code": 11,
+      "name": "Giunto",
+      "valence": 2,
+      "eff_valence": 1,
+      "cx": 0.4802762120962143,
+      "cy": 0.8862549960613251
+    },
+    {
+      "nid": "15#0",
+      "code": 15,
+      "name": "Saracinesca",
+      "valence": 2,
+      "eff_valence": 2,
+      "cx": 0.5886475741863251,
+      "cy": 0.19206926971673965
+    },
+    {
+      "nid": "192#0",
+      "code": 192,
+      "name": "Croce",
+      "valence": 4,
+      "eff_valence": 4,
+      "cx": 0.5288323163986206,
+      "cy": 0.23445425182580948
+    },
+    {
+      "nid": "53#0",
+      "code": 53,
+      "name": "Tubo",
+      "valence": 2,
+      "eff_valence": 2,
+      "cx": 0.4696095287799835,
+      "cy": 0.4865962266921997
+    },
+    {
+      "nid": "15#1",
+      "code": 15,
+      "name": "Saracinesca",
+      "valence": 2,
+      "eff_valence": 2,
+      "cx": 0.4759298413991928,
+      "cy": 0.32759711146354675
+    },
+    {
+      "nid": "15#2",
+      "code": 15,
+      "name": "Saracinesca",
+      "valence": 2,
+      "eff_valence": 2,
+      "cx": 0.345265731215477,
+      "cy": 0.22295446693897247
+    },
+    {
+      "nid": "53#1",
+      "code": 53,
+      "name": "Tubo",
+      "valence": 2,
+      "eff_valence": 2,
+      "cx": 0.21556565910577774,
+      "cy": 0.2551830783486366
+    },
+    {
+      "nid": "95#0",
+      "code": 95,
+      "name": "Bout bic.",
+      "valence": 2,
+      "eff_valence": 1,
+      "cx": 0.27892249822616577,
+      "cy": 0.24605368822813034
+    },
+    {
+      "nid": "53#2",
+      "code": 53,
+      "name": "Tubo",
+      "valence": 2,
+      "eff_valence": 2,
+      "cx": 0.6950502693653107,
+      "cy": 0.21886573731899261
+    },
+    {
+      "nid": "15#3",
+      "code": 15,
+      "name": "Saracinesca",
+      "valence": 2,
+      "eff_valence": 2,
+      "cx": 0.45985013246536255,
+      "cy": 0.09334473684430122
+    },
+    {
+      "nid": "95#1",
+      "code": 95,
+      "name": "Bout bic.",
+      "valence": 2,
+      "eff_valence": 1,
+      "cx": 0.4630337208509445,
+      "cy": 0.42650383710861206
+    },
+    {
+      "nid": "11#1",
+      "code": 11,
+      "name": "Giunto",
+      "valence": 2,
+      "eff_valence": 1,
+      "cx": 0.8736427426338196,
+      "cy": 0.22680595517158508
+    },
+    {
+      "nid": "95#2",
+      "code": 95,
+      "name": "Bout bic.",
+      "valence": 2,
+      "eff_valence": 1,
+      "cx": 0.6455658972263336,
+      "cy": 0.21352121978998184
+    },
+    {
+      "nid": "11#2",
+      "code": 11,
+      "name": "Giunto",
+      "valence": 2,
+      "eff_valence": 1,
+      "cx": 0.17185933142900467,
+      "cy": 0.2483993023633957
+    }
+  ],
+  "edges": [
+    {
+      "u": "11#0",
+      "v": "53#0",
+      "dist": 0.3998010881258485,
+      "recovery": false,
+      "forced": false,
+      "cooc": 0.23809523809523808,
+      "mv_score": 1.0,
+      "triplet_score": 0.4166666666666667
+    },
+    {
+      "u": "15#0",
+      "v": "192#0",
+      "dist": 0.07330997048557385,
+      "recovery": false,
+      "forced": false,
+      "cooc": 0.2857142857142857,
+      "mv_score": 0.6,
+      "triplet_score": 0.0
+    },
+    {
+      "u": "15#0",
+      "v": "95#2",
+      "dist": 0.06082665254336821,
+      "forced": true,
+      "recovery": false,
+      "supported_reconnect": true,
+      "cooc": 1.0,
+      "mv_score": 0.6,
+      "triplet_score": 0.0
+    },
+    {
+      "u": "192#0",
+      "v": "15#1",
+      "dist": 0.10711799177804031,
+      "recovery": false,
+      "forced": false,
+      "cooc": 0.2857142857142857,
+      "mv_score": 0.6,
+      "triplet_score": 0.5833333333333334
+    },
+    {
+      "u": "192#0",
+      "v": "15#3",
+      "dist": 0.157068255604111,
+      "recovery": false,
+      "forced": false,
+      "cooc": 0.2857142857142857,
+      "mv_score": 0.6,
+      "triplet_score": 1.1666666666666667
+    },
+    {
+      "u": "192#0",
+      "v": "15#2",
+      "dist": 0.18392644249330722,
+      "recovery": false,
+      "forced": false,
+      "cooc": 0.2857142857142857,
+      "mv_score": 0.6,
+      "triplet_score": 1.75
+    },
+    {
+      "u": "53#0",
+      "v": "95#1",
+      "dist": 0.06045110863983625,
+      "recovery": false,
+      "forced": false,
+      "cooc": 0.2857142857142857,
+      "mv_score": 1.0,
+      "triplet_score": 0.0
+    },
+    {
+      "u": "15#1",
+      "v": "95#1",
+      "dist": 0.09974392363960409,
+      "forced": true,
+      "recovery": false,
+      "supported_reconnect": true,
+      "cooc": 1.0,
+      "mv_score": 0.6,
+      "triplet_score": 0.0
+    },
+    {
+      "u": "15#2",
+      "v": "95#0",
+      "dist": 0.07024954510628177,
+      "forced": true,
+      "recovery": false,
+      "supported_reconnect": true,
+      "cooc": 1.0,
+      "mv_score": 0.6,
+      "triplet_score": 0.0
+    },
+    {
+      "u": "53#1",
+      "v": "11#2",
+      "dist": 0.04422965855178391,
+      "recovery": false,
+      "forced": false,
+      "cooc": 0.23809523809523808,
+      "mv_score": 1.0,
+      "triplet_score": 0.0
+    },
+    {
+      "u": "53#1",
+      "v": "95#0",
+      "dist": 0.06401120860676768,
+      "recovery": false,
+      "forced": false,
+      "cooc": 0.2857142857142857,
+      "mv_score": 1.0,
+      "triplet_score": 0.4166666666666667
+    },
+    {
+      "u": "53#2",
+      "v": "95#2",
+      "dist": 0.049772150381580574,
+      "recovery": false,
+      "forced": false,
+      "cooc": 0.2857142857142857,
+      "mv_score": 1.0,
+      "triplet_score": 0.0
+    },
+    {
+      "u": "53#2",
+      "v": "11#1",
+      "dist": 0.17876889709261423,
+      "recovery": false,
+      "forced": false,
+      "cooc": 0.23809523809523808,
+      "mv_score": 1.0,
+      "triplet_score": 0.4166666666666667
+    }
+  ]
+}

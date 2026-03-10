@@ -1,0 +1,450 @@
+[
+  {
+    "edge": [
+      "95#0",
+      "15#2"
+    ],
+    "codes": [
+      95,
+      15
+    ],
+    "confirmations": 4,
+    "confirm_ratio": 1.0,
+    "supporting_views": [
+      0,
+      1,
+      2,
+      4
+    ],
+    "per_view": [
+      {
+        "view_index": 0,
+        "view_support": true,
+        "neighbor_codes": [
+          15,
+          116,
+          15
+        ]
+      },
+      {
+        "view_index": 1,
+        "view_support": true,
+        "neighbor_codes": [
+          15,
+          116,
+          15
+        ]
+      },
+      {
+        "view_index": 2,
+        "view_support": true,
+        "neighbor_codes": [
+          15,
+          116,
+          15
+        ]
+      },
+      {
+        "view_index": 4,
+        "view_support": true,
+        "neighbor_codes": [
+          15,
+          116,
+          15
+        ]
+      }
+    ]
+  },
+  {
+    "edge": [
+      "207#0",
+      "15#0"
+    ],
+    "codes": [
+      207,
+      15
+    ],
+    "confirmations": 4,
+    "confirm_ratio": 1.0,
+    "supporting_views": [
+      0,
+      1,
+      2,
+      4
+    ],
+    "per_view": [
+      {
+        "view_index": 0,
+        "view_support": true,
+        "neighbor_codes": [
+          11,
+          15,
+          116
+        ]
+      },
+      {
+        "view_index": 1,
+        "view_support": true,
+        "neighbor_codes": [
+          11,
+          15,
+          116
+        ]
+      },
+      {
+        "view_index": 2,
+        "view_support": true,
+        "neighbor_codes": [
+          11,
+          15,
+          116
+        ]
+      },
+      {
+        "view_index": 4,
+        "view_support": true,
+        "neighbor_codes": [
+          11,
+          15,
+          116
+        ]
+      }
+    ]
+  },
+  {
+    "edge": [
+      "207#0",
+      "11#0"
+    ],
+    "codes": [
+      207,
+      11
+    ],
+    "confirmations": 4,
+    "confirm_ratio": 1.0,
+    "supporting_views": [
+      0,
+      1,
+      2,
+      4
+    ],
+    "per_view": [
+      {
+        "view_index": 0,
+        "view_support": true,
+        "neighbor_codes": [
+          11,
+          15,
+          116
+        ]
+      },
+      {
+        "view_index": 1,
+        "view_support": true,
+        "neighbor_codes": [
+          11,
+          15,
+          116
+        ]
+      },
+      {
+        "view_index": 2,
+        "view_support": true,
+        "neighbor_codes": [
+          11,
+          15,
+          116
+        ]
+      },
+      {
+        "view_index": 4,
+        "view_support": true,
+        "neighbor_codes": [
+          11,
+          15,
+          116
+        ]
+      }
+    ]
+  },
+  {
+    "edge": [
+      "116#0",
+      "15#0"
+    ],
+    "codes": [
+      116,
+      15
+    ],
+    "confirmations": 4,
+    "confirm_ratio": 1.0,
+    "supporting_views": [
+      0,
+      1,
+      2,
+      4
+    ],
+    "per_view": [
+      {
+        "view_index": 0,
+        "view_support": true,
+        "neighbor_codes": [
+          15,
+          15,
+          15
+        ]
+      },
+      {
+        "view_index": 1,
+        "view_support": true,
+        "neighbor_codes": [
+          15,
+          15,
+          15
+        ]
+      },
+      {
+        "view_index": 2,
+        "view_support": true,
+        "neighbor_codes": [
+          15,
+          15,
+          15
+        ]
+      },
+      {
+        "view_index": 4,
+        "view_support": true,
+        "neighbor_codes": [
+          15,
+          15,
+          15
+        ]
+      }
+    ]
+  },
+  {
+    "edge": [
+      "116#0",
+      "15#1"
+    ],
+    "codes": [
+      116,
+      15
+    ],
+    "confirmations": 4,
+    "confirm_ratio": 1.0,
+    "supporting_views": [
+      0,
+      1,
+      2,
+      4
+    ],
+    "per_view": [
+      {
+        "view_index": 0,
+        "view_support": true,
+        "neighbor_codes": [
+          15,
+          15,
+          15
+        ]
+      },
+      {
+        "view_index": 1,
+        "view_support": true,
+        "neighbor_codes": [
+          15,
+          15,
+          15
+        ]
+      },
+      {
+        "view_index": 2,
+        "view_support": true,
+        "neighbor_codes": [
+          15,
+          15,
+          15
+        ]
+      },
+      {
+        "view_index": 4,
+        "view_support": true,
+        "neighbor_codes": [
+          15,
+          15,
+          15
+        ]
+      }
+    ]
+  },
+  {
+    "edge": [
+      "116#0",
+      "15#2"
+    ],
+    "codes": [
+      116,
+      15
+    ],
+    "confirmations": 4,
+    "confirm_ratio": 1.0,
+    "supporting_views": [
+      0,
+      1,
+      2,
+      4
+    ],
+    "per_view": [
+      {
+        "view_index": 0,
+        "view_support": true,
+        "neighbor_codes": [
+          15,
+          15,
+          15
+        ]
+      },
+      {
+        "view_index": 1,
+        "view_support": true,
+        "neighbor_codes": [
+          15,
+          15,
+          15
+        ]
+      },
+      {
+        "view_index": 2,
+        "view_support": true,
+        "neighbor_codes": [
+          15,
+          15,
+          15
+        ]
+      },
+      {
+        "view_index": 4,
+        "view_support": true,
+        "neighbor_codes": [
+          15,
+          15,
+          15
+        ]
+      }
+    ]
+  },
+  {
+    "edge": [
+      "207#1",
+      "15#1"
+    ],
+    "codes": [
+      207,
+      15
+    ],
+    "confirmations": 4,
+    "confirm_ratio": 1.0,
+    "supporting_views": [
+      0,
+      1,
+      2,
+      4
+    ],
+    "per_view": [
+      {
+        "view_index": 0,
+        "view_support": true,
+        "neighbor_codes": [
+          11,
+          15,
+          116
+        ]
+      },
+      {
+        "view_index": 1,
+        "view_support": true,
+        "neighbor_codes": [
+          11,
+          15,
+          116
+        ]
+      },
+      {
+        "view_index": 2,
+        "view_support": true,
+        "neighbor_codes": [
+          11,
+          15,
+          116
+        ]
+      },
+      {
+        "view_index": 4,
+        "view_support": true,
+        "neighbor_codes": [
+          11,
+          15,
+          116
+        ]
+      }
+    ]
+  },
+  {
+    "edge": [
+      "207#1",
+      "11#1"
+    ],
+    "codes": [
+      207,
+      11
+    ],
+    "confirmations": 4,
+    "confirm_ratio": 1.0,
+    "supporting_views": [
+      0,
+      1,
+      2,
+      4
+    ],
+    "per_view": [
+      {
+        "view_index": 0,
+        "view_support": true,
+        "neighbor_codes": [
+          11,
+          15,
+          116
+        ]
+      },
+      {
+        "view_index": 1,
+        "view_support": true,
+        "neighbor_codes": [
+          11,
+          15,
+          116
+        ]
+      },
+      {
+        "view_index": 2,
+        "view_support": true,
+        "neighbor_codes": [
+          11,
+          15,
+          116
+        ]
+      },
+      {
+        "view_index": 4,
+        "view_support": true,
+        "neighbor_codes": [
+          11,
+          15,
+          116
+        ]
+      }
+    ]
+  }
+]

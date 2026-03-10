@@ -1,0 +1,38 @@
+[
+  {
+    "u": "15#0",
+    "v": "95#0",
+    "class": "confirmed",
+    "ratio": 1.0,
+    "cooc": 1.0,
+    "forced": false,
+    "supported_reconnect": false,
+    "recovery": false,
+    "postprocess": false,
+    "confirmations": 3
+  },
+  {
+    "u": "15#0",
+    "v": "95#1",
+    "class": "confirmed",
+    "ratio": 1.0,
+    "cooc": 1.0,
+    "forced": false,
+    "supported_reconnect": false,
+    "recovery": false,
+    "postprocess": false,
+    "confirmations": 3
+  },
+  {
+    "u": "54#0",
+    "v": "95#1",
+    "class": "confirmed",
+    "ratio": 0.6666666666666666,
+    "cooc": 0.14285714285714285,
+    "forced": false,
+    "supported_reconnect": false,
+    "recovery": false,
+    "postprocess": false,
+    "confirmations": 2
+  }
+]

@@ -1,0 +1,55 @@
+[
+  {
+    "view_index": 0,
+    "image": "node6_0002.jpg",
+    "score": 4.803297251462936,
+    "is_best": false,
+    "n_detections": 5,
+    "codes": [
+      231,
+      95,
+      15,
+      54,
+      95
+    ]
+  },
+  {
+    "view_index": 1,
+    "image": "node6_0003.jpg",
+    "score": 4.70198679715395,
+    "is_best": false,
+    "n_detections": 5,
+    "codes": [
+      15,
+      231,
+      95,
+      54
+    ]
+  },
+  {
+    "view_index": 2,
+    "image": "node6_0006.jpg",
+    "score": 2.813538432121277,
+    "is_best": false,
+    "n_detections": 3,
+    "codes": [
+      231,
+      15,
+      95
+    ]
+  },
+  {
+    "view_index": 3,
+    "image": "node6_0007.jpg",
+    "score": 4.822464436292648,
+    "is_best": true,
+    "n_detections": 5,
+    "codes": [
+      15,
+      54,
+      231,
+      95,
+      95
+    ]
+  }
+]

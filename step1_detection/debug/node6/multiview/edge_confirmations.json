@@ -1,0 +1,133 @@
+[
+  {
+    "edge": [
+      "15#0",
+      "95#0"
+    ],
+    "codes": [
+      15,
+      95
+    ],
+    "confirmations": 3,
+    "confirm_ratio": 1.0,
+    "supporting_views": [
+      0,
+      1,
+      2
+    ],
+    "per_view": [
+      {
+        "view_index": 0,
+        "view_support": true,
+        "neighbor_codes": [
+          95,
+          95,
+          54
+        ]
+      },
+      {
+        "view_index": 1,
+        "view_support": true,
+        "neighbor_codes": [
+          1,
+          95,
+          54
+        ]
+      },
+      {
+        "view_index": 2,
+        "view_support": true,
+        "neighbor_codes": [
+          95,
+          15
+        ]
+      }
+    ]
+  },
+  {
+    "edge": [
+      "15#0",
+      "95#1"
+    ],
+    "codes": [
+      15,
+      95
+    ],
+    "confirmations": 3,
+    "confirm_ratio": 1.0,
+    "supporting_views": [
+      0,
+      1,
+      2
+    ],
+    "per_view": [
+      {
+        "view_index": 0,
+        "view_support": true,
+        "neighbor_codes": [
+          95,
+          95,
+          54
+        ]
+      },
+      {
+        "view_index": 1,
+        "view_support": true,
+        "neighbor_codes": [
+          1,
+          95,
+          54
+        ]
+      },
+      {
+        "view_index": 2,
+        "view_support": true,
+        "neighbor_codes": [
+          95,
+          15
+        ]
+      }
+    ]
+  },
+  {
+    "edge": [
+      "54#0",
+      "95#1"
+    ],
+    "codes": [
+      54,
+      95
+    ],
+    "confirmations": 2,
+    "confirm_ratio": 0.6666666666666666,
+    "supporting_views": [
+      0,
+      1
+    ],
+    "per_view": [
+      {
+        "view_index": 0,
+        "view_support": true,
+        "neighbor_codes": [
+          95,
+          15,
+          95
+        ]
+      },
+      {
+        "view_index": 1,
+        "view_support": true,
+        "neighbor_codes": [
+          1,
+          15,
+          95
+        ]
+      },
+      {
+        "view_index": 2,
+        "view_support": false,
+        "neighbor_codes": []
+      }
+    ]
+  }
+]
