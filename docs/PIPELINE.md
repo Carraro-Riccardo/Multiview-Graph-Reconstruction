@@ -102,12 +102,14 @@ It only:
 - extracts vector/text primitives from the PDF
 - groups drawing primitives into connected geometric candidates
 - ranks the most plausible diagram clusters
-- saves diagnostic artifacts
+- builds a first semantic reference graph from the top-ranked diagram candidate
+- saves diagnostic artifacts for parsing, clustering, cleanup, text matching and graph construction
 - prepares a clean intermediate representation for later alignment
 
 See also:
 
 - `project_prior/pdf_graph_extraction.py`
+- `project_prior/reference_graph_builder.py`
 - `docs/PDF_PRIOR.md`
 
 ### 1. Image grouping
@@ -569,6 +571,11 @@ Subfolders:
 - `solver/`
 - `render/`
 - `graphs/`
+
+Related PDF debug output, when a matching project PDF exists:
+
+- `step1_detection/pdf_prior/<pdf_stem>/clusters/`
+- `step1_detection/pdf_prior/<pdf_stem>/reference_graph/`
 
 ### `views/`
 

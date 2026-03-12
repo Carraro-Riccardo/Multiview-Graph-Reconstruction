@@ -897,47 +897,34 @@ def extract_pdf_prior(pdf_path: str | Path, output_dir: str | Path | None = None
     return result
 
 
-def build_reference_graph_from_pdf_prior(extraction_result: PdfPriorExtractionResult) -> dict[str, Any]:
+def build_reference_graph_from_pdf_prior(
+    extraction_result: PdfPriorExtractionResult,
+    diagram_result=None,
+    candidate_rank: int = 1,
+):
     """
-    TODO step successivo:
-      - clusterizzare primitive in componenti idrauliche candidate
-      - axis extraction from pipe-like primitives
-      - symbol grouping per valvole/tee/croci
-      - text-to-component association
-      - ricostruire una topologia reference dal PDF
-      - tradurre il PDF in un prior graph interrogabile
+    Wrapper locale per mantenere stabile l'API del modulo PDF.
+    L'implementazione effettiva vive in `project_prior.reference_graph_builder`.
     """
-    return {
-        "status": "todo",
-        "message": "Reference graph construction dal PDF non ancora implementata.",
-        "pdf_path": extraction_result.pdf_path,
-        "backend_used": extraction_result.backend_used,
-        "n_pages": len(extraction_result.pages),
-        "todo_steps": [
-            "axis extraction from pipe-like primitives",
-            "symbol grouping",
-            "text-to-component association",
-            "prior graph construction",
-        ],
-    }
+    from .reference_graph_builder import build_reference_graph_from_pdf_prior as _impl
+
+    return _impl(
+        extraction_result,
+        diagram_result=diagram_result,
+        candidate_rank=candidate_rank,
+    )
 
 
 def align_image_graph_to_pdf_prior(image_graph: Any, pdf_prior_graph: Any) -> dict[str, Any]:
-    """
-    TODO step successivo:
-      - mappare nodi/rami osservati nelle immagini sul prior graph da PDF
-      - gestire missing detections e nodi visibili solo in un sottoinsieme di viste
-      - usare il prior graph come reference strutturale
-    """
-    return {
-        "status": "todo",
-        "message": "Image-to-prior alignment non ancora implementato.",
-    }
+    from .reference_graph_builder import align_image_graph_to_pdf_prior as _impl
+
+    return _impl(image_graph, pdf_prior_graph)
 
 
 def run_pdf_prior_extraction(pdf_path: str | Path, output_dir: str | Path | None = None) -> PdfPriorExtractionResult:
     """
-    Entry point leggibile per lanciare solo il parsing PDF.
+    Entry point leggibile per lanciare il flusso PDF:
+      parsing -> diagram candidates -> reference graph.
     """
     result = extract_pdf_prior(pdf_path, output_dir=output_dir)
     diagram_result = extract_diagram_candidates(result)
@@ -961,4 +948,12 @@ def run_pdf_prior_extraction(pdf_path: str | Path, output_dir: str | Path | None
                 f"score={candidate.score:.3f} bbox={candidate.bbox} "
                 f"comps={candidate.stats['component_count']} words={candidate.stats['n_words']}"
             )
+    reference_graph = build_reference_graph_from_pdf_prior(result, diagram_result=diagram_result)
+    print(
+        f"[PDF][ReferenceGraph] status={reference_graph.status} "
+        f"nodes={len(reference_graph.nodes)} edges={len(reference_graph.edges)} "
+        f"debug={reference_graph.debug_paths.get('root')}"
+    )
+    for warning in reference_graph.warnings:
+        print(f"[PDF][ReferenceGraph][warn] {warning}")
     return result

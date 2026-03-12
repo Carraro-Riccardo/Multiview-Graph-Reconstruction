@@ -11,18 +11,20 @@ Current scope:
 - extract vector/text primitives in a deterministic way
 - cluster geometric groups into diagram candidates
 - rank the most plausible diagram regions
+- build a first semantic reference graph from the best diagram candidate
 - save an intermediate representation and diagnostic previews
 - expose a stable API for later graph-prior construction
 
-Out of scope for this step:
+Still out of scope:
 
-- full prior graph reconstruction from the PDF
-- node/edge alignment between PDF and image graph
-- solver changes driven by the PDF prior
+- full graph-to-photo alignment
+- solver changes driven directly by the PDF prior
+- mismatch handling between project and as-built scene
 
 ## Files
 
 - `project_prior/pdf_graph_extraction.py`
+- `project_prior/reference_graph_builder.py`
 - `project_prior/__init__.py`
 - `run_pdf_prior.py`
 - `main.py` integration hook
@@ -60,6 +62,8 @@ Main API:
 ```python
 extract_pdf_prior(pdf_path: str | Path) -> PdfPriorExtractionResult
 extract_diagram_candidates(parsed_pdf: PdfPriorExtractionResult) -> DiagramCandidateExtractionResult
+build_reference_graph(diagram_candidate: DiagramCandidate, parsed_pdf: PdfPriorExtractionResult) -> ReferenceGraphResult
+build_reference_graph_from_pdf_prior(parsed_pdf: PdfPriorExtractionResult, ...) -> ReferenceGraphResult
 ```
 
 The result object contains:
@@ -125,6 +129,7 @@ Subfolders:
 - `previews/`
 - `logs/`
 - `clusters/`
+- `reference_graph/`
 
 Saved files include:
 
@@ -137,6 +142,19 @@ Saved files include:
 - `clusters/page0_clusters_overlay.png`
 - `clusters/page0_cluster_rank_01.png`
 - additional top-k cluster previews per page
+- `reference_graph/json/primitive_cleanup.json`
+- `reference_graph/json/component_candidates.json`
+- `reference_graph/json/text_matches.json`
+- `reference_graph/json/reference_graph.json`
+- `reference_graph/plots/page0_raw_diagram.png`
+- `reference_graph/plots/page0_cleaned_primitives.png`
+- `reference_graph/plots/page0_component_candidates_overlay.png`
+- `reference_graph/plots/page0_component_candidates_ranked.png`
+- `reference_graph/plots/page0_text_matches_overlay.png`
+- `reference_graph/plots/page0_reference_graph_overlay.png`
+- `reference_graph/plots/page0_reference_graph_numbered.png`
+- `reference_graph/plots/page0_reference_graph_labels.png`
+- `reference_graph/logs/summary.txt`
 
 ## Diagram candidate extraction
 
@@ -177,17 +195,15 @@ This first PDF step intentionally reuses current repo patterns where possible:
 - existing graph pipeline left untouched unless PDF exists
 
 ## TODO for next steps
-
 The new module already exposes named hooks for the next refactors:
 
-- `build_reference_graph_from_pdf_prior(...)`
 - `align_image_graph_to_pdf_prior(...)`
 
 Planned progression:
 
-1. convert PDF primitives/components into a reference graph
-2. use the best diagram candidate as the base region of interest
-3. compare image-derived graph candidates against that reference
+1. refine `reference_graph_builder` with axis extraction from pipe-like primitives
+2. improve symbol grouping and text-to-component association
+3. compare image-derived graph candidates against the reference graph
 4. use the PDF prior as structural support for:
    - missing nodes
    - ambiguous codes

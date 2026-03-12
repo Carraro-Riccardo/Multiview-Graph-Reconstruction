@@ -1,5 +1,6 @@
 """
-Piccolo entrypoint per lanciare solo l'estrazione del prior PDF.
+Piccolo entrypoint per lanciare il flusso PDF:
+  parsing -> diagram candidates -> reference graph.
 
 Uso:
   python run_pdf_prior.py

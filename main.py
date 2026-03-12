@@ -10,7 +10,7 @@ import networkx as nx
 
 from config import (
     IMAGES_DIR, WORK_DIR, SKIP_NODES, MIN_IMAGES, DIAMETER_CODES,
-    PDF_DIR, PDF_PRIOR_ENABLED, PDF_DIAGRAM_CANDIDATES_ENABLED,
+    PDF_DIR, PDF_PRIOR_ENABLED, PDF_DIAGRAM_CANDIDATES_ENABLED, PDF_REFERENCE_GRAPH_ENABLED,
 )
 from detection import (
     discover_nodes,
@@ -62,7 +62,14 @@ def _maybe_extract_pdf_prior(node_id: int):
         if PDF_DIAGRAM_CANDIDATES_ENABLED
         else None
     )
-    summary = build_reference_graph_from_pdf_prior(extraction)
+    reference_graph = (
+        build_reference_graph_from_pdf_prior(
+            extraction,
+            diagram_result=diagram_candidates,
+        )
+        if PDF_REFERENCE_GRAPH_ENABLED
+        else None
+    )
     print(
         f"  [PDFPrior] status={extraction.status} backend={extraction.backend_used} "
         f"pages={len(extraction.pages)} debug={extraction.debug_paths.get('root')}"
@@ -73,8 +80,15 @@ def _maybe_extract_pdf_prior(node_id: int):
             f"  [PDFPrior] diagram_candidates={top_total} "
             f"debug={diagram_candidates.debug_paths.get('root')}"
         )
-    print(f"  [PDFPrior] TODO reference_graph={summary['status']}: {summary['message']}")
-    return extraction, diagram_candidates
+    if reference_graph is not None:
+        print(
+            f"  [PDFPrior] reference_graph={reference_graph.status} "
+            f"nodes={len(reference_graph.nodes)} edges={len(reference_graph.edges)} "
+            f"debug={reference_graph.debug_paths.get('root')}"
+        )
+        for warning in reference_graph.warnings:
+            print(f"  [PDFPrior][warn] {warning}")
+    return extraction, diagram_candidates, reference_graph
 
 
 # Step 1 - Detection + Decoding + Plot
@@ -107,7 +121,7 @@ def run_step4():
         pdf_bundle = _maybe_extract_pdf_prior(node_id)
         debug_dirs = init_node_debug(node_id)
         if pdf_bundle is not None:
-            pdf_prior, diagram_candidates = pdf_bundle
+            pdf_prior, diagram_candidates, reference_graph = pdf_bundle
             save_json(
                 debug_dirs["views"] / "pdf_prior_bridge.json",
                 {
@@ -127,9 +141,29 @@ def run_step4():
                         diagram_candidates.debug_paths.get("root")
                         if diagram_candidates is not None else None
                     ),
+                    "reference_graph_status": (
+                        reference_graph.status if reference_graph is not None else "disabled"
+                    ),
+                    "reference_graph_debug_root": (
+                        reference_graph.debug_paths.get("root")
+                        if reference_graph is not None else None
+                    ),
+                    "reference_graph_summary": (
+                        reference_graph.summary_stats if reference_graph is not None else {}
+                    ),
+                    "reference_graph_nodes": (
+                        len(reference_graph.nodes) if reference_graph is not None else 0
+                    ),
+                    "reference_graph_edges": (
+                        len(reference_graph.edges) if reference_graph is not None else 0
+                    ),
+                    "reference_graph_warnings": (
+                        reference_graph.warnings if reference_graph is not None else []
+                    ),
                     "todo": [
-                        "build_reference_graph_from_pdf_prior",
                         "align_image_graph_to_pdf_prior",
+                        "scoring observed vs prior nodes",
+                        "prior-guided multi-view fusion",
                     ],
                 },
             )

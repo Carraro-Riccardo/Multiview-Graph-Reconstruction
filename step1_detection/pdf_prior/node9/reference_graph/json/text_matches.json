@@ -1,0 +1,1292 @@
+{
+  "page_index": 0,
+  "text_blocks": [
+    {
+      "text_block_id": "blk_27_0",
+      "word_indices": [
+        12,
+        13,
+        14
+      ],
+      "text": "RID FL. 300/200",
+      "bbox": [
+        3345.35986328125,
+        1228.56982421875,
+        3492.15478515625,
+        1251.1884765625
+      ]
+    },
+    {
+      "text_block_id": "blk_84_0",
+      "word_indices": [
+        67,
+        68
+      ],
+      "text": "TOULIPE DN100",
+      "bbox": [
+        2650.679931640625,
+        1302.9698486328125,
+        2795.34912109375,
+        1325.5885009765625
+      ]
+    },
+    {
+      "text_block_id": "blk_60_0",
+      "word_indices": [
+        54,
+        55
+      ],
+      "text": "TOULIPE DN100",
+      "bbox": [
+        2919.47998046875,
+        1302.9698486328125,
+        3064.149169921875,
+        1325.5885009765625
+      ]
+    },
+    {
+      "text_block_id": "blk_26_0",
+      "word_indices": [
+        10,
+        11
+      ],
+      "text": "SAR DN200",
+      "bbox": [
+        3349.43994140625,
+        1361.10986328125,
+        3453.62158203125,
+        1383.728515625
+      ]
+    },
+    {
+      "text_block_id": "blk_25_0",
+      "word_indices": [
+        8,
+        9
+      ],
+      "text": "DN 150",
+      "bbox": [
+        3297.811279296875,
+        1365.10009765625,
+        3300.1806640625,
+        1372.0521240234375
+      ]
+    },
+    {
+      "text_block_id": "blk_83_0",
+      "word_indices": [
+        65,
+        66
+      ],
+      "text": "SAR DN100",
+      "bbox": [
+        2689.619873046875,
+        1386.669921875,
+        2793.801513671875,
+        1409.28857421875
+      ]
+    },
+    {
+      "text_block_id": "blk_59_0",
+      "word_indices": [
+        52,
+        53
+      ],
+      "text": "SAR DN100",
+      "bbox": [
+        2960.52001953125,
+        1386.669921875,
+        3064.701416015625,
+        1409.28857421875
+      ]
+    },
+    {
+      "text_block_id": "blk_82_0",
+      "word_indices": [
+        63,
+        64
+      ],
+      "text": "DN 100",
+      "bbox": [
+        2832.141845703125,
+        1387.719970703125,
+        2833.800537109375,
+        1392.58642578125
+      ]
+    },
+    {
+      "text_block_id": "blk_81_0",
+      "word_indices": [
+        61,
+        62
+      ],
+      "text": "DN 100",
+      "bbox": [
+        2873.66162109375,
+        1387.719970703125,
+        2875.3203125,
+        1392.58642578125
+      ]
+    },
+    {
+      "text_block_id": "blk_33_0",
+      "word_indices": [
+        17,
+        18
+      ],
+      "text": "DN 100",
+      "bbox": [
+        3099.021728515625,
+        1387.719970703125,
+        3100.680419921875,
+        1392.58642578125
+      ]
+    },
+    {
+      "text_block_id": "blk_32_0",
+      "word_indices": [
+        15,
+        16
+      ],
+      "text": "DN 100",
+      "bbox": [
+        3140.541748046875,
+        1387.719970703125,
+        3142.200439453125,
+        1392.58642578125
+      ]
+    },
+    {
+      "text_block_id": "blk_36_0",
+      "word_indices": [
+        19,
+        20
+      ],
+      "text": "DN 150",
+      "bbox": [
+        2983.97998046875,
+        1471.29931640625,
+        2990.93212890625,
+        1473.6688232421875
+      ]
+    },
+    {
+      "text_block_id": "blk_21_0",
+      "word_indices": [
+        0,
+        1
+      ],
+      "text": "DN 150",
+      "bbox": [
+        3399.659912109375,
+        1471.29931640625,
+        3406.612060546875,
+        1473.6688232421875
+      ]
+    },
+    {
+      "text_block_id": "blk_24_0",
+      "word_indices": [
+        7
+      ],
+      "text": "CROCE",
+      "bbox": [
+        3240.300048828125,
+        1480.749755859375,
+        3302.614013671875,
+        1503.368408203125
+      ]
+    },
+    {
+      "text_block_id": "blk_58_0",
+      "word_indices": [
+        50,
+        51
+      ],
+      "text": "TEE 200/100",
+      "bbox": [
+        3065.876708984375,
+        1490.409912109375,
+        3179.63916015625,
+        1513.094482421875
+      ]
+    },
+    {
+      "text_block_id": "blk_77_0",
+      "word_indices": [
+        56,
+        57
+      ],
+      "text": "TEE 200/100",
+      "bbox": [
+        2797.556884765625,
+        1492.9298095703125,
+        2911.319091796875,
+        1515.614501953125
+      ]
+    },
+    {
+      "text_block_id": "blk_47_0",
+      "word_indices": [
+        30
+      ],
+      "text": "DN200",
+      "bbox": [
+        3241.85986328125,
+        1503.369873046875,
+        3302.568359375,
+        1525.988525390625
+      ]
+    },
+    {
+      "text_block_id": "blk_87_0",
+      "word_indices": [
+        69,
+        70,
+        71
+      ],
+      "text": "SAR DN200 PIATTA",
+      "bbox": [
+        2904.0,
+        1560.909912109375,
+        3078.7744140625,
+        1583.528564453125
+      ]
+    },
+    {
+      "text_block_id": "blk_46_0",
+      "word_indices": [
+        27,
+        28,
+        29
+      ],
+      "text": "SAR DN200 PIATTA",
+      "bbox": [
+        3324.059814453125,
+        1570.6298828125,
+        3498.83447265625,
+        1593.24853515625
+      ]
+    },
+    {
+      "text_block_id": "blk_78_0",
+      "word_indices": [
+        58,
+        59,
+        60
+      ],
+      "text": "RID FL. 350/200",
+      "bbox": [
+        2702.48974609375,
+        1597.1904296875,
+        2725.234375,
+        1744.004638671875
+      ]
+    },
+    {
+      "text_block_id": "blk_22_0",
+      "word_indices": [
+        2,
+        3,
+        4
+      ],
+      "text": "RID FL. 350/200",
+      "bbox": [
+        3525.269775390625,
+        1597.1904296875,
+        3548.014404296875,
+        1744.004638671875
+      ]
+    },
+    {
+      "text_block_id": "blk_54_0",
+      "word_indices": [
+        40,
+        41
+      ],
+      "text": "TOULIPE DN100",
+      "bbox": [
+        2899.619873046875,
+        1611.309814453125,
+        3044.2890625,
+        1633.928466796875
+      ]
+    },
+    {
+      "text_block_id": "blk_37_0",
+      "word_indices": [
+        21,
+        22
+      ],
+      "text": "DN 100",
+      "bbox": [
+        3155.39990234375,
+        1627.8994140625,
+        3160.26611328125,
+        1629.55810546875
+      ]
+    },
+    {
+      "text_block_id": "blk_23_0",
+      "word_indices": [
+        5,
+        6
+      ],
+      "text": "TEE 200/100",
+      "bbox": [
+        3350.874267578125,
+        1648.4498291015625,
+        3464.647216796875,
+        1671.18798828125
+      ]
+    },
+    {
+      "text_block_id": "blk_38_0",
+      "word_indices": [
+        23,
+        24
+      ],
+      "text": "DN 100",
+      "bbox": [
+        3155.39990234375,
+        1669.4193115234375,
+        3160.26611328125,
+        1671.0780029296875
+      ]
+    },
+    {
+      "text_block_id": "blk_55_0",
+      "word_indices": [
+        42,
+        43,
+        44
+      ],
+      "text": "CURVA PVC DE110",
+      "bbox": [
+        2795.8798828125,
+        1672.4498291015625,
+        2966.402099609375,
+        1695.0684814453125
+      ]
+    },
+    {
+      "text_block_id": "blk_53_0",
+      "word_indices": [
+        38,
+        39
+      ],
+      "text": "SAR DN100",
+      "bbox": [
+        3111.659912109375,
+        1696.6298828125,
+        3215.841552734375,
+        1719.24853515625
+      ]
+    },
+    {
+      "text_block_id": "blk_48_0",
+      "word_indices": [
+        31,
+        32
+      ],
+      "text": "SAR DN200",
+      "bbox": [
+        3349.919921875,
+        1774.389892578125,
+        3454.1015625,
+        1797.008544921875
+      ]
+    },
+    {
+      "text_block_id": "blk_39_0",
+      "word_indices": [
+        25,
+        26
+      ],
+      "text": "DN 150",
+      "bbox": [
+        3297.811279296875,
+        1779.340087890625,
+        3300.1806640625,
+        1786.2919921875
+      ]
+    },
+    {
+      "text_block_id": "blk_49_0",
+      "word_indices": [
+        33,
+        34
+      ],
+      "text": "TOULIPE DN200",
+      "bbox": [
+        3350.4599609375,
+        1864.269775390625,
+        3495.129150390625,
+        1886.888427734375
+      ]
+    },
+    {
+      "text_block_id": "blk_56_0",
+      "word_indices": [
+        45,
+        46,
+        47
+      ],
+      "text": "POZZETTO 50X50 CM",
+      "bbox": [
+        2809.619873046875,
+        1935.9097900390625,
+        3001.8330078125,
+        1958.5284423828125
+      ]
+    },
+    {
+      "text_block_id": "blk_57_0",
+      "word_indices": [
+        48,
+        49
+      ],
+      "text": "CHIUSINO D400",
+      "bbox": [
+        2858.219970703125,
+        1960.269775390625,
+        3001.80322265625,
+        1982.888427734375
+      ]
+    },
+    {
+      "text_block_id": "blk_50_0",
+      "word_indices": [
+        35,
+        36,
+        37
+      ],
+      "text": "CURVA PVC DE200",
+      "bbox": [
+        3334.43994140625,
+        1973.6497802734375,
+        3504.962158203125,
+        1996.2684326171875
+      ]
+    }
+  ],
+  "matches": [
+    {
+      "match_id": "match_000",
+      "text_block_id": "blk_27_0",
+      "text": "RID FL. 300/200",
+      "bbox": [
+        3345.35986328125,
+        1228.56982421875,
+        3492.15478515625,
+        1251.1884765625
+      ],
+      "component_id": "cmp_006",
+      "score": 10.552080045537213,
+      "parsed": {
+        "raw": "RID FL. 300/200",
+        "normalized": "RID FL. 300/200",
+        "type_hint": "Riduzione",
+        "dn_values": [],
+        "size_ratios": [
+          {
+            "a": 300,
+            "b": 200
+          }
+        ],
+        "materials": []
+      },
+      "reason": "gap=0.00 dist=1.78 overlap=1.0"
+    },
+    {
+      "match_id": "match_001",
+      "text_block_id": "blk_84_0",
+      "text": "TOULIPE DN100",
+      "bbox": [
+        2650.679931640625,
+        1302.9698486328125,
+        2795.34912109375,
+        1325.5885009765625
+      ],
+      "component_id": "cmp_023",
+      "score": 10.544697518602575,
+      "parsed": {
+        "raw": "TOULIPE DN100",
+        "normalized": "TOULIPE DN100",
+        "type_hint": "Toulipe",
+        "dn_values": [
+          100
+        ],
+        "size_ratios": [],
+        "materials": [
+          "PE"
+        ]
+      },
+      "reason": "gap=0.00 dist=2.69 overlap=1.0"
+    },
+    {
+      "match_id": "match_002",
+      "text_block_id": "blk_60_0",
+      "text": "TOULIPE DN100",
+      "bbox": [
+        2919.47998046875,
+        1302.9698486328125,
+        3064.149169921875,
+        1325.5885009765625
+      ],
+      "component_id": "cmp_019",
+      "score": 10.544626562100424,
+      "parsed": {
+        "raw": "TOULIPE DN100",
+        "normalized": "TOULIPE DN100",
+        "type_hint": "Toulipe",
+        "dn_values": [
+          100
+        ],
+        "size_ratios": [],
+        "materials": [
+          "PE"
+        ]
+      },
+      "reason": "gap=0.00 dist=2.70 overlap=1.0"
+    },
+    {
+      "match_id": "match_003",
+      "text_block_id": "blk_26_0",
+      "text": "SAR DN200",
+      "bbox": [
+        3349.43994140625,
+        1361.10986328125,
+        3453.62158203125,
+        1383.728515625
+      ],
+      "component_id": "cmp_005",
+      "score": 10.545377991047342,
+      "parsed": {
+        "raw": "SAR DN200",
+        "normalized": "SAR DN200",
+        "type_hint": "Saracinesca",
+        "dn_values": [
+          200
+        ],
+        "size_ratios": [],
+        "materials": []
+      },
+      "reason": "gap=0.00 dist=2.61 overlap=1.0"
+    },
+    {
+      "match_id": "match_004",
+      "text_block_id": "blk_25_0",
+      "text": "DN 150",
+      "bbox": [
+        3297.811279296875,
+        1365.10009765625,
+        3300.1806640625,
+        1372.0521240234375
+      ],
+      "component_id": "cmp_004",
+      "score": 9.786129698538499,
+      "parsed": {
+        "raw": "DN 150",
+        "normalized": "DN 150",
+        "type_hint": null,
+        "dn_values": [
+          150
+        ],
+        "size_ratios": [],
+        "materials": []
+      },
+      "reason": "gap=0.00 dist=38.60 overlap=1.0"
+    },
+    {
+      "match_id": "match_005",
+      "text_block_id": "blk_83_0",
+      "text": "SAR DN100",
+      "bbox": [
+        2689.619873046875,
+        1386.669921875,
+        2793.801513671875,
+        1409.28857421875
+      ],
+      "component_id": "cmp_022",
+      "score": 10.544893050269769,
+      "parsed": {
+        "raw": "SAR DN100",
+        "normalized": "SAR DN100",
+        "type_hint": "Saracinesca",
+        "dn_values": [
+          100
+        ],
+        "size_ratios": [],
+        "materials": []
+      },
+      "reason": "gap=0.00 dist=2.67 overlap=1.0"
+    },
+    {
+      "match_id": "match_006",
+      "text_block_id": "blk_59_0",
+      "text": "SAR DN100",
+      "bbox": [
+        2960.52001953125,
+        1386.669921875,
+        3064.701416015625,
+        1409.28857421875
+      ],
+      "component_id": "cmp_018",
+      "score": 10.544893068471364,
+      "parsed": {
+        "raw": "SAR DN100",
+        "normalized": "SAR DN100",
+        "type_hint": "Saracinesca",
+        "dn_values": [
+          100
+        ],
+        "size_ratios": [],
+        "materials": []
+      },
+      "reason": "gap=0.00 dist=2.67 overlap=1.0"
+    },
+    {
+      "match_id": "match_007",
+      "text_block_id": "blk_82_0",
+      "text": "DN 100",
+      "bbox": [
+        2832.141845703125,
+        1387.719970703125,
+        2833.800537109375,
+        1392.58642578125
+      ],
+      "component_id": "cmp_021",
+      "score": 9.905501845125263,
+      "parsed": {
+        "raw": "DN 100",
+        "normalized": "DN 100",
+        "type_hint": null,
+        "dn_values": [
+          100
+        ],
+        "size_ratios": [],
+        "materials": []
+      },
+      "reason": "gap=0.00 dist=20.99 overlap=1.0"
+    },
+    {
+      "match_id": "match_008",
+      "text_block_id": "blk_81_0",
+      "text": "DN 100",
+      "bbox": [
+        2873.66162109375,
+        1387.719970703125,
+        2875.3203125,
+        1392.58642578125
+      ],
+      "component_id": "cmp_021",
+      "score": 9.90881503226478,
+      "parsed": {
+        "raw": "DN 100",
+        "normalized": "DN 100",
+        "type_hint": null,
+        "dn_values": [
+          100
+        ],
+        "size_ratios": [],
+        "materials": []
+      },
+      "reason": "gap=0.00 dist=20.53 overlap=1.0"
+    },
+    {
+      "match_id": "match_009",
+      "text_block_id": "blk_33_0",
+      "text": "DN 100",
+      "bbox": [
+        3099.021728515625,
+        1387.719970703125,
+        3100.680419921875,
+        1392.58642578125
+      ],
+      "component_id": "cmp_007",
+      "score": 9.90571606528658,
+      "parsed": {
+        "raw": "DN 100",
+        "normalized": "DN 100",
+        "type_hint": null,
+        "dn_values": [
+          100
+        ],
+        "size_ratios": [],
+        "materials": []
+      },
+      "reason": "gap=0.00 dist=20.96 overlap=1.0"
+    },
+    {
+      "match_id": "match_010",
+      "text_block_id": "blk_32_0",
+      "text": "DN 100",
+      "bbox": [
+        3140.541748046875,
+        1387.719970703125,
+        3142.200439453125,
+        1392.58642578125
+      ],
+      "component_id": "cmp_007",
+      "score": 9.908598465417048,
+      "parsed": {
+        "raw": "DN 100",
+        "normalized": "DN 100",
+        "type_hint": null,
+        "dn_values": [
+          100
+        ],
+        "size_ratios": [],
+        "materials": []
+      },
+      "reason": "gap=0.00 dist=20.56 overlap=1.0"
+    },
+    {
+      "match_id": "match_011",
+      "text_block_id": "blk_36_0",
+      "text": "DN 150",
+      "bbox": [
+        2983.97998046875,
+        1471.29931640625,
+        2990.93212890625,
+        1473.6688232421875
+      ],
+      "component_id": "cmp_008",
+      "score": 9.710871045935066,
+      "parsed": {
+        "raw": "DN 150",
+        "normalized": "DN 150",
+        "type_hint": null,
+        "dn_values": [
+          150
+        ],
+        "size_ratios": [],
+        "materials": []
+      },
+      "reason": "gap=0.00 dist=50.75 overlap=1.0"
+    },
+    {
+      "match_id": "match_012",
+      "text_block_id": "blk_21_0",
+      "text": "DN 150",
+      "bbox": [
+        3399.659912109375,
+        1471.29931640625,
+        3406.612060546875,
+        1473.6688232421875
+      ],
+      "component_id": "cmp_000",
+      "score": 9.679378034991615,
+      "parsed": {
+        "raw": "DN 150",
+        "normalized": "DN 150",
+        "type_hint": null,
+        "dn_values": [
+          150
+        ],
+        "size_ratios": [],
+        "materials": []
+      },
+      "reason": "gap=0.00 dist=56.11 overlap=1.0"
+    },
+    {
+      "match_id": "match_013",
+      "text_block_id": "blk_24_0",
+      "text": "CROCE",
+      "bbox": [
+        3240.300048828125,
+        1480.749755859375,
+        3302.614013671875,
+        1503.368408203125
+      ],
+      "component_id": "cmp_003",
+      "score": 10.497590189564265,
+      "parsed": {
+        "raw": "CROCE",
+        "normalized": "CROCE",
+        "type_hint": "Croce",
+        "dn_values": [],
+        "size_ratios": [],
+        "materials": []
+      },
+      "reason": "gap=0.00 dist=8.64 overlap=1.0"
+    },
+    {
+      "match_id": "match_014",
+      "text_block_id": "blk_58_0",
+      "text": "TEE 200/100",
+      "bbox": [
+        3065.876708984375,
+        1490.409912109375,
+        3179.63916015625,
+        1513.094482421875
+      ],
+      "component_id": "cmp_017",
+      "score": 10.53299712638259,
+      "parsed": {
+        "raw": "TEE 200/100",
+        "normalized": "TEE 200/100",
+        "type_hint": "Tee",
+        "dn_values": [],
+        "size_ratios": [
+          {
+            "a": 200,
+            "b": 100
+          }
+        ],
+        "materials": []
+      },
+      "reason": "gap=0.00 dist=4.15 overlap=1.0"
+    },
+    {
+      "match_id": "match_015",
+      "text_block_id": "blk_77_0",
+      "text": "TEE 200/100",
+      "bbox": [
+        2797.556884765625,
+        1492.9298095703125,
+        2911.319091796875,
+        1515.614501953125
+      ],
+      "component_id": "cmp_020",
+      "score": 10.522847772603566,
+      "parsed": {
+        "raw": "TEE 200/100",
+        "normalized": "TEE 200/100",
+        "type_hint": "Tee",
+        "dn_values": [],
+        "size_ratios": [
+          {
+            "a": 200,
+            "b": 100
+          }
+        ],
+        "materials": []
+      },
+      "reason": "gap=0.00 dist=5.42 overlap=1.0"
+    },
+    {
+      "match_id": "match_016",
+      "text_block_id": "blk_47_0",
+      "text": "DN200",
+      "bbox": [
+        3241.85986328125,
+        1503.369873046875,
+        3302.568359375,
+        1525.988525390625
+      ],
+      "component_id": "cmp_003",
+      "score": 9.95675954223821,
+      "parsed": {
+        "raw": "DN200",
+        "normalized": "DN200",
+        "type_hint": null,
+        "dn_values": [
+          200
+        ],
+        "size_ratios": [],
+        "materials": []
+      },
+      "reason": "gap=0.00 dist=13.99 overlap=1.0"
+    },
+    {
+      "match_id": "match_017",
+      "text_block_id": "blk_87_0",
+      "text": "SAR DN200 PIATTA",
+      "bbox": [
+        2904.0,
+        1560.909912109375,
+        3078.7744140625,
+        1583.528564453125
+      ],
+      "component_id": "cmp_008",
+      "score": 10.220361519735693,
+      "parsed": {
+        "raw": "SAR DN200 PIATTA",
+        "normalized": "SAR DN200 PIATTA",
+        "type_hint": "Saracinesca",
+        "dn_values": [
+          200
+        ],
+        "size_ratios": [],
+        "materials": []
+      },
+      "reason": "gap=0.00 dist=49.17 overlap=1.0"
+    },
+    {
+      "match_id": "match_018",
+      "text_block_id": "blk_46_0",
+      "text": "SAR DN200 PIATTA",
+      "bbox": [
+        3324.059814453125,
+        1570.6298828125,
+        3498.83447265625,
+        1593.24853515625
+      ],
+      "component_id": "cmp_000",
+      "score": 10.191484988608046,
+      "parsed": {
+        "raw": "SAR DN200 PIATTA",
+        "normalized": "SAR DN200 PIATTA",
+        "type_hint": "Saracinesca",
+        "dn_values": [
+          200
+        ],
+        "size_ratios": [],
+        "materials": []
+      },
+      "reason": "gap=0.00 dist=54.03 overlap=1.0"
+    },
+    {
+      "match_id": "match_019",
+      "text_block_id": "blk_78_0",
+      "text": "RID FL. 350/200",
+      "bbox": [
+        2702.48974609375,
+        1597.1904296875,
+        2725.234375,
+        1744.004638671875
+      ],
+      "component_id": "cmp_010",
+      "score": 6.5281061530577915,
+      "parsed": {
+        "raw": "RID FL. 350/200",
+        "normalized": "RID FL. 350/200",
+        "type_hint": "Riduzione",
+        "dn_values": [],
+        "size_ratios": [
+          {
+            "a": 350,
+            "b": 200
+          }
+        ],
+        "materials": []
+      },
+      "reason": "gap=71.73 dist=246.81 overlap=0.0"
+    },
+    {
+      "match_id": "match_020",
+      "text_block_id": "blk_22_0",
+      "text": "RID FL. 350/200",
+      "bbox": [
+        3525.269775390625,
+        1597.1904296875,
+        3548.014404296875,
+        1744.004638671875
+      ],
+      "component_id": "cmp_001",
+      "score": 10.552060500605684,
+      "parsed": {
+        "raw": "RID FL. 350/200",
+        "normalized": "RID FL. 350/200",
+        "type_hint": "Riduzione",
+        "dn_values": [],
+        "size_ratios": [
+          {
+            "a": 350,
+            "b": 200
+          }
+        ],
+        "materials": []
+      },
+      "reason": "gap=0.00 dist=1.79 overlap=1.0"
+    },
+    {
+      "match_id": "match_021",
+      "text_block_id": "blk_54_0",
+      "text": "TOULIPE DN100",
+      "bbox": [
+        2899.619873046875,
+        1611.309814453125,
+        3044.2890625,
+        1633.928466796875
+      ],
+      "component_id": "cmp_015",
+      "score": 10.544698007261,
+      "parsed": {
+        "raw": "TOULIPE DN100",
+        "normalized": "TOULIPE DN100",
+        "type_hint": "Toulipe",
+        "dn_values": [
+          100
+        ],
+        "size_ratios": [],
+        "materials": [
+          "PE"
+        ]
+      },
+      "reason": "gap=0.00 dist=2.69 overlap=1.0"
+    },
+    {
+      "match_id": "match_022",
+      "text_block_id": "blk_37_0",
+      "text": "DN 100",
+      "bbox": [
+        3155.39990234375,
+        1627.8994140625,
+        3160.26611328125,
+        1629.55810546875
+      ],
+      "component_id": "cmp_009",
+      "score": 9.908815483662668,
+      "parsed": {
+        "raw": "DN 100",
+        "normalized": "DN 100",
+        "type_hint": null,
+        "dn_values": [
+          100
+        ],
+        "size_ratios": [],
+        "materials": []
+      },
+      "reason": "gap=0.00 dist=20.53 overlap=1.0"
+    },
+    {
+      "match_id": "match_023",
+      "text_block_id": "blk_23_0",
+      "text": "TEE 200/100",
+      "bbox": [
+        3350.874267578125,
+        1648.4498291015625,
+        3464.647216796875,
+        1671.18798828125
+      ],
+      "component_id": "cmp_002",
+      "score": 10.551899688577286,
+      "parsed": {
+        "raw": "TEE 200/100",
+        "normalized": "TEE 200/100",
+        "type_hint": "Tee",
+        "dn_values": [],
+        "size_ratios": [
+          {
+            "a": 200,
+            "b": 100
+          }
+        ],
+        "materials": []
+      },
+      "reason": "gap=0.00 dist=1.81 overlap=1.0"
+    },
+    {
+      "match_id": "match_024",
+      "text_block_id": "blk_38_0",
+      "text": "DN 100",
+      "bbox": [
+        3155.39990234375,
+        1669.4193115234375,
+        3160.26611328125,
+        1671.0780029296875
+      ],
+      "component_id": "cmp_014",
+      "score": 10.008662244494529,
+      "parsed": {
+        "raw": "DN 100",
+        "normalized": "DN 100",
+        "type_hint": null,
+        "dn_values": [
+          100
+        ],
+        "size_ratios": [],
+        "materials": []
+      },
+      "reason": "gap=0.00 dist=7.22 overlap=1.0"
+    },
+    {
+      "match_id": "match_025",
+      "text_block_id": "blk_55_0",
+      "text": "CURVA PVC DE110",
+      "bbox": [
+        2795.8798828125,
+        1672.4498291015625,
+        2966.402099609375,
+        1695.0684814453125
+      ],
+      "component_id": "cmp_010",
+      "score": 9.891654391918202,
+      "parsed": {
+        "raw": "CURVA PVC DE110",
+        "normalized": "CURVA PVC DE110",
+        "type_hint": "Curva",
+        "dn_values": [],
+        "size_ratios": [],
+        "materials": [
+          "PVC"
+        ]
+      },
+      "reason": "gap=0.00 dist=114.11 overlap=1.0"
+    },
+    {
+      "match_id": "match_026",
+      "text_block_id": "blk_53_0",
+      "text": "SAR DN100",
+      "bbox": [
+        3111.659912109375,
+        1696.6298828125,
+        3215.841552734375,
+        1719.24853515625
+      ],
+      "component_id": "cmp_014",
+      "score": 10.26602259208332,
+      "parsed": {
+        "raw": "SAR DN100",
+        "normalized": "SAR DN100",
+        "type_hint": "Saracinesca",
+        "dn_values": [
+          100
+        ],
+        "size_ratios": [],
+        "materials": []
+      },
+      "reason": "gap=0.00 dist=41.76 overlap=1.0"
+    },
+    {
+      "match_id": "match_027",
+      "text_block_id": "blk_48_0",
+      "text": "SAR DN200",
+      "bbox": [
+        3349.919921875,
+        1774.389892578125,
+        3454.1015625,
+        1797.008544921875
+      ],
+      "component_id": "cmp_012",
+      "score": 10.545377972465918,
+      "parsed": {
+        "raw": "SAR DN200",
+        "normalized": "SAR DN200",
+        "type_hint": "Saracinesca",
+        "dn_values": [
+          200
+        ],
+        "size_ratios": [],
+        "materials": []
+      },
+      "reason": "gap=0.00 dist=2.61 overlap=1.0"
+    },
+    {
+      "match_id": "match_028",
+      "text_block_id": "blk_39_0",
+      "text": "DN 150",
+      "bbox": [
+        3297.811279296875,
+        1779.340087890625,
+        3300.1806640625,
+        1786.2919921875
+      ],
+      "component_id": "cmp_011",
+      "score": 9.778329210295594,
+      "parsed": {
+        "raw": "DN 150",
+        "normalized": "DN 150",
+        "type_hint": null,
+        "dn_values": [
+          150
+        ],
+        "size_ratios": [],
+        "materials": []
+      },
+      "reason": "gap=0.00 dist=39.82 overlap=1.0"
+    },
+    {
+      "match_id": "match_029",
+      "text_block_id": "blk_49_0",
+      "text": "TOULIPE DN200",
+      "bbox": [
+        3350.4599609375,
+        1864.269775390625,
+        3495.129150390625,
+        1886.888427734375
+      ],
+      "component_id": "cmp_013",
+      "score": 10.54514326519767,
+      "parsed": {
+        "raw": "TOULIPE DN200",
+        "normalized": "TOULIPE DN200",
+        "type_hint": "Toulipe",
+        "dn_values": [
+          200
+        ],
+        "size_ratios": [],
+        "materials": [
+          "PE"
+        ]
+      },
+      "reason": "gap=0.00 dist=2.64 overlap=1.0"
+    },
+    {
+      "match_id": "match_030",
+      "text_block_id": "blk_56_0",
+      "text": "POZZETTO 50X50 CM",
+      "bbox": [
+        2809.619873046875,
+        1935.9097900390625,
+        3001.8330078125,
+        1958.5284423828125
+      ],
+      "component_id": "cmp_016",
+      "score": 9.990377082435591,
+      "parsed": {
+        "raw": "POZZETTO 50X50 CM",
+        "normalized": "POZZETTO 50X50 CM",
+        "type_hint": null,
+        "dn_values": [],
+        "size_ratios": [],
+        "materials": []
+      },
+      "reason": "gap=0.00 dist=9.57 overlap=1.0"
+    },
+    {
+      "match_id": "match_031",
+      "text_block_id": "blk_57_0",
+      "text": "CHIUSINO D400",
+      "bbox": [
+        2858.219970703125,
+        1960.269775390625,
+        3001.80322265625,
+        1982.888427734375
+      ],
+      "component_id": "cmp_016",
+      "score": 9.854737148064235,
+      "parsed": {
+        "raw": "CHIUSINO D400",
+        "normalized": "CHIUSINO D400",
+        "type_hint": null,
+        "dn_values": [],
+        "size_ratios": [],
+        "materials": []
+      },
+      "reason": "gap=0.00 dist=28.24 overlap=1.0"
+    },
+    {
+      "match_id": "match_032",
+      "text_block_id": "blk_50_0",
+      "text": "CURVA PVC DE200",
+      "bbox": [
+        3334.43994140625,
+        1973.6497802734375,
+        3504.962158203125,
+        1996.2684326171875
+      ],
+      "component_id": "cmp_013",
+      "score": 6.606859764959102,
+      "parsed": {
+        "raw": "CURVA PVC DE200",
+        "normalized": "CURVA PVC DE200",
+        "type_hint": "Curva",
+        "dn_values": [],
+        "size_ratios": [],
+        "materials": [
+          "PVC"
+        ]
+      },
+      "reason": "gap=91.77 dist=112.02 overlap=0.0"
+    }
+  ],
+  "overlay_path": "step1_detection\\pdf_prior\\node9\\reference_graph\\plots\\page0_text_matches_overlay.png",
+  "todo": [
+    "text-to-component association refinement",
+    "multi-line label merging"
+  ]
+}
