@@ -10,15 +10,16 @@ from .pdf_graph_extraction import (
     extract_diagram_candidates,
     run_pdf_prior_extraction,
 )
-from .reference_graph_builder import (
+from .llm_reference_graph import (
     ReferenceGraphResult,
-    ReferenceGraphNode,
-    ReferenceGraphEdge,
-    ReferenceComponentCandidate,
-    ReferenceTextMatch,
-    build_reference_graph,
+    ReferenceGraphComponent,
+    ReferenceGraphConnection,
+    generate_reference_graph_from_diagram,
     build_reference_graph_from_pdf_prior,
-    align_image_graph_to_pdf_prior,
+)
+from .reference_graph_visualization import (
+    save_reference_graph_overlay,
+    save_reference_graph_schema_view,
 )
 
 __all__ = [
@@ -26,14 +27,13 @@ __all__ = [
     "DiagramCandidateExtractionResult",
     "PdfPriorExtractionResult",
     "ReferenceGraphResult",
-    "ReferenceGraphNode",
-    "ReferenceGraphEdge",
-    "ReferenceComponentCandidate",
-    "ReferenceTextMatch",
+    "ReferenceGraphComponent",
+    "ReferenceGraphConnection",
     "extract_pdf_prior",
     "extract_diagram_candidates",
-    "build_reference_graph",
+    "generate_reference_graph_from_diagram",
     "build_reference_graph_from_pdf_prior",
-    "align_image_graph_to_pdf_prior",
+    "save_reference_graph_overlay",
+    "save_reference_graph_schema_view",
     "run_pdf_prior_extraction",
 ]

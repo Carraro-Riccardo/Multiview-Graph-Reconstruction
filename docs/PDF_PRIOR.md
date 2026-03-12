@@ -1,211 +1,187 @@
-# PDF Prior Extraction
+# PDF Prior Flow
 
 ## Goal
 
-This module introduces the first PDF-based prior workflow without breaking the current image-first pipeline.
+The active PDF-side flow is now:
 
-Current scope:
+1. parse the vector PDF
+2. extract and rank diagram candidates
+3. select the best cluster
+4. render that cluster as an image
+5. call a multimodal LLM provider
+6. validate the returned JSON
+7. save a reusable `reference_graph.json` plus visual/debug artifacts
 
-- load a project PDF such as `folder_with_pdf/node9.pdf`
-- inspect whether the PDF contains extractable vector information
-- extract vector/text primitives in a deterministic way
-- cluster geometric groups into diagram candidates
-- rank the most plausible diagram regions
-- build a first semantic reference graph from the best diagram candidate
-- save an intermediate representation and diagnostic previews
-- expose a stable API for later graph-prior construction
+This keeps the deterministic part where it helps:
 
-Still out of scope:
+- PDF parsing
+- primitive extraction
+- diagram candidate extraction
+- cluster ranking
+- debug rendering
 
-- full graph-to-photo alignment
-- solver changes driven directly by the PDF prior
-- mismatch handling between project and as-built scene
+And moves the semantic diagram understanding to the multimodal API step.
 
-## Files
+## Main files
 
 - `project_prior/pdf_graph_extraction.py`
-- `project_prior/reference_graph_builder.py`
+- `project_prior/llm_reference_graph.py`
 - `project_prior/__init__.py`
 - `run_pdf_prior.py`
-- `main.py` integration hook
+- `run_pdf_to_reference_graph.py`
+- `main.py`
+
+## Provider configuration
+
+Create a local `.env` file in the repo root.
+
+Example:
+
+```env
+PDF_REFERENCE_GRAPH_PROVIDER=gemini
+OPENAI_API_KEY=...
+GEMINI_API_KEY=...
+PDF_REFERENCE_GRAPH_OPENAI_MODEL=gpt-5.1
+PDF_REFERENCE_GRAPH_GEMINI_MODEL=gemini-2.5-flash
+```
+
+Supported providers:
+
+- `gemini`
+- `openai`
+
+The provider is selected through:
+
+- `PDF_REFERENCE_GRAPH_PROVIDER`
+
+API key env names can also be overridden through config:
+
+- `PDF_REFERENCE_GRAPH_OPENAI_API_KEY_ENV`
+- `PDF_REFERENCE_GRAPH_GEMINI_API_KEY_ENV`
 
 ## Entry points
 
-### Standalone
+### Full PDF -> reference graph flow
 
-Run only the PDF parsing stage:
+```bash
+python run_pdf_to_reference_graph.py --pdf folder_with_pdf/node9.pdf
+```
+
+### Existing PDF runner
 
 ```bash
 python run_pdf_prior.py
 ```
 
-or
+This now runs:
 
-```bash
-python run_pdf_prior.py folder_with_pdf/node9.pdf
-```
+- parse PDF
+- extract diagram candidates
+- call the LLM-based reference graph stage
 
-### Integrated pipeline
-
-`main.py` now checks, for each node, whether a matching PDF exists in:
-
-- `folder_with_pdf/node<id>.pdf`
-
-If found and `PDF_PRIOR_ENABLED=True`, the extraction runs before the image graph pipeline.
-
-For now this is an extraction-and-logging step only.
-
-## API
-
-Main API:
+## Main API
 
 ```python
-extract_pdf_prior(pdf_path: str | Path) -> PdfPriorExtractionResult
-extract_diagram_candidates(parsed_pdf: PdfPriorExtractionResult) -> DiagramCandidateExtractionResult
-build_reference_graph(diagram_candidate: DiagramCandidate, parsed_pdf: PdfPriorExtractionResult) -> ReferenceGraphResult
-build_reference_graph_from_pdf_prior(parsed_pdf: PdfPriorExtractionResult, ...) -> ReferenceGraphResult
+extract_pdf_prior(pdf_path) -> PdfPriorExtractionResult
+extract_diagram_candidates(parsed_pdf) -> DiagramCandidateExtractionResult
+generate_reference_graph_from_diagram(parsed_pdf, diagram_result) -> ReferenceGraphResult
+build_reference_graph_from_pdf_prior(parsed_pdf, diagram_result=None) -> ReferenceGraphResult
 ```
 
-The result object contains:
+## Inputs passed to the model
 
-- `pdf_path`
-- `status`
-- `backend_used`
-- `pages`
-- `warnings`
-- `debug_paths`
+Minimum mandatory input:
 
-Per page:
+- best cluster image
 
-- `segments`
-- `curves`
-- `rects`
-- `words`
-- `candidate_components`
-- `summary`
-- `preview_path`
+Additional support passed when available:
 
-Diagram candidate result:
+- nearby vector words with PDF bboxes
+- candidate regions derived from the ranked cluster
+- rendered pages from `components.pdf`
+- strict JSON schema requested from the model
 
-- `page_candidates`
-- `warnings`
-- `debug_paths`
-- `parameters`
+## Output folder
 
-## Backends
+Default root:
 
-The extraction strategy is conservative and layered:
+- `step1_detection/pdf_prior/<pdf_stem>/llm_reference_graph/`
 
-1. try `PyMuPDF` / `fitz`
-2. fallback to `pdfplumber`
-3. if neither works, return a declared failure with warnings
+Structured layout:
 
-This keeps the module transparent:
+- `inputs/`
+- `prompts/`
+- `responses/`
+- `graph/`
+- `visuals/`
+- `summaries/`
 
-- no opaque OCR-first logic
-- no manual crop heuristics
-- no center-of-page assumptions
+Expected artifacts:
 
-## Candidate components
+- `inputs/page0_best_cluster.png`
+- `inputs/page0_best_cluster_with_bbox.png`
+- `inputs/best_candidate_words.json`
+- `inputs/best_candidate_regions.json`
+- `prompts/llm_prompt.txt`
+- `responses/llm_request_payload.json`
+- `responses/llm_raw_response.txt`
+- `responses/llm_extracted_text.txt`
+- `responses/llm_parsed_response.json`
+- `graph/reference_graph.json`
+- `graph/reference_graph_result.json`
+- `visuals/reference_graph_overlay.png`
+- `visuals/reference_graph_numbered.png`
+- `visuals/reference_graph_labels.png`
+- `visuals/reference_graph_schema.png`
+- `visuals/reference_graph_schema_numbered.png`
+- `summaries/llm_request_summary.txt`
+- `summaries/run_summary.txt`
 
-At this stage, `candidate_components` are not hydraulic semantic nodes yet.
+## Visualization-only rerun
 
-They are deterministic geometric groupings derived from extracted drawing objects:
+If you already have a `reference_graph.json` and want to regenerate only the
+visual artifacts without re-calling the LLM:
 
-- with `fitz`: one component per drawing object/path group
-- with `pdfplumber`: one component per primitive object fallback
+```bash
+python run_reference_graph_visualization.py
+```
 
-This is intentionally simple and inspectable.
+or:
 
-## Diagnostic outputs
+```bash
+python run_reference_graph_visualization.py --graph step1_detection/pdf_prior/node9/llm_reference_graph/graph/reference_graph.json --image step1_detection/pdf_prior/node9/llm_reference_graph/inputs/page0_best_cluster.png
+```
 
-The default output root is:
+This is useful when the JSON is semantically correct but the overlay is not
+precise enough geometrically. In that case, prefer the standalone schema views.
 
-- `step1_detection/pdf_prior/<pdf_stem>/`
+## Validation
 
-Subfolders:
+The LLM response is not trusted blindly.
 
-- `json/`
-- `previews/`
-- `logs/`
-- `clusters/`
-- `reference_graph/`
+Current validation includes:
 
-Saved files include:
+- unique component ids
+- allowed component types only
+- bbox normalization and clamping to image size
+- connection endpoints must exist
+- self-loops removed
+- unknown types remapped to `unknown`
 
-- `pdf_prior_extraction.json`
-- `pdf_prior_summary.json`
-- page previews with vector/text overlay when available
-- `extraction_log.txt`
-- `diagram_candidates.json`
-- `clusters/page0_clusters.json`
-- `clusters/page0_clusters_overlay.png`
-- `clusters/page0_cluster_rank_01.png`
-- additional top-k cluster previews per page
-- `reference_graph/json/primitive_cleanup.json`
-- `reference_graph/json/component_candidates.json`
-- `reference_graph/json/text_matches.json`
-- `reference_graph/json/reference_graph.json`
-- `reference_graph/plots/page0_raw_diagram.png`
-- `reference_graph/plots/page0_cleaned_primitives.png`
-- `reference_graph/plots/page0_component_candidates_overlay.png`
-- `reference_graph/plots/page0_component_candidates_ranked.png`
-- `reference_graph/plots/page0_text_matches_overlay.png`
-- `reference_graph/plots/page0_reference_graph_overlay.png`
-- `reference_graph/plots/page0_reference_graph_numbered.png`
-- `reference_graph/plots/page0_reference_graph_labels.png`
-- `reference_graph/logs/summary.txt`
+If parsing or validation fails:
 
-## Diagram candidate extraction
+- raw response is still saved
+- a parse/validation report is saved
+- the pipeline returns a readable status instead of crashing opaquely
 
-The new phase does not work directly on all raw segments pairwise.
-Instead it reuses the deterministic `candidate_components` already produced by the PDF parser.
+## Notes
 
-Current strategy:
+The previous geometry-heavy semantic graph builder is no longer the main path.
+It can remain in the repo as an experimental helper, but the active PDF-side reference graph generation is LLM-first.
 
-1. filter micro-components with too few primitives
-2. expand component bounding boxes by a small scale-relative tolerance
-3. build spatial connected components through a hashed grid
-4. compute cluster features:
-   - bbox
-   - area
-   - component count
-   - primitive count
-   - segment count
-   - curve count
-   - nearby word count
-   - segment density
-   - curve density
-5. rank clusters by a transparent geometric/textual score
+## Next steps
 
-This keeps the method:
-
-- deterministic
-- inspectable
-- independent from hardcoded page coordinates
-- scalable enough for dense vector PDFs
-
-## Reuse of existing project pieces
-
-This first PDF step intentionally reuses current repo patterns where possible:
-
-- `config.py` for path/feature flags
-- `debug_utils.save_json()` for serializable outputs
-- `main.py` as the main integration point
-- existing graph pipeline left untouched unless PDF exists
-
-## TODO for next steps
-The new module already exposes named hooks for the next refactors:
-
-- `align_image_graph_to_pdf_prior(...)`
-
-Planned progression:
-
-1. refine `reference_graph_builder` with axis extraction from pipe-like primitives
-2. improve symbol grouping and text-to-component association
-3. compare image-derived graph candidates against the reference graph
-4. use the PDF prior as structural support for:
-   - missing nodes
-   - ambiguous codes
-   - branch disambiguation
-   - graph completion
+- align image-derived graph candidates to the PDF reference graph
+- score observed node vs prior component
+- handle project vs as-built mismatches
+- guide multi-view fusion with the prior graph

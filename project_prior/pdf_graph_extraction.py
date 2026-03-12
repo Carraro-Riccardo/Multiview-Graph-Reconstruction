@@ -30,7 +30,7 @@ from config import (
     PDF_CLUSTER_CELL_DIVISOR,
     PDF_CLUSTER_EXPAND_FRAC,
 )
-from debug_utils import save_json
+from core.debug_utils import save_json
 
 
 try:
@@ -904,9 +904,9 @@ def build_reference_graph_from_pdf_prior(
 ):
     """
     Wrapper locale per mantenere stabile l'API del modulo PDF.
-    L'implementazione effettiva vive in `project_prior.reference_graph_builder`.
+    L'implementazione effettiva vive in `project_prior.llm_reference_graph`.
     """
-    from .reference_graph_builder import build_reference_graph_from_pdf_prior as _impl
+    from .llm_reference_graph import build_reference_graph_from_pdf_prior as _impl
 
     return _impl(
         extraction_result,
@@ -916,7 +916,7 @@ def build_reference_graph_from_pdf_prior(
 
 
 def align_image_graph_to_pdf_prior(image_graph: Any, pdf_prior_graph: Any) -> dict[str, Any]:
-    from .reference_graph_builder import align_image_graph_to_pdf_prior as _impl
+    from .llm_reference_graph import align_image_graph_to_pdf_prior as _impl
 
     return _impl(image_graph, pdf_prior_graph)
 

@@ -1,0 +1,9 @@
+pdf=folder_with_pdf\node9.pdf
+page_index=0
+diagram_candidate_id=page0_cluster0007
+candidate_rank=1
+candidate_score=35.3950
+cluster_image=output\pdf_prior\node9\llm_reference_graph\inputs\page0_best_cluster.png
+catalog_pdf=components.pdf
+nearby_words=72
+candidate_regions=523

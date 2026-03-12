@@ -12,13 +12,13 @@ from config import (
     IMAGES_DIR, WORK_DIR, SKIP_NODES, MIN_IMAGES, DIAMETER_CODES,
     PDF_DIR, PDF_PRIOR_ENABLED, PDF_DIAGRAM_CANDIDATES_ENABLED, PDF_REFERENCE_GRAPH_ENABLED,
 )
-from detection import (
+from core.detection import (
     discover_nodes,
     detect_and_decode_simple,
     detect_and_decode_with_conf,
     score_view,
 )
-from graph_engine import (
+from core.graph_engine import (
     aggregate_type_consensus,
     consolidate_best_view_codes,
     build_graph_ilp_soft,
@@ -26,8 +26,8 @@ from graph_engine import (
     break_cycles,
     get_name,
 )
-from visualization import plot_node_detections, plot_graph_on_image
-from debug_utils import (
+from core.visualization import plot_node_detections, plot_graph_on_image
+from core.debug_utils import (
     init_node_debug,
     save_json,
     save_view_selection,
@@ -143,6 +143,12 @@ def run_step4():
                     ),
                     "reference_graph_status": (
                         reference_graph.status if reference_graph is not None else "disabled"
+                    ),
+                    "reference_graph_provider": (
+                        reference_graph.provider if reference_graph is not None else None
+                    ),
+                    "reference_graph_model": (
+                        reference_graph.model if reference_graph is not None else None
                     ),
                     "reference_graph_debug_root": (
                         reference_graph.debug_paths.get("root")

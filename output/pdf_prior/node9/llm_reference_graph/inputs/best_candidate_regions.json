@@ -1,0 +1,9939 @@
+[
+  {
+    "component_id": "page0_draw5360",
+    "bbox_pdf": [
+      3469.559814453125,
+      1467.580078125,
+      3469.679931640625,
+      1473.820068359375
+    ],
+    "bbox_image": [
+      1745,
+      568,
+      1745,
+      580
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw5372",
+    "bbox_pdf": [
+      3469.559814453125,
+      1490.97998046875,
+      3469.679931640625,
+      1497.1600341796875
+    ],
+    "bbox_image": [
+      1745,
+      614,
+      1745,
+      627
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw5384",
+    "bbox_pdf": [
+      3469.559814453125,
+      1506.52001953125,
+      3469.679931640625,
+      1512.760009765625
+    ],
+    "bbox_image": [
+      1745,
+      646,
+      1745,
+      658
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw5396",
+    "bbox_pdf": [
+      3469.559814453125,
+      1529.199951171875,
+      3469.679931640625,
+      1535.43994140625
+    ],
+    "bbox_image": [
+      1745,
+      691,
+      1745,
+      703
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw5521",
+    "bbox_pdf": [
+      3400.85986328125,
+      1499.679931640625,
+      3405.239990234375,
+      1504.06005859375
+    ],
+    "bbox_image": [
+      1607,
+      632,
+      1616,
+      641
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw5522",
+    "bbox_pdf": [
+      3401.159912109375,
+      1499.97998046875,
+      3404.93994140625,
+      1503.760009765625
+    ],
+    "bbox_image": [
+      1608,
+      632,
+      1615,
+      640
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw5524",
+    "bbox_pdf": [
+      3433.31982421875,
+      1473.580078125,
+      3454.559814453125,
+      1475.1400146484375
+    ],
+    "bbox_image": [
+      1672,
+      580,
+      1715,
+      583
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw5526",
+    "bbox_pdf": [
+      3354.119873046875,
+      1528.60009765625,
+      3372.659912109375,
+      1529.679931640625
+    ],
+    "bbox_image": [
+      1514,
+      690,
+      1551,
+      692
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw5527",
+    "bbox_pdf": [
+      3354.119873046875,
+      1474.06005859375,
+      3372.719970703125,
+      1475.1400146484375
+    ],
+    "bbox_image": [
+      1514,
+      581,
+      1551,
+      583
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw5530",
+    "bbox_pdf": [
+      3380.8798828125,
+      1479.699951171875,
+      3425.219970703125,
+      1524.0400390625
+    ],
+    "bbox_image": [
+      1567,
+      592,
+      1656,
+      681
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw5531",
+    "bbox_pdf": [
+      3379.559814453125,
+      1478.3800048828125,
+      3426.5400390625,
+      1525.360107421875
+    ],
+    "bbox_image": [
+      1565,
+      589,
+      1659,
+      683
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw5532",
+    "bbox_pdf": [
+      3388.739990234375,
+      1487.56005859375,
+      3417.35986328125,
+      1516.179931640625
+    ],
+    "bbox_image": [
+      1583,
+      608,
+      1640,
+      665
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw5533",
+    "bbox_pdf": [
+      3419.93994140625,
+      1521.93994140625,
+      3430.559814453125,
+      1532.56005859375
+    ],
+    "bbox_image": [
+      1645,
+      676,
+      1667,
+      698
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw5548",
+    "bbox_pdf": [
+      3395.280029296875,
+      1494.10009765625,
+      3410.81982421875,
+      1509.6400146484375
+    ],
+    "bbox_image": [
+      1596,
+      621,
+      1627,
+      652
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw5549",
+    "bbox_pdf": [
+      3400.85986328125,
+      1499.679931640625,
+      3405.239990234375,
+      1504.06005859375
+    ],
+    "bbox_image": [
+      1607,
+      632,
+      1616,
+      641
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw5550",
+    "bbox_pdf": [
+      3401.159912109375,
+      1499.97998046875,
+      3404.93994140625,
+      1503.760009765625
+    ],
+    "bbox_image": [
+      1608,
+      632,
+      1615,
+      640
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw5551",
+    "bbox_pdf": [
+      3395.33984375,
+      1495.179931640625,
+      3410.760009765625,
+      1508.56005859375
+    ],
+    "bbox_image": [
+      1596,
+      623,
+      1627,
+      650
+    ],
+    "primitive_count": 6,
+    "primitive_kinds": {
+      "segment": 6
+    }
+  },
+  {
+    "component_id": "page0_draw5555",
+    "bbox_pdf": [
+      3371.471923828125,
+      1524.36083984375,
+      3409.92041015625,
+      1551.005615234375
+    ],
+    "bbox_image": [
+      1548,
+      681,
+      1625,
+      735
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "curve": 2
+    }
+  },
+  {
+    "component_id": "page0_draw5557",
+    "bbox_pdf": [
+      3422.0400390625,
+      1524.52001953125,
+      3423.599853515625,
+      1529.97998046875
+    ],
+    "bbox_image": [
+      1650,
+      682,
+      1653,
+      692
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw5565",
+    "bbox_pdf": [
+      3375.599853515625,
+      1521.93994140625,
+      3386.219970703125,
+      1532.56005859375
+    ],
+    "bbox_image": [
+      1557,
+      676,
+      1578,
+      698
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw5566",
+    "bbox_pdf": [
+      3375.599853515625,
+      1471.1199951171875,
+      3386.219970703125,
+      1481.739990234375
+    ],
+    "bbox_image": [
+      1557,
+      575,
+      1578,
+      596
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw5567",
+    "bbox_pdf": [
+      3419.93994140625,
+      1471.1199951171875,
+      3430.559814453125,
+      1481.739990234375
+    ],
+    "bbox_image": [
+      1645,
+      575,
+      1667,
+      596
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw5573",
+    "bbox_pdf": [
+      3379.31982421875,
+      1476.4599609375,
+      3384.0,
+      1479.219970703125
+    ],
+    "bbox_image": [
+      1564,
+      585,
+      1574,
+      591
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw5574",
+    "bbox_pdf": [
+      3422.0400390625,
+      1473.760009765625,
+      3423.599853515625,
+      1479.219970703125
+    ],
+    "bbox_image": [
+      1650,
+      580,
+      1653,
+      591
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw5582",
+    "bbox_pdf": [
+      3399.83984375,
+      1471.3599853515625,
+      3400.919921875,
+      1473.10009765625
+    ],
+    "bbox_image": [
+      1605,
+      575,
+      1607,
+      579
+    ],
+    "primitive_count": 166,
+    "primitive_kinds": {
+      "segment": 166
+    }
+  },
+  {
+    "component_id": "page0_draw5583",
+    "bbox_pdf": [
+      3401.219970703125,
+      1471.360107421875,
+      3402.300048828125,
+      1473.10009765625
+    ],
+    "bbox_image": [
+      1608,
+      575,
+      1610,
+      579
+    ],
+    "primitive_count": 47,
+    "primitive_kinds": {
+      "segment": 47
+    }
+  },
+  {
+    "component_id": "page0_draw5584",
+    "bbox_pdf": [
+      3403.139892578125,
+      1471.300048828125,
+      3403.85986328125,
+      1473.10009765625
+    ],
+    "bbox_image": [
+      1612,
+      575,
+      1613,
+      579
+    ],
+    "primitive_count": 38,
+    "primitive_kinds": {
+      "segment": 38
+    }
+  },
+  {
+    "component_id": "page0_draw5585",
+    "bbox_pdf": [
+      3404.33984375,
+      1471.3599853515625,
+      3405.300048828125,
+      1473.1600341796875
+    ],
+    "bbox_image": [
+      1614,
+      575,
+      1616,
+      579
+    ],
+    "primitive_count": 196,
+    "primitive_kinds": {
+      "segment": 196
+    }
+  },
+  {
+    "component_id": "page0_draw5586",
+    "bbox_pdf": [
+      3405.5400390625,
+      1471.300048828125,
+      3406.5,
+      1473.1600341796875
+    ],
+    "bbox_image": [
+      1617,
+      575,
+      1619,
+      579
+    ],
+    "primitive_count": 238,
+    "primitive_kinds": {
+      "segment": 238
+    }
+  },
+  {
+    "component_id": "page0_draw5603",
+    "bbox_pdf": [
+      3377.699951171875,
+      1524.52001953125,
+      3379.31982421875,
+      1529.97998046875
+    ],
+    "bbox_image": [
+      1561,
+      682,
+      1564,
+      692
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw5604",
+    "bbox_pdf": [
+      3377.699951171875,
+      1473.760009765625,
+      3379.31982421875,
+      1479.219970703125
+    ],
+    "bbox_image": [
+      1561,
+      580,
+      1564,
+      591
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw5716",
+    "bbox_pdf": [
+      3336.35986328125,
+      1467.580078125,
+      3336.47998046875,
+      1473.820068359375
+    ],
+    "bbox_image": [
+      1478,
+      568,
+      1478,
+      580
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw5728",
+    "bbox_pdf": [
+      3336.35986328125,
+      1490.97998046875,
+      3336.47998046875,
+      1497.1600341796875
+    ],
+    "bbox_image": [
+      1478,
+      614,
+      1478,
+      627
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw5740",
+    "bbox_pdf": [
+      3336.35986328125,
+      1506.52001953125,
+      3336.47998046875,
+      1512.760009765625
+    ],
+    "bbox_image": [
+      1478,
+      646,
+      1478,
+      658
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw5752",
+    "bbox_pdf": [
+      3336.35986328125,
+      1529.199951171875,
+      3336.47998046875,
+      1535.43994140625
+    ],
+    "bbox_image": [
+      1478,
+      691,
+      1478,
+      703
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw5776",
+    "bbox_pdf": [
+      3525.47998046875,
+      1731.1600341796875,
+      3542.4599609375,
+      1742.56005859375
+    ],
+    "bbox_image": [
+      1856,
+      1095,
+      1890,
+      1118
+    ],
+    "primitive_count": 369,
+    "primitive_kinds": {
+      "segment": 369
+    }
+  },
+  {
+    "component_id": "page0_draw5777",
+    "bbox_pdf": [
+      3525.47998046875,
+      1726.3599853515625,
+      3542.4599609375,
+      1729.5399169921875
+    ],
+    "bbox_image": [
+      1856,
+      1085,
+      1890,
+      1092
+    ],
+    "primitive_count": 8,
+    "primitive_kinds": {
+      "segment": 8
+    }
+  },
+  {
+    "component_id": "page0_draw5778",
+    "bbox_pdf": [
+      3525.47998046875,
+      1712.739990234375,
+      3542.4599609375,
+      1723.47998046875
+    ],
+    "bbox_image": [
+      1856,
+      1058,
+      1890,
+      1079
+    ],
+    "primitive_count": 385,
+    "primitive_kinds": {
+      "segment": 385
+    }
+  },
+  {
+    "component_id": "page0_draw5779",
+    "bbox_pdf": [
+      3525.47998046875,
+      1695.580078125,
+      3542.52001953125,
+      1704.52001953125
+    ],
+    "bbox_image": [
+      1856,
+      1024,
+      1891,
+      1042
+    ],
+    "primitive_count": 20,
+    "primitive_kinds": {
+      "segment": 20
+    }
+  },
+  {
+    "component_id": "page0_draw5780",
+    "bbox_pdf": [
+      3525.47998046875,
+      1684.5400390625,
+      3542.52001953125,
+      1693.4200439453125
+    ],
+    "bbox_image": [
+      1856,
+      1002,
+      1891,
+      1019
+    ],
+    "primitive_count": 12,
+    "primitive_kinds": {
+      "segment": 12
+    }
+  },
+  {
+    "component_id": "page0_draw5781",
+    "bbox_pdf": [
+      3539.16015625,
+      1679.1400146484375,
+      3542.52001953125,
+      1682.4400634765625
+    ],
+    "bbox_image": [
+      1884,
+      991,
+      1891,
+      997
+    ],
+    "primitive_count": 8,
+    "primitive_kinds": {
+      "segment": 8
+    }
+  },
+  {
+    "component_id": "page0_draw5782",
+    "bbox_pdf": [
+      3525.419921875,
+      1661.5599365234375,
+      3542.81982421875,
+      1671.0999755859375
+    ],
+    "bbox_image": [
+      1856,
+      956,
+      1891,
+      975
+    ],
+    "primitive_count": 627,
+    "primitive_kinds": {
+      "segment": 627
+    }
+  },
+  {
+    "component_id": "page0_draw5783",
+    "bbox_pdf": [
+      3525.719970703125,
+      1650.39990234375,
+      3542.880126953125,
+      1659.8199462890625
+    ],
+    "bbox_image": [
+      1857,
+      933,
+      1891,
+      952
+    ],
+    "primitive_count": 436,
+    "primitive_kinds": {
+      "segment": 436
+    }
+  },
+  {
+    "component_id": "page0_draw5784",
+    "bbox_pdf": [
+      3525.419921875,
+      1639.0599365234375,
+      3542.8798828125,
+      1648.419921875
+    ],
+    "bbox_image": [
+      1856,
+      911,
+      1891,
+      929
+    ],
+    "primitive_count": 573,
+    "primitive_kinds": {
+      "segment": 573
+    }
+  },
+  {
+    "component_id": "page0_draw5785",
+    "bbox_pdf": [
+      3525.119873046875,
+      1630.4200439453125,
+      3544.619873046875,
+      1639.1199951171875
+    ],
+    "bbox_image": [
+      1856,
+      893,
+      1895,
+      911
+    ],
+    "primitive_count": 8,
+    "primitive_kinds": {
+      "segment": 8
+    }
+  },
+  {
+    "component_id": "page0_draw5786",
+    "bbox_pdf": [
+      3525.419921875,
+      1620.760009765625,
+      3542.579833984375,
+      1630.179931640625
+    ],
+    "bbox_image": [
+      1856,
+      874,
+      1891,
+      893
+    ],
+    "primitive_count": 467,
+    "primitive_kinds": {
+      "segment": 467
+    }
+  },
+  {
+    "component_id": "page0_draw5787",
+    "bbox_pdf": [
+      3525.419921875,
+      1609.47998046875,
+      3542.8798828125,
+      1618.9000244140625
+    ],
+    "bbox_image": [
+      1856,
+      851,
+      1891,
+      870
+    ],
+    "primitive_count": 574,
+    "primitive_kinds": {
+      "segment": 574
+    }
+  },
+  {
+    "component_id": "page0_draw5788",
+    "bbox_pdf": [
+      3525.419921875,
+      1598.2000732421875,
+      3542.8798828125,
+      1607.56005859375
+    ],
+    "bbox_image": [
+      1856,
+      829,
+      1891,
+      848
+    ],
+    "primitive_count": 573,
+    "primitive_kinds": {
+      "segment": 573
+    }
+  },
+  {
+    "component_id": "page0_draw5789",
+    "bbox_pdf": [
+      3351.119873046875,
+      1648.6600341796875,
+      3361.559814453125,
+      1665.6400146484375
+    ],
+    "bbox_image": [
+      1508,
+      930,
+      1529,
+      964
+    ],
+    "primitive_count": 16,
+    "primitive_kinds": {
+      "segment": 16
+    }
+  },
+  {
+    "component_id": "page0_draw5790",
+    "bbox_pdf": [
+      3363.239990234375,
+      1648.6600341796875,
+      3372.1201171875,
+      1665.6400146484375
+    ],
+    "bbox_image": [
+      1532,
+      930,
+      1550,
+      964
+    ],
+    "primitive_count": 24,
+    "primitive_kinds": {
+      "segment": 24
+    }
+  },
+  {
+    "component_id": "page0_draw5791",
+    "bbox_pdf": [
+      3374.39990234375,
+      1648.6600341796875,
+      3383.280029296875,
+      1665.6400146484375
+    ],
+    "bbox_image": [
+      1554,
+      930,
+      1572,
+      964
+    ],
+    "primitive_count": 24,
+    "primitive_kinds": {
+      "segment": 24
+    }
+  },
+  {
+    "component_id": "page0_draw5792",
+    "bbox_pdf": [
+      3390.77978515625,
+      1648.5400390625,
+      3400.259765625,
+      1665.699951171875
+    ],
+    "bbox_image": [
+      1587,
+      930,
+      1606,
+      964
+    ],
+    "primitive_count": 465,
+    "primitive_kinds": {
+      "segment": 465
+    }
+  },
+  {
+    "component_id": "page0_draw5793",
+    "bbox_pdf": [
+      3402.119873046875,
+      1648.5401611328125,
+      3411.47998046875,
+      1666.0001220703125
+    ],
+    "bbox_image": [
+      1610,
+      930,
+      1628,
+      965
+    ],
+    "primitive_count": 574,
+    "primitive_kinds": {
+      "segment": 574
+    }
+  },
+  {
+    "component_id": "page0_draw5794",
+    "bbox_pdf": [
+      3413.4599609375,
+      1648.60009765625,
+      3422.81982421875,
+      1666.0001220703125
+    ],
+    "bbox_image": [
+      1632,
+      930,
+      1651,
+      965
+    ],
+    "primitive_count": 573,
+    "primitive_kinds": {
+      "segment": 573
+    }
+  },
+  {
+    "component_id": "page0_draw5795",
+    "bbox_pdf": [
+      3422.760009765625,
+      1648.300048828125,
+      3431.4599609375,
+      1667.800048828125
+    ],
+    "bbox_image": [
+      1651,
+      929,
+      1668,
+      968
+    ],
+    "primitive_count": 8,
+    "primitive_kinds": {
+      "segment": 8
+    }
+  },
+  {
+    "component_id": "page0_draw5796",
+    "bbox_pdf": [
+      3431.759765625,
+      1648.60009765625,
+      3438.47998046875,
+      1665.7000732421875
+    ],
+    "bbox_image": [
+      1669,
+      930,
+      1682,
+      964
+    ],
+    "primitive_count": 68,
+    "primitive_kinds": {
+      "segment": 68
+    }
+  },
+  {
+    "component_id": "page0_draw5797",
+    "bbox_pdf": [
+      3442.97998046875,
+      1648.60009765625,
+      3452.340087890625,
+      1666.06005859375
+    ],
+    "bbox_image": [
+      1691,
+      930,
+      1710,
+      965
+    ],
+    "primitive_count": 572,
+    "primitive_kinds": {
+      "segment": 572
+    }
+  },
+  {
+    "component_id": "page0_draw5798",
+    "bbox_pdf": [
+      3454.320068359375,
+      1648.60009765625,
+      3463.679931640625,
+      1666.06005859375
+    ],
+    "bbox_image": [
+      1714,
+      930,
+      1733,
+      965
+    ],
+    "primitive_count": 572,
+    "primitive_kinds": {
+      "segment": 572
+    }
+  },
+  {
+    "component_id": "page0_draw5906",
+    "bbox_pdf": [
+      3187.559814453125,
+      1467.580078125,
+      3187.679931640625,
+      1473.820068359375
+    ],
+    "bbox_image": [
+      1181,
+      568,
+      1181,
+      580
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw5918",
+    "bbox_pdf": [
+      3187.559814453125,
+      1490.97998046875,
+      3187.679931640625,
+      1497.1600341796875
+    ],
+    "bbox_image": [
+      1181,
+      614,
+      1181,
+      627
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw5930",
+    "bbox_pdf": [
+      3187.559814453125,
+      1506.52001953125,
+      3187.679931640625,
+      1512.760009765625
+    ],
+    "bbox_image": [
+      1181,
+      646,
+      1181,
+      658
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw5942",
+    "bbox_pdf": [
+      3187.559814453125,
+      1529.199951171875,
+      3187.679931640625,
+      1535.43994140625
+    ],
+    "bbox_image": [
+      1181,
+      691,
+      1181,
+      703
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw6069",
+    "bbox_pdf": [
+      3297.659912109375,
+      1419.820068359375,
+      3303.89990234375,
+      1419.93994140625
+    ],
+    "bbox_image": [
+      1401,
+      472,
+      1413,
+      472
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw6081",
+    "bbox_pdf": [
+      3274.31982421875,
+      1419.820068359375,
+      3280.559814453125,
+      1419.93994140625
+    ],
+    "bbox_image": [
+      1354,
+      472,
+      1367,
+      472
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw6093",
+    "bbox_pdf": [
+      3258.719970703125,
+      1419.820068359375,
+      3264.9599609375,
+      1419.93994140625
+    ],
+    "bbox_image": [
+      1323,
+      472,
+      1335,
+      472
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw6105",
+    "bbox_pdf": [
+      3236.0400390625,
+      1419.820068359375,
+      3242.280029296875,
+      1419.93994140625
+    ],
+    "bbox_image": [
+      1278,
+      472,
+      1290,
+      472
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw6232",
+    "bbox_pdf": [
+      3297.659912109375,
+      1567.239990234375,
+      3303.89990234375,
+      1567.360107421875
+    ],
+    "bbox_image": [
+      1401,
+      767,
+      1413,
+      767
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw6244",
+    "bbox_pdf": [
+      3274.31982421875,
+      1567.239990234375,
+      3280.559814453125,
+      1567.360107421875
+    ],
+    "bbox_image": [
+      1354,
+      767,
+      1367,
+      767
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw6256",
+    "bbox_pdf": [
+      3258.719970703125,
+      1567.239990234375,
+      3264.9599609375,
+      1567.360107421875
+    ],
+    "bbox_image": [
+      1323,
+      767,
+      1335,
+      767
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw6268",
+    "bbox_pdf": [
+      3236.0400390625,
+      1567.239990234375,
+      3242.280029296875,
+      1567.360107421875
+    ],
+    "bbox_image": [
+      1278,
+      767,
+      1290,
+      767
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw6296",
+    "bbox_pdf": [
+      3241.3798828125,
+      1480.5399169921875,
+      3251.580078125,
+      1498.3599853515625
+    ],
+    "bbox_image": [
+      1288,
+      594,
+      1309,
+      629
+    ],
+    "primitive_count": 608,
+    "primitive_kinds": {
+      "segment": 608
+    }
+  },
+  {
+    "component_id": "page0_draw6297",
+    "bbox_pdf": [
+      3254.099853515625,
+      1480.9599609375,
+      3265.559814453125,
+      1497.9400634765625
+    ],
+    "bbox_image": [
+      1314,
+      594,
+      1337,
+      628
+    ],
+    "primitive_count": 370,
+    "primitive_kinds": {
+      "segment": 370
+    }
+  },
+  {
+    "component_id": "page0_draw6298",
+    "bbox_pdf": [
+      3266.81982421875,
+      1480.5400390625,
+      3277.85986328125,
+      1498.3599853515625
+    ],
+    "bbox_image": [
+      1339,
+      594,
+      1361,
+      629
+    ],
+    "primitive_count": 729,
+    "primitive_kinds": {
+      "segment": 729
+    }
+  },
+  {
+    "component_id": "page0_draw6299",
+    "bbox_pdf": [
+      3280.079833984375,
+      1480.5399169921875,
+      3290.280029296875,
+      1498.3599853515625
+    ],
+    "bbox_image": [
+      1366,
+      594,
+      1386,
+      629
+    ],
+    "primitive_count": 606,
+    "primitive_kinds": {
+      "segment": 606
+    }
+  },
+  {
+    "component_id": "page0_draw6300",
+    "bbox_pdf": [
+      3292.85986328125,
+      1480.9599609375,
+      3301.739990234375,
+      1497.93994140625
+    ],
+    "bbox_image": [
+      1391,
+      594,
+      1409,
+      628
+    ],
+    "primitive_count": 24,
+    "primitive_kinds": {
+      "segment": 24
+    }
+  },
+  {
+    "component_id": "page0_draw6408",
+    "bbox_pdf": [
+      3038.699951171875,
+      1467.580078125,
+      3038.8798828125,
+      1473.820068359375
+    ],
+    "bbox_image": [
+      883,
+      568,
+      883,
+      580
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw6420",
+    "bbox_pdf": [
+      3038.699951171875,
+      1490.97998046875,
+      3038.8798828125,
+      1497.1600341796875
+    ],
+    "bbox_image": [
+      883,
+      614,
+      883,
+      627
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw6432",
+    "bbox_pdf": [
+      3038.699951171875,
+      1506.52001953125,
+      3038.8798828125,
+      1512.760009765625
+    ],
+    "bbox_image": [
+      883,
+      646,
+      883,
+      658
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw6444",
+    "bbox_pdf": [
+      3038.699951171875,
+      1529.199951171875,
+      3038.8798828125,
+      1535.43994140625
+    ],
+    "bbox_image": [
+      883,
+      691,
+      883,
+      703
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw6467",
+    "bbox_pdf": [
+      3267.419921875,
+      1366.239990234375,
+      3271.800048828125,
+      1370.6199951171875
+    ],
+    "bbox_image": [
+      1340,
+      365,
+      1349,
+      374
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw6468",
+    "bbox_pdf": [
+      3267.719970703125,
+      1366.5400390625,
+      3271.5,
+      1370.320068359375
+    ],
+    "bbox_image": [
+      1341,
+      366,
+      1349,
+      373
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw6470",
+    "bbox_pdf": [
+      3296.33984375,
+      1398.760009765625,
+      3297.9599609375,
+      1419.93994140625
+    ],
+    "bbox_image": [
+      1398,
+      430,
+      1401,
+      472
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw6472",
+    "bbox_pdf": [
+      3241.800048828125,
+      1319.56005859375,
+      3242.8798828125,
+      1338.0400390625
+    ],
+    "bbox_image": [
+      1289,
+      272,
+      1291,
+      309
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw6473",
+    "bbox_pdf": [
+      3296.33984375,
+      1319.56005859375,
+      3297.419921875,
+      1338.1600341796875
+    ],
+    "bbox_image": [
+      1398,
+      272,
+      1400,
+      309
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw6476",
+    "bbox_pdf": [
+      3247.43994140625,
+      1346.260009765625,
+      3291.780029296875,
+      1390.60009765625
+    ],
+    "bbox_image": [
+      1300,
+      325,
+      1389,
+      414
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw6477",
+    "bbox_pdf": [
+      3246.119873046875,
+      1344.9400634765625,
+      3293.099853515625,
+      1391.9200439453125
+    ],
+    "bbox_image": [
+      1298,
+      322,
+      1392,
+      416
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw6478",
+    "bbox_pdf": [
+      3255.300048828125,
+      1354.1199951171875,
+      3283.919921875,
+      1382.739990234375
+    ],
+    "bbox_image": [
+      1316,
+      341,
+      1373,
+      398
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw6479",
+    "bbox_pdf": [
+      3238.919921875,
+      1385.260009765625,
+      3249.5400390625,
+      1395.8800048828125
+    ],
+    "bbox_image": [
+      1283,
+      403,
+      1305,
+      424
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw6494",
+    "bbox_pdf": [
+      3261.83984375,
+      1360.6600341796875,
+      3277.3798828125,
+      1376.199951171875
+    ],
+    "bbox_image": [
+      1329,
+      354,
+      1360,
+      385
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw6495",
+    "bbox_pdf": [
+      3267.419921875,
+      1366.239990234375,
+      3271.800048828125,
+      1370.6199951171875
+    ],
+    "bbox_image": [
+      1340,
+      365,
+      1349,
+      374
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw6496",
+    "bbox_pdf": [
+      3267.719970703125,
+      1366.5400390625,
+      3271.5,
+      1370.320068359375
+    ],
+    "bbox_image": [
+      1341,
+      366,
+      1349,
+      373
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw6497",
+    "bbox_pdf": [
+      3262.919921875,
+      1360.719970703125,
+      3276.300048828125,
+      1376.199951171875
+    ],
+    "bbox_image": [
+      1331,
+      354,
+      1358,
+      385
+    ],
+    "primitive_count": 6,
+    "primitive_kinds": {
+      "segment": 6
+    }
+  },
+  {
+    "component_id": "page0_draw6501",
+    "bbox_pdf": [
+      3220.474365234375,
+      1336.8519287109375,
+      3247.119384765625,
+      1375.300537109375
+    ],
+    "bbox_image": [
+      1246,
+      306,
+      1300,
+      383
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "curve": 2
+    }
+  },
+  {
+    "component_id": "page0_draw6503",
+    "bbox_pdf": [
+      3241.5,
+      1387.47998046875,
+      3246.9599609375,
+      1389.0400390625
+    ],
+    "bbox_image": [
+      1289,
+      407,
+      1299,
+      411
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw6511",
+    "bbox_pdf": [
+      3238.919921875,
+      1340.9200439453125,
+      3249.5400390625,
+      1351.5400390625
+    ],
+    "bbox_image": [
+      1283,
+      314,
+      1305,
+      336
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw6512",
+    "bbox_pdf": [
+      3289.739990234375,
+      1340.9200439453125,
+      3300.35986328125,
+      1351.5400390625
+    ],
+    "bbox_image": [
+      1385,
+      314,
+      1406,
+      336
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw6513",
+    "bbox_pdf": [
+      3289.739990234375,
+      1385.260009765625,
+      3300.35986328125,
+      1395.8800048828125
+    ],
+    "bbox_image": [
+      1385,
+      403,
+      1406,
+      424
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw6519",
+    "bbox_pdf": [
+      3292.260009765625,
+      1344.7000732421875,
+      3295.02001953125,
+      1349.4400634765625
+    ],
+    "bbox_image": [
+      1390,
+      322,
+      1396,
+      331
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw6520",
+    "bbox_pdf": [
+      3292.260009765625,
+      1387.47998046875,
+      3297.719970703125,
+      1389.0400390625
+    ],
+    "bbox_image": [
+      1390,
+      407,
+      1401,
+      411
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw6528",
+    "bbox_pdf": [
+      3298.3798828125,
+      1365.219970703125,
+      3300.119873046875,
+      1366.3599853515625
+    ],
+    "bbox_image": [
+      1402,
+      363,
+      1406,
+      365
+    ],
+    "primitive_count": 165,
+    "primitive_kinds": {
+      "segment": 165
+    }
+  },
+  {
+    "component_id": "page0_draw6529",
+    "bbox_pdf": [
+      3298.3798828125,
+      1366.5999755859375,
+      3300.119873046875,
+      1367.739990234375
+    ],
+    "bbox_image": [
+      1402,
+      366,
+      1406,
+      368
+    ],
+    "primitive_count": 44,
+    "primitive_kinds": {
+      "segment": 44
+    }
+  },
+  {
+    "component_id": "page0_draw6530",
+    "bbox_pdf": [
+      3298.3798828125,
+      1368.5799560546875,
+      3300.179931640625,
+      1369.300048828125
+    ],
+    "bbox_image": [
+      1402,
+      370,
+      1406,
+      371
+    ],
+    "primitive_count": 36,
+    "primitive_kinds": {
+      "segment": 36
+    }
+  },
+  {
+    "component_id": "page0_draw6531",
+    "bbox_pdf": [
+      3298.31982421875,
+      1369.780029296875,
+      3300.119873046875,
+      1370.739990234375
+    ],
+    "bbox_image": [
+      1402,
+      372,
+      1406,
+      374
+    ],
+    "primitive_count": 189,
+    "primitive_kinds": {
+      "segment": 189
+    }
+  },
+  {
+    "component_id": "page0_draw6532",
+    "bbox_pdf": [
+      3298.31982421875,
+      1370.9200439453125,
+      3300.179931640625,
+      1371.9400634765625
+    ],
+    "bbox_image": [
+      1402,
+      374,
+      1406,
+      376
+    ],
+    "primitive_count": 246,
+    "primitive_kinds": {
+      "segment": 246
+    }
+  },
+  {
+    "component_id": "page0_draw6549",
+    "bbox_pdf": [
+      3241.5,
+      1343.1400146484375,
+      3246.9599609375,
+      1344.7000732421875
+    ],
+    "bbox_image": [
+      1289,
+      319,
+      1299,
+      322
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw6550",
+    "bbox_pdf": [
+      3292.260009765625,
+      1343.1400146484375,
+      3297.719970703125,
+      1344.7000732421875
+    ],
+    "bbox_image": [
+      1390,
+      319,
+      1401,
+      322
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw6662",
+    "bbox_pdf": [
+      3297.659912109375,
+      1301.800048828125,
+      3303.89990234375,
+      1301.9200439453125
+    ],
+    "bbox_image": [
+      1401,
+      236,
+      1413,
+      236
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw6674",
+    "bbox_pdf": [
+      3274.31982421875,
+      1301.800048828125,
+      3280.559814453125,
+      1301.9200439453125
+    ],
+    "bbox_image": [
+      1354,
+      236,
+      1367,
+      236
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw6686",
+    "bbox_pdf": [
+      3258.719970703125,
+      1301.800048828125,
+      3264.9599609375,
+      1301.9200439453125
+    ],
+    "bbox_image": [
+      1323,
+      236,
+      1335,
+      236
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw6698",
+    "bbox_pdf": [
+      3236.0400390625,
+      1301.800048828125,
+      3242.280029296875,
+      1301.9200439453125
+    ],
+    "bbox_image": [
+      1278,
+      236,
+      1290,
+      236
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw6720",
+    "bbox_pdf": [
+      3350.519775390625,
+      1360.89990234375,
+      3360.7197265625,
+      1378.719970703125
+    ],
+    "bbox_image": [
+      1507,
+      354,
+      1527,
+      390
+    ],
+    "primitive_count": 631,
+    "primitive_kinds": {
+      "segment": 631
+    }
+  },
+  {
+    "component_id": "page0_draw6721",
+    "bbox_pdf": [
+      3362.0400390625,
+      1361.320068359375,
+      3373.97998046875,
+      1378.300048828125
+    ],
+    "bbox_image": [
+      1530,
+      355,
+      1553,
+      389
+    ],
+    "primitive_count": 53,
+    "primitive_kinds": {
+      "segment": 53
+    }
+  },
+  {
+    "component_id": "page0_draw6722",
+    "bbox_pdf": [
+      3375.659912109375,
+      1361.3199462890625,
+      3387.059814453125,
+      1378.2999267578125
+    ],
+    "bbox_image": [
+      1557,
+      355,
+      1580,
+      389
+    ],
+    "primitive_count": 372,
+    "primitive_kinds": {
+      "segment": 372
+    }
+  },
+  {
+    "component_id": "page0_draw6723",
+    "bbox_pdf": [
+      3394.3798828125,
+      1361.320068359375,
+      3405.059814453125,
+      1378.300048828125
+    ],
+    "bbox_image": [
+      1594,
+      355,
+      1616,
+      389
+    ],
+    "primitive_count": 385,
+    "primitive_kinds": {
+      "segment": 385
+    }
+  },
+  {
+    "component_id": "page0_draw6724",
+    "bbox_pdf": [
+      3407.639892578125,
+      1361.320068359375,
+      3418.260009765625,
+      1378.300048828125
+    ],
+    "bbox_image": [
+      1621,
+      355,
+      1642,
+      389
+    ],
+    "primitive_count": 86,
+    "primitive_kinds": {
+      "segment": 86
+    }
+  },
+  {
+    "component_id": "page0_draw6725",
+    "bbox_pdf": [
+      3420.659912109375,
+      1361.2000732421875,
+      3430.079833984375,
+      1378.300048828125
+    ],
+    "bbox_image": [
+      1647,
+      355,
+      1666,
+      389
+    ],
+    "primitive_count": 470,
+    "primitive_kinds": {
+      "segment": 470
+    }
+  },
+  {
+    "component_id": "page0_draw6726",
+    "bbox_pdf": [
+      3431.93994140625,
+      1361.2000732421875,
+      3441.35986328125,
+      1378.6600341796875
+    ],
+    "bbox_image": [
+      1669,
+      355,
+      1688,
+      390
+    ],
+    "primitive_count": 573,
+    "primitive_kinds": {
+      "segment": 573
+    }
+  },
+  {
+    "component_id": "page0_draw6727",
+    "bbox_pdf": [
+      3443.27978515625,
+      1361.2000732421875,
+      3452.639892578125,
+      1378.6600341796875
+    ],
+    "bbox_image": [
+      1692,
+      355,
+      1711,
+      390
+    ],
+    "primitive_count": 572,
+    "primitive_kinds": {
+      "segment": 572
+    }
+  },
+  {
+    "component_id": "page0_draw6892",
+    "bbox_pdf": [
+      3346.7998046875,
+      1228.780029296875,
+      3358.19970703125,
+      1245.760009765625
+    ],
+    "bbox_image": [
+      1499,
+      90,
+      1522,
+      124
+    ],
+    "primitive_count": 368,
+    "primitive_kinds": {
+      "segment": 368
+    }
+  },
+  {
+    "component_id": "page0_draw6893",
+    "bbox_pdf": [
+      3359.8798828125,
+      1228.780029296875,
+      3363.0,
+      1245.760009765625
+    ],
+    "bbox_image": [
+      1525,
+      90,
+      1532,
+      124
+    ],
+    "primitive_count": 8,
+    "primitive_kinds": {
+      "segment": 8
+    }
+  },
+  {
+    "component_id": "page0_draw6894",
+    "bbox_pdf": [
+      3365.93994140625,
+      1228.780029296875,
+      3376.619873046875,
+      1245.7601318359375
+    ],
+    "bbox_image": [
+      1537,
+      90,
+      1559,
+      124
+    ],
+    "primitive_count": 385,
+    "primitive_kinds": {
+      "segment": 385
+    }
+  },
+  {
+    "component_id": "page0_draw6895",
+    "bbox_pdf": [
+      3384.89990234375,
+      1228.780029296875,
+      3393.780029296875,
+      1245.760009765625
+    ],
+    "bbox_image": [
+      1575,
+      90,
+      1593,
+      124
+    ],
+    "primitive_count": 20,
+    "primitive_kinds": {
+      "segment": 20
+    }
+  },
+  {
+    "component_id": "page0_draw6896",
+    "bbox_pdf": [
+      3395.93994140625,
+      1228.780029296875,
+      3404.820068359375,
+      1245.760009765625
+    ],
+    "bbox_image": [
+      1597,
+      90,
+      1615,
+      124
+    ],
+    "primitive_count": 12,
+    "primitive_kinds": {
+      "segment": 12
+    }
+  },
+  {
+    "component_id": "page0_draw6897",
+    "bbox_pdf": [
+      3406.919921875,
+      1242.4600830078125,
+      3410.280029296875,
+      1245.760009765625
+    ],
+    "bbox_image": [
+      1619,
+      117,
+      1626,
+      124
+    ],
+    "primitive_count": 8,
+    "primitive_kinds": {
+      "segment": 8
+    }
+  },
+  {
+    "component_id": "page0_draw6898",
+    "bbox_pdf": [
+      3418.260009765625,
+      1228.6600341796875,
+      3427.800048828125,
+      1246.1201171875
+    ],
+    "bbox_image": [
+      1642,
+      90,
+      1661,
+      125
+    ],
+    "primitive_count": 626,
+    "primitive_kinds": {
+      "segment": 626
+    }
+  },
+  {
+    "component_id": "page0_draw6899",
+    "bbox_pdf": [
+      3429.599853515625,
+      1228.6600341796875,
+      3438.9599609375,
+      1246.1199951171875
+    ],
+    "bbox_image": [
+      1665,
+      90,
+      1683,
+      125
+    ],
+    "primitive_count": 573,
+    "primitive_kinds": {
+      "segment": 573
+    }
+  },
+  {
+    "component_id": "page0_draw6900",
+    "bbox_pdf": [
+      3440.93994140625,
+      1228.6600341796875,
+      3450.300048828125,
+      1246.1199951171875
+    ],
+    "bbox_image": [
+      1687,
+      90,
+      1706,
+      125
+    ],
+    "primitive_count": 573,
+    "primitive_kinds": {
+      "segment": 573
+    }
+  },
+  {
+    "component_id": "page0_draw6901",
+    "bbox_pdf": [
+      3450.2998046875,
+      1228.3599853515625,
+      3458.93994140625,
+      1247.8599853515625
+    ],
+    "bbox_image": [
+      1706,
+      89,
+      1723,
+      128
+    ],
+    "primitive_count": 8,
+    "primitive_kinds": {
+      "segment": 8
+    }
+  },
+  {
+    "component_id": "page0_draw6902",
+    "bbox_pdf": [
+      3459.179931640625,
+      1228.6600341796875,
+      3468.599853515625,
+      1245.760009765625
+    ],
+    "bbox_image": [
+      1724,
+      90,
+      1743,
+      124
+    ],
+    "primitive_count": 469,
+    "primitive_kinds": {
+      "segment": 469
+    }
+  },
+  {
+    "component_id": "page0_draw6903",
+    "bbox_pdf": [
+      3470.52001953125,
+      1228.6600341796875,
+      3479.8798828125,
+      1246.1199951171875
+    ],
+    "bbox_image": [
+      1747,
+      90,
+      1765,
+      125
+    ],
+    "primitive_count": 574,
+    "primitive_kinds": {
+      "segment": 574
+    }
+  },
+  {
+    "component_id": "page0_draw6904",
+    "bbox_pdf": [
+      3481.7998046875,
+      1228.6600341796875,
+      3491.159912109375,
+      1246.1199951171875
+    ],
+    "bbox_image": [
+      1769,
+      90,
+      1788,
+      125
+    ],
+    "primitive_count": 573,
+    "primitive_kinds": {
+      "segment": 573
+    }
+  },
+  {
+    "component_id": "page0_draw7428",
+    "bbox_pdf": [
+      3089.579833984375,
+      1427.739990234375,
+      3151.97998046875,
+      1433.43994140625
+    ],
+    "bbox_image": [
+      985,
+      488,
+      1109,
+      499
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw7432",
+    "bbox_pdf": [
+      3141.239990234375,
+      1427.02001953125,
+      3147.47998046875,
+      1427.199951171875
+    ],
+    "bbox_image": [
+      1088,
+      487,
+      1100,
+      487
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw7444",
+    "bbox_pdf": [
+      3127.43994140625,
+      1427.02001953125,
+      3133.679931640625,
+      1427.199951171875
+    ],
+    "bbox_image": [
+      1060,
+      487,
+      1073,
+      487
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw7456",
+    "bbox_pdf": [
+      3107.8798828125,
+      1427.02001953125,
+      3114.119873046875,
+      1427.199951171875
+    ],
+    "bbox_image": [
+      1021,
+      487,
+      1034,
+      487
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw7468",
+    "bbox_pdf": [
+      3094.079833984375,
+      1427.02001953125,
+      3100.31982421875,
+      1427.199951171875
+    ],
+    "bbox_image": [
+      994,
+      487,
+      1006,
+      487
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw7692",
+    "bbox_pdf": [
+      3094.079833984375,
+      1352.9200439453125,
+      3100.31982421875,
+      1353.0400390625
+    ],
+    "bbox_image": [
+      994,
+      338,
+      1006,
+      339
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw7704",
+    "bbox_pdf": [
+      3107.8798828125,
+      1352.9200439453125,
+      3114.119873046875,
+      1353.0400390625
+    ],
+    "bbox_image": [
+      1021,
+      338,
+      1034,
+      339
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw7716",
+    "bbox_pdf": [
+      3127.43994140625,
+      1352.9200439453125,
+      3133.679931640625,
+      1353.0400390625
+    ],
+    "bbox_image": [
+      1060,
+      338,
+      1073,
+      339
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw7728",
+    "bbox_pdf": [
+      3141.239990234375,
+      1352.9200439453125,
+      3147.47998046875,
+      1353.0400390625
+    ],
+    "bbox_image": [
+      1088,
+      338,
+      1100,
+      339
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw7843",
+    "bbox_pdf": [
+      3119.699951171875,
+      1388.9200439453125,
+      3121.919921875,
+      1391.1400146484375
+    ],
+    "bbox_image": [
+      1045,
+      410,
+      1049,
+      415
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw7844",
+    "bbox_pdf": [
+      3119.81982421875,
+      1389.0400390625,
+      3121.800048828125,
+      1391.02001953125
+    ],
+    "bbox_image": [
+      1045,
+      411,
+      1049,
+      415
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw7846",
+    "bbox_pdf": [
+      3102.35986328125,
+      1352.9200439453125,
+      3103.800048828125,
+      1369.5400390625
+    ],
+    "bbox_image": [
+      1010,
+      338,
+      1013,
+      372
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw7848",
+    "bbox_pdf": [
+      3137.760009765625,
+      1410.4599609375,
+      3139.199951171875,
+      1427.199951171875
+    ],
+    "bbox_image": [
+      1081,
+      453,
+      1084,
+      487
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw7849",
+    "bbox_pdf": [
+      3102.35986328125,
+      1410.52001953125,
+      3103.800048828125,
+      1427.199951171875
+    ],
+    "bbox_image": [
+      1010,
+      454,
+      1013,
+      487
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw7853",
+    "bbox_pdf": [
+      3102.82080078125,
+      1372.04931640625,
+      3138.7822265625,
+      1407.9940185546875
+    ],
+    "bbox_image": [
+      1011,
+      377,
+      1083,
+      448
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw7854",
+    "bbox_pdf": [
+      3103.120361328125,
+      1372.342041015625,
+      3138.496337890625,
+      1407.71484375
+    ],
+    "bbox_image": [
+      1012,
+      377,
+      1082,
+      448
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw7858",
+    "bbox_pdf": [
+      3117.7783203125,
+      1372.939697265625,
+      3137.280029296875,
+      1390.030029296875
+    ],
+    "bbox_image": [
+      1041,
+      378,
+      1080,
+      413
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "curve": 2
+    }
+  },
+  {
+    "component_id": "page0_draw7864",
+    "bbox_pdf": [
+      3140.93994140625,
+      1387.780029296875,
+      3142.14013671875,
+      1388.6199951171875
+    ],
+    "bbox_image": [
+      1087,
+      408,
+      1090,
+      410
+    ],
+    "primitive_count": 120,
+    "primitive_kinds": {
+      "segment": 120
+    }
+  },
+  {
+    "component_id": "page0_draw7865",
+    "bbox_pdf": [
+      3140.93994140625,
+      1388.800048828125,
+      3142.139892578125,
+      1389.580078125
+    ],
+    "bbox_image": [
+      1087,
+      410,
+      1090,
+      412
+    ],
+    "primitive_count": 37,
+    "primitive_kinds": {
+      "segment": 37
+    }
+  },
+  {
+    "component_id": "page0_draw7866",
+    "bbox_pdf": [
+      3140.93994140625,
+      1390.1800537109375,
+      3142.199951171875,
+      1390.6600341796875
+    ],
+    "bbox_image": [
+      1087,
+      413,
+      1090,
+      414
+    ],
+    "primitive_count": 32,
+    "primitive_kinds": {
+      "segment": 32
+    }
+  },
+  {
+    "component_id": "page0_draw7867",
+    "bbox_pdf": [
+      3140.8798828125,
+      1390.9599609375,
+      3142.199951171875,
+      1391.6800537109375
+    ],
+    "bbox_image": [
+      1087,
+      414,
+      1090,
+      416
+    ],
+    "primitive_count": 182,
+    "primitive_kinds": {
+      "segment": 182
+    }
+  },
+  {
+    "component_id": "page0_draw7868",
+    "bbox_pdf": [
+      3140.8798828125,
+      1391.800048828125,
+      3142.199951171875,
+      1392.52001953125
+    ],
+    "bbox_image": [
+      1087,
+      416,
+      1090,
+      418
+    ],
+    "primitive_count": 176,
+    "primitive_kinds": {
+      "segment": 176
+    }
+  },
+  {
+    "component_id": "page0_draw7873",
+    "bbox_pdf": [
+      3115.3798828125,
+      1384.60009765625,
+      3126.239990234375,
+      1395.4599609375
+    ],
+    "bbox_image": [
+      1036,
+      402,
+      1058,
+      423
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw7874",
+    "bbox_pdf": [
+      3112.761962890625,
+      1379.784423828125,
+      3127.25634765625,
+      1384.111328125
+    ],
+    "bbox_image": [
+      1031,
+      392,
+      1060,
+      401
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "curve": 2
+    }
+  },
+  {
+    "component_id": "page0_draw7875",
+    "bbox_pdf": [
+      3118.139892578125,
+      1387.360107421875,
+      3123.47998046875,
+      1392.699951171875
+    ],
+    "bbox_image": [
+      1042,
+      407,
+      1052,
+      418
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw7876",
+    "bbox_pdf": [
+      3118.139892578125,
+      1387.360107421875,
+      3123.47998046875,
+      1392.699951171875
+    ],
+    "bbox_image": [
+      1042,
+      407,
+      1052,
+      418
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw7877",
+    "bbox_pdf": [
+      3118.139892578125,
+      1387.360107421875,
+      3123.47998046875,
+      1392.699951171875
+    ],
+    "bbox_image": [
+      1042,
+      407,
+      1052,
+      418
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw7878",
+    "bbox_pdf": [
+      3118.139892578125,
+      1387.360107421875,
+      3123.47998046875,
+      1392.699951171875
+    ],
+    "bbox_image": [
+      1042,
+      407,
+      1052,
+      418
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw7879",
+    "bbox_pdf": [
+      3119.280029296875,
+      1388.5,
+      3122.33984375,
+      1391.56005859375
+    ],
+    "bbox_image": [
+      1044,
+      410,
+      1050,
+      416
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw7880",
+    "bbox_pdf": [
+      3119.4599609375,
+      1388.679931640625,
+      3122.159912109375,
+      1391.3800048828125
+    ],
+    "bbox_image": [
+      1044,
+      410,
+      1050,
+      415
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw7881",
+    "bbox_pdf": [
+      3118.079833984375,
+      1386.93994140625,
+      3123.47998046875,
+      1393.179931640625
+    ],
+    "bbox_image": [
+      1042,
+      406,
+      1052,
+      419
+    ],
+    "primitive_count": 6,
+    "primitive_kinds": {
+      "segment": 6
+    }
+  },
+  {
+    "component_id": "page0_draw7882",
+    "bbox_pdf": [
+      3117.35986328125,
+      1386.580078125,
+      3124.260009765625,
+      1393.47998046875
+    ],
+    "bbox_image": [
+      1040,
+      406,
+      1054,
+      419
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw7883",
+    "bbox_pdf": [
+      3109.417236328125,
+      1378.635498046875,
+      3132.206298828125,
+      1401.427734375
+    ],
+    "bbox_image": [
+      1024,
+      390,
+      1070,
+      435
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw7886",
+    "bbox_pdf": [
+      3098.79150390625,
+      1401.3094482421875,
+      3107.3125,
+      1409.834716796875
+    ],
+    "bbox_image": [
+      1003,
+      435,
+      1020,
+      452
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw7888",
+    "bbox_pdf": [
+      3101.099853515625,
+      1375.6600341796875,
+      3104.93994140625,
+      1376.739990234375
+    ],
+    "bbox_image": [
+      1008,
+      384,
+      1015,
+      386
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw7896",
+    "bbox_pdf": [
+      3101.099853515625,
+      1403.3800048828125,
+      3104.93994140625,
+      1407.760009765625
+    ],
+    "bbox_image": [
+      1008,
+      439,
+      1015,
+      448
+    ],
+    "primitive_count": 5,
+    "primitive_kinds": {
+      "segment": 5
+    }
+  },
+  {
+    "component_id": "page0_draw7902",
+    "bbox_pdf": [
+      3136.619873046875,
+      1404.219970703125,
+      3137.0400390625,
+      1406.679931640625
+    ],
+    "bbox_image": [
+      1079,
+      441,
+      1080,
+      446
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw7905",
+    "bbox_pdf": [
+      3136.619873046875,
+      1375.6600341796875,
+      3140.4599609375,
+      1376.739990234375
+    ],
+    "bbox_image": [
+      1079,
+      384,
+      1086,
+      386
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw7910",
+    "bbox_pdf": [
+      3136.619873046875,
+      1403.3800048828125,
+      3139.619873046875,
+      1404.4599609375
+    ],
+    "bbox_image": [
+      1079,
+      439,
+      1085,
+      441
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw7911",
+    "bbox_pdf": [
+      3136.619873046875,
+      1406.679931640625,
+      3140.4599609375,
+      1407.760009765625
+    ],
+    "bbox_image": [
+      1079,
+      446,
+      1086,
+      448
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw7912",
+    "bbox_pdf": [
+      3136.619873046875,
+      1403.3800048828125,
+      3140.4599609375,
+      1406.679931640625
+    ],
+    "bbox_image": [
+      1079,
+      439,
+      1086,
+      446
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw7913",
+    "bbox_pdf": [
+      3098.79150390625,
+      1370.2294921875,
+      3107.3125,
+      1378.754638671875
+    ],
+    "bbox_image": [
+      1003,
+      373,
+      1020,
+      390
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw7914",
+    "bbox_pdf": [
+      3134.3115234375,
+      1401.3094482421875,
+      3142.83251953125,
+      1409.834716796875
+    ],
+    "bbox_image": [
+      1074,
+      435,
+      1091,
+      452
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw7915",
+    "bbox_pdf": [
+      3134.3115234375,
+      1370.2294921875,
+      3142.83251953125,
+      1378.754638671875
+    ],
+    "bbox_image": [
+      1074,
+      373,
+      1091,
+      390
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw7920",
+    "bbox_pdf": [
+      3099.419921875,
+      1387.780029296875,
+      3100.679931640625,
+      1388.6199951171875
+    ],
+    "bbox_image": [
+      1004,
+      408,
+      1007,
+      410
+    ],
+    "primitive_count": 120,
+    "primitive_kinds": {
+      "segment": 120
+    }
+  },
+  {
+    "component_id": "page0_draw7921",
+    "bbox_pdf": [
+      3099.419921875,
+      1388.800048828125,
+      3100.679931640625,
+      1389.580078125
+    ],
+    "bbox_image": [
+      1004,
+      410,
+      1007,
+      412
+    ],
+    "primitive_count": 38,
+    "primitive_kinds": {
+      "segment": 38
+    }
+  },
+  {
+    "component_id": "page0_draw7922",
+    "bbox_pdf": [
+      3099.419921875,
+      1390.1800537109375,
+      3100.679931640625,
+      1390.6600341796875
+    ],
+    "bbox_image": [
+      1004,
+      413,
+      1007,
+      414
+    ],
+    "primitive_count": 31,
+    "primitive_kinds": {
+      "segment": 31
+    }
+  },
+  {
+    "component_id": "page0_draw7923",
+    "bbox_pdf": [
+      3099.419921875,
+      1390.9599609375,
+      3100.679931640625,
+      1391.6800537109375
+    ],
+    "bbox_image": [
+      1004,
+      414,
+      1007,
+      416
+    ],
+    "primitive_count": 181,
+    "primitive_kinds": {
+      "segment": 181
+    }
+  },
+  {
+    "component_id": "page0_draw7924",
+    "bbox_pdf": [
+      3099.419921875,
+      1391.800048828125,
+      3100.679931640625,
+      1392.52001953125
+    ],
+    "bbox_image": [
+      1004,
+      416,
+      1007,
+      418
+    ],
+    "primitive_count": 179,
+    "primitive_kinds": {
+      "segment": 179
+    }
+  },
+  {
+    "component_id": "page0_draw8790",
+    "bbox_pdf": [
+      2985.179931640625,
+      1499.679931640625,
+      2989.559814453125,
+      1504.06005859375
+    ],
+    "bbox_image": [
+      776,
+      632,
+      785,
+      641
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw8791",
+    "bbox_pdf": [
+      2985.47998046875,
+      1499.97998046875,
+      2989.260009765625,
+      1503.760009765625
+    ],
+    "bbox_image": [
+      776,
+      632,
+      784,
+      640
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw8793",
+    "bbox_pdf": [
+      3017.639892578125,
+      1473.580078125,
+      3038.8798828125,
+      1475.1400146484375
+    ],
+    "bbox_image": [
+      841,
+      580,
+      883,
+      583
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw8795",
+    "bbox_pdf": [
+      2938.43994140625,
+      1528.60009765625,
+      2956.97998046875,
+      1529.679931640625
+    ],
+    "bbox_image": [
+      682,
+      690,
+      719,
+      692
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw8796",
+    "bbox_pdf": [
+      2938.43994140625,
+      1474.06005859375,
+      2957.0400390625,
+      1475.1400146484375
+    ],
+    "bbox_image": [
+      682,
+      581,
+      720,
+      583
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw8799",
+    "bbox_pdf": [
+      2965.199951171875,
+      1479.699951171875,
+      3009.5400390625,
+      1524.0400390625
+    ],
+    "bbox_image": [
+      736,
+      592,
+      825,
+      681
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw8800",
+    "bbox_pdf": [
+      2963.8798828125,
+      1478.3800048828125,
+      3010.85986328125,
+      1525.360107421875
+    ],
+    "bbox_image": [
+      733,
+      589,
+      827,
+      683
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw8801",
+    "bbox_pdf": [
+      2973.059814453125,
+      1487.56005859375,
+      3001.679931640625,
+      1516.179931640625
+    ],
+    "bbox_image": [
+      752,
+      608,
+      809,
+      665
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw8802",
+    "bbox_pdf": [
+      3004.260009765625,
+      1521.93994140625,
+      3014.8798828125,
+      1532.56005859375
+    ],
+    "bbox_image": [
+      814,
+      676,
+      835,
+      698
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw8817",
+    "bbox_pdf": [
+      2979.599853515625,
+      1494.10009765625,
+      2995.139892578125,
+      1509.6400146484375
+    ],
+    "bbox_image": [
+      765,
+      621,
+      796,
+      652
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw8818",
+    "bbox_pdf": [
+      2985.179931640625,
+      1499.679931640625,
+      2989.559814453125,
+      1504.06005859375
+    ],
+    "bbox_image": [
+      776,
+      632,
+      785,
+      641
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw8819",
+    "bbox_pdf": [
+      2985.47998046875,
+      1499.97998046875,
+      2989.260009765625,
+      1503.760009765625
+    ],
+    "bbox_image": [
+      776,
+      632,
+      784,
+      640
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw8820",
+    "bbox_pdf": [
+      2979.659912109375,
+      1495.179931640625,
+      2995.079833984375,
+      1508.56005859375
+    ],
+    "bbox_image": [
+      765,
+      623,
+      796,
+      650
+    ],
+    "primitive_count": 6,
+    "primitive_kinds": {
+      "segment": 6
+    }
+  },
+  {
+    "component_id": "page0_draw8824",
+    "bbox_pdf": [
+      2955.7919921875,
+      1524.36083984375,
+      2994.240478515625,
+      1551.005615234375
+    ],
+    "bbox_image": [
+      717,
+      681,
+      794,
+      735
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "curve": 2
+    }
+  },
+  {
+    "component_id": "page0_draw8826",
+    "bbox_pdf": [
+      3006.35986328125,
+      1524.52001953125,
+      3007.919921875,
+      1529.97998046875
+    ],
+    "bbox_image": [
+      818,
+      682,
+      821,
+      692
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw8834",
+    "bbox_pdf": [
+      2959.919921875,
+      1521.93994140625,
+      2970.5400390625,
+      1532.56005859375
+    ],
+    "bbox_image": [
+      725,
+      676,
+      747,
+      698
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw8835",
+    "bbox_pdf": [
+      2959.919921875,
+      1471.1199951171875,
+      2970.5400390625,
+      1481.739990234375
+    ],
+    "bbox_image": [
+      725,
+      575,
+      747,
+      596
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw8836",
+    "bbox_pdf": [
+      3004.260009765625,
+      1471.1199951171875,
+      3014.8798828125,
+      1481.739990234375
+    ],
+    "bbox_image": [
+      814,
+      575,
+      835,
+      596
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw8842",
+    "bbox_pdf": [
+      2963.639892578125,
+      1476.4599609375,
+      2968.31982421875,
+      1479.219970703125
+    ],
+    "bbox_image": [
+      733,
+      585,
+      742,
+      591
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw8843",
+    "bbox_pdf": [
+      3006.35986328125,
+      1473.760009765625,
+      3007.919921875,
+      1479.219970703125
+    ],
+    "bbox_image": [
+      818,
+      580,
+      821,
+      591
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw8851",
+    "bbox_pdf": [
+      2984.159912109375,
+      1471.3599853515625,
+      2985.239990234375,
+      1473.10009765625
+    ],
+    "bbox_image": [
+      774,
+      575,
+      776,
+      579
+    ],
+    "primitive_count": 165,
+    "primitive_kinds": {
+      "segment": 165
+    }
+  },
+  {
+    "component_id": "page0_draw8852",
+    "bbox_pdf": [
+      2985.539794921875,
+      1471.360107421875,
+      2986.619873046875,
+      1473.10009765625
+    ],
+    "bbox_image": [
+      777,
+      575,
+      779,
+      579
+    ],
+    "primitive_count": 47,
+    "primitive_kinds": {
+      "segment": 47
+    }
+  },
+  {
+    "component_id": "page0_draw8853",
+    "bbox_pdf": [
+      2987.4599609375,
+      1471.300048828125,
+      2988.179931640625,
+      1473.10009765625
+    ],
+    "bbox_image": [
+      780,
+      575,
+      782,
+      579
+    ],
+    "primitive_count": 39,
+    "primitive_kinds": {
+      "segment": 39
+    }
+  },
+  {
+    "component_id": "page0_draw8854",
+    "bbox_pdf": [
+      2988.659912109375,
+      1471.3599853515625,
+      2989.6201171875,
+      1473.1600341796875
+    ],
+    "bbox_image": [
+      783,
+      575,
+      785,
+      579
+    ],
+    "primitive_count": 198,
+    "primitive_kinds": {
+      "segment": 198
+    }
+  },
+  {
+    "component_id": "page0_draw8855",
+    "bbox_pdf": [
+      2989.85986328125,
+      1471.300048828125,
+      2990.81982421875,
+      1473.1600341796875
+    ],
+    "bbox_image": [
+      785,
+      575,
+      787,
+      579
+    ],
+    "primitive_count": 240,
+    "primitive_kinds": {
+      "segment": 240
+    }
+  },
+  {
+    "component_id": "page0_draw8872",
+    "bbox_pdf": [
+      2962.02001953125,
+      1524.52001953125,
+      2963.639892578125,
+      1529.97998046875
+    ],
+    "bbox_image": [
+      730,
+      682,
+      733,
+      692
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw8873",
+    "bbox_pdf": [
+      2962.02001953125,
+      1473.760009765625,
+      2963.639892578125,
+      1479.219970703125
+    ],
+    "bbox_image": [
+      730,
+      580,
+      733,
+      591
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw8985",
+    "bbox_pdf": [
+      2920.679931640625,
+      1467.580078125,
+      2920.800048828125,
+      1473.820068359375
+    ],
+    "bbox_image": [
+      647,
+      568,
+      647,
+      580
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw8997",
+    "bbox_pdf": [
+      2920.679931640625,
+      1490.97998046875,
+      2920.800048828125,
+      1497.1600341796875
+    ],
+    "bbox_image": [
+      647,
+      614,
+      647,
+      627
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw9009",
+    "bbox_pdf": [
+      2920.679931640625,
+      1506.52001953125,
+      2920.800048828125,
+      1512.760009765625
+    ],
+    "bbox_image": [
+      647,
+      646,
+      647,
+      658
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw9021",
+    "bbox_pdf": [
+      2920.679931640625,
+      1529.199951171875,
+      2920.800048828125,
+      1535.43994140625
+    ],
+    "bbox_image": [
+      647,
+      691,
+      647,
+      703
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw9150",
+    "bbox_pdf": [
+      2771.8798828125,
+      1467.580078125,
+      2772.0,
+      1473.820068359375
+    ],
+    "bbox_image": [
+      349,
+      568,
+      350,
+      580
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw9162",
+    "bbox_pdf": [
+      2771.8798828125,
+      1490.97998046875,
+      2772.0,
+      1497.1600341796875
+    ],
+    "bbox_image": [
+      349,
+      614,
+      350,
+      627
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw9174",
+    "bbox_pdf": [
+      2771.8798828125,
+      1506.52001953125,
+      2772.0,
+      1512.760009765625
+    ],
+    "bbox_image": [
+      349,
+      646,
+      350,
+      658
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw9186",
+    "bbox_pdf": [
+      2771.8798828125,
+      1529.199951171875,
+      2772.0,
+      1535.43994140625
+    ],
+    "bbox_image": [
+      349,
+      691,
+      350,
+      703
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw9697",
+    "bbox_pdf": [
+      3235.31982421875,
+      1731.219970703125,
+      3241.559814453125,
+      1731.340087890625
+    ],
+    "bbox_image": [
+      1276,
+      1095,
+      1289,
+      1095
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw9709",
+    "bbox_pdf": [
+      3258.659912109375,
+      1731.219970703125,
+      3264.89990234375,
+      1731.340087890625
+    ],
+    "bbox_image": [
+      1323,
+      1095,
+      1335,
+      1095
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw9721",
+    "bbox_pdf": [
+      3274.260009765625,
+      1731.219970703125,
+      3280.5,
+      1731.340087890625
+    ],
+    "bbox_image": [
+      1354,
+      1095,
+      1367,
+      1095
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw9733",
+    "bbox_pdf": [
+      3296.93994140625,
+      1731.219970703125,
+      3303.179931640625,
+      1731.340087890625
+    ],
+    "bbox_image": [
+      1399,
+      1095,
+      1412,
+      1095
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw9864",
+    "bbox_pdf": [
+      3195.47998046875,
+      1618.1199951171875,
+      3201.119873046875,
+      1680.4599609375
+    ],
+    "bbox_image": [
+      1196,
+      869,
+      1208,
+      993
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw9868",
+    "bbox_pdf": [
+      3194.760009765625,
+      1622.6199951171875,
+      3194.93994140625,
+      1628.860107421875
+    ],
+    "bbox_image": [
+      1195,
+      878,
+      1195,
+      890
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw9880",
+    "bbox_pdf": [
+      3194.760009765625,
+      1636.4200439453125,
+      3194.93994140625,
+      1642.6600341796875
+    ],
+    "bbox_image": [
+      1195,
+      905,
+      1195,
+      918
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw9892",
+    "bbox_pdf": [
+      3194.760009765625,
+      1655.9200439453125,
+      3194.93994140625,
+      1662.1600341796875
+    ],
+    "bbox_image": [
+      1195,
+      944,
+      1195,
+      957
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw9904",
+    "bbox_pdf": [
+      3194.760009765625,
+      1669.719970703125,
+      3194.93994140625,
+      1675.9599609375
+    ],
+    "bbox_image": [
+      1195,
+      972,
+      1195,
+      984
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw10128",
+    "bbox_pdf": [
+      3120.659912109375,
+      1669.719970703125,
+      3120.780029296875,
+      1675.9599609375
+    ],
+    "bbox_image": [
+      1047,
+      972,
+      1047,
+      984
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw10140",
+    "bbox_pdf": [
+      3120.659912109375,
+      1655.9200439453125,
+      3120.780029296875,
+      1662.1600341796875
+    ],
+    "bbox_image": [
+      1047,
+      944,
+      1047,
+      957
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw10152",
+    "bbox_pdf": [
+      3120.659912109375,
+      1636.4200439453125,
+      3120.780029296875,
+      1642.6600341796875
+    ],
+    "bbox_image": [
+      1047,
+      905,
+      1047,
+      918
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw10164",
+    "bbox_pdf": [
+      3120.659912109375,
+      1622.6199951171875,
+      3120.780029296875,
+      1628.860107421875
+    ],
+    "bbox_image": [
+      1047,
+      878,
+      1047,
+      890
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw10279",
+    "bbox_pdf": [
+      3156.719970703125,
+      1648.1199951171875,
+      3158.93994140625,
+      1650.340087890625
+    ],
+    "bbox_image": [
+      1119,
+      929,
+      1123,
+      933
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw10280",
+    "bbox_pdf": [
+      3156.83984375,
+      1648.239990234375,
+      3158.81982421875,
+      1650.219970703125
+    ],
+    "bbox_image": [
+      1119,
+      929,
+      1123,
+      933
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw10282",
+    "bbox_pdf": [
+      3120.659912109375,
+      1666.300048828125,
+      3137.280029296875,
+      1667.739990234375
+    ],
+    "bbox_image": [
+      1047,
+      965,
+      1080,
+      968
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw10284",
+    "bbox_pdf": [
+      3178.199951171875,
+      1630.840087890625,
+      3194.93994140625,
+      1632.280029296875
+    ],
+    "bbox_image": [
+      1162,
+      894,
+      1195,
+      897
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw10285",
+    "bbox_pdf": [
+      3178.260009765625,
+      1666.300048828125,
+      3194.93994140625,
+      1667.739990234375
+    ],
+    "bbox_image": [
+      1162,
+      965,
+      1195,
+      968
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw10289",
+    "bbox_pdf": [
+      3139.84912109375,
+      1631.257568359375,
+      3175.794189453125,
+      1667.21923828125
+    ],
+    "bbox_image": [
+      1085,
+      895,
+      1157,
+      967
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw10290",
+    "bbox_pdf": [
+      3140.141845703125,
+      1631.543701171875,
+      3175.5146484375,
+      1666.91943359375
+    ],
+    "bbox_image": [
+      1086,
+      896,
+      1157,
+      966
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw10294",
+    "bbox_pdf": [
+      3140.739501953125,
+      1632.760009765625,
+      3157.829833984375,
+      1652.26171875
+    ],
+    "bbox_image": [
+      1087,
+      898,
+      1121,
+      937
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "curve": 2
+    }
+  },
+  {
+    "component_id": "page0_draw10300",
+    "bbox_pdf": [
+      3155.52001953125,
+      1627.9000244140625,
+      3156.300048828125,
+      1629.1600341796875
+    ],
+    "bbox_image": [
+      1117,
+      888,
+      1118,
+      891
+    ],
+    "primitive_count": 122,
+    "primitive_kinds": {
+      "segment": 122
+    }
+  },
+  {
+    "component_id": "page0_draw10301",
+    "bbox_pdf": [
+      3156.47998046875,
+      1627.89990234375,
+      3157.260009765625,
+      1629.159912109375
+    ],
+    "bbox_image": [
+      1118,
+      888,
+      1120,
+      891
+    ],
+    "primitive_count": 41,
+    "primitive_kinds": {
+      "segment": 41
+    }
+  },
+  {
+    "component_id": "page0_draw10302",
+    "bbox_pdf": [
+      3157.85986328125,
+      1627.89990234375,
+      3158.340087890625,
+      1629.159912109375
+    ],
+    "bbox_image": [
+      1121,
+      888,
+      1122,
+      891
+    ],
+    "primitive_count": 30,
+    "primitive_kinds": {
+      "segment": 30
+    }
+  },
+  {
+    "component_id": "page0_draw10303",
+    "bbox_pdf": [
+      3158.699951171875,
+      1627.89990234375,
+      3159.35986328125,
+      1629.159912109375
+    ],
+    "bbox_image": [
+      1123,
+      888,
+      1124,
+      891
+    ],
+    "primitive_count": 172,
+    "primitive_kinds": {
+      "segment": 172
+    }
+  },
+  {
+    "component_id": "page0_draw10304",
+    "bbox_pdf": [
+      3159.5400390625,
+      1627.89990234375,
+      3160.199951171875,
+      1629.159912109375
+    ],
+    "bbox_image": [
+      1125,
+      888,
+      1126,
+      891
+    ],
+    "primitive_count": 177,
+    "primitive_kinds": {
+      "segment": 177
+    }
+  },
+  {
+    "component_id": "page0_draw10309",
+    "bbox_pdf": [
+      3152.39990234375,
+      1643.800048828125,
+      3163.260009765625,
+      1654.6600341796875
+    ],
+    "bbox_image": [
+      1110,
+      920,
+      1132,
+      942
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw10310",
+    "bbox_pdf": [
+      3147.584228515625,
+      1642.783447265625,
+      3151.911376953125,
+      1657.278076171875
+    ],
+    "bbox_image": [
+      1101,
+      918,
+      1109,
+      947
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "curve": 2
+    }
+  },
+  {
+    "component_id": "page0_draw10311",
+    "bbox_pdf": [
+      3155.159912109375,
+      1646.56005859375,
+      3160.5,
+      1651.9000244140625
+    ],
+    "bbox_image": [
+      1116,
+      926,
+      1127,
+      936
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw10312",
+    "bbox_pdf": [
+      3155.159912109375,
+      1646.56005859375,
+      3160.5,
+      1651.9000244140625
+    ],
+    "bbox_image": [
+      1116,
+      926,
+      1127,
+      936
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw10313",
+    "bbox_pdf": [
+      3155.159912109375,
+      1646.56005859375,
+      3160.5,
+      1651.9000244140625
+    ],
+    "bbox_image": [
+      1116,
+      926,
+      1127,
+      936
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw10314",
+    "bbox_pdf": [
+      3155.159912109375,
+      1646.56005859375,
+      3160.5,
+      1651.9000244140625
+    ],
+    "bbox_image": [
+      1116,
+      926,
+      1127,
+      936
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw10315",
+    "bbox_pdf": [
+      3156.300048828125,
+      1647.699951171875,
+      3159.35986328125,
+      1650.760009765625
+    ],
+    "bbox_image": [
+      1118,
+      928,
+      1124,
+      934
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw10316",
+    "bbox_pdf": [
+      3156.47998046875,
+      1647.8800048828125,
+      3159.179931640625,
+      1650.580078125
+    ],
+    "bbox_image": [
+      1118,
+      928,
+      1124,
+      934
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw10317",
+    "bbox_pdf": [
+      3154.679931640625,
+      1646.56005859375,
+      3160.919921875,
+      1651.9599609375
+    ],
+    "bbox_image": [
+      1115,
+      926,
+      1127,
+      936
+    ],
+    "primitive_count": 6,
+    "primitive_kinds": {
+      "segment": 6
+    }
+  },
+  {
+    "component_id": "page0_draw10318",
+    "bbox_pdf": [
+      3154.3798828125,
+      1645.780029296875,
+      3161.280029296875,
+      1652.679931640625
+    ],
+    "bbox_image": [
+      1114,
+      924,
+      1128,
+      938
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw10319",
+    "bbox_pdf": [
+      3146.435302734375,
+      1637.833740234375,
+      3169.2275390625,
+      1660.622802734375
+    ],
+    "bbox_image": [
+      1098,
+      908,
+      1144,
+      954
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw10322",
+    "bbox_pdf": [
+      3169.049560546875,
+      1662.787353515625,
+      3177.57470703125,
+      1671.308349609375
+    ],
+    "bbox_image": [
+      1144,
+      958,
+      1161,
+      975
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw10324",
+    "bbox_pdf": [
+      3143.33984375,
+      1665.1600341796875,
+      3144.47998046875,
+      1668.93994140625
+    ],
+    "bbox_image": [
+      1092,
+      963,
+      1094,
+      970
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw10332",
+    "bbox_pdf": [
+      3171.119873046875,
+      1665.1600341796875,
+      3175.5,
+      1668.93994140625
+    ],
+    "bbox_image": [
+      1148,
+      963,
+      1157,
+      970
+    ],
+    "primitive_count": 5,
+    "primitive_kinds": {
+      "segment": 5
+    }
+  },
+  {
+    "component_id": "page0_draw10338",
+    "bbox_pdf": [
+      3171.9599609375,
+      1633.0,
+      3174.419921875,
+      1633.4200439453125
+    ],
+    "bbox_image": [
+      1149,
+      899,
+      1154,
+      899
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw10341",
+    "bbox_pdf": [
+      3143.33984375,
+      1629.580078125,
+      3144.47998046875,
+      1633.4200439453125
+    ],
+    "bbox_image": [
+      1092,
+      892,
+      1094,
+      899
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw10346",
+    "bbox_pdf": [
+      3171.119873046875,
+      1630.4200439453125,
+      3172.199951171875,
+      1633.4200439453125
+    ],
+    "bbox_image": [
+      1148,
+      893,
+      1150,
+      899
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw10347",
+    "bbox_pdf": [
+      3174.419921875,
+      1629.580078125,
+      3175.5,
+      1633.4200439453125
+    ],
+    "bbox_image": [
+      1154,
+      892,
+      1157,
+      899
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw10348",
+    "bbox_pdf": [
+      3171.119873046875,
+      1629.580078125,
+      3174.419921875,
+      1633.4200439453125
+    ],
+    "bbox_image": [
+      1148,
+      892,
+      1154,
+      899
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw10349",
+    "bbox_pdf": [
+      3138.029541015625,
+      1662.787353515625,
+      3146.5546875,
+      1671.308349609375
+    ],
+    "bbox_image": [
+      1082,
+      958,
+      1099,
+      975
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw10350",
+    "bbox_pdf": [
+      3169.049560546875,
+      1627.207275390625,
+      3177.57470703125,
+      1635.728271484375
+    ],
+    "bbox_image": [
+      1144,
+      887,
+      1161,
+      904
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw10351",
+    "bbox_pdf": [
+      3138.029541015625,
+      1627.207275390625,
+      3146.5546875,
+      1635.728271484375
+    ],
+    "bbox_image": [
+      1082,
+      887,
+      1099,
+      904
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw10356",
+    "bbox_pdf": [
+      3155.52001953125,
+      1669.4200439453125,
+      3156.300048828125,
+      1670.6800537109375
+    ],
+    "bbox_image": [
+      1117,
+      971,
+      1118,
+      974
+    ],
+    "primitive_count": 123,
+    "primitive_kinds": {
+      "segment": 123
+    }
+  },
+  {
+    "component_id": "page0_draw10357",
+    "bbox_pdf": [
+      3156.47998046875,
+      1669.4200439453125,
+      3157.260009765625,
+      1670.6800537109375
+    ],
+    "bbox_image": [
+      1118,
+      971,
+      1120,
+      974
+    ],
+    "primitive_count": 39,
+    "primitive_kinds": {
+      "segment": 39
+    }
+  },
+  {
+    "component_id": "page0_draw10358",
+    "bbox_pdf": [
+      3157.85986328125,
+      1669.4200439453125,
+      3158.340087890625,
+      1670.6800537109375
+    ],
+    "bbox_image": [
+      1121,
+      971,
+      1122,
+      974
+    ],
+    "primitive_count": 29,
+    "primitive_kinds": {
+      "segment": 29
+    }
+  },
+  {
+    "component_id": "page0_draw10359",
+    "bbox_pdf": [
+      3158.699951171875,
+      1669.419921875,
+      3159.35986328125,
+      1670.679931640625
+    ],
+    "bbox_image": [
+      1123,
+      971,
+      1124,
+      974
+    ],
+    "primitive_count": 179,
+    "primitive_kinds": {
+      "segment": 179
+    }
+  },
+  {
+    "component_id": "page0_draw10360",
+    "bbox_pdf": [
+      3159.5400390625,
+      1669.419921875,
+      3160.199951171875,
+      1670.679931640625
+    ],
+    "bbox_image": [
+      1125,
+      971,
+      1126,
+      974
+    ],
+    "primitive_count": 174,
+    "primitive_kinds": {
+      "segment": 174
+    }
+  },
+  {
+    "component_id": "page0_draw10486",
+    "bbox_pdf": [
+      2957.879638671875,
+      1744.033935546875,
+      2958.111328125,
+      1744.746337890625
+    ],
+    "bbox_image": [
+      721,
+      1121,
+      722,
+      1122
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "curve": 2
+    }
+  },
+  {
+    "component_id": "page0_draw10488",
+    "bbox_pdf": [
+      2897.159912109375,
+      1729.3599853515625,
+      3038.8798828125,
+      1871.080078125
+    ],
+    "bbox_image": [
+      600,
+      1091,
+      883,
+      1375
+    ],
+    "primitive_count": 5,
+    "primitive_kinds": {
+      "segment": 5
+    }
+  },
+  {
+    "component_id": "page0_draw10489",
+    "bbox_pdf": [
+      2868.83984375,
+      1700.97998046875,
+      3067.260009765625,
+      1899.4599609375
+    ],
+    "bbox_image": [
+      543,
+      1034,
+      940,
+      1431
+    ],
+    "primitive_count": 5,
+    "primitive_kinds": {
+      "segment": 5
+    }
+  },
+  {
+    "component_id": "page0_draw10597",
+    "bbox_pdf": [
+      3297.659912109375,
+      1834.06005859375,
+      3303.89990234375,
+      1834.239990234375
+    ],
+    "bbox_image": [
+      1401,
+      1301,
+      1413,
+      1301
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw10609",
+    "bbox_pdf": [
+      3274.31982421875,
+      1834.06005859375,
+      3280.559814453125,
+      1834.239990234375
+    ],
+    "bbox_image": [
+      1354,
+      1301,
+      1367,
+      1301
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw10621",
+    "bbox_pdf": [
+      3258.719970703125,
+      1834.06005859375,
+      3264.9599609375,
+      1834.239990234375
+    ],
+    "bbox_image": [
+      1323,
+      1301,
+      1335,
+      1301
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw10633",
+    "bbox_pdf": [
+      3236.0400390625,
+      1834.06005859375,
+      3242.280029296875,
+      1834.239990234375
+    ],
+    "bbox_image": [
+      1278,
+      1301,
+      1290,
+      1301
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw10653",
+    "bbox_pdf": [
+      3267.419921875,
+      1780.47998046875,
+      3271.800048828125,
+      1784.8599853515625
+    ],
+    "bbox_image": [
+      1340,
+      1193,
+      1349,
+      1202
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw10654",
+    "bbox_pdf": [
+      3267.719970703125,
+      1780.780029296875,
+      3271.5,
+      1784.56005859375
+    ],
+    "bbox_image": [
+      1341,
+      1194,
+      1349,
+      1202
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw10656",
+    "bbox_pdf": [
+      3296.33984375,
+      1813.0,
+      3297.9599609375,
+      1834.239990234375
+    ],
+    "bbox_image": [
+      1398,
+      1259,
+      1401,
+      1301
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw10662",
+    "bbox_pdf": [
+      3247.43994140625,
+      1760.5,
+      3291.780029296875,
+      1804.840087890625
+    ],
+    "bbox_image": [
+      1300,
+      1154,
+      1389,
+      1242
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw10663",
+    "bbox_pdf": [
+      3246.119873046875,
+      1759.179931640625,
+      3293.099853515625,
+      1806.1600341796875
+    ],
+    "bbox_image": [
+      1298,
+      1151,
+      1392,
+      1245
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw10664",
+    "bbox_pdf": [
+      3255.300048828125,
+      1768.3599853515625,
+      3283.919921875,
+      1796.97998046875
+    ],
+    "bbox_image": [
+      1316,
+      1169,
+      1373,
+      1226
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw10665",
+    "bbox_pdf": [
+      3238.919921875,
+      1799.56005859375,
+      3249.5400390625,
+      1810.179931640625
+    ],
+    "bbox_image": [
+      1283,
+      1232,
+      1305,
+      1253
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw10680",
+    "bbox_pdf": [
+      3261.83984375,
+      1774.9000244140625,
+      3277.3798828125,
+      1790.43994140625
+    ],
+    "bbox_image": [
+      1329,
+      1182,
+      1360,
+      1213
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw10681",
+    "bbox_pdf": [
+      3267.419921875,
+      1780.47998046875,
+      3271.800048828125,
+      1784.8599853515625
+    ],
+    "bbox_image": [
+      1340,
+      1193,
+      1349,
+      1202
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw10682",
+    "bbox_pdf": [
+      3267.719970703125,
+      1780.780029296875,
+      3271.5,
+      1784.56005859375
+    ],
+    "bbox_image": [
+      1341,
+      1194,
+      1349,
+      1202
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw10683",
+    "bbox_pdf": [
+      3262.919921875,
+      1775.02001953125,
+      3276.300048828125,
+      1790.43994140625
+    ],
+    "bbox_image": [
+      1331,
+      1183,
+      1358,
+      1213
+    ],
+    "primitive_count": 6,
+    "primitive_kinds": {
+      "segment": 6
+    }
+  },
+  {
+    "component_id": "page0_draw10687",
+    "bbox_pdf": [
+      3220.474365234375,
+      1751.092041015625,
+      3247.119384765625,
+      1789.54052734375
+    ],
+    "bbox_image": [
+      1246,
+      1135,
+      1300,
+      1212
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "curve": 2
+    }
+  },
+  {
+    "component_id": "page0_draw10689",
+    "bbox_pdf": [
+      3241.5,
+      1801.719970703125,
+      3246.9599609375,
+      1803.280029296875
+    ],
+    "bbox_image": [
+      1289,
+      1236,
+      1299,
+      1239
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw10697",
+    "bbox_pdf": [
+      3238.919921875,
+      1755.219970703125,
+      3249.5400390625,
+      1765.840087890625
+    ],
+    "bbox_image": [
+      1283,
+      1143,
+      1305,
+      1164
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw10698",
+    "bbox_pdf": [
+      3289.739990234375,
+      1755.219970703125,
+      3300.35986328125,
+      1765.840087890625
+    ],
+    "bbox_image": [
+      1385,
+      1143,
+      1406,
+      1164
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw10699",
+    "bbox_pdf": [
+      3289.739990234375,
+      1799.56005859375,
+      3300.35986328125,
+      1810.179931640625
+    ],
+    "bbox_image": [
+      1385,
+      1232,
+      1406,
+      1253
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw10705",
+    "bbox_pdf": [
+      3292.260009765625,
+      1759.0,
+      3295.02001953125,
+      1763.679931640625
+    ],
+    "bbox_image": [
+      1390,
+      1151,
+      1396,
+      1160
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw10706",
+    "bbox_pdf": [
+      3292.260009765625,
+      1801.719970703125,
+      3297.719970703125,
+      1803.280029296875
+    ],
+    "bbox_image": [
+      1390,
+      1236,
+      1401,
+      1239
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw10714",
+    "bbox_pdf": [
+      3298.3798828125,
+      1779.52001953125,
+      3300.119873046875,
+      1780.5999755859375
+    ],
+    "bbox_image": [
+      1402,
+      1192,
+      1406,
+      1194
+    ],
+    "primitive_count": 166,
+    "primitive_kinds": {
+      "segment": 166
+    }
+  },
+  {
+    "component_id": "page0_draw10715",
+    "bbox_pdf": [
+      3298.3798828125,
+      1780.89990234375,
+      3300.119873046875,
+      1781.97998046875
+    ],
+    "bbox_image": [
+      1402,
+      1194,
+      1406,
+      1196
+    ],
+    "primitive_count": 47,
+    "primitive_kinds": {
+      "segment": 47
+    }
+  },
+  {
+    "component_id": "page0_draw10716",
+    "bbox_pdf": [
+      3298.3798828125,
+      1782.8800048828125,
+      3300.179931640625,
+      1783.5400390625
+    ],
+    "bbox_image": [
+      1402,
+      1198,
+      1406,
+      1200
+    ],
+    "primitive_count": 38,
+    "primitive_kinds": {
+      "segment": 38
+    }
+  },
+  {
+    "component_id": "page0_draw10717",
+    "bbox_pdf": [
+      3298.31982421875,
+      1784.02001953125,
+      3300.119873046875,
+      1784.97998046875
+    ],
+    "bbox_image": [
+      1402,
+      1201,
+      1406,
+      1202
+    ],
+    "primitive_count": 190,
+    "primitive_kinds": {
+      "segment": 190
+    }
+  },
+  {
+    "component_id": "page0_draw10718",
+    "bbox_pdf": [
+      3298.31982421875,
+      1785.219970703125,
+      3300.179931640625,
+      1786.179931640625
+    ],
+    "bbox_image": [
+      1402,
+      1203,
+      1406,
+      1205
+    ],
+    "primitive_count": 244,
+    "primitive_kinds": {
+      "segment": 244
+    }
+  },
+  {
+    "component_id": "page0_draw10735",
+    "bbox_pdf": [
+      3241.5,
+      1757.3800048828125,
+      3246.9599609375,
+      1759.0
+    ],
+    "bbox_image": [
+      1289,
+      1147,
+      1299,
+      1151
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw10736",
+    "bbox_pdf": [
+      3292.260009765625,
+      1757.3800048828125,
+      3297.719970703125,
+      1759.0
+    ],
+    "bbox_image": [
+      1390,
+      1147,
+      1401,
+      1151
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw10752",
+    "bbox_pdf": [
+      3221.33984375,
+      1900.9599609375,
+      3315.83984375,
+      1902.3399658203125
+    ],
+    "bbox_image": [
+      1248,
+      1434,
+      1437,
+      1437
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw11053",
+    "bbox_pdf": [
+      3325.139892578125,
+      1570.419921875,
+      3335.33984375,
+      1588.239990234375
+    ],
+    "bbox_image": [
+      1456,
+      773,
+      1476,
+      809
+    ],
+    "primitive_count": 627,
+    "primitive_kinds": {
+      "segment": 627
+    }
+  },
+  {
+    "component_id": "page0_draw11054",
+    "bbox_pdf": [
+      3336.659912109375,
+      1570.8399658203125,
+      3348.599853515625,
+      1587.8199462890625
+    ],
+    "bbox_image": [
+      1479,
+      774,
+      1503,
+      808
+    ],
+    "primitive_count": 54,
+    "primitive_kinds": {
+      "segment": 54
+    }
+  },
+  {
+    "component_id": "page0_draw11055",
+    "bbox_pdf": [
+      3350.27978515625,
+      1570.8399658203125,
+      3361.6796875,
+      1587.8199462890625
+    ],
+    "bbox_image": [
+      1506,
+      774,
+      1529,
+      808
+    ],
+    "primitive_count": 369,
+    "primitive_kinds": {
+      "segment": 369
+    }
+  },
+  {
+    "component_id": "page0_draw11056",
+    "bbox_pdf": [
+      3369.0,
+      1570.8399658203125,
+      3379.679931640625,
+      1587.820068359375
+    ],
+    "bbox_image": [
+      1544,
+      774,
+      1565,
+      808
+    ],
+    "primitive_count": 385,
+    "primitive_kinds": {
+      "segment": 385
+    }
+  },
+  {
+    "component_id": "page0_draw11057",
+    "bbox_pdf": [
+      3382.259765625,
+      1570.840087890625,
+      3392.8798828125,
+      1587.820068359375
+    ],
+    "bbox_image": [
+      1570,
+      774,
+      1591,
+      808
+    ],
+    "primitive_count": 87,
+    "primitive_kinds": {
+      "segment": 87
+    }
+  },
+  {
+    "component_id": "page0_draw11058",
+    "bbox_pdf": [
+      3395.280029296875,
+      1570.7200927734375,
+      3404.699951171875,
+      1587.820068359375
+    ],
+    "bbox_image": [
+      1596,
+      774,
+      1615,
+      808
+    ],
+    "primitive_count": 468,
+    "primitive_kinds": {
+      "segment": 468
+    }
+  },
+  {
+    "component_id": "page0_draw11059",
+    "bbox_pdf": [
+      3406.619873046875,
+      1570.719970703125,
+      3415.979736328125,
+      1588.1199951171875
+    ],
+    "bbox_image": [
+      1619,
+      774,
+      1637,
+      809
+    ],
+    "primitive_count": 574,
+    "primitive_kinds": {
+      "segment": 574
+    }
+  },
+  {
+    "component_id": "page0_draw11060",
+    "bbox_pdf": [
+      3417.89990234375,
+      1570.719970703125,
+      3427.260009765625,
+      1588.1199951171875
+    ],
+    "bbox_image": [
+      1641,
+      774,
+      1660,
+      809
+    ],
+    "primitive_count": 573,
+    "primitive_kinds": {
+      "segment": 573
+    }
+  },
+  {
+    "component_id": "page0_draw11061",
+    "bbox_pdf": [
+      3435.35986328125,
+      1570.8399658203125,
+      3445.559814453125,
+      1587.8199462890625
+    ],
+    "bbox_image": [
+      1676,
+      774,
+      1697,
+      808
+    ],
+    "primitive_count": 244,
+    "primitive_kinds": {
+      "segment": 244
+    }
+  },
+  {
+    "component_id": "page0_draw11062",
+    "bbox_pdf": [
+      3447.659912109375,
+      1570.840087890625,
+      3450.83984375,
+      1587.820068359375
+    ],
+    "bbox_image": [
+      1701,
+      774,
+      1707,
+      808
+    ],
+    "primitive_count": 8,
+    "primitive_kinds": {
+      "segment": 8
+    }
+  },
+  {
+    "component_id": "page0_draw11063",
+    "bbox_pdf": [
+      3452.4599609375,
+      1570.8399658203125,
+      3464.4599609375,
+      1587.8199462890625
+    ],
+    "bbox_image": [
+      1710,
+      774,
+      1734,
+      808
+    ],
+    "primitive_count": 54,
+    "primitive_kinds": {
+      "segment": 54
+    }
+  },
+  {
+    "component_id": "page0_draw11064",
+    "bbox_pdf": [
+      3464.8798828125,
+      1570.840087890625,
+      3475.31982421875,
+      1587.820068359375
+    ],
+    "bbox_image": [
+      1735,
+      774,
+      1756,
+      808
+    ],
+    "primitive_count": 16,
+    "primitive_kinds": {
+      "segment": 16
+    }
+  },
+  {
+    "component_id": "page0_draw11065",
+    "bbox_pdf": [
+      3475.7998046875,
+      1570.840087890625,
+      3486.23974609375,
+      1587.820068359375
+    ],
+    "bbox_image": [
+      1757,
+      774,
+      1778,
+      808
+    ],
+    "primitive_count": 16,
+    "primitive_kinds": {
+      "segment": 16
+    }
+  },
+  {
+    "component_id": "page0_draw11066",
+    "bbox_pdf": [
+      3486.659912109375,
+      1570.8399658203125,
+      3498.599853515625,
+      1587.8199462890625
+    ],
+    "bbox_image": [
+      1779,
+      774,
+      1803,
+      808
+    ],
+    "primitive_count": 54,
+    "primitive_kinds": {
+      "segment": 54
+    }
+  },
+  {
+    "component_id": "page0_draw11067",
+    "bbox_pdf": [
+      3243.35986328125,
+      1503.52001953125,
+      3254.039794921875,
+      1520.56005859375
+    ],
+    "bbox_image": [
+      1292,
+      640,
+      1314,
+      674
+    ],
+    "primitive_count": 384,
+    "primitive_kinds": {
+      "segment": 384
+    }
+  },
+  {
+    "component_id": "page0_draw11068",
+    "bbox_pdf": [
+      3256.619873046875,
+      1503.52001953125,
+      3267.239990234375,
+      1520.56005859375
+    ],
+    "bbox_image": [
+      1319,
+      640,
+      1340,
+      674
+    ],
+    "primitive_count": 87,
+    "primitive_kinds": {
+      "segment": 87
+    }
+  },
+  {
+    "component_id": "page0_draw11069",
+    "bbox_pdf": [
+      3269.639892578125,
+      1503.400146484375,
+      3279.059814453125,
+      1520.56005859375
+    ],
+    "bbox_image": [
+      1345,
+      639,
+      1364,
+      674
+    ],
+    "primitive_count": 466,
+    "primitive_kinds": {
+      "segment": 466
+    }
+  },
+  {
+    "component_id": "page0_draw11070",
+    "bbox_pdf": [
+      3280.919921875,
+      1503.4000244140625,
+      3290.33984375,
+      1520.8599853515625
+    ],
+    "bbox_image": [
+      1367,
+      639,
+      1386,
+      674
+    ],
+    "primitive_count": 574,
+    "primitive_kinds": {
+      "segment": 574
+    }
+  },
+  {
+    "component_id": "page0_draw11071",
+    "bbox_pdf": [
+      3292.260009765625,
+      1503.4000244140625,
+      3301.6201171875,
+      1520.8599853515625
+    ],
+    "bbox_image": [
+      1390,
+      639,
+      1409,
+      674
+    ],
+    "primitive_count": 573,
+    "primitive_kinds": {
+      "segment": 573
+    }
+  },
+  {
+    "component_id": "page0_draw11072",
+    "bbox_pdf": [
+      3350.999755859375,
+      1774.179931640625,
+      3361.19970703125,
+      1792.0
+    ],
+    "bbox_image": [
+      1507,
+      1181,
+      1528,
+      1217
+    ],
+    "primitive_count": 626,
+    "primitive_kinds": {
+      "segment": 626
+    }
+  },
+  {
+    "component_id": "page0_draw11073",
+    "bbox_pdf": [
+      3362.52001953125,
+      1774.5400390625,
+      3374.4599609375,
+      1791.5799560546875
+    ],
+    "bbox_image": [
+      1531,
+      1182,
+      1554,
+      1216
+    ],
+    "primitive_count": 53,
+    "primitive_kinds": {
+      "segment": 53
+    }
+  },
+  {
+    "component_id": "page0_draw11074",
+    "bbox_pdf": [
+      3376.139892578125,
+      1774.5400390625,
+      3387.539794921875,
+      1791.580078125
+    ],
+    "bbox_image": [
+      1558,
+      1182,
+      1581,
+      1216
+    ],
+    "primitive_count": 369,
+    "primitive_kinds": {
+      "segment": 369
+    }
+  },
+  {
+    "component_id": "page0_draw11075",
+    "bbox_pdf": [
+      3394.7998046875,
+      1774.5400390625,
+      3405.539794921875,
+      1791.580078125
+    ],
+    "bbox_image": [
+      1595,
+      1182,
+      1617,
+      1216
+    ],
+    "primitive_count": 387,
+    "primitive_kinds": {
+      "segment": 387
+    }
+  },
+  {
+    "component_id": "page0_draw11076",
+    "bbox_pdf": [
+      3408.119873046875,
+      1774.5400390625,
+      3418.739990234375,
+      1791.580078125
+    ],
+    "bbox_image": [
+      1622,
+      1182,
+      1643,
+      1216
+    ],
+    "primitive_count": 87,
+    "primitive_kinds": {
+      "segment": 87
+    }
+  },
+  {
+    "component_id": "page0_draw11077",
+    "bbox_pdf": [
+      3421.139892578125,
+      1774.4200439453125,
+      3430.559814453125,
+      1791.5799560546875
+    ],
+    "bbox_image": [
+      1648,
+      1181,
+      1667,
+      1216
+    ],
+    "primitive_count": 466,
+    "primitive_kinds": {
+      "segment": 466
+    }
+  },
+  {
+    "component_id": "page0_draw11078",
+    "bbox_pdf": [
+      3432.419921875,
+      1774.4200439453125,
+      3441.780029296875,
+      1791.8800048828125
+    ],
+    "bbox_image": [
+      1670,
+      1181,
+      1689,
+      1216
+    ],
+    "primitive_count": 572,
+    "primitive_kinds": {
+      "segment": 572
+    }
+  },
+  {
+    "component_id": "page0_draw11079",
+    "bbox_pdf": [
+      3443.760009765625,
+      1774.4200439453125,
+      3453.1201171875,
+      1791.8800048828125
+    ],
+    "bbox_image": [
+      1693,
+      1181,
+      1712,
+      1216
+    ],
+    "primitive_count": 572,
+    "primitive_kinds": {
+      "segment": 572
+    }
+  },
+  {
+    "component_id": "page0_draw11080",
+    "bbox_pdf": [
+      3350.639892578125,
+      1864.47998046875,
+      3361.139892578125,
+      1881.4599609375
+    ],
+    "bbox_image": [
+      1507,
+      1361,
+      1528,
+      1395
+    ],
+    "primitive_count": 16,
+    "primitive_kinds": {
+      "segment": 16
+    }
+  },
+  {
+    "component_id": "page0_draw11081",
+    "bbox_pdf": [
+      3362.4599609375,
+      1864.06005859375,
+      3373.5,
+      1881.8800048828125
+    ],
+    "bbox_image": [
+      1530,
+      1361,
+      1553,
+      1396
+    ],
+    "primitive_count": 730,
+    "primitive_kinds": {
+      "segment": 730
+    }
+  },
+  {
+    "component_id": "page0_draw11082",
+    "bbox_pdf": [
+      3376.079833984375,
+      1864.47998046875,
+      3386.699951171875,
+      1881.8800048828125
+    ],
+    "bbox_image": [
+      1558,
+      1361,
+      1579,
+      1396
+    ],
+    "primitive_count": 267,
+    "primitive_kinds": {
+      "segment": 267
+    }
+  },
+  {
+    "component_id": "page0_draw11083",
+    "bbox_pdf": [
+      3389.579833984375,
+      1864.47998046875,
+      3398.4599609375,
+      1881.4599609375
+    ],
+    "bbox_image": [
+      1585,
+      1361,
+      1602,
+      1395
+    ],
+    "primitive_count": 12,
+    "primitive_kinds": {
+      "segment": 12
+    }
+  },
+  {
+    "component_id": "page0_draw11084",
+    "bbox_pdf": [
+      3400.619873046875,
+      1864.47998046875,
+      3403.739990234375,
+      1881.4599609375
+    ],
+    "bbox_image": [
+      1607,
+      1361,
+      1613,
+      1395
+    ],
+    "primitive_count": 8,
+    "primitive_kinds": {
+      "segment": 8
+    }
+  },
+  {
+    "component_id": "page0_draw11085",
+    "bbox_pdf": [
+      3406.679931640625,
+      1864.4801025390625,
+      3416.8798828125,
+      1881.4600830078125
+    ],
+    "bbox_image": [
+      1619,
+      1361,
+      1639,
+      1395
+    ],
+    "primitive_count": 244,
+    "primitive_kinds": {
+      "segment": 244
+    }
+  },
+  {
+    "component_id": "page0_draw11086",
+    "bbox_pdf": [
+      3418.97998046875,
+      1864.47998046875,
+      3427.860107421875,
+      1881.4599609375
+    ],
+    "bbox_image": [
+      1643,
+      1361,
+      1661,
+      1395
+    ],
+    "primitive_count": 24,
+    "primitive_kinds": {
+      "segment": 24
+    }
+  },
+  {
+    "component_id": "page0_draw11087",
+    "bbox_pdf": [
+      3435.83984375,
+      1864.47998046875,
+      3446.579833984375,
+      1881.4599609375
+    ],
+    "bbox_image": [
+      1677,
+      1361,
+      1699,
+      1395
+    ],
+    "primitive_count": 383,
+    "primitive_kinds": {
+      "segment": 383
+    }
+  },
+  {
+    "component_id": "page0_draw11088",
+    "bbox_pdf": [
+      3449.159912109375,
+      1864.47998046875,
+      3459.719970703125,
+      1881.4599609375
+    ],
+    "bbox_image": [
+      1704,
+      1361,
+      1725,
+      1395
+    ],
+    "primitive_count": 86,
+    "primitive_kinds": {
+      "segment": 86
+    }
+  },
+  {
+    "component_id": "page0_draw11089",
+    "bbox_pdf": [
+      3462.119873046875,
+      1864.360107421875,
+      3471.599853515625,
+      1881.4600830078125
+    ],
+    "bbox_image": [
+      1730,
+      1361,
+      1749,
+      1395
+    ],
+    "primitive_count": 470,
+    "primitive_kinds": {
+      "segment": 470
+    }
+  },
+  {
+    "component_id": "page0_draw11090",
+    "bbox_pdf": [
+      3473.4599609375,
+      1864.3599853515625,
+      3482.820068359375,
+      1881.8199462890625
+    ],
+    "bbox_image": [
+      1752,
+      1361,
+      1771,
+      1396
+    ],
+    "primitive_count": 571,
+    "primitive_kinds": {
+      "segment": 571
+    }
+  },
+  {
+    "component_id": "page0_draw11091",
+    "bbox_pdf": [
+      3484.739990234375,
+      1864.3599853515625,
+      3494.159912109375,
+      1881.8199462890625
+    ],
+    "bbox_image": [
+      1775,
+      1361,
+      1794,
+      1396
+    ],
+    "primitive_count": 571,
+    "primitive_kinds": {
+      "segment": 571
+    }
+  },
+  {
+    "component_id": "page0_draw11133",
+    "bbox_pdf": [
+      3112.739990234375,
+      1696.419921875,
+      3122.880126953125,
+      1714.239990234375
+    ],
+    "bbox_image": [
+      1031,
+      1025,
+      1051,
+      1061
+    ],
+    "primitive_count": 628,
+    "primitive_kinds": {
+      "segment": 628
+    }
+  },
+  {
+    "component_id": "page0_draw11134",
+    "bbox_pdf": [
+      3124.260009765625,
+      1696.780029296875,
+      3136.199951171875,
+      1713.8199462890625
+    ],
+    "bbox_image": [
+      1054,
+      1026,
+      1078,
+      1060
+    ],
+    "primitive_count": 54,
+    "primitive_kinds": {
+      "segment": 54
+    }
+  },
+  {
+    "component_id": "page0_draw11135",
+    "bbox_pdf": [
+      3137.81982421875,
+      1696.780029296875,
+      3149.27978515625,
+      1713.820068359375
+    ],
+    "bbox_image": [
+      1081,
+      1026,
+      1104,
+      1060
+    ],
+    "primitive_count": 369,
+    "primitive_kinds": {
+      "segment": 369
+    }
+  },
+  {
+    "component_id": "page0_draw11136",
+    "bbox_pdf": [
+      3156.539794921875,
+      1696.780029296875,
+      3167.27978515625,
+      1713.820068359375
+    ],
+    "bbox_image": [
+      1119,
+      1026,
+      1140,
+      1060
+    ],
+    "primitive_count": 385,
+    "primitive_kinds": {
+      "segment": 385
+    }
+  },
+  {
+    "component_id": "page0_draw11137",
+    "bbox_pdf": [
+      3169.85986328125,
+      1696.780029296875,
+      3180.419921875,
+      1713.820068359375
+    ],
+    "bbox_image": [
+      1145,
+      1026,
+      1166,
+      1060
+    ],
+    "primitive_count": 87,
+    "primitive_kinds": {
+      "segment": 87
+    }
+  },
+  {
+    "component_id": "page0_draw11138",
+    "bbox_pdf": [
+      3182.8798828125,
+      1696.719970703125,
+      3189.659912109375,
+      1713.8199462890625
+    ],
+    "bbox_image": [
+      1171,
+      1026,
+      1185,
+      1060
+    ],
+    "primitive_count": 68,
+    "primitive_kinds": {
+      "segment": 68
+    }
+  },
+  {
+    "component_id": "page0_draw11139",
+    "bbox_pdf": [
+      3194.159912109375,
+      1696.719970703125,
+      3203.52001953125,
+      1714.1199951171875
+    ],
+    "bbox_image": [
+      1194,
+      1026,
+      1213,
+      1061
+    ],
+    "primitive_count": 572,
+    "primitive_kinds": {
+      "segment": 572
+    }
+  },
+  {
+    "component_id": "page0_draw11140",
+    "bbox_pdf": [
+      3205.5,
+      1696.719970703125,
+      3214.85986328125,
+      1714.1199951171875
+    ],
+    "bbox_image": [
+      1217,
+      1026,
+      1235,
+      1061
+    ],
+    "primitive_count": 574,
+    "primitive_kinds": {
+      "segment": 574
+    }
+  },
+  {
+    "component_id": "page0_draw11141",
+    "bbox_pdf": [
+      2899.85986328125,
+      1611.4599609375,
+      2910.2998046875,
+      1628.5
+    ],
+    "bbox_image": [
+      605,
+      855,
+      626,
+      890
+    ],
+    "primitive_count": 16,
+    "primitive_kinds": {
+      "segment": 16
+    }
+  },
+  {
+    "component_id": "page0_draw11142",
+    "bbox_pdf": [
+      2911.619873046875,
+      1611.0400390625,
+      2922.659912109375,
+      1628.860107421875
+    ],
+    "bbox_image": [
+      629,
+      855,
+      651,
+      890
+    ],
+    "primitive_count": 730,
+    "primitive_kinds": {
+      "segment": 730
+    }
+  },
+  {
+    "component_id": "page0_draw11143",
+    "bbox_pdf": [
+      2925.23974609375,
+      1611.4599609375,
+      2935.919921875,
+      1628.8599853515625
+    ],
+    "bbox_image": [
+      656,
+      855,
+      677,
+      890
+    ],
+    "primitive_count": 266,
+    "primitive_kinds": {
+      "segment": 266
+    }
+  },
+  {
+    "component_id": "page0_draw11144",
+    "bbox_pdf": [
+      2938.73974609375,
+      1611.4599609375,
+      2947.679931640625,
+      1628.5
+    ],
+    "bbox_image": [
+      683,
+      855,
+      701,
+      890
+    ],
+    "primitive_count": 12,
+    "primitive_kinds": {
+      "segment": 12
+    }
+  },
+  {
+    "component_id": "page0_draw11145",
+    "bbox_pdf": [
+      2949.77978515625,
+      1611.4599609375,
+      2952.9599609375,
+      1628.5
+    ],
+    "bbox_image": [
+      705,
+      855,
+      711,
+      890
+    ],
+    "primitive_count": 8,
+    "primitive_kinds": {
+      "segment": 8
+    }
+  },
+  {
+    "component_id": "page0_draw11146",
+    "bbox_pdf": [
+      2955.83984375,
+      1611.4600830078125,
+      2966.099853515625,
+      1628.5001220703125
+    ],
+    "bbox_image": [
+      717,
+      855,
+      738,
+      890
+    ],
+    "primitive_count": 244,
+    "primitive_kinds": {
+      "segment": 244
+    }
+  },
+  {
+    "component_id": "page0_draw11147",
+    "bbox_pdf": [
+      2968.199951171875,
+      1611.4599609375,
+      2977.080078125,
+      1628.5
+    ],
+    "bbox_image": [
+      742,
+      855,
+      760,
+      890
+    ],
+    "primitive_count": 24,
+    "primitive_kinds": {
+      "segment": 24
+    }
+  },
+  {
+    "component_id": "page0_draw11148",
+    "bbox_pdf": [
+      2985.059814453125,
+      1611.4599609375,
+      2995.73974609375,
+      1628.5
+    ],
+    "bbox_image": [
+      776,
+      855,
+      797,
+      890
+    ],
+    "primitive_count": 383,
+    "primitive_kinds": {
+      "segment": 383
+    }
+  },
+  {
+    "component_id": "page0_draw11149",
+    "bbox_pdf": [
+      2998.31982421875,
+      1611.4599609375,
+      3008.93994140625,
+      1628.5
+    ],
+    "bbox_image": [
+      802,
+      855,
+      823,
+      890
+    ],
+    "primitive_count": 87,
+    "primitive_kinds": {
+      "segment": 87
+    }
+  },
+  {
+    "component_id": "page0_draw11150",
+    "bbox_pdf": [
+      3011.39990234375,
+      1611.3399658203125,
+      3018.1201171875,
+      1628.5
+    ],
+    "bbox_image": [
+      828,
+      855,
+      842,
+      890
+    ],
+    "primitive_count": 69,
+    "primitive_kinds": {
+      "segment": 69
+    }
+  },
+  {
+    "component_id": "page0_draw11151",
+    "bbox_pdf": [
+      3022.679931640625,
+      1611.340087890625,
+      3032.039794921875,
+      1628.800048828125
+    ],
+    "bbox_image": [
+      851,
+      855,
+      870,
+      890
+    ],
+    "primitive_count": 574,
+    "primitive_kinds": {
+      "segment": 574
+    }
+  },
+  {
+    "component_id": "page0_draw11152",
+    "bbox_pdf": [
+      3033.9599609375,
+      1611.340087890625,
+      3043.320068359375,
+      1628.800048828125
+    ],
+    "bbox_image": [
+      873,
+      855,
+      892,
+      890
+    ],
+    "primitive_count": 573,
+    "primitive_kinds": {
+      "segment": 573
+    }
+  },
+  {
+    "component_id": "page0_draw11153",
+    "bbox_pdf": [
+      2796.9599609375,
+      1672.239990234375,
+      2807.16015625,
+      1690.06005859375
+    ],
+    "bbox_image": [
+      399,
+      977,
+      420,
+      1013
+    ],
+    "primitive_count": 607,
+    "primitive_kinds": {
+      "segment": 607
+    }
+  },
+  {
+    "component_id": "page0_draw11154",
+    "bbox_pdf": [
+      2809.739990234375,
+      1672.659912109375,
+      2820.360107421875,
+      1690.0599365234375
+    ],
+    "bbox_image": [
+      425,
+      978,
+      446,
+      1013
+    ],
+    "primitive_count": 267,
+    "primitive_kinds": {
+      "segment": 267
+    }
+  },
+  {
+    "component_id": "page0_draw11155",
+    "bbox_pdf": [
+      2823.239990234375,
+      1672.6600341796875,
+      2834.639892578125,
+      1689.6400146484375
+    ],
+    "bbox_image": [
+      452,
+      978,
+      475,
+      1012
+    ],
+    "primitive_count": 373,
+    "primitive_kinds": {
+      "segment": 373
+    }
+  },
+  {
+    "component_id": "page0_draw11156",
+    "bbox_pdf": [
+      2835.1201171875,
+      1672.659912109375,
+      2846.699951171875,
+      1689.639892578125
+    ],
+    "bbox_image": [
+      476,
+      978,
+      499,
+      1012
+    ],
+    "primitive_count": 43,
+    "primitive_kinds": {
+      "segment": 43
+    }
+  },
+  {
+    "component_id": "page0_draw11157",
+    "bbox_pdf": [
+      2847.419921875,
+      1672.659912109375,
+      2859.35986328125,
+      1689.639892578125
+    ],
+    "bbox_image": [
+      500,
+      978,
+      524,
+      1012
+    ],
+    "primitive_count": 53,
+    "primitive_kinds": {
+      "segment": 53
+    }
+  },
+  {
+    "component_id": "page0_draw11158",
+    "bbox_pdf": [
+      2866.679931640625,
+      1672.6600341796875,
+      2876.8798828125,
+      1689.6400146484375
+    ],
+    "bbox_image": [
+      539,
+      978,
+      559,
+      1012
+    ],
+    "primitive_count": 244,
+    "primitive_kinds": {
+      "segment": 244
+    }
+  },
+  {
+    "component_id": "page0_draw11159",
+    "bbox_pdf": [
+      2877.840087890625,
+      1672.659912109375,
+      2889.419921875,
+      1689.639892578125
+    ],
+    "bbox_image": [
+      561,
+      978,
+      584,
+      1012
+    ],
+    "primitive_count": 43,
+    "primitive_kinds": {
+      "segment": 43
+    }
+  },
+  {
+    "component_id": "page0_draw11160",
+    "bbox_pdf": [
+      2891.039794921875,
+      1672.239990234375,
+      2901.179931640625,
+      1690.06005859375
+    ],
+    "bbox_image": [
+      588,
+      977,
+      608,
+      1013
+    ],
+    "primitive_count": 606,
+    "primitive_kinds": {
+      "segment": 606
+    }
+  },
+  {
+    "component_id": "page0_draw11161",
+    "bbox_pdf": [
+      2909.39990234375,
+      1672.6600341796875,
+      2920.139892578125,
+      1689.6400146484375
+    ],
+    "bbox_image": [
+      624,
+      978,
+      646,
+      1012
+    ],
+    "primitive_count": 385,
+    "primitive_kinds": {
+      "segment": 385
+    }
+  },
+  {
+    "component_id": "page0_draw11162",
+    "bbox_pdf": [
+      2922.719970703125,
+      1672.659912109375,
+      2931.60009765625,
+      1689.639892578125
+    ],
+    "bbox_image": [
+      651,
+      978,
+      669,
+      1012
+    ],
+    "primitive_count": 24,
+    "primitive_kinds": {
+      "segment": 24
+    }
+  },
+  {
+    "component_id": "page0_draw11163",
+    "bbox_pdf": [
+      2933.459716796875,
+      1672.5400390625,
+      2940.23974609375,
+      1689.64013671875
+    ],
+    "bbox_image": [
+      672,
+      978,
+      686,
+      1012
+    ],
+    "primitive_count": 68,
+    "primitive_kinds": {
+      "segment": 68
+    }
+  },
+  {
+    "component_id": "page0_draw11164",
+    "bbox_pdf": [
+      2944.7998046875,
+      1672.5400390625,
+      2951.52001953125,
+      1689.64013671875
+    ],
+    "bbox_image": [
+      695,
+      978,
+      709,
+      1012
+    ],
+    "primitive_count": 69,
+    "primitive_kinds": {
+      "segment": 69
+    }
+  },
+  {
+    "component_id": "page0_draw11165",
+    "bbox_pdf": [
+      2956.080078125,
+      1672.5400390625,
+      2965.43994140625,
+      1690.0
+    ],
+    "bbox_image": [
+      718,
+      978,
+      736,
+      1013
+    ],
+    "primitive_count": 572,
+    "primitive_kinds": {
+      "segment": 572
+    }
+  },
+  {
+    "component_id": "page0_draw11166",
+    "bbox_pdf": [
+      2811.059814453125,
+      1936.06005859375,
+      2821.259765625,
+      1953.10009765625
+    ],
+    "bbox_image": [
+      428,
+      1505,
+      448,
+      1539
+    ],
+    "primitive_count": 243,
+    "primitive_kinds": {
+      "segment": 243
+    }
+  },
+  {
+    "component_id": "page0_draw11167",
+    "bbox_pdf": [
+      2823.059814453125,
+      1935.7000732421875,
+      2834.099853515625,
+      1953.52001953125
+    ],
+    "bbox_image": [
+      452,
+      1504,
+      474,
+      1540
+    ],
+    "primitive_count": 730,
+    "primitive_kinds": {
+      "segment": 730
+    }
+  },
+  {
+    "component_id": "page0_draw11168",
+    "bbox_pdf": [
+      2835.89990234375,
+      1936.0599365234375,
+      2845.5,
+      1953.0999755859375
+    ],
+    "bbox_image": [
+      477,
+      1505,
+      497,
+      1539
+    ],
+    "primitive_count": 20,
+    "primitive_kinds": {
+      "segment": 20
+    }
+  },
+  {
+    "component_id": "page0_draw11169",
+    "bbox_pdf": [
+      2846.81982421875,
+      1936.0599365234375,
+      2856.419921875,
+      1953.0999755859375
+    ],
+    "bbox_image": [
+      499,
+      1505,
+      518,
+      1539
+    ],
+    "primitive_count": 20,
+    "primitive_kinds": {
+      "segment": 20
+    }
+  },
+  {
+    "component_id": "page0_draw11170",
+    "bbox_pdf": [
+      2858.519775390625,
+      1936.0599365234375,
+      2867.39990234375,
+      1953.0999755859375
+    ],
+    "bbox_image": [
+      523,
+      1505,
+      540,
+      1539
+    ],
+    "primitive_count": 24,
+    "primitive_kinds": {
+      "segment": 24
+    }
+  },
+  {
+    "component_id": "page0_draw11171",
+    "bbox_pdf": [
+      2868.539794921875,
+      1936.0599365234375,
+      2878.979736328125,
+      1953.0999755859375
+    ],
+    "bbox_image": [
+      543,
+      1505,
+      563,
+      1539
+    ],
+    "primitive_count": 16,
+    "primitive_kinds": {
+      "segment": 16
+    }
+  },
+  {
+    "component_id": "page0_draw11172",
+    "bbox_pdf": [
+      2879.39990234375,
+      1936.0599365234375,
+      2889.89990234375,
+      1953.0999755859375
+    ],
+    "bbox_image": [
+      564,
+      1505,
+      585,
+      1539
+    ],
+    "primitive_count": 16,
+    "primitive_kinds": {
+      "segment": 16
+    }
+  },
+  {
+    "component_id": "page0_draw11173",
+    "bbox_pdf": [
+      2891.219970703125,
+      1935.7000732421875,
+      2902.260009765625,
+      1953.52001953125
+    ],
+    "bbox_image": [
+      588,
+      1504,
+      610,
+      1540
+    ],
+    "primitive_count": 730,
+    "primitive_kinds": {
+      "segment": 730
+    }
+  },
+  {
+    "component_id": "page0_draw11174",
+    "bbox_pdf": [
+      2909.93994140625,
+      1936.300048828125,
+      2919.35986328125,
+      1953.4600830078125
+    ],
+    "bbox_image": [
+      625,
+      1505,
+      644,
+      1539
+    ],
+    "primitive_count": 436,
+    "primitive_kinds": {
+      "segment": 436
+    }
+  },
+  {
+    "component_id": "page0_draw11175",
+    "bbox_pdf": [
+      2921.27978515625,
+      1936.0,
+      2930.69970703125,
+      1953.4000244140625
+    ],
+    "bbox_image": [
+      648,
+      1505,
+      667,
+      1539
+    ],
+    "primitive_count": 573,
+    "primitive_kinds": {
+      "segment": 573
+    }
+  },
+  {
+    "component_id": "page0_draw11176",
+    "bbox_pdf": [
+      2931.83984375,
+      1936.0599365234375,
+      2943.83984375,
+      1953.0999755859375
+    ],
+    "bbox_image": [
+      669,
+      1505,
+      693,
+      1539
+    ],
+    "primitive_count": 24,
+    "primitive_kinds": {
+      "segment": 24
+    }
+  },
+  {
+    "component_id": "page0_draw11177",
+    "bbox_pdf": [
+      2944.919921875,
+      1936.300048828125,
+      2954.33984375,
+      1953.4600830078125
+    ],
+    "bbox_image": [
+      695,
+      1505,
+      714,
+      1539
+    ],
+    "primitive_count": 431,
+    "primitive_kinds": {
+      "segment": 431
+    }
+  },
+  {
+    "component_id": "page0_draw11178",
+    "bbox_pdf": [
+      2956.31982421875,
+      1936.0,
+      2965.679931640625,
+      1953.4000244140625
+    ],
+    "bbox_image": [
+      718,
+      1505,
+      737,
+      1539
+    ],
+    "primitive_count": 572,
+    "primitive_kinds": {
+      "segment": 572
+    }
+  },
+  {
+    "component_id": "page0_draw11179",
+    "bbox_pdf": [
+      2973.419921875,
+      1935.699951171875,
+      2983.6201171875,
+      1953.52001953125
+    ],
+    "bbox_image": [
+      752,
+      1504,
+      773,
+      1540
+    ],
+    "primitive_count": 607,
+    "primitive_kinds": {
+      "segment": 607
+    }
+  },
+  {
+    "component_id": "page0_draw11180",
+    "bbox_pdf": [
+      2986.139892578125,
+      1936.0599365234375,
+      3000.35986328125,
+      1953.0999755859375
+    ],
+    "bbox_image": [
+      778,
+      1505,
+      806,
+      1539
+    ],
+    "primitive_count": 122,
+    "primitive_kinds": {
+      "segment": 122
+    }
+  },
+  {
+    "component_id": "page0_draw11181",
+    "bbox_pdf": [
+      2859.2998046875,
+      1960.0599365234375,
+      2869.5,
+      1977.8800048828125
+    ],
+    "bbox_image": [
+      524,
+      1553,
+      545,
+      1588
+    ],
+    "primitive_count": 606,
+    "primitive_kinds": {
+      "segment": 606
+    }
+  },
+  {
+    "component_id": "page0_draw11182",
+    "bbox_pdf": [
+      2872.079833984375,
+      1960.47998046875,
+      2882.699951171875,
+      1977.4599609375
+    ],
+    "bbox_image": [
+      550,
+      1553,
+      571,
+      1587
+    ],
+    "primitive_count": 24,
+    "primitive_kinds": {
+      "segment": 24
+    }
+  },
+  {
+    "component_id": "page0_draw11183",
+    "bbox_pdf": [
+      2885.579833984375,
+      1960.47998046875,
+      2888.759765625,
+      1977.4599609375
+    ],
+    "bbox_image": [
+      577,
+      1553,
+      583,
+      1587
+    ],
+    "primitive_count": 8,
+    "primitive_kinds": {
+      "segment": 8
+    }
+  },
+  {
+    "component_id": "page0_draw11184",
+    "bbox_pdf": [
+      2891.639892578125,
+      1960.47998046875,
+      2902.260009765625,
+      1977.8800048828125
+    ],
+    "bbox_image": [
+      589,
+      1553,
+      610,
+      1588
+    ],
+    "primitive_count": 267,
+    "primitive_kinds": {
+      "segment": 267
+    }
+  },
+  {
+    "component_id": "page0_draw11185",
+    "bbox_pdf": [
+      2904.77978515625,
+      1960.06005859375,
+      2914.979736328125,
+      1977.8800048828125
+    ],
+    "bbox_image": [
+      615,
+      1553,
+      635,
+      1588
+    ],
+    "primitive_count": 630,
+    "primitive_kinds": {
+      "segment": 630
+    }
+  },
+  {
+    "component_id": "page0_draw11186",
+    "bbox_pdf": [
+      2917.559814453125,
+      1960.47998046875,
+      2920.73974609375,
+      1977.4599609375
+    ],
+    "bbox_image": [
+      641,
+      1553,
+      647,
+      1587
+    ],
+    "primitive_count": 8,
+    "primitive_kinds": {
+      "segment": 8
+    }
+  },
+  {
+    "component_id": "page0_draw11187",
+    "bbox_pdf": [
+      2923.619873046875,
+      1960.47998046875,
+      2934.179931640625,
+      1977.4599609375
+    ],
+    "bbox_image": [
+      653,
+      1553,
+      674,
+      1587
+    ],
+    "primitive_count": 87,
+    "primitive_kinds": {
+      "segment": 87
+    }
+  },
+  {
+    "component_id": "page0_draw11188",
+    "bbox_pdf": [
+      2936.760009765625,
+      1960.06005859375,
+      2947.800048828125,
+      1977.8800048828125
+    ],
+    "bbox_image": [
+      679,
+      1553,
+      701,
+      1588
+    ],
+    "primitive_count": 730,
+    "primitive_kinds": {
+      "segment": 730
+    }
+  },
+  {
+    "component_id": "page0_draw11189",
+    "bbox_pdf": [
+      2956.019775390625,
+      1960.47998046875,
+      2966.759765625,
+      1977.4599609375
+    ],
+    "bbox_image": [
+      718,
+      1553,
+      739,
+      1587
+    ],
+    "primitive_count": 383,
+    "primitive_kinds": {
+      "segment": 383
+    }
+  },
+  {
+    "component_id": "page0_draw11190",
+    "bbox_pdf": [
+      2968.619873046875,
+      1960.6600341796875,
+      2978.33984375,
+      1977.4599609375
+    ],
+    "bbox_image": [
+      743,
+      1554,
+      762,
+      1587
+    ],
+    "primitive_count": 49,
+    "primitive_kinds": {
+      "segment": 49
+    }
+  },
+  {
+    "component_id": "page0_draw11191",
+    "bbox_pdf": [
+      2980.139892578125,
+      1960.360107421875,
+      2989.5,
+      1977.820068359375
+    ],
+    "bbox_image": [
+      766,
+      1553,
+      785,
+      1588
+    ],
+    "primitive_count": 572,
+    "primitive_kinds": {
+      "segment": 572
+    }
+  },
+  {
+    "component_id": "page0_draw11192",
+    "bbox_pdf": [
+      2991.47998046875,
+      1960.360107421875,
+      3000.83984375,
+      1977.820068359375
+    ],
+    "bbox_image": [
+      788,
+      1553,
+      807,
+      1588
+    ],
+    "primitive_count": 573,
+    "primitive_kinds": {
+      "segment": 573
+    }
+  },
+  {
+    "component_id": "page0_draw11193",
+    "bbox_pdf": [
+      3066.119873046875,
+      1490.6199951171875,
+      3076.619873046875,
+      1507.6600341796875
+    ],
+    "bbox_image": [
+      938,
+      614,
+      959,
+      648
+    ],
+    "primitive_count": 16,
+    "primitive_kinds": {
+      "segment": 16
+    }
+  },
+  {
+    "component_id": "page0_draw11194",
+    "bbox_pdf": [
+      3078.23974609375,
+      1490.6199951171875,
+      3087.119873046875,
+      1507.6600341796875
+    ],
+    "bbox_image": [
+      962,
+      614,
+      980,
+      648
+    ],
+    "primitive_count": 24,
+    "primitive_kinds": {
+      "segment": 24
+    }
+  },
+  {
+    "component_id": "page0_draw11195",
+    "bbox_pdf": [
+      3089.4599609375,
+      1490.6199951171875,
+      3098.340087890625,
+      1507.6600341796875
+    ],
+    "bbox_image": [
+      984,
+      614,
+      1002,
+      648
+    ],
+    "primitive_count": 24,
+    "primitive_kinds": {
+      "segment": 24
+    }
+  },
+  {
+    "component_id": "page0_draw11196",
+    "bbox_pdf": [
+      3105.780029296875,
+      1490.5599365234375,
+      3115.260009765625,
+      1507.659912109375
+    ],
+    "bbox_image": [
+      1017,
+      614,
+      1036,
+      648
+    ],
+    "primitive_count": 468,
+    "primitive_kinds": {
+      "segment": 468
+    }
+  },
+  {
+    "component_id": "page0_draw11197",
+    "bbox_pdf": [
+      3117.119873046875,
+      1490.56005859375,
+      3126.539794921875,
+      1508.02001953125
+    ],
+    "bbox_image": [
+      1040,
+      614,
+      1059,
+      649
+    ],
+    "primitive_count": 574,
+    "primitive_kinds": {
+      "segment": 574
+    }
+  },
+  {
+    "component_id": "page0_draw11198",
+    "bbox_pdf": [
+      3128.4599609375,
+      1490.56005859375,
+      3137.820068359375,
+      1508.02001953125
+    ],
+    "bbox_image": [
+      1062,
+      614,
+      1081,
+      649
+    ],
+    "primitive_count": 572,
+    "primitive_kinds": {
+      "segment": 572
+    }
+  },
+  {
+    "component_id": "page0_draw11199",
+    "bbox_pdf": [
+      3137.759765625,
+      1490.260009765625,
+      3146.4599609375,
+      1509.760009765625
+    ],
+    "bbox_image": [
+      1081,
+      613,
+      1098,
+      652
+    ],
+    "primitive_count": 8,
+    "primitive_kinds": {
+      "segment": 8
+    }
+  },
+  {
+    "component_id": "page0_draw11200",
+    "bbox_pdf": [
+      3146.759765625,
+      1490.56005859375,
+      3153.47998046875,
+      1507.7200927734375
+    ],
+    "bbox_image": [
+      1099,
+      614,
+      1112,
+      648
+    ],
+    "primitive_count": 68,
+    "primitive_kinds": {
+      "segment": 68
+    }
+  },
+  {
+    "component_id": "page0_draw11201",
+    "bbox_pdf": [
+      3158.0400390625,
+      1490.56005859375,
+      3167.39990234375,
+      1508.02001953125
+    ],
+    "bbox_image": [
+      1122,
+      614,
+      1140,
+      649
+    ],
+    "primitive_count": 575,
+    "primitive_kinds": {
+      "segment": 575
+    }
+  },
+  {
+    "component_id": "page0_draw11202",
+    "bbox_pdf": [
+      3169.31982421875,
+      1490.6199951171875,
+      3178.679931640625,
+      1508.02001953125
+    ],
+    "bbox_image": [
+      1144,
+      614,
+      1163,
+      649
+    ],
+    "primitive_count": 572,
+    "primitive_kinds": {
+      "segment": 572
+    }
+  },
+  {
+    "component_id": "page0_draw11203",
+    "bbox_pdf": [
+      2961.599853515625,
+      1386.4000244140625,
+      2971.800048828125,
+      1404.219970703125
+    ],
+    "bbox_image": [
+      729,
+      405,
+      749,
+      441
+    ],
+    "primitive_count": 633,
+    "primitive_kinds": {
+      "segment": 633
+    }
+  },
+  {
+    "component_id": "page0_draw11204",
+    "bbox_pdf": [
+      2973.119873046875,
+      1386.820068359375,
+      2985.059814453125,
+      1403.8599853515625
+    ],
+    "bbox_image": [
+      752,
+      406,
+      776,
+      440
+    ],
+    "primitive_count": 53,
+    "primitive_kinds": {
+      "segment": 53
+    }
+  },
+  {
+    "component_id": "page0_draw11205",
+    "bbox_pdf": [
+      2986.739990234375,
+      1386.8199462890625,
+      2998.139892578125,
+      1403.8599853515625
+    ],
+    "bbox_image": [
+      779,
+      406,
+      802,
+      440
+    ],
+    "primitive_count": 369,
+    "primitive_kinds": {
+      "segment": 369
+    }
+  },
+  {
+    "component_id": "page0_draw11206",
+    "bbox_pdf": [
+      3005.4599609375,
+      1386.820068359375,
+      3016.199951171875,
+      1403.860107421875
+    ],
+    "bbox_image": [
+      816,
+      406,
+      838,
+      440
+    ],
+    "primitive_count": 385,
+    "primitive_kinds": {
+      "segment": 385
+    }
+  },
+  {
+    "component_id": "page0_draw11207",
+    "bbox_pdf": [
+      3018.77978515625,
+      1386.820068359375,
+      3029.33984375,
+      1403.860107421875
+    ],
+    "bbox_image": [
+      843,
+      406,
+      864,
+      440
+    ],
+    "primitive_count": 87,
+    "primitive_kinds": {
+      "segment": 87
+    }
+  },
+  {
+    "component_id": "page0_draw11208",
+    "bbox_pdf": [
+      3031.7998046875,
+      1386.699951171875,
+      3038.52001953125,
+      1403.8599853515625
+    ],
+    "bbox_image": [
+      869,
+      406,
+      883,
+      440
+    ],
+    "primitive_count": 68,
+    "primitive_kinds": {
+      "segment": 68
+    }
+  },
+  {
+    "component_id": "page0_draw11209",
+    "bbox_pdf": [
+      3043.079833984375,
+      1386.7000732421875,
+      3052.43994140625,
+      1404.1600341796875
+    ],
+    "bbox_image": [
+      892,
+      406,
+      910,
+      441
+    ],
+    "primitive_count": 573,
+    "primitive_kinds": {
+      "segment": 573
+    }
+  },
+  {
+    "component_id": "page0_draw11210",
+    "bbox_pdf": [
+      3054.35986328125,
+      1386.7000732421875,
+      3063.719970703125,
+      1404.1600341796875
+    ],
+    "bbox_image": [
+      914,
+      406,
+      933,
+      441
+    ],
+    "primitive_count": 573,
+    "primitive_kinds": {
+      "segment": 573
+    }
+  },
+  {
+    "component_id": "page0_draw11211",
+    "bbox_pdf": [
+      2919.659912109375,
+      1303.1199951171875,
+      2930.159912109375,
+      1320.1600341796875
+    ],
+    "bbox_image": [
+      645,
+      239,
+      666,
+      273
+    ],
+    "primitive_count": 16,
+    "primitive_kinds": {
+      "segment": 16
+    }
+  },
+  {
+    "component_id": "page0_draw11212",
+    "bbox_pdf": [
+      2931.47998046875,
+      1302.7000732421875,
+      2942.52001953125,
+      1320.52001953125
+    ],
+    "bbox_image": [
+      668,
+      238,
+      691,
+      274
+    ],
+    "primitive_count": 730,
+    "primitive_kinds": {
+      "segment": 730
+    }
+  },
+  {
+    "component_id": "page0_draw11213",
+    "bbox_pdf": [
+      2945.099853515625,
+      1303.1199951171875,
+      2955.719970703125,
+      1320.52001953125
+    ],
+    "bbox_image": [
+      696,
+      239,
+      717,
+      274
+    ],
+    "primitive_count": 267,
+    "primitive_kinds": {
+      "segment": 267
+    }
+  },
+  {
+    "component_id": "page0_draw11214",
+    "bbox_pdf": [
+      2958.599853515625,
+      1303.1199951171875,
+      2967.47998046875,
+      1320.1600341796875
+    ],
+    "bbox_image": [
+      723,
+      239,
+      740,
+      273
+    ],
+    "primitive_count": 12,
+    "primitive_kinds": {
+      "segment": 12
+    }
+  },
+  {
+    "component_id": "page0_draw11215",
+    "bbox_pdf": [
+      2969.639892578125,
+      1303.1199951171875,
+      2972.760009765625,
+      1320.1600341796875
+    ],
+    "bbox_image": [
+      745,
+      239,
+      751,
+      273
+    ],
+    "primitive_count": 8,
+    "primitive_kinds": {
+      "segment": 8
+    }
+  },
+  {
+    "component_id": "page0_draw11216",
+    "bbox_pdf": [
+      2975.699951171875,
+      1303.1199951171875,
+      2985.89990234375,
+      1320.1600341796875
+    ],
+    "bbox_image": [
+      757,
+      239,
+      777,
+      273
+    ],
+    "primitive_count": 244,
+    "primitive_kinds": {
+      "segment": 244
+    }
+  },
+  {
+    "component_id": "page0_draw11217",
+    "bbox_pdf": [
+      2988.0,
+      1303.1199951171875,
+      2996.880126953125,
+      1320.1600341796875
+    ],
+    "bbox_image": [
+      782,
+      239,
+      799,
+      273
+    ],
+    "primitive_count": 24,
+    "primitive_kinds": {
+      "segment": 24
+    }
+  },
+  {
+    "component_id": "page0_draw11218",
+    "bbox_pdf": [
+      3004.85986328125,
+      1303.1199951171875,
+      3015.599853515625,
+      1320.1600341796875
+    ],
+    "bbox_image": [
+      815,
+      239,
+      837,
+      273
+    ],
+    "primitive_count": 385,
+    "primitive_kinds": {
+      "segment": 385
+    }
+  },
+  {
+    "component_id": "page0_draw11219",
+    "bbox_pdf": [
+      3018.179931640625,
+      1303.1199951171875,
+      3028.739990234375,
+      1320.1600341796875
+    ],
+    "bbox_image": [
+      842,
+      239,
+      863,
+      273
+    ],
+    "primitive_count": 87,
+    "primitive_kinds": {
+      "segment": 87
+    }
+  },
+  {
+    "component_id": "page0_draw11220",
+    "bbox_pdf": [
+      3031.199951171875,
+      1303.0,
+      3037.920166015625,
+      1320.1600341796875
+    ],
+    "bbox_image": [
+      868,
+      239,
+      881,
+      273
+    ],
+    "primitive_count": 68,
+    "primitive_kinds": {
+      "segment": 68
+    }
+  },
+  {
+    "component_id": "page0_draw11221",
+    "bbox_pdf": [
+      3042.47998046875,
+      1303.0001220703125,
+      3051.840087890625,
+      1320.4600830078125
+    ],
+    "bbox_image": [
+      890,
+      239,
+      909,
+      273
+    ],
+    "primitive_count": 573,
+    "primitive_kinds": {
+      "segment": 573
+    }
+  },
+  {
+    "component_id": "page0_draw11222",
+    "bbox_pdf": [
+      3053.760009765625,
+      1303.0001220703125,
+      3063.1201171875,
+      1320.4600830078125
+    ],
+    "bbox_image": [
+      913,
+      239,
+      932,
+      273
+    ],
+    "primitive_count": 573,
+    "primitive_kinds": {
+      "segment": 573
+    }
+  },
+  {
+    "component_id": "page0_draw12025",
+    "bbox_pdf": [
+      2797.7998046875,
+      1493.0799560546875,
+      2808.23974609375,
+      1510.1199951171875
+    ],
+    "bbox_image": [
+      401,
+      619,
+      422,
+      653
+    ],
+    "primitive_count": 16,
+    "primitive_kinds": {
+      "segment": 16
+    }
+  },
+  {
+    "component_id": "page0_draw12026",
+    "bbox_pdf": [
+      2809.85986328125,
+      1493.0799560546875,
+      2818.739990234375,
+      1510.1199951171875
+    ],
+    "bbox_image": [
+      425,
+      619,
+      443,
+      653
+    ],
+    "primitive_count": 24,
+    "primitive_kinds": {
+      "segment": 24
+    }
+  },
+  {
+    "component_id": "page0_draw12027",
+    "bbox_pdf": [
+      2821.079833984375,
+      1493.0799560546875,
+      2829.9599609375,
+      1510.1199951171875
+    ],
+    "bbox_image": [
+      448,
+      619,
+      465,
+      653
+    ],
+    "primitive_count": 24,
+    "primitive_kinds": {
+      "segment": 24
+    }
+  },
+  {
+    "component_id": "page0_draw12028",
+    "bbox_pdf": [
+      2837.4599609375,
+      1493.02001953125,
+      2846.8798828125,
+      1510.1199951171875
+    ],
+    "bbox_image": [
+      480,
+      619,
+      499,
+      653
+    ],
+    "primitive_count": 470,
+    "primitive_kinds": {
+      "segment": 470
+    }
+  },
+  {
+    "component_id": "page0_draw12029",
+    "bbox_pdf": [
+      2848.800048828125,
+      1493.0201416015625,
+      2858.159912109375,
+      1510.4801025390625
+    ],
+    "bbox_image": [
+      503,
+      619,
+      522,
+      653
+    ],
+    "primitive_count": 572,
+    "primitive_kinds": {
+      "segment": 572
+    }
+  },
+  {
+    "component_id": "page0_draw12030",
+    "bbox_pdf": [
+      2860.079833984375,
+      1493.0201416015625,
+      2869.43994140625,
+      1510.4801025390625
+    ],
+    "bbox_image": [
+      526,
+      619,
+      544,
+      653
+    ],
+    "primitive_count": 572,
+    "primitive_kinds": {
+      "segment": 572
+    }
+  },
+  {
+    "component_id": "page0_draw12031",
+    "bbox_pdf": [
+      2869.43994140625,
+      1492.719970703125,
+      2878.139892578125,
+      1512.219970703125
+    ],
+    "bbox_image": [
+      544,
+      618,
+      562,
+      657
+    ],
+    "primitive_count": 8,
+    "primitive_kinds": {
+      "segment": 8
+    }
+  },
+  {
+    "component_id": "page0_draw12032",
+    "bbox_pdf": [
+      2878.3798828125,
+      1493.02001953125,
+      2885.159912109375,
+      1510.1800537109375
+    ],
+    "bbox_image": [
+      562,
+      619,
+      576,
+      653
+    ],
+    "primitive_count": 69,
+    "primitive_kinds": {
+      "segment": 69
+    }
+  },
+  {
+    "component_id": "page0_draw12033",
+    "bbox_pdf": [
+      2889.659912109375,
+      1493.0201416015625,
+      2899.02001953125,
+      1510.4801025390625
+    ],
+    "bbox_image": [
+      585,
+      619,
+      604,
+      653
+    ],
+    "primitive_count": 573,
+    "primitive_kinds": {
+      "segment": 573
+    }
+  },
+  {
+    "component_id": "page0_draw12034",
+    "bbox_pdf": [
+      2900.93994140625,
+      1493.080078125,
+      2910.35986328125,
+      1510.4801025390625
+    ],
+    "bbox_image": [
+      607,
+      619,
+      626,
+      653
+    ],
+    "primitive_count": 574,
+    "primitive_kinds": {
+      "segment": 574
+    }
+  },
+  {
+    "component_id": "page0_draw12187",
+    "bbox_pdf": [
+      2822.760009765625,
+      1427.739990234375,
+      2885.099853515625,
+      1433.43994140625
+    ],
+    "bbox_image": [
+      451,
+      488,
+      576,
+      499
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw12191",
+    "bbox_pdf": [
+      2874.35986328125,
+      1427.02001953125,
+      2880.599853515625,
+      1427.199951171875
+    ],
+    "bbox_image": [
+      554,
+      487,
+      567,
+      487
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw12203",
+    "bbox_pdf": [
+      2860.559814453125,
+      1427.02001953125,
+      2866.800048828125,
+      1427.199951171875
+    ],
+    "bbox_image": [
+      527,
+      487,
+      539,
+      487
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw12215",
+    "bbox_pdf": [
+      2841.06005859375,
+      1427.02001953125,
+      2847.300048828125,
+      1427.199951171875
+    ],
+    "bbox_image": [
+      488,
+      487,
+      500,
+      487
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw12227",
+    "bbox_pdf": [
+      2827.260009765625,
+      1427.02001953125,
+      2833.5,
+      1427.199951171875
+    ],
+    "bbox_image": [
+      460,
+      487,
+      473,
+      487
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw12451",
+    "bbox_pdf": [
+      2827.260009765625,
+      1352.9200439453125,
+      2833.5,
+      1353.0400390625
+    ],
+    "bbox_image": [
+      460,
+      338,
+      473,
+      339
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw12463",
+    "bbox_pdf": [
+      2841.06005859375,
+      1352.9200439453125,
+      2847.300048828125,
+      1353.0400390625
+    ],
+    "bbox_image": [
+      488,
+      338,
+      500,
+      339
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw12475",
+    "bbox_pdf": [
+      2860.559814453125,
+      1352.9200439453125,
+      2866.800048828125,
+      1353.0400390625
+    ],
+    "bbox_image": [
+      527,
+      338,
+      539,
+      339
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw12487",
+    "bbox_pdf": [
+      2874.35986328125,
+      1352.9200439453125,
+      2880.599853515625,
+      1353.0400390625
+    ],
+    "bbox_image": [
+      554,
+      338,
+      567,
+      339
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw12602",
+    "bbox_pdf": [
+      2852.81982421875,
+      1388.9200439453125,
+      2855.0400390625,
+      1391.1400146484375
+    ],
+    "bbox_image": [
+      511,
+      410,
+      516,
+      415
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw12603",
+    "bbox_pdf": [
+      2852.93994140625,
+      1389.0400390625,
+      2854.919921875,
+      1391.02001953125
+    ],
+    "bbox_image": [
+      511,
+      411,
+      515,
+      415
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw12605",
+    "bbox_pdf": [
+      2835.47998046875,
+      1352.9200439453125,
+      2836.919921875,
+      1369.5400390625
+    ],
+    "bbox_image": [
+      476,
+      338,
+      479,
+      372
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw12607",
+    "bbox_pdf": [
+      2870.93994140625,
+      1410.4599609375,
+      2872.31982421875,
+      1427.199951171875
+    ],
+    "bbox_image": [
+      547,
+      453,
+      550,
+      487
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw12608",
+    "bbox_pdf": [
+      2835.47998046875,
+      1410.52001953125,
+      2836.919921875,
+      1427.199951171875
+    ],
+    "bbox_image": [
+      476,
+      454,
+      479,
+      487
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw12612",
+    "bbox_pdf": [
+      2835.940673828125,
+      1372.04931640625,
+      2871.90234375,
+      1407.9940185546875
+    ],
+    "bbox_image": [
+      477,
+      377,
+      549,
+      448
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw12613",
+    "bbox_pdf": [
+      2836.240478515625,
+      1372.342041015625,
+      2871.616455078125,
+      1407.71484375
+    ],
+    "bbox_image": [
+      478,
+      377,
+      549,
+      448
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw12617",
+    "bbox_pdf": [
+      2850.898193359375,
+      1372.939697265625,
+      2870.39990234375,
+      1390.030029296875
+    ],
+    "bbox_image": [
+      507,
+      378,
+      546,
+      413
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "curve": 2
+    }
+  },
+  {
+    "component_id": "page0_draw12623",
+    "bbox_pdf": [
+      2874.059814453125,
+      1387.780029296875,
+      2875.31982421875,
+      1388.6199951171875
+    ],
+    "bbox_image": [
+      554,
+      408,
+      556,
+      410
+    ],
+    "primitive_count": 120,
+    "primitive_kinds": {
+      "segment": 120
+    }
+  },
+  {
+    "component_id": "page0_draw12624",
+    "bbox_pdf": [
+      2874.06005859375,
+      1388.800048828125,
+      2875.320068359375,
+      1389.580078125
+    ],
+    "bbox_image": [
+      554,
+      410,
+      556,
+      412
+    ],
+    "primitive_count": 38,
+    "primitive_kinds": {
+      "segment": 38
+    }
+  },
+  {
+    "component_id": "page0_draw12625",
+    "bbox_pdf": [
+      2874.06005859375,
+      1390.1800537109375,
+      2875.320068359375,
+      1390.6600341796875
+    ],
+    "bbox_image": [
+      554,
+      413,
+      556,
+      414
+    ],
+    "primitive_count": 30,
+    "primitive_kinds": {
+      "segment": 30
+    }
+  },
+  {
+    "component_id": "page0_draw12626",
+    "bbox_pdf": [
+      2874.06005859375,
+      1390.9599609375,
+      2875.320068359375,
+      1391.6800537109375
+    ],
+    "bbox_image": [
+      554,
+      414,
+      556,
+      416
+    ],
+    "primitive_count": 180,
+    "primitive_kinds": {
+      "segment": 180
+    }
+  },
+  {
+    "component_id": "page0_draw12627",
+    "bbox_pdf": [
+      2874.06005859375,
+      1391.800048828125,
+      2875.320068359375,
+      1392.52001953125
+    ],
+    "bbox_image": [
+      554,
+      416,
+      556,
+      418
+    ],
+    "primitive_count": 180,
+    "primitive_kinds": {
+      "segment": 180
+    }
+  },
+  {
+    "component_id": "page0_draw12632",
+    "bbox_pdf": [
+      2848.5,
+      1384.60009765625,
+      2859.35986328125,
+      1395.4599609375
+    ],
+    "bbox_image": [
+      503,
+      402,
+      524,
+      423
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw12633",
+    "bbox_pdf": [
+      2845.882080078125,
+      1379.784423828125,
+      2860.37646484375,
+      1384.111328125
+    ],
+    "bbox_image": [
+      497,
+      392,
+      526,
+      401
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "curve": 2
+    }
+  },
+  {
+    "component_id": "page0_draw12634",
+    "bbox_pdf": [
+      2851.260009765625,
+      1387.360107421875,
+      2856.599853515625,
+      1392.699951171875
+    ],
+    "bbox_image": [
+      508,
+      407,
+      519,
+      418
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw12635",
+    "bbox_pdf": [
+      2851.260009765625,
+      1387.360107421875,
+      2856.599853515625,
+      1392.699951171875
+    ],
+    "bbox_image": [
+      508,
+      407,
+      519,
+      418
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw12636",
+    "bbox_pdf": [
+      2851.260009765625,
+      1387.360107421875,
+      2856.599853515625,
+      1392.699951171875
+    ],
+    "bbox_image": [
+      508,
+      407,
+      519,
+      418
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw12637",
+    "bbox_pdf": [
+      2851.260009765625,
+      1387.360107421875,
+      2856.599853515625,
+      1392.699951171875
+    ],
+    "bbox_image": [
+      508,
+      407,
+      519,
+      418
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw12638",
+    "bbox_pdf": [
+      2852.39990234375,
+      1388.5,
+      2855.4599609375,
+      1391.56005859375
+    ],
+    "bbox_image": [
+      510,
+      410,
+      516,
+      416
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw12639",
+    "bbox_pdf": [
+      2852.579833984375,
+      1388.679931640625,
+      2855.280029296875,
+      1391.3800048828125
+    ],
+    "bbox_image": [
+      511,
+      410,
+      516,
+      415
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw12640",
+    "bbox_pdf": [
+      2851.199951171875,
+      1386.93994140625,
+      2856.599853515625,
+      1393.179931640625
+    ],
+    "bbox_image": [
+      508,
+      406,
+      519,
+      419
+    ],
+    "primitive_count": 6,
+    "primitive_kinds": {
+      "segment": 6
+    }
+  },
+  {
+    "component_id": "page0_draw12641",
+    "bbox_pdf": [
+      2850.47998046875,
+      1386.580078125,
+      2857.3798828125,
+      1393.47998046875
+    ],
+    "bbox_image": [
+      506,
+      406,
+      520,
+      419
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw12642",
+    "bbox_pdf": [
+      2842.537109375,
+      1378.635498046875,
+      2865.326171875,
+      1401.427734375
+    ],
+    "bbox_image": [
+      491,
+      390,
+      536,
+      435
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw12645",
+    "bbox_pdf": [
+      2831.91162109375,
+      1401.3094482421875,
+      2840.4326171875,
+      1409.834716796875
+    ],
+    "bbox_image": [
+      469,
+      435,
+      486,
+      452
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw12647",
+    "bbox_pdf": [
+      2834.219970703125,
+      1375.6600341796875,
+      2838.06005859375,
+      1376.739990234375
+    ],
+    "bbox_image": [
+      474,
+      384,
+      482,
+      386
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw12655",
+    "bbox_pdf": [
+      2834.219970703125,
+      1403.3800048828125,
+      2838.06005859375,
+      1407.760009765625
+    ],
+    "bbox_image": [
+      474,
+      439,
+      482,
+      448
+    ],
+    "primitive_count": 5,
+    "primitive_kinds": {
+      "segment": 5
+    }
+  },
+  {
+    "component_id": "page0_draw12661",
+    "bbox_pdf": [
+      2869.800048828125,
+      1404.219970703125,
+      2870.219970703125,
+      1406.679931640625
+    ],
+    "bbox_image": [
+      545,
+      441,
+      546,
+      446
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw12664",
+    "bbox_pdf": [
+      2869.800048828125,
+      1375.6600341796875,
+      2873.579833984375,
+      1376.739990234375
+    ],
+    "bbox_image": [
+      545,
+      384,
+      553,
+      386
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw12669",
+    "bbox_pdf": [
+      2869.800048828125,
+      1403.3800048828125,
+      2872.800048828125,
+      1404.4599609375
+    ],
+    "bbox_image": [
+      545,
+      439,
+      551,
+      441
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw12670",
+    "bbox_pdf": [
+      2869.800048828125,
+      1406.679931640625,
+      2873.579833984375,
+      1407.760009765625
+    ],
+    "bbox_image": [
+      545,
+      446,
+      553,
+      448
+    ],
+    "primitive_count": 2,
+    "primitive_kinds": {
+      "segment": 2
+    }
+  },
+  {
+    "component_id": "page0_draw12671",
+    "bbox_pdf": [
+      2869.800048828125,
+      1403.3800048828125,
+      2873.579833984375,
+      1406.679931640625
+    ],
+    "bbox_image": [
+      545,
+      439,
+      553,
+      446
+    ],
+    "primitive_count": 3,
+    "primitive_kinds": {
+      "segment": 3
+    }
+  },
+  {
+    "component_id": "page0_draw12672",
+    "bbox_pdf": [
+      2831.91162109375,
+      1370.2294921875,
+      2840.4326171875,
+      1378.754638671875
+    ],
+    "bbox_image": [
+      469,
+      373,
+      486,
+      390
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw12673",
+    "bbox_pdf": [
+      2867.491455078125,
+      1401.3094482421875,
+      2876.012451171875,
+      1409.834716796875
+    ],
+    "bbox_image": [
+      540,
+      435,
+      558,
+      452
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw12674",
+    "bbox_pdf": [
+      2867.491455078125,
+      1370.2294921875,
+      2876.012451171875,
+      1378.754638671875
+    ],
+    "bbox_image": [
+      540,
+      373,
+      558,
+      390
+    ],
+    "primitive_count": 4,
+    "primitive_kinds": {
+      "curve": 4
+    }
+  },
+  {
+    "component_id": "page0_draw12679",
+    "bbox_pdf": [
+      2832.5400390625,
+      1387.780029296875,
+      2833.800048828125,
+      1388.6199951171875
+    ],
+    "bbox_image": [
+      471,
+      408,
+      473,
+      410
+    ],
+    "primitive_count": 125,
+    "primitive_kinds": {
+      "segment": 125
+    }
+  },
+  {
+    "component_id": "page0_draw12680",
+    "bbox_pdf": [
+      2832.5400390625,
+      1388.800048828125,
+      2833.800048828125,
+      1389.580078125
+    ],
+    "bbox_image": [
+      471,
+      410,
+      473,
+      412
+    ],
+    "primitive_count": 39,
+    "primitive_kinds": {
+      "segment": 39
+    }
+  },
+  {
+    "component_id": "page0_draw12681",
+    "bbox_pdf": [
+      2832.5400390625,
+      1390.1800537109375,
+      2833.800048828125,
+      1390.6600341796875
+    ],
+    "bbox_image": [
+      471,
+      413,
+      473,
+      414
+    ],
+    "primitive_count": 29,
+    "primitive_kinds": {
+      "segment": 29
+    }
+  },
+  {
+    "component_id": "page0_draw12682",
+    "bbox_pdf": [
+      2832.5400390625,
+      1390.9599609375,
+      2833.800048828125,
+      1391.6800537109375
+    ],
+    "bbox_image": [
+      471,
+      414,
+      473,
+      416
+    ],
+    "primitive_count": 174,
+    "primitive_kinds": {
+      "segment": 174
+    }
+  },
+  {
+    "component_id": "page0_draw12683",
+    "bbox_pdf": [
+      2832.5400390625,
+      1391.800048828125,
+      2833.800048828125,
+      1392.52001953125
+    ],
+    "bbox_image": [
+      471,
+      416,
+      473,
+      418
+    ],
+    "primitive_count": 181,
+    "primitive_kinds": {
+      "segment": 181
+    }
+  },
+  {
+    "component_id": "page0_draw12711",
+    "bbox_pdf": [
+      2690.699951171875,
+      1386.4000244140625,
+      2700.900146484375,
+      1404.219970703125
+    ],
+    "bbox_image": [
+      187,
+      405,
+      207,
+      441
+    ],
+    "primitive_count": 632,
+    "primitive_kinds": {
+      "segment": 632
+    }
+  },
+  {
+    "component_id": "page0_draw12712",
+    "bbox_pdf": [
+      2702.219970703125,
+      1386.820068359375,
+      2714.159912109375,
+      1403.8599853515625
+    ],
+    "bbox_image": [
+      210,
+      406,
+      234,
+      440
+    ],
+    "primitive_count": 53,
+    "primitive_kinds": {
+      "segment": 53
+    }
+  },
+  {
+    "component_id": "page0_draw12713",
+    "bbox_pdf": [
+      2715.83984375,
+      1386.8199462890625,
+      2727.23974609375,
+      1403.8599853515625
+    ],
+    "bbox_image": [
+      237,
+      406,
+      260,
+      440
+    ],
+    "primitive_count": 369,
+    "primitive_kinds": {
+      "segment": 369
+    }
+  },
+  {
+    "component_id": "page0_draw12714",
+    "bbox_pdf": [
+      2734.559814453125,
+      1386.820068359375,
+      2745.2998046875,
+      1403.860107421875
+    ],
+    "bbox_image": [
+      275,
+      406,
+      296,
+      440
+    ],
+    "primitive_count": 385,
+    "primitive_kinds": {
+      "segment": 385
+    }
+  },
+  {
+    "component_id": "page0_draw12715",
+    "bbox_pdf": [
+      2747.8798828125,
+      1386.820068359375,
+      2758.43994140625,
+      1403.860107421875
+    ],
+    "bbox_image": [
+      301,
+      406,
+      322,
+      440
+    ],
+    "primitive_count": 87,
+    "primitive_kinds": {
+      "segment": 87
+    }
+  },
+  {
+    "component_id": "page0_draw12716",
+    "bbox_pdf": [
+      2760.89990234375,
+      1386.699951171875,
+      2767.6201171875,
+      1403.8599853515625
+    ],
+    "bbox_image": [
+      327,
+      406,
+      341,
+      440
+    ],
+    "primitive_count": 68,
+    "primitive_kinds": {
+      "segment": 68
+    }
+  },
+  {
+    "component_id": "page0_draw12717",
+    "bbox_pdf": [
+      2772.179931640625,
+      1386.7000732421875,
+      2781.539794921875,
+      1404.1600341796875
+    ],
+    "bbox_image": [
+      350,
+      406,
+      369,
+      441
+    ],
+    "primitive_count": 573,
+    "primitive_kinds": {
+      "segment": 573
+    }
+  },
+  {
+    "component_id": "page0_draw12718",
+    "bbox_pdf": [
+      2783.4599609375,
+      1386.7000732421875,
+      2792.820068359375,
+      1404.1600341796875
+    ],
+    "bbox_image": [
+      372,
+      406,
+      391,
+      441
+    ],
+    "primitive_count": 573,
+    "primitive_kinds": {
+      "segment": 573
+    }
+  },
+  {
+    "component_id": "page0_draw12719",
+    "bbox_pdf": [
+      2650.919921875,
+      1303.1199951171875,
+      2661.35986328125,
+      1320.1600341796875
+    ],
+    "bbox_image": [
+      107,
+      239,
+      128,
+      273
+    ],
+    "primitive_count": 16,
+    "primitive_kinds": {
+      "segment": 16
+    }
+  },
+  {
+    "component_id": "page0_draw12720",
+    "bbox_pdf": [
+      2662.679931640625,
+      1302.7000732421875,
+      2673.719970703125,
+      1320.52001953125
+    ],
+    "bbox_image": [
+      131,
+      238,
+      153,
+      274
+    ],
+    "primitive_count": 730,
+    "primitive_kinds": {
+      "segment": 730
+    }
+  },
+  {
+    "component_id": "page0_draw12721",
+    "bbox_pdf": [
+      2676.2998046875,
+      1303.1199951171875,
+      2686.97998046875,
+      1320.52001953125
+    ],
+    "bbox_image": [
+      158,
+      239,
+      179,
+      274
+    ],
+    "primitive_count": 267,
+    "primitive_kinds": {
+      "segment": 267
+    }
+  },
+  {
+    "component_id": "page0_draw12722",
+    "bbox_pdf": [
+      2689.7998046875,
+      1303.1199951171875,
+      2698.739990234375,
+      1320.1600341796875
+    ],
+    "bbox_image": [
+      185,
+      239,
+      203,
+      273
+    ],
+    "primitive_count": 12,
+    "primitive_kinds": {
+      "segment": 12
+    }
+  },
+  {
+    "component_id": "page0_draw12723",
+    "bbox_pdf": [
+      2700.83984375,
+      1303.1199951171875,
+      2704.02001953125,
+      1320.1600341796875
+    ],
+    "bbox_image": [
+      207,
+      239,
+      214,
+      273
+    ],
+    "primitive_count": 8,
+    "primitive_kinds": {
+      "segment": 8
+    }
+  },
+  {
+    "component_id": "page0_draw12724",
+    "bbox_pdf": [
+      2706.89990234375,
+      1303.1199951171875,
+      2717.159912109375,
+      1320.1600341796875
+    ],
+    "bbox_image": [
+      219,
+      239,
+      240,
+      273
+    ],
+    "primitive_count": 243,
+    "primitive_kinds": {
+      "segment": 243
+    }
+  },
+  {
+    "component_id": "page0_draw12725",
+    "bbox_pdf": [
+      2719.260009765625,
+      1303.1199951171875,
+      2728.14013671875,
+      1320.1600341796875
+    ],
+    "bbox_image": [
+      244,
+      239,
+      262,
+      273
+    ],
+    "primitive_count": 24,
+    "primitive_kinds": {
+      "segment": 24
+    }
+  },
+  {
+    "component_id": "page0_draw12726",
+    "bbox_pdf": [
+      2736.119873046875,
+      1303.1199951171875,
+      2746.7998046875,
+      1320.1600341796875
+    ],
+    "bbox_image": [
+      278,
+      239,
+      299,
+      273
+    ],
+    "primitive_count": 384,
+    "primitive_kinds": {
+      "segment": 384
+    }
+  },
+  {
+    "component_id": "page0_draw12727",
+    "bbox_pdf": [
+      2749.3798828125,
+      1303.1199951171875,
+      2760.0,
+      1320.1600341796875
+    ],
+    "bbox_image": [
+      304,
+      239,
+      326,
+      273
+    ],
+    "primitive_count": 87,
+    "primitive_kinds": {
+      "segment": 87
+    }
+  },
+  {
+    "component_id": "page0_draw12728",
+    "bbox_pdf": [
+      2762.4599609375,
+      1303.0,
+      2769.18017578125,
+      1320.1600341796875
+    ],
+    "bbox_image": [
+      330,
+      239,
+      344,
+      273
+    ],
+    "primitive_count": 69,
+    "primitive_kinds": {
+      "segment": 69
+    }
+  },
+  {
+    "component_id": "page0_draw12729",
+    "bbox_pdf": [
+      2773.739990234375,
+      1303.0001220703125,
+      2783.099853515625,
+      1320.4600830078125
+    ],
+    "bbox_image": [
+      353,
+      239,
+      372,
+      273
+    ],
+    "primitive_count": 574,
+    "primitive_kinds": {
+      "segment": 574
+    }
+  },
+  {
+    "component_id": "page0_draw12730",
+    "bbox_pdf": [
+      2785.02001953125,
+      1303.0001220703125,
+      2794.380126953125,
+      1320.4600830078125
+    ],
+    "bbox_image": [
+      376,
+      239,
+      394,
+      273
+    ],
+    "primitive_count": 574,
+    "primitive_kinds": {
+      "segment": 574
+    }
+  },
+  {
+    "component_id": "page0_draw13623",
+    "bbox_pdf": [
+      2905.079833984375,
+      1560.699951171875,
+      2915.219970703125,
+      1578.52001953125
+    ],
+    "bbox_image": [
+      616,
+      754,
+      636,
+      790
+    ],
+    "primitive_count": 629,
+    "primitive_kinds": {
+      "segment": 629
+    }
+  },
+  {
+    "component_id": "page0_draw13624",
+    "bbox_pdf": [
+      2916.5400390625,
+      1561.06005859375,
+      2928.5400390625,
+      1578.0999755859375
+    ],
+    "bbox_image": [
+      639,
+      755,
+      663,
+      789
+    ],
+    "primitive_count": 54,
+    "primitive_kinds": {
+      "segment": 54
+    }
+  },
+  {
+    "component_id": "page0_draw13625",
+    "bbox_pdf": [
+      2930.159912109375,
+      1561.06005859375,
+      2941.619873046875,
+      1578.10009765625
+    ],
+    "bbox_image": [
+      666,
+      755,
+      689,
+      789
+    ],
+    "primitive_count": 369,
+    "primitive_kinds": {
+      "segment": 369
+    }
+  },
+  {
+    "component_id": "page0_draw13626",
+    "bbox_pdf": [
+      2948.8798828125,
+      1561.06005859375,
+      2959.619873046875,
+      1578.10009765625
+    ],
+    "bbox_image": [
+      703,
+      755,
+      725,
+      789
+    ],
+    "primitive_count": 384,
+    "primitive_kinds": {
+      "segment": 384
+    }
+  },
+  {
+    "component_id": "page0_draw13627",
+    "bbox_pdf": [
+      2962.199951171875,
+      1561.06005859375,
+      2972.760009765625,
+      1578.10009765625
+    ],
+    "bbox_image": [
+      730,
+      755,
+      751,
+      789
+    ],
+    "primitive_count": 87,
+    "primitive_kinds": {
+      "segment": 87
+    }
+  },
+  {
+    "component_id": "page0_draw13628",
+    "bbox_pdf": [
+      2975.159912109375,
+      1561.0,
+      2984.639892578125,
+      1578.0999755859375
+    ],
+    "bbox_image": [
+      756,
+      755,
+      775,
+      789
+    ],
+    "primitive_count": 466,
+    "primitive_kinds": {
+      "segment": 466
+    }
+  },
+  {
+    "component_id": "page0_draw13629",
+    "bbox_pdf": [
+      2986.5,
+      1561.0,
+      2995.860107421875,
+      1578.4000244140625
+    ],
+    "bbox_image": [
+      779,
+      755,
+      797,
+      789
+    ],
+    "primitive_count": 572,
+    "primitive_kinds": {
+      "segment": 572
+    }
+  },
+  {
+    "component_id": "page0_draw13630",
+    "bbox_pdf": [
+      2997.83984375,
+      1561.0,
+      3007.19970703125,
+      1578.4000244140625
+    ],
+    "bbox_image": [
+      801,
+      755,
+      820,
+      789
+    ],
+    "primitive_count": 574,
+    "primitive_kinds": {
+      "segment": 574
+    }
+  },
+  {
+    "component_id": "page0_draw13631",
+    "bbox_pdf": [
+      3015.239990234375,
+      1561.06005859375,
+      3025.5,
+      1578.10009765625
+    ],
+    "bbox_image": [
+      836,
+      755,
+      857,
+      789
+    ],
+    "primitive_count": 243,
+    "primitive_kinds": {
+      "segment": 243
+    }
+  },
+  {
+    "component_id": "page0_draw13632",
+    "bbox_pdf": [
+      3027.599853515625,
+      1561.06005859375,
+      3030.77978515625,
+      1578.10009765625
+    ],
+    "bbox_image": [
+      861,
+      755,
+      867,
+      789
+    ],
+    "primitive_count": 8,
+    "primitive_kinds": {
+      "segment": 8
+    }
+  },
+  {
+    "component_id": "page0_draw13633",
+    "bbox_pdf": [
+      3032.39990234375,
+      1561.06005859375,
+      3044.33984375,
+      1578.0999755859375
+    ],
+    "bbox_image": [
+      870,
+      755,
+      894,
+      789
+    ],
+    "primitive_count": 54,
+    "primitive_kinds": {
+      "segment": 54
+    }
+  },
+  {
+    "component_id": "page0_draw13634",
+    "bbox_pdf": [
+      3044.81982421875,
+      1561.06005859375,
+      3055.259765625,
+      1578.10009765625
+    ],
+    "bbox_image": [
+      895,
+      755,
+      916,
+      789
+    ],
+    "primitive_count": 16,
+    "primitive_kinds": {
+      "segment": 16
+    }
+  },
+  {
+    "component_id": "page0_draw13635",
+    "bbox_pdf": [
+      3055.679931640625,
+      1561.06005859375,
+      3066.179931640625,
+      1578.10009765625
+    ],
+    "bbox_image": [
+      917,
+      755,
+      938,
+      789
+    ],
+    "primitive_count": 16,
+    "primitive_kinds": {
+      "segment": 16
+    }
+  },
+  {
+    "component_id": "page0_draw13636",
+    "bbox_pdf": [
+      3066.60009765625,
+      1561.06005859375,
+      3078.5400390625,
+      1578.0999755859375
+    ],
+    "bbox_image": [
+      939,
+      755,
+      963,
+      789
+    ],
+    "primitive_count": 54,
+    "primitive_kinds": {
+      "segment": 54
+    }
+  }
+]

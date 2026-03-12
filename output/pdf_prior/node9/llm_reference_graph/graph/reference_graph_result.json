@@ -1,0 +1,544 @@
+{
+  "pdf_path": "folder_with_pdf\\node9.pdf",
+  "status": "ok",
+  "provider": "gemini",
+  "model": "gemini-3-flash-preview",
+  "page_index": 0,
+  "diagram_candidate_id": "page0_cluster0007",
+  "components": [
+    {
+      "id": "comp_rid_l",
+      "type": "reducer",
+      "label_text": "RID FL. 350/200",
+      "dn_main": 350.0,
+      "dn_branch": 200.0,
+      "bbox": [
+        5.0,
+        308.0,
+        172.0,
+        452.0
+      ],
+      "center": [
+        88.0,
+        380.0
+      ],
+      "confidence": 0.95
+    },
+    {
+      "id": "comp_tee_l",
+      "type": "tee",
+      "label_text": "TEE 200/100",
+      "dn_main": 200.0,
+      "dn_branch": 100.0,
+      "bbox": [
+        188.0,
+        335.0,
+        314.0,
+        431.0
+      ],
+      "center": [
+        251.0,
+        383.0
+      ],
+      "confidence": 0.95
+    },
+    {
+      "id": "comp_sar_100_l",
+      "type": "valve",
+      "label_text": "SAR DN100",
+      "dn_main": 100.0,
+      "dn_branch": null,
+      "bbox": [
+        223.0,
+        211.0,
+        289.0,
+        314.0
+      ],
+      "center": [
+        256.0,
+        262.0
+      ],
+      "confidence": 0.95
+    },
+    {
+      "id": "comp_toul_100_l",
+      "type": "unknown",
+      "label_text": "TOULIPE DN100",
+      "dn_main": 100.0,
+      "dn_branch": null,
+      "bbox": [
+        223.0,
+        122.0,
+        290.0,
+        203.0
+      ],
+      "center": [
+        256.0,
+        162.0
+      ],
+      "confidence": 0.9
+    },
+    {
+      "id": "comp_sar_200_piatta_l",
+      "type": "valve",
+      "label_text": "SAR DN200 PIATTA",
+      "dn_main": 200.0,
+      "dn_branch": null,
+      "bbox": [
+        339.0,
+        321.0,
+        452.0,
+        442.0
+      ],
+      "center": [
+        395.0,
+        381.0
+      ],
+      "confidence": 0.95
+    },
+    {
+      "id": "comp_tee_c",
+      "type": "tee",
+      "label_text": "TEE 200/100",
+      "dn_main": 200.0,
+      "dn_branch": 100.0,
+      "bbox": [
+        468.0,
+        335.0,
+        597.0,
+        431.0
+      ],
+      "center": [
+        532.0,
+        383.0
+      ],
+      "confidence": 0.95
+    },
+    {
+      "id": "comp_sar_100_c",
+      "type": "valve",
+      "label_text": "SAR DN100",
+      "dn_main": 100.0,
+      "dn_branch": null,
+      "bbox": [
+        489.0,
+        211.0,
+        555.0,
+        314.0
+      ],
+      "center": [
+        522.0,
+        262.0
+      ],
+      "confidence": 0.95
+    },
+    {
+      "id": "comp_toul_100_c",
+      "type": "unknown",
+      "label_text": "TOULIPE DN100",
+      "dn_main": 100.0,
+      "dn_branch": null,
+      "bbox": [
+        489.0,
+        122.0,
+        555.0,
+        203.0
+      ],
+      "center": [
+        522.0,
+        162.0
+      ],
+      "confidence": 0.9
+    },
+    {
+      "id": "comp_croce",
+      "type": "cross",
+      "label_text": "CROCE DN200",
+      "dn_main": 200.0,
+      "dn_branch": 200.0,
+      "bbox": [
+        611.0,
+        335.0,
+        735.0,
+        456.0
+      ],
+      "center": [
+        673.0,
+        395.0
+      ],
+      "confidence": 0.95
+    },
+    {
+      "id": "comp_sar_200_top",
+      "type": "valve",
+      "label_text": "SAR DN200",
+      "dn_main": 200.0,
+      "dn_branch": null,
+      "bbox": [
+        632.0,
+        185.0,
+        715.0,
+        312.0
+      ],
+      "center": [
+        673.0,
+        248.0
+      ],
+      "confidence": 0.95
+    },
+    {
+      "id": "comp_rid_top",
+      "type": "reducer",
+      "label_text": "RID FL. 300/200",
+      "dn_main": 300.0,
+      "dn_branch": 200.0,
+      "bbox": [
+        629.0,
+        0.0,
+        718.0,
+        172.0
+      ],
+      "center": [
+        673.0,
+        86.0
+      ],
+      "confidence": 0.95
+    },
+    {
+      "id": "comp_sar_200_piatta_r",
+      "type": "valve",
+      "label_text": "SAR DN200 PIATTA",
+      "dn_main": 200.0,
+      "dn_branch": null,
+      "bbox": [
+        750.0,
+        321.0,
+        863.0,
+        442.0
+      ],
+      "center": [
+        806.0,
+        381.0
+      ],
+      "confidence": 0.95
+    },
+    {
+      "id": "comp_rid_r",
+      "type": "reducer",
+      "label_text": "RID FL. 350/200",
+      "dn_main": 350.0,
+      "dn_branch": 200.0,
+      "bbox": [
+        880.0,
+        308.0,
+        1000.0,
+        452.0
+      ],
+      "center": [
+        940.0,
+        380.0
+      ],
+      "confidence": 0.95
+    },
+    {
+      "id": "comp_sar_200_piatta_bot",
+      "type": "valve",
+      "label_text": "SAR DN200 PIATTA",
+      "dn_main": 200.0,
+      "dn_branch": null,
+      "bbox": [
+        632.0,
+        467.0,
+        715.0,
+        595.0
+      ],
+      "center": [
+        673.0,
+        531.0
+      ],
+      "confidence": 0.95
+    },
+    {
+      "id": "comp_tee_bot",
+      "type": "tee",
+      "label_text": "TEE 200/100",
+      "dn_main": 200.0,
+      "dn_branch": 100.0,
+      "bbox": [
+        625.0,
+        608.0,
+        722.0,
+        660.0
+      ],
+      "center": [
+        673.0,
+        634.0
+      ],
+      "confidence": 0.9
+    },
+    {
+      "id": "comp_sar_100_bot",
+      "type": "valve",
+      "label_text": "SAR DN100",
+      "dn_main": 100.0,
+      "dn_branch": null,
+      "bbox": [
+        516.0,
+        517.0,
+        584.0,
+        606.0
+      ],
+      "center": [
+        550.0,
+        561.0
+      ],
+      "confidence": 0.95
+    },
+    {
+      "id": "comp_toul_100_bot",
+      "type": "unknown",
+      "label_text": "TOULIPE DN100",
+      "dn_main": 100.0,
+      "dn_branch": null,
+      "bbox": [
+        435.0,
+        520.0,
+        508.0,
+        595.0
+      ],
+      "center": [
+        471.0,
+        557.0
+      ],
+      "confidence": 0.9
+    },
+    {
+      "id": "comp_curva_110",
+      "type": "elbow",
+      "label_text": "CURVA PVC DE110",
+      "dn_main": 110.0,
+      "dn_branch": null,
+      "bbox": [
+        357.0,
+        525.0,
+        462.0,
+        670.0
+      ],
+      "center": [
+        409.0,
+        597.0
+      ],
+      "confidence": 0.95
+    },
+    {
+      "id": "comp_sar_200_bot",
+      "type": "valve",
+      "label_text": "SAR DN200",
+      "dn_main": 200.0,
+      "dn_branch": null,
+      "bbox": [
+        632.0,
+        672.0,
+        715.0,
+        800.0
+      ],
+      "center": [
+        673.0,
+        736.0
+      ],
+      "confidence": 0.95
+    },
+    {
+      "id": "comp_toul_200_bot",
+      "type": "unknown",
+      "label_text": "TOULIPE DN200",
+      "dn_main": 200.0,
+      "dn_branch": null,
+      "bbox": [
+        619.0,
+        811.0,
+        728.0,
+        908.0
+      ],
+      "center": [
+        673.0,
+        859.0
+      ],
+      "confidence": 0.9
+    },
+    {
+      "id": "comp_curva_200",
+      "type": "elbow",
+      "label_text": "CURVA PVC DE200",
+      "dn_main": 200.0,
+      "dn_branch": null,
+      "bbox": [
+        603.0,
+        915.0,
+        722.0,
+        1000.0
+      ],
+      "center": [
+        662.0,
+        957.0
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "connections": [
+    {
+      "from_id": "comp_rid_l",
+      "to_id": "comp_tee_l",
+      "connection_type": "pipe_connection",
+      "confidence": 1.0
+    },
+    {
+      "from_id": "comp_tee_l",
+      "to_id": "comp_sar_100_l",
+      "connection_type": "pipe_connection",
+      "confidence": 1.0
+    },
+    {
+      "from_id": "comp_sar_100_l",
+      "to_id": "comp_toul_100_l",
+      "connection_type": "pipe_connection",
+      "confidence": 1.0
+    },
+    {
+      "from_id": "comp_tee_l",
+      "to_id": "comp_sar_200_piatta_l",
+      "connection_type": "pipe_connection",
+      "confidence": 1.0
+    },
+    {
+      "from_id": "comp_sar_200_piatta_l",
+      "to_id": "comp_tee_c",
+      "connection_type": "pipe_connection",
+      "confidence": 1.0
+    },
+    {
+      "from_id": "comp_tee_c",
+      "to_id": "comp_sar_100_c",
+      "connection_type": "pipe_connection",
+      "confidence": 1.0
+    },
+    {
+      "from_id": "comp_sar_100_c",
+      "to_id": "comp_toul_100_c",
+      "connection_type": "pipe_connection",
+      "confidence": 1.0
+    },
+    {
+      "from_id": "comp_tee_c",
+      "to_id": "comp_croce",
+      "connection_type": "pipe_connection",
+      "confidence": 1.0
+    },
+    {
+      "from_id": "comp_croce",
+      "to_id": "comp_sar_200_top",
+      "connection_type": "pipe_connection",
+      "confidence": 1.0
+    },
+    {
+      "from_id": "comp_sar_200_top",
+      "to_id": "comp_rid_top",
+      "connection_type": "pipe_connection",
+      "confidence": 1.0
+    },
+    {
+      "from_id": "comp_croce",
+      "to_id": "comp_sar_200_piatta_r",
+      "connection_type": "pipe_connection",
+      "confidence": 1.0
+    },
+    {
+      "from_id": "comp_sar_200_piatta_r",
+      "to_id": "comp_rid_r",
+      "connection_type": "pipe_connection",
+      "confidence": 1.0
+    },
+    {
+      "from_id": "comp_croce",
+      "to_id": "comp_sar_200_piatta_bot",
+      "connection_type": "pipe_connection",
+      "confidence": 1.0
+    },
+    {
+      "from_id": "comp_sar_200_piatta_bot",
+      "to_id": "comp_tee_bot",
+      "connection_type": "pipe_connection",
+      "confidence": 1.0
+    },
+    {
+      "from_id": "comp_tee_bot",
+      "to_id": "comp_sar_100_bot",
+      "connection_type": "pipe_connection",
+      "confidence": 1.0
+    },
+    {
+      "from_id": "comp_sar_100_bot",
+      "to_id": "comp_toul_100_bot",
+      "connection_type": "pipe_connection",
+      "confidence": 1.0
+    },
+    {
+      "from_id": "comp_toul_100_bot",
+      "to_id": "comp_curva_110",
+      "connection_type": "pipe_connection",
+      "confidence": 1.0
+    },
+    {
+      "from_id": "comp_tee_bot",
+      "to_id": "comp_sar_200_bot",
+      "connection_type": "pipe_connection",
+      "confidence": 1.0
+    },
+    {
+      "from_id": "comp_sar_200_bot",
+      "to_id": "comp_toul_200_bot",
+      "connection_type": "pipe_connection",
+      "confidence": 1.0
+    },
+    {
+      "from_id": "comp_toul_200_bot",
+      "to_id": "comp_curva_200",
+      "connection_type": "pipe_connection",
+      "confidence": 1.0
+    }
+  ],
+  "notes": [
+    "Diagram represents a DN200 hydraulic manifold with several DN100 branch takeoffs.",
+    "Toulipe components are mapped to type 'unknown' based on the allowed enum list, though they act as pipe adapters.",
+    "All valve 'SAR' components are mapped to 'valve' type.",
+    "Reducers and Tees are identified by their respective labels (e.g. RID FL, TEE).",
+    "Connections are inferred based on physical proximity in the diagram."
+  ],
+  "debug_paths": {
+    "root": "output\\pdf_prior\\node9\\llm_reference_graph",
+    "best_cluster_image": "output\\pdf_prior\\node9\\llm_reference_graph\\inputs\\page0_best_cluster.png",
+    "best_cluster_with_bbox": "output\\pdf_prior\\node9\\llm_reference_graph\\inputs\\page0_best_cluster_with_bbox.png",
+    "best_candidate_words": "output\\pdf_prior\\node9\\llm_reference_graph\\inputs\\best_candidate_words.json",
+    "best_candidate_regions": "output\\pdf_prior\\node9\\llm_reference_graph\\inputs\\best_candidate_regions.json",
+    "llm_prompt": "output\\pdf_prior\\node9\\llm_reference_graph\\prompts\\llm_prompt.txt",
+    "llm_request_summary": "output\\pdf_prior\\node9\\llm_reference_graph\\summaries\\llm_request_summary.txt",
+    "llm_request_payload": "output\\pdf_prior\\node9\\llm_reference_graph\\responses\\llm_request_payload.json",
+    "llm_raw_response": "output\\pdf_prior\\node9\\llm_reference_graph\\responses\\llm_raw_response.txt",
+    "llm_parsed_response": "output\\pdf_prior\\node9\\llm_reference_graph\\responses\\llm_parsed_response.json",
+    "reference_graph_json": "output\\pdf_prior\\node9\\llm_reference_graph\\graph\\reference_graph.json",
+    "reference_graph_overlay": "output\\pdf_prior\\node9\\llm_reference_graph\\visuals\\reference_graph_overlay.png",
+    "reference_graph_numbered": "output\\pdf_prior\\node9\\llm_reference_graph\\visuals\\reference_graph_numbered.png",
+    "reference_graph_labels": "output\\pdf_prior\\node9\\llm_reference_graph\\visuals\\reference_graph_labels.png",
+    "reference_graph_schema": "output\\pdf_prior\\node9\\llm_reference_graph\\visuals\\reference_graph_schema.png",
+    "reference_graph_schema_numbered": "output\\pdf_prior\\node9\\llm_reference_graph\\visuals\\reference_graph_schema_numbered.png"
+  },
+  "summary_stats": {
+    "nearby_words": 72,
+    "candidate_regions": 523,
+    "catalog_pdf": "components.pdf",
+    "component_count": 21,
+    "connection_count": 20
+  },
+  "warnings": [],
+  "raw_response_path": "output\\pdf_prior\\node9\\llm_reference_graph\\responses\\llm_raw_response.txt"
+}

@@ -102,14 +102,15 @@ It only:
 - extracts vector/text primitives from the PDF
 - groups drawing primitives into connected geometric candidates
 - ranks the most plausible diagram clusters
-- builds a first semantic reference graph from the top-ranked diagram candidate
-- saves diagnostic artifacts for parsing, clustering, cleanup, text matching and graph construction
+- selects the best PDF cluster and sends it to a multimodal API
+- validates the returned JSON reference graph
+- saves diagnostic artifacts for parsing, clustering, prompting, raw responses and graph overlays
 - prepares a clean intermediate representation for later alignment
 
 See also:
 
 - `project_prior/pdf_graph_extraction.py`
-- `project_prior/reference_graph_builder.py`
+- `project_prior/llm_reference_graph.py`
 - `docs/PDF_PRIOR.md`
 
 ### 1. Image grouping
@@ -145,7 +146,7 @@ For each image, `detect_and_decode()` performs:
 
 `detect_and_decode_cached()` stores one JSON per image under:
 
-- `step1_detection/detection_cache/`
+- `output/detection_cache/`
 
 This allows `run_step4()` to start directly from cached detections/decodings without rerunning YOLO and patch decoding every time.
 
@@ -560,7 +561,7 @@ The overlay labels are intentionally simple and can understate confidence for co
 
 Every `run_step4()` execution now creates a per-node debug folder under:
 
-- `step1_detection/debug/node<id>/`
+- `output/debug/node<id>/`
 
 Subfolders:
 
@@ -574,8 +575,17 @@ Subfolders:
 
 Related PDF debug output, when a matching project PDF exists:
 
-- `step1_detection/pdf_prior/<pdf_stem>/clusters/`
-- `step1_detection/pdf_prior/<pdf_stem>/reference_graph/`
+- `output/pdf_prior/<pdf_stem>/clusters/`
+- `output/pdf_prior/<pdf_stem>/llm_reference_graph/`
+
+Inside `llm_reference_graph/` the artifacts are organized by role:
+
+- `inputs/`: best cluster crops and PDF-derived support metadata
+- `prompts/`: prompt text sent to the multimodal model
+- `responses/`: raw request/response and parsed JSON
+- `graph/`: final serialized reference graph payloads
+- `visuals/`: overlay and schema-only graph visualizations
+- `summaries/`: short human-readable summaries
 
 ### `views/`
 

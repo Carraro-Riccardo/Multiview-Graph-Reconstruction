@@ -1,12 +1,37 @@
 ﻿from pathlib import Path
 
+import os
+
+
+def _load_simple_dotenv(dotenv_path: Path = Path(".env")) -> None:
+    if not dotenv_path.exists():
+        return
+    for raw_line in dotenv_path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        key = key.strip()
+        value = value.strip().strip('"').strip("'")
+        if key and key not in os.environ:
+            os.environ[key] = value
+
+
+_load_simple_dotenv()
+
 # ── Paths ─────────────────────────────────────────────────────
 IMAGES_DIR = Path("C:\\Users\\ricca\\Desktop\\images\\val")
-WORK_DIR   = Path("./step1_detection")
+WORK_DIR   = Path("./output")
 PDF_DIR    = Path("./folder_with_pdf")
+COMPONENTS_PDF_PATH = Path("./components.pdf")
 PDF_PRIOR_ENABLED = True
 PDF_DIAGRAM_CANDIDATES_ENABLED = True
 PDF_REFERENCE_GRAPH_ENABLED = True
+PDF_REFERENCE_GRAPH_PROVIDER = os.getenv("PDF_REFERENCE_GRAPH_PROVIDER", "gemini").strip().lower()
+PDF_REFERENCE_GRAPH_OPENAI_MODEL = os.getenv("PDF_REFERENCE_GRAPH_OPENAI_MODEL", "gpt-5.1")
+PDF_REFERENCE_GRAPH_GEMINI_MODEL = os.getenv("PDF_REFERENCE_GRAPH_GEMINI_MODEL", "gemini-2.5-flash")
+PDF_REFERENCE_GRAPH_OPENAI_API_KEY_ENV = os.getenv("PDF_REFERENCE_GRAPH_OPENAI_API_KEY_ENV", "OPENAI_API_KEY")
+PDF_REFERENCE_GRAPH_GEMINI_API_KEY_ENV = os.getenv("PDF_REFERENCE_GRAPH_GEMINI_API_KEY_ENV", "GEMINI_API_KEY")
 PDF_CLUSTER_TOP_K = 8
 PDF_CLUSTER_PREVIEW_TOP_K = 5
 PDF_COMPONENT_MIN_PRIMITIVES = 2
