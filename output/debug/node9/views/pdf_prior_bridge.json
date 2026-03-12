@@ -16,11 +16,11 @@
     "nearby_words": 72,
     "candidate_regions": 523,
     "catalog_pdf": "components.pdf",
-    "component_count": 21,
-    "connection_count": 20
+    "component_count": 20,
+    "connection_count": 19
   },
-  "reference_graph_nodes": 21,
-  "reference_graph_edges": 20,
+  "reference_graph_nodes": 20,
+  "reference_graph_edges": 19,
   "reference_graph_warnings": [],
   "todo": [
     "align_image_graph_to_pdf_prior",

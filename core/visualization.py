@@ -226,7 +226,8 @@ def plot_graph_on_image(node_id: int, G: nx.Graph, best_view: dict,
 
     plt.tight_layout()
     out = WORK_DIR / f"node{node_id}_graph_overlay.png"
-    plt.savefig(out, dpi=120, bbox_inches="tight", facecolor=fig.get_facecolor())
+    out.parent.mkdir(parents=True, exist_ok=True)
+    plt.savefig(str(out), dpi=120, bbox_inches="tight", facecolor=fig.get_facecolor())
     plt.close()
     if debug_dirs is not None:
         save_render_summary(debug_dirs, render_payload)

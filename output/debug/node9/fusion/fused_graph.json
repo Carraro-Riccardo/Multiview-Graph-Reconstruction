@@ -1,0 +1,424 @@
+{
+  "total_images": 3,
+  "nodes": [
+    {
+      "id": "comp_1",
+      "type": "reducer",
+      "dn_main": 350.0,
+      "dn_branch": 200.0,
+      "degree": 1,
+      "shurikode": 75,
+      "support_count": 3,
+      "supporting_images": [
+        "graph_after_build",
+        "graph_after_multiview_confirm",
+        "graph_final"
+      ],
+      "observed_confidence": 1.0
+    },
+    {
+      "id": "comp_2",
+      "type": "tee",
+      "dn_main": 200.0,
+      "dn_branch": 100.0,
+      "degree": 3,
+      "shurikode": 83,
+      "support_count": 3,
+      "supporting_images": [
+        "graph_after_build",
+        "graph_after_multiview_confirm",
+        "graph_final"
+      ],
+      "observed_confidence": 1.0
+    },
+    {
+      "id": "comp_3",
+      "type": "valve",
+      "dn_main": 100.0,
+      "dn_branch": null,
+      "degree": 2,
+      "shurikode": 119,
+      "support_count": 3,
+      "supporting_images": [
+        "graph_after_build",
+        "graph_after_multiview_confirm",
+        "graph_final"
+      ],
+      "observed_confidence": 1.0
+    },
+    {
+      "id": "comp_4",
+      "type": "flange",
+      "dn_main": 100.0,
+      "dn_branch": null,
+      "degree": 1,
+      "shurikode": 207,
+      "support_count": 3,
+      "supporting_images": [
+        "graph_after_build",
+        "graph_after_multiview_confirm",
+        "graph_final"
+      ],
+      "observed_confidence": 1.0
+    },
+    {
+      "id": "comp_5",
+      "type": "valve",
+      "dn_main": 200.0,
+      "dn_branch": null,
+      "degree": 2,
+      "shurikode": 119,
+      "support_count": 3,
+      "supporting_images": [
+        "graph_after_build",
+        "graph_after_multiview_confirm",
+        "graph_final"
+      ],
+      "observed_confidence": 1.0
+    },
+    {
+      "id": "comp_6",
+      "type": "tee",
+      "dn_main": 200.0,
+      "dn_branch": 100.0,
+      "degree": 3,
+      "shurikode": 83,
+      "support_count": 3,
+      "supporting_images": [
+        "graph_after_build",
+        "graph_after_multiview_confirm",
+        "graph_final"
+      ],
+      "observed_confidence": 1.0
+    },
+    {
+      "id": "comp_7",
+      "type": "valve",
+      "dn_main": 100.0,
+      "dn_branch": null,
+      "degree": 2,
+      "shurikode": 119,
+      "support_count": 3,
+      "supporting_images": [
+        "graph_after_build",
+        "graph_after_multiview_confirm",
+        "graph_final"
+      ],
+      "observed_confidence": 1.0
+    },
+    {
+      "id": "comp_8",
+      "type": "flange",
+      "dn_main": 100.0,
+      "dn_branch": null,
+      "degree": 1,
+      "shurikode": 207,
+      "support_count": 3,
+      "supporting_images": [
+        "graph_after_build",
+        "graph_after_multiview_confirm",
+        "graph_final"
+      ],
+      "observed_confidence": 1.0
+    },
+    {
+      "id": "comp_9",
+      "type": "cross",
+      "dn_main": 200.0,
+      "dn_branch": 200.0,
+      "degree": 4,
+      "shurikode": 192,
+      "support_count": 3,
+      "supporting_images": [
+        "graph_after_build",
+        "graph_after_multiview_confirm",
+        "graph_final"
+      ],
+      "observed_confidence": 1.0
+    },
+    {
+      "id": "comp_10",
+      "type": "valve",
+      "dn_main": 200.0,
+      "dn_branch": null,
+      "degree": 2,
+      "shurikode": 119,
+      "support_count": 3,
+      "supporting_images": [
+        "graph_after_build",
+        "graph_after_multiview_confirm",
+        "graph_final"
+      ],
+      "observed_confidence": 1.0
+    },
+    {
+      "id": "comp_11",
+      "type": "reducer",
+      "dn_main": 300.0,
+      "dn_branch": 200.0,
+      "degree": 1,
+      "shurikode": 75,
+      "support_count": 3,
+      "supporting_images": [
+        "graph_after_build",
+        "graph_after_multiview_confirm",
+        "graph_final"
+      ],
+      "observed_confidence": 1.0
+    },
+    {
+      "id": "comp_12",
+      "type": "valve",
+      "dn_main": 200.0,
+      "dn_branch": null,
+      "degree": 2,
+      "shurikode": 119,
+      "support_count": 3,
+      "supporting_images": [
+        "graph_after_build",
+        "graph_after_multiview_confirm",
+        "graph_final"
+      ],
+      "observed_confidence": 1.0
+    },
+    {
+      "id": "comp_13",
+      "type": "reducer",
+      "dn_main": 350.0,
+      "dn_branch": 200.0,
+      "degree": 1,
+      "shurikode": 75,
+      "support_count": 0,
+      "supporting_images": [],
+      "observed_confidence": 0.0
+    },
+    {
+      "id": "comp_14",
+      "type": "tee",
+      "dn_main": 200.0,
+      "dn_branch": 100.0,
+      "degree": 3,
+      "shurikode": 83,
+      "support_count": 3,
+      "supporting_images": [
+        "graph_after_build",
+        "graph_after_multiview_confirm",
+        "graph_final"
+      ],
+      "observed_confidence": 1.0
+    },
+    {
+      "id": "comp_15",
+      "type": "valve",
+      "dn_main": 100.0,
+      "dn_branch": null,
+      "degree": 2,
+      "shurikode": 119,
+      "support_count": 3,
+      "supporting_images": [
+        "graph_after_build",
+        "graph_after_multiview_confirm",
+        "graph_final"
+      ],
+      "observed_confidence": 1.0
+    },
+    {
+      "id": "comp_16",
+      "type": "flange",
+      "dn_main": 100.0,
+      "dn_branch": null,
+      "degree": 2,
+      "shurikode": 207,
+      "support_count": 0,
+      "supporting_images": [],
+      "observed_confidence": 0.0
+    },
+    {
+      "id": "comp_17",
+      "type": "elbow",
+      "dn_main": 110.0,
+      "dn_branch": null,
+      "degree": 1,
+      "shurikode": 195,
+      "support_count": 0,
+      "supporting_images": [],
+      "observed_confidence": 0.0
+    },
+    {
+      "id": "comp_18",
+      "type": "valve",
+      "dn_main": 200.0,
+      "dn_branch": null,
+      "degree": 2,
+      "shurikode": 119,
+      "support_count": 3,
+      "supporting_images": [
+        "graph_after_build",
+        "graph_after_multiview_confirm",
+        "graph_final"
+      ],
+      "observed_confidence": 1.0
+    },
+    {
+      "id": "comp_19",
+      "type": "flange",
+      "dn_main": 200.0,
+      "dn_branch": null,
+      "degree": 2,
+      "shurikode": 207,
+      "support_count": 3,
+      "supporting_images": [
+        "graph_after_build",
+        "graph_after_multiview_confirm",
+        "graph_final"
+      ],
+      "observed_confidence": 1.0
+    },
+    {
+      "id": "comp_20",
+      "type": "elbow",
+      "dn_main": 200.0,
+      "dn_branch": null,
+      "degree": 1,
+      "shurikode": 195,
+      "support_count": 0,
+      "supporting_images": [],
+      "observed_confidence": 0.0
+    }
+  ],
+  "edges": [
+    {
+      "node_a": "comp_1",
+      "node_b": "comp_2",
+      "prior_confidence": 0.98,
+      "support_count": 3,
+      "observed_confidence": 1.0
+    },
+    {
+      "node_a": "comp_2",
+      "node_b": "comp_3",
+      "prior_confidence": 0.98,
+      "support_count": 3,
+      "observed_confidence": 1.0
+    },
+    {
+      "node_a": "comp_3",
+      "node_b": "comp_4",
+      "prior_confidence": 0.99,
+      "support_count": 3,
+      "observed_confidence": 1.0
+    },
+    {
+      "node_a": "comp_2",
+      "node_b": "comp_5",
+      "prior_confidence": 0.98,
+      "support_count": 3,
+      "observed_confidence": 1.0
+    },
+    {
+      "node_a": "comp_5",
+      "node_b": "comp_6",
+      "prior_confidence": 0.98,
+      "support_count": 3,
+      "observed_confidence": 1.0
+    },
+    {
+      "node_a": "comp_6",
+      "node_b": "comp_7",
+      "prior_confidence": 0.98,
+      "support_count": 3,
+      "observed_confidence": 1.0
+    },
+    {
+      "node_a": "comp_7",
+      "node_b": "comp_8",
+      "prior_confidence": 0.99,
+      "support_count": 3,
+      "observed_confidence": 1.0
+    },
+    {
+      "node_a": "comp_6",
+      "node_b": "comp_9",
+      "prior_confidence": 0.98,
+      "support_count": 3,
+      "observed_confidence": 1.0
+    },
+    {
+      "node_a": "comp_9",
+      "node_b": "comp_10",
+      "prior_confidence": 0.98,
+      "support_count": 3,
+      "observed_confidence": 1.0
+    },
+    {
+      "node_a": "comp_10",
+      "node_b": "comp_11",
+      "prior_confidence": 0.99,
+      "support_count": 3,
+      "observed_confidence": 1.0
+    },
+    {
+      "node_a": "comp_9",
+      "node_b": "comp_12",
+      "prior_confidence": 0.98,
+      "support_count": 3,
+      "observed_confidence": 1.0
+    },
+    {
+      "node_a": "comp_12",
+      "node_b": "comp_13",
+      "prior_confidence": 0.98,
+      "support_count": 0,
+      "observed_confidence": 0.0
+    },
+    {
+      "node_a": "comp_9",
+      "node_b": "comp_14",
+      "prior_confidence": 0.98,
+      "support_count": 3,
+      "observed_confidence": 1.0
+    },
+    {
+      "node_a": "comp_14",
+      "node_b": "comp_15",
+      "prior_confidence": 0.98,
+      "support_count": 3,
+      "observed_confidence": 1.0
+    },
+    {
+      "node_a": "comp_15",
+      "node_b": "comp_16",
+      "prior_confidence": 0.99,
+      "support_count": 0,
+      "observed_confidence": 0.0
+    },
+    {
+      "node_a": "comp_16",
+      "node_b": "comp_17",
+      "prior_confidence": 0.98,
+      "support_count": 0,
+      "observed_confidence": 0.0
+    },
+    {
+      "node_a": "comp_14",
+      "node_b": "comp_18",
+      "prior_confidence": 0.98,
+      "support_count": 3,
+      "observed_confidence": 1.0
+    },
+    {
+      "node_a": "comp_18",
+      "node_b": "comp_19",
+      "prior_confidence": 0.99,
+      "support_count": 3,
+      "observed_confidence": 1.0
+    },
+    {
+      "node_a": "comp_19",
+      "node_b": "comp_20",
+      "prior_confidence": 0.98,
+      "support_count": 0,
+      "observed_confidence": 0.0
+    }
+  ]
+}

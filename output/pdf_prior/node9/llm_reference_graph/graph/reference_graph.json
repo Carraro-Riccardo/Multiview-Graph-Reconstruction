@@ -1,511 +1,483 @@
 {
   "components": [
     {
-      "id": "comp_rid_l",
+      "id": "comp_1",
       "type": "reducer",
       "label_text": "RID FL. 350/200",
       "dn_main": 350.0,
       "dn_branch": 200.0,
       "bbox": [
-        5.0,
-        308.0,
-        172.0,
-        452.0
+        22.0,
+        284.0,
+        166.0,
+        456.0
       ],
       "center": [
-        88.0,
-        380.0
+        94.0,
+        370.0
       ],
       "confidence": 0.95
     },
     {
-      "id": "comp_tee_l",
+      "id": "comp_2",
       "type": "tee",
       "label_text": "TEE 200/100",
       "dn_main": 200.0,
       "dn_branch": 100.0,
       "bbox": [
-        188.0,
-        335.0,
-        314.0,
-        431.0
+        186.0,
+        322.0,
+        306.0,
+        448.0
       ],
       "center": [
-        251.0,
-        383.0
+        246.0,
+        385.0
       ],
-      "confidence": 0.95
+      "confidence": 0.98
     },
     {
-      "id": "comp_sar_100_l",
+      "id": "comp_3",
       "type": "valve",
       "label_text": "SAR DN100",
       "dn_main": 100.0,
       "dn_branch": null,
       "bbox": [
-        223.0,
-        211.0,
-        289.0,
-        314.0
+        209.0,
+        198.0,
+        284.0,
+        312.0
       ],
       "center": [
-        256.0,
-        262.0
+        246.0,
+        255.0
       ],
-      "confidence": 0.95
+      "confidence": 0.98
     },
     {
-      "id": "comp_toul_100_l",
-      "type": "unknown",
+      "id": "comp_4",
+      "type": "flange",
       "label_text": "TOULIPE DN100",
       "dn_main": 100.0,
       "dn_branch": null,
       "bbox": [
-        223.0,
-        122.0,
-        290.0,
-        203.0
+        214.0,
+        113.0,
+        278.0,
+        198.0
       ],
       "center": [
-        256.0,
-        162.0
+        246.0,
+        155.0
       ],
-      "confidence": 0.9
+      "confidence": 0.92
     },
     {
-      "id": "comp_sar_200_piatta_l",
+      "id": "comp_5",
       "type": "valve",
       "label_text": "SAR DN200 PIATTA",
       "dn_main": 200.0,
       "dn_branch": null,
       "bbox": [
-        339.0,
-        321.0,
-        452.0,
-        442.0
+        341.0,
+        311.0,
+        438.0,
+        443.0
       ],
       "center": [
-        395.0,
-        381.0
+        389.0,
+        377.0
       ],
-      "confidence": 0.95
+      "confidence": 0.97
     },
     {
-      "id": "comp_tee_c",
+      "id": "comp_6",
       "type": "tee",
       "label_text": "TEE 200/100",
       "dn_main": 200.0,
       "dn_branch": 100.0,
       "bbox": [
         468.0,
-        335.0,
-        597.0,
-        431.0
+        322.0,
+        586.0,
+        448.0
       ],
       "center": [
-        532.0,
-        383.0
+        527.0,
+        385.0
       ],
-      "confidence": 0.95
+      "confidence": 0.98
     },
     {
-      "id": "comp_sar_100_c",
+      "id": "comp_7",
       "type": "valve",
       "label_text": "SAR DN100",
       "dn_main": 100.0,
       "dn_branch": null,
       "bbox": [
-        489.0,
-        211.0,
-        555.0,
-        314.0
+        479.0,
+        198.0,
+        554.0,
+        312.0
       ],
       "center": [
-        522.0,
-        262.0
+        516.0,
+        255.0
       ],
-      "confidence": 0.95
+      "confidence": 0.98
     },
     {
-      "id": "comp_toul_100_c",
-      "type": "unknown",
+      "id": "comp_8",
+      "type": "flange",
       "label_text": "TOULIPE DN100",
       "dn_main": 100.0,
       "dn_branch": null,
       "bbox": [
-        489.0,
-        122.0,
-        555.0,
-        203.0
+        484.0,
+        113.0,
+        548.0,
+        198.0
       ],
       "center": [
-        522.0,
-        162.0
+        516.0,
+        155.0
       ],
-      "confidence": 0.9
+      "confidence": 0.92
     },
     {
-      "id": "comp_croce",
+      "id": "comp_9",
       "type": "cross",
       "label_text": "CROCE DN200",
       "dn_main": 200.0,
       "dn_branch": 200.0,
       "bbox": [
-        611.0,
-        335.0,
-        735.0,
-        456.0
+        618.0,
+        318.0,
+        728.0,
+        432.0
       ],
       "center": [
         673.0,
-        395.0
+        375.0
       ],
-      "confidence": 0.95
+      "confidence": 0.99
     },
     {
-      "id": "comp_sar_200_top",
+      "id": "comp_10",
       "type": "valve",
       "label_text": "SAR DN200",
       "dn_main": 200.0,
       "dn_branch": null,
       "bbox": [
-        632.0,
-        185.0,
-        715.0,
-        312.0
+        625.0,
+        182.0,
+        721.0,
+        308.0
       ],
       "center": [
         673.0,
-        248.0
+        245.0
       ],
-      "confidence": 0.95
+      "confidence": 0.98
     },
     {
-      "id": "comp_rid_top",
+      "id": "comp_11",
       "type": "reducer",
       "label_text": "RID FL. 300/200",
       "dn_main": 300.0,
       "dn_branch": 200.0,
       "bbox": [
-        629.0,
-        0.0,
-        718.0,
-        172.0
+        625.0,
+        11.0,
+        721.0,
+        180.0
       ],
       "center": [
         673.0,
-        86.0
+        95.0
       ],
       "confidence": 0.95
     },
     {
-      "id": "comp_sar_200_piatta_r",
+      "id": "comp_12",
       "type": "valve",
       "label_text": "SAR DN200 PIATTA",
       "dn_main": 200.0,
       "dn_branch": null,
       "bbox": [
-        750.0,
-        321.0,
-        863.0,
-        442.0
+        743.0,
+        311.0,
+        838.0,
+        443.0
       ],
       "center": [
-        806.0,
-        381.0
+        790.0,
+        377.0
       ],
-      "confidence": 0.95
+      "confidence": 0.97
     },
     {
-      "id": "comp_rid_r",
+      "id": "comp_13",
       "type": "reducer",
       "label_text": "RID FL. 350/200",
       "dn_main": 350.0,
       "dn_branch": 200.0,
       "bbox": [
-        880.0,
-        308.0,
-        1000.0,
-        452.0
+        854.0,
+        284.0,
+        996.0,
+        456.0
       ],
       "center": [
-        940.0,
-        380.0
+        925.0,
+        370.0
       ],
       "confidence": 0.95
     },
     {
-      "id": "comp_sar_200_piatta_bot",
-      "type": "valve",
-      "label_text": "SAR DN200 PIATTA",
-      "dn_main": 200.0,
-      "dn_branch": null,
-      "bbox": [
-        632.0,
-        467.0,
-        715.0,
-        595.0
-      ],
-      "center": [
-        673.0,
-        531.0
-      ],
-      "confidence": 0.95
-    },
-    {
-      "id": "comp_tee_bot",
+      "id": "comp_14",
       "type": "tee",
       "label_text": "TEE 200/100",
       "dn_main": 200.0,
       "dn_branch": 100.0,
       "bbox": [
         625.0,
-        608.0,
-        722.0,
-        660.0
+        445.0,
+        718.0,
+        575.0
       ],
       "center": [
-        673.0,
-        634.0
+        671.0,
+        510.0
       ],
-      "confidence": 0.9
+      "confidence": 0.94
     },
     {
-      "id": "comp_sar_100_bot",
+      "id": "comp_15",
       "type": "valve",
       "label_text": "SAR DN100",
       "dn_main": 100.0,
       "dn_branch": null,
       "bbox": [
-        516.0,
-        517.0,
-        584.0,
-        606.0
+        504.0,
+        500.0,
+        601.0,
+        605.0
       ],
       "center": [
-        550.0,
-        561.0
+        552.0,
+        552.0
       ],
-      "confidence": 0.95
+      "confidence": 0.98
     },
     {
-      "id": "comp_toul_100_bot",
-      "type": "unknown",
+      "id": "comp_16",
+      "type": "flange",
       "label_text": "TOULIPE DN100",
       "dn_main": 100.0,
       "dn_branch": null,
       "bbox": [
-        435.0,
-        520.0,
-        508.0,
-        595.0
+        445.0,
+        510.0,
+        504.0,
+        588.0
       ],
       "center": [
-        471.0,
-        557.0
+        474.0,
+        549.0
       ],
-      "confidence": 0.9
+      "confidence": 0.92
     },
     {
-      "id": "comp_curva_110",
+      "id": "comp_17",
       "type": "elbow",
       "label_text": "CURVA PVC DE110",
       "dn_main": 110.0,
       "dn_branch": null,
       "bbox": [
-        357.0,
-        525.0,
-        462.0,
-        670.0
+        344.0,
+        510.0,
+        465.0,
+        655.0
       ],
       "center": [
-        409.0,
-        597.0
+        404.0,
+        582.0
       ],
-      "confidence": 0.95
+      "confidence": 0.96
     },
     {
-      "id": "comp_sar_200_bot",
+      "id": "comp_18",
       "type": "valve",
       "label_text": "SAR DN200",
       "dn_main": 200.0,
       "dn_branch": null,
       "bbox": [
-        632.0,
-        672.0,
-        715.0,
-        800.0
+        618.0,
+        610.0,
+        714.0,
+        785.0
       ],
       "center": [
-        673.0,
-        736.0
+        666.0,
+        697.0
       ],
-      "confidence": 0.95
+      "confidence": 0.98
     },
     {
-      "id": "comp_toul_200_bot",
-      "type": "unknown",
+      "id": "comp_19",
+      "type": "flange",
       "label_text": "TOULIPE DN200",
       "dn_main": 200.0,
       "dn_branch": null,
       "bbox": [
-        619.0,
-        811.0,
-        728.0,
-        908.0
+        605.0,
+        790.0,
+        727.0,
+        890.0
       ],
       "center": [
-        673.0,
-        859.0
+        666.0,
+        840.0
       ],
-      "confidence": 0.9
+      "confidence": 0.92
     },
     {
-      "id": "comp_curva_200",
+      "id": "comp_20",
       "type": "elbow",
       "label_text": "CURVA PVC DE200",
       "dn_main": 200.0,
       "dn_branch": null,
       "bbox": [
-        603.0,
-        915.0,
-        722.0,
-        1000.0
+        600.0,
+        890.0,
+        732.0,
+        990.0
       ],
       "center": [
-        662.0,
-        957.0
+        666.0,
+        940.0
       ],
-      "confidence": 0.95
+      "confidence": 0.96
     }
   ],
   "connections": [
     {
-      "from": "comp_rid_l",
-      "to": "comp_tee_l",
+      "from": "comp_1",
+      "to": "comp_2",
       "connection_type": "pipe_connection",
-      "confidence": 1.0
+      "confidence": 0.98
     },
     {
-      "from": "comp_tee_l",
-      "to": "comp_sar_100_l",
+      "from": "comp_2",
+      "to": "comp_3",
       "connection_type": "pipe_connection",
-      "confidence": 1.0
+      "confidence": 0.98
     },
     {
-      "from": "comp_sar_100_l",
-      "to": "comp_toul_100_l",
+      "from": "comp_3",
+      "to": "comp_4",
       "connection_type": "pipe_connection",
-      "confidence": 1.0
+      "confidence": 0.99
     },
     {
-      "from": "comp_tee_l",
-      "to": "comp_sar_200_piatta_l",
+      "from": "comp_2",
+      "to": "comp_5",
       "connection_type": "pipe_connection",
-      "confidence": 1.0
+      "confidence": 0.98
     },
     {
-      "from": "comp_sar_200_piatta_l",
-      "to": "comp_tee_c",
+      "from": "comp_5",
+      "to": "comp_6",
       "connection_type": "pipe_connection",
-      "confidence": 1.0
+      "confidence": 0.98
     },
     {
-      "from": "comp_tee_c",
-      "to": "comp_sar_100_c",
+      "from": "comp_6",
+      "to": "comp_7",
       "connection_type": "pipe_connection",
-      "confidence": 1.0
+      "confidence": 0.98
     },
     {
-      "from": "comp_sar_100_c",
-      "to": "comp_toul_100_c",
+      "from": "comp_7",
+      "to": "comp_8",
       "connection_type": "pipe_connection",
-      "confidence": 1.0
+      "confidence": 0.99
     },
     {
-      "from": "comp_tee_c",
-      "to": "comp_croce",
+      "from": "comp_6",
+      "to": "comp_9",
       "connection_type": "pipe_connection",
-      "confidence": 1.0
+      "confidence": 0.98
     },
     {
-      "from": "comp_croce",
-      "to": "comp_sar_200_top",
+      "from": "comp_9",
+      "to": "comp_10",
       "connection_type": "pipe_connection",
-      "confidence": 1.0
+      "confidence": 0.98
     },
     {
-      "from": "comp_sar_200_top",
-      "to": "comp_rid_top",
+      "from": "comp_10",
+      "to": "comp_11",
       "connection_type": "pipe_connection",
-      "confidence": 1.0
+      "confidence": 0.99
     },
     {
-      "from": "comp_croce",
-      "to": "comp_sar_200_piatta_r",
+      "from": "comp_9",
+      "to": "comp_12",
       "connection_type": "pipe_connection",
-      "confidence": 1.0
+      "confidence": 0.98
     },
     {
-      "from": "comp_sar_200_piatta_r",
-      "to": "comp_rid_r",
+      "from": "comp_12",
+      "to": "comp_13",
       "connection_type": "pipe_connection",
-      "confidence": 1.0
+      "confidence": 0.98
     },
     {
-      "from": "comp_croce",
-      "to": "comp_sar_200_piatta_bot",
+      "from": "comp_9",
+      "to": "comp_14",
       "connection_type": "pipe_connection",
-      "confidence": 1.0
+      "confidence": 0.98
     },
     {
-      "from": "comp_sar_200_piatta_bot",
-      "to": "comp_tee_bot",
+      "from": "comp_14",
+      "to": "comp_15",
       "connection_type": "pipe_connection",
-      "confidence": 1.0
+      "confidence": 0.98
     },
     {
-      "from": "comp_tee_bot",
-      "to": "comp_sar_100_bot",
+      "from": "comp_15",
+      "to": "comp_16",
       "connection_type": "pipe_connection",
-      "confidence": 1.0
+      "confidence": 0.99
     },
     {
-      "from": "comp_sar_100_bot",
-      "to": "comp_toul_100_bot",
+      "from": "comp_16",
+      "to": "comp_17",
       "connection_type": "pipe_connection",
-      "confidence": 1.0
+      "confidence": 0.98
     },
     {
-      "from": "comp_toul_100_bot",
-      "to": "comp_curva_110",
+      "from": "comp_14",
+      "to": "comp_18",
       "connection_type": "pipe_connection",
-      "confidence": 1.0
+      "confidence": 0.98
     },
     {
-      "from": "comp_tee_bot",
-      "to": "comp_sar_200_bot",
+      "from": "comp_18",
+      "to": "comp_19",
       "connection_type": "pipe_connection",
-      "confidence": 1.0
+      "confidence": 0.99
     },
     {
-      "from": "comp_sar_200_bot",
-      "to": "comp_toul_200_bot",
+      "from": "comp_19",
+      "to": "comp_20",
       "connection_type": "pipe_connection",
-      "confidence": 1.0
-    },
-    {
-      "from": "comp_toul_200_bot",
-      "to": "comp_curva_200",
-      "connection_type": "pipe_connection",
-      "confidence": 1.0
+      "confidence": 0.98
     }
   ],
   "notes": [
-    "Diagram represents a DN200 hydraulic manifold with several DN100 branch takeoffs.",
-    "Toulipe components are mapped to type 'unknown' based on the allowed enum list, though they act as pipe adapters.",
-    "All valve 'SAR' components are mapped to 'valve' type.",
-    "Reducers and Tees are identified by their respective labels (e.g. RID FL, TEE).",
-    "Connections are inferred based on physical proximity in the diagram."
+    "Complex hydraulic node consisting of a central cross and several tees and valves. Label parsing used to determine DN and component specifics. Toulipe components treated as flanges/joints. Reducers (RID FL) and elbows (CURVA) identified at the extremities. Confidence levels are high due to clear labeling and standardized symbols."
   ]
 }

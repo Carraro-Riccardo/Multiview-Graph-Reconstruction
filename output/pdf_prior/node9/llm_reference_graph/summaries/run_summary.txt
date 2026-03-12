@@ -8,5 +8,5 @@ catalog_pdf=components.pdf
 nearby_words=72
 candidate_regions=523
 status=ok
-components=21
-connections=20
+components=20
+connections=19
