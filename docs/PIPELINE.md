@@ -86,6 +86,30 @@ Relevant data:
 
 ## End-to-End Flow
 
+### 0. Optional PDF prior extraction
+
+The repository now also supports an initial PDF-prior stage before the image pipeline.
+
+If a matching file exists under:
+
+- `folder_with_pdf/node<id>.pdf`
+
+then `main.py` can trigger `extract_pdf_prior(...)` before detection/graph reconstruction.
+
+At the current stage this does **not** yet modify the image graph solver.
+It only:
+
+- extracts vector/text primitives from the PDF
+- groups drawing primitives into connected geometric candidates
+- ranks the most plausible diagram clusters
+- saves diagnostic artifacts
+- prepares a clean intermediate representation for later alignment
+
+See also:
+
+- `project_prior/pdf_graph_extraction.py`
+- `docs/PDF_PRIOR.md`
+
 ### 1. Image grouping
 
 `discover_nodes()` scans the image directory and groups files by the pattern `node<id>_*.jpg`.

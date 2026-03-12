@@ -3,6 +3,14 @@
 # ── Paths ─────────────────────────────────────────────────────
 IMAGES_DIR = Path("C:\\Users\\ricca\\Desktop\\images\\val")
 WORK_DIR   = Path("./step1_detection")
+PDF_DIR    = Path("./folder_with_pdf")
+PDF_PRIOR_ENABLED = True
+PDF_DIAGRAM_CANDIDATES_ENABLED = True
+PDF_CLUSTER_TOP_K = 8
+PDF_CLUSTER_PREVIEW_TOP_K = 5
+PDF_COMPONENT_MIN_PRIMITIVES = 2
+PDF_CLUSTER_CELL_DIVISOR = 48.0
+PDF_CLUSTER_EXPAND_FRAC = 0.006
 
 # ── Soglie e parametri ────────────────────────────────────────
 CONF_THRESHOLD  = 0.5
@@ -256,7 +264,4 @@ FORBIDDEN_PAIRS = frozenset([
     (202, 255),  # Antisfilo ↔ Tee rid.
     (207, 255),  # Bout norm. ↔ Tee rid.
 ])
-
-
-
 

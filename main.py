@@ -8,7 +8,10 @@ Pipeline idraulica - entry point.
 import numpy as np
 import networkx as nx
 
-from config import IMAGES_DIR, WORK_DIR, SKIP_NODES, MIN_IMAGES, DIAMETER_CODES
+from config import (
+    IMAGES_DIR, WORK_DIR, SKIP_NODES, MIN_IMAGES, DIAMETER_CODES,
+    PDF_DIR, PDF_PRIOR_ENABLED, PDF_DIAGRAM_CANDIDATES_ENABLED,
+)
 from detection import (
     discover_nodes,
     detect_and_decode_simple,
@@ -31,12 +34,47 @@ from debug_utils import (
     save_type_consensus,
     save_graph_snapshot,
 )
+from project_prior import (
+    extract_pdf_prior,
+    extract_diagram_candidates,
+    build_reference_graph_from_pdf_prior,
+)
 
 
 def _eligible_nodes(images_dir):
     all_nodes = discover_nodes(images_dir)
     return {nid: imgs for nid, imgs in all_nodes.items()
             if nid not in SKIP_NODES and len(imgs) >= MIN_IMAGES}
+
+
+def _maybe_extract_pdf_prior(node_id: int):
+    if not PDF_PRIOR_ENABLED:
+        return None
+
+    pdf_path = PDF_DIR / f"node{node_id}.pdf"
+    if not pdf_path.exists():
+        return None
+
+    print(f"  [PDFPrior] trovato {pdf_path.name} - avvio estrazione prior")
+    extraction = extract_pdf_prior(pdf_path)
+    diagram_candidates = (
+        extract_diagram_candidates(extraction)
+        if PDF_DIAGRAM_CANDIDATES_ENABLED
+        else None
+    )
+    summary = build_reference_graph_from_pdf_prior(extraction)
+    print(
+        f"  [PDFPrior] status={extraction.status} backend={extraction.backend_used} "
+        f"pages={len(extraction.pages)} debug={extraction.debug_paths.get('root')}"
+    )
+    if diagram_candidates is not None:
+        top_total = sum(len(items) for items in diagram_candidates.page_candidates.values())
+        print(
+            f"  [PDFPrior] diagram_candidates={top_total} "
+            f"debug={diagram_candidates.debug_paths.get('root')}"
+        )
+    print(f"  [PDFPrior] TODO reference_graph={summary['status']}: {summary['message']}")
+    return extraction, diagram_candidates
 
 
 # Step 1 - Detection + Decoding + Plot
@@ -66,7 +104,35 @@ def run_step4():
 
     for node_id, image_paths in sorted(eligible.items()):
         print(f"\n{'=' * 60}\n  NODE {node_id}\n{'=' * 60}")
+        pdf_bundle = _maybe_extract_pdf_prior(node_id)
         debug_dirs = init_node_debug(node_id)
+        if pdf_bundle is not None:
+            pdf_prior, diagram_candidates = pdf_bundle
+            save_json(
+                debug_dirs["views"] / "pdf_prior_bridge.json",
+                {
+                    "pdf_path": pdf_prior.pdf_path,
+                    "status": pdf_prior.status,
+                    "backend_used": pdf_prior.backend_used,
+                    "n_pages": len(pdf_prior.pages),
+                    "debug_root": pdf_prior.debug_paths.get("root"),
+                    "diagram_candidate_counts": (
+                        {
+                            str(page_idx): len(cands)
+                            for page_idx, cands in diagram_candidates.page_candidates.items()
+                        }
+                        if diagram_candidates is not None else {}
+                    ),
+                    "diagram_debug_root": (
+                        diagram_candidates.debug_paths.get("root")
+                        if diagram_candidates is not None else None
+                    ),
+                    "todo": [
+                        "build_reference_graph_from_pdf_prior",
+                        "align_image_graph_to_pdf_prior",
+                    ],
+                },
+            )
 
         all_views = []
         for view_idx, img_path in enumerate(sorted(image_paths)):

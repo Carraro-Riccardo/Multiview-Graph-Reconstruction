@@ -5,5 +5,4 @@ __pycache__/
 **/__pycache__/
 *.pyo
 *.pyd
-*.class
-**/folder_with_pdf/**
+*$py.class

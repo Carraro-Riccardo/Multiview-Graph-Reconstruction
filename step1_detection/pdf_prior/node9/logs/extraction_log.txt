@@ -1,0 +1,5 @@
+[PDF] path=folder_with_pdf\node9.pdf
+[PDF] backend=fitz
+[Page 0] fitz segments=172440 curves=3276 rects=0 words=423 components=14404
+[PDF] status=ok
+[PDF] warnings=0
