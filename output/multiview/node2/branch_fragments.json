@@ -1,0 +1,4610 @@
+{
+  "n_branch_fragments": 77,
+  "branch_fragments": [
+    {
+      "branch_fragment_id": "node2_0002_frag_0",
+      "image_id": "node2_0002",
+      "ordered_observed_node_ids": [
+        "node2_0002_0",
+        "node2_0002_10"
+      ],
+      "ordered_codes": [
+        190,
+        202
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0002_0",
+          "code": 190,
+          "name": "Curva 30",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0002_10",
+          "code": 202,
+          "name": "Antisfilo",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0002_0",
+          "code": 190,
+          "name": "Curva 30",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0002_10",
+          "code": 202,
+          "name": "Antisfilo",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8208977580070496,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.8208977580070496,
+        "triplets": [],
+        "distances": [
+          0.10462783692541593
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0002_frag_1",
+      "image_id": "node2_0002",
+      "ordered_observed_node_ids": [
+        "node2_0002_0",
+        "node2_0002_4"
+      ],
+      "ordered_codes": [
+        190,
+        202
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0002_0",
+          "code": 190,
+          "name": "Curva 30",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0002_4",
+          "code": 202,
+          "name": "Antisfilo",
+          "local_degree": 4,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0002_0",
+          "code": 190,
+          "name": "Curva 30",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0002_4",
+          "code": 202,
+          "name": "Antisfilo",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.7995595037937164,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.7995595037937164,
+        "triplets": [],
+        "distances": [
+          0.06355697666723022
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0002_frag_2",
+      "image_id": "node2_0002",
+      "ordered_observed_node_ids": [
+        "node2_0002_0",
+        "node2_0002_6"
+      ],
+      "ordered_codes": [
+        190,
+        95
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0002_0",
+          "code": 190,
+          "name": "Curva 30",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0002_6",
+          "code": 95,
+          "name": "Bout bic.",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0002_0",
+          "code": 190,
+          "name": "Curva 30",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0002_6",
+          "code": 95,
+          "name": "Bout bic.",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.7805720269680023,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.7805720269680023,
+        "triplets": [],
+        "distances": [
+          0.09466793393299515
+        ],
+        "forbidden_adjacent_pairs": [
+          true
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0002_frag_3",
+      "image_id": "node2_0002",
+      "ordered_observed_node_ids": [
+        "node2_0002_1",
+        "node2_0002_5"
+      ],
+      "ordered_codes": [
+        77,
+        15
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0002_1",
+          "code": 77,
+          "name": "Tazza",
+          "local_degree": 1,
+          "role": "endpoint",
+          "is_anchor_candidate": false,
+          "is_terminal_candidate": true
+        },
+        {
+          "observed_node_id": "node2_0002_5",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 4,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "end",
+          "observed_node_id": "node2_0002_5",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.7943876385688782,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.7943876385688782,
+        "triplets": [],
+        "distances": [
+          0.11292433175773586
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0002_frag_4",
+      "image_id": "node2_0002",
+      "ordered_observed_node_ids": [
+        "node2_0002_10",
+        "node2_0002_2"
+      ],
+      "ordered_codes": [
+        202,
+        53
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0002_10",
+          "code": 202,
+          "name": "Antisfilo",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0002_2",
+          "code": 53,
+          "name": "Tubo",
+          "local_degree": 1,
+          "role": "endpoint",
+          "is_anchor_candidate": false,
+          "is_terminal_candidate": true
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0002_10",
+          "code": 202,
+          "name": "Antisfilo",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8165831565856934,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.8165831565856934,
+        "triplets": [],
+        "distances": [
+          0.06784109626268944
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0002_frag_5",
+      "image_id": "node2_0002",
+      "ordered_observed_node_ids": [
+        "node2_0002_10",
+        "node2_0002_4"
+      ],
+      "ordered_codes": [
+        202,
+        202
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0002_10",
+          "code": 202,
+          "name": "Antisfilo",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0002_4",
+          "code": 202,
+          "name": "Antisfilo",
+          "local_degree": 4,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0002_10",
+          "code": 202,
+          "name": "Antisfilo",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0002_4",
+          "code": 202,
+          "name": "Antisfilo",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.7999294102191925,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.7999294102191925,
+        "triplets": [],
+        "distances": [
+          0.153945965877674
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0002_frag_6",
+      "image_id": "node2_0002",
+      "ordered_observed_node_ids": [
+        "node2_0002_11",
+        "node2_0002_12"
+      ],
+      "ordered_codes": [
+        11,
+        15
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0002_11",
+          "code": 11,
+          "name": "Giunto",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0002_12",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 5,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0002_11",
+          "code": 11,
+          "name": "Giunto",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0002_12",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.7930481731891632,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.7930481731891632,
+        "triplets": [],
+        "distances": [
+          0.09180986487610547
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0002_frag_7",
+      "image_id": "node2_0002",
+      "ordered_observed_node_ids": [
+        "node2_0002_11",
+        "node2_0002_8"
+      ],
+      "ordered_codes": [
+        11,
+        53
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0002_11",
+          "code": 11,
+          "name": "Giunto",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0002_8",
+          "code": 53,
+          "name": "Tubo",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0002_11",
+          "code": 11,
+          "name": "Giunto",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0002_8",
+          "code": 53,
+          "name": "Tubo",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.7749072015285492,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.7749072015285492,
+        "triplets": [],
+        "distances": [
+          0.04055903979778202
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0002_frag_8",
+      "image_id": "node2_0002",
+      "ordered_observed_node_ids": [
+        "node2_0002_11",
+        "node2_0002_9"
+      ],
+      "ordered_codes": [
+        11,
+        95
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0002_11",
+          "code": 11,
+          "name": "Giunto",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0002_9",
+          "code": 95,
+          "name": "Bout bic.",
+          "local_degree": 4,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0002_11",
+          "code": 11,
+          "name": "Giunto",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0002_9",
+          "code": 95,
+          "name": "Bout bic.",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.7750973105430603,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.7750973105430603,
+        "triplets": [],
+        "distances": [
+          0.06258619511377156
+        ],
+        "forbidden_adjacent_pairs": [
+          true
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0002_frag_9",
+      "image_id": "node2_0002",
+      "ordered_observed_node_ids": [
+        "node2_0002_12",
+        "node2_0002_5"
+      ],
+      "ordered_codes": [
+        15,
+        15
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0002_12",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 5,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0002_5",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 4,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0002_12",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0002_5",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8044514954090118,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.8044514954090118,
+        "triplets": [],
+        "distances": [
+          0.08558584792301802
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0002_frag_10",
+      "image_id": "node2_0002",
+      "ordered_observed_node_ids": [
+        "node2_0002_12",
+        "node2_0002_7"
+      ],
+      "ordered_codes": [
+        15,
+        116
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0002_12",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 5,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0002_7",
+          "code": 116,
+          "name": "Tee FL",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0002_12",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0002_7",
+          "code": 116,
+          "name": "Tee FL",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8042778074741364,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.8042778074741364,
+        "triplets": [],
+        "distances": [
+          0.08777482998715534
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0002_frag_11",
+      "image_id": "node2_0002",
+      "ordered_observed_node_ids": [
+        "node2_0002_12",
+        "node2_0002_8"
+      ],
+      "ordered_codes": [
+        15,
+        53
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0002_12",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 5,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0002_8",
+          "code": 53,
+          "name": "Tubo",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0002_12",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0002_8",
+          "code": 53,
+          "name": "Tubo",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.7819050550460815,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.7819050550460815,
+        "triplets": [],
+        "distances": [
+          0.052556230893476205
+        ],
+        "forbidden_adjacent_pairs": [
+          true
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0002_frag_12",
+      "image_id": "node2_0002",
+      "ordered_observed_node_ids": [
+        "node2_0002_12",
+        "node2_0002_9"
+      ],
+      "ordered_codes": [
+        15,
+        95
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0002_12",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 5,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0002_9",
+          "code": 95,
+          "name": "Bout bic.",
+          "local_degree": 4,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0002_12",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0002_9",
+          "code": 95,
+          "name": "Bout bic.",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.7820951640605927,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.7820951640605927,
+        "triplets": [],
+        "distances": [
+          0.03012218337099434
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0002_frag_13",
+      "image_id": "node2_0002",
+      "ordered_observed_node_ids": [
+        "node2_0002_3",
+        "node2_0002_4"
+      ],
+      "ordered_codes": [
+        15,
+        202
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0002_3",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0002_4",
+          "code": 202,
+          "name": "Antisfilo",
+          "local_degree": 4,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0002_3",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0002_4",
+          "code": 202,
+          "name": "Antisfilo",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.7656036913394928,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.7656036913394928,
+        "triplets": [],
+        "distances": [
+          0.10572135321537585
+        ],
+        "forbidden_adjacent_pairs": [
+          true
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0002_frag_14",
+      "image_id": "node2_0002",
+      "ordered_observed_node_ids": [
+        "node2_0002_3",
+        "node2_0002_6"
+      ],
+      "ordered_codes": [
+        15,
+        95
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0002_3",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0002_6",
+          "code": 95,
+          "name": "Bout bic.",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0002_3",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0002_6",
+          "code": 95,
+          "name": "Bout bic.",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.7466162145137787,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.7466162145137787,
+        "triplets": [],
+        "distances": [
+          0.07462096720247413
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0002_frag_15",
+      "image_id": "node2_0002",
+      "ordered_observed_node_ids": [
+        "node2_0002_3",
+        "node2_0002_7"
+      ],
+      "ordered_codes": [
+        15,
+        116
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0002_3",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0002_7",
+          "code": 116,
+          "name": "Tee FL",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0002_3",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0002_7",
+          "code": 116,
+          "name": "Tee FL",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.7805629074573517,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.7805629074573517,
+        "triplets": [],
+        "distances": [
+          0.07657264687334021
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0002_frag_16",
+      "image_id": "node2_0002",
+      "ordered_observed_node_ids": [
+        "node2_0002_4",
+        "node2_0002_6"
+      ],
+      "ordered_codes": [
+        202,
+        95
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0002_4",
+          "code": 202,
+          "name": "Antisfilo",
+          "local_degree": 4,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0002_6",
+          "code": 95,
+          "name": "Bout bic.",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0002_4",
+          "code": 202,
+          "name": "Antisfilo",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0002_6",
+          "code": 95,
+          "name": "Bout bic.",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.7596036791801453,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.7596036791801453,
+        "triplets": [],
+        "distances": [
+          0.03111525310477452
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0002_frag_17",
+      "image_id": "node2_0002",
+      "ordered_observed_node_ids": [
+        "node2_0002_5",
+        "node2_0002_7"
+      ],
+      "ordered_codes": [
+        15,
+        116
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0002_5",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 4,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0002_7",
+          "code": 116,
+          "name": "Tee FL",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0002_5",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0002_7",
+          "code": 116,
+          "name": "Tee FL",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8086832761764526,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.8086832761764526,
+        "triplets": [],
+        "distances": [
+          0.10126701750273308
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0002_frag_18",
+      "image_id": "node2_0002",
+      "ordered_observed_node_ids": [
+        "node2_0002_5",
+        "node2_0002_9"
+      ],
+      "ordered_codes": [
+        15,
+        95
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0002_5",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 4,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0002_9",
+          "code": 95,
+          "name": "Bout bic.",
+          "local_degree": 4,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0002_5",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0002_9",
+          "code": 95,
+          "name": "Bout bic.",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.7865006327629089,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.7865006327629089,
+        "triplets": [],
+        "distances": [
+          0.09024739333392336
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0002_frag_19",
+      "image_id": "node2_0002",
+      "ordered_observed_node_ids": [
+        "node2_0002_8",
+        "node2_0002_9"
+      ],
+      "ordered_codes": [
+        53,
+        95
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0002_8",
+          "code": 53,
+          "name": "Tubo",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0002_9",
+          "code": 95,
+          "name": "Bout bic.",
+          "local_degree": 4,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0002_8",
+          "code": 53,
+          "name": "Tubo",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0002_9",
+          "code": 95,
+          "name": "Bout bic.",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.7639541923999786,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.7639541923999786,
+        "triplets": [],
+        "distances": [
+          0.02253744247042571
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0003_frag_0",
+      "image_id": "node2_0003",
+      "ordered_observed_node_ids": [
+        "node2_0003_0",
+        "node2_0003_7"
+      ],
+      "ordered_codes": [
+        53,
+        202
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0003_0",
+          "code": 53,
+          "name": "Tubo",
+          "local_degree": 1,
+          "role": "endpoint",
+          "is_anchor_candidate": false,
+          "is_terminal_candidate": true
+        },
+        {
+          "observed_node_id": "node2_0003_7",
+          "code": 202,
+          "name": "Antisfilo",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "end",
+          "observed_node_id": "node2_0003_7",
+          "code": 202,
+          "name": "Antisfilo",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8132385313510895,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.8132385313510895,
+        "triplets": [],
+        "distances": [
+          0.1193907048679478
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0003_frag_1",
+      "image_id": "node2_0003",
+      "ordered_observed_node_ids": [
+        "node2_0003_1",
+        "node2_0003_4"
+      ],
+      "ordered_codes": [
+        190,
+        202
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0003_1",
+          "code": 190,
+          "name": "Curva 30",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0003_4",
+          "code": 202,
+          "name": "Antisfilo",
+          "local_degree": 4,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0003_1",
+          "code": 190,
+          "name": "Curva 30",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0003_4",
+          "code": 202,
+          "name": "Antisfilo",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8031758368015289,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.8031758368015289,
+        "triplets": [],
+        "distances": [
+          0.11358044348008495
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0003_frag_2",
+      "image_id": "node2_0003",
+      "ordered_observed_node_ids": [
+        "node2_0003_1",
+        "node2_0003_7"
+      ],
+      "ordered_codes": [
+        190,
+        202
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0003_1",
+          "code": 190,
+          "name": "Curva 30",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0003_7",
+          "code": 202,
+          "name": "Antisfilo",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0003_1",
+          "code": 190,
+          "name": "Curva 30",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0003_7",
+          "code": 202,
+          "name": "Antisfilo",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.819736123085022,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.819736123085022,
+        "triplets": [],
+        "distances": [
+          0.18439960056389315
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0003_frag_3",
+      "image_id": "node2_0003",
+      "ordered_observed_node_ids": [
+        "node2_0003_1",
+        "node2_0003_9"
+      ],
+      "ordered_codes": [
+        190,
+        95
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0003_1",
+          "code": 190,
+          "name": "Curva 30",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0003_9",
+          "code": 95,
+          "name": "Bout bic.",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0003_1",
+          "code": 190,
+          "name": "Curva 30",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0003_9",
+          "code": 95,
+          "name": "Bout bic.",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.7787798643112183,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.7787798643112183,
+        "triplets": [],
+        "distances": [
+          0.16744446870003532
+        ],
+        "forbidden_adjacent_pairs": [
+          true
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0003_frag_4",
+      "image_id": "node2_0003",
+      "ordered_observed_node_ids": [
+        "node2_0003_10",
+        "node2_0003_12"
+      ],
+      "ordered_codes": [
+        11,
+        95
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0003_10",
+          "code": 11,
+          "name": "Giunto",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0003_12",
+          "code": 95,
+          "name": "Bout bic.",
+          "local_degree": 4,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0003_10",
+          "code": 11,
+          "name": "Giunto",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0003_12",
+          "code": 95,
+          "name": "Bout bic.",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.7952507138252258,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.7952507138252258,
+        "triplets": [],
+        "distances": [
+          0.10980932425778542
+        ],
+        "forbidden_adjacent_pairs": [
+          true
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0003_frag_5",
+      "image_id": "node2_0003",
+      "ordered_observed_node_ids": [
+        "node2_0003_10",
+        "node2_0003_3"
+      ],
+      "ordered_codes": [
+        11,
+        15
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0003_10",
+          "code": 11,
+          "name": "Giunto",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0003_3",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 5,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0003_10",
+          "code": 11,
+          "name": "Giunto",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0003_3",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.7935745120048523,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.7935745120048523,
+        "triplets": [],
+        "distances": [
+          0.15686978390235382
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0003_frag_6",
+      "image_id": "node2_0003",
+      "ordered_observed_node_ids": [
+        "node2_0003_10",
+        "node2_0003_8"
+      ],
+      "ordered_codes": [
+        11,
+        53
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0003_10",
+          "code": 11,
+          "name": "Giunto",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0003_8",
+          "code": 53,
+          "name": "Tubo",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0003_10",
+          "code": 11,
+          "name": "Giunto",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0003_8",
+          "code": 53,
+          "name": "Tubo",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8117141127586365,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.8117141127586365,
+        "triplets": [],
+        "distances": [
+          0.0695322687292443
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0003_frag_7",
+      "image_id": "node2_0003",
+      "ordered_observed_node_ids": [
+        "node2_0003_11",
+        "node2_0003_12"
+      ],
+      "ordered_codes": [
+        15,
+        95
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0003_11",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 4,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0003_12",
+          "code": 95,
+          "name": "Bout bic.",
+          "local_degree": 4,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0003_11",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0003_12",
+          "code": 95,
+          "name": "Bout bic.",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.793963760137558,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.793963760137558,
+        "triplets": [],
+        "distances": [
+          0.15685998907714718
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0003_frag_8",
+      "image_id": "node2_0003",
+      "ordered_observed_node_ids": [
+        "node2_0003_11",
+        "node2_0003_2"
+      ],
+      "ordered_codes": [
+        15,
+        77
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0003_11",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 4,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0003_2",
+          "code": 77,
+          "name": "Tazza",
+          "local_degree": 1,
+          "role": "endpoint",
+          "is_anchor_candidate": false,
+          "is_terminal_candidate": true
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0003_11",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.7951051890850067,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.7951051890850067,
+        "triplets": [],
+        "distances": [
+          0.1936848946348642
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0003_frag_9",
+      "image_id": "node2_0003",
+      "ordered_observed_node_ids": [
+        "node2_0003_11",
+        "node2_0003_3"
+      ],
+      "ordered_codes": [
+        15,
+        15
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0003_11",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 4,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0003_3",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 5,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0003_11",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0003_3",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.7922875583171844,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.7922875583171844,
+        "triplets": [],
+        "distances": [
+          0.1540168173092328
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0003_frag_10",
+      "image_id": "node2_0003",
+      "ordered_observed_node_ids": [
+        "node2_0003_11",
+        "node2_0003_6"
+      ],
+      "ordered_codes": [
+        15,
+        116
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0003_11",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 4,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0003_6",
+          "code": 116,
+          "name": "Tee FL",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0003_11",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0003_6",
+          "code": 116,
+          "name": "Tee FL",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8016850352287292,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.8016850352287292,
+        "triplets": [],
+        "distances": [
+          0.17789164956665385
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0003_frag_11",
+      "image_id": "node2_0003",
+      "ordered_observed_node_ids": [
+        "node2_0003_12",
+        "node2_0003_3"
+      ],
+      "ordered_codes": [
+        95,
+        15
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0003_12",
+          "code": 95,
+          "name": "Bout bic.",
+          "local_degree": 4,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0003_3",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 5,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0003_12",
+          "code": 95,
+          "name": "Bout bic.",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0003_3",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.7757899761199951,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.7757899761199951,
+        "triplets": [],
+        "distances": [
+          0.04964465421292869
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0003_frag_12",
+      "image_id": "node2_0003",
+      "ordered_observed_node_ids": [
+        "node2_0003_12",
+        "node2_0003_8"
+      ],
+      "ordered_codes": [
+        95,
+        53
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0003_12",
+          "code": 95,
+          "name": "Bout bic.",
+          "local_degree": 4,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0003_8",
+          "code": 53,
+          "name": "Tubo",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0003_12",
+          "code": 95,
+          "name": "Bout bic.",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0003_8",
+          "code": 53,
+          "name": "Tubo",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.7939295768737793,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.7939295768737793,
+        "triplets": [],
+        "distances": [
+          0.04072596837891514
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0003_frag_13",
+      "image_id": "node2_0003",
+      "ordered_observed_node_ids": [
+        "node2_0003_3",
+        "node2_0003_6"
+      ],
+      "ordered_codes": [
+        15,
+        116
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0003_3",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 5,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0003_6",
+          "code": 116,
+          "name": "Tee FL",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0003_3",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0003_6",
+          "code": 116,
+          "name": "Tee FL",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.7835112512111664,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.7835112512111664,
+        "triplets": [],
+        "distances": [
+          0.15687103951714032
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0003_frag_14",
+      "image_id": "node2_0003",
+      "ordered_observed_node_ids": [
+        "node2_0003_3",
+        "node2_0003_8"
+      ],
+      "ordered_codes": [
+        15,
+        53
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0003_3",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 5,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0003_8",
+          "code": 53,
+          "name": "Tubo",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0003_3",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0003_8",
+          "code": 53,
+          "name": "Tubo",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.7922533750534058,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.7922533750534058,
+        "triplets": [],
+        "distances": [
+          0.08954634783291611
+        ],
+        "forbidden_adjacent_pairs": [
+          true
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0003_frag_15",
+      "image_id": "node2_0003",
+      "ordered_observed_node_ids": [
+        "node2_0003_4",
+        "node2_0003_5"
+      ],
+      "ordered_codes": [
+        202,
+        15
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0003_4",
+          "code": 202,
+          "name": "Antisfilo",
+          "local_degree": 4,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0003_5",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0003_4",
+          "code": 202,
+          "name": "Antisfilo",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0003_5",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.739736795425415,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.739736795425415,
+        "triplets": [],
+        "distances": [
+          0.1861709846597405
+        ],
+        "forbidden_adjacent_pairs": [
+          true
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0003_frag_16",
+      "image_id": "node2_0003",
+      "ordered_observed_node_ids": [
+        "node2_0003_4",
+        "node2_0003_7"
+      ],
+      "ordered_codes": [
+        202,
+        202
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0003_4",
+          "code": 202,
+          "name": "Antisfilo",
+          "local_degree": 4,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0003_7",
+          "code": 202,
+          "name": "Antisfilo",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0003_4",
+          "code": 202,
+          "name": "Antisfilo",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0003_7",
+          "code": 202,
+          "name": "Antisfilo",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.7969788014888763,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.7969788014888763,
+        "triplets": [],
+        "distances": [
+          0.2728883158353039
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0003_frag_17",
+      "image_id": "node2_0003",
+      "ordered_observed_node_ids": [
+        "node2_0003_4",
+        "node2_0003_9"
+      ],
+      "ordered_codes": [
+        202,
+        95
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0003_4",
+          "code": 202,
+          "name": "Antisfilo",
+          "local_degree": 4,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0003_9",
+          "code": 95,
+          "name": "Bout bic.",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0003_4",
+          "code": 202,
+          "name": "Antisfilo",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0003_9",
+          "code": 95,
+          "name": "Bout bic.",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.7560225427150726,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.7560225427150726,
+        "triplets": [],
+        "distances": [
+          0.05386476901524497
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0003_frag_18",
+      "image_id": "node2_0003",
+      "ordered_observed_node_ids": [
+        "node2_0003_5",
+        "node2_0003_6"
+      ],
+      "ordered_codes": [
+        15,
+        116
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0003_5",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0003_6",
+          "code": 116,
+          "name": "Tee FL",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0003_5",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0003_6",
+          "code": 116,
+          "name": "Tee FL",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.745981901884079,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.745981901884079,
+        "triplets": [],
+        "distances": [
+          0.13126084685779457
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0003_frag_19",
+      "image_id": "node2_0003",
+      "ordered_observed_node_ids": [
+        "node2_0003_5",
+        "node2_0003_9"
+      ],
+      "ordered_codes": [
+        15,
+        95
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0003_5",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0003_9",
+          "code": 95,
+          "name": "Bout bic.",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0003_5",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0003_9",
+          "code": 95,
+          "name": "Bout bic.",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.7153408229351044,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.7153408229351044,
+        "triplets": [],
+        "distances": [
+          0.13236680736396264
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0004_frag_0",
+      "image_id": "node2_0004",
+      "ordered_observed_node_ids": [
+        "node2_0004_0",
+        "node2_0004_10"
+      ],
+      "ordered_codes": [
+        190,
+        202
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0004_0",
+          "code": 190,
+          "name": "Curva 30",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0004_10",
+          "code": 202,
+          "name": "Antisfilo",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0004_0",
+          "code": 190,
+          "name": "Curva 30",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0004_10",
+          "code": 202,
+          "name": "Antisfilo",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8197692334651947,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.8197692334651947,
+        "triplets": [],
+        "distances": [
+          0.059238551795200704
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0004_frag_1",
+      "image_id": "node2_0004",
+      "ordered_observed_node_ids": [
+        "node2_0004_0",
+        "node2_0004_11"
+      ],
+      "ordered_codes": [
+        190,
+        95
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0004_0",
+          "code": 190,
+          "name": "Curva 30",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0004_11",
+          "code": 95,
+          "name": "Bout bic.",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0004_0",
+          "code": 190,
+          "name": "Curva 30",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0004_11",
+          "code": 95,
+          "name": "Bout bic.",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.844355434179306,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.844355434179306,
+        "triplets": [],
+        "distances": [
+          0.08691568478772586
+        ],
+        "forbidden_adjacent_pairs": [
+          true
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0004_frag_2",
+      "image_id": "node2_0004",
+      "ordered_observed_node_ids": [
+        "node2_0004_0",
+        "node2_0004_2",
+        "node2_0004_1"
+      ],
+      "ordered_codes": [
+        190,
+        202,
+        53
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0004_0",
+          "code": 190,
+          "name": "Curva 30",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0004_1",
+          "code": 53,
+          "name": "Tubo",
+          "local_degree": 1,
+          "role": "endpoint",
+          "is_anchor_candidate": false,
+          "is_terminal_candidate": true
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0004_0",
+          "code": 190,
+          "name": "Curva 30",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8117785056432089,
+      "local_evidence_metadata": {
+        "length": 3,
+        "mean_detection_confidence": 0.8117785056432089,
+        "triplets": [
+          {
+            "triplet_key": [
+              53,
+              202,
+              190
+            ],
+            "triplet_count": 1
+          }
+        ],
+        "distances": [
+          0.12546410135492592,
+          0.06530704624682136
+        ],
+        "forbidden_adjacent_pairs": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0004_frag_3",
+      "image_id": "node2_0004",
+      "ordered_observed_node_ids": [
+        "node2_0004_10",
+        "node2_0004_11"
+      ],
+      "ordered_codes": [
+        202,
+        95
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0004_10",
+          "code": 202,
+          "name": "Antisfilo",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0004_11",
+          "code": 95,
+          "name": "Bout bic.",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0004_10",
+          "code": 202,
+          "name": "Antisfilo",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0004_11",
+          "code": 95,
+          "name": "Bout bic.",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8461587429046631,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.8461587429046631,
+        "triplets": [],
+        "distances": [
+          0.027678523529743253
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0004_frag_4",
+      "image_id": "node2_0004",
+      "ordered_observed_node_ids": [
+        "node2_0004_10",
+        "node2_0004_7"
+      ],
+      "ordered_codes": [
+        202,
+        15
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0004_10",
+          "code": 202,
+          "name": "Antisfilo",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0004_7",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0004_10",
+          "code": 202,
+          "name": "Antisfilo",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0004_7",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8256311416625977,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.8256311416625977,
+        "triplets": [],
+        "distances": [
+          0.07839782734391952
+        ],
+        "forbidden_adjacent_pairs": [
+          true
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0004_frag_5",
+      "image_id": "node2_0004",
+      "ordered_observed_node_ids": [
+        "node2_0004_11",
+        "node2_0004_7"
+      ],
+      "ordered_codes": [
+        95,
+        15
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0004_11",
+          "code": 95,
+          "name": "Bout bic.",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0004_7",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0004_11",
+          "code": 95,
+          "name": "Bout bic.",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0004_7",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.850217342376709,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.850217342376709,
+        "triplets": [],
+        "distances": [
+          0.05141767538841307
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0004_frag_6",
+      "image_id": "node2_0004",
+      "ordered_observed_node_ids": [
+        "node2_0004_12",
+        "node2_0004_3"
+      ],
+      "ordered_codes": [
+        116,
+        15
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0004_12",
+          "code": 116,
+          "name": "Tee FL",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0004_3",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 4,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0004_12",
+          "code": 116,
+          "name": "Tee FL",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0004_3",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.7899307906627655,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.7899307906627655,
+        "triplets": [],
+        "distances": [
+          0.07646887437065239
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0004_frag_7",
+      "image_id": "node2_0004",
+      "ordered_observed_node_ids": [
+        "node2_0004_12",
+        "node2_0004_7"
+      ],
+      "ordered_codes": [
+        116,
+        15
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0004_12",
+          "code": 116,
+          "name": "Tee FL",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0004_7",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0004_12",
+          "code": 116,
+          "name": "Tee FL",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0004_7",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8005997836589813,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.8005997836589813,
+        "triplets": [],
+        "distances": [
+          0.12375106233077014
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0004_frag_8",
+      "image_id": "node2_0004",
+      "ordered_observed_node_ids": [
+        "node2_0004_12",
+        "node2_0004_8"
+      ],
+      "ordered_codes": [
+        116,
+        15
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0004_12",
+          "code": 116,
+          "name": "Tee FL",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0004_8",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0004_12",
+          "code": 116,
+          "name": "Tee FL",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0004_8",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8063003420829773,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.8063003420829773,
+        "triplets": [],
+        "distances": [
+          0.08932870791228803
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0004_frag_9",
+      "image_id": "node2_0004",
+      "ordered_observed_node_ids": [
+        "node2_0004_3",
+        "node2_0004_4"
+      ],
+      "ordered_codes": [
+        15,
+        53
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0004_3",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 4,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0004_4",
+          "code": 53,
+          "name": "Tubo",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0004_3",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0004_4",
+          "code": 53,
+          "name": "Tubo",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8180363476276398,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.8180363476276398,
+        "triplets": [],
+        "distances": [
+          0.11331582705666488
+        ],
+        "forbidden_adjacent_pairs": [
+          true
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0004_frag_10",
+      "image_id": "node2_0004",
+      "ordered_observed_node_ids": [
+        "node2_0004_3",
+        "node2_0004_6"
+      ],
+      "ordered_codes": [
+        15,
+        95
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0004_3",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 4,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0004_6",
+          "code": 95,
+          "name": "Bout bic.",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0004_3",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0004_6",
+          "code": 95,
+          "name": "Bout bic.",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8105112910270691,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.8105112910270691,
+        "triplets": [],
+        "distances": [
+          0.07770812740918194
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0004_frag_11",
+      "image_id": "node2_0004",
+      "ordered_observed_node_ids": [
+        "node2_0004_3",
+        "node2_0004_8"
+      ],
+      "ordered_codes": [
+        15,
+        15
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0004_3",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 4,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0004_8",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0004_3",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0004_8",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8247213065624237,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.8247213065624237,
+        "triplets": [],
+        "distances": [
+          0.14166736192775312
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0004_frag_12",
+      "image_id": "node2_0004",
+      "ordered_observed_node_ids": [
+        "node2_0004_4",
+        "node2_0004_6"
+      ],
+      "ordered_codes": [
+        53,
+        95
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0004_4",
+          "code": 53,
+          "name": "Tubo",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0004_6",
+          "code": 95,
+          "name": "Bout bic.",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0004_4",
+          "code": 53,
+          "name": "Tubo",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0004_6",
+          "code": 95,
+          "name": "Bout bic.",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.820195883512497,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.820195883512497,
+        "triplets": [],
+        "distances": [
+          0.035792405152426536
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0004_frag_13",
+      "image_id": "node2_0004",
+      "ordered_observed_node_ids": [
+        "node2_0004_4",
+        "node2_0004_9"
+      ],
+      "ordered_codes": [
+        53,
+        11
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0004_4",
+          "code": 53,
+          "name": "Tubo",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0004_9",
+          "code": 11,
+          "name": "Giunto",
+          "local_degree": 2,
+          "role": "endpoint",
+          "is_anchor_candidate": false,
+          "is_terminal_candidate": true
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0004_4",
+          "code": 53,
+          "name": "Tubo",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8187935054302216,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.8187935054302216,
+        "triplets": [],
+        "distances": [
+          0.053910766036377816
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0004_frag_14",
+      "image_id": "node2_0004",
+      "ordered_observed_node_ids": [
+        "node2_0004_5",
+        "node2_0004_8"
+      ],
+      "ordered_codes": [
+        77,
+        15
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0004_5",
+          "code": 77,
+          "name": "Tazza",
+          "local_degree": 1,
+          "role": "endpoint",
+          "is_anchor_candidate": false,
+          "is_terminal_candidate": true
+        },
+        {
+          "observed_node_id": "node2_0004_8",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "end",
+          "observed_node_id": "node2_0004_8",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.807245522737503,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.807245522737503,
+        "triplets": [],
+        "distances": [
+          0.13631341990366388
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0004_frag_15",
+      "image_id": "node2_0004",
+      "ordered_observed_node_ids": [
+        "node2_0004_6",
+        "node2_0004_9"
+      ],
+      "ordered_codes": [
+        95,
+        11
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0004_6",
+          "code": 95,
+          "name": "Bout bic.",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0004_9",
+          "code": 11,
+          "name": "Giunto",
+          "local_degree": 2,
+          "role": "endpoint",
+          "is_anchor_candidate": false,
+          "is_terminal_candidate": true
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0004_6",
+          "code": 95,
+          "name": "Bout bic.",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8112684488296509,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.8112684488296509,
+        "triplets": [],
+        "distances": [
+          0.08892562904251856
+        ],
+        "forbidden_adjacent_pairs": [
+          true
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0005_frag_0",
+      "image_id": "node2_0005",
+      "ordered_observed_node_ids": [
+        "node2_0005_0",
+        "node2_0005_4",
+        "node2_0005_5"
+      ],
+      "ordered_codes": [
+        53,
+        202,
+        190
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0005_0",
+          "code": 53,
+          "name": "Tubo",
+          "local_degree": 1,
+          "role": "endpoint",
+          "is_anchor_candidate": false,
+          "is_terminal_candidate": true
+        },
+        {
+          "observed_node_id": "node2_0005_5",
+          "code": 190,
+          "name": "Curva 30",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "end",
+          "observed_node_id": "node2_0005_5",
+          "code": 190,
+          "name": "Curva 30",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8098872701327006,
+      "local_evidence_metadata": {
+        "length": 3,
+        "mean_detection_confidence": 0.8098872701327006,
+        "triplets": [
+          {
+            "triplet_key": [
+              53,
+              202,
+              190
+            ],
+            "triplet_count": 1
+          }
+        ],
+        "distances": [
+          0.0820579406976029,
+          0.16367332520727418
+        ],
+        "forbidden_adjacent_pairs": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0005_frag_1",
+      "image_id": "node2_0005",
+      "ordered_observed_node_ids": [
+        "node2_0005_1",
+        "node2_0005_11"
+      ],
+      "ordered_codes": [
+        15,
+        116
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0005_1",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0005_11",
+          "code": 116,
+          "name": "Tee FL",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0005_1",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0005_11",
+          "code": 116,
+          "name": "Tee FL",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.7976267337799072,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.7976267337799072,
+        "triplets": [],
+        "distances": [
+          0.15905426751114815
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0005_frag_2",
+      "image_id": "node2_0005",
+      "ordered_observed_node_ids": [
+        "node2_0005_1",
+        "node2_0005_12"
+      ],
+      "ordered_codes": [
+        15,
+        95
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0005_1",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0005_12",
+          "code": 95,
+          "name": "Bout bic.",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0005_1",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0005_12",
+          "code": 95,
+          "name": "Bout bic.",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8467129170894623,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.8467129170894623,
+        "triplets": [],
+        "distances": [
+          0.0670410191800379
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0005_frag_3",
+      "image_id": "node2_0005",
+      "ordered_observed_node_ids": [
+        "node2_0005_1",
+        "node2_0005_9"
+      ],
+      "ordered_codes": [
+        15,
+        202
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0005_1",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0005_9",
+          "code": 202,
+          "name": "Antisfilo",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0005_1",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0005_9",
+          "code": 202,
+          "name": "Antisfilo",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8223523795604706,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.8223523795604706,
+        "triplets": [],
+        "distances": [
+          0.10149964785431227
+        ],
+        "forbidden_adjacent_pairs": [
+          true
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0005_frag_4",
+      "image_id": "node2_0005",
+      "ordered_observed_node_ids": [
+        "node2_0005_10",
+        "node2_0005_11"
+      ],
+      "ordered_codes": [
+        15,
+        116
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0005_10",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0005_11",
+          "code": 116,
+          "name": "Tee FL",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0005_10",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0005_11",
+          "code": 116,
+          "name": "Tee FL",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8047717809677124,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.8047717809677124,
+        "triplets": [],
+        "distances": [
+          0.11589490144530305
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0005_frag_5",
+      "image_id": "node2_0005",
+      "ordered_observed_node_ids": [
+        "node2_0005_10",
+        "node2_0005_2"
+      ],
+      "ordered_codes": [
+        15,
+        77
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0005_10",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0005_2",
+          "code": 77,
+          "name": "Tazza",
+          "local_degree": 1,
+          "role": "endpoint",
+          "is_anchor_candidate": false,
+          "is_terminal_candidate": true
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0005_10",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.806587815284729,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.806587815284729,
+        "triplets": [],
+        "distances": [
+          0.17903169888222725
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0005_frag_6",
+      "image_id": "node2_0005",
+      "ordered_observed_node_ids": [
+        "node2_0005_10",
+        "node2_0005_3"
+      ],
+      "ordered_codes": [
+        15,
+        15
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0005_10",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0005_3",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 4,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0005_10",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0005_3",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8240774273872375,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.8240774273872375,
+        "triplets": [],
+        "distances": [
+          0.1836432766936203
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0005_frag_7",
+      "image_id": "node2_0005",
+      "ordered_observed_node_ids": [
+        "node2_0005_11",
+        "node2_0005_3"
+      ],
+      "ordered_codes": [
+        116,
+        15
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0005_11",
+          "code": 116,
+          "name": "Tee FL",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0005_3",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 4,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0005_11",
+          "code": 116,
+          "name": "Tee FL",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0005_3",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.785888135433197,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.785888135433197,
+        "triplets": [],
+        "distances": [
+          0.09820072631187776
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0005_frag_8",
+      "image_id": "node2_0005",
+      "ordered_observed_node_ids": [
+        "node2_0005_12",
+        "node2_0005_5"
+      ],
+      "ordered_codes": [
+        95,
+        190
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0005_12",
+          "code": 95,
+          "name": "Bout bic.",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0005_5",
+          "code": 190,
+          "name": "Curva 30",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0005_12",
+          "code": 95,
+          "name": "Bout bic.",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0005_5",
+          "code": 190,
+          "name": "Curva 30",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8418611884117126,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.8418611884117126,
+        "triplets": [],
+        "distances": [
+          0.11201125220802263
+        ],
+        "forbidden_adjacent_pairs": [
+          true
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0005_frag_9",
+      "image_id": "node2_0005",
+      "ordered_observed_node_ids": [
+        "node2_0005_12",
+        "node2_0005_9"
+      ],
+      "ordered_codes": [
+        95,
+        202
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0005_12",
+          "code": 95,
+          "name": "Bout bic.",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0005_9",
+          "code": 202,
+          "name": "Antisfilo",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0005_12",
+          "code": 95,
+          "name": "Bout bic.",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0005_9",
+          "code": 202,
+          "name": "Antisfilo",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8403943181037903,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.8403943181037903,
+        "triplets": [],
+        "distances": [
+          0.035257247889824234
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0005_frag_10",
+      "image_id": "node2_0005",
+      "ordered_observed_node_ids": [
+        "node2_0005_3",
+        "node2_0005_6"
+      ],
+      "ordered_codes": [
+        15,
+        95
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0005_3",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 4,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0005_6",
+          "code": 95,
+          "name": "Bout bic.",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0005_3",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0005_6",
+          "code": 95,
+          "name": "Bout bic.",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8050788938999176,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.8050788938999176,
+        "triplets": [],
+        "distances": [
+          0.10104210485627034
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0005_frag_11",
+      "image_id": "node2_0005",
+      "ordered_observed_node_ids": [
+        "node2_0005_3",
+        "node2_0005_8"
+      ],
+      "ordered_codes": [
+        15,
+        53
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0005_3",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 4,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0005_8",
+          "code": 53,
+          "name": "Tubo",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0005_3",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0005_8",
+          "code": 53,
+          "name": "Tubo",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8164064288139343,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.8164064288139343,
+        "triplets": [],
+        "distances": [
+          0.14786973603188583
+        ],
+        "forbidden_adjacent_pairs": [
+          true
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0005_frag_12",
+      "image_id": "node2_0005",
+      "ordered_observed_node_ids": [
+        "node2_0005_5",
+        "node2_0005_9"
+      ],
+      "ordered_codes": [
+        190,
+        202
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0005_5",
+          "code": 190,
+          "name": "Curva 30",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0005_9",
+          "code": 202,
+          "name": "Antisfilo",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0005_5",
+          "code": 190,
+          "name": "Curva 30",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0005_9",
+          "code": 202,
+          "name": "Antisfilo",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.817500650882721,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.817500650882721,
+        "triplets": [],
+        "distances": [
+          0.07675811462079839
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0005_frag_13",
+      "image_id": "node2_0005",
+      "ordered_observed_node_ids": [
+        "node2_0005_6",
+        "node2_0005_7"
+      ],
+      "ordered_codes": [
+        95,
+        11
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0005_6",
+          "code": 95,
+          "name": "Bout bic.",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0005_7",
+          "code": 11,
+          "name": "Giunto",
+          "local_degree": 2,
+          "role": "endpoint",
+          "is_anchor_candidate": false,
+          "is_terminal_candidate": true
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0005_6",
+          "code": 95,
+          "name": "Bout bic.",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8104059398174286,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.8104059398174286,
+        "triplets": [],
+        "distances": [
+          0.11565241416566507
+        ],
+        "forbidden_adjacent_pairs": [
+          true
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0005_frag_14",
+      "image_id": "node2_0005",
+      "ordered_observed_node_ids": [
+        "node2_0005_6",
+        "node2_0005_8"
+      ],
+      "ordered_codes": [
+        95,
+        53
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0005_6",
+          "code": 95,
+          "name": "Bout bic.",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0005_8",
+          "code": 53,
+          "name": "Tubo",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0005_6",
+          "code": 95,
+          "name": "Bout bic.",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0005_8",
+          "code": 53,
+          "name": "Tubo",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8162915408611298,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.8162915408611298,
+        "triplets": [],
+        "distances": [
+          0.046998445454212674
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0005_frag_15",
+      "image_id": "node2_0005",
+      "ordered_observed_node_ids": [
+        "node2_0005_7",
+        "node2_0005_8"
+      ],
+      "ordered_codes": [
+        11,
+        53
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0005_7",
+          "code": 11,
+          "name": "Giunto",
+          "local_degree": 2,
+          "role": "endpoint",
+          "is_anchor_candidate": false,
+          "is_terminal_candidate": true
+        },
+        {
+          "observed_node_id": "node2_0005_8",
+          "code": 53,
+          "name": "Tubo",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "end",
+          "observed_node_id": "node2_0005_8",
+          "code": 53,
+          "name": "Tubo",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8217334747314453,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.8217334747314453,
+        "triplets": [],
+        "distances": [
+          0.06987294884326102
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0007_frag_0",
+      "image_id": "node2_0007",
+      "ordered_observed_node_ids": [
+        "node2_0007_0",
+        "node2_0007_3"
+      ],
+      "ordered_codes": [
+        11,
+        95
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0007_0",
+          "code": 11,
+          "name": "Giunto",
+          "local_degree": 2,
+          "role": "endpoint",
+          "is_anchor_candidate": false,
+          "is_terminal_candidate": true
+        },
+        {
+          "observed_node_id": "node2_0007_3",
+          "code": 95,
+          "name": "Bout bic.",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "end",
+          "observed_node_id": "node2_0007_3",
+          "code": 95,
+          "name": "Bout bic.",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.7913216352462769,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.7913216352462769,
+        "triplets": [],
+        "distances": [
+          0.11356971526340716
+        ],
+        "forbidden_adjacent_pairs": [
+          true
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0007_frag_1",
+      "image_id": "node2_0007",
+      "ordered_observed_node_ids": [
+        "node2_0007_0",
+        "node2_0007_4",
+        "node2_0007_3"
+      ],
+      "ordered_codes": [
+        11,
+        53,
+        95
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0007_0",
+          "code": 11,
+          "name": "Giunto",
+          "local_degree": 2,
+          "role": "endpoint",
+          "is_anchor_candidate": false,
+          "is_terminal_candidate": true
+        },
+        {
+          "observed_node_id": "node2_0007_3",
+          "code": 95,
+          "name": "Bout bic.",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "end",
+          "observed_node_id": "node2_0007_3",
+          "code": 95,
+          "name": "Bout bic.",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8033107320467631,
+      "local_evidence_metadata": {
+        "length": 3,
+        "mean_detection_confidence": 0.8033107320467631,
+        "triplets": [
+          {
+            "triplet_key": [
+              11,
+              53,
+              95
+            ],
+            "triplet_count": 5
+          }
+        ],
+        "distances": [
+          0.06544579520966542,
+          0.04846440411952222
+        ],
+        "forbidden_adjacent_pairs": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0007_frag_2",
+      "image_id": "node2_0007",
+      "ordered_observed_node_ids": [
+        "node2_0007_2",
+        "node2_0007_1",
+        "node2_0007_3"
+      ],
+      "ordered_codes": [
+        116,
+        15,
+        95
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0007_2",
+          "code": 116,
+          "name": "Tee FL",
+          "local_degree": 1,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0007_3",
+          "code": 95,
+          "name": "Bout bic.",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0007_2",
+          "code": 116,
+          "name": "Tee FL",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0007_3",
+          "code": 95,
+          "name": "Bout bic.",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8083993991216024,
+      "local_evidence_metadata": {
+        "length": 3,
+        "mean_detection_confidence": 0.8083993991216024,
+        "triplets": [
+          {
+            "triplet_key": [
+              95,
+              15,
+              116
+            ],
+            "triplet_count": 8
+          }
+        ],
+        "distances": [
+          0.058228418874570226,
+          0.11132881177349546
+        ],
+        "forbidden_adjacent_pairs": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0007_frag_3",
+      "image_id": "node2_0007",
+      "ordered_observed_node_ids": [
+        "node2_0007_6",
+        "node2_0007_10",
+        "node2_0007_9",
+        "node2_0007_6"
+      ],
+      "ordered_codes": [
+        190,
+        202,
+        15,
+        190
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0007_6",
+          "code": 190,
+          "name": "Curva 30",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0007_6",
+          "code": 190,
+          "name": "Curva 30",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0007_6",
+          "code": 190,
+          "name": "Curva 30",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node2_0007_6",
+          "code": 190,
+          "name": "Curva 30",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.7794842272996902,
+      "local_evidence_metadata": {
+        "length": 4,
+        "mean_detection_confidence": 0.7794842272996902,
+        "triplets": [
+          {
+            "triplet_key": [
+              15,
+              202,
+              190
+            ],
+            "triplet_count": 0
+          },
+          {
+            "triplet_key": [
+              190,
+              15,
+              202
+            ],
+            "triplet_count": 0
+          }
+        ],
+        "distances": [
+          0.055483678551744714,
+          0.037982820394980396,
+          0.09346397645975507
+        ],
+        "forbidden_adjacent_pairs": [
+          false,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node2_0007_frag_4",
+      "image_id": "node2_0007",
+      "ordered_observed_node_ids": [
+        "node2_0007_6",
+        "node2_0007_8",
+        "node2_0007_7"
+      ],
+      "ordered_codes": [
+        190,
+        202,
+        53
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node2_0007_6",
+          "code": 190,
+          "name": "Curva 30",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node2_0007_7",
+          "code": 53,
+          "name": "Tubo",
+          "local_degree": 1,
+          "role": "endpoint",
+          "is_anchor_candidate": false,
+          "is_terminal_candidate": true
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node2_0007_6",
+          "code": 190,
+          "name": "Curva 30",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8211096922556559,
+      "local_evidence_metadata": {
+        "length": 3,
+        "mean_detection_confidence": 0.8211096922556559,
+        "triplets": [
+          {
+            "triplet_key": [
+              53,
+              202,
+              190
+            ],
+            "triplet_count": 1
+          }
+        ],
+        "distances": [
+          0.13098091905028297,
+          0.053994206939796514
+        ],
+        "forbidden_adjacent_pairs": [
+          false,
+          false
+        ]
+      }
+    }
+  ]
+}

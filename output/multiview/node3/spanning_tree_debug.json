@@ -1,0 +1,43 @@
+{
+  "already_connected": false,
+  "n_forced": 6,
+  "is_connected_after": true,
+  "forced_edges": [
+    {
+      "a": "15#4",
+      "b": "53#1",
+      "via": "candidate_bridge",
+      "priority": "(4, 2, 6, 0)"
+    },
+    {
+      "a": "95#1",
+      "b": "15#2",
+      "via": "structural_fallback",
+      "structural_score": 1.4
+    },
+    {
+      "a": "95#1",
+      "b": "15#3",
+      "via": "structural_fallback",
+      "structural_score": 1.35
+    },
+    {
+      "a": "53#1",
+      "b": "11#2",
+      "via": "structural_fallback",
+      "structural_score": 0.7380952380952381
+    },
+    {
+      "a": "53#1",
+      "b": "11#3",
+      "via": "structural_fallback",
+      "structural_score": 0.588095238095238
+    },
+    {
+      "a": "53#1",
+      "b": "11#4",
+      "via": "structural_fallback",
+      "structural_score": 0.5380952380952381
+    }
+  ]
+}

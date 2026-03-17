@@ -1,0 +1,4922 @@
+{
+  "scene_nodes": [
+    {
+      "scene_node_id": "11#1",
+      "fused_code": 11,
+      "fused_name": "Giunto",
+      "fused_confidence": 0.8171217203140259,
+      "support_count": 5,
+      "support_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "supporting_observed_ids": [
+        "node4_0001_2",
+        "node4_0004_1",
+        "node4_0002_6",
+        "node4_0006_5",
+        "node4_0007_7"
+      ],
+      "local_structural_signature": {
+        "self_code": 11,
+        "nearby_code_histogram": {
+          "195": 5,
+          "202": 4
+        },
+        "anchor_hint_score": 0.0,
+        "terminal_hint_count": 5
+      },
+      "max_degree": 2,
+      "anchor_hint_score": 0.0,
+      "representative_branch_roles": [],
+      "representative_triplet_hints": []
+    },
+    {
+      "scene_node_id": "15#1",
+      "fused_code": 15,
+      "fused_name": "Saracinesca",
+      "fused_confidence": 0.8277423739433288,
+      "support_count": 5,
+      "support_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "supporting_observed_ids": [
+        "node4_0001_0",
+        "node4_0006_8",
+        "node4_0002_1",
+        "node4_0007_0",
+        "node4_0004_6"
+      ],
+      "local_structural_signature": {
+        "self_code": 15,
+        "nearby_code_histogram": {
+          "95": 3,
+          "54": 1,
+          "202": 1,
+          "116": 1
+        },
+        "anchor_hint_score": 0.0,
+        "terminal_hint_count": 2
+      },
+      "max_degree": 2,
+      "anchor_hint_score": 0.0,
+      "representative_branch_roles": [],
+      "representative_triplet_hints": []
+    },
+    {
+      "scene_node_id": "15#2",
+      "fused_code": 15,
+      "fused_name": "Saracinesca",
+      "fused_confidence": 0.8160796612501144,
+      "support_count": 4,
+      "support_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "supporting_observed_ids": [
+        "node4_0001_1",
+        "node4_0007_1",
+        "node4_0006_2",
+        "node4_0002_4"
+      ],
+      "local_structural_signature": {
+        "self_code": 15,
+        "nearby_code_histogram": {
+          "95": 1,
+          "116": 1
+        },
+        "anchor_hint_score": 0.0,
+        "terminal_hint_count": 3
+      },
+      "max_degree": 2,
+      "anchor_hint_score": 0.0,
+      "representative_branch_roles": [],
+      "representative_triplet_hints": []
+    },
+    {
+      "scene_node_id": "15#3",
+      "fused_code": 15,
+      "fused_name": "Saracinesca",
+      "fused_confidence": 0.8159723728895187,
+      "support_count": 4,
+      "support_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "supporting_observed_ids": [
+        "node4_0001_13",
+        "node4_0002_10",
+        "node4_0007_3",
+        "node4_0006_0"
+      ],
+      "local_structural_signature": {
+        "self_code": 15,
+        "nearby_code_histogram": {
+          "53": 2,
+          "116": 1,
+          "95": 1,
+          "54": 1
+        },
+        "anchor_hint_score": 0.0,
+        "terminal_hint_count": 3
+      },
+      "max_degree": 2,
+      "anchor_hint_score": 0.0,
+      "representative_branch_roles": [],
+      "representative_triplet_hints": []
+    },
+    {
+      "scene_node_id": "53#1",
+      "fused_code": 53,
+      "fused_name": "Tubo",
+      "fused_confidence": 0.8323877573013305,
+      "support_count": 5,
+      "support_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "supporting_observed_ids": [
+        "node4_0001_15",
+        "node4_0006_15",
+        "node4_0007_4",
+        "node4_0002_9",
+        "node4_0004_0"
+      ],
+      "local_structural_signature": {
+        "self_code": 53,
+        "nearby_code_histogram": {
+          "15": 2,
+          "95": 2,
+          "202": 2
+        },
+        "anchor_hint_score": 0.0,
+        "terminal_hint_count": 4
+      },
+      "max_degree": 2,
+      "anchor_hint_score": 0.0,
+      "representative_branch_roles": [],
+      "representative_triplet_hints": []
+    },
+    {
+      "scene_node_id": "53#2",
+      "fused_code": 53,
+      "fused_name": "Tubo",
+      "fused_confidence": 0.8433722704648972,
+      "support_count": 4,
+      "support_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "supporting_observed_ids": [
+        "node4_0001_9",
+        "node4_0007_14",
+        "node4_0006_4",
+        "node4_0002_13"
+      ],
+      "local_structural_signature": {
+        "self_code": 53,
+        "nearby_code_histogram": {
+          "202": 7,
+          "195": 3
+        },
+        "anchor_hint_score": 0.5,
+        "terminal_hint_count": 0
+      },
+      "max_degree": 2,
+      "anchor_hint_score": 0.5,
+      "representative_branch_roles": [],
+      "representative_triplet_hints": []
+    },
+    {
+      "scene_node_id": "54#1",
+      "fused_code": 54,
+      "fused_name": "Curva 22",
+      "fused_confidence": 0.8091126441955566,
+      "support_count": 5,
+      "support_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "supporting_observed_ids": [
+        "node4_0001_7",
+        "node4_0007_2",
+        "node4_0006_7",
+        "node4_0004_10",
+        "node4_0002_0"
+      ],
+      "local_structural_signature": {
+        "self_code": 54,
+        "nearby_code_histogram": {
+          "15": 2,
+          "95": 2
+        },
+        "anchor_hint_score": 0.2,
+        "terminal_hint_count": 5
+      },
+      "max_degree": 2,
+      "anchor_hint_score": 0.2,
+      "representative_branch_roles": [],
+      "representative_triplet_hints": []
+    },
+    {
+      "scene_node_id": "75#1",
+      "fused_code": 75,
+      "fused_name": "Riduzione",
+      "fused_confidence": 0.8233764916658401,
+      "support_count": 4,
+      "support_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006"
+      ],
+      "supporting_observed_ids": [
+        "node4_0001_6",
+        "node4_0004_11",
+        "node4_0006_9",
+        "node4_0002_12"
+      ],
+      "local_structural_signature": {
+        "self_code": 75,
+        "nearby_code_histogram": {
+          "95": 4,
+          "202": 4,
+          "116": 4
+        },
+        "anchor_hint_score": 1.0,
+        "terminal_hint_count": 0
+      },
+      "max_degree": 2,
+      "anchor_hint_score": 1.0,
+      "representative_branch_roles": [],
+      "representative_triplet_hints": []
+    },
+    {
+      "scene_node_id": "95#1",
+      "fused_code": 95,
+      "fused_name": "Bout bic.",
+      "fused_confidence": 0.8254332423210144,
+      "support_count": 5,
+      "support_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "supporting_observed_ids": [
+        "node4_0001_5",
+        "node4_0002_2",
+        "node4_0007_5",
+        "node4_0006_12",
+        "node4_0004_4"
+      ],
+      "local_structural_signature": {
+        "self_code": 95,
+        "nearby_code_histogram": {
+          "15": 3,
+          "54": 2,
+          "75": 1
+        },
+        "anchor_hint_score": 0.2,
+        "terminal_hint_count": 3
+      },
+      "max_degree": 2,
+      "anchor_hint_score": 0.2,
+      "representative_branch_roles": [],
+      "representative_triplet_hints": []
+    },
+    {
+      "scene_node_id": "95#2",
+      "fused_code": 95,
+      "fused_name": "Bout bic.",
+      "fused_confidence": 0.8209593176841736,
+      "support_count": 5,
+      "support_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "supporting_observed_ids": [
+        "node4_0001_12",
+        "node4_0006_14",
+        "node4_0002_15",
+        "node4_0007_12",
+        "node4_0004_12"
+      ],
+      "local_structural_signature": {
+        "self_code": 95,
+        "nearby_code_histogram": {
+          "202": 5,
+          "75": 4,
+          "195": 5,
+          "15": 1
+        },
+        "anchor_hint_score": 1.0,
+        "terminal_hint_count": 0
+      },
+      "max_degree": 2,
+      "anchor_hint_score": 1.0,
+      "representative_branch_roles": [],
+      "representative_triplet_hints": []
+    },
+    {
+      "scene_node_id": "95#3",
+      "fused_code": 95,
+      "fused_name": "Bout bic.",
+      "fused_confidence": 0.8171988725662231,
+      "support_count": 2,
+      "support_images": [
+        "node4_0006",
+        "node4_0007"
+      ],
+      "supporting_observed_ids": [
+        "node4_0006_16",
+        "node4_0007_6"
+      ],
+      "local_structural_signature": {
+        "self_code": 95,
+        "nearby_code_histogram": {
+          "53": 2,
+          "116": 1,
+          "15": 1
+        },
+        "anchor_hint_score": 0.0,
+        "terminal_hint_count": 0
+      },
+      "max_degree": 2,
+      "anchor_hint_score": 0.0,
+      "representative_branch_roles": [],
+      "representative_triplet_hints": []
+    },
+    {
+      "scene_node_id": "116#1",
+      "fused_code": 116,
+      "fused_name": "Tee FL",
+      "fused_confidence": 0.8070590496063232,
+      "support_count": 5,
+      "support_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "supporting_observed_ids": [
+        "node4_0001_11",
+        "node4_0004_9",
+        "node4_0002_11",
+        "node4_0007_8",
+        "node4_0006_13"
+      ],
+      "local_structural_signature": {
+        "self_code": 116,
+        "nearby_code_histogram": {
+          "75": 4,
+          "15": 3,
+          "95": 1
+        },
+        "anchor_hint_score": 1.0,
+        "terminal_hint_count": 2
+      },
+      "max_degree": 3,
+      "anchor_hint_score": 1.0,
+      "representative_branch_roles": [],
+      "representative_triplet_hints": []
+    },
+    {
+      "scene_node_id": "195#1",
+      "fused_code": 195,
+      "fused_name": "Curva 45P",
+      "fused_confidence": 0.8038211226463318,
+      "support_count": 5,
+      "support_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "supporting_observed_ids": [
+        "node4_0001_10",
+        "node4_0002_3",
+        "node4_0004_2",
+        "node4_0007_13",
+        "node4_0006_3"
+      ],
+      "local_structural_signature": {
+        "self_code": 195,
+        "nearby_code_histogram": {
+          "202": 10,
+          "95": 5
+        },
+        "anchor_hint_score": 1.0,
+        "terminal_hint_count": 0
+      },
+      "max_degree": 2,
+      "anchor_hint_score": 1.0,
+      "representative_branch_roles": [],
+      "representative_triplet_hints": []
+    },
+    {
+      "scene_node_id": "195#2",
+      "fused_code": 195,
+      "fused_name": "Curva 45P",
+      "fused_confidence": 0.8024922847747803,
+      "support_count": 5,
+      "support_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "supporting_observed_ids": [
+        "node4_0001_3",
+        "node4_0007_9",
+        "node4_0006_6",
+        "node4_0002_8",
+        "node4_0004_7"
+      ],
+      "local_structural_signature": {
+        "self_code": 195,
+        "nearby_code_histogram": {
+          "11": 5,
+          "202": 4,
+          "53": 3
+        },
+        "anchor_hint_score": 0.4,
+        "terminal_hint_count": 0
+      },
+      "max_degree": 2,
+      "anchor_hint_score": 0.4,
+      "representative_branch_roles": [],
+      "representative_triplet_hints": []
+    },
+    {
+      "scene_node_id": "202#1",
+      "fused_code": 202,
+      "fused_name": "Antisfilo",
+      "fused_confidence": 0.8002338528633117,
+      "support_count": 5,
+      "support_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "supporting_observed_ids": [
+        "node4_0001_8",
+        "node4_0007_10",
+        "node4_0002_5",
+        "node4_0004_5",
+        "node4_0006_11"
+      ],
+      "local_structural_signature": {
+        "self_code": 202,
+        "nearby_code_histogram": {
+          "95": 5,
+          "195": 5,
+          "75": 4,
+          "15": 1
+        },
+        "anchor_hint_score": 1.0,
+        "terminal_hint_count": 0
+      },
+      "max_degree": 2,
+      "anchor_hint_score": 1.0,
+      "representative_branch_roles": [],
+      "representative_triplet_hints": []
+    },
+    {
+      "scene_node_id": "202#2",
+      "fused_code": 202,
+      "fused_name": "Antisfilo",
+      "fused_confidence": 0.7912975311279297,
+      "support_count": 5,
+      "support_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "supporting_observed_ids": [
+        "node4_0001_14",
+        "node4_0007_11",
+        "node4_0006_10",
+        "node4_0002_14",
+        "node4_0004_8"
+      ],
+      "local_structural_signature": {
+        "self_code": 202,
+        "nearby_code_histogram": {
+          "53": 5,
+          "195": 5,
+          "202": 3
+        },
+        "anchor_hint_score": 0.6,
+        "terminal_hint_count": 0
+      },
+      "max_degree": 2,
+      "anchor_hint_score": 0.6,
+      "representative_branch_roles": [],
+      "representative_triplet_hints": []
+    },
+    {
+      "scene_node_id": "202#3",
+      "fused_code": 202,
+      "fused_name": "Antisfilo",
+      "fused_confidence": 0.8167813718318939,
+      "support_count": 4,
+      "support_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006"
+      ],
+      "supporting_observed_ids": [
+        "node4_0001_4",
+        "node4_0004_3",
+        "node4_0006_1",
+        "node4_0002_7"
+      ],
+      "local_structural_signature": {
+        "self_code": 202,
+        "nearby_code_histogram": {
+          "195": 4,
+          "53": 4,
+          "11": 4
+        },
+        "anchor_hint_score": 1.0,
+        "terminal_hint_count": 0
+      },
+      "max_degree": 2,
+      "anchor_hint_score": 1.0,
+      "representative_branch_roles": [],
+      "representative_triplet_hints": []
+    }
+  ],
+  "anchor_nodes": [
+    {
+      "anchor_id": "AN_116#1",
+      "scene_node_id": "116#1",
+      "code": 116,
+      "name": "Tee FL",
+      "valence": 3,
+      "anchor_type": "tee",
+      "is_hub": true,
+      "is_strong_endpoint": false,
+      "support_count": 5,
+      "support_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "anchor_rank": 1.0,
+      "evidence": {
+        "supporting_observed_ids": [
+          "node4_0001_11",
+          "node4_0004_9",
+          "node4_0002_11",
+          "node4_0007_8",
+          "node4_0006_13"
+        ],
+        "local_structural_signature": {
+          "self_code": 116,
+          "nearby_code_histogram": {
+            "75": 4,
+            "15": 3,
+            "95": 1
+          },
+          "anchor_hint_score": 1.0,
+          "terminal_hint_count": 2
+        }
+      }
+    },
+    {
+      "anchor_id": "AN_75#1",
+      "scene_node_id": "75#1",
+      "code": 75,
+      "name": "Riduzione",
+      "valence": 2,
+      "anchor_type": "rare_reducer",
+      "is_hub": true,
+      "is_strong_endpoint": false,
+      "support_count": 4,
+      "support_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006"
+      ],
+      "anchor_rank": 0.9199999999999999,
+      "evidence": {
+        "supporting_observed_ids": [
+          "node4_0001_6",
+          "node4_0004_11",
+          "node4_0006_9",
+          "node4_0002_12"
+        ],
+        "local_structural_signature": {
+          "self_code": 75,
+          "nearby_code_histogram": {
+            "95": 4,
+            "202": 4,
+            "116": 4
+          },
+          "anchor_hint_score": 1.0,
+          "terminal_hint_count": 0
+        }
+      }
+    },
+    {
+      "anchor_id": "AN_11#1",
+      "scene_node_id": "11#1",
+      "code": 11,
+      "name": "Giunto",
+      "valence": 2,
+      "anchor_type": "strong_endpoint",
+      "is_hub": false,
+      "is_strong_endpoint": true,
+      "support_count": 5,
+      "support_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "anchor_rank": 0.8,
+      "evidence": {
+        "supporting_observed_ids": [
+          "node4_0001_2",
+          "node4_0004_1",
+          "node4_0002_6",
+          "node4_0006_5",
+          "node4_0007_7"
+        ],
+        "local_structural_signature": {
+          "self_code": 11,
+          "nearby_code_histogram": {
+            "195": 5,
+            "202": 4
+          },
+          "anchor_hint_score": 0.0,
+          "terminal_hint_count": 5
+        }
+      }
+    },
+    {
+      "anchor_id": "AN_54#1",
+      "scene_node_id": "54#1",
+      "code": 54,
+      "name": "Curva 22",
+      "valence": 2,
+      "anchor_type": "strong_endpoint",
+      "is_hub": false,
+      "is_strong_endpoint": true,
+      "support_count": 5,
+      "support_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "anchor_rank": 0.8,
+      "evidence": {
+        "supporting_observed_ids": [
+          "node4_0001_7",
+          "node4_0007_2",
+          "node4_0006_7",
+          "node4_0004_10",
+          "node4_0002_0"
+        ],
+        "local_structural_signature": {
+          "self_code": 54,
+          "nearby_code_histogram": {
+            "15": 2,
+            "95": 2
+          },
+          "anchor_hint_score": 0.2,
+          "terminal_hint_count": 5
+        }
+      }
+    }
+  ],
+  "scene_branches": [
+    {
+      "scene_branch_id": "SB_0",
+      "supporting_fragments": [
+        "node4_0007_frag_4",
+        "node4_0006_frag_1",
+        "node4_0004_frag_1",
+        "node4_0002_frag_6",
+        "node4_0001_frag_12"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "195#1",
+        "202#2",
+        "53#2",
+        "195#2",
+        "11#1"
+      ],
+      "fused_ordered_codes": [
+        195,
+        202,
+        53,
+        195,
+        11
+      ],
+      "support_count": 5,
+      "support_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "195#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "11#1",
+          "is_anchor": true,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8209558298190436,
+      "merged_fragment_ids": [
+        "node4_0007_frag_4",
+        "node4_0006_frag_1",
+        "node4_0004_frag_1",
+        "node4_0002_frag_6",
+        "node4_0001_frag_12"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=5",
+        "images=node4_0001,node4_0002,node4_0004,node4_0006,node4_0007",
+        "canonical_codes=[195, 202, 53, 195, 11]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node4_0007_frag_4",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node4_0006_frag_1",
+          "decision": "merged",
+          "score": 1.1099999999999999,
+          "reasons": [
+            "multiset_jaccard=0.50",
+            "direction=reversed",
+            "start_code_matches",
+            "triplet_compatibility=0.35",
+            "anchor_hint_mismatch_202",
+            "anchor_hint_matches_195"
+          ]
+        },
+        {
+          "fragment_id": "node4_0004_frag_1",
+          "decision": "merged",
+          "score": 0.6299999999999999,
+          "reasons": [
+            "multiset_jaccard=0.60",
+            "direction=reversed",
+            "end_code_matches",
+            "triplet_compatibility=-0.05",
+            "anchor_hint_mismatch_202"
+          ]
+        },
+        {
+          "fragment_id": "node4_0002_frag_6",
+          "decision": "merged",
+          "score": 0.66,
+          "reasons": [
+            "multiset_jaccard=0.40",
+            "direction=reversed",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_53",
+            "anchor_hint_matches_195"
+          ]
+        },
+        {
+          "fragment_id": "node4_0001_frag_12",
+          "decision": "merged",
+          "score": 0.66,
+          "reasons": [
+            "multiset_jaccard=0.40",
+            "direction=forward",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_195",
+            "anchor_hint_mismatch_53"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_1",
+      "supporting_fragments": [
+        "node4_0006_frag_11",
+        "node4_0004_frag_2",
+        "node4_0007_frag_5"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "54#1",
+        "95#1",
+        "15#1",
+        "54#1"
+      ],
+      "fused_ordered_codes": [
+        54,
+        95,
+        15,
+        54
+      ],
+      "support_count": 3,
+      "support_images": [
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "54#1",
+          "is_anchor": true,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "54#1",
+          "is_anchor": true,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8203490475813547,
+      "merged_fragment_ids": [
+        "node4_0006_frag_11",
+        "node4_0004_frag_2",
+        "node4_0007_frag_5"
+      ],
+      "ambiguous_matches": [
+        {
+          "fragment_id": "node4_0007_frag_5",
+          "candidate_clusters": [
+            {
+              "cluster_index": 1,
+              "score": 0.5,
+              "reasons": [
+                "multiset_jaccard=0.50",
+                "direction=forward",
+                "triplet_compatibility=0.00"
+              ]
+            },
+            {
+              "cluster_index": 9,
+              "score": 0.47333333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=reversed",
+                "start_code_matches",
+                "triplet_compatibility=0.00"
+              ]
+            },
+            {
+              "cluster_index": 10,
+              "score": 0.47333333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00"
+              ]
+            }
+          ]
+        }
+      ],
+      "acceptance_reasons": [
+        "support_count=3",
+        "images=node4_0004,node4_0006,node4_0007",
+        "canonical_codes=[54, 95, 15, 54]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node4_0006_frag_11",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node4_0004_frag_2",
+          "decision": "merged",
+          "score": 0.5800000000000001,
+          "reasons": [
+            "multiset_jaccard=0.50",
+            "direction=forward",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_95"
+          ]
+        },
+        {
+          "fragment_id": "node4_0007_frag_5",
+          "decision": "merged",
+          "score": 0.5,
+          "reasons": [
+            "multiset_jaccard=0.50",
+            "direction=forward",
+            "triplet_compatibility=0.00"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_2",
+      "supporting_fragments": [
+        "node4_0007_frag_6",
+        "node4_0004_frag_12",
+        "node4_0002_frag_0",
+        "node4_0006_frag_7",
+        "node4_0001_frag_6"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "53#1",
+        "95#3",
+        "15#2",
+        "116#1"
+      ],
+      "fused_ordered_codes": [
+        53,
+        95,
+        15,
+        116
+      ],
+      "support_count": 5,
+      "support_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "53#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "116#1",
+          "is_anchor": true,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8192031294107437,
+      "merged_fragment_ids": [
+        "node4_0007_frag_6",
+        "node4_0004_frag_12",
+        "node4_0002_frag_0",
+        "node4_0006_frag_7",
+        "node4_0001_frag_6"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=5",
+        "images=node4_0001,node4_0002,node4_0004,node4_0006,node4_0007",
+        "canonical_codes=[53, 95, 15, 116]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node4_0007_frag_6",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node4_0004_frag_12",
+          "decision": "merged",
+          "score": 1.44,
+          "reasons": [
+            "multiset_jaccard=0.75",
+            "direction=forward",
+            "end_code_matches",
+            "triplet_compatibility=0.35",
+            "anchor_hint_mismatch_95",
+            "anchor_hint_matches_116",
+            "anchor_endpoint_supported"
+          ]
+        },
+        {
+          "fragment_id": "node4_0002_frag_0",
+          "decision": "merged",
+          "score": 1.24,
+          "reasons": [
+            "multiset_jaccard=0.75",
+            "direction=reversed",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=-0.05",
+            "anchor_hint_matches_116",
+            "anchor_endpoint_supported"
+          ]
+        },
+        {
+          "fragment_id": "node4_0006_frag_7",
+          "decision": "merged",
+          "score": 1.24,
+          "reasons": [
+            "multiset_jaccard=0.75",
+            "direction=reversed",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=-0.05",
+            "anchor_hint_matches_116",
+            "anchor_endpoint_supported"
+          ]
+        },
+        {
+          "fragment_id": "node4_0001_frag_6",
+          "decision": "merged",
+          "score": 0.64,
+          "reasons": [
+            "multiset_jaccard=0.50",
+            "direction=reversed",
+            "start_code_matches",
+            "triplet_compatibility=0.00"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_3",
+      "supporting_fragments": [
+        "node4_0007_frag_0",
+        "node4_0004_frag_11",
+        "node4_0006_frag_3",
+        "node4_0002_frag_4",
+        "node4_0001_frag_8"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "202#1",
+        "15#1",
+        "95#2"
+      ],
+      "fused_ordered_codes": [
+        202,
+        15,
+        95
+      ],
+      "support_count": 5,
+      "support_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "202#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "95#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.826054851214091,
+      "merged_fragment_ids": [
+        "node4_0007_frag_0",
+        "node4_0004_frag_11",
+        "node4_0006_frag_3",
+        "node4_0002_frag_4",
+        "node4_0001_frag_8"
+      ],
+      "ambiguous_matches": [
+        {
+          "fragment_id": "node4_0001_frag_8",
+          "candidate_clusters": [
+            {
+              "cluster_index": 3,
+              "score": 0.51,
+              "reasons": [
+                "multiset_jaccard=0.25",
+                "direction=forward",
+                "start_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_202",
+                "anchor_hint_mismatch_53"
+              ]
+            },
+            {
+              "cluster_index": 2,
+              "score": 0.46,
+              "reasons": [
+                "multiset_jaccard=0.20",
+                "direction=reversed",
+                "start_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_mismatch_202",
+                "anchor_hint_matches_53"
+              ]
+            }
+          ]
+        }
+      ],
+      "acceptance_reasons": [
+        "support_count=5",
+        "images=node4_0001,node4_0002,node4_0004,node4_0006,node4_0007",
+        "canonical_codes=[202, 15, 95]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node4_0007_frag_0",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node4_0004_frag_11",
+          "decision": "merged",
+          "score": 0.65,
+          "reasons": [
+            "multiset_jaccard=0.20",
+            "direction=forward",
+            "start_code_matches",
+            "triplet_compatibility=-0.05",
+            "anchor_hint_matches_202",
+            "anchor_hint_matches_202"
+          ]
+        },
+        {
+          "fragment_id": "node4_0006_frag_3",
+          "decision": "merged",
+          "score": 0.47000000000000003,
+          "reasons": [
+            "multiset_jaccard=0.20",
+            "direction=forward",
+            "start_code_matches",
+            "triplet_compatibility=-0.05",
+            "anchor_hint_matches_202"
+          ]
+        },
+        {
+          "fragment_id": "node4_0002_frag_4",
+          "decision": "merged",
+          "score": 0.51,
+          "reasons": [
+            "multiset_jaccard=0.25",
+            "direction=reversed",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_53",
+            "anchor_hint_matches_202"
+          ]
+        },
+        {
+          "fragment_id": "node4_0001_frag_8",
+          "decision": "merged",
+          "score": 0.51,
+          "reasons": [
+            "multiset_jaccard=0.25",
+            "direction=forward",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_202",
+            "anchor_hint_mismatch_53"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_4",
+      "supporting_fragments": [
+        "node4_0002_frag_5",
+        "node4_0001_frag_13",
+        "node4_0006_frag_4",
+        "node4_0007_frag_1",
+        "node4_0004_frag_5"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "53#2",
+        "202#3"
+      ],
+      "fused_ordered_codes": [
+        53,
+        202
+      ],
+      "support_count": 5,
+      "support_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "53#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "202#3",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.826682060956955,
+      "merged_fragment_ids": [
+        "node4_0002_frag_5",
+        "node4_0001_frag_13",
+        "node4_0006_frag_4",
+        "node4_0007_frag_1",
+        "node4_0004_frag_5"
+      ],
+      "ambiguous_matches": [
+        {
+          "fragment_id": "node4_0006_frag_4",
+          "candidate_clusters": [
+            {
+              "cluster_index": 4,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=reversed",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_202",
+                "anchor_hint_mismatch_95"
+              ]
+            },
+            {
+              "cluster_index": 6,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_mismatch_202",
+                "anchor_hint_matches_95"
+              ]
+            }
+          ]
+        },
+        {
+          "fragment_id": "node4_0007_frag_1",
+          "candidate_clusters": [
+            {
+              "cluster_index": 4,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=reversed",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_202",
+                "anchor_hint_mismatch_95"
+              ]
+            },
+            {
+              "cluster_index": 6,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_mismatch_202",
+                "anchor_hint_matches_95"
+              ]
+            },
+            {
+              "cluster_index": 7,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "start_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_202",
+                "anchor_hint_mismatch_95"
+              ]
+            }
+          ]
+        },
+        {
+          "fragment_id": "node4_0004_frag_5",
+          "candidate_clusters": [
+            {
+              "cluster_index": 4,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_mismatch_75",
+                "anchor_hint_matches_202"
+              ]
+            },
+            {
+              "cluster_index": 5,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=reversed",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_75",
+                "anchor_hint_mismatch_202"
+              ]
+            },
+            {
+              "cluster_index": 7,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_mismatch_75",
+                "anchor_hint_matches_202"
+              ]
+            }
+          ]
+        }
+      ],
+      "acceptance_reasons": [
+        "support_count=5",
+        "images=node4_0001,node4_0002,node4_0004,node4_0006,node4_0007",
+        "canonical_codes=[53, 202]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node4_0002_frag_5",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node4_0001_frag_13",
+          "decision": "merged",
+          "score": 1.6400000000000001,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=reversed",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_202",
+            "anchor_hint_matches_53"
+          ]
+        },
+        {
+          "fragment_id": "node4_0006_frag_4",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=reversed",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_202",
+            "anchor_hint_mismatch_95"
+          ]
+        },
+        {
+          "fragment_id": "node4_0007_frag_1",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=reversed",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_202",
+            "anchor_hint_mismatch_95"
+          ]
+        },
+        {
+          "fragment_id": "node4_0004_frag_5",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=forward",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_75",
+            "anchor_hint_matches_202"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_5",
+      "supporting_fragments": [
+        "node4_0002_frag_1",
+        "node4_0001_frag_3",
+        "node4_0006_frag_10",
+        "node4_0004_frag_6"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "116#1",
+        "75#1"
+      ],
+      "fused_ordered_codes": [
+        116,
+        75
+      ],
+      "support_count": 4,
+      "support_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "116#1",
+          "is_anchor": true,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "75#1",
+          "is_anchor": true,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.822641633450985,
+      "merged_fragment_ids": [
+        "node4_0002_frag_1",
+        "node4_0001_frag_3",
+        "node4_0006_frag_10",
+        "node4_0004_frag_6"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=4",
+        "images=node4_0001,node4_0002,node4_0004,node4_0006",
+        "canonical_codes=[116, 75]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [
+        "all_local_adjacencies_forbidden_prior"
+      ],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node4_0002_frag_1",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node4_0001_frag_3",
+          "decision": "merged",
+          "score": 1.7200000000000002,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_116",
+            "anchor_hint_matches_75",
+            "anchor_endpoint_supported"
+          ]
+        },
+        {
+          "fragment_id": "node4_0006_frag_10",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=forward",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_95",
+            "anchor_hint_matches_75"
+          ]
+        },
+        {
+          "fragment_id": "node4_0004_frag_6",
+          "decision": "merged",
+          "score": 1.7200000000000002,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=reversed",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_75",
+            "anchor_hint_matches_116",
+            "anchor_endpoint_supported"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_6",
+      "supporting_fragments": [
+        "node4_0002_frag_2",
+        "node4_0001_frag_4",
+        "node4_0006_frag_9",
+        "node4_0004_frag_4",
+        "node4_0007_frag_3"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "75#1",
+        "95#2"
+      ],
+      "fused_ordered_codes": [
+        75,
+        95
+      ],
+      "support_count": 5,
+      "support_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "75#1",
+          "is_anchor": true,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "95#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8224248290061951,
+      "merged_fragment_ids": [
+        "node4_0002_frag_2",
+        "node4_0001_frag_4",
+        "node4_0006_frag_9",
+        "node4_0004_frag_4",
+        "node4_0007_frag_3"
+      ],
+      "ambiguous_matches": [
+        {
+          "fragment_id": "node4_0007_frag_3",
+          "candidate_clusters": [
+            {
+              "cluster_index": 6,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=reversed",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_95",
+                "anchor_hint_mismatch_195"
+              ]
+            },
+            {
+              "cluster_index": 8,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_mismatch_95",
+                "anchor_hint_matches_195"
+              ]
+            }
+          ]
+        }
+      ],
+      "acceptance_reasons": [
+        "support_count=5",
+        "images=node4_0001,node4_0002,node4_0004,node4_0006,node4_0007",
+        "canonical_codes=[75, 95]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node4_0002_frag_2",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node4_0001_frag_4",
+          "decision": "merged",
+          "score": 1.6400000000000001,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=reversed",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_95",
+            "anchor_hint_matches_75"
+          ]
+        },
+        {
+          "fragment_id": "node4_0006_frag_9",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=reversed",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_95",
+            "anchor_hint_mismatch_195"
+          ]
+        },
+        {
+          "fragment_id": "node4_0004_frag_4",
+          "decision": "merged",
+          "score": 1.6400000000000001,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_75",
+            "anchor_hint_matches_95"
+          ]
+        },
+        {
+          "fragment_id": "node4_0007_frag_3",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=reversed",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_95",
+            "anchor_hint_mismatch_195"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_7",
+      "supporting_fragments": [
+        "node4_0001_frag_7",
+        "node4_0006_frag_5",
+        "node4_0002_frag_8",
+        "node4_0004_frag_8"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "202#2",
+        "202#3"
+      ],
+      "fused_ordered_codes": [
+        202,
+        202
+      ],
+      "support_count": 4,
+      "support_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "202#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "202#3",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8180146217346191,
+      "merged_fragment_ids": [
+        "node4_0001_frag_7",
+        "node4_0006_frag_5",
+        "node4_0002_frag_8",
+        "node4_0004_frag_8"
+      ],
+      "ambiguous_matches": [
+        {
+          "fragment_id": "node4_0004_frag_8",
+          "candidate_clusters": [
+            {
+              "cluster_index": 7,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_mismatch_95",
+                "anchor_hint_matches_202"
+              ]
+            },
+            {
+              "cluster_index": 8,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=reversed",
+                "start_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_mismatch_95",
+                "anchor_hint_matches_202"
+              ]
+            },
+            {
+              "cluster_index": 10,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=reversed",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_95",
+                "anchor_hint_mismatch_202"
+              ]
+            }
+          ]
+        }
+      ],
+      "acceptance_reasons": [
+        "support_count=4",
+        "images=node4_0001,node4_0002,node4_0004,node4_0006",
+        "canonical_codes=[202, 202]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node4_0001_frag_7",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node4_0006_frag_5",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=forward",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_202",
+            "anchor_hint_mismatch_195"
+          ]
+        },
+        {
+          "fragment_id": "node4_0002_frag_8",
+          "decision": "merged",
+          "score": 1.6400000000000001,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_202",
+            "anchor_hint_matches_202"
+          ]
+        },
+        {
+          "fragment_id": "node4_0004_frag_8",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=forward",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_95",
+            "anchor_hint_matches_202"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_8",
+      "supporting_fragments": [
+        "node4_0002_frag_7",
+        "node4_0001_frag_1",
+        "node4_0006_frag_6",
+        "node4_0004_frag_9",
+        "node4_0007_frag_2"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "202#2",
+        "195#1"
+      ],
+      "fused_ordered_codes": [
+        202,
+        195
+      ],
+      "support_count": 5,
+      "support_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "202#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "195#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8106782138347626,
+      "merged_fragment_ids": [
+        "node4_0002_frag_7",
+        "node4_0001_frag_1",
+        "node4_0006_frag_6",
+        "node4_0004_frag_9",
+        "node4_0007_frag_2"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=5",
+        "images=node4_0001,node4_0002,node4_0004,node4_0006,node4_0007",
+        "canonical_codes=[202, 195]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node4_0002_frag_7",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node4_0001_frag_1",
+          "decision": "merged",
+          "score": 1.6400000000000001,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=reversed",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_195",
+            "anchor_hint_matches_202"
+          ]
+        },
+        {
+          "fragment_id": "node4_0006_frag_6",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=forward",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_202",
+            "anchor_hint_mismatch_75"
+          ]
+        },
+        {
+          "fragment_id": "node4_0004_frag_9",
+          "decision": "merged",
+          "score": 1.6400000000000001,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=reversed",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_195",
+            "anchor_hint_matches_202"
+          ]
+        },
+        {
+          "fragment_id": "node4_0007_frag_2",
+          "decision": "merged",
+          "score": 1.6400000000000001,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_202",
+            "anchor_hint_matches_195"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_9",
+      "supporting_fragments": [
+        "node4_0002_frag_9",
+        "node4_0004_frag_3",
+        "node4_0001_frag_11"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "95#2",
+        "195#1"
+      ],
+      "fused_ordered_codes": [
+        95,
+        195
+      ],
+      "support_count": 3,
+      "support_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "95#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "195#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8114205598831177,
+      "merged_fragment_ids": [
+        "node4_0002_frag_9",
+        "node4_0004_frag_3",
+        "node4_0001_frag_11"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=3",
+        "images=node4_0001,node4_0002,node4_0004",
+        "canonical_codes=[95, 195]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [
+        "all_local_adjacencies_forbidden_prior"
+      ],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node4_0002_frag_9",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node4_0004_frag_3",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=reversed",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_75",
+            "anchor_hint_matches_95"
+          ]
+        },
+        {
+          "fragment_id": "node4_0001_frag_11",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=reversed",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_195",
+            "anchor_hint_mismatch_202"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_10",
+      "supporting_fragments": [
+        "node4_0001_frag_0",
+        "node4_0002_frag_14",
+        "node4_0004_frag_7"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "195#1",
+        "95#2"
+      ],
+      "fused_ordered_codes": [
+        195,
+        95
+      ],
+      "support_count": 3,
+      "support_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "195#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "95#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8065665662288666,
+      "merged_fragment_ids": [
+        "node4_0001_frag_0",
+        "node4_0002_frag_14",
+        "node4_0004_frag_7"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=3",
+        "images=node4_0001,node4_0002,node4_0004",
+        "canonical_codes=[195, 95]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [
+        "all_local_adjacencies_forbidden_prior"
+      ],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node4_0001_frag_0",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node4_0002_frag_14",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=reversed",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_202",
+            "anchor_hint_matches_195"
+          ]
+        },
+        {
+          "fragment_id": "node4_0004_frag_7",
+          "decision": "merged",
+          "score": 1.6400000000000001,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=reversed",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_95",
+            "anchor_hint_matches_195"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_11",
+      "supporting_fragments": [
+        "node4_0002_frag_3",
+        "node4_0001_frag_14",
+        "node4_0006_frag_8",
+        "node4_0004_frag_13"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "75#1",
+        "202#1"
+      ],
+      "fused_ordered_codes": [
+        75,
+        202
+      ],
+      "support_count": 4,
+      "support_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "75#1",
+          "is_anchor": true,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "202#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.7962163761258125,
+      "merged_fragment_ids": [
+        "node4_0002_frag_3",
+        "node4_0001_frag_14",
+        "node4_0006_frag_8",
+        "node4_0004_frag_13"
+      ],
+      "ambiguous_matches": [
+        {
+          "fragment_id": "node4_0004_frag_13",
+          "candidate_clusters": [
+            {
+              "cluster_index": 11,
+              "score": 0.8333333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_202",
+                "anchor_hint_matches_202"
+              ]
+            },
+            {
+              "cluster_index": 12,
+              "score": 0.8333333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_202",
+                "anchor_hint_matches_202"
+              ]
+            },
+            {
+              "cluster_index": 13,
+              "score": 0.8333333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_202",
+                "anchor_hint_matches_202"
+              ]
+            }
+          ]
+        }
+      ],
+      "acceptance_reasons": [
+        "support_count=4",
+        "images=node4_0001,node4_0002,node4_0004,node4_0006",
+        "canonical_codes=[75, 202]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [
+        "all_local_adjacencies_forbidden_prior"
+      ],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node4_0002_frag_3",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node4_0001_frag_14",
+          "decision": "merged",
+          "score": 1.6400000000000001,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_75",
+            "anchor_hint_matches_202"
+          ]
+        },
+        {
+          "fragment_id": "node4_0006_frag_8",
+          "decision": "merged",
+          "score": 0.6733333333333332,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=reversed",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_116",
+            "anchor_hint_matches_75",
+            "anchor_endpoint_supported"
+          ]
+        },
+        {
+          "fragment_id": "node4_0004_frag_13",
+          "decision": "merged",
+          "score": 0.8333333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=forward",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_202",
+            "anchor_hint_matches_202"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_12",
+      "supporting_fragments": [
+        "node4_0001_frag_5",
+        "node4_0002_frag_10",
+        "node4_0004_frag_0",
+        "node4_0006_frag_2"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "11#1",
+        "202#3"
+      ],
+      "fused_ordered_codes": [
+        11,
+        202
+      ],
+      "support_count": 4,
+      "support_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "11#1",
+          "is_anchor": true,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "202#3",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8122221231460571,
+      "merged_fragment_ids": [
+        "node4_0001_frag_5",
+        "node4_0002_frag_10",
+        "node4_0004_frag_0",
+        "node4_0006_frag_2"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=4",
+        "images=node4_0001,node4_0002,node4_0004,node4_0006",
+        "canonical_codes=[11, 202]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [
+        "all_local_adjacencies_forbidden_prior"
+      ],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node4_0001_frag_5",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node4_0002_frag_10",
+          "decision": "merged",
+          "score": 1.6400000000000001,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_95",
+            "anchor_hint_matches_202"
+          ]
+        },
+        {
+          "fragment_id": "node4_0004_frag_0",
+          "decision": "merged",
+          "score": 0.6533333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=forward",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_202"
+          ]
+        },
+        {
+          "fragment_id": "node4_0006_frag_2",
+          "decision": "merged",
+          "score": 1.4600000000000002,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=reversed",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_202"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_13",
+      "supporting_fragments": [
+        "node4_0002_frag_11",
+        "node4_0001_frag_2",
+        "node4_0004_frag_10"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "195#1",
+        "202#1"
+      ],
+      "fused_ordered_codes": [
+        195,
+        202
+      ],
+      "support_count": 3,
+      "support_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "195#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "202#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.7826736668745676,
+      "merged_fragment_ids": [
+        "node4_0002_frag_11",
+        "node4_0001_frag_2",
+        "node4_0004_frag_10"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=3",
+        "images=node4_0001,node4_0002,node4_0004",
+        "canonical_codes=[195, 202]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node4_0002_frag_11",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node4_0001_frag_2",
+          "decision": "merged",
+          "score": 1.6400000000000001,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_195",
+            "anchor_hint_matches_202"
+          ]
+        },
+        {
+          "fragment_id": "node4_0004_frag_10",
+          "decision": "merged",
+          "score": 1.6400000000000001,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_195",
+            "anchor_hint_matches_202"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_14",
+      "supporting_fragments": [
+        "node4_0006_frag_0"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "15#3",
+        "54#1"
+      ],
+      "fused_ordered_codes": [
+        15,
+        54
+      ],
+      "support_count": 1,
+      "support_images": [
+        "node4_0006"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "15#3",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "54#1",
+          "is_anchor": true,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8228122889995575,
+      "merged_fragment_ids": [
+        "node4_0006_frag_0"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=1",
+        "images=node4_0006",
+        "canonical_codes=[15, 54]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [
+        "all_local_adjacencies_forbidden_prior"
+      ],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node4_0006_frag_0",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_15",
+      "supporting_fragments": [
+        "node4_0001_frag_10",
+        "node4_0002_frag_12"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "11#1",
+        "202#3"
+      ],
+      "fused_ordered_codes": [
+        11,
+        202
+      ],
+      "support_count": 2,
+      "support_images": [
+        "node4_0001",
+        "node4_0002"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "11#1",
+          "is_anchor": true,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "202#3",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8059551119804382,
+      "merged_fragment_ids": [
+        "node4_0001_frag_10",
+        "node4_0002_frag_12"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=2",
+        "images=node4_0001,node4_0002",
+        "canonical_codes=[11, 202]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [
+        "all_local_adjacencies_forbidden_prior"
+      ],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node4_0001_frag_10",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node4_0002_frag_12",
+          "decision": "merged",
+          "score": 1.4600000000000002,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_202"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_16",
+      "supporting_fragments": [
+        "node4_0002_frag_13",
+        "node4_0001_frag_9"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "11#1",
+        "195#2"
+      ],
+      "fused_ordered_codes": [
+        11,
+        195
+      ],
+      "support_count": 2,
+      "support_images": [
+        "node4_0001",
+        "node4_0002"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "11#1",
+          "is_anchor": true,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "195#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8047668635845184,
+      "merged_fragment_ids": [
+        "node4_0002_frag_13",
+        "node4_0001_frag_9"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=2",
+        "images=node4_0001,node4_0002",
+        "canonical_codes=[11, 195]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node4_0002_frag_13",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node4_0001_frag_9",
+          "decision": "merged",
+          "score": 1.4600000000000002,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_195"
+          ]
+        }
+      ]
+    }
+  ],
+  "candidate_edges": [
+    {
+      "edge_id": "CE_0",
+      "scene_node_a": "11#1",
+      "scene_node_b": "195#2",
+      "code_a": 11,
+      "code_b": 195,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "branch_ids": [
+        "SB_0",
+        "SB_16"
+      ],
+      "support_count": 5,
+      "branch_support_count": 2,
+      "knn_support_count": 5,
+      "residual_support_count": 5,
+      "direct_visible_support_count": 5,
+      "shortcut_candidate_support_count": 0,
+      "observational_status_votes": {
+        "direct_visible": 5
+      },
+      "support_reasons": {
+        "tight_local_proximity": 5
+      },
+      "cooc_count": 1,
+      "triplet_support": 1,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "anchor_attached_branch_step",
+        "anchor_attached_branch_step",
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_1",
+      "scene_node_a": "11#1",
+      "scene_node_b": "202#3",
+      "code_a": 11,
+      "code_b": 202,
+      "evidence_sources": [
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006"
+      ],
+      "branch_ids": [
+        "SB_12",
+        "SB_15"
+      ],
+      "support_count": 4,
+      "branch_support_count": 2,
+      "knn_support_count": 4,
+      "residual_support_count": 4,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 4,
+      "observational_status_votes": {
+        "shortcut_candidate": 4
+      },
+      "support_reasons": {
+        "distant_or_suspicious_local_adjacency": 4
+      },
+      "cooc_count": 0,
+      "triplet_support": 1,
+      "forbidden_pair_flag": true,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "anchor_attached_branch_step",
+        "anchor_attached_branch_step",
+        "residual_local_hypothesis_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_2",
+      "scene_node_a": "116#1",
+      "scene_node_b": "15#1",
+      "code_a": 116,
+      "code_b": 15,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node4_0004"
+      ],
+      "branch_ids": [],
+      "support_count": 1,
+      "branch_support_count": 0,
+      "knn_support_count": 1,
+      "residual_support_count": 1,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 1,
+      "observational_status_votes": {
+        "shortcut_candidate": 1
+      },
+      "support_reasons": {
+        "distant_or_suspicious_local_adjacency": 1
+      },
+      "cooc_count": 12,
+      "triplet_support": 24,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 3,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_3",
+      "scene_node_a": "116#1",
+      "scene_node_b": "15#2",
+      "code_a": 116,
+      "code_b": 15,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "branch_ids": [
+        "SB_2"
+      ],
+      "support_count": 1,
+      "branch_support_count": 1,
+      "knn_support_count": 1,
+      "residual_support_count": 1,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 1,
+      "observational_status_votes": {
+        "shortcut_candidate": 1
+      },
+      "support_reasons": {
+        "distant_or_suspicious_local_adjacency": 1
+      },
+      "cooc_count": 12,
+      "triplet_support": 24,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 3,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "anchor_attached_branch_step",
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_4",
+      "scene_node_a": "116#1",
+      "scene_node_b": "15#3",
+      "code_a": 116,
+      "code_b": 15,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node4_0002"
+      ],
+      "branch_ids": [],
+      "support_count": 1,
+      "branch_support_count": 0,
+      "knn_support_count": 1,
+      "residual_support_count": 1,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 1,
+      "observational_status_votes": {
+        "shortcut_candidate": 1
+      },
+      "support_reasons": {
+        "distant_or_suspicious_local_adjacency": 1
+      },
+      "cooc_count": 12,
+      "triplet_support": 24,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 3,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_5",
+      "scene_node_a": "116#1",
+      "scene_node_b": "75#1",
+      "code_a": 116,
+      "code_b": 75,
+      "evidence_sources": [
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006"
+      ],
+      "branch_ids": [
+        "SB_5"
+      ],
+      "support_count": 4,
+      "branch_support_count": 1,
+      "knn_support_count": 4,
+      "residual_support_count": 4,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 4,
+      "observational_status_votes": {
+        "shortcut_candidate": 4
+      },
+      "support_reasons": {
+        "distant_or_suspicious_local_adjacency": 4
+      },
+      "cooc_count": 0,
+      "triplet_support": 1,
+      "forbidden_pair_flag": true,
+      "a_remaining_degree": 3,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "anchor_attached_branch_step",
+        "residual_local_hypothesis_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_6",
+      "scene_node_a": "116#1",
+      "scene_node_b": "95#3",
+      "code_a": 116,
+      "code_b": 95,
+      "evidence_sources": [
+        "knn_residual",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node4_0006"
+      ],
+      "branch_ids": [],
+      "support_count": 1,
+      "branch_support_count": 0,
+      "knn_support_count": 1,
+      "residual_support_count": 1,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 1,
+      "observational_status_votes": {
+        "shortcut_candidate": 1
+      },
+      "support_reasons": {
+        "distant_or_suspicious_local_adjacency": 1
+      },
+      "cooc_count": 0,
+      "triplet_support": 8,
+      "forbidden_pair_flag": true,
+      "a_remaining_degree": 3,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "residual_local_hypothesis_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_7",
+      "scene_node_a": "15#1",
+      "scene_node_b": "202#1",
+      "code_a": 15,
+      "code_b": 202,
+      "evidence_sources": [
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "branch_ids": [
+        "SB_3"
+      ],
+      "support_count": 1,
+      "branch_support_count": 1,
+      "knn_support_count": 1,
+      "residual_support_count": 1,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 1,
+      "observational_status_votes": {
+        "shortcut_candidate": 1
+      },
+      "support_reasons": {
+        "distant_or_suspicious_local_adjacency": 1
+      },
+      "cooc_count": 0,
+      "triplet_support": 1,
+      "forbidden_pair_flag": true,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "ordered_branch_chain_step",
+        "residual_local_hypothesis_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_8",
+      "scene_node_a": "15#1",
+      "scene_node_b": "54#1",
+      "code_a": 15,
+      "code_b": 54,
+      "evidence_sources": [
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "branch_ids": [
+        "SB_1"
+      ],
+      "support_count": 1,
+      "branch_support_count": 1,
+      "knn_support_count": 1,
+      "residual_support_count": 1,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 1,
+      "observational_status_votes": {
+        "shortcut_candidate": 1
+      },
+      "support_reasons": {
+        "distant_or_suspicious_local_adjacency": 1
+      },
+      "cooc_count": 0,
+      "triplet_support": 2,
+      "forbidden_pair_flag": true,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "anchor_attached_branch_step",
+        "residual_local_hypothesis_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_9",
+      "scene_node_a": "15#1",
+      "scene_node_b": "95#1",
+      "code_a": 15,
+      "code_b": 95,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "branch_ids": [
+        "SB_1"
+      ],
+      "support_count": 2,
+      "branch_support_count": 1,
+      "knn_support_count": 2,
+      "residual_support_count": 2,
+      "direct_visible_support_count": 1,
+      "shortcut_candidate_support_count": 0,
+      "observational_status_votes": {
+        "plausible_local_adjacency": 1,
+        "direct_visible": 1
+      },
+      "support_reasons": {
+        "partial_view_local_adjacency": 1,
+        "tight_local_proximity": 1
+      },
+      "cooc_count": 21,
+      "triplet_support": 34,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "ordered_branch_chain_step",
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_10",
+      "scene_node_a": "15#1",
+      "scene_node_b": "95#2",
+      "code_a": 15,
+      "code_b": 95,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "branch_ids": [
+        "SB_3"
+      ],
+      "support_count": 1,
+      "branch_support_count": 1,
+      "knn_support_count": 1,
+      "residual_support_count": 1,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 0,
+      "observational_status_votes": {
+        "plausible_local_adjacency": 1
+      },
+      "support_reasons": {
+        "partial_view_local_adjacency": 1
+      },
+      "cooc_count": 21,
+      "triplet_support": 34,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "ordered_branch_chain_step",
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_11",
+      "scene_node_a": "15#2",
+      "scene_node_b": "95#3",
+      "code_a": 15,
+      "code_b": 95,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "branch_ids": [
+        "SB_2"
+      ],
+      "support_count": 1,
+      "branch_support_count": 1,
+      "knn_support_count": 1,
+      "residual_support_count": 1,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 0,
+      "observational_status_votes": {
+        "plausible_local_adjacency": 1
+      },
+      "support_reasons": {
+        "partial_view_local_adjacency": 1
+      },
+      "cooc_count": 21,
+      "triplet_support": 34,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "ordered_branch_chain_step",
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_12",
+      "scene_node_a": "15#3",
+      "scene_node_b": "53#1",
+      "code_a": 15,
+      "code_b": 53,
+      "evidence_sources": [
+        "knn_residual",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node4_0001",
+        "node4_0002"
+      ],
+      "branch_ids": [],
+      "support_count": 2,
+      "branch_support_count": 0,
+      "knn_support_count": 2,
+      "residual_support_count": 2,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 2,
+      "observational_status_votes": {
+        "shortcut_candidate": 2
+      },
+      "support_reasons": {
+        "distant_or_suspicious_local_adjacency": 2
+      },
+      "cooc_count": 0,
+      "triplet_support": 6,
+      "forbidden_pair_flag": true,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "residual_local_hypothesis_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_13",
+      "scene_node_a": "15#3",
+      "scene_node_b": "54#1",
+      "code_a": 15,
+      "code_b": 54,
+      "evidence_sources": [
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node4_0006"
+      ],
+      "branch_ids": [
+        "SB_14"
+      ],
+      "support_count": 1,
+      "branch_support_count": 1,
+      "knn_support_count": 1,
+      "residual_support_count": 1,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 1,
+      "observational_status_votes": {
+        "shortcut_candidate": 1
+      },
+      "support_reasons": {
+        "distant_or_suspicious_local_adjacency": 1
+      },
+      "cooc_count": 0,
+      "triplet_support": 2,
+      "forbidden_pair_flag": true,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "anchor_attached_branch_step",
+        "residual_local_hypothesis_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_14",
+      "scene_node_a": "15#3",
+      "scene_node_b": "95#1",
+      "code_a": 15,
+      "code_b": 95,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node4_0007"
+      ],
+      "branch_ids": [],
+      "support_count": 1,
+      "branch_support_count": 0,
+      "knn_support_count": 1,
+      "residual_support_count": 1,
+      "direct_visible_support_count": 1,
+      "shortcut_candidate_support_count": 0,
+      "observational_status_votes": {
+        "direct_visible": 1
+      },
+      "support_reasons": {
+        "tight_local_proximity": 1
+      },
+      "cooc_count": 21,
+      "triplet_support": 34,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_15",
+      "scene_node_a": "195#1",
+      "scene_node_b": "202#1",
+      "code_a": 195,
+      "code_b": 202,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "branch_ids": [
+        "SB_13"
+      ],
+      "support_count": 5,
+      "branch_support_count": 1,
+      "knn_support_count": 5,
+      "residual_support_count": 5,
+      "direct_visible_support_count": 5,
+      "shortcut_candidate_support_count": 0,
+      "observational_status_votes": {
+        "direct_visible": 5
+      },
+      "support_reasons": {
+        "tight_local_proximity": 5
+      },
+      "cooc_count": 3,
+      "triplet_support": 5,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "ordered_branch_chain_step",
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_16",
+      "scene_node_a": "195#1",
+      "scene_node_b": "202#2",
+      "code_a": 195,
+      "code_b": 202,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "branch_ids": [
+        "SB_0",
+        "SB_8"
+      ],
+      "support_count": 5,
+      "branch_support_count": 2,
+      "knn_support_count": 5,
+      "residual_support_count": 5,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 0,
+      "observational_status_votes": {
+        "plausible_local_adjacency": 5
+      },
+      "support_reasons": {
+        "partial_view_local_adjacency": 5
+      },
+      "cooc_count": 3,
+      "triplet_support": 5,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "ordered_branch_chain_step",
+        "ordered_branch_chain_step",
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_17",
+      "scene_node_a": "195#1",
+      "scene_node_b": "95#2",
+      "code_a": 195,
+      "code_b": 95,
+      "evidence_sources": [
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "branch_ids": [
+        "SB_10",
+        "SB_9"
+      ],
+      "support_count": 5,
+      "branch_support_count": 2,
+      "knn_support_count": 5,
+      "residual_support_count": 5,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 5,
+      "observational_status_votes": {
+        "shortcut_candidate": 5
+      },
+      "support_reasons": {
+        "distant_or_suspicious_local_adjacency": 5
+      },
+      "cooc_count": 0,
+      "triplet_support": 1,
+      "forbidden_pair_flag": true,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "ordered_branch_chain_step",
+        "ordered_branch_chain_step",
+        "residual_local_hypothesis_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_18",
+      "scene_node_a": "195#2",
+      "scene_node_b": "202#3",
+      "code_a": 195,
+      "code_b": 202,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006"
+      ],
+      "branch_ids": [],
+      "support_count": 4,
+      "branch_support_count": 0,
+      "knn_support_count": 4,
+      "residual_support_count": 4,
+      "direct_visible_support_count": 2,
+      "shortcut_candidate_support_count": 0,
+      "observational_status_votes": {
+        "direct_visible": 2,
+        "plausible_local_adjacency": 2
+      },
+      "support_reasons": {
+        "tight_local_proximity": 2,
+        "partial_view_local_adjacency": 2
+      },
+      "cooc_count": 3,
+      "triplet_support": 5,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_19",
+      "scene_node_a": "195#2",
+      "scene_node_b": "53#2",
+      "code_a": 195,
+      "code_b": 53,
+      "evidence_sources": [
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "branch_ids": [
+        "SB_0"
+      ],
+      "support_count": 3,
+      "branch_support_count": 1,
+      "knn_support_count": 3,
+      "residual_support_count": 3,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 3,
+      "observational_status_votes": {
+        "shortcut_candidate": 3
+      },
+      "support_reasons": {
+        "distant_or_suspicious_local_adjacency": 3
+      },
+      "cooc_count": 0,
+      "triplet_support": 2,
+      "forbidden_pair_flag": true,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "ordered_branch_chain_step",
+        "residual_local_hypothesis_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_20",
+      "scene_node_a": "202#1",
+      "scene_node_b": "202#2",
+      "code_a": 202,
+      "code_b": 202,
+      "evidence_sources": [
+        "knn_residual",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node4_0004"
+      ],
+      "branch_ids": [],
+      "support_count": 1,
+      "branch_support_count": 0,
+      "knn_support_count": 1,
+      "residual_support_count": 1,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 1,
+      "observational_status_votes": {
+        "shortcut_candidate": 1
+      },
+      "support_reasons": {
+        "distant_or_suspicious_local_adjacency": 1
+      },
+      "cooc_count": 0,
+      "triplet_support": 11,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "residual_local_hypothesis_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_21",
+      "scene_node_a": "202#1",
+      "scene_node_b": "75#1",
+      "code_a": 202,
+      "code_b": 75,
+      "evidence_sources": [
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006"
+      ],
+      "branch_ids": [
+        "SB_11"
+      ],
+      "support_count": 4,
+      "branch_support_count": 1,
+      "knn_support_count": 4,
+      "residual_support_count": 4,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 4,
+      "observational_status_votes": {
+        "shortcut_candidate": 4
+      },
+      "support_reasons": {
+        "distant_or_suspicious_local_adjacency": 4
+      },
+      "cooc_count": 0,
+      "triplet_support": 1,
+      "forbidden_pair_flag": true,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "anchor_attached_branch_step",
+        "residual_local_hypothesis_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_22",
+      "scene_node_a": "202#1",
+      "scene_node_b": "95#2",
+      "code_a": 202,
+      "code_b": 95,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "branch_ids": [],
+      "support_count": 5,
+      "branch_support_count": 0,
+      "knn_support_count": 5,
+      "residual_support_count": 5,
+      "direct_visible_support_count": 5,
+      "shortcut_candidate_support_count": 0,
+      "observational_status_votes": {
+        "direct_visible": 5
+      },
+      "support_reasons": {
+        "tight_local_proximity": 5
+      },
+      "cooc_count": 2,
+      "triplet_support": 4,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_23",
+      "scene_node_a": "202#2",
+      "scene_node_b": "202#3",
+      "code_a": 202,
+      "code_b": 202,
+      "evidence_sources": [
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006"
+      ],
+      "branch_ids": [
+        "SB_7"
+      ],
+      "support_count": 2,
+      "branch_support_count": 1,
+      "knn_support_count": 2,
+      "residual_support_count": 2,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 2,
+      "observational_status_votes": {
+        "shortcut_candidate": 2
+      },
+      "support_reasons": {
+        "distant_or_suspicious_local_adjacency": 2
+      },
+      "cooc_count": 0,
+      "triplet_support": 11,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "ordered_branch_chain_step",
+        "residual_local_hypothesis_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_24",
+      "scene_node_a": "202#2",
+      "scene_node_b": "53#1",
+      "code_a": 202,
+      "code_b": 53,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node4_0004"
+      ],
+      "branch_ids": [],
+      "support_count": 1,
+      "branch_support_count": 0,
+      "knn_support_count": 1,
+      "residual_support_count": 1,
+      "direct_visible_support_count": 1,
+      "shortcut_candidate_support_count": 0,
+      "observational_status_votes": {
+        "direct_visible": 1
+      },
+      "support_reasons": {
+        "tight_local_proximity": 1
+      },
+      "cooc_count": 3,
+      "triplet_support": 4,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_25",
+      "scene_node_a": "202#2",
+      "scene_node_b": "53#2",
+      "code_a": 202,
+      "code_b": 53,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "branch_ids": [
+        "SB_0"
+      ],
+      "support_count": 4,
+      "branch_support_count": 1,
+      "knn_support_count": 4,
+      "residual_support_count": 4,
+      "direct_visible_support_count": 3,
+      "shortcut_candidate_support_count": 0,
+      "observational_status_votes": {
+        "direct_visible": 3,
+        "plausible_local_adjacency": 1
+      },
+      "support_reasons": {
+        "tight_local_proximity": 3,
+        "partial_view_local_adjacency": 1
+      },
+      "cooc_count": 3,
+      "triplet_support": 4,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "ordered_branch_chain_step",
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_26",
+      "scene_node_a": "202#3",
+      "scene_node_b": "53#1",
+      "code_a": 202,
+      "code_b": 53,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node4_0004"
+      ],
+      "branch_ids": [],
+      "support_count": 1,
+      "branch_support_count": 0,
+      "knn_support_count": 1,
+      "residual_support_count": 1,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 0,
+      "observational_status_votes": {
+        "plausible_local_adjacency": 1
+      },
+      "support_reasons": {
+        "partial_view_local_adjacency": 1
+      },
+      "cooc_count": 3,
+      "triplet_support": 4,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_27",
+      "scene_node_a": "202#3",
+      "scene_node_b": "53#2",
+      "code_a": 202,
+      "code_b": 53,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "branch_ids": [
+        "SB_4"
+      ],
+      "support_count": 3,
+      "branch_support_count": 1,
+      "knn_support_count": 3,
+      "residual_support_count": 3,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 0,
+      "observational_status_votes": {
+        "plausible_local_adjacency": 3
+      },
+      "support_reasons": {
+        "partial_view_local_adjacency": 3
+      },
+      "cooc_count": 3,
+      "triplet_support": 4,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "ordered_branch_chain_step",
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_28",
+      "scene_node_a": "53#1",
+      "scene_node_b": "95#3",
+      "code_a": 53,
+      "code_b": 95,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "branch_ids": [
+        "SB_2"
+      ],
+      "support_count": 2,
+      "branch_support_count": 1,
+      "knn_support_count": 2,
+      "residual_support_count": 2,
+      "direct_visible_support_count": 1,
+      "shortcut_candidate_support_count": 0,
+      "observational_status_votes": {
+        "direct_visible": 1,
+        "plausible_local_adjacency": 1
+      },
+      "support_reasons": {
+        "tight_local_proximity": 1,
+        "partial_view_local_adjacency": 1
+      },
+      "cooc_count": 6,
+      "triplet_support": 11,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "ordered_branch_chain_step",
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_29",
+      "scene_node_a": "54#1",
+      "scene_node_b": "95#1",
+      "code_a": 54,
+      "code_b": 95,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "branch_ids": [
+        "SB_1"
+      ],
+      "support_count": 2,
+      "branch_support_count": 1,
+      "knn_support_count": 2,
+      "residual_support_count": 2,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 2,
+      "observational_status_votes": {
+        "shortcut_candidate": 2
+      },
+      "support_reasons": {
+        "distant_or_suspicious_local_adjacency": 2
+      },
+      "cooc_count": 3,
+      "triplet_support": 3,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "anchor_attached_branch_step",
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_30",
+      "scene_node_a": "75#1",
+      "scene_node_b": "95#1",
+      "code_a": 75,
+      "code_b": 95,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node4_0004"
+      ],
+      "branch_ids": [],
+      "support_count": 1,
+      "branch_support_count": 0,
+      "knn_support_count": 1,
+      "residual_support_count": 1,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 1,
+      "observational_status_votes": {
+        "shortcut_candidate": 1
+      },
+      "support_reasons": {
+        "distant_or_suspicious_local_adjacency": 1
+      },
+      "cooc_count": 3,
+      "triplet_support": 5,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_31",
+      "scene_node_a": "75#1",
+      "scene_node_b": "95#2",
+      "code_a": 75,
+      "code_b": 95,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node4_0001",
+        "node4_0002",
+        "node4_0004",
+        "node4_0006",
+        "node4_0007"
+      ],
+      "branch_ids": [
+        "SB_6"
+      ],
+      "support_count": 4,
+      "branch_support_count": 1,
+      "knn_support_count": 4,
+      "residual_support_count": 4,
+      "direct_visible_support_count": 3,
+      "shortcut_candidate_support_count": 0,
+      "observational_status_votes": {
+        "plausible_local_adjacency": 1,
+        "direct_visible": 3
+      },
+      "support_reasons": {
+        "partial_view_local_adjacency": 1,
+        "tight_local_proximity": 3
+      },
+      "cooc_count": 3,
+      "triplet_support": 5,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "anchor_attached_branch_step",
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    }
+  ],
+  "debug": {
+    "anchor_node_ids": [
+      "11#1",
+      "116#1",
+      "54#1",
+      "75#1"
+    ],
+    "branch_edge_steps": [
+      {
+        "scene_branch_id": "SB_0",
+        "pair": [
+          "195#1",
+          "202#2"
+        ],
+        "reason": "ordered_branch_chain_step"
+      },
+      {
+        "scene_branch_id": "SB_0",
+        "pair": [
+          "202#2",
+          "53#2"
+        ],
+        "reason": "ordered_branch_chain_step"
+      },
+      {
+        "scene_branch_id": "SB_0",
+        "pair": [
+          "195#2",
+          "53#2"
+        ],
+        "reason": "ordered_branch_chain_step"
+      },
+      {
+        "scene_branch_id": "SB_0",
+        "pair": [
+          "11#1",
+          "195#2"
+        ],
+        "reason": "anchor_attached_branch_step"
+      },
+      {
+        "scene_branch_id": "SB_1",
+        "pair": [
+          "54#1",
+          "95#1"
+        ],
+        "reason": "anchor_attached_branch_step"
+      },
+      {
+        "scene_branch_id": "SB_1",
+        "pair": [
+          "15#1",
+          "95#1"
+        ],
+        "reason": "ordered_branch_chain_step"
+      },
+      {
+        "scene_branch_id": "SB_1",
+        "pair": [
+          "15#1",
+          "54#1"
+        ],
+        "reason": "anchor_attached_branch_step"
+      },
+      {
+        "scene_branch_id": "SB_2",
+        "pair": [
+          "53#1",
+          "95#3"
+        ],
+        "reason": "ordered_branch_chain_step"
+      },
+      {
+        "scene_branch_id": "SB_2",
+        "pair": [
+          "15#2",
+          "95#3"
+        ],
+        "reason": "ordered_branch_chain_step"
+      },
+      {
+        "scene_branch_id": "SB_2",
+        "pair": [
+          "116#1",
+          "15#2"
+        ],
+        "reason": "anchor_attached_branch_step"
+      },
+      {
+        "scene_branch_id": "SB_3",
+        "pair": [
+          "15#1",
+          "202#1"
+        ],
+        "reason": "ordered_branch_chain_step"
+      },
+      {
+        "scene_branch_id": "SB_3",
+        "pair": [
+          "15#1",
+          "95#2"
+        ],
+        "reason": "ordered_branch_chain_step"
+      },
+      {
+        "scene_branch_id": "SB_4",
+        "pair": [
+          "202#3",
+          "53#2"
+        ],
+        "reason": "ordered_branch_chain_step"
+      },
+      {
+        "scene_branch_id": "SB_5",
+        "pair": [
+          "116#1",
+          "75#1"
+        ],
+        "reason": "anchor_attached_branch_step"
+      },
+      {
+        "scene_branch_id": "SB_6",
+        "pair": [
+          "75#1",
+          "95#2"
+        ],
+        "reason": "anchor_attached_branch_step"
+      },
+      {
+        "scene_branch_id": "SB_7",
+        "pair": [
+          "202#2",
+          "202#3"
+        ],
+        "reason": "ordered_branch_chain_step"
+      },
+      {
+        "scene_branch_id": "SB_8",
+        "pair": [
+          "195#1",
+          "202#2"
+        ],
+        "reason": "ordered_branch_chain_step"
+      },
+      {
+        "scene_branch_id": "SB_9",
+        "pair": [
+          "195#1",
+          "95#2"
+        ],
+        "reason": "ordered_branch_chain_step"
+      },
+      {
+        "scene_branch_id": "SB_10",
+        "pair": [
+          "195#1",
+          "95#2"
+        ],
+        "reason": "ordered_branch_chain_step"
+      },
+      {
+        "scene_branch_id": "SB_11",
+        "pair": [
+          "202#1",
+          "75#1"
+        ],
+        "reason": "anchor_attached_branch_step"
+      },
+      {
+        "scene_branch_id": "SB_12",
+        "pair": [
+          "11#1",
+          "202#3"
+        ],
+        "reason": "anchor_attached_branch_step"
+      },
+      {
+        "scene_branch_id": "SB_13",
+        "pair": [
+          "195#1",
+          "202#1"
+        ],
+        "reason": "ordered_branch_chain_step"
+      },
+      {
+        "scene_branch_id": "SB_14",
+        "pair": [
+          "15#3",
+          "54#1"
+        ],
+        "reason": "anchor_attached_branch_step"
+      },
+      {
+        "scene_branch_id": "SB_15",
+        "pair": [
+          "11#1",
+          "202#3"
+        ],
+        "reason": "anchor_attached_branch_step"
+      },
+      {
+        "scene_branch_id": "SB_16",
+        "pair": [
+          "11#1",
+          "195#2"
+        ],
+        "reason": "anchor_attached_branch_step"
+      }
+    ],
+    "residual_pairs": [
+      {
+        "pair": [
+          "11#1",
+          "195#2"
+        ],
+        "supporting_images": [
+          "node4_0001",
+          "node4_0002",
+          "node4_0004",
+          "node4_0006",
+          "node4_0007"
+        ],
+        "status_votes": {
+          "direct_visible": 5
+        },
+        "support_reasons": {
+          "tight_local_proximity": 5
+        }
+      },
+      {
+        "pair": [
+          "11#1",
+          "202#3"
+        ],
+        "supporting_images": [
+          "node4_0001",
+          "node4_0002",
+          "node4_0004",
+          "node4_0006"
+        ],
+        "status_votes": {
+          "shortcut_candidate": 4
+        },
+        "support_reasons": {
+          "distant_or_suspicious_local_adjacency": 4
+        }
+      },
+      {
+        "pair": [
+          "116#1",
+          "15#1"
+        ],
+        "supporting_images": [
+          "node4_0004"
+        ],
+        "status_votes": {
+          "shortcut_candidate": 1
+        },
+        "support_reasons": {
+          "distant_or_suspicious_local_adjacency": 1
+        }
+      },
+      {
+        "pair": [
+          "116#1",
+          "15#2"
+        ],
+        "supporting_images": [
+          "node4_0007"
+        ],
+        "status_votes": {
+          "shortcut_candidate": 1
+        },
+        "support_reasons": {
+          "distant_or_suspicious_local_adjacency": 1
+        }
+      },
+      {
+        "pair": [
+          "116#1",
+          "15#3"
+        ],
+        "supporting_images": [
+          "node4_0002"
+        ],
+        "status_votes": {
+          "shortcut_candidate": 1
+        },
+        "support_reasons": {
+          "distant_or_suspicious_local_adjacency": 1
+        }
+      },
+      {
+        "pair": [
+          "116#1",
+          "75#1"
+        ],
+        "supporting_images": [
+          "node4_0001",
+          "node4_0002",
+          "node4_0004",
+          "node4_0006"
+        ],
+        "status_votes": {
+          "shortcut_candidate": 4
+        },
+        "support_reasons": {
+          "distant_or_suspicious_local_adjacency": 4
+        }
+      },
+      {
+        "pair": [
+          "116#1",
+          "95#3"
+        ],
+        "supporting_images": [
+          "node4_0006"
+        ],
+        "status_votes": {
+          "shortcut_candidate": 1
+        },
+        "support_reasons": {
+          "distant_or_suspicious_local_adjacency": 1
+        }
+      },
+      {
+        "pair": [
+          "15#1",
+          "202#1"
+        ],
+        "supporting_images": [
+          "node4_0007"
+        ],
+        "status_votes": {
+          "shortcut_candidate": 1
+        },
+        "support_reasons": {
+          "distant_or_suspicious_local_adjacency": 1
+        }
+      },
+      {
+        "pair": [
+          "15#1",
+          "54#1"
+        ],
+        "supporting_images": [
+          "node4_0006"
+        ],
+        "status_votes": {
+          "shortcut_candidate": 1
+        },
+        "support_reasons": {
+          "distant_or_suspicious_local_adjacency": 1
+        }
+      },
+      {
+        "pair": [
+          "15#1",
+          "95#1"
+        ],
+        "supporting_images": [
+          "node4_0004",
+          "node4_0006"
+        ],
+        "status_votes": {
+          "plausible_local_adjacency": 1,
+          "direct_visible": 1
+        },
+        "support_reasons": {
+          "partial_view_local_adjacency": 1,
+          "tight_local_proximity": 1
+        }
+      },
+      {
+        "pair": [
+          "15#1",
+          "95#2"
+        ],
+        "supporting_images": [
+          "node4_0007"
+        ],
+        "status_votes": {
+          "plausible_local_adjacency": 1
+        },
+        "support_reasons": {
+          "partial_view_local_adjacency": 1
+        }
+      },
+      {
+        "pair": [
+          "15#2",
+          "95#3"
+        ],
+        "supporting_images": [
+          "node4_0007"
+        ],
+        "status_votes": {
+          "plausible_local_adjacency": 1
+        },
+        "support_reasons": {
+          "partial_view_local_adjacency": 1
+        }
+      },
+      {
+        "pair": [
+          "15#3",
+          "53#1"
+        ],
+        "supporting_images": [
+          "node4_0001",
+          "node4_0002"
+        ],
+        "status_votes": {
+          "shortcut_candidate": 2
+        },
+        "support_reasons": {
+          "distant_or_suspicious_local_adjacency": 2
+        }
+      },
+      {
+        "pair": [
+          "15#3",
+          "54#1"
+        ],
+        "supporting_images": [
+          "node4_0006"
+        ],
+        "status_votes": {
+          "shortcut_candidate": 1
+        },
+        "support_reasons": {
+          "distant_or_suspicious_local_adjacency": 1
+        }
+      },
+      {
+        "pair": [
+          "15#3",
+          "95#1"
+        ],
+        "supporting_images": [
+          "node4_0007"
+        ],
+        "status_votes": {
+          "direct_visible": 1
+        },
+        "support_reasons": {
+          "tight_local_proximity": 1
+        }
+      },
+      {
+        "pair": [
+          "195#1",
+          "202#1"
+        ],
+        "supporting_images": [
+          "node4_0001",
+          "node4_0002",
+          "node4_0004",
+          "node4_0006",
+          "node4_0007"
+        ],
+        "status_votes": {
+          "direct_visible": 5
+        },
+        "support_reasons": {
+          "tight_local_proximity": 5
+        }
+      },
+      {
+        "pair": [
+          "195#1",
+          "202#2"
+        ],
+        "supporting_images": [
+          "node4_0001",
+          "node4_0002",
+          "node4_0004",
+          "node4_0006",
+          "node4_0007"
+        ],
+        "status_votes": {
+          "plausible_local_adjacency": 5
+        },
+        "support_reasons": {
+          "partial_view_local_adjacency": 5
+        }
+      },
+      {
+        "pair": [
+          "195#1",
+          "95#2"
+        ],
+        "supporting_images": [
+          "node4_0001",
+          "node4_0002",
+          "node4_0004",
+          "node4_0006",
+          "node4_0007"
+        ],
+        "status_votes": {
+          "shortcut_candidate": 5
+        },
+        "support_reasons": {
+          "distant_or_suspicious_local_adjacency": 5
+        }
+      },
+      {
+        "pair": [
+          "195#2",
+          "202#3"
+        ],
+        "supporting_images": [
+          "node4_0001",
+          "node4_0002",
+          "node4_0004",
+          "node4_0006"
+        ],
+        "status_votes": {
+          "direct_visible": 2,
+          "plausible_local_adjacency": 2
+        },
+        "support_reasons": {
+          "tight_local_proximity": 2,
+          "partial_view_local_adjacency": 2
+        }
+      },
+      {
+        "pair": [
+          "195#2",
+          "53#2"
+        ],
+        "supporting_images": [
+          "node4_0001",
+          "node4_0002",
+          "node4_0007"
+        ],
+        "status_votes": {
+          "shortcut_candidate": 3
+        },
+        "support_reasons": {
+          "distant_or_suspicious_local_adjacency": 3
+        }
+      },
+      {
+        "pair": [
+          "202#1",
+          "202#2"
+        ],
+        "supporting_images": [
+          "node4_0004"
+        ],
+        "status_votes": {
+          "shortcut_candidate": 1
+        },
+        "support_reasons": {
+          "distant_or_suspicious_local_adjacency": 1
+        }
+      },
+      {
+        "pair": [
+          "202#1",
+          "75#1"
+        ],
+        "supporting_images": [
+          "node4_0001",
+          "node4_0002",
+          "node4_0004",
+          "node4_0006"
+        ],
+        "status_votes": {
+          "shortcut_candidate": 4
+        },
+        "support_reasons": {
+          "distant_or_suspicious_local_adjacency": 4
+        }
+      },
+      {
+        "pair": [
+          "202#1",
+          "95#2"
+        ],
+        "supporting_images": [
+          "node4_0001",
+          "node4_0002",
+          "node4_0004",
+          "node4_0006",
+          "node4_0007"
+        ],
+        "status_votes": {
+          "direct_visible": 5
+        },
+        "support_reasons": {
+          "tight_local_proximity": 5
+        }
+      },
+      {
+        "pair": [
+          "202#2",
+          "202#3"
+        ],
+        "supporting_images": [
+          "node4_0001",
+          "node4_0002"
+        ],
+        "status_votes": {
+          "shortcut_candidate": 2
+        },
+        "support_reasons": {
+          "distant_or_suspicious_local_adjacency": 2
+        }
+      },
+      {
+        "pair": [
+          "202#2",
+          "53#1"
+        ],
+        "supporting_images": [
+          "node4_0004"
+        ],
+        "status_votes": {
+          "direct_visible": 1
+        },
+        "support_reasons": {
+          "tight_local_proximity": 1
+        }
+      },
+      {
+        "pair": [
+          "202#2",
+          "53#2"
+        ],
+        "supporting_images": [
+          "node4_0001",
+          "node4_0002",
+          "node4_0006",
+          "node4_0007"
+        ],
+        "status_votes": {
+          "direct_visible": 3,
+          "plausible_local_adjacency": 1
+        },
+        "support_reasons": {
+          "tight_local_proximity": 3,
+          "partial_view_local_adjacency": 1
+        }
+      },
+      {
+        "pair": [
+          "202#3",
+          "53#1"
+        ],
+        "supporting_images": [
+          "node4_0004"
+        ],
+        "status_votes": {
+          "plausible_local_adjacency": 1
+        },
+        "support_reasons": {
+          "partial_view_local_adjacency": 1
+        }
+      },
+      {
+        "pair": [
+          "202#3",
+          "53#2"
+        ],
+        "supporting_images": [
+          "node4_0001",
+          "node4_0002",
+          "node4_0006"
+        ],
+        "status_votes": {
+          "plausible_local_adjacency": 3
+        },
+        "support_reasons": {
+          "partial_view_local_adjacency": 3
+        }
+      },
+      {
+        "pair": [
+          "53#1",
+          "95#3"
+        ],
+        "supporting_images": [
+          "node4_0006",
+          "node4_0007"
+        ],
+        "status_votes": {
+          "direct_visible": 1,
+          "plausible_local_adjacency": 1
+        },
+        "support_reasons": {
+          "tight_local_proximity": 1,
+          "partial_view_local_adjacency": 1
+        }
+      },
+      {
+        "pair": [
+          "54#1",
+          "95#1"
+        ],
+        "supporting_images": [
+          "node4_0004",
+          "node4_0006"
+        ],
+        "status_votes": {
+          "shortcut_candidate": 2
+        },
+        "support_reasons": {
+          "distant_or_suspicious_local_adjacency": 2
+        }
+      },
+      {
+        "pair": [
+          "75#1",
+          "95#1"
+        ],
+        "supporting_images": [
+          "node4_0004"
+        ],
+        "status_votes": {
+          "shortcut_candidate": 1
+        },
+        "support_reasons": {
+          "distant_or_suspicious_local_adjacency": 1
+        }
+      },
+      {
+        "pair": [
+          "75#1",
+          "95#2"
+        ],
+        "supporting_images": [
+          "node4_0001",
+          "node4_0002",
+          "node4_0004",
+          "node4_0006"
+        ],
+        "status_votes": {
+          "plausible_local_adjacency": 1,
+          "direct_visible": 3
+        },
+        "support_reasons": {
+          "partial_view_local_adjacency": 1,
+          "tight_local_proximity": 3
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,724 @@
+{
+  "total_images": 7,
+  "n_nodes": 17,
+  "n_edges": 16,
+  "is_connected": true,
+  "nodes": [
+    {
+      "id": "11#1",
+      "code": 11,
+      "name": "Giunto",
+      "confidence": 0.8064695511545453,
+      "support_count": 7,
+      "support_images": [
+        "node9_0001",
+        "node9_0002",
+        "node9_0003",
+        "node9_0004",
+        "node9_0005",
+        "node9_0006",
+        "node9_0007"
+      ],
+      "degree": 1,
+      "max_degree": 1,
+      "is_anchor": true
+    },
+    {
+      "id": "11#2",
+      "code": 11,
+      "name": "Giunto",
+      "confidence": 0.7992043395837148,
+      "support_count": 6,
+      "support_images": [
+        "node9_0001",
+        "node9_0002",
+        "node9_0003",
+        "node9_0004",
+        "node9_0005",
+        "node9_0006"
+      ],
+      "degree": 1,
+      "max_degree": 1,
+      "is_anchor": true
+    },
+    {
+      "id": "15#1",
+      "code": 15,
+      "name": "Saracinesca",
+      "confidence": 0.8020955068724496,
+      "support_count": 7,
+      "support_images": [
+        "node9_0001",
+        "node9_0002",
+        "node9_0003",
+        "node9_0004",
+        "node9_0005",
+        "node9_0006",
+        "node9_0007"
+      ],
+      "degree": 2,
+      "max_degree": 2,
+      "is_anchor": false
+    },
+    {
+      "id": "15#2",
+      "code": 15,
+      "name": "Saracinesca",
+      "confidence": 0.8031651888574872,
+      "support_count": 7,
+      "support_images": [
+        "node9_0001",
+        "node9_0002",
+        "node9_0003",
+        "node9_0004",
+        "node9_0005",
+        "node9_0006",
+        "node9_0007"
+      ],
+      "degree": 1,
+      "max_degree": 2,
+      "is_anchor": false
+    },
+    {
+      "id": "15#3",
+      "code": 15,
+      "name": "Saracinesca",
+      "confidence": 0.817871073881785,
+      "support_count": 6,
+      "support_images": [
+        "node9_0001",
+        "node9_0003",
+        "node9_0004",
+        "node9_0005",
+        "node9_0006",
+        "node9_0007"
+      ],
+      "degree": 3,
+      "max_degree": 2,
+      "is_anchor": false
+    },
+    {
+      "id": "15#4",
+      "code": 15,
+      "name": "Saracinesca",
+      "confidence": 0.8217111945152282,
+      "support_count": 5,
+      "support_images": [
+        "node9_0001",
+        "node9_0002",
+        "node9_0005",
+        "node9_0006",
+        "node9_0007"
+      ],
+      "degree": 2,
+      "max_degree": 2,
+      "is_anchor": false
+    },
+    {
+      "id": "15#5",
+      "code": 15,
+      "name": "Saracinesca",
+      "confidence": 0.8331933915615082,
+      "support_count": 2,
+      "support_images": [
+        "node9_0001",
+        "node9_0006"
+      ],
+      "degree": 2,
+      "max_degree": 2,
+      "is_anchor": false
+    },
+    {
+      "id": "15#6",
+      "code": 15,
+      "name": "Saracinesca",
+      "confidence": 0.796716570854187,
+      "support_count": 2,
+      "support_images": [
+        "node9_0003",
+        "node9_0004"
+      ],
+      "degree": 1,
+      "max_degree": 2,
+      "is_anchor": false
+    },
+    {
+      "id": "15#7",
+      "code": 15,
+      "name": "Saracinesca",
+      "confidence": 0.8214570879936218,
+      "support_count": 1,
+      "support_images": [
+        "node9_0001"
+      ],
+      "degree": 2,
+      "max_degree": 2,
+      "is_anchor": false
+    },
+    {
+      "id": "15#8",
+      "code": 15,
+      "name": "Saracinesca",
+      "confidence": 0.658053457736969,
+      "support_count": 1,
+      "support_images": [
+        "node9_0001"
+      ],
+      "degree": 1,
+      "max_degree": 2,
+      "is_anchor": false
+    },
+    {
+      "id": "95#1",
+      "code": 95,
+      "name": "Bout bic.",
+      "confidence": 0.8002005577087402,
+      "support_count": 5,
+      "support_images": [
+        "node9_0001",
+        "node9_0003",
+        "node9_0004",
+        "node9_0006",
+        "node9_0007"
+      ],
+      "degree": 2,
+      "max_degree": 2,
+      "is_anchor": false
+    },
+    {
+      "id": "95#2",
+      "code": 95,
+      "name": "Bout bic.",
+      "confidence": 0.8676943898200988,
+      "support_count": 5,
+      "support_images": [
+        "node9_0001",
+        "node9_0002",
+        "node9_0003",
+        "node9_0004",
+        "node9_0005"
+      ],
+      "degree": 2,
+      "max_degree": 2,
+      "is_anchor": false
+    },
+    {
+      "id": "95#3",
+      "code": 95,
+      "name": "Bout bic.",
+      "confidence": 0.8252135992050171,
+      "support_count": 5,
+      "support_images": [
+        "node9_0001",
+        "node9_0003",
+        "node9_0004",
+        "node9_0006",
+        "node9_0007"
+      ],
+      "degree": 1,
+      "max_degree": 2,
+      "is_anchor": false
+    },
+    {
+      "id": "192#1",
+      "code": 192,
+      "name": "Croce",
+      "confidence": 0.7928537896701268,
+      "support_count": 7,
+      "support_images": [
+        "node9_0001",
+        "node9_0002",
+        "node9_0003",
+        "node9_0004",
+        "node9_0005",
+        "node9_0006",
+        "node9_0007"
+      ],
+      "degree": 4,
+      "max_degree": 4,
+      "is_anchor": true
+    },
+    {
+      "id": "255#1",
+      "code": 255,
+      "name": "Tee rid.",
+      "confidence": 0.7609626139913287,
+      "support_count": 7,
+      "support_images": [
+        "node9_0001",
+        "node9_0002",
+        "node9_0003",
+        "node9_0004",
+        "node9_0005",
+        "node9_0006",
+        "node9_0007"
+      ],
+      "degree": 3,
+      "max_degree": 3,
+      "is_anchor": true
+    },
+    {
+      "id": "255#2",
+      "code": 255,
+      "name": "Tee rid.",
+      "confidence": 0.738857497771581,
+      "support_count": 6,
+      "support_images": [
+        "node9_0001",
+        "node9_0002",
+        "node9_0003",
+        "node9_0004",
+        "node9_0005",
+        "node9_0007"
+      ],
+      "degree": 2,
+      "max_degree": 3,
+      "is_anchor": true
+    },
+    {
+      "id": "255#3",
+      "code": 255,
+      "name": "Tee rid.",
+      "confidence": 0.767086386680603,
+      "support_count": 5,
+      "support_images": [
+        "node9_0001",
+        "node9_0002",
+        "node9_0003",
+        "node9_0004",
+        "node9_0005"
+      ],
+      "degree": 2,
+      "max_degree": 3,
+      "is_anchor": true
+    }
+  ],
+  "edges": [
+    {
+      "node_a": "11#1",
+      "node_b": "15#4",
+      "support_count": 2,
+      "supporting_images": [
+        "node9_0001",
+        "node9_0003",
+        "node9_0004",
+        "node9_0005",
+        "node9_0006",
+        "node9_0007"
+      ],
+      "branch_support_count": 1,
+      "knn_support_count": 2,
+      "cooc_count": 1,
+      "triplet_support": 5,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": false,
+      "forced_reason": null
+    },
+    {
+      "node_a": "11#2",
+      "node_b": "15#1",
+      "support_count": 4,
+      "supporting_images": [
+        "node9_0001",
+        "node9_0002",
+        "node9_0003",
+        "node9_0004",
+        "node9_0005",
+        "node9_0006",
+        "node9_0007"
+      ],
+      "branch_support_count": 1,
+      "knn_support_count": 4,
+      "cooc_count": 1,
+      "triplet_support": 5,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": false,
+      "forced_reason": null
+    },
+    {
+      "node_a": "15#1",
+      "node_b": "15#5",
+      "support_count": 2,
+      "supporting_images": [
+        "node9_0001",
+        "node9_0002",
+        "node9_0003",
+        "node9_0004",
+        "node9_0005",
+        "node9_0006",
+        "node9_0007"
+      ],
+      "branch_support_count": 1,
+      "knn_support_count": 2,
+      "cooc_count": 0,
+      "triplet_support": 87,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": false,
+      "forced_reason": null
+    },
+    {
+      "node_a": "15#2",
+      "node_b": "255#2",
+      "support_count": 6,
+      "supporting_images": [
+        "node9_0001",
+        "node9_0002",
+        "node9_0003",
+        "node9_0004",
+        "node9_0005",
+        "node9_0007"
+      ],
+      "branch_support_count": 1,
+      "knn_support_count": 6,
+      "cooc_count": 15,
+      "triplet_support": 37,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": true,
+      "forced_reason": "spanning_tree_candidate_bridge"
+    },
+    {
+      "node_a": "15#3",
+      "node_b": "95#3",
+      "support_count": 3,
+      "supporting_images": [
+        "node9_0001",
+        "node9_0006",
+        "node9_0007"
+      ],
+      "branch_support_count": 0,
+      "knn_support_count": 3,
+      "cooc_count": 21,
+      "triplet_support": 34,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "triplet_prior"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": false,
+      "forced_reason": null
+    },
+    {
+      "node_a": "15#3",
+      "node_b": "255#1",
+      "support_count": 2,
+      "supporting_images": [
+        "node9_0006",
+        "node9_0007"
+      ],
+      "branch_support_count": 0,
+      "knn_support_count": 2,
+      "cooc_count": 15,
+      "triplet_support": 37,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "triplet_prior"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": false,
+      "forced_reason": null
+    },
+    {
+      "node_a": "15#3",
+      "node_b": "15#8",
+      "support_count": 1,
+      "supporting_images": [
+        "node9_0001"
+      ],
+      "branch_support_count": 0,
+      "knn_support_count": 1,
+      "cooc_count": 0,
+      "triplet_support": 87,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "knn_residual",
+        "triplet_prior"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": true,
+      "forced_reason": "spanning_tree_candidate_bridge"
+    },
+    {
+      "node_a": "15#4",
+      "node_b": "192#1",
+      "support_count": 5,
+      "supporting_images": [
+        "node9_0001",
+        "node9_0002",
+        "node9_0003",
+        "node9_0004",
+        "node9_0005",
+        "node9_0006",
+        "node9_0007"
+      ],
+      "branch_support_count": 1,
+      "knn_support_count": 5,
+      "cooc_count": 6,
+      "triplet_support": 19,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": false,
+      "forced_reason": null
+    },
+    {
+      "node_a": "15#5",
+      "node_b": "95#1",
+      "support_count": 1,
+      "supporting_images": [
+        "node9_0001"
+      ],
+      "branch_support_count": 0,
+      "knn_support_count": 1,
+      "cooc_count": 21,
+      "triplet_support": 34,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "triplet_prior"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": false,
+      "forced_reason": null
+    },
+    {
+      "node_a": "15#6",
+      "node_b": "192#1",
+      "support_count": 2,
+      "supporting_images": [
+        "node9_0003",
+        "node9_0004"
+      ],
+      "branch_support_count": 0,
+      "knn_support_count": 2,
+      "cooc_count": 6,
+      "triplet_support": 19,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "triplet_prior"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": false,
+      "forced_reason": null
+    },
+    {
+      "node_a": "15#7",
+      "node_b": "255#2",
+      "support_count": 1,
+      "supporting_images": [
+        "node9_0001",
+        "node9_0002",
+        "node9_0003",
+        "node9_0004",
+        "node9_0005",
+        "node9_0006",
+        "node9_0007"
+      ],
+      "branch_support_count": 1,
+      "knn_support_count": 1,
+      "cooc_count": 15,
+      "triplet_support": 37,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": false,
+      "forced_reason": null
+    },
+    {
+      "node_a": "15#7",
+      "node_b": "95#2",
+      "support_count": 1,
+      "supporting_images": [
+        "node9_0001",
+        "node9_0002",
+        "node9_0003",
+        "node9_0004",
+        "node9_0005",
+        "node9_0006",
+        "node9_0007"
+      ],
+      "branch_support_count": 1,
+      "knn_support_count": 1,
+      "cooc_count": 21,
+      "triplet_support": 34,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": false,
+      "forced_reason": null
+    },
+    {
+      "node_a": "95#1",
+      "node_b": "255#1",
+      "support_count": 5,
+      "supporting_images": [
+        "node9_0001",
+        "node9_0003",
+        "node9_0004",
+        "node9_0006",
+        "node9_0007"
+      ],
+      "branch_support_count": 0,
+      "knn_support_count": 5,
+      "cooc_count": 1,
+      "triplet_support": 10,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "triplet_prior"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": false,
+      "forced_reason": null
+    },
+    {
+      "node_a": "95#2",
+      "node_b": "255#3",
+      "support_count": 5,
+      "supporting_images": [
+        "node9_0001",
+        "node9_0002",
+        "node9_0003",
+        "node9_0004",
+        "node9_0005",
+        "node9_0006",
+        "node9_0007"
+      ],
+      "branch_support_count": 3,
+      "knn_support_count": 5,
+      "cooc_count": 1,
+      "triplet_support": 10,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": true,
+      "forced_reason": "spanning_tree_candidate_bridge"
+    },
+    {
+      "node_a": "192#1",
+      "node_b": "255#3",
+      "support_count": 3,
+      "supporting_images": [
+        "node9_0001",
+        "node9_0002",
+        "node9_0003",
+        "node9_0004",
+        "node9_0005",
+        "node9_0006",
+        "node9_0007"
+      ],
+      "branch_support_count": 1,
+      "knn_support_count": 3,
+      "cooc_count": 2,
+      "triplet_support": 9,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": false,
+      "forced_reason": null
+    },
+    {
+      "node_a": "192#1",
+      "node_b": "255#1",
+      "support_count": 6,
+      "supporting_images": [
+        "node9_0001",
+        "node9_0002",
+        "node9_0003",
+        "node9_0004",
+        "node9_0005",
+        "node9_0006",
+        "node9_0007"
+      ],
+      "branch_support_count": 1,
+      "knn_support_count": 6,
+      "cooc_count": 2,
+      "triplet_support": 9,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": false,
+      "forced_reason": null
+    }
+  ]
+}

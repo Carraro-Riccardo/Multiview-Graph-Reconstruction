@@ -1,0 +1,31 @@
+{
+  "already_connected": false,
+  "n_forced": 4,
+  "is_connected_after": true,
+  "forced_edges": [
+    {
+      "a": "15#1",
+      "b": "15#2",
+      "via": "candidate_bridge",
+      "priority": "(6, 4, 87, 1)"
+    },
+    {
+      "a": "15#2",
+      "b": "95#1",
+      "via": "candidate_bridge",
+      "priority": "(6, 4, 55, 1)"
+    },
+    {
+      "a": "202#2",
+      "b": "53#2",
+      "via": "candidate_bridge",
+      "priority": "(6, 2, 7, 1)"
+    },
+    {
+      "a": "15#1",
+      "b": "77#1",
+      "via": "candidate_bridge",
+      "priority": "(4, 2, 2, 1)"
+    }
+  ]
+}

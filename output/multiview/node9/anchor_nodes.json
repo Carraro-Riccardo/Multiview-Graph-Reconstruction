@@ -1,0 +1,249 @@
+{
+  "n_anchor_nodes": 6,
+  "anchor_nodes": [
+    {
+      "anchor_id": "AN_192#1",
+      "scene_node_id": "192#1",
+      "code": 192,
+      "name": "Croce",
+      "valence": 4,
+      "anchor_type": "cross",
+      "is_hub": true,
+      "is_strong_endpoint": false,
+      "support_count": 7,
+      "support_images": [
+        "node9_0001",
+        "node9_0002",
+        "node9_0003",
+        "node9_0004",
+        "node9_0005",
+        "node9_0006",
+        "node9_0007"
+      ],
+      "anchor_rank": 1.0,
+      "evidence": {
+        "supporting_observed_ids": [
+          "node9_0001_4",
+          "node9_0005_10",
+          "node9_0002_5",
+          "node9_0004_5",
+          "node9_0006_9",
+          "node9_0007_5",
+          "node9_0003_7"
+        ],
+        "local_structural_signature": {
+          "self_code": 192,
+          "nearby_code_histogram": {
+            "15": 10,
+            "255": 11
+          },
+          "anchor_hint_score": 1.0,
+          "terminal_hint_count": 0
+        }
+      }
+    },
+    {
+      "anchor_id": "AN_255#1",
+      "scene_node_id": "255#1",
+      "code": 255,
+      "name": "Tee rid.",
+      "valence": 3,
+      "anchor_type": "tee",
+      "is_hub": true,
+      "is_strong_endpoint": false,
+      "support_count": 7,
+      "support_images": [
+        "node9_0001",
+        "node9_0002",
+        "node9_0003",
+        "node9_0004",
+        "node9_0005",
+        "node9_0006",
+        "node9_0007"
+      ],
+      "anchor_rank": 1.0,
+      "evidence": {
+        "supporting_observed_ids": [
+          "node9_0002_4",
+          "node9_0006_2",
+          "node9_0005_1",
+          "node9_0007_6",
+          "node9_0003_10",
+          "node9_0001_15",
+          "node9_0004_6"
+        ],
+        "local_structural_signature": {
+          "self_code": 255,
+          "nearby_code_histogram": {
+            "15": 10,
+            "192": 6,
+            "95": 4,
+            "11": 1
+          },
+          "anchor_hint_score": 1.0,
+          "terminal_hint_count": 0
+        }
+      }
+    },
+    {
+      "anchor_id": "AN_255#2",
+      "scene_node_id": "255#2",
+      "code": 255,
+      "name": "Tee rid.",
+      "valence": 3,
+      "anchor_type": "tee",
+      "is_hub": true,
+      "is_strong_endpoint": false,
+      "support_count": 6,
+      "support_images": [
+        "node9_0001",
+        "node9_0002",
+        "node9_0003",
+        "node9_0004",
+        "node9_0005",
+        "node9_0007"
+      ],
+      "anchor_rank": 1.0,
+      "evidence": {
+        "supporting_observed_ids": [
+          "node9_0001_7",
+          "node9_0003_8",
+          "node9_0004_4",
+          "node9_0007_7",
+          "node9_0002_8",
+          "node9_0005_7"
+        ],
+        "local_structural_signature": {
+          "self_code": 255,
+          "nearby_code_histogram": {
+            "192": 4,
+            "15": 8,
+            "95": 2,
+            "11": 2,
+            "255": 2
+          },
+          "anchor_hint_score": 1.0,
+          "terminal_hint_count": 0
+        }
+      }
+    },
+    {
+      "anchor_id": "AN_255#3",
+      "scene_node_id": "255#3",
+      "code": 255,
+      "name": "Tee rid.",
+      "valence": 3,
+      "anchor_type": "tee",
+      "is_hub": true,
+      "is_strong_endpoint": false,
+      "support_count": 5,
+      "support_images": [
+        "node9_0001",
+        "node9_0002",
+        "node9_0003",
+        "node9_0004",
+        "node9_0005"
+      ],
+      "anchor_rank": 1.0,
+      "evidence": {
+        "supporting_observed_ids": [
+          "node9_0001_3",
+          "node9_0005_8",
+          "node9_0002_6",
+          "node9_0004_10",
+          "node9_0003_6"
+        ],
+        "local_structural_signature": {
+          "self_code": 255,
+          "nearby_code_histogram": {
+            "15": 10,
+            "192": 3,
+            "11": 2
+          },
+          "anchor_hint_score": 1.0,
+          "terminal_hint_count": 0
+        }
+      }
+    },
+    {
+      "anchor_id": "AN_11#1",
+      "scene_node_id": "11#1",
+      "code": 11,
+      "name": "Giunto",
+      "valence": 2,
+      "anchor_type": "strong_endpoint",
+      "is_hub": false,
+      "is_strong_endpoint": true,
+      "support_count": 7,
+      "support_images": [
+        "node9_0001",
+        "node9_0002",
+        "node9_0003",
+        "node9_0004",
+        "node9_0005",
+        "node9_0006",
+        "node9_0007"
+      ],
+      "anchor_rank": 0.8,
+      "evidence": {
+        "supporting_observed_ids": [
+          "node9_0001_0",
+          "node9_0004_3",
+          "node9_0005_5",
+          "node9_0003_1",
+          "node9_0002_3",
+          "node9_0006_0",
+          "node9_0007_0"
+        ],
+        "local_structural_signature": {
+          "self_code": 11,
+          "nearby_code_histogram": {
+            "15": 4,
+            "192": 2
+          },
+          "anchor_hint_score": 0.0,
+          "terminal_hint_count": 7
+        }
+      }
+    },
+    {
+      "anchor_id": "AN_11#2",
+      "scene_node_id": "11#2",
+      "code": 11,
+      "name": "Giunto",
+      "valence": 2,
+      "anchor_type": "strong_endpoint",
+      "is_hub": false,
+      "is_strong_endpoint": true,
+      "support_count": 6,
+      "support_images": [
+        "node9_0001",
+        "node9_0002",
+        "node9_0003",
+        "node9_0004",
+        "node9_0005",
+        "node9_0006"
+      ],
+      "anchor_rank": 0.8,
+      "evidence": {
+        "supporting_observed_ids": [
+          "node9_0001_5",
+          "node9_0002_1",
+          "node9_0005_2",
+          "node9_0003_5",
+          "node9_0004_8",
+          "node9_0006_7"
+        ],
+        "local_structural_signature": {
+          "self_code": 11,
+          "nearby_code_histogram": {
+            "255": 5,
+            "15": 10
+          },
+          "anchor_hint_score": 0.5,
+          "terminal_hint_count": 6
+        }
+      }
+    }
+  ]
+}

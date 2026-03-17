@@ -1,0 +1,377 @@
+{
+  "total_images": 5,
+  "n_nodes": 9,
+  "n_edges": 8,
+  "is_connected": true,
+  "nodes": [
+    {
+      "id": "11#1",
+      "code": 11,
+      "name": "Giunto",
+      "confidence": 0.8122733950614929,
+      "support_count": 5,
+      "support_images": [
+        "node8_0001",
+        "node8_0002",
+        "node8_0003",
+        "node8_0004",
+        "node8_0005"
+      ],
+      "degree": 1,
+      "max_degree": 1,
+      "is_anchor": true
+    },
+    {
+      "id": "11#2",
+      "code": 11,
+      "name": "Giunto",
+      "confidence": 0.7601049542427063,
+      "support_count": 5,
+      "support_images": [
+        "node8_0001",
+        "node8_0002",
+        "node8_0003",
+        "node8_0004",
+        "node8_0005"
+      ],
+      "degree": 1,
+      "max_degree": 1,
+      "is_anchor": true
+    },
+    {
+      "id": "15#1",
+      "code": 15,
+      "name": "Saracinesca",
+      "confidence": 0.8295400738716125,
+      "support_count": 5,
+      "support_images": [
+        "node8_0001",
+        "node8_0002",
+        "node8_0003",
+        "node8_0004",
+        "node8_0005"
+      ],
+      "degree": 2,
+      "max_degree": 2,
+      "is_anchor": false
+    },
+    {
+      "id": "15#2",
+      "code": 15,
+      "name": "Saracinesca",
+      "confidence": 0.8193957209587097,
+      "support_count": 5,
+      "support_images": [
+        "node8_0001",
+        "node8_0002",
+        "node8_0003",
+        "node8_0004",
+        "node8_0005"
+      ],
+      "degree": 3,
+      "max_degree": 2,
+      "is_anchor": false
+    },
+    {
+      "id": "15#3",
+      "code": 15,
+      "name": "Saracinesca",
+      "confidence": 0.831167709827423,
+      "support_count": 5,
+      "support_images": [
+        "node8_0001",
+        "node8_0002",
+        "node8_0003",
+        "node8_0004",
+        "node8_0005"
+      ],
+      "degree": 2,
+      "max_degree": 2,
+      "is_anchor": false
+    },
+    {
+      "id": "95#1",
+      "code": 95,
+      "name": "Bout bic.",
+      "confidence": 0.7611719489097595,
+      "support_count": 5,
+      "support_images": [
+        "node8_0001",
+        "node8_0002",
+        "node8_0003",
+        "node8_0004",
+        "node8_0005"
+      ],
+      "degree": 1,
+      "max_degree": 2,
+      "is_anchor": false
+    },
+    {
+      "id": "116#1",
+      "code": 116,
+      "name": "Tee FL",
+      "confidence": 0.7408878207206726,
+      "support_count": 5,
+      "support_images": [
+        "node8_0001",
+        "node8_0002",
+        "node8_0003",
+        "node8_0004",
+        "node8_0005"
+      ],
+      "degree": 2,
+      "max_degree": 3,
+      "is_anchor": true
+    },
+    {
+      "id": "207#1",
+      "code": 207,
+      "name": "Bout norm.",
+      "confidence": 0.727692186832428,
+      "support_count": 5,
+      "support_images": [
+        "node8_0001",
+        "node8_0002",
+        "node8_0003",
+        "node8_0004",
+        "node8_0005"
+      ],
+      "degree": 2,
+      "max_degree": 2,
+      "is_anchor": false
+    },
+    {
+      "id": "207#2",
+      "code": 207,
+      "name": "Bout norm.",
+      "confidence": 0.7758626580238343,
+      "support_count": 5,
+      "support_images": [
+        "node8_0001",
+        "node8_0002",
+        "node8_0003",
+        "node8_0004",
+        "node8_0005"
+      ],
+      "degree": 2,
+      "max_degree": 2,
+      "is_anchor": false
+    }
+  ],
+  "edges": [
+    {
+      "node_a": "11#1",
+      "node_b": "207#1",
+      "support_count": 5,
+      "supporting_images": [
+        "node8_0001",
+        "node8_0002",
+        "node8_0003",
+        "node8_0004",
+        "node8_0005"
+      ],
+      "branch_support_count": 2,
+      "knn_support_count": 5,
+      "cooc_count": 2,
+      "triplet_support": 2,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": false,
+      "forced_reason": null
+    },
+    {
+      "node_a": "11#2",
+      "node_b": "207#2",
+      "support_count": 5,
+      "supporting_images": [
+        "node8_0001",
+        "node8_0002",
+        "node8_0003",
+        "node8_0004",
+        "node8_0005"
+      ],
+      "branch_support_count": 2,
+      "knn_support_count": 5,
+      "cooc_count": 2,
+      "triplet_support": 2,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": false,
+      "forced_reason": null
+    },
+    {
+      "node_a": "15#1",
+      "node_b": "207#1",
+      "support_count": 3,
+      "supporting_images": [
+        "node8_0001",
+        "node8_0002",
+        "node8_0003",
+        "node8_0004",
+        "node8_0005"
+      ],
+      "branch_support_count": 1,
+      "knn_support_count": 3,
+      "cooc_count": 2,
+      "triplet_support": 4,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": false,
+      "forced_reason": null
+    },
+    {
+      "node_a": "15#1",
+      "node_b": "116#1",
+      "support_count": 5,
+      "supporting_images": [
+        "node8_0001",
+        "node8_0002",
+        "node8_0003",
+        "node8_0004",
+        "node8_0005"
+      ],
+      "branch_support_count": 2,
+      "knn_support_count": 5,
+      "cooc_count": 12,
+      "triplet_support": 24,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": false,
+      "forced_reason": null
+    },
+    {
+      "node_a": "15#2",
+      "node_b": "207#2",
+      "support_count": 3,
+      "supporting_images": [
+        "node8_0001",
+        "node8_0002",
+        "node8_0003",
+        "node8_0004",
+        "node8_0005"
+      ],
+      "branch_support_count": 1,
+      "knn_support_count": 3,
+      "cooc_count": 2,
+      "triplet_support": 4,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": false,
+      "forced_reason": null
+    },
+    {
+      "node_a": "15#2",
+      "node_b": "15#3",
+      "support_count": 3,
+      "supporting_images": [
+        "node8_0001",
+        "node8_0002",
+        "node8_0003",
+        "node8_0004",
+        "node8_0005"
+      ],
+      "branch_support_count": 1,
+      "knn_support_count": 3,
+      "cooc_count": 0,
+      "triplet_support": 87,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": false,
+      "forced_reason": null
+    },
+    {
+      "node_a": "15#2",
+      "node_b": "116#1",
+      "support_count": 5,
+      "supporting_images": [
+        "node8_0001",
+        "node8_0002",
+        "node8_0003",
+        "node8_0004",
+        "node8_0005"
+      ],
+      "branch_support_count": 0,
+      "knn_support_count": 5,
+      "cooc_count": 12,
+      "triplet_support": 24,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "triplet_prior"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": true,
+      "forced_reason": "spanning_tree_candidate_bridge"
+    },
+    {
+      "node_a": "15#3",
+      "node_b": "95#1",
+      "support_count": 5,
+      "supporting_images": [
+        "node8_0001",
+        "node8_0002",
+        "node8_0003",
+        "node8_0004",
+        "node8_0005"
+      ],
+      "branch_support_count": 1,
+      "knn_support_count": 5,
+      "cooc_count": 21,
+      "triplet_support": 34,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": false,
+      "forced_reason": null
+    }
+  ]
+}

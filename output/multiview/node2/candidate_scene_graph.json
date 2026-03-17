@@ -1,0 +1,5149 @@
+{
+  "scene_nodes": [
+    {
+      "scene_node_id": "11#1",
+      "fused_code": 11,
+      "fused_name": "Giunto",
+      "fused_confidence": 0.8007623434066773,
+      "support_count": 5,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "supporting_observed_ids": [
+        "node2_0002_11",
+        "node2_0003_10",
+        "node2_0007_0",
+        "node2_0004_9",
+        "node2_0005_7"
+      ],
+      "local_structural_signature": {
+        "self_code": 11,
+        "nearby_code_histogram": {
+          "53": 5,
+          "95": 5,
+          "15": 2
+        },
+        "anchor_hint_score": 0.4,
+        "terminal_hint_count": 5
+      },
+      "max_degree": 2,
+      "anchor_hint_score": 0.4,
+      "representative_branch_roles": [],
+      "representative_triplet_hints": []
+    },
+    {
+      "scene_node_id": "15#1",
+      "fused_code": 15,
+      "fused_name": "Saracinesca",
+      "fused_confidence": 0.7783336162567138,
+      "support_count": 5,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "supporting_observed_ids": [
+        "node2_0002_12",
+        "node2_0005_10",
+        "node2_0003_3",
+        "node2_0007_9",
+        "node2_0004_8"
+      ],
+      "local_structural_signature": {
+        "self_code": 15,
+        "nearby_code_histogram": {
+          "95": 2,
+          "53": 2,
+          "15": 4,
+          "116": 2,
+          "77": 2,
+          "202": 1,
+          "190": 1
+        },
+        "anchor_hint_score": 0.8,
+        "terminal_hint_count": 0
+      },
+      "max_degree": 2,
+      "anchor_hint_score": 0.8,
+      "representative_branch_roles": [],
+      "representative_triplet_hints": []
+    },
+    {
+      "scene_node_id": "15#2",
+      "fused_code": 15,
+      "fused_name": "Saracinesca",
+      "fused_confidence": 0.8100382328033447,
+      "support_count": 5,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "supporting_observed_ids": [
+        "node2_0002_5",
+        "node2_0005_3",
+        "node2_0004_3",
+        "node2_0003_11",
+        "node2_0007_11"
+      ],
+      "local_structural_signature": {
+        "self_code": 15,
+        "nearby_code_histogram": {
+          "15": 2,
+          "95": 4,
+          "116": 4,
+          "53": 2
+        },
+        "anchor_hint_score": 0.8,
+        "terminal_hint_count": 1
+      },
+      "max_degree": 2,
+      "anchor_hint_score": 0.8,
+      "representative_branch_roles": [],
+      "representative_triplet_hints": []
+    },
+    {
+      "scene_node_id": "15#3",
+      "fused_code": 15,
+      "fused_name": "Saracinesca",
+      "fused_confidence": 0.7888335227966309,
+      "support_count": 5,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "supporting_observed_ids": [
+        "node2_0002_3",
+        "node2_0003_5",
+        "node2_0005_1",
+        "node2_0007_1",
+        "node2_0004_7"
+      ],
+      "local_structural_signature": {
+        "self_code": 15,
+        "nearby_code_histogram": {
+          "95": 5,
+          "116": 5,
+          "202": 4
+        },
+        "anchor_hint_score": 0.8,
+        "terminal_hint_count": 0
+      },
+      "max_degree": 2,
+      "anchor_hint_score": 0.8,
+      "representative_branch_roles": [],
+      "representative_triplet_hints": []
+    },
+    {
+      "scene_node_id": "53#1",
+      "fused_code": 53,
+      "fused_name": "Tubo",
+      "fused_confidence": 0.8133815407752991,
+      "support_count": 5,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "supporting_observed_ids": [
+        "node2_0002_8",
+        "node2_0005_0",
+        "node2_0003_8",
+        "node2_0007_7",
+        "node2_0004_1"
+      ],
+      "local_structural_signature": {
+        "self_code": 53,
+        "nearby_code_histogram": {
+          "95": 2,
+          "11": 2,
+          "15": 2,
+          "202": 3
+        },
+        "anchor_hint_score": 0.4,
+        "terminal_hint_count": 3
+      },
+      "max_degree": 2,
+      "anchor_hint_score": 0.4,
+      "representative_branch_roles": [],
+      "representative_triplet_hints": []
+    },
+    {
+      "scene_node_id": "53#2",
+      "fused_code": 53,
+      "fused_name": "Tubo",
+      "fused_confidence": 0.8214931130409241,
+      "support_count": 5,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "supporting_observed_ids": [
+        "node2_0002_2",
+        "node2_0004_4",
+        "node2_0003_0",
+        "node2_0007_4",
+        "node2_0005_8"
+      ],
+      "local_structural_signature": {
+        "self_code": 53,
+        "nearby_code_histogram": {
+          "202": 2,
+          "95": 3,
+          "11": 3,
+          "15": 2
+        },
+        "anchor_hint_score": 0.4,
+        "terminal_hint_count": 2
+      },
+      "max_degree": 2,
+      "anchor_hint_score": 0.4,
+      "representative_branch_roles": [],
+      "representative_triplet_hints": []
+    },
+    {
+      "scene_node_id": "77#1",
+      "fused_code": 77,
+      "fused_name": "Tazza",
+      "fused_confidence": 0.7836091876029968,
+      "support_count": 5,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "supporting_observed_ids": [
+        "node2_0002_1",
+        "node2_0003_2",
+        "node2_0007_5",
+        "node2_0005_2",
+        "node2_0004_5"
+      ],
+      "local_structural_signature": {
+        "self_code": 77,
+        "nearby_code_histogram": {
+          "15": 4
+        },
+        "anchor_hint_score": 0.0,
+        "terminal_hint_count": 5
+      },
+      "max_degree": 2,
+      "anchor_hint_score": 0.0,
+      "representative_branch_roles": [],
+      "representative_triplet_hints": []
+    },
+    {
+      "scene_node_id": "95#1",
+      "fused_code": 95,
+      "fused_name": "Bout bic.",
+      "fused_confidence": 0.7925752758979797,
+      "support_count": 5,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "supporting_observed_ids": [
+        "node2_0002_9",
+        "node2_0003_12",
+        "node2_0005_6",
+        "node2_0004_6",
+        "node2_0007_3"
+      ],
+      "local_structural_signature": {
+        "self_code": 95,
+        "nearby_code_histogram": {
+          "53": 5,
+          "15": 5,
+          "11": 5
+        },
+        "anchor_hint_score": 1.0,
+        "terminal_hint_count": 0
+      },
+      "max_degree": 2,
+      "anchor_hint_score": 1.0,
+      "representative_branch_roles": [],
+      "representative_triplet_hints": []
+    },
+    {
+      "scene_node_id": "95#2",
+      "fused_code": 95,
+      "fused_name": "Bout bic.",
+      "fused_confidence": 0.8019356429576874,
+      "support_count": 4,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005"
+      ],
+      "supporting_observed_ids": [
+        "node2_0002_6",
+        "node2_0003_9",
+        "node2_0004_11",
+        "node2_0005_12"
+      ],
+      "local_structural_signature": {
+        "self_code": 95,
+        "nearby_code_histogram": {
+          "202": 4,
+          "15": 4,
+          "190": 4
+        },
+        "anchor_hint_score": 1.0,
+        "terminal_hint_count": 0
+      },
+      "max_degree": 2,
+      "anchor_hint_score": 1.0,
+      "representative_branch_roles": [],
+      "representative_triplet_hints": []
+    },
+    {
+      "scene_node_id": "116#1",
+      "fused_code": 116,
+      "fused_name": "Tee FL",
+      "fused_confidence": 0.7853884339332581,
+      "support_count": 5,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "supporting_observed_ids": [
+        "node2_0002_7",
+        "node2_0004_12",
+        "node2_0003_6",
+        "node2_0007_2",
+        "node2_0005_11"
+      ],
+      "local_structural_signature": {
+        "self_code": 116,
+        "nearby_code_histogram": {
+          "15": 13
+        },
+        "anchor_hint_score": 1.0,
+        "terminal_hint_count": 1
+      },
+      "max_degree": 3,
+      "anchor_hint_score": 1.0,
+      "representative_branch_roles": [],
+      "representative_triplet_hints": []
+    },
+    {
+      "scene_node_id": "190#1",
+      "fused_code": 190,
+      "fused_name": "Curva 30",
+      "fused_confidence": 0.8206822991371154,
+      "support_count": 5,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "supporting_observed_ids": [
+        "node2_0002_0",
+        "node2_0005_5",
+        "node2_0007_6",
+        "node2_0003_1",
+        "node2_0004_0"
+      ],
+      "local_structural_signature": {
+        "self_code": 190,
+        "nearby_code_histogram": {
+          "202": 10,
+          "95": 4,
+          "15": 1
+        },
+        "anchor_hint_score": 1.0,
+        "terminal_hint_count": 0
+      },
+      "max_degree": 2,
+      "anchor_hint_score": 1.0,
+      "representative_branch_roles": [],
+      "representative_triplet_hints": []
+    },
+    {
+      "scene_node_id": "202#1",
+      "fused_code": 202,
+      "fused_name": "Antisfilo",
+      "fused_confidence": 0.7875269889831543,
+      "support_count": 5,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "supporting_observed_ids": [
+        "node2_0002_4",
+        "node2_0004_2",
+        "node2_0007_8",
+        "node2_0003_4",
+        "node2_0005_4"
+      ],
+      "local_structural_signature": {
+        "self_code": 202,
+        "nearby_code_histogram": {
+          "95": 2,
+          "190": 5,
+          "15": 2,
+          "53": 3
+        },
+        "anchor_hint_score": 0.4,
+        "terminal_hint_count": 0
+      },
+      "max_degree": 2,
+      "anchor_hint_score": 0.4,
+      "representative_branch_roles": [],
+      "representative_triplet_hints": []
+    },
+    {
+      "scene_node_id": "202#2",
+      "fused_code": 202,
+      "fused_name": "Antisfilo",
+      "fused_confidence": 0.8233719110488892,
+      "support_count": 5,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "supporting_observed_ids": [
+        "node2_0002_10",
+        "node2_0007_10",
+        "node2_0004_10",
+        "node2_0005_9",
+        "node2_0003_7"
+      ],
+      "local_structural_signature": {
+        "self_code": 202,
+        "nearby_code_histogram": {
+          "53": 2,
+          "190": 5,
+          "202": 2,
+          "15": 3,
+          "95": 2
+        },
+        "anchor_hint_score": 0.8,
+        "terminal_hint_count": 0
+      },
+      "max_degree": 2,
+      "anchor_hint_score": 0.8,
+      "representative_branch_roles": [],
+      "representative_triplet_hints": []
+    }
+  ],
+  "anchor_nodes": [
+    {
+      "anchor_id": "AN_116#1",
+      "scene_node_id": "116#1",
+      "code": 116,
+      "name": "Tee FL",
+      "valence": 3,
+      "anchor_type": "tee",
+      "is_hub": true,
+      "is_strong_endpoint": false,
+      "support_count": 5,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "anchor_rank": 1.0,
+      "evidence": {
+        "supporting_observed_ids": [
+          "node2_0002_7",
+          "node2_0004_12",
+          "node2_0003_6",
+          "node2_0007_2",
+          "node2_0005_11"
+        ],
+        "local_structural_signature": {
+          "self_code": 116,
+          "nearby_code_histogram": {
+            "15": 13
+          },
+          "anchor_hint_score": 1.0,
+          "terminal_hint_count": 1
+        }
+      }
+    },
+    {
+      "anchor_id": "AN_11#1",
+      "scene_node_id": "11#1",
+      "code": 11,
+      "name": "Giunto",
+      "valence": 2,
+      "anchor_type": "strong_endpoint",
+      "is_hub": false,
+      "is_strong_endpoint": true,
+      "support_count": 5,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "anchor_rank": 0.8,
+      "evidence": {
+        "supporting_observed_ids": [
+          "node2_0002_11",
+          "node2_0003_10",
+          "node2_0007_0",
+          "node2_0004_9",
+          "node2_0005_7"
+        ],
+        "local_structural_signature": {
+          "self_code": 11,
+          "nearby_code_histogram": {
+            "53": 5,
+            "95": 5,
+            "15": 2
+          },
+          "anchor_hint_score": 0.4,
+          "terminal_hint_count": 5
+        }
+      }
+    },
+    {
+      "anchor_id": "AN_77#1",
+      "scene_node_id": "77#1",
+      "code": 77,
+      "name": "Tazza",
+      "valence": 2,
+      "anchor_type": "strong_endpoint",
+      "is_hub": false,
+      "is_strong_endpoint": true,
+      "support_count": 5,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "anchor_rank": 0.8,
+      "evidence": {
+        "supporting_observed_ids": [
+          "node2_0002_1",
+          "node2_0003_2",
+          "node2_0007_5",
+          "node2_0005_2",
+          "node2_0004_5"
+        ],
+        "local_structural_signature": {
+          "self_code": 77,
+          "nearby_code_histogram": {
+            "15": 4
+          },
+          "anchor_hint_score": 0.0,
+          "terminal_hint_count": 5
+        }
+      }
+    }
+  ],
+  "scene_branches": [
+    {
+      "scene_branch_id": "SB_0",
+      "supporting_fragments": [
+        "node2_0007_frag_3",
+        "node2_0004_frag_1",
+        "node2_0005_frag_12",
+        "node2_0003_frag_1",
+        "node2_0002_frag_1"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "190#1",
+        "202#2",
+        "15#1",
+        "190#1"
+      ],
+      "fused_ordered_codes": [
+        190,
+        202,
+        15,
+        190
+      ],
+      "support_count": 5,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "190#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "190#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8088151305913925,
+      "merged_fragment_ids": [
+        "node2_0007_frag_3",
+        "node2_0004_frag_1",
+        "node2_0005_frag_12",
+        "node2_0003_frag_1",
+        "node2_0002_frag_1"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=5",
+        "images=node2_0002,node2_0003,node2_0004,node2_0005,node2_0007",
+        "canonical_codes=[190, 202, 15, 190]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0007_frag_3",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0004_frag_1",
+          "decision": "merged",
+          "score": 0.46,
+          "reasons": [
+            "multiset_jaccard=0.20",
+            "direction=forward",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_190",
+            "anchor_hint_mismatch_95"
+          ]
+        },
+        {
+          "fragment_id": "node2_0005_frag_12",
+          "decision": "merged",
+          "score": 0.76,
+          "reasons": [
+            "multiset_jaccard=0.50",
+            "direction=forward",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_190",
+            "anchor_hint_mismatch_202"
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_1",
+          "decision": "merged",
+          "score": 0.76,
+          "reasons": [
+            "multiset_jaccard=0.50",
+            "direction=forward",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_190",
+            "anchor_hint_mismatch_202"
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_1",
+          "decision": "merged",
+          "score": 0.76,
+          "reasons": [
+            "multiset_jaccard=0.50",
+            "direction=forward",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_190",
+            "anchor_hint_mismatch_202"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_1",
+      "supporting_fragments": [
+        "node2_0007_frag_2",
+        "node2_0004_frag_5",
+        "node2_0005_frag_2",
+        "node2_0002_frag_17",
+        "node2_0003_frag_3"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "116#1",
+        "15#3",
+        "95#1"
+      ],
+      "fused_ordered_codes": [
+        116,
+        15,
+        95
+      ],
+      "support_count": 5,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "116#1",
+          "is_anchor": true,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "95#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8185585598150888,
+      "merged_fragment_ids": [
+        "node2_0007_frag_2",
+        "node2_0004_frag_5",
+        "node2_0005_frag_2",
+        "node2_0002_frag_17",
+        "node2_0003_frag_3"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=5",
+        "images=node2_0002,node2_0003,node2_0004,node2_0005,node2_0007",
+        "canonical_codes=[116, 15, 95]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0007_frag_2",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0004_frag_5",
+          "decision": "merged",
+          "score": 0.9266666666666666,
+          "reasons": [
+            "multiset_jaccard=0.67",
+            "direction=reversed",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_95",
+            "anchor_hint_mismatch_15"
+          ]
+        },
+        {
+          "fragment_id": "node2_0005_frag_2",
+          "decision": "merged",
+          "score": 0.9266666666666666,
+          "reasons": [
+            "multiset_jaccard=0.67",
+            "direction=forward",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_15",
+            "anchor_hint_matches_95"
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_17",
+          "decision": "merged",
+          "score": 1.0066666666666666,
+          "reasons": [
+            "multiset_jaccard=0.67",
+            "direction=reversed",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_15",
+            "anchor_hint_matches_116",
+            "anchor_endpoint_supported"
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_3",
+          "decision": "merged",
+          "score": 0.51,
+          "reasons": [
+            "multiset_jaccard=0.25",
+            "direction=forward",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_190",
+            "anchor_hint_matches_95"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_2",
+      "supporting_fragments": [
+        "node2_0007_frag_4",
+        "node2_0004_frag_2",
+        "node2_0005_frag_0",
+        "node2_0002_frag_0",
+        "node2_0003_frag_2"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "190#1",
+        "202#1",
+        "53#1"
+      ],
+      "fused_ordered_codes": [
+        190,
+        202,
+        53
+      ],
+      "support_count": 5,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "190#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "53#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8166818698247275,
+      "merged_fragment_ids": [
+        "node2_0007_frag_4",
+        "node2_0004_frag_2",
+        "node2_0005_frag_0",
+        "node2_0002_frag_0",
+        "node2_0003_frag_2"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=5",
+        "images=node2_0002,node2_0003,node2_0004,node2_0005,node2_0007",
+        "canonical_codes=[190, 202, 53]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0007_frag_4",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0004_frag_2",
+          "decision": "merged",
+          "score": 1.8100000000000003,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.35",
+            "anchor_hint_matches_190"
+          ]
+        },
+        {
+          "fragment_id": "node2_0005_frag_0",
+          "decision": "merged",
+          "score": 1.8100000000000003,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=reversed",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.35",
+            "anchor_hint_matches_190"
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_0",
+          "decision": "merged",
+          "score": 0.9266666666666666,
+          "reasons": [
+            "multiset_jaccard=0.67",
+            "direction=forward",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_190",
+            "anchor_hint_mismatch_202"
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_2",
+          "decision": "merged",
+          "score": 0.9266666666666666,
+          "reasons": [
+            "multiset_jaccard=0.67",
+            "direction=forward",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_190",
+            "anchor_hint_mismatch_202"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_3",
+      "supporting_fragments": [
+        "node2_0007_frag_1",
+        "node2_0004_frag_3",
+        "node2_0005_frag_8",
+        "node2_0003_frag_6",
+        "node2_0002_frag_2"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "11#1",
+        "53#2",
+        "95#1"
+      ],
+      "fused_ordered_codes": [
+        11,
+        53,
+        95
+      ],
+      "support_count": 5,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "11#1",
+          "is_anchor": true,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "95#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8167233606179556,
+      "merged_fragment_ids": [
+        "node2_0007_frag_1",
+        "node2_0004_frag_3",
+        "node2_0005_frag_8",
+        "node2_0003_frag_6",
+        "node2_0002_frag_2"
+      ],
+      "ambiguous_matches": [
+        {
+          "fragment_id": "node2_0005_frag_8",
+          "candidate_clusters": [
+            {
+              "cluster_index": 3,
+              "score": 0.51,
+              "reasons": [
+                "multiset_jaccard=0.25",
+                "direction=reversed",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_95",
+                "anchor_hint_mismatch_190"
+              ]
+            },
+            {
+              "cluster_index": 0,
+              "score": 0.46,
+              "reasons": [
+                "multiset_jaccard=0.20",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_mismatch_95",
+                "anchor_hint_matches_190"
+              ]
+            }
+          ]
+        }
+      ],
+      "acceptance_reasons": [
+        "support_count=5",
+        "images=node2_0002,node2_0003,node2_0004,node2_0005,node2_0007",
+        "canonical_codes=[11, 53, 95]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0007_frag_1",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0004_frag_3",
+          "decision": "merged",
+          "score": 0.51,
+          "reasons": [
+            "multiset_jaccard=0.25",
+            "direction=forward",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_202",
+            "anchor_hint_matches_95"
+          ]
+        },
+        {
+          "fragment_id": "node2_0005_frag_8",
+          "decision": "merged",
+          "score": 0.51,
+          "reasons": [
+            "multiset_jaccard=0.25",
+            "direction=reversed",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_95",
+            "anchor_hint_mismatch_190"
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_6",
+          "decision": "merged",
+          "score": 0.9266666666666666,
+          "reasons": [
+            "multiset_jaccard=0.67",
+            "direction=forward",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_11",
+            "anchor_hint_mismatch_53"
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_2",
+          "decision": "merged",
+          "score": 0.51,
+          "reasons": [
+            "multiset_jaccard=0.25",
+            "direction=forward",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_190",
+            "anchor_hint_matches_95"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_4",
+      "supporting_fragments": [
+        "node2_0005_frag_9",
+        "node2_0004_frag_4",
+        "node2_0002_frag_5",
+        "node2_0003_frag_16"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "95#2",
+        "202#2"
+      ],
+      "fused_ordered_codes": [
+        95,
+        202
+      ],
+      "support_count": 4,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "95#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "202#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8157334178686142,
+      "merged_fragment_ids": [
+        "node2_0005_frag_9",
+        "node2_0004_frag_4",
+        "node2_0002_frag_5",
+        "node2_0003_frag_16"
+      ],
+      "ambiguous_matches": [
+        {
+          "fragment_id": "node2_0002_frag_5",
+          "candidate_clusters": [
+            {
+              "cluster_index": 4,
+              "score": 0.8333333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_202",
+                "anchor_hint_matches_202"
+              ]
+            },
+            {
+              "cluster_index": 6,
+              "score": 0.8333333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_202",
+                "anchor_hint_matches_202"
+              ]
+            }
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_16",
+          "candidate_clusters": [
+            {
+              "cluster_index": 4,
+              "score": 0.8333333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_202",
+                "anchor_hint_matches_202"
+              ]
+            },
+            {
+              "cluster_index": 6,
+              "score": 0.8333333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_202",
+                "anchor_hint_matches_202"
+              ]
+            }
+          ]
+        }
+      ],
+      "acceptance_reasons": [
+        "support_count=4",
+        "images=node2_0002,node2_0003,node2_0004,node2_0005",
+        "canonical_codes=[95, 202]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0005_frag_9",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0004_frag_4",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=reversed",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_202",
+            "anchor_hint_mismatch_15"
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_5",
+          "decision": "merged",
+          "score": 0.8333333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=forward",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_202",
+            "anchor_hint_matches_202"
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_16",
+          "decision": "merged",
+          "score": 0.8333333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=forward",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_202",
+            "anchor_hint_matches_202"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_5",
+      "supporting_fragments": [
+        "node2_0004_frag_11",
+        "node2_0005_frag_6",
+        "node2_0002_frag_9",
+        "node2_0003_frag_5"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "15#2",
+        "15#1"
+      ],
+      "fused_ordered_codes": [
+        15,
+        15
+      ],
+      "support_count": 4,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "15#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "15#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8117061853408813,
+      "merged_fragment_ids": [
+        "node2_0004_frag_11",
+        "node2_0005_frag_6",
+        "node2_0002_frag_9",
+        "node2_0003_frag_5"
+      ],
+      "ambiguous_matches": [
+        {
+          "fragment_id": "node2_0003_frag_5",
+          "candidate_clusters": [
+            {
+              "cluster_index": 5,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_mismatch_11",
+                "anchor_hint_matches_15"
+              ]
+            },
+            {
+              "cluster_index": 6,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=reversed",
+                "start_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_mismatch_11",
+                "anchor_hint_matches_15"
+              ]
+            },
+            {
+              "cluster_index": 11,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_mismatch_11",
+                "anchor_hint_matches_15"
+              ]
+            }
+          ]
+        }
+      ],
+      "acceptance_reasons": [
+        "support_count=4",
+        "images=node2_0002,node2_0003,node2_0004,node2_0005",
+        "canonical_codes=[15, 15]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0004_frag_11",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0005_frag_6",
+          "decision": "merged",
+          "score": 1.6400000000000001,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_matches_15"
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_9",
+          "decision": "merged",
+          "score": 1.6400000000000001,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_matches_15"
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_5",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=forward",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_11",
+            "anchor_hint_matches_15"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_6",
+      "supporting_fragments": [
+        "node2_0005_frag_3",
+        "node2_0004_frag_0",
+        "node2_0002_frag_6",
+        "node2_0003_frag_9"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "15#3",
+        "202#2"
+      ],
+      "fused_ordered_codes": [
+        15,
+        202
+      ],
+      "support_count": 4,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "15#3",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "202#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8068643361330032,
+      "merged_fragment_ids": [
+        "node2_0005_frag_3",
+        "node2_0004_frag_0",
+        "node2_0002_frag_6",
+        "node2_0003_frag_9"
+      ],
+      "ambiguous_matches": [
+        {
+          "fragment_id": "node2_0002_frag_6",
+          "candidate_clusters": [
+            {
+              "cluster_index": 6,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=reversed",
+                "start_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_mismatch_11",
+                "anchor_hint_matches_15"
+              ]
+            },
+            {
+              "cluster_index": 8,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=reversed",
+                "start_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_mismatch_11",
+                "anchor_hint_matches_15"
+              ]
+            },
+            {
+              "cluster_index": 9,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=reversed",
+                "start_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_mismatch_11",
+                "anchor_hint_matches_15"
+              ]
+            }
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_9",
+          "candidate_clusters": [
+            {
+              "cluster_index": 6,
+              "score": 0.8333333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "start_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_15",
+                "anchor_hint_matches_15"
+              ]
+            },
+            {
+              "cluster_index": 11,
+              "score": 0.8333333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_15",
+                "anchor_hint_matches_15"
+              ]
+            }
+          ]
+        }
+      ],
+      "acceptance_reasons": [
+        "support_count=4",
+        "images=node2_0002,node2_0003,node2_0004,node2_0005",
+        "canonical_codes=[15, 202]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [
+        "all_local_adjacencies_forbidden_prior"
+      ],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0005_frag_3",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0004_frag_0",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=forward",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_190",
+            "anchor_hint_matches_202"
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_6",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=reversed",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_11",
+            "anchor_hint_matches_15"
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_9",
+          "decision": "merged",
+          "score": 0.8333333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=forward",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_matches_15"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_7",
+      "supporting_fragments": [
+        "node2_0004_frag_12",
+        "node2_0005_frag_14",
+        "node2_0003_frag_4",
+        "node2_0002_frag_12"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "53#2",
+        "95#1"
+      ],
+      "fused_ordered_codes": [
+        53,
+        95
+      ],
+      "support_count": 4,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "53#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "95#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8034583255648613,
+      "merged_fragment_ids": [
+        "node2_0004_frag_12",
+        "node2_0005_frag_14",
+        "node2_0003_frag_4",
+        "node2_0002_frag_12"
+      ],
+      "ambiguous_matches": [
+        {
+          "fragment_id": "node2_0003_frag_4",
+          "candidate_clusters": [
+            {
+              "cluster_index": 7,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_mismatch_11",
+                "anchor_hint_matches_95"
+              ]
+            },
+            {
+              "cluster_index": 9,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_mismatch_11",
+                "anchor_hint_matches_95"
+              ]
+            },
+            {
+              "cluster_index": 1,
+              "score": 0.51,
+              "reasons": [
+                "multiset_jaccard=0.25",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_mismatch_11",
+                "anchor_hint_matches_95"
+              ]
+            }
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_12",
+          "candidate_clusters": [
+            {
+              "cluster_index": 7,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_mismatch_15",
+                "anchor_hint_matches_95"
+              ]
+            },
+            {
+              "cluster_index": 8,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "start_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_15",
+                "anchor_hint_mismatch_95"
+              ]
+            },
+            {
+              "cluster_index": 11,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=reversed",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_15",
+                "anchor_hint_mismatch_95"
+              ]
+            }
+          ]
+        }
+      ],
+      "acceptance_reasons": [
+        "support_count=4",
+        "images=node2_0002,node2_0003,node2_0004,node2_0005",
+        "canonical_codes=[53, 95]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0004_frag_12",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0005_frag_14",
+          "decision": "merged",
+          "score": 1.6400000000000001,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=reversed",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_95",
+            "anchor_hint_matches_53"
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_4",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=forward",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_11",
+            "anchor_hint_matches_95"
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_12",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=forward",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_15",
+            "anchor_hint_matches_95"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_8",
+      "supporting_fragments": [
+        "node2_0004_frag_9",
+        "node2_0005_frag_11",
+        "node2_0003_frag_12",
+        "node2_0002_frag_11"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "15#2",
+        "53#2"
+      ],
+      "fused_ordered_codes": [
+        15,
+        53
+      ],
+      "support_count": 4,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "15#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "53#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8025693520903587,
+      "merged_fragment_ids": [
+        "node2_0004_frag_9",
+        "node2_0005_frag_11",
+        "node2_0003_frag_12",
+        "node2_0002_frag_11"
+      ],
+      "ambiguous_matches": [
+        {
+          "fragment_id": "node2_0003_frag_12",
+          "candidate_clusters": [
+            {
+              "cluster_index": 8,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_mismatch_95",
+                "anchor_hint_matches_53"
+              ]
+            },
+            {
+              "cluster_index": 1,
+              "score": 0.51,
+              "reasons": [
+                "multiset_jaccard=0.25",
+                "direction=reversed",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_95",
+                "anchor_hint_mismatch_53"
+              ]
+            }
+          ]
+        }
+      ],
+      "acceptance_reasons": [
+        "support_count=4",
+        "images=node2_0002,node2_0003,node2_0004,node2_0005",
+        "canonical_codes=[15, 53]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [
+        "all_local_adjacencies_forbidden_prior"
+      ],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0004_frag_9",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0005_frag_11",
+          "decision": "merged",
+          "score": 1.6400000000000001,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_matches_53"
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_12",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=forward",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_95",
+            "anchor_hint_matches_53"
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_11",
+          "decision": "merged",
+          "score": 1.6400000000000001,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_matches_53"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_9",
+      "supporting_fragments": [
+        "node2_0004_frag_10",
+        "node2_0005_frag_10",
+        "node2_0003_frag_7",
+        "node2_0002_frag_18"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "15#2",
+        "95#1"
+      ],
+      "fused_ordered_codes": [
+        15,
+        95
+      ],
+      "support_count": 4,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "15#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "95#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.7990136444568634,
+      "merged_fragment_ids": [
+        "node2_0004_frag_10",
+        "node2_0005_frag_10",
+        "node2_0003_frag_7",
+        "node2_0002_frag_18"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=4",
+        "images=node2_0002,node2_0003,node2_0004,node2_0005",
+        "canonical_codes=[15, 95]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0004_frag_10",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0005_frag_10",
+          "decision": "merged",
+          "score": 1.6400000000000001,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_matches_95"
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_7",
+          "decision": "merged",
+          "score": 1.6400000000000001,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_matches_95"
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_18",
+          "decision": "merged",
+          "score": 1.6400000000000001,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_matches_95"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_10",
+      "supporting_fragments": [
+        "node2_0004_frag_8",
+        "node2_0005_frag_4",
+        "node2_0002_frag_10",
+        "node2_0003_frag_10"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "116#1",
+        "15#1"
+      ],
+      "fused_ordered_codes": [
+        116,
+        15
+      ],
+      "support_count": 4,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "116#1",
+          "is_anchor": true,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "15#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8042587414383888,
+      "merged_fragment_ids": [
+        "node2_0004_frag_8",
+        "node2_0005_frag_4",
+        "node2_0002_frag_10",
+        "node2_0003_frag_10"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=4",
+        "images=node2_0002,node2_0003,node2_0004,node2_0005",
+        "canonical_codes=[116, 15]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0004_frag_8",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0005_frag_4",
+          "decision": "merged",
+          "score": 1.7200000000000002,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=reversed",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_matches_116",
+            "anchor_endpoint_supported"
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_10",
+          "decision": "merged",
+          "score": 1.7200000000000002,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=reversed",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_matches_116",
+            "anchor_endpoint_supported"
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_10",
+          "decision": "merged",
+          "score": 1.7200000000000002,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=reversed",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_matches_116",
+            "anchor_endpoint_supported"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_11",
+      "supporting_fragments": [
+        "node2_0004_frag_7",
+        "node2_0005_frag_1",
+        "node2_0003_frag_14",
+        "node2_0002_frag_15"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "116#1",
+        "15#3"
+      ],
+      "fused_ordered_codes": [
+        116,
+        15
+      ],
+      "support_count": 4,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "116#1",
+          "is_anchor": true,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "15#3",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.7927606999874115,
+      "merged_fragment_ids": [
+        "node2_0004_frag_7",
+        "node2_0005_frag_1",
+        "node2_0003_frag_14",
+        "node2_0002_frag_15"
+      ],
+      "ambiguous_matches": [
+        {
+          "fragment_id": "node2_0002_frag_15",
+          "candidate_clusters": [
+            {
+              "cluster_index": 11,
+              "score": 1.7200000000000002,
+              "reasons": [
+                "multiset_jaccard=1.00",
+                "direction=reversed",
+                "start_code_matches",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_15",
+                "anchor_hint_matches_116",
+                "anchor_endpoint_supported"
+              ]
+            },
+            {
+              "cluster_index": 12,
+              "score": 1.7200000000000002,
+              "reasons": [
+                "multiset_jaccard=1.00",
+                "direction=reversed",
+                "start_code_matches",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_15",
+                "anchor_hint_matches_116",
+                "anchor_endpoint_supported"
+              ]
+            }
+          ]
+        }
+      ],
+      "acceptance_reasons": [
+        "support_count=4",
+        "images=node2_0002,node2_0003,node2_0004,node2_0005",
+        "canonical_codes=[116, 15]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0004_frag_7",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0005_frag_1",
+          "decision": "merged",
+          "score": 1.7200000000000002,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=reversed",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_matches_116",
+            "anchor_endpoint_supported"
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_14",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=reversed",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_mismatch_53"
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_15",
+          "decision": "merged",
+          "score": 1.7200000000000002,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=reversed",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_matches_116",
+            "anchor_endpoint_supported"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_12",
+      "supporting_fragments": [
+        "node2_0004_frag_6",
+        "node2_0005_frag_7",
+        "node2_0003_frag_13",
+        "node2_0002_frag_13"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "116#1",
+        "15#2"
+      ],
+      "fused_ordered_codes": [
+        116,
+        15
+      ],
+      "support_count": 4,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "116#1",
+          "is_anchor": true,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "15#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.7812334671616554,
+      "merged_fragment_ids": [
+        "node2_0004_frag_6",
+        "node2_0005_frag_7",
+        "node2_0003_frag_13",
+        "node2_0002_frag_13"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=4",
+        "images=node2_0002,node2_0003,node2_0004,node2_0005",
+        "canonical_codes=[116, 15]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0004_frag_6",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0005_frag_7",
+          "decision": "merged",
+          "score": 1.7200000000000002,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_116",
+            "anchor_hint_matches_15",
+            "anchor_endpoint_supported"
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_13",
+          "decision": "merged",
+          "score": 1.7200000000000002,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=reversed",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_matches_116",
+            "anchor_endpoint_supported"
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_13",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=reversed",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_mismatch_202"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_13",
+      "supporting_fragments": [
+        "node2_0003_frag_11",
+        "node2_0002_frag_8",
+        "node2_0004_frag_15",
+        "node2_0005_frag_13",
+        "node2_0007_frag_0"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "95#1",
+        "11#1"
+      ],
+      "fused_ordered_codes": [
+        95,
+        11
+      ],
+      "support_count": 5,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "95#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "11#1",
+          "is_anchor": true,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.7927766621112824,
+      "merged_fragment_ids": [
+        "node2_0003_frag_11",
+        "node2_0002_frag_8",
+        "node2_0004_frag_15",
+        "node2_0005_frag_13",
+        "node2_0007_frag_0"
+      ],
+      "ambiguous_matches": [
+        {
+          "fragment_id": "node2_0004_frag_15",
+          "candidate_clusters": [
+            {
+              "cluster_index": 13,
+              "score": 0.6533333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "start_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_95"
+              ]
+            },
+            {
+              "cluster_index": 15,
+              "score": 0.6533333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=reversed",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_95"
+              ]
+            },
+            {
+              "cluster_index": 16,
+              "score": 0.6533333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=reversed",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_95"
+              ]
+            }
+          ]
+        }
+      ],
+      "acceptance_reasons": [
+        "support_count=5",
+        "images=node2_0002,node2_0003,node2_0004,node2_0005,node2_0007",
+        "canonical_codes=[95, 11]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [
+        "all_local_adjacencies_forbidden_prior"
+      ],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0003_frag_11",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_8",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=reversed",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_11",
+            "anchor_hint_matches_95"
+          ]
+        },
+        {
+          "fragment_id": "node2_0004_frag_15",
+          "decision": "merged",
+          "score": 0.6533333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=forward",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_95"
+          ]
+        },
+        {
+          "fragment_id": "node2_0005_frag_13",
+          "decision": "merged",
+          "score": 1.4600000000000002,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_95"
+          ]
+        },
+        {
+          "fragment_id": "node2_0007_frag_0",
+          "decision": "merged",
+          "score": 1.4600000000000002,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=reversed",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_95"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_14",
+      "supporting_fragments": [
+        "node2_0002_frag_7",
+        "node2_0005_frag_15",
+        "node2_0004_frag_13"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "11#1",
+        "53#2"
+      ],
+      "fused_ordered_codes": [
+        11,
+        53
+      ],
+      "support_count": 3,
+      "support_images": [
+        "node2_0002",
+        "node2_0004",
+        "node2_0005"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "11#1",
+          "is_anchor": true,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "53#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.805144727230072,
+      "merged_fragment_ids": [
+        "node2_0002_frag_7",
+        "node2_0005_frag_15",
+        "node2_0004_frag_13"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=3",
+        "images=node2_0002,node2_0004,node2_0005",
+        "canonical_codes=[11, 53]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0002_frag_7",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0005_frag_15",
+          "decision": "merged",
+          "score": 1.4600000000000002,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_53"
+          ]
+        },
+        {
+          "fragment_id": "node2_0004_frag_13",
+          "decision": "merged",
+          "score": 1.4600000000000002,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=reversed",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_53"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_15",
+      "supporting_fragments": [
+        "node2_0002_frag_19",
+        "node2_0003_frag_19"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "53#1",
+        "95#1"
+      ],
+      "fused_ordered_codes": [
+        53,
+        95
+      ],
+      "support_count": 2,
+      "support_images": [
+        "node2_0002",
+        "node2_0003"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "53#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "95#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.7396475076675415,
+      "merged_fragment_ids": [
+        "node2_0002_frag_19",
+        "node2_0003_frag_19"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=2",
+        "images=node2_0002,node2_0003",
+        "canonical_codes=[53, 95]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0002_frag_19",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_19",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=forward",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_15",
+            "anchor_hint_matches_95"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_16",
+      "supporting_fragments": [
+        "node2_0002_frag_16",
+        "node2_0003_frag_17"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "202#1",
+        "95#2"
+      ],
+      "fused_ordered_codes": [
+        202,
+        95
+      ],
+      "support_count": 2,
+      "support_images": [
+        "node2_0002",
+        "node2_0003"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "202#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "95#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.757813110947609,
+      "merged_fragment_ids": [
+        "node2_0002_frag_16",
+        "node2_0003_frag_17"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=2",
+        "images=node2_0002,node2_0003",
+        "canonical_codes=[202, 95]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0002_frag_16",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_17",
+          "decision": "merged",
+          "score": 1.6400000000000001,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_202",
+            "anchor_hint_matches_95"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_17",
+      "supporting_fragments": [
+        "node2_0002_frag_14",
+        "node2_0003_frag_18",
+        "node2_0004_frag_14",
+        "node2_0005_frag_5"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "77#1",
+        "15#1"
+      ],
+      "fused_ordered_codes": [
+        77,
+        15
+      ],
+      "support_count": 4,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "77#1",
+          "is_anchor": true,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "15#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.7766078636050224,
+      "merged_fragment_ids": [
+        "node2_0002_frag_14",
+        "node2_0003_frag_18",
+        "node2_0004_frag_14",
+        "node2_0005_frag_5"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=4",
+        "images=node2_0002,node2_0003,node2_0004,node2_0005",
+        "canonical_codes=[77, 15]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0002_frag_14",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_18",
+          "decision": "merged",
+          "score": 0.6733333333333332,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=forward",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_mismatch_116",
+            "anchor_endpoint_supported"
+          ]
+        },
+        {
+          "fragment_id": "node2_0004_frag_14",
+          "decision": "merged",
+          "score": 0.6533333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=reversed",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15"
+          ]
+        },
+        {
+          "fragment_id": "node2_0005_frag_5",
+          "decision": "merged",
+          "score": 1.4600000000000002,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=reversed",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_18",
+      "supporting_fragments": [
+        "node2_0003_frag_15",
+        "node2_0002_frag_4"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "202#2",
+        "53#2"
+      ],
+      "fused_ordered_codes": [
+        202,
+        53
+      ],
+      "support_count": 2,
+      "support_images": [
+        "node2_0002",
+        "node2_0003"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "202#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "53#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.7781599760055542,
+      "merged_fragment_ids": [
+        "node2_0003_frag_15",
+        "node2_0002_frag_4"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=2",
+        "images=node2_0002,node2_0003",
+        "canonical_codes=[202, 53]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0003_frag_15",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_4",
+          "decision": "merged",
+          "score": 0.6533333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=forward",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_202"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_19",
+      "supporting_fragments": [
+        "node2_0003_frag_0"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "53#2",
+        "202#2"
+      ],
+      "fused_ordered_codes": [
+        53,
+        202
+      ],
+      "support_count": 1,
+      "support_images": [
+        "node2_0003"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "53#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "202#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8132385313510895,
+      "merged_fragment_ids": [
+        "node2_0003_frag_0"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=1",
+        "images=node2_0003",
+        "canonical_codes=[53, 202]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0003_frag_0",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_20",
+      "supporting_fragments": [
+        "node2_0003_frag_8",
+        "node2_0002_frag_3"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "15#2",
+        "77#1"
+      ],
+      "fused_ordered_codes": [
+        15,
+        77
+      ],
+      "support_count": 2,
+      "support_images": [
+        "node2_0002",
+        "node2_0003"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "15#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "77#1",
+          "is_anchor": true,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.7947464138269424,
+      "merged_fragment_ids": [
+        "node2_0003_frag_8",
+        "node2_0002_frag_3"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=2",
+        "images=node2_0002,node2_0003",
+        "canonical_codes=[15, 77]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0003_frag_8",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_3",
+          "decision": "merged",
+          "score": 1.4600000000000002,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=reversed",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15"
+          ]
+        }
+      ]
+    }
+  ],
+  "candidate_edges": [
+    {
+      "edge_id": "CE_0",
+      "scene_node_a": "11#1",
+      "scene_node_b": "15#1",
+      "code_a": 11,
+      "code_b": 15,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node2_0002",
+        "node2_0003"
+      ],
+      "branch_ids": [],
+      "support_count": 2,
+      "branch_support_count": 0,
+      "knn_support_count": 2,
+      "residual_support_count": 2,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 0,
+      "observational_status_votes": {
+        "plausible_local_adjacency": 2
+      },
+      "support_reasons": {
+        "partial_view_local_adjacency": 2
+      },
+      "cooc_count": 1,
+      "triplet_support": 5,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_1",
+      "scene_node_a": "11#1",
+      "scene_node_b": "53#1",
+      "code_a": 11,
+      "code_b": 53,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node2_0002",
+        "node2_0003"
+      ],
+      "branch_ids": [],
+      "support_count": 2,
+      "branch_support_count": 0,
+      "knn_support_count": 2,
+      "residual_support_count": 2,
+      "direct_visible_support_count": 2,
+      "shortcut_candidate_support_count": 0,
+      "observational_status_votes": {
+        "direct_visible": 2
+      },
+      "support_reasons": {
+        "tight_local_proximity": 2
+      },
+      "cooc_count": 5,
+      "triplet_support": 5,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_2",
+      "scene_node_a": "11#1",
+      "scene_node_b": "53#2",
+      "code_a": 11,
+      "code_b": 53,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "branch_ids": [
+        "SB_14",
+        "SB_3"
+      ],
+      "support_count": 3,
+      "branch_support_count": 2,
+      "knn_support_count": 3,
+      "residual_support_count": 3,
+      "direct_visible_support_count": 2,
+      "shortcut_candidate_support_count": 0,
+      "observational_status_votes": {
+        "direct_visible": 2,
+        "plausible_local_adjacency": 1
+      },
+      "support_reasons": {
+        "tight_local_proximity": 2,
+        "partial_view_local_adjacency": 1
+      },
+      "cooc_count": 5,
+      "triplet_support": 5,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "anchor_attached_branch_step",
+        "anchor_attached_branch_step",
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_3",
+      "scene_node_a": "11#1",
+      "scene_node_b": "95#1",
+      "code_a": 11,
+      "code_b": 95,
+      "evidence_sources": [
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "branch_ids": [
+        "SB_13"
+      ],
+      "support_count": 5,
+      "branch_support_count": 1,
+      "knn_support_count": 5,
+      "residual_support_count": 5,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 5,
+      "observational_status_votes": {
+        "shortcut_candidate": 5
+      },
+      "support_reasons": {
+        "distant_or_suspicious_local_adjacency": 5
+      },
+      "cooc_count": 0,
+      "triplet_support": 5,
+      "forbidden_pair_flag": true,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "anchor_attached_branch_step",
+        "residual_local_hypothesis_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_4",
+      "scene_node_a": "116#1",
+      "scene_node_b": "15#1",
+      "code_a": 116,
+      "code_b": 15,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005"
+      ],
+      "branch_ids": [
+        "SB_10"
+      ],
+      "support_count": 4,
+      "branch_support_count": 1,
+      "knn_support_count": 4,
+      "residual_support_count": 4,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 0,
+      "observational_status_votes": {
+        "plausible_local_adjacency": 4
+      },
+      "support_reasons": {
+        "partial_view_local_adjacency": 4
+      },
+      "cooc_count": 12,
+      "triplet_support": 24,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 3,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "anchor_attached_branch_step",
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_5",
+      "scene_node_a": "116#1",
+      "scene_node_b": "15#2",
+      "code_a": 116,
+      "code_b": 15,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005"
+      ],
+      "branch_ids": [
+        "SB_12"
+      ],
+      "support_count": 4,
+      "branch_support_count": 1,
+      "knn_support_count": 4,
+      "residual_support_count": 4,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 0,
+      "observational_status_votes": {
+        "plausible_local_adjacency": 4
+      },
+      "support_reasons": {
+        "partial_view_local_adjacency": 4
+      },
+      "cooc_count": 12,
+      "triplet_support": 24,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 3,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "anchor_attached_branch_step",
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_6",
+      "scene_node_a": "116#1",
+      "scene_node_b": "15#3",
+      "code_a": 116,
+      "code_b": 15,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "branch_ids": [
+        "SB_1",
+        "SB_11"
+      ],
+      "support_count": 5,
+      "branch_support_count": 2,
+      "knn_support_count": 5,
+      "residual_support_count": 5,
+      "direct_visible_support_count": 1,
+      "shortcut_candidate_support_count": 2,
+      "observational_status_votes": {
+        "plausible_local_adjacency": 2,
+        "shortcut_candidate": 2,
+        "direct_visible": 1
+      },
+      "support_reasons": {
+        "partial_view_local_adjacency": 2,
+        "distant_or_suspicious_local_adjacency": 2,
+        "tight_local_proximity": 1
+      },
+      "cooc_count": 12,
+      "triplet_support": 24,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 3,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "anchor_attached_branch_step",
+        "anchor_attached_branch_step",
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_7",
+      "scene_node_a": "15#1",
+      "scene_node_b": "15#2",
+      "code_a": 15,
+      "code_b": 15,
+      "evidence_sources": [
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005"
+      ],
+      "branch_ids": [
+        "SB_5"
+      ],
+      "support_count": 4,
+      "branch_support_count": 1,
+      "knn_support_count": 4,
+      "residual_support_count": 4,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 2,
+      "observational_status_votes": {
+        "plausible_local_adjacency": 2,
+        "shortcut_candidate": 2
+      },
+      "support_reasons": {
+        "partial_view_local_adjacency": 2,
+        "distant_or_suspicious_local_adjacency": 2
+      },
+      "cooc_count": 0,
+      "triplet_support": 87,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "ordered_branch_chain_step",
+        "residual_local_hypothesis_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_8",
+      "scene_node_a": "15#1",
+      "scene_node_b": "190#1",
+      "code_a": 15,
+      "code_b": 190,
+      "evidence_sources": [
+        "knn_residual",
+        "scene_branch"
+      ],
+      "supporting_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "branch_ids": [
+        "SB_0"
+      ],
+      "support_count": 1,
+      "branch_support_count": 1,
+      "knn_support_count": 1,
+      "residual_support_count": 1,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 1,
+      "observational_status_votes": {
+        "shortcut_candidate": 1
+      },
+      "support_reasons": {
+        "distant_or_suspicious_local_adjacency": 1
+      },
+      "cooc_count": 0,
+      "triplet_support": 0,
+      "forbidden_pair_flag": true,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "ordered_branch_chain_step",
+        "residual_local_hypothesis_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_9",
+      "scene_node_a": "15#1",
+      "scene_node_b": "202#2",
+      "code_a": 15,
+      "code_b": 202,
+      "evidence_sources": [
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "branch_ids": [
+        "SB_0"
+      ],
+      "support_count": 1,
+      "branch_support_count": 1,
+      "knn_support_count": 1,
+      "residual_support_count": 1,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 1,
+      "observational_status_votes": {
+        "shortcut_candidate": 1
+      },
+      "support_reasons": {
+        "distant_or_suspicious_local_adjacency": 1
+      },
+      "cooc_count": 0,
+      "triplet_support": 1,
+      "forbidden_pair_flag": true,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "ordered_branch_chain_step",
+        "residual_local_hypothesis_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_10",
+      "scene_node_a": "15#1",
+      "scene_node_b": "53#1",
+      "code_a": 15,
+      "code_b": 53,
+      "evidence_sources": [
+        "knn_residual",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node2_0002",
+        "node2_0003"
+      ],
+      "branch_ids": [],
+      "support_count": 2,
+      "branch_support_count": 0,
+      "knn_support_count": 2,
+      "residual_support_count": 2,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 2,
+      "observational_status_votes": {
+        "shortcut_candidate": 2
+      },
+      "support_reasons": {
+        "distant_or_suspicious_local_adjacency": 2
+      },
+      "cooc_count": 0,
+      "triplet_support": 6,
+      "forbidden_pair_flag": true,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "residual_local_hypothesis_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_11",
+      "scene_node_a": "15#1",
+      "scene_node_b": "77#1",
+      "code_a": 15,
+      "code_b": 77,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005"
+      ],
+      "branch_ids": [
+        "SB_17"
+      ],
+      "support_count": 2,
+      "branch_support_count": 1,
+      "knn_support_count": 2,
+      "residual_support_count": 2,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 2,
+      "observational_status_votes": {
+        "shortcut_candidate": 2
+      },
+      "support_reasons": {
+        "distant_or_suspicious_local_adjacency": 2
+      },
+      "cooc_count": 1,
+      "triplet_support": 1,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "anchor_attached_branch_step",
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_12",
+      "scene_node_a": "15#1",
+      "scene_node_b": "95#1",
+      "code_a": 15,
+      "code_b": 95,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node2_0002",
+        "node2_0003"
+      ],
+      "branch_ids": [],
+      "support_count": 2,
+      "branch_support_count": 0,
+      "knn_support_count": 2,
+      "residual_support_count": 2,
+      "direct_visible_support_count": 2,
+      "shortcut_candidate_support_count": 0,
+      "observational_status_votes": {
+        "direct_visible": 2
+      },
+      "support_reasons": {
+        "tight_local_proximity": 2
+      },
+      "cooc_count": 21,
+      "triplet_support": 34,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_13",
+      "scene_node_a": "15#2",
+      "scene_node_b": "53#2",
+      "code_a": 15,
+      "code_b": 53,
+      "evidence_sources": [
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005"
+      ],
+      "branch_ids": [
+        "SB_8"
+      ],
+      "support_count": 2,
+      "branch_support_count": 1,
+      "knn_support_count": 2,
+      "residual_support_count": 2,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 2,
+      "observational_status_votes": {
+        "shortcut_candidate": 2
+      },
+      "support_reasons": {
+        "distant_or_suspicious_local_adjacency": 2
+      },
+      "cooc_count": 0,
+      "triplet_support": 6,
+      "forbidden_pair_flag": true,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "ordered_branch_chain_step",
+        "residual_local_hypothesis_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_14",
+      "scene_node_a": "15#2",
+      "scene_node_b": "77#1",
+      "code_a": 15,
+      "code_b": 77,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node2_0002",
+        "node2_0003"
+      ],
+      "branch_ids": [
+        "SB_20"
+      ],
+      "support_count": 2,
+      "branch_support_count": 1,
+      "knn_support_count": 2,
+      "residual_support_count": 2,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 0,
+      "observational_status_votes": {
+        "plausible_local_adjacency": 2
+      },
+      "support_reasons": {
+        "partial_view_local_adjacency": 2
+      },
+      "cooc_count": 1,
+      "triplet_support": 1,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "anchor_attached_branch_step",
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_15",
+      "scene_node_a": "15#2",
+      "scene_node_b": "95#1",
+      "code_a": 15,
+      "code_b": 95,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005"
+      ],
+      "branch_ids": [
+        "SB_9"
+      ],
+      "support_count": 4,
+      "branch_support_count": 1,
+      "knn_support_count": 4,
+      "residual_support_count": 4,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 0,
+      "observational_status_votes": {
+        "plausible_local_adjacency": 4
+      },
+      "support_reasons": {
+        "partial_view_local_adjacency": 4
+      },
+      "cooc_count": 21,
+      "triplet_support": 34,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "ordered_branch_chain_step",
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_16",
+      "scene_node_a": "15#3",
+      "scene_node_b": "202#1",
+      "code_a": 15,
+      "code_b": 202,
+      "evidence_sources": [
+        "knn_residual",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node2_0002",
+        "node2_0003"
+      ],
+      "branch_ids": [],
+      "support_count": 2,
+      "branch_support_count": 0,
+      "knn_support_count": 2,
+      "residual_support_count": 2,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 2,
+      "observational_status_votes": {
+        "shortcut_candidate": 2
+      },
+      "support_reasons": {
+        "distant_or_suspicious_local_adjacency": 2
+      },
+      "cooc_count": 0,
+      "triplet_support": 1,
+      "forbidden_pair_flag": true,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "residual_local_hypothesis_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_17",
+      "scene_node_a": "15#3",
+      "scene_node_b": "202#2",
+      "code_a": 15,
+      "code_b": 202,
+      "evidence_sources": [
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005"
+      ],
+      "branch_ids": [
+        "SB_6"
+      ],
+      "support_count": 2,
+      "branch_support_count": 1,
+      "knn_support_count": 2,
+      "residual_support_count": 2,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 2,
+      "observational_status_votes": {
+        "shortcut_candidate": 2
+      },
+      "support_reasons": {
+        "distant_or_suspicious_local_adjacency": 2
+      },
+      "cooc_count": 0,
+      "triplet_support": 1,
+      "forbidden_pair_flag": true,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "ordered_branch_chain_step",
+        "residual_local_hypothesis_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_18",
+      "scene_node_a": "15#3",
+      "scene_node_b": "95#1",
+      "code_a": 15,
+      "code_b": 95,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "branch_ids": [
+        "SB_1"
+      ],
+      "support_count": 1,
+      "branch_support_count": 1,
+      "knn_support_count": 1,
+      "residual_support_count": 1,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 1,
+      "observational_status_votes": {
+        "shortcut_candidate": 1
+      },
+      "support_reasons": {
+        "distant_or_suspicious_local_adjacency": 1
+      },
+      "cooc_count": 21,
+      "triplet_support": 34,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "ordered_branch_chain_step",
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_19",
+      "scene_node_a": "15#3",
+      "scene_node_b": "95#2",
+      "code_a": 15,
+      "code_b": 95,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005"
+      ],
+      "branch_ids": [],
+      "support_count": 4,
+      "branch_support_count": 0,
+      "knn_support_count": 4,
+      "residual_support_count": 4,
+      "direct_visible_support_count": 2,
+      "shortcut_candidate_support_count": 0,
+      "observational_status_votes": {
+        "plausible_local_adjacency": 2,
+        "direct_visible": 2
+      },
+      "support_reasons": {
+        "partial_view_local_adjacency": 2,
+        "tight_local_proximity": 2
+      },
+      "cooc_count": 21,
+      "triplet_support": 34,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_20",
+      "scene_node_a": "190#1",
+      "scene_node_b": "202#1",
+      "code_a": 190,
+      "code_b": 202,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "branch_ids": [
+        "SB_2"
+      ],
+      "support_count": 5,
+      "branch_support_count": 1,
+      "knn_support_count": 5,
+      "residual_support_count": 5,
+      "direct_visible_support_count": 2,
+      "shortcut_candidate_support_count": 3,
+      "observational_status_votes": {
+        "direct_visible": 2,
+        "shortcut_candidate": 3
+      },
+      "support_reasons": {
+        "tight_local_proximity": 2,
+        "distant_or_suspicious_local_adjacency": 3
+      },
+      "cooc_count": 2,
+      "triplet_support": 3,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "ordered_branch_chain_step",
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_21",
+      "scene_node_a": "190#1",
+      "scene_node_b": "202#2",
+      "code_a": 190,
+      "code_b": 202,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "branch_ids": [
+        "SB_0"
+      ],
+      "support_count": 5,
+      "branch_support_count": 1,
+      "knn_support_count": 5,
+      "residual_support_count": 5,
+      "direct_visible_support_count": 3,
+      "shortcut_candidate_support_count": 0,
+      "observational_status_votes": {
+        "plausible_local_adjacency": 2,
+        "direct_visible": 3
+      },
+      "support_reasons": {
+        "partial_view_local_adjacency": 2,
+        "tight_local_proximity": 3
+      },
+      "cooc_count": 2,
+      "triplet_support": 3,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "ordered_branch_chain_step",
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_22",
+      "scene_node_a": "190#1",
+      "scene_node_b": "95#2",
+      "code_a": 190,
+      "code_b": 95,
+      "evidence_sources": [
+        "knn_residual",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005"
+      ],
+      "branch_ids": [],
+      "support_count": 4,
+      "branch_support_count": 0,
+      "knn_support_count": 4,
+      "residual_support_count": 4,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 4,
+      "observational_status_votes": {
+        "shortcut_candidate": 4
+      },
+      "support_reasons": {
+        "distant_or_suspicious_local_adjacency": 4
+      },
+      "cooc_count": 0,
+      "triplet_support": 1,
+      "forbidden_pair_flag": true,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "residual_local_hypothesis_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_23",
+      "scene_node_a": "202#1",
+      "scene_node_b": "202#2",
+      "code_a": 202,
+      "code_b": 202,
+      "evidence_sources": [
+        "knn_residual",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node2_0002",
+        "node2_0003"
+      ],
+      "branch_ids": [],
+      "support_count": 2,
+      "branch_support_count": 0,
+      "knn_support_count": 2,
+      "residual_support_count": 2,
+      "direct_visible_support_count": 0,
+      "shortcut_candidate_support_count": 2,
+      "observational_status_votes": {
+        "shortcut_candidate": 2
+      },
+      "support_reasons": {
+        "distant_or_suspicious_local_adjacency": 2
+      },
+      "cooc_count": 0,
+      "triplet_support": 11,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "residual_local_hypothesis_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_24",
+      "scene_node_a": "202#1",
+      "scene_node_b": "53#1",
+      "code_a": 202,
+      "code_b": 53,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "branch_ids": [
+        "SB_2"
+      ],
+      "support_count": 3,
+      "branch_support_count": 1,
+      "knn_support_count": 3,
+      "residual_support_count": 3,
+      "direct_visible_support_count": 3,
+      "shortcut_candidate_support_count": 0,
+      "observational_status_votes": {
+        "direct_visible": 3
+      },
+      "support_reasons": {
+        "tight_local_proximity": 3
+      },
+      "cooc_count": 3,
+      "triplet_support": 4,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "ordered_branch_chain_step",
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_25",
+      "scene_node_a": "202#1",
+      "scene_node_b": "95#2",
+      "code_a": 202,
+      "code_b": 95,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node2_0002",
+        "node2_0003"
+      ],
+      "branch_ids": [
+        "SB_16"
+      ],
+      "support_count": 2,
+      "branch_support_count": 1,
+      "knn_support_count": 2,
+      "residual_support_count": 2,
+      "direct_visible_support_count": 2,
+      "shortcut_candidate_support_count": 0,
+      "observational_status_votes": {
+        "direct_visible": 2
+      },
+      "support_reasons": {
+        "tight_local_proximity": 2
+      },
+      "cooc_count": 2,
+      "triplet_support": 4,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "ordered_branch_chain_step",
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_26",
+      "scene_node_a": "202#2",
+      "scene_node_b": "53#2",
+      "code_a": 202,
+      "code_b": 53,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node2_0002",
+        "node2_0003"
+      ],
+      "branch_ids": [
+        "SB_18",
+        "SB_19"
+      ],
+      "support_count": 2,
+      "branch_support_count": 2,
+      "knn_support_count": 2,
+      "residual_support_count": 2,
+      "direct_visible_support_count": 2,
+      "shortcut_candidate_support_count": 0,
+      "observational_status_votes": {
+        "direct_visible": 2
+      },
+      "support_reasons": {
+        "tight_local_proximity": 2
+      },
+      "cooc_count": 3,
+      "triplet_support": 4,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "ordered_branch_chain_step",
+        "ordered_branch_chain_step",
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_27",
+      "scene_node_a": "202#2",
+      "scene_node_b": "95#2",
+      "code_a": 202,
+      "code_b": 95,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005"
+      ],
+      "branch_ids": [
+        "SB_4"
+      ],
+      "support_count": 2,
+      "branch_support_count": 1,
+      "knn_support_count": 2,
+      "residual_support_count": 2,
+      "direct_visible_support_count": 2,
+      "shortcut_candidate_support_count": 0,
+      "observational_status_votes": {
+        "direct_visible": 2
+      },
+      "support_reasons": {
+        "tight_local_proximity": 2
+      },
+      "cooc_count": 2,
+      "triplet_support": 4,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "ordered_branch_chain_step",
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_28",
+      "scene_node_a": "53#1",
+      "scene_node_b": "95#1",
+      "code_a": 53,
+      "code_b": 95,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node2_0002",
+        "node2_0003"
+      ],
+      "branch_ids": [
+        "SB_15"
+      ],
+      "support_count": 2,
+      "branch_support_count": 1,
+      "knn_support_count": 2,
+      "residual_support_count": 2,
+      "direct_visible_support_count": 2,
+      "shortcut_candidate_support_count": 0,
+      "observational_status_votes": {
+        "direct_visible": 2
+      },
+      "support_reasons": {
+        "tight_local_proximity": 2
+      },
+      "cooc_count": 6,
+      "triplet_support": 11,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "ordered_branch_chain_step",
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    },
+    {
+      "edge_id": "CE_29",
+      "scene_node_a": "53#2",
+      "scene_node_b": "95#1",
+      "code_a": 53,
+      "code_b": 95,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "supporting_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "branch_ids": [
+        "SB_3",
+        "SB_7"
+      ],
+      "support_count": 3,
+      "branch_support_count": 2,
+      "knn_support_count": 3,
+      "residual_support_count": 3,
+      "direct_visible_support_count": 3,
+      "shortcut_candidate_support_count": 0,
+      "observational_status_votes": {
+        "direct_visible": 3
+      },
+      "support_reasons": {
+        "tight_local_proximity": 3
+      },
+      "cooc_count": 6,
+      "triplet_support": 11,
+      "forbidden_pair_flag": false,
+      "a_remaining_degree": 2,
+      "b_remaining_degree": 2,
+      "acceptance_reasons": [
+        "ordered_branch_chain_step",
+        "ordered_branch_chain_step",
+        "residual_local_hypothesis_support",
+        "cooc_prior_support",
+        "triplet_pattern_support"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "reconciliation_notes": []
+    }
+  ],
+  "debug": {
+    "anchor_node_ids": [
+      "11#1",
+      "116#1",
+      "77#1"
+    ],
+    "branch_edge_steps": [
+      {
+        "scene_branch_id": "SB_0",
+        "pair": [
+          "190#1",
+          "202#2"
+        ],
+        "reason": "ordered_branch_chain_step"
+      },
+      {
+        "scene_branch_id": "SB_0",
+        "pair": [
+          "15#1",
+          "202#2"
+        ],
+        "reason": "ordered_branch_chain_step"
+      },
+      {
+        "scene_branch_id": "SB_0",
+        "pair": [
+          "15#1",
+          "190#1"
+        ],
+        "reason": "ordered_branch_chain_step"
+      },
+      {
+        "scene_branch_id": "SB_1",
+        "pair": [
+          "116#1",
+          "15#3"
+        ],
+        "reason": "anchor_attached_branch_step"
+      },
+      {
+        "scene_branch_id": "SB_1",
+        "pair": [
+          "15#3",
+          "95#1"
+        ],
+        "reason": "ordered_branch_chain_step"
+      },
+      {
+        "scene_branch_id": "SB_2",
+        "pair": [
+          "190#1",
+          "202#1"
+        ],
+        "reason": "ordered_branch_chain_step"
+      },
+      {
+        "scene_branch_id": "SB_2",
+        "pair": [
+          "202#1",
+          "53#1"
+        ],
+        "reason": "ordered_branch_chain_step"
+      },
+      {
+        "scene_branch_id": "SB_3",
+        "pair": [
+          "11#1",
+          "53#2"
+        ],
+        "reason": "anchor_attached_branch_step"
+      },
+      {
+        "scene_branch_id": "SB_3",
+        "pair": [
+          "53#2",
+          "95#1"
+        ],
+        "reason": "ordered_branch_chain_step"
+      },
+      {
+        "scene_branch_id": "SB_4",
+        "pair": [
+          "202#2",
+          "95#2"
+        ],
+        "reason": "ordered_branch_chain_step"
+      },
+      {
+        "scene_branch_id": "SB_5",
+        "pair": [
+          "15#1",
+          "15#2"
+        ],
+        "reason": "ordered_branch_chain_step"
+      },
+      {
+        "scene_branch_id": "SB_6",
+        "pair": [
+          "15#3",
+          "202#2"
+        ],
+        "reason": "ordered_branch_chain_step"
+      },
+      {
+        "scene_branch_id": "SB_7",
+        "pair": [
+          "53#2",
+          "95#1"
+        ],
+        "reason": "ordered_branch_chain_step"
+      },
+      {
+        "scene_branch_id": "SB_8",
+        "pair": [
+          "15#2",
+          "53#2"
+        ],
+        "reason": "ordered_branch_chain_step"
+      },
+      {
+        "scene_branch_id": "SB_9",
+        "pair": [
+          "15#2",
+          "95#1"
+        ],
+        "reason": "ordered_branch_chain_step"
+      },
+      {
+        "scene_branch_id": "SB_10",
+        "pair": [
+          "116#1",
+          "15#1"
+        ],
+        "reason": "anchor_attached_branch_step"
+      },
+      {
+        "scene_branch_id": "SB_11",
+        "pair": [
+          "116#1",
+          "15#3"
+        ],
+        "reason": "anchor_attached_branch_step"
+      },
+      {
+        "scene_branch_id": "SB_12",
+        "pair": [
+          "116#1",
+          "15#2"
+        ],
+        "reason": "anchor_attached_branch_step"
+      },
+      {
+        "scene_branch_id": "SB_13",
+        "pair": [
+          "11#1",
+          "95#1"
+        ],
+        "reason": "anchor_attached_branch_step"
+      },
+      {
+        "scene_branch_id": "SB_14",
+        "pair": [
+          "11#1",
+          "53#2"
+        ],
+        "reason": "anchor_attached_branch_step"
+      },
+      {
+        "scene_branch_id": "SB_15",
+        "pair": [
+          "53#1",
+          "95#1"
+        ],
+        "reason": "ordered_branch_chain_step"
+      },
+      {
+        "scene_branch_id": "SB_16",
+        "pair": [
+          "202#1",
+          "95#2"
+        ],
+        "reason": "ordered_branch_chain_step"
+      },
+      {
+        "scene_branch_id": "SB_17",
+        "pair": [
+          "15#1",
+          "77#1"
+        ],
+        "reason": "anchor_attached_branch_step"
+      },
+      {
+        "scene_branch_id": "SB_18",
+        "pair": [
+          "202#2",
+          "53#2"
+        ],
+        "reason": "ordered_branch_chain_step"
+      },
+      {
+        "scene_branch_id": "SB_19",
+        "pair": [
+          "202#2",
+          "53#2"
+        ],
+        "reason": "ordered_branch_chain_step"
+      },
+      {
+        "scene_branch_id": "SB_20",
+        "pair": [
+          "15#2",
+          "77#1"
+        ],
+        "reason": "anchor_attached_branch_step"
+      }
+    ],
+    "residual_pairs": [
+      {
+        "pair": [
+          "11#1",
+          "15#1"
+        ],
+        "supporting_images": [
+          "node2_0002",
+          "node2_0003"
+        ],
+        "status_votes": {
+          "plausible_local_adjacency": 2
+        },
+        "support_reasons": {
+          "partial_view_local_adjacency": 2
+        }
+      },
+      {
+        "pair": [
+          "11#1",
+          "53#1"
+        ],
+        "supporting_images": [
+          "node2_0002",
+          "node2_0003"
+        ],
+        "status_votes": {
+          "direct_visible": 2
+        },
+        "support_reasons": {
+          "tight_local_proximity": 2
+        }
+      },
+      {
+        "pair": [
+          "11#1",
+          "53#2"
+        ],
+        "supporting_images": [
+          "node2_0004",
+          "node2_0005",
+          "node2_0007"
+        ],
+        "status_votes": {
+          "direct_visible": 2,
+          "plausible_local_adjacency": 1
+        },
+        "support_reasons": {
+          "tight_local_proximity": 2,
+          "partial_view_local_adjacency": 1
+        }
+      },
+      {
+        "pair": [
+          "11#1",
+          "95#1"
+        ],
+        "supporting_images": [
+          "node2_0002",
+          "node2_0003",
+          "node2_0004",
+          "node2_0005",
+          "node2_0007"
+        ],
+        "status_votes": {
+          "shortcut_candidate": 5
+        },
+        "support_reasons": {
+          "distant_or_suspicious_local_adjacency": 5
+        }
+      },
+      {
+        "pair": [
+          "116#1",
+          "15#1"
+        ],
+        "supporting_images": [
+          "node2_0002",
+          "node2_0003",
+          "node2_0004",
+          "node2_0005"
+        ],
+        "status_votes": {
+          "plausible_local_adjacency": 4
+        },
+        "support_reasons": {
+          "partial_view_local_adjacency": 4
+        }
+      },
+      {
+        "pair": [
+          "116#1",
+          "15#2"
+        ],
+        "supporting_images": [
+          "node2_0002",
+          "node2_0003",
+          "node2_0004",
+          "node2_0005"
+        ],
+        "status_votes": {
+          "plausible_local_adjacency": 4
+        },
+        "support_reasons": {
+          "partial_view_local_adjacency": 4
+        }
+      },
+      {
+        "pair": [
+          "116#1",
+          "15#3"
+        ],
+        "supporting_images": [
+          "node2_0002",
+          "node2_0003",
+          "node2_0004",
+          "node2_0005",
+          "node2_0007"
+        ],
+        "status_votes": {
+          "plausible_local_adjacency": 2,
+          "shortcut_candidate": 2,
+          "direct_visible": 1
+        },
+        "support_reasons": {
+          "partial_view_local_adjacency": 2,
+          "distant_or_suspicious_local_adjacency": 2,
+          "tight_local_proximity": 1
+        }
+      },
+      {
+        "pair": [
+          "15#1",
+          "15#2"
+        ],
+        "supporting_images": [
+          "node2_0002",
+          "node2_0003",
+          "node2_0004",
+          "node2_0005"
+        ],
+        "status_votes": {
+          "plausible_local_adjacency": 2,
+          "shortcut_candidate": 2
+        },
+        "support_reasons": {
+          "partial_view_local_adjacency": 2,
+          "distant_or_suspicious_local_adjacency": 2
+        }
+      },
+      {
+        "pair": [
+          "15#1",
+          "190#1"
+        ],
+        "supporting_images": [
+          "node2_0007"
+        ],
+        "status_votes": {
+          "shortcut_candidate": 1
+        },
+        "support_reasons": {
+          "distant_or_suspicious_local_adjacency": 1
+        }
+      },
+      {
+        "pair": [
+          "15#1",
+          "202#2"
+        ],
+        "supporting_images": [
+          "node2_0007"
+        ],
+        "status_votes": {
+          "shortcut_candidate": 1
+        },
+        "support_reasons": {
+          "distant_or_suspicious_local_adjacency": 1
+        }
+      },
+      {
+        "pair": [
+          "15#1",
+          "53#1"
+        ],
+        "supporting_images": [
+          "node2_0002",
+          "node2_0003"
+        ],
+        "status_votes": {
+          "shortcut_candidate": 2
+        },
+        "support_reasons": {
+          "distant_or_suspicious_local_adjacency": 2
+        }
+      },
+      {
+        "pair": [
+          "15#1",
+          "77#1"
+        ],
+        "supporting_images": [
+          "node2_0004",
+          "node2_0005"
+        ],
+        "status_votes": {
+          "shortcut_candidate": 2
+        },
+        "support_reasons": {
+          "distant_or_suspicious_local_adjacency": 2
+        }
+      },
+      {
+        "pair": [
+          "15#1",
+          "95#1"
+        ],
+        "supporting_images": [
+          "node2_0002",
+          "node2_0003"
+        ],
+        "status_votes": {
+          "direct_visible": 2
+        },
+        "support_reasons": {
+          "tight_local_proximity": 2
+        }
+      },
+      {
+        "pair": [
+          "15#2",
+          "53#2"
+        ],
+        "supporting_images": [
+          "node2_0004",
+          "node2_0005"
+        ],
+        "status_votes": {
+          "shortcut_candidate": 2
+        },
+        "support_reasons": {
+          "distant_or_suspicious_local_adjacency": 2
+        }
+      },
+      {
+        "pair": [
+          "15#2",
+          "77#1"
+        ],
+        "supporting_images": [
+          "node2_0002",
+          "node2_0003"
+        ],
+        "status_votes": {
+          "plausible_local_adjacency": 2
+        },
+        "support_reasons": {
+          "partial_view_local_adjacency": 2
+        }
+      },
+      {
+        "pair": [
+          "15#2",
+          "95#1"
+        ],
+        "supporting_images": [
+          "node2_0002",
+          "node2_0003",
+          "node2_0004",
+          "node2_0005"
+        ],
+        "status_votes": {
+          "plausible_local_adjacency": 4
+        },
+        "support_reasons": {
+          "partial_view_local_adjacency": 4
+        }
+      },
+      {
+        "pair": [
+          "15#3",
+          "202#1"
+        ],
+        "supporting_images": [
+          "node2_0002",
+          "node2_0003"
+        ],
+        "status_votes": {
+          "shortcut_candidate": 2
+        },
+        "support_reasons": {
+          "distant_or_suspicious_local_adjacency": 2
+        }
+      },
+      {
+        "pair": [
+          "15#3",
+          "202#2"
+        ],
+        "supporting_images": [
+          "node2_0004",
+          "node2_0005"
+        ],
+        "status_votes": {
+          "shortcut_candidate": 2
+        },
+        "support_reasons": {
+          "distant_or_suspicious_local_adjacency": 2
+        }
+      },
+      {
+        "pair": [
+          "15#3",
+          "95#1"
+        ],
+        "supporting_images": [
+          "node2_0007"
+        ],
+        "status_votes": {
+          "shortcut_candidate": 1
+        },
+        "support_reasons": {
+          "distant_or_suspicious_local_adjacency": 1
+        }
+      },
+      {
+        "pair": [
+          "15#3",
+          "95#2"
+        ],
+        "supporting_images": [
+          "node2_0002",
+          "node2_0003",
+          "node2_0004",
+          "node2_0005"
+        ],
+        "status_votes": {
+          "plausible_local_adjacency": 2,
+          "direct_visible": 2
+        },
+        "support_reasons": {
+          "partial_view_local_adjacency": 2,
+          "tight_local_proximity": 2
+        }
+      },
+      {
+        "pair": [
+          "190#1",
+          "202#1"
+        ],
+        "supporting_images": [
+          "node2_0002",
+          "node2_0003",
+          "node2_0004",
+          "node2_0005",
+          "node2_0007"
+        ],
+        "status_votes": {
+          "direct_visible": 2,
+          "shortcut_candidate": 3
+        },
+        "support_reasons": {
+          "tight_local_proximity": 2,
+          "distant_or_suspicious_local_adjacency": 3
+        }
+      },
+      {
+        "pair": [
+          "190#1",
+          "202#2"
+        ],
+        "supporting_images": [
+          "node2_0002",
+          "node2_0003",
+          "node2_0004",
+          "node2_0005",
+          "node2_0007"
+        ],
+        "status_votes": {
+          "plausible_local_adjacency": 2,
+          "direct_visible": 3
+        },
+        "support_reasons": {
+          "partial_view_local_adjacency": 2,
+          "tight_local_proximity": 3
+        }
+      },
+      {
+        "pair": [
+          "190#1",
+          "95#2"
+        ],
+        "supporting_images": [
+          "node2_0002",
+          "node2_0003",
+          "node2_0004",
+          "node2_0005"
+        ],
+        "status_votes": {
+          "shortcut_candidate": 4
+        },
+        "support_reasons": {
+          "distant_or_suspicious_local_adjacency": 4
+        }
+      },
+      {
+        "pair": [
+          "202#1",
+          "202#2"
+        ],
+        "supporting_images": [
+          "node2_0002",
+          "node2_0003"
+        ],
+        "status_votes": {
+          "shortcut_candidate": 2
+        },
+        "support_reasons": {
+          "distant_or_suspicious_local_adjacency": 2
+        }
+      },
+      {
+        "pair": [
+          "202#1",
+          "53#1"
+        ],
+        "supporting_images": [
+          "node2_0004",
+          "node2_0005",
+          "node2_0007"
+        ],
+        "status_votes": {
+          "direct_visible": 3
+        },
+        "support_reasons": {
+          "tight_local_proximity": 3
+        }
+      },
+      {
+        "pair": [
+          "202#1",
+          "95#2"
+        ],
+        "supporting_images": [
+          "node2_0002",
+          "node2_0003"
+        ],
+        "status_votes": {
+          "direct_visible": 2
+        },
+        "support_reasons": {
+          "tight_local_proximity": 2
+        }
+      },
+      {
+        "pair": [
+          "202#2",
+          "53#2"
+        ],
+        "supporting_images": [
+          "node2_0002",
+          "node2_0003"
+        ],
+        "status_votes": {
+          "direct_visible": 2
+        },
+        "support_reasons": {
+          "tight_local_proximity": 2
+        }
+      },
+      {
+        "pair": [
+          "202#2",
+          "95#2"
+        ],
+        "supporting_images": [
+          "node2_0004",
+          "node2_0005"
+        ],
+        "status_votes": {
+          "direct_visible": 2
+        },
+        "support_reasons": {
+          "tight_local_proximity": 2
+        }
+      },
+      {
+        "pair": [
+          "53#1",
+          "95#1"
+        ],
+        "supporting_images": [
+          "node2_0002",
+          "node2_0003"
+        ],
+        "status_votes": {
+          "direct_visible": 2
+        },
+        "support_reasons": {
+          "tight_local_proximity": 2
+        }
+      },
+      {
+        "pair": [
+          "53#2",
+          "95#1"
+        ],
+        "supporting_images": [
+          "node2_0004",
+          "node2_0005",
+          "node2_0007"
+        ],
+        "status_votes": {
+          "direct_visible": 3
+        },
+        "support_reasons": {
+          "tight_local_proximity": 3
+        }
+      }
+    ]
+  }
+}

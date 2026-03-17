@@ -1,0 +1,174 @@
+{
+  "total_images": 2,
+  "n_nodes": 5,
+  "n_edges": 4,
+  "is_connected": true,
+  "nodes": [
+    {
+      "id": "15#1",
+      "code": 15,
+      "name": "Saracinesca",
+      "confidence": 0.8369522392749786,
+      "support_count": 2,
+      "support_images": [
+        "node16_0001",
+        "node16_0002"
+      ],
+      "degree": 2,
+      "max_degree": 2,
+      "is_anchor": false
+    },
+    {
+      "id": "95#1",
+      "code": 95,
+      "name": "Bout bic.",
+      "confidence": 0.8228392601013184,
+      "support_count": 2,
+      "support_images": [
+        "node16_0001",
+        "node16_0002"
+      ],
+      "degree": 1,
+      "max_degree": 2,
+      "is_anchor": false
+    },
+    {
+      "id": "95#2",
+      "code": 95,
+      "name": "Bout bic.",
+      "confidence": 0.813194066286087,
+      "support_count": 2,
+      "support_images": [
+        "node16_0001",
+        "node16_0002"
+      ],
+      "degree": 1,
+      "max_degree": 2,
+      "is_anchor": false
+    },
+    {
+      "id": "95#3",
+      "code": 95,
+      "name": "Bout bic.",
+      "confidence": 0.8156392574310303,
+      "support_count": 2,
+      "support_images": [
+        "node16_0001",
+        "node16_0002"
+      ],
+      "degree": 1,
+      "max_degree": 2,
+      "is_anchor": false
+    },
+    {
+      "id": "116#1",
+      "code": 116,
+      "name": "Tee FL",
+      "confidence": 0.7408815324306488,
+      "support_count": 2,
+      "support_images": [
+        "node16_0001",
+        "node16_0002"
+      ],
+      "degree": 3,
+      "max_degree": 3,
+      "is_anchor": true
+    }
+  ],
+  "edges": [
+    {
+      "node_a": "15#1",
+      "node_b": "95#3",
+      "support_count": 2,
+      "supporting_images": [
+        "node16_0001",
+        "node16_0002"
+      ],
+      "branch_support_count": 2,
+      "knn_support_count": 2,
+      "cooc_count": 21,
+      "triplet_support": 34,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": false,
+      "forced_reason": null
+    },
+    {
+      "node_a": "15#1",
+      "node_b": "116#1",
+      "support_count": 2,
+      "supporting_images": [
+        "node16_0001",
+        "node16_0002"
+      ],
+      "branch_support_count": 1,
+      "knn_support_count": 2,
+      "cooc_count": 12,
+      "triplet_support": 24,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": false,
+      "forced_reason": null
+    },
+    {
+      "node_a": "95#1",
+      "node_b": "116#1",
+      "support_count": 2,
+      "supporting_images": [
+        "node16_0001",
+        "node16_0002"
+      ],
+      "branch_support_count": 2,
+      "knn_support_count": 2,
+      "cooc_count": 0,
+      "triplet_support": 8,
+      "forbidden_flag": true,
+      "evidence_sources": [
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": false,
+      "forced_reason": null
+    },
+    {
+      "node_a": "95#2",
+      "node_b": "116#1",
+      "support_count": 2,
+      "supporting_images": [
+        "node16_0001",
+        "node16_0002"
+      ],
+      "branch_support_count": 1,
+      "knn_support_count": 2,
+      "cooc_count": 0,
+      "triplet_support": 8,
+      "forbidden_flag": true,
+      "evidence_sources": [
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": true,
+      "forced_reason": "spanning_tree_candidate_bridge"
+    }
+  ]
+}

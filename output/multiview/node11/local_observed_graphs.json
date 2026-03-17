@@ -1,0 +1,1420 @@
+{
+  "n_views": 4,
+  "observed_graphs": [
+    {
+      "image_id": "node11_0003",
+      "n_nodes": 7,
+      "n_edges": 3,
+      "n_branch_fragments": 3,
+      "nodes": [
+        {
+          "observed_node_id": "node11_0003_0",
+          "image_id": "node11_0003",
+          "code": 15,
+          "name": "Saracinesca",
+          "confidence": 0.8332228064537048,
+          "bbox": [
+            0.5474633574485779,
+            0.6033058166503906,
+            0.6176634430885315,
+            0.6533159613609314
+          ],
+          "center": [
+            0.5825634002685547,
+            0.628310889005661
+          ],
+          "local_degree_estimate": 1,
+          "nearby_codes": [
+            95
+          ]
+        },
+        {
+          "observed_node_id": "node11_0003_1",
+          "image_id": "node11_0003",
+          "code": 95,
+          "name": "Bout bic.",
+          "confidence": 0.8018873929977417,
+          "bbox": [
+            0.5430743098258972,
+            0.2812313735485077,
+            0.6082072257995605,
+            0.32599902153015137
+          ],
+          "center": [
+            0.5756407678127289,
+            0.30361519753932953
+          ],
+          "local_degree_estimate": 1,
+          "nearby_codes": [
+            15
+          ]
+        },
+        {
+          "observed_node_id": "node11_0003_2",
+          "image_id": "node11_0003",
+          "code": 15,
+          "name": "Saracinesca",
+          "confidence": 0.8283397555351257,
+          "bbox": [
+            0.36459583044052124,
+            0.4623422622680664,
+            0.41631680727005005,
+            0.50397789478302
+          ],
+          "center": [
+            0.39045631885528564,
+            0.4831600785255432
+          ],
+          "local_degree_estimate": 1,
+          "nearby_codes": [
+            95
+          ]
+        },
+        {
+          "observed_node_id": "node11_0003_3",
+          "image_id": "node11_0003",
+          "code": 95,
+          "name": "Bout bic.",
+          "confidence": 0.8069833517074585,
+          "bbox": [
+            0.2977950870990753,
+            0.46748971939086914,
+            0.3580211400985718,
+            0.50194251537323
+          ],
+          "center": [
+            0.32790811359882355,
+            0.48471611738204956
+          ],
+          "local_degree_estimate": 1,
+          "nearby_codes": [
+            15
+          ]
+        },
+        {
+          "observed_node_id": "node11_0003_4",
+          "image_id": "node11_0003",
+          "code": 95,
+          "name": "Bout bic.",
+          "confidence": 0.8093664646148682,
+          "bbox": [
+            0.5311592221260071,
+            0.6426388621330261,
+            0.6142385005950928,
+            0.7015398144721985
+          ],
+          "center": [
+            0.5726988613605499,
+            0.6720893383026123
+          ],
+          "local_degree_estimate": 1,
+          "nearby_codes": [
+            15
+          ]
+        },
+        {
+          "observed_node_id": "node11_0003_5",
+          "image_id": "node11_0003",
+          "code": 116,
+          "name": "Tee FL",
+          "confidence": 0.7798616290092468,
+          "bbox": [
+            0.5410072803497314,
+            0.4701521694660187,
+            0.5961447954177856,
+            0.5054500102996826
+          ],
+          "center": [
+            0.5685760378837585,
+            0.48780108988285065
+          ],
+          "local_degree_estimate": 0,
+          "nearby_codes": []
+        },
+        {
+          "observed_node_id": "node11_0003_6",
+          "image_id": "node11_0003",
+          "code": 15,
+          "name": "Saracinesca",
+          "confidence": 0.8189413547515869,
+          "bbox": [
+            0.5457290410995483,
+            0.32094913721084595,
+            0.5996150970458984,
+            0.3603610694408417
+          ],
+          "center": [
+            0.5726720690727234,
+            0.3406551033258438
+          ],
+          "local_degree_estimate": 1,
+          "nearby_codes": [
+            95
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "source_id": "node11_0003_0",
+          "target_id": "node11_0003_4",
+          "image_id": "node11_0003",
+          "confidence": 0.8212946355342865,
+          "distance": 0.044876071025807006,
+          "cooc_support": 1.0,
+          "forbidden": false,
+          "edge_status": "direct_visible",
+          "direct_visible": true,
+          "shortcut_candidate": false,
+          "support_reason": "tight_local_proximity"
+        },
+        {
+          "source_id": "node11_0003_1",
+          "target_id": "node11_0003_6",
+          "image_id": "node11_0003",
+          "confidence": 0.8104143738746643,
+          "distance": 0.03715868394982207,
+          "cooc_support": 1.0,
+          "forbidden": false,
+          "edge_status": "direct_visible",
+          "direct_visible": true,
+          "shortcut_candidate": false,
+          "support_reason": "tight_local_proximity"
+        },
+        {
+          "source_id": "node11_0003_2",
+          "target_id": "node11_0003_3",
+          "image_id": "node11_0003",
+          "confidence": 0.8176615536212921,
+          "distance": 0.06256755738981241,
+          "cooc_support": 1.0,
+          "forbidden": false,
+          "edge_status": "plausible_local_adjacency",
+          "direct_visible": false,
+          "shortcut_candidate": false,
+          "support_reason": "partial_view_local_adjacency"
+        }
+      ],
+      "local_patterns": [
+        {
+          "type": "pair",
+          "codes": [
+            15,
+            95
+          ],
+          "cooc_count": 21,
+          "forbidden": false
+        }
+      ],
+      "branch_fragments": [
+        {
+          "branch_fragment_id": "node11_0003_frag_0",
+          "image_id": "node11_0003",
+          "ordered_observed_node_ids": [
+            "node11_0003_0",
+            "node11_0003_4"
+          ],
+          "ordered_codes": [
+            15,
+            95
+          ],
+          "endpoint_candidates": [
+            {
+              "observed_node_id": "node11_0003_0",
+              "code": 15,
+              "name": "Saracinesca",
+              "local_degree": 1,
+              "role": "endpoint",
+              "is_anchor_candidate": false,
+              "is_terminal_candidate": true
+            },
+            {
+              "observed_node_id": "node11_0003_4",
+              "code": 95,
+              "name": "Bout bic.",
+              "local_degree": 1,
+              "role": "endpoint",
+              "is_anchor_candidate": false,
+              "is_terminal_candidate": true
+            }
+          ],
+          "anchor_attachment_hints": [],
+          "confidence": 0.8212946355342865,
+          "local_evidence_metadata": {
+            "length": 2,
+            "mean_detection_confidence": 0.8212946355342865,
+            "triplets": [],
+            "distances": [
+              0.044876071025807006
+            ],
+            "forbidden_adjacent_pairs": [
+              false
+            ]
+          }
+        },
+        {
+          "branch_fragment_id": "node11_0003_frag_1",
+          "image_id": "node11_0003",
+          "ordered_observed_node_ids": [
+            "node11_0003_1",
+            "node11_0003_6"
+          ],
+          "ordered_codes": [
+            95,
+            15
+          ],
+          "endpoint_candidates": [
+            {
+              "observed_node_id": "node11_0003_1",
+              "code": 95,
+              "name": "Bout bic.",
+              "local_degree": 1,
+              "role": "endpoint",
+              "is_anchor_candidate": false,
+              "is_terminal_candidate": true
+            },
+            {
+              "observed_node_id": "node11_0003_6",
+              "code": 15,
+              "name": "Saracinesca",
+              "local_degree": 1,
+              "role": "endpoint",
+              "is_anchor_candidate": false,
+              "is_terminal_candidate": true
+            }
+          ],
+          "anchor_attachment_hints": [],
+          "confidence": 0.8104143738746643,
+          "local_evidence_metadata": {
+            "length": 2,
+            "mean_detection_confidence": 0.8104143738746643,
+            "triplets": [],
+            "distances": [
+              0.03715868394982207
+            ],
+            "forbidden_adjacent_pairs": [
+              false
+            ]
+          }
+        },
+        {
+          "branch_fragment_id": "node11_0003_frag_2",
+          "image_id": "node11_0003",
+          "ordered_observed_node_ids": [
+            "node11_0003_2",
+            "node11_0003_3"
+          ],
+          "ordered_codes": [
+            15,
+            95
+          ],
+          "endpoint_candidates": [
+            {
+              "observed_node_id": "node11_0003_2",
+              "code": 15,
+              "name": "Saracinesca",
+              "local_degree": 1,
+              "role": "endpoint",
+              "is_anchor_candidate": false,
+              "is_terminal_candidate": true
+            },
+            {
+              "observed_node_id": "node11_0003_3",
+              "code": 95,
+              "name": "Bout bic.",
+              "local_degree": 1,
+              "role": "endpoint",
+              "is_anchor_candidate": false,
+              "is_terminal_candidate": true
+            }
+          ],
+          "anchor_attachment_hints": [],
+          "confidence": 0.8176615536212921,
+          "local_evidence_metadata": {
+            "length": 2,
+            "mean_detection_confidence": 0.8176615536212921,
+            "triplets": [],
+            "distances": [
+              0.06256755738981241
+            ],
+            "forbidden_adjacent_pairs": [
+              false
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "image_id": "node11_0004",
+      "n_nodes": 7,
+      "n_edges": 3,
+      "n_branch_fragments": 3,
+      "nodes": [
+        {
+          "observed_node_id": "node11_0004_0",
+          "image_id": "node11_0004",
+          "code": 15,
+          "name": "Saracinesca",
+          "confidence": 0.8322347402572632,
+          "bbox": [
+            0.22167199850082397,
+            0.4443294107913971,
+            0.31353023648262024,
+            0.5173007249832153
+          ],
+          "center": [
+            0.2676011174917221,
+            0.4808150678873062
+          ],
+          "local_degree_estimate": 1,
+          "nearby_codes": [
+            95
+          ]
+        },
+        {
+          "observed_node_id": "node11_0004_1",
+          "image_id": "node11_0004",
+          "code": 15,
+          "name": "Saracinesca",
+          "confidence": 0.836237370967865,
+          "bbox": [
+            0.5471548438072205,
+            0.6907342076301575,
+            0.6696707010269165,
+            0.7803332209587097
+          ],
+          "center": [
+            0.6084127724170685,
+            0.7355337142944336
+          ],
+          "local_degree_estimate": 1,
+          "nearby_codes": [
+            95
+          ]
+        },
+        {
+          "observed_node_id": "node11_0004_2",
+          "image_id": "node11_0004",
+          "code": 95,
+          "name": "Bout bic.",
+          "confidence": 0.7987962961196899,
+          "bbox": [
+            0.5364075899124146,
+            0.12412375956773758,
+            0.6489943265914917,
+            0.20462103188037872
+          ],
+          "center": [
+            0.5927009582519531,
+            0.16437239572405815
+          ],
+          "local_degree_estimate": 1,
+          "nearby_codes": [
+            15
+          ]
+        },
+        {
+          "observed_node_id": "node11_0004_3",
+          "image_id": "node11_0004",
+          "code": 95,
+          "name": "Bout bic.",
+          "confidence": 0.8196526765823364,
+          "bbox": [
+            0.10214235633611679,
+            0.45198512077331543,
+            0.20858921110630035,
+            0.5139172077178955
+          ],
+          "center": [
+            0.15536578372120857,
+            0.48295116424560547
+          ],
+          "local_degree_estimate": 1,
+          "nearby_codes": [
+            15
+          ]
+        },
+        {
+          "observed_node_id": "node11_0004_4",
+          "image_id": "node11_0004",
+          "code": 15,
+          "name": "Saracinesca",
+          "confidence": 0.8177409768104553,
+          "bbox": [
+            0.5415506958961487,
+            0.19318455457687378,
+            0.6345494985580444,
+            0.26399609446525574
+          ],
+          "center": [
+            0.5880500972270966,
+            0.22859032452106476
+          ],
+          "local_degree_estimate": 1,
+          "nearby_codes": [
+            95
+          ]
+        },
+        {
+          "observed_node_id": "node11_0004_5",
+          "image_id": "node11_0004",
+          "code": 116,
+          "name": "Tee FL",
+          "confidence": 0.7822042107582092,
+          "bbox": [
+            0.546550989151001,
+            0.45761385560035706,
+            0.6295968294143677,
+            0.5190573930740356
+          ],
+          "center": [
+            0.5880739092826843,
+            0.48833562433719635
+          ],
+          "local_degree_estimate": 0,
+          "nearby_codes": []
+        },
+        {
+          "observed_node_id": "node11_0004_6",
+          "image_id": "node11_0004",
+          "code": 95,
+          "name": "Bout bic.",
+          "confidence": 0.8237208724021912,
+          "bbox": [
+            0.5183137655258179,
+            0.761637270450592,
+            0.6432574987411499,
+            0.8607549667358398
+          ],
+          "center": [
+            0.5807856321334839,
+            0.8111961185932159
+          ],
+          "local_degree_estimate": 1,
+          "nearby_codes": [
+            15
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "source_id": "node11_0004_0",
+          "target_id": "node11_0004_3",
+          "image_id": "node11_0004",
+          "confidence": 0.8259437084197998,
+          "distance": 0.11225565934165865,
+          "cooc_support": 1.0,
+          "forbidden": false,
+          "edge_status": "plausible_local_adjacency",
+          "direct_visible": false,
+          "shortcut_candidate": false,
+          "support_reason": "partial_view_local_adjacency"
+        },
+        {
+          "source_id": "node11_0004_1",
+          "target_id": "node11_0004_6",
+          "image_id": "node11_0004",
+          "confidence": 0.8299791216850281,
+          "distance": 0.08054848418512456,
+          "cooc_support": 1.0,
+          "forbidden": false,
+          "edge_status": "direct_visible",
+          "direct_visible": true,
+          "shortcut_candidate": false,
+          "support_reason": "tight_local_proximity"
+        },
+        {
+          "source_id": "node11_0004_2",
+          "target_id": "node11_0004_4",
+          "image_id": "node11_0004",
+          "confidence": 0.8082686364650726,
+          "distance": 0.06438612340597887,
+          "cooc_support": 1.0,
+          "forbidden": false,
+          "edge_status": "direct_visible",
+          "direct_visible": true,
+          "shortcut_candidate": false,
+          "support_reason": "tight_local_proximity"
+        }
+      ],
+      "local_patterns": [
+        {
+          "type": "pair",
+          "codes": [
+            15,
+            95
+          ],
+          "cooc_count": 21,
+          "forbidden": false
+        }
+      ],
+      "branch_fragments": [
+        {
+          "branch_fragment_id": "node11_0004_frag_0",
+          "image_id": "node11_0004",
+          "ordered_observed_node_ids": [
+            "node11_0004_0",
+            "node11_0004_3"
+          ],
+          "ordered_codes": [
+            15,
+            95
+          ],
+          "endpoint_candidates": [
+            {
+              "observed_node_id": "node11_0004_0",
+              "code": 15,
+              "name": "Saracinesca",
+              "local_degree": 1,
+              "role": "endpoint",
+              "is_anchor_candidate": false,
+              "is_terminal_candidate": true
+            },
+            {
+              "observed_node_id": "node11_0004_3",
+              "code": 95,
+              "name": "Bout bic.",
+              "local_degree": 1,
+              "role": "endpoint",
+              "is_anchor_candidate": false,
+              "is_terminal_candidate": true
+            }
+          ],
+          "anchor_attachment_hints": [],
+          "confidence": 0.8259437084197998,
+          "local_evidence_metadata": {
+            "length": 2,
+            "mean_detection_confidence": 0.8259437084197998,
+            "triplets": [],
+            "distances": [
+              0.11225565934165865
+            ],
+            "forbidden_adjacent_pairs": [
+              false
+            ]
+          }
+        },
+        {
+          "branch_fragment_id": "node11_0004_frag_1",
+          "image_id": "node11_0004",
+          "ordered_observed_node_ids": [
+            "node11_0004_1",
+            "node11_0004_6"
+          ],
+          "ordered_codes": [
+            15,
+            95
+          ],
+          "endpoint_candidates": [
+            {
+              "observed_node_id": "node11_0004_1",
+              "code": 15,
+              "name": "Saracinesca",
+              "local_degree": 1,
+              "role": "endpoint",
+              "is_anchor_candidate": false,
+              "is_terminal_candidate": true
+            },
+            {
+              "observed_node_id": "node11_0004_6",
+              "code": 95,
+              "name": "Bout bic.",
+              "local_degree": 1,
+              "role": "endpoint",
+              "is_anchor_candidate": false,
+              "is_terminal_candidate": true
+            }
+          ],
+          "anchor_attachment_hints": [],
+          "confidence": 0.8299791216850281,
+          "local_evidence_metadata": {
+            "length": 2,
+            "mean_detection_confidence": 0.8299791216850281,
+            "triplets": [],
+            "distances": [
+              0.08054848418512456
+            ],
+            "forbidden_adjacent_pairs": [
+              false
+            ]
+          }
+        },
+        {
+          "branch_fragment_id": "node11_0004_frag_2",
+          "image_id": "node11_0004",
+          "ordered_observed_node_ids": [
+            "node11_0004_2",
+            "node11_0004_4"
+          ],
+          "ordered_codes": [
+            95,
+            15
+          ],
+          "endpoint_candidates": [
+            {
+              "observed_node_id": "node11_0004_2",
+              "code": 95,
+              "name": "Bout bic.",
+              "local_degree": 1,
+              "role": "endpoint",
+              "is_anchor_candidate": false,
+              "is_terminal_candidate": true
+            },
+            {
+              "observed_node_id": "node11_0004_4",
+              "code": 15,
+              "name": "Saracinesca",
+              "local_degree": 1,
+              "role": "endpoint",
+              "is_anchor_candidate": false,
+              "is_terminal_candidate": true
+            }
+          ],
+          "anchor_attachment_hints": [],
+          "confidence": 0.8082686364650726,
+          "local_evidence_metadata": {
+            "length": 2,
+            "mean_detection_confidence": 0.8082686364650726,
+            "triplets": [],
+            "distances": [
+              0.06438612340597887
+            ],
+            "forbidden_adjacent_pairs": [
+              false
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "image_id": "node11_0006",
+      "n_nodes": 4,
+      "n_edges": 4,
+      "n_branch_fragments": 2,
+      "nodes": [
+        {
+          "observed_node_id": "node11_0006_0",
+          "image_id": "node11_0006",
+          "code": 116,
+          "name": "Tee FL",
+          "confidence": 0.7701386213302612,
+          "bbox": [
+            0.4621393382549286,
+            0.6225947141647339,
+            0.5055704116821289,
+            0.6883015632629395
+          ],
+          "center": [
+            0.48385487496852875,
+            0.6554481387138367
+          ],
+          "local_degree_estimate": 3,
+          "nearby_codes": [
+            15,
+            95,
+            95
+          ]
+        },
+        {
+          "observed_node_id": "node11_0006_1",
+          "image_id": "node11_0006",
+          "code": 95,
+          "name": "Bout bic.",
+          "confidence": 0.7846522927284241,
+          "bbox": [
+            0.465858519077301,
+            0.3486242890357971,
+            0.5052550435066223,
+            0.4124576449394226
+          ],
+          "center": [
+            0.48555678129196167,
+            0.38054096698760986
+          ],
+          "local_degree_estimate": 1,
+          "nearby_codes": [
+            116
+          ]
+        },
+        {
+          "observed_node_id": "node11_0006_2",
+          "image_id": "node11_0006",
+          "code": 95,
+          "name": "Bout bic.",
+          "confidence": 0.791434645652771,
+          "bbox": [
+            0.6796162724494934,
+            0.623410701751709,
+            0.7387489080429077,
+            0.683571994304657
+          ],
+          "center": [
+            0.7091825902462006,
+            0.653491348028183
+          ],
+          "local_degree_estimate": 2,
+          "nearby_codes": [
+            15,
+            116
+          ]
+        },
+        {
+          "observed_node_id": "node11_0006_3",
+          "image_id": "node11_0006",
+          "code": 15,
+          "name": "Saracinesca",
+          "confidence": 0.7594636082649231,
+          "bbox": [
+            0.6390771269798279,
+            0.6244500279426575,
+            0.6834431886672974,
+            0.6876222491264343
+          ],
+          "center": [
+            0.6612601578235626,
+            0.6560361385345459
+          ],
+          "local_degree_estimate": 2,
+          "nearby_codes": [
+            95,
+            116
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "source_id": "node11_0006_0",
+          "target_id": "node11_0006_3",
+          "image_id": "node11_0006",
+          "confidence": 0.6009151616266796,
+          "distance": 0.17740625729850604,
+          "cooc_support": 0.5714285714285714,
+          "forbidden": false,
+          "edge_status": "plausible_local_adjacency",
+          "direct_visible": false,
+          "shortcut_candidate": false,
+          "support_reason": "partial_view_local_adjacency"
+        },
+        {
+          "source_id": "node11_0006_0",
+          "target_id": "node11_0006_2",
+          "image_id": "node11_0006",
+          "confidence": 0.39039331674575806,
+          "distance": 0.2253362116971948,
+          "cooc_support": 0.0,
+          "forbidden": true,
+          "edge_status": "shortcut_candidate",
+          "direct_visible": false,
+          "shortcut_candidate": true,
+          "support_reason": "distant_or_suspicious_local_adjacency"
+        },
+        {
+          "source_id": "node11_0006_0",
+          "target_id": "node11_0006_1",
+          "image_id": "node11_0006",
+          "confidence": 0.3886977285146713,
+          "distance": 0.27491243979064844,
+          "cooc_support": 0.0,
+          "forbidden": true,
+          "edge_status": "shortcut_candidate",
+          "direct_visible": false,
+          "shortcut_candidate": true,
+          "support_reason": "distant_or_suspicious_local_adjacency"
+        },
+        {
+          "source_id": "node11_0006_2",
+          "target_id": "node11_0006_3",
+          "image_id": "node11_0006",
+          "confidence": 0.775449126958847,
+          "distance": 0.047989951948544135,
+          "cooc_support": 1.0,
+          "forbidden": false,
+          "edge_status": "direct_visible",
+          "direct_visible": true,
+          "shortcut_candidate": false,
+          "support_reason": "tight_local_proximity"
+        }
+      ],
+      "local_patterns": [
+        {
+          "type": "pair",
+          "codes": [
+            15,
+            116
+          ],
+          "cooc_count": 12,
+          "forbidden": false
+        },
+        {
+          "type": "pair",
+          "codes": [
+            95,
+            116
+          ],
+          "cooc_count": 0,
+          "forbidden": true
+        },
+        {
+          "type": "pair",
+          "codes": [
+            15,
+            95
+          ],
+          "cooc_count": 21,
+          "forbidden": false
+        },
+        {
+          "type": "triplet",
+          "center_code": 116,
+          "neighbor_codes": [
+            15,
+            95
+          ],
+          "triplet_key": [
+            15,
+            116,
+            95
+          ],
+          "triplet_count": 0
+        },
+        {
+          "type": "triplet",
+          "center_code": 116,
+          "neighbor_codes": [
+            15,
+            95
+          ],
+          "triplet_key": [
+            15,
+            116,
+            95
+          ],
+          "triplet_count": 0
+        },
+        {
+          "type": "triplet",
+          "center_code": 116,
+          "neighbor_codes": [
+            95,
+            95
+          ],
+          "triplet_key": [
+            95,
+            116,
+            95
+          ],
+          "triplet_count": 0
+        },
+        {
+          "type": "triplet",
+          "center_code": 95,
+          "neighbor_codes": [
+            15,
+            116
+          ],
+          "triplet_key": [
+            15,
+            95,
+            116
+          ],
+          "triplet_count": 0
+        },
+        {
+          "type": "triplet",
+          "center_code": 15,
+          "neighbor_codes": [
+            95,
+            116
+          ],
+          "triplet_key": [
+            95,
+            15,
+            116
+          ],
+          "triplet_count": 8
+        }
+      ],
+      "branch_fragments": [
+        {
+          "branch_fragment_id": "node11_0006_frag_0",
+          "image_id": "node11_0006",
+          "ordered_observed_node_ids": [
+            "node11_0006_0",
+            "node11_0006_1"
+          ],
+          "ordered_codes": [
+            116,
+            95
+          ],
+          "endpoint_candidates": [
+            {
+              "observed_node_id": "node11_0006_0",
+              "code": 116,
+              "name": "Tee FL",
+              "local_degree": 3,
+              "role": "anchor",
+              "is_anchor_candidate": true,
+              "is_terminal_candidate": false
+            },
+            {
+              "observed_node_id": "node11_0006_1",
+              "code": 95,
+              "name": "Bout bic.",
+              "local_degree": 1,
+              "role": "endpoint",
+              "is_anchor_candidate": false,
+              "is_terminal_candidate": true
+            }
+          ],
+          "anchor_attachment_hints": [
+            {
+              "side": "start",
+              "observed_node_id": "node11_0006_0",
+              "code": 116,
+              "name": "Tee FL",
+              "hint_type": "anchor_endpoint"
+            }
+          ],
+          "confidence": 0.7773954570293427,
+          "local_evidence_metadata": {
+            "length": 2,
+            "mean_detection_confidence": 0.7773954570293427,
+            "triplets": [],
+            "distances": [
+              0.27491243979064844
+            ],
+            "forbidden_adjacent_pairs": [
+              true
+            ]
+          }
+        },
+        {
+          "branch_fragment_id": "node11_0006_frag_1",
+          "image_id": "node11_0006",
+          "ordered_observed_node_ids": [
+            "node11_0006_0",
+            "node11_0006_2",
+            "node11_0006_3",
+            "node11_0006_0"
+          ],
+          "ordered_codes": [
+            116,
+            95,
+            15,
+            116
+          ],
+          "endpoint_candidates": [
+            {
+              "observed_node_id": "node11_0006_0",
+              "code": 116,
+              "name": "Tee FL",
+              "local_degree": 3,
+              "role": "anchor",
+              "is_anchor_candidate": true,
+              "is_terminal_candidate": false
+            },
+            {
+              "observed_node_id": "node11_0006_0",
+              "code": 116,
+              "name": "Tee FL",
+              "local_degree": 3,
+              "role": "anchor",
+              "is_anchor_candidate": true,
+              "is_terminal_candidate": false
+            }
+          ],
+          "anchor_attachment_hints": [
+            {
+              "side": "start",
+              "observed_node_id": "node11_0006_0",
+              "code": 116,
+              "name": "Tee FL",
+              "hint_type": "anchor_endpoint"
+            },
+            {
+              "side": "end",
+              "observed_node_id": "node11_0006_0",
+              "code": 116,
+              "name": "Tee FL",
+              "hint_type": "anchor_endpoint"
+            }
+          ],
+          "confidence": 0.7727938741445541,
+          "local_evidence_metadata": {
+            "length": 4,
+            "mean_detection_confidence": 0.7727938741445541,
+            "triplets": [
+              {
+                "triplet_key": [
+                  15,
+                  95,
+                  116
+                ],
+                "triplet_count": 0
+              },
+              {
+                "triplet_key": [
+                  95,
+                  15,
+                  116
+                ],
+                "triplet_count": 8
+              }
+            ],
+            "distances": [
+              0.2253362116971948,
+              0.047989951948544135,
+              0.17740625729850604
+            ],
+            "forbidden_adjacent_pairs": [
+              true,
+              false,
+              false
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "image_id": "node11_0007",
+      "n_nodes": 7,
+      "n_edges": 3,
+      "n_branch_fragments": 3,
+      "nodes": [
+        {
+          "observed_node_id": "node11_0007_0",
+          "image_id": "node11_0007",
+          "code": 15,
+          "name": "Saracinesca",
+          "confidence": 0.8311401009559631,
+          "bbox": [
+            0.24122020602226257,
+            0.47890934348106384,
+            0.3056453764438629,
+            0.5284720659255981
+          ],
+          "center": [
+            0.27343279123306274,
+            0.503690704703331
+          ],
+          "local_degree_estimate": 1,
+          "nearby_codes": [
+            95
+          ]
+        },
+        {
+          "observed_node_id": "node11_0007_1",
+          "image_id": "node11_0007",
+          "code": 15,
+          "name": "Saracinesca",
+          "confidence": 0.8280539512634277,
+          "bbox": [
+            0.4485173225402832,
+            0.30292025208473206,
+            0.5105378031730652,
+            0.353412926197052
+          ],
+          "center": [
+            0.4795275628566742,
+            0.32816658914089203
+          ],
+          "local_degree_estimate": 1,
+          "nearby_codes": [
+            95
+          ]
+        },
+        {
+          "observed_node_id": "node11_0007_2",
+          "image_id": "node11_0007",
+          "code": 95,
+          "name": "Bout bic.",
+          "confidence": 0.8124800324440002,
+          "bbox": [
+            0.1581016629934311,
+            0.48164719343185425,
+            0.23151086270809174,
+            0.5224575996398926
+          ],
+          "center": [
+            0.1948062628507614,
+            0.5020523965358734
+          ],
+          "local_degree_estimate": 1,
+          "nearby_codes": [
+            15
+          ]
+        },
+        {
+          "observed_node_id": "node11_0007_3",
+          "image_id": "node11_0007",
+          "code": 95,
+          "name": "Bout bic.",
+          "confidence": 0.8127568364143372,
+          "bbox": [
+            0.44381245970726013,
+            0.2462235540151596,
+            0.5162308812141418,
+            0.307677298784256
+          ],
+          "center": [
+            0.480021670460701,
+            0.2769504263997078
+          ],
+          "local_degree_estimate": 1,
+          "nearby_codes": [
+            15
+          ]
+        },
+        {
+          "observed_node_id": "node11_0007_4",
+          "image_id": "node11_0007",
+          "code": 15,
+          "name": "Saracinesca",
+          "confidence": 0.8309779763221741,
+          "bbox": [
+            0.4629240334033966,
+            0.6320338249206543,
+            0.539943516254425,
+            0.6878926753997803
+          ],
+          "center": [
+            0.5014337748289108,
+            0.6599632501602173
+          ],
+          "local_degree_estimate": 1,
+          "nearby_codes": [
+            95
+          ]
+        },
+        {
+          "observed_node_id": "node11_0007_5",
+          "image_id": "node11_0007",
+          "code": 116,
+          "name": "Tee FL",
+          "confidence": 0.7855743765830994,
+          "bbox": [
+            0.44940653443336487,
+            0.4778464138507843,
+            0.5090600252151489,
+            0.5188668966293335
+          ],
+          "center": [
+            0.4792332798242569,
+            0.4983566552400589
+          ],
+          "local_degree_estimate": 0,
+          "nearby_codes": []
+        },
+        {
+          "observed_node_id": "node11_0007_6",
+          "image_id": "node11_0007",
+          "code": 95,
+          "name": "Bout bic.",
+          "confidence": 0.8135062456130981,
+          "bbox": [
+            0.44495493173599243,
+            0.6739832162857056,
+            0.5337058901786804,
+            0.734946072101593
+          ],
+          "center": [
+            0.4893304109573364,
+            0.7044646441936493
+          ],
+          "local_degree_estimate": 1,
+          "nearby_codes": [
+            15
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "source_id": "node11_0007_0",
+          "target_id": "node11_0007_2",
+          "image_id": "node11_0007",
+          "confidence": 0.8218100666999817,
+          "distance": 0.07864359490196512,
+          "cooc_support": 1.0,
+          "forbidden": false,
+          "edge_status": "plausible_local_adjacency",
+          "direct_visible": false,
+          "shortcut_candidate": false,
+          "support_reason": "partial_view_local_adjacency"
+        },
+        {
+          "source_id": "node11_0007_1",
+          "target_id": "node11_0007_3",
+          "image_id": "node11_0007",
+          "confidence": 0.8204053938388824,
+          "distance": 0.051218546135709725,
+          "cooc_support": 1.0,
+          "forbidden": false,
+          "edge_status": "direct_visible",
+          "direct_visible": true,
+          "shortcut_candidate": false,
+          "support_reason": "tight_local_proximity"
+        },
+        {
+          "source_id": "node11_0007_4",
+          "target_id": "node11_0007_6",
+          "image_id": "node11_0007",
+          "confidence": 0.8222421109676361,
+          "distance": 0.04611795190515847,
+          "cooc_support": 1.0,
+          "forbidden": false,
+          "edge_status": "direct_visible",
+          "direct_visible": true,
+          "shortcut_candidate": false,
+          "support_reason": "tight_local_proximity"
+        }
+      ],
+      "local_patterns": [
+        {
+          "type": "pair",
+          "codes": [
+            15,
+            95
+          ],
+          "cooc_count": 21,
+          "forbidden": false
+        }
+      ],
+      "branch_fragments": [
+        {
+          "branch_fragment_id": "node11_0007_frag_0",
+          "image_id": "node11_0007",
+          "ordered_observed_node_ids": [
+            "node11_0007_0",
+            "node11_0007_2"
+          ],
+          "ordered_codes": [
+            15,
+            95
+          ],
+          "endpoint_candidates": [
+            {
+              "observed_node_id": "node11_0007_0",
+              "code": 15,
+              "name": "Saracinesca",
+              "local_degree": 1,
+              "role": "endpoint",
+              "is_anchor_candidate": false,
+              "is_terminal_candidate": true
+            },
+            {
+              "observed_node_id": "node11_0007_2",
+              "code": 95,
+              "name": "Bout bic.",
+              "local_degree": 1,
+              "role": "endpoint",
+              "is_anchor_candidate": false,
+              "is_terminal_candidate": true
+            }
+          ],
+          "anchor_attachment_hints": [],
+          "confidence": 0.8218100666999817,
+          "local_evidence_metadata": {
+            "length": 2,
+            "mean_detection_confidence": 0.8218100666999817,
+            "triplets": [],
+            "distances": [
+              0.07864359490196512
+            ],
+            "forbidden_adjacent_pairs": [
+              false
+            ]
+          }
+        },
+        {
+          "branch_fragment_id": "node11_0007_frag_1",
+          "image_id": "node11_0007",
+          "ordered_observed_node_ids": [
+            "node11_0007_1",
+            "node11_0007_3"
+          ],
+          "ordered_codes": [
+            15,
+            95
+          ],
+          "endpoint_candidates": [
+            {
+              "observed_node_id": "node11_0007_1",
+              "code": 15,
+              "name": "Saracinesca",
+              "local_degree": 1,
+              "role": "endpoint",
+              "is_anchor_candidate": false,
+              "is_terminal_candidate": true
+            },
+            {
+              "observed_node_id": "node11_0007_3",
+              "code": 95,
+              "name": "Bout bic.",
+              "local_degree": 1,
+              "role": "endpoint",
+              "is_anchor_candidate": false,
+              "is_terminal_candidate": true
+            }
+          ],
+          "anchor_attachment_hints": [],
+          "confidence": 0.8204053938388824,
+          "local_evidence_metadata": {
+            "length": 2,
+            "mean_detection_confidence": 0.8204053938388824,
+            "triplets": [],
+            "distances": [
+              0.051218546135709725
+            ],
+            "forbidden_adjacent_pairs": [
+              false
+            ]
+          }
+        },
+        {
+          "branch_fragment_id": "node11_0007_frag_2",
+          "image_id": "node11_0007",
+          "ordered_observed_node_ids": [
+            "node11_0007_4",
+            "node11_0007_6"
+          ],
+          "ordered_codes": [
+            15,
+            95
+          ],
+          "endpoint_candidates": [
+            {
+              "observed_node_id": "node11_0007_4",
+              "code": 15,
+              "name": "Saracinesca",
+              "local_degree": 1,
+              "role": "endpoint",
+              "is_anchor_candidate": false,
+              "is_terminal_candidate": true
+            },
+            {
+              "observed_node_id": "node11_0007_6",
+              "code": 95,
+              "name": "Bout bic.",
+              "local_degree": 1,
+              "role": "endpoint",
+              "is_anchor_candidate": false,
+              "is_terminal_candidate": true
+            }
+          ],
+          "anchor_attachment_hints": [],
+          "confidence": 0.8222421109676361,
+          "local_evidence_metadata": {
+            "length": 2,
+            "mean_detection_confidence": 0.8222421109676361,
+            "triplets": [],
+            "distances": [
+              0.04611795190515847
+            ],
+            "forbidden_adjacent_pairs": [
+              false
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3810 @@
+{
+  "n_scene_branches": 21,
+  "scene_branches": [
+    {
+      "scene_branch_id": "SB_0",
+      "supporting_fragments": [
+        "node2_0007_frag_3",
+        "node2_0004_frag_1",
+        "node2_0005_frag_12",
+        "node2_0003_frag_1",
+        "node2_0002_frag_1"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "190#1",
+        "202#2",
+        "15#1",
+        "190#1"
+      ],
+      "fused_ordered_codes": [
+        190,
+        202,
+        15,
+        190
+      ],
+      "support_count": 5,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "190#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "190#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8088151305913925,
+      "merged_fragment_ids": [
+        "node2_0007_frag_3",
+        "node2_0004_frag_1",
+        "node2_0005_frag_12",
+        "node2_0003_frag_1",
+        "node2_0002_frag_1"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=5",
+        "images=node2_0002,node2_0003,node2_0004,node2_0005,node2_0007",
+        "canonical_codes=[190, 202, 15, 190]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0007_frag_3",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0004_frag_1",
+          "decision": "merged",
+          "score": 0.46,
+          "reasons": [
+            "multiset_jaccard=0.20",
+            "direction=forward",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_190",
+            "anchor_hint_mismatch_95"
+          ]
+        },
+        {
+          "fragment_id": "node2_0005_frag_12",
+          "decision": "merged",
+          "score": 0.76,
+          "reasons": [
+            "multiset_jaccard=0.50",
+            "direction=forward",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_190",
+            "anchor_hint_mismatch_202"
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_1",
+          "decision": "merged",
+          "score": 0.76,
+          "reasons": [
+            "multiset_jaccard=0.50",
+            "direction=forward",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_190",
+            "anchor_hint_mismatch_202"
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_1",
+          "decision": "merged",
+          "score": 0.76,
+          "reasons": [
+            "multiset_jaccard=0.50",
+            "direction=forward",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_190",
+            "anchor_hint_mismatch_202"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_1",
+      "supporting_fragments": [
+        "node2_0007_frag_2",
+        "node2_0004_frag_5",
+        "node2_0005_frag_2",
+        "node2_0002_frag_17",
+        "node2_0003_frag_3"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "116#1",
+        "15#3",
+        "95#1"
+      ],
+      "fused_ordered_codes": [
+        116,
+        15,
+        95
+      ],
+      "support_count": 5,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "116#1",
+          "is_anchor": true,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "95#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8185585598150888,
+      "merged_fragment_ids": [
+        "node2_0007_frag_2",
+        "node2_0004_frag_5",
+        "node2_0005_frag_2",
+        "node2_0002_frag_17",
+        "node2_0003_frag_3"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=5",
+        "images=node2_0002,node2_0003,node2_0004,node2_0005,node2_0007",
+        "canonical_codes=[116, 15, 95]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0007_frag_2",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0004_frag_5",
+          "decision": "merged",
+          "score": 0.9266666666666666,
+          "reasons": [
+            "multiset_jaccard=0.67",
+            "direction=reversed",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_95",
+            "anchor_hint_mismatch_15"
+          ]
+        },
+        {
+          "fragment_id": "node2_0005_frag_2",
+          "decision": "merged",
+          "score": 0.9266666666666666,
+          "reasons": [
+            "multiset_jaccard=0.67",
+            "direction=forward",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_15",
+            "anchor_hint_matches_95"
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_17",
+          "decision": "merged",
+          "score": 1.0066666666666666,
+          "reasons": [
+            "multiset_jaccard=0.67",
+            "direction=reversed",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_15",
+            "anchor_hint_matches_116",
+            "anchor_endpoint_supported"
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_3",
+          "decision": "merged",
+          "score": 0.51,
+          "reasons": [
+            "multiset_jaccard=0.25",
+            "direction=forward",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_190",
+            "anchor_hint_matches_95"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_2",
+      "supporting_fragments": [
+        "node2_0007_frag_4",
+        "node2_0004_frag_2",
+        "node2_0005_frag_0",
+        "node2_0002_frag_0",
+        "node2_0003_frag_2"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "190#1",
+        "202#1",
+        "53#1"
+      ],
+      "fused_ordered_codes": [
+        190,
+        202,
+        53
+      ],
+      "support_count": 5,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "190#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "53#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8166818698247275,
+      "merged_fragment_ids": [
+        "node2_0007_frag_4",
+        "node2_0004_frag_2",
+        "node2_0005_frag_0",
+        "node2_0002_frag_0",
+        "node2_0003_frag_2"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=5",
+        "images=node2_0002,node2_0003,node2_0004,node2_0005,node2_0007",
+        "canonical_codes=[190, 202, 53]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0007_frag_4",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0004_frag_2",
+          "decision": "merged",
+          "score": 1.8100000000000003,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.35",
+            "anchor_hint_matches_190"
+          ]
+        },
+        {
+          "fragment_id": "node2_0005_frag_0",
+          "decision": "merged",
+          "score": 1.8100000000000003,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=reversed",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.35",
+            "anchor_hint_matches_190"
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_0",
+          "decision": "merged",
+          "score": 0.9266666666666666,
+          "reasons": [
+            "multiset_jaccard=0.67",
+            "direction=forward",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_190",
+            "anchor_hint_mismatch_202"
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_2",
+          "decision": "merged",
+          "score": 0.9266666666666666,
+          "reasons": [
+            "multiset_jaccard=0.67",
+            "direction=forward",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_190",
+            "anchor_hint_mismatch_202"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_3",
+      "supporting_fragments": [
+        "node2_0007_frag_1",
+        "node2_0004_frag_3",
+        "node2_0005_frag_8",
+        "node2_0003_frag_6",
+        "node2_0002_frag_2"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "11#1",
+        "53#2",
+        "95#1"
+      ],
+      "fused_ordered_codes": [
+        11,
+        53,
+        95
+      ],
+      "support_count": 5,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "11#1",
+          "is_anchor": true,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "95#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8167233606179556,
+      "merged_fragment_ids": [
+        "node2_0007_frag_1",
+        "node2_0004_frag_3",
+        "node2_0005_frag_8",
+        "node2_0003_frag_6",
+        "node2_0002_frag_2"
+      ],
+      "ambiguous_matches": [
+        {
+          "fragment_id": "node2_0005_frag_8",
+          "candidate_clusters": [
+            {
+              "cluster_index": 3,
+              "score": 0.51,
+              "reasons": [
+                "multiset_jaccard=0.25",
+                "direction=reversed",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_95",
+                "anchor_hint_mismatch_190"
+              ]
+            },
+            {
+              "cluster_index": 0,
+              "score": 0.46,
+              "reasons": [
+                "multiset_jaccard=0.20",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_mismatch_95",
+                "anchor_hint_matches_190"
+              ]
+            }
+          ]
+        }
+      ],
+      "acceptance_reasons": [
+        "support_count=5",
+        "images=node2_0002,node2_0003,node2_0004,node2_0005,node2_0007",
+        "canonical_codes=[11, 53, 95]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0007_frag_1",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0004_frag_3",
+          "decision": "merged",
+          "score": 0.51,
+          "reasons": [
+            "multiset_jaccard=0.25",
+            "direction=forward",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_202",
+            "anchor_hint_matches_95"
+          ]
+        },
+        {
+          "fragment_id": "node2_0005_frag_8",
+          "decision": "merged",
+          "score": 0.51,
+          "reasons": [
+            "multiset_jaccard=0.25",
+            "direction=reversed",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_95",
+            "anchor_hint_mismatch_190"
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_6",
+          "decision": "merged",
+          "score": 0.9266666666666666,
+          "reasons": [
+            "multiset_jaccard=0.67",
+            "direction=forward",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_11",
+            "anchor_hint_mismatch_53"
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_2",
+          "decision": "merged",
+          "score": 0.51,
+          "reasons": [
+            "multiset_jaccard=0.25",
+            "direction=forward",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_190",
+            "anchor_hint_matches_95"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_4",
+      "supporting_fragments": [
+        "node2_0005_frag_9",
+        "node2_0004_frag_4",
+        "node2_0002_frag_5",
+        "node2_0003_frag_16"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "95#2",
+        "202#2"
+      ],
+      "fused_ordered_codes": [
+        95,
+        202
+      ],
+      "support_count": 4,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "95#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "202#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8157334178686142,
+      "merged_fragment_ids": [
+        "node2_0005_frag_9",
+        "node2_0004_frag_4",
+        "node2_0002_frag_5",
+        "node2_0003_frag_16"
+      ],
+      "ambiguous_matches": [
+        {
+          "fragment_id": "node2_0002_frag_5",
+          "candidate_clusters": [
+            {
+              "cluster_index": 4,
+              "score": 0.8333333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_202",
+                "anchor_hint_matches_202"
+              ]
+            },
+            {
+              "cluster_index": 6,
+              "score": 0.8333333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_202",
+                "anchor_hint_matches_202"
+              ]
+            }
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_16",
+          "candidate_clusters": [
+            {
+              "cluster_index": 4,
+              "score": 0.8333333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_202",
+                "anchor_hint_matches_202"
+              ]
+            },
+            {
+              "cluster_index": 6,
+              "score": 0.8333333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_202",
+                "anchor_hint_matches_202"
+              ]
+            }
+          ]
+        }
+      ],
+      "acceptance_reasons": [
+        "support_count=4",
+        "images=node2_0002,node2_0003,node2_0004,node2_0005",
+        "canonical_codes=[95, 202]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0005_frag_9",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0004_frag_4",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=reversed",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_202",
+            "anchor_hint_mismatch_15"
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_5",
+          "decision": "merged",
+          "score": 0.8333333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=forward",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_202",
+            "anchor_hint_matches_202"
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_16",
+          "decision": "merged",
+          "score": 0.8333333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=forward",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_202",
+            "anchor_hint_matches_202"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_5",
+      "supporting_fragments": [
+        "node2_0004_frag_11",
+        "node2_0005_frag_6",
+        "node2_0002_frag_9",
+        "node2_0003_frag_5"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "15#2",
+        "15#1"
+      ],
+      "fused_ordered_codes": [
+        15,
+        15
+      ],
+      "support_count": 4,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "15#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "15#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8117061853408813,
+      "merged_fragment_ids": [
+        "node2_0004_frag_11",
+        "node2_0005_frag_6",
+        "node2_0002_frag_9",
+        "node2_0003_frag_5"
+      ],
+      "ambiguous_matches": [
+        {
+          "fragment_id": "node2_0003_frag_5",
+          "candidate_clusters": [
+            {
+              "cluster_index": 5,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_mismatch_11",
+                "anchor_hint_matches_15"
+              ]
+            },
+            {
+              "cluster_index": 6,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=reversed",
+                "start_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_mismatch_11",
+                "anchor_hint_matches_15"
+              ]
+            },
+            {
+              "cluster_index": 11,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_mismatch_11",
+                "anchor_hint_matches_15"
+              ]
+            }
+          ]
+        }
+      ],
+      "acceptance_reasons": [
+        "support_count=4",
+        "images=node2_0002,node2_0003,node2_0004,node2_0005",
+        "canonical_codes=[15, 15]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0004_frag_11",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0005_frag_6",
+          "decision": "merged",
+          "score": 1.6400000000000001,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_matches_15"
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_9",
+          "decision": "merged",
+          "score": 1.6400000000000001,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_matches_15"
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_5",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=forward",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_11",
+            "anchor_hint_matches_15"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_6",
+      "supporting_fragments": [
+        "node2_0005_frag_3",
+        "node2_0004_frag_0",
+        "node2_0002_frag_6",
+        "node2_0003_frag_9"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "15#3",
+        "202#2"
+      ],
+      "fused_ordered_codes": [
+        15,
+        202
+      ],
+      "support_count": 4,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "15#3",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "202#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8068643361330032,
+      "merged_fragment_ids": [
+        "node2_0005_frag_3",
+        "node2_0004_frag_0",
+        "node2_0002_frag_6",
+        "node2_0003_frag_9"
+      ],
+      "ambiguous_matches": [
+        {
+          "fragment_id": "node2_0002_frag_6",
+          "candidate_clusters": [
+            {
+              "cluster_index": 6,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=reversed",
+                "start_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_mismatch_11",
+                "anchor_hint_matches_15"
+              ]
+            },
+            {
+              "cluster_index": 8,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=reversed",
+                "start_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_mismatch_11",
+                "anchor_hint_matches_15"
+              ]
+            },
+            {
+              "cluster_index": 9,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=reversed",
+                "start_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_mismatch_11",
+                "anchor_hint_matches_15"
+              ]
+            }
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_9",
+          "candidate_clusters": [
+            {
+              "cluster_index": 6,
+              "score": 0.8333333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "start_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_15",
+                "anchor_hint_matches_15"
+              ]
+            },
+            {
+              "cluster_index": 11,
+              "score": 0.8333333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_15",
+                "anchor_hint_matches_15"
+              ]
+            }
+          ]
+        }
+      ],
+      "acceptance_reasons": [
+        "support_count=4",
+        "images=node2_0002,node2_0003,node2_0004,node2_0005",
+        "canonical_codes=[15, 202]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [
+        "all_local_adjacencies_forbidden_prior"
+      ],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0005_frag_3",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0004_frag_0",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=forward",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_190",
+            "anchor_hint_matches_202"
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_6",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=reversed",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_11",
+            "anchor_hint_matches_15"
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_9",
+          "decision": "merged",
+          "score": 0.8333333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=forward",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_matches_15"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_7",
+      "supporting_fragments": [
+        "node2_0004_frag_12",
+        "node2_0005_frag_14",
+        "node2_0003_frag_4",
+        "node2_0002_frag_12"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "53#2",
+        "95#1"
+      ],
+      "fused_ordered_codes": [
+        53,
+        95
+      ],
+      "support_count": 4,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "53#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "95#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8034583255648613,
+      "merged_fragment_ids": [
+        "node2_0004_frag_12",
+        "node2_0005_frag_14",
+        "node2_0003_frag_4",
+        "node2_0002_frag_12"
+      ],
+      "ambiguous_matches": [
+        {
+          "fragment_id": "node2_0003_frag_4",
+          "candidate_clusters": [
+            {
+              "cluster_index": 7,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_mismatch_11",
+                "anchor_hint_matches_95"
+              ]
+            },
+            {
+              "cluster_index": 9,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_mismatch_11",
+                "anchor_hint_matches_95"
+              ]
+            },
+            {
+              "cluster_index": 1,
+              "score": 0.51,
+              "reasons": [
+                "multiset_jaccard=0.25",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_mismatch_11",
+                "anchor_hint_matches_95"
+              ]
+            }
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_12",
+          "candidate_clusters": [
+            {
+              "cluster_index": 7,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_mismatch_15",
+                "anchor_hint_matches_95"
+              ]
+            },
+            {
+              "cluster_index": 8,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "start_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_15",
+                "anchor_hint_mismatch_95"
+              ]
+            },
+            {
+              "cluster_index": 11,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=reversed",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_15",
+                "anchor_hint_mismatch_95"
+              ]
+            }
+          ]
+        }
+      ],
+      "acceptance_reasons": [
+        "support_count=4",
+        "images=node2_0002,node2_0003,node2_0004,node2_0005",
+        "canonical_codes=[53, 95]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0004_frag_12",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0005_frag_14",
+          "decision": "merged",
+          "score": 1.6400000000000001,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=reversed",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_95",
+            "anchor_hint_matches_53"
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_4",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=forward",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_11",
+            "anchor_hint_matches_95"
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_12",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=forward",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_15",
+            "anchor_hint_matches_95"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_8",
+      "supporting_fragments": [
+        "node2_0004_frag_9",
+        "node2_0005_frag_11",
+        "node2_0003_frag_12",
+        "node2_0002_frag_11"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "15#2",
+        "53#2"
+      ],
+      "fused_ordered_codes": [
+        15,
+        53
+      ],
+      "support_count": 4,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "15#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "53#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8025693520903587,
+      "merged_fragment_ids": [
+        "node2_0004_frag_9",
+        "node2_0005_frag_11",
+        "node2_0003_frag_12",
+        "node2_0002_frag_11"
+      ],
+      "ambiguous_matches": [
+        {
+          "fragment_id": "node2_0003_frag_12",
+          "candidate_clusters": [
+            {
+              "cluster_index": 8,
+              "score": 0.5933333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_mismatch_95",
+                "anchor_hint_matches_53"
+              ]
+            },
+            {
+              "cluster_index": 1,
+              "score": 0.51,
+              "reasons": [
+                "multiset_jaccard=0.25",
+                "direction=reversed",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_95",
+                "anchor_hint_mismatch_53"
+              ]
+            }
+          ]
+        }
+      ],
+      "acceptance_reasons": [
+        "support_count=4",
+        "images=node2_0002,node2_0003,node2_0004,node2_0005",
+        "canonical_codes=[15, 53]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [
+        "all_local_adjacencies_forbidden_prior"
+      ],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0004_frag_9",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0005_frag_11",
+          "decision": "merged",
+          "score": 1.6400000000000001,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_matches_53"
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_12",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=forward",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_95",
+            "anchor_hint_matches_53"
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_11",
+          "decision": "merged",
+          "score": 1.6400000000000001,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_matches_53"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_9",
+      "supporting_fragments": [
+        "node2_0004_frag_10",
+        "node2_0005_frag_10",
+        "node2_0003_frag_7",
+        "node2_0002_frag_18"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "15#2",
+        "95#1"
+      ],
+      "fused_ordered_codes": [
+        15,
+        95
+      ],
+      "support_count": 4,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "15#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "95#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.7990136444568634,
+      "merged_fragment_ids": [
+        "node2_0004_frag_10",
+        "node2_0005_frag_10",
+        "node2_0003_frag_7",
+        "node2_0002_frag_18"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=4",
+        "images=node2_0002,node2_0003,node2_0004,node2_0005",
+        "canonical_codes=[15, 95]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0004_frag_10",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0005_frag_10",
+          "decision": "merged",
+          "score": 1.6400000000000001,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_matches_95"
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_7",
+          "decision": "merged",
+          "score": 1.6400000000000001,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_matches_95"
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_18",
+          "decision": "merged",
+          "score": 1.6400000000000001,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_matches_95"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_10",
+      "supporting_fragments": [
+        "node2_0004_frag_8",
+        "node2_0005_frag_4",
+        "node2_0002_frag_10",
+        "node2_0003_frag_10"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "116#1",
+        "15#1"
+      ],
+      "fused_ordered_codes": [
+        116,
+        15
+      ],
+      "support_count": 4,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "116#1",
+          "is_anchor": true,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "15#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8042587414383888,
+      "merged_fragment_ids": [
+        "node2_0004_frag_8",
+        "node2_0005_frag_4",
+        "node2_0002_frag_10",
+        "node2_0003_frag_10"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=4",
+        "images=node2_0002,node2_0003,node2_0004,node2_0005",
+        "canonical_codes=[116, 15]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0004_frag_8",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0005_frag_4",
+          "decision": "merged",
+          "score": 1.7200000000000002,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=reversed",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_matches_116",
+            "anchor_endpoint_supported"
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_10",
+          "decision": "merged",
+          "score": 1.7200000000000002,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=reversed",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_matches_116",
+            "anchor_endpoint_supported"
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_10",
+          "decision": "merged",
+          "score": 1.7200000000000002,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=reversed",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_matches_116",
+            "anchor_endpoint_supported"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_11",
+      "supporting_fragments": [
+        "node2_0004_frag_7",
+        "node2_0005_frag_1",
+        "node2_0003_frag_14",
+        "node2_0002_frag_15"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "116#1",
+        "15#3"
+      ],
+      "fused_ordered_codes": [
+        116,
+        15
+      ],
+      "support_count": 4,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "116#1",
+          "is_anchor": true,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "15#3",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.7927606999874115,
+      "merged_fragment_ids": [
+        "node2_0004_frag_7",
+        "node2_0005_frag_1",
+        "node2_0003_frag_14",
+        "node2_0002_frag_15"
+      ],
+      "ambiguous_matches": [
+        {
+          "fragment_id": "node2_0002_frag_15",
+          "candidate_clusters": [
+            {
+              "cluster_index": 11,
+              "score": 1.7200000000000002,
+              "reasons": [
+                "multiset_jaccard=1.00",
+                "direction=reversed",
+                "start_code_matches",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_15",
+                "anchor_hint_matches_116",
+                "anchor_endpoint_supported"
+              ]
+            },
+            {
+              "cluster_index": 12,
+              "score": 1.7200000000000002,
+              "reasons": [
+                "multiset_jaccard=1.00",
+                "direction=reversed",
+                "start_code_matches",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_15",
+                "anchor_hint_matches_116",
+                "anchor_endpoint_supported"
+              ]
+            }
+          ]
+        }
+      ],
+      "acceptance_reasons": [
+        "support_count=4",
+        "images=node2_0002,node2_0003,node2_0004,node2_0005",
+        "canonical_codes=[116, 15]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0004_frag_7",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0005_frag_1",
+          "decision": "merged",
+          "score": 1.7200000000000002,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=reversed",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_matches_116",
+            "anchor_endpoint_supported"
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_14",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=reversed",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_mismatch_53"
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_15",
+          "decision": "merged",
+          "score": 1.7200000000000002,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=reversed",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_matches_116",
+            "anchor_endpoint_supported"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_12",
+      "supporting_fragments": [
+        "node2_0004_frag_6",
+        "node2_0005_frag_7",
+        "node2_0003_frag_13",
+        "node2_0002_frag_13"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "116#1",
+        "15#2"
+      ],
+      "fused_ordered_codes": [
+        116,
+        15
+      ],
+      "support_count": 4,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "116#1",
+          "is_anchor": true,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "15#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.7812334671616554,
+      "merged_fragment_ids": [
+        "node2_0004_frag_6",
+        "node2_0005_frag_7",
+        "node2_0003_frag_13",
+        "node2_0002_frag_13"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=4",
+        "images=node2_0002,node2_0003,node2_0004,node2_0005",
+        "canonical_codes=[116, 15]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0004_frag_6",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0005_frag_7",
+          "decision": "merged",
+          "score": 1.7200000000000002,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_116",
+            "anchor_hint_matches_15",
+            "anchor_endpoint_supported"
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_13",
+          "decision": "merged",
+          "score": 1.7200000000000002,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=reversed",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_matches_116",
+            "anchor_endpoint_supported"
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_13",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=reversed",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_mismatch_202"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_13",
+      "supporting_fragments": [
+        "node2_0003_frag_11",
+        "node2_0002_frag_8",
+        "node2_0004_frag_15",
+        "node2_0005_frag_13",
+        "node2_0007_frag_0"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "95#1",
+        "11#1"
+      ],
+      "fused_ordered_codes": [
+        95,
+        11
+      ],
+      "support_count": 5,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "95#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "11#1",
+          "is_anchor": true,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.7927766621112824,
+      "merged_fragment_ids": [
+        "node2_0003_frag_11",
+        "node2_0002_frag_8",
+        "node2_0004_frag_15",
+        "node2_0005_frag_13",
+        "node2_0007_frag_0"
+      ],
+      "ambiguous_matches": [
+        {
+          "fragment_id": "node2_0004_frag_15",
+          "candidate_clusters": [
+            {
+              "cluster_index": 13,
+              "score": 0.6533333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=forward",
+                "start_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_95"
+              ]
+            },
+            {
+              "cluster_index": 15,
+              "score": 0.6533333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=reversed",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_95"
+              ]
+            },
+            {
+              "cluster_index": 16,
+              "score": 0.6533333333333333,
+              "reasons": [
+                "multiset_jaccard=0.33",
+                "direction=reversed",
+                "end_code_matches",
+                "triplet_compatibility=0.00",
+                "anchor_hint_matches_95"
+              ]
+            }
+          ]
+        }
+      ],
+      "acceptance_reasons": [
+        "support_count=5",
+        "images=node2_0002,node2_0003,node2_0004,node2_0005,node2_0007",
+        "canonical_codes=[95, 11]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [
+        "all_local_adjacencies_forbidden_prior"
+      ],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0003_frag_11",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_8",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=reversed",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_11",
+            "anchor_hint_matches_95"
+          ]
+        },
+        {
+          "fragment_id": "node2_0004_frag_15",
+          "decision": "merged",
+          "score": 0.6533333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=forward",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_95"
+          ]
+        },
+        {
+          "fragment_id": "node2_0005_frag_13",
+          "decision": "merged",
+          "score": 1.4600000000000002,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_95"
+          ]
+        },
+        {
+          "fragment_id": "node2_0007_frag_0",
+          "decision": "merged",
+          "score": 1.4600000000000002,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=reversed",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_95"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_14",
+      "supporting_fragments": [
+        "node2_0002_frag_7",
+        "node2_0005_frag_15",
+        "node2_0004_frag_13"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "11#1",
+        "53#2"
+      ],
+      "fused_ordered_codes": [
+        11,
+        53
+      ],
+      "support_count": 3,
+      "support_images": [
+        "node2_0002",
+        "node2_0004",
+        "node2_0005"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "11#1",
+          "is_anchor": true,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "53#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.805144727230072,
+      "merged_fragment_ids": [
+        "node2_0002_frag_7",
+        "node2_0005_frag_15",
+        "node2_0004_frag_13"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=3",
+        "images=node2_0002,node2_0004,node2_0005",
+        "canonical_codes=[11, 53]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0002_frag_7",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0005_frag_15",
+          "decision": "merged",
+          "score": 1.4600000000000002,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_53"
+          ]
+        },
+        {
+          "fragment_id": "node2_0004_frag_13",
+          "decision": "merged",
+          "score": 1.4600000000000002,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=reversed",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_53"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_15",
+      "supporting_fragments": [
+        "node2_0002_frag_19",
+        "node2_0003_frag_19"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "53#1",
+        "95#1"
+      ],
+      "fused_ordered_codes": [
+        53,
+        95
+      ],
+      "support_count": 2,
+      "support_images": [
+        "node2_0002",
+        "node2_0003"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "53#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "95#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.7396475076675415,
+      "merged_fragment_ids": [
+        "node2_0002_frag_19",
+        "node2_0003_frag_19"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=2",
+        "images=node2_0002,node2_0003",
+        "canonical_codes=[53, 95]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0002_frag_19",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_19",
+          "decision": "merged",
+          "score": 0.5933333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=forward",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_mismatch_15",
+            "anchor_hint_matches_95"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_16",
+      "supporting_fragments": [
+        "node2_0002_frag_16",
+        "node2_0003_frag_17"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "202#1",
+        "95#2"
+      ],
+      "fused_ordered_codes": [
+        202,
+        95
+      ],
+      "support_count": 2,
+      "support_images": [
+        "node2_0002",
+        "node2_0003"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "202#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "95#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.757813110947609,
+      "merged_fragment_ids": [
+        "node2_0002_frag_16",
+        "node2_0003_frag_17"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=2",
+        "images=node2_0002,node2_0003",
+        "canonical_codes=[202, 95]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0002_frag_16",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_17",
+          "decision": "merged",
+          "score": 1.6400000000000001,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=forward",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_202",
+            "anchor_hint_matches_95"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_17",
+      "supporting_fragments": [
+        "node2_0002_frag_14",
+        "node2_0003_frag_18",
+        "node2_0004_frag_14",
+        "node2_0005_frag_5"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "77#1",
+        "15#1"
+      ],
+      "fused_ordered_codes": [
+        77,
+        15
+      ],
+      "support_count": 4,
+      "support_images": [
+        "node2_0002",
+        "node2_0003",
+        "node2_0004",
+        "node2_0005"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "77#1",
+          "is_anchor": true,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "15#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.7766078636050224,
+      "merged_fragment_ids": [
+        "node2_0002_frag_14",
+        "node2_0003_frag_18",
+        "node2_0004_frag_14",
+        "node2_0005_frag_5"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=4",
+        "images=node2_0002,node2_0003,node2_0004,node2_0005",
+        "canonical_codes=[77, 15]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0002_frag_14",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0003_frag_18",
+          "decision": "merged",
+          "score": 0.6733333333333332,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=forward",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15",
+            "anchor_hint_mismatch_116",
+            "anchor_endpoint_supported"
+          ]
+        },
+        {
+          "fragment_id": "node2_0004_frag_14",
+          "decision": "merged",
+          "score": 0.6533333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=reversed",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15"
+          ]
+        },
+        {
+          "fragment_id": "node2_0005_frag_5",
+          "decision": "merged",
+          "score": 1.4600000000000002,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=reversed",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_18",
+      "supporting_fragments": [
+        "node2_0003_frag_15",
+        "node2_0002_frag_4"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "202#2",
+        "53#2"
+      ],
+      "fused_ordered_codes": [
+        202,
+        53
+      ],
+      "support_count": 2,
+      "support_images": [
+        "node2_0002",
+        "node2_0003"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "202#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "53#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.7781599760055542,
+      "merged_fragment_ids": [
+        "node2_0003_frag_15",
+        "node2_0002_frag_4"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=2",
+        "images=node2_0002,node2_0003",
+        "canonical_codes=[202, 53]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0003_frag_15",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_4",
+          "decision": "merged",
+          "score": 0.6533333333333333,
+          "reasons": [
+            "multiset_jaccard=0.33",
+            "direction=forward",
+            "start_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_202"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_19",
+      "supporting_fragments": [
+        "node2_0003_frag_0"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "53#2",
+        "202#2"
+      ],
+      "fused_ordered_codes": [
+        53,
+        202
+      ],
+      "support_count": 1,
+      "support_images": [
+        "node2_0003"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "53#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "202#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.8132385313510895,
+      "merged_fragment_ids": [
+        "node2_0003_frag_0"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=1",
+        "images=node2_0003",
+        "canonical_codes=[53, 202]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0003_frag_0",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        }
+      ]
+    },
+    {
+      "scene_branch_id": "SB_20",
+      "supporting_fragments": [
+        "node2_0003_frag_8",
+        "node2_0002_frag_3"
+      ],
+      "fused_ordered_scene_node_ids": [
+        "15#2",
+        "77#1"
+      ],
+      "fused_ordered_codes": [
+        15,
+        77
+      ],
+      "support_count": 2,
+      "support_images": [
+        "node2_0002",
+        "node2_0003"
+      ],
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "15#2",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "77#1",
+          "is_anchor": true,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "confidence": 0.7947464138269424,
+      "merged_fragment_ids": [
+        "node2_0003_frag_8",
+        "node2_0002_frag_3"
+      ],
+      "ambiguous_matches": [],
+      "acceptance_reasons": [
+        "support_count=2",
+        "images=node2_0002,node2_0003",
+        "canonical_codes=[15, 77]",
+        "anchor_attachments_available"
+      ],
+      "pruning_reasons": [],
+      "fragment_merge_debug": [
+        {
+          "fragment_id": "node2_0003_frag_8",
+          "decision": "seed_cluster",
+          "reasons": [
+            "first_fragment_for_cluster"
+          ]
+        },
+        {
+          "fragment_id": "node2_0002_frag_3",
+          "decision": "merged",
+          "score": 1.4600000000000002,
+          "reasons": [
+            "multiset_jaccard=1.00",
+            "direction=reversed",
+            "start_code_matches",
+            "end_code_matches",
+            "triplet_compatibility=0.00",
+            "anchor_hint_matches_15"
+          ]
+        }
+      ]
+    }
+  ],
+  "branch_reid_debug": {
+    "total_fragments": 77,
+    "total_scene_branches": 21,
+    "match_threshold": 0.45,
+    "ambiguous_margin": 0.12,
+    "merged_groups": [
+      {
+        "scene_branch_id": "SB_0",
+        "merged_fragment_ids": [
+          "node2_0007_frag_3",
+          "node2_0004_frag_1",
+          "node2_0005_frag_12",
+          "node2_0003_frag_1",
+          "node2_0002_frag_1"
+        ],
+        "canonical_codes": [
+          190,
+          202,
+          15,
+          190
+        ],
+        "support_images": [
+          "node2_0002",
+          "node2_0003",
+          "node2_0004",
+          "node2_0005",
+          "node2_0007"
+        ],
+        "attachment_anchors": [
+          {
+            "side": "start",
+            "scene_node_id": "190#1",
+            "is_anchor": false,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          },
+          {
+            "side": "end",
+            "scene_node_id": "190#1",
+            "is_anchor": false,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          }
+        ]
+      },
+      {
+        "scene_branch_id": "SB_1",
+        "merged_fragment_ids": [
+          "node2_0007_frag_2",
+          "node2_0004_frag_5",
+          "node2_0005_frag_2",
+          "node2_0002_frag_17",
+          "node2_0003_frag_3"
+        ],
+        "canonical_codes": [
+          116,
+          15,
+          95
+        ],
+        "support_images": [
+          "node2_0002",
+          "node2_0003",
+          "node2_0004",
+          "node2_0005",
+          "node2_0007"
+        ],
+        "attachment_anchors": [
+          {
+            "side": "start",
+            "scene_node_id": "116#1",
+            "is_anchor": true,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          },
+          {
+            "side": "end",
+            "scene_node_id": "95#1",
+            "is_anchor": false,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          }
+        ]
+      },
+      {
+        "scene_branch_id": "SB_2",
+        "merged_fragment_ids": [
+          "node2_0007_frag_4",
+          "node2_0004_frag_2",
+          "node2_0005_frag_0",
+          "node2_0002_frag_0",
+          "node2_0003_frag_2"
+        ],
+        "canonical_codes": [
+          190,
+          202,
+          53
+        ],
+        "support_images": [
+          "node2_0002",
+          "node2_0003",
+          "node2_0004",
+          "node2_0005",
+          "node2_0007"
+        ],
+        "attachment_anchors": [
+          {
+            "side": "start",
+            "scene_node_id": "190#1",
+            "is_anchor": false,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          },
+          {
+            "side": "end",
+            "scene_node_id": "53#1",
+            "is_anchor": false,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          }
+        ]
+      },
+      {
+        "scene_branch_id": "SB_3",
+        "merged_fragment_ids": [
+          "node2_0007_frag_1",
+          "node2_0004_frag_3",
+          "node2_0005_frag_8",
+          "node2_0003_frag_6",
+          "node2_0002_frag_2"
+        ],
+        "canonical_codes": [
+          11,
+          53,
+          95
+        ],
+        "support_images": [
+          "node2_0002",
+          "node2_0003",
+          "node2_0004",
+          "node2_0005",
+          "node2_0007"
+        ],
+        "attachment_anchors": [
+          {
+            "side": "start",
+            "scene_node_id": "11#1",
+            "is_anchor": true,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          },
+          {
+            "side": "end",
+            "scene_node_id": "95#1",
+            "is_anchor": false,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          }
+        ]
+      },
+      {
+        "scene_branch_id": "SB_4",
+        "merged_fragment_ids": [
+          "node2_0005_frag_9",
+          "node2_0004_frag_4",
+          "node2_0002_frag_5",
+          "node2_0003_frag_16"
+        ],
+        "canonical_codes": [
+          95,
+          202
+        ],
+        "support_images": [
+          "node2_0002",
+          "node2_0003",
+          "node2_0004",
+          "node2_0005"
+        ],
+        "attachment_anchors": [
+          {
+            "side": "start",
+            "scene_node_id": "95#2",
+            "is_anchor": false,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          },
+          {
+            "side": "end",
+            "scene_node_id": "202#2",
+            "is_anchor": false,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          }
+        ]
+      },
+      {
+        "scene_branch_id": "SB_5",
+        "merged_fragment_ids": [
+          "node2_0004_frag_11",
+          "node2_0005_frag_6",
+          "node2_0002_frag_9",
+          "node2_0003_frag_5"
+        ],
+        "canonical_codes": [
+          15,
+          15
+        ],
+        "support_images": [
+          "node2_0002",
+          "node2_0003",
+          "node2_0004",
+          "node2_0005"
+        ],
+        "attachment_anchors": [
+          {
+            "side": "start",
+            "scene_node_id": "15#2",
+            "is_anchor": false,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          },
+          {
+            "side": "end",
+            "scene_node_id": "15#1",
+            "is_anchor": false,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          }
+        ]
+      },
+      {
+        "scene_branch_id": "SB_6",
+        "merged_fragment_ids": [
+          "node2_0005_frag_3",
+          "node2_0004_frag_0",
+          "node2_0002_frag_6",
+          "node2_0003_frag_9"
+        ],
+        "canonical_codes": [
+          15,
+          202
+        ],
+        "support_images": [
+          "node2_0002",
+          "node2_0003",
+          "node2_0004",
+          "node2_0005"
+        ],
+        "attachment_anchors": [
+          {
+            "side": "start",
+            "scene_node_id": "15#3",
+            "is_anchor": false,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          },
+          {
+            "side": "end",
+            "scene_node_id": "202#2",
+            "is_anchor": false,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          }
+        ]
+      },
+      {
+        "scene_branch_id": "SB_7",
+        "merged_fragment_ids": [
+          "node2_0004_frag_12",
+          "node2_0005_frag_14",
+          "node2_0003_frag_4",
+          "node2_0002_frag_12"
+        ],
+        "canonical_codes": [
+          53,
+          95
+        ],
+        "support_images": [
+          "node2_0002",
+          "node2_0003",
+          "node2_0004",
+          "node2_0005"
+        ],
+        "attachment_anchors": [
+          {
+            "side": "start",
+            "scene_node_id": "53#2",
+            "is_anchor": false,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          },
+          {
+            "side": "end",
+            "scene_node_id": "95#1",
+            "is_anchor": false,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          }
+        ]
+      },
+      {
+        "scene_branch_id": "SB_8",
+        "merged_fragment_ids": [
+          "node2_0004_frag_9",
+          "node2_0005_frag_11",
+          "node2_0003_frag_12",
+          "node2_0002_frag_11"
+        ],
+        "canonical_codes": [
+          15,
+          53
+        ],
+        "support_images": [
+          "node2_0002",
+          "node2_0003",
+          "node2_0004",
+          "node2_0005"
+        ],
+        "attachment_anchors": [
+          {
+            "side": "start",
+            "scene_node_id": "15#2",
+            "is_anchor": false,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          },
+          {
+            "side": "end",
+            "scene_node_id": "53#2",
+            "is_anchor": false,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          }
+        ]
+      },
+      {
+        "scene_branch_id": "SB_9",
+        "merged_fragment_ids": [
+          "node2_0004_frag_10",
+          "node2_0005_frag_10",
+          "node2_0003_frag_7",
+          "node2_0002_frag_18"
+        ],
+        "canonical_codes": [
+          15,
+          95
+        ],
+        "support_images": [
+          "node2_0002",
+          "node2_0003",
+          "node2_0004",
+          "node2_0005"
+        ],
+        "attachment_anchors": [
+          {
+            "side": "start",
+            "scene_node_id": "15#2",
+            "is_anchor": false,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          },
+          {
+            "side": "end",
+            "scene_node_id": "95#1",
+            "is_anchor": false,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          }
+        ]
+      },
+      {
+        "scene_branch_id": "SB_10",
+        "merged_fragment_ids": [
+          "node2_0004_frag_8",
+          "node2_0005_frag_4",
+          "node2_0002_frag_10",
+          "node2_0003_frag_10"
+        ],
+        "canonical_codes": [
+          116,
+          15
+        ],
+        "support_images": [
+          "node2_0002",
+          "node2_0003",
+          "node2_0004",
+          "node2_0005"
+        ],
+        "attachment_anchors": [
+          {
+            "side": "start",
+            "scene_node_id": "116#1",
+            "is_anchor": true,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          },
+          {
+            "side": "end",
+            "scene_node_id": "15#1",
+            "is_anchor": false,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          }
+        ]
+      },
+      {
+        "scene_branch_id": "SB_11",
+        "merged_fragment_ids": [
+          "node2_0004_frag_7",
+          "node2_0005_frag_1",
+          "node2_0003_frag_14",
+          "node2_0002_frag_15"
+        ],
+        "canonical_codes": [
+          116,
+          15
+        ],
+        "support_images": [
+          "node2_0002",
+          "node2_0003",
+          "node2_0004",
+          "node2_0005"
+        ],
+        "attachment_anchors": [
+          {
+            "side": "start",
+            "scene_node_id": "116#1",
+            "is_anchor": true,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          },
+          {
+            "side": "end",
+            "scene_node_id": "15#3",
+            "is_anchor": false,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          }
+        ]
+      },
+      {
+        "scene_branch_id": "SB_12",
+        "merged_fragment_ids": [
+          "node2_0004_frag_6",
+          "node2_0005_frag_7",
+          "node2_0003_frag_13",
+          "node2_0002_frag_13"
+        ],
+        "canonical_codes": [
+          116,
+          15
+        ],
+        "support_images": [
+          "node2_0002",
+          "node2_0003",
+          "node2_0004",
+          "node2_0005"
+        ],
+        "attachment_anchors": [
+          {
+            "side": "start",
+            "scene_node_id": "116#1",
+            "is_anchor": true,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          },
+          {
+            "side": "end",
+            "scene_node_id": "15#2",
+            "is_anchor": false,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          }
+        ]
+      },
+      {
+        "scene_branch_id": "SB_13",
+        "merged_fragment_ids": [
+          "node2_0003_frag_11",
+          "node2_0002_frag_8",
+          "node2_0004_frag_15",
+          "node2_0005_frag_13",
+          "node2_0007_frag_0"
+        ],
+        "canonical_codes": [
+          95,
+          11
+        ],
+        "support_images": [
+          "node2_0002",
+          "node2_0003",
+          "node2_0004",
+          "node2_0005",
+          "node2_0007"
+        ],
+        "attachment_anchors": [
+          {
+            "side": "start",
+            "scene_node_id": "95#1",
+            "is_anchor": false,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          },
+          {
+            "side": "end",
+            "scene_node_id": "11#1",
+            "is_anchor": true,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          }
+        ]
+      },
+      {
+        "scene_branch_id": "SB_14",
+        "merged_fragment_ids": [
+          "node2_0002_frag_7",
+          "node2_0005_frag_15",
+          "node2_0004_frag_13"
+        ],
+        "canonical_codes": [
+          11,
+          53
+        ],
+        "support_images": [
+          "node2_0002",
+          "node2_0004",
+          "node2_0005"
+        ],
+        "attachment_anchors": [
+          {
+            "side": "start",
+            "scene_node_id": "11#1",
+            "is_anchor": true,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          },
+          {
+            "side": "end",
+            "scene_node_id": "53#2",
+            "is_anchor": false,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          }
+        ]
+      },
+      {
+        "scene_branch_id": "SB_15",
+        "merged_fragment_ids": [
+          "node2_0002_frag_19",
+          "node2_0003_frag_19"
+        ],
+        "canonical_codes": [
+          53,
+          95
+        ],
+        "support_images": [
+          "node2_0002",
+          "node2_0003"
+        ],
+        "attachment_anchors": [
+          {
+            "side": "start",
+            "scene_node_id": "53#1",
+            "is_anchor": false,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          },
+          {
+            "side": "end",
+            "scene_node_id": "95#1",
+            "is_anchor": false,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          }
+        ]
+      },
+      {
+        "scene_branch_id": "SB_16",
+        "merged_fragment_ids": [
+          "node2_0002_frag_16",
+          "node2_0003_frag_17"
+        ],
+        "canonical_codes": [
+          202,
+          95
+        ],
+        "support_images": [
+          "node2_0002",
+          "node2_0003"
+        ],
+        "attachment_anchors": [
+          {
+            "side": "start",
+            "scene_node_id": "202#1",
+            "is_anchor": false,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          },
+          {
+            "side": "end",
+            "scene_node_id": "95#2",
+            "is_anchor": false,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          }
+        ]
+      },
+      {
+        "scene_branch_id": "SB_17",
+        "merged_fragment_ids": [
+          "node2_0002_frag_14",
+          "node2_0003_frag_18",
+          "node2_0004_frag_14",
+          "node2_0005_frag_5"
+        ],
+        "canonical_codes": [
+          77,
+          15
+        ],
+        "support_images": [
+          "node2_0002",
+          "node2_0003",
+          "node2_0004",
+          "node2_0005"
+        ],
+        "attachment_anchors": [
+          {
+            "side": "start",
+            "scene_node_id": "77#1",
+            "is_anchor": true,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          },
+          {
+            "side": "end",
+            "scene_node_id": "15#1",
+            "is_anchor": false,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          }
+        ]
+      },
+      {
+        "scene_branch_id": "SB_18",
+        "merged_fragment_ids": [
+          "node2_0003_frag_15",
+          "node2_0002_frag_4"
+        ],
+        "canonical_codes": [
+          202,
+          53
+        ],
+        "support_images": [
+          "node2_0002",
+          "node2_0003"
+        ],
+        "attachment_anchors": [
+          {
+            "side": "start",
+            "scene_node_id": "202#2",
+            "is_anchor": false,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          },
+          {
+            "side": "end",
+            "scene_node_id": "53#2",
+            "is_anchor": false,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          }
+        ]
+      },
+      {
+        "scene_branch_id": "SB_19",
+        "merged_fragment_ids": [
+          "node2_0003_frag_0"
+        ],
+        "canonical_codes": [
+          53,
+          202
+        ],
+        "support_images": [
+          "node2_0003"
+        ],
+        "attachment_anchors": [
+          {
+            "side": "start",
+            "scene_node_id": "53#2",
+            "is_anchor": false,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          },
+          {
+            "side": "end",
+            "scene_node_id": "202#2",
+            "is_anchor": false,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          }
+        ]
+      },
+      {
+        "scene_branch_id": "SB_20",
+        "merged_fragment_ids": [
+          "node2_0003_frag_8",
+          "node2_0002_frag_3"
+        ],
+        "canonical_codes": [
+          15,
+          77
+        ],
+        "support_images": [
+          "node2_0002",
+          "node2_0003"
+        ],
+        "attachment_anchors": [
+          {
+            "side": "start",
+            "scene_node_id": "15#2",
+            "is_anchor": false,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          },
+          {
+            "side": "end",
+            "scene_node_id": "77#1",
+            "is_anchor": true,
+            "hypothesis": "direct_reid_from_fragment_endpoint"
+          }
+        ]
+      }
+    ],
+    "ambiguous_fragment_matches": [
+      {
+        "fragment_id": "node2_0005_frag_8",
+        "candidate_clusters": [
+          {
+            "cluster_index": 3,
+            "score": 0.51,
+            "reasons": [
+              "multiset_jaccard=0.25",
+              "direction=reversed",
+              "end_code_matches",
+              "triplet_compatibility=0.00",
+              "anchor_hint_matches_95",
+              "anchor_hint_mismatch_190"
+            ]
+          },
+          {
+            "cluster_index": 0,
+            "score": 0.46,
+            "reasons": [
+              "multiset_jaccard=0.20",
+              "direction=forward",
+              "end_code_matches",
+              "triplet_compatibility=0.00",
+              "anchor_hint_mismatch_95",
+              "anchor_hint_matches_190"
+            ]
+          }
+        ]
+      },
+      {
+        "fragment_id": "node2_0002_frag_5",
+        "candidate_clusters": [
+          {
+            "cluster_index": 4,
+            "score": 0.8333333333333333,
+            "reasons": [
+              "multiset_jaccard=0.33",
+              "direction=forward",
+              "end_code_matches",
+              "triplet_compatibility=0.00",
+              "anchor_hint_matches_202",
+              "anchor_hint_matches_202"
+            ]
+          },
+          {
+            "cluster_index": 6,
+            "score": 0.8333333333333333,
+            "reasons": [
+              "multiset_jaccard=0.33",
+              "direction=forward",
+              "end_code_matches",
+              "triplet_compatibility=0.00",
+              "anchor_hint_matches_202",
+              "anchor_hint_matches_202"
+            ]
+          }
+        ]
+      },
+      {
+        "fragment_id": "node2_0003_frag_16",
+        "candidate_clusters": [
+          {
+            "cluster_index": 4,
+            "score": 0.8333333333333333,
+            "reasons": [
+              "multiset_jaccard=0.33",
+              "direction=forward",
+              "end_code_matches",
+              "triplet_compatibility=0.00",
+              "anchor_hint_matches_202",
+              "anchor_hint_matches_202"
+            ]
+          },
+          {
+            "cluster_index": 6,
+            "score": 0.8333333333333333,
+            "reasons": [
+              "multiset_jaccard=0.33",
+              "direction=forward",
+              "end_code_matches",
+              "triplet_compatibility=0.00",
+              "anchor_hint_matches_202",
+              "anchor_hint_matches_202"
+            ]
+          }
+        ]
+      },
+      {
+        "fragment_id": "node2_0003_frag_4",
+        "candidate_clusters": [
+          {
+            "cluster_index": 7,
+            "score": 0.5933333333333333,
+            "reasons": [
+              "multiset_jaccard=0.33",
+              "direction=forward",
+              "end_code_matches",
+              "triplet_compatibility=0.00",
+              "anchor_hint_mismatch_11",
+              "anchor_hint_matches_95"
+            ]
+          },
+          {
+            "cluster_index": 9,
+            "score": 0.5933333333333333,
+            "reasons": [
+              "multiset_jaccard=0.33",
+              "direction=forward",
+              "end_code_matches",
+              "triplet_compatibility=0.00",
+              "anchor_hint_mismatch_11",
+              "anchor_hint_matches_95"
+            ]
+          },
+          {
+            "cluster_index": 1,
+            "score": 0.51,
+            "reasons": [
+              "multiset_jaccard=0.25",
+              "direction=forward",
+              "end_code_matches",
+              "triplet_compatibility=0.00",
+              "anchor_hint_mismatch_11",
+              "anchor_hint_matches_95"
+            ]
+          }
+        ]
+      },
+      {
+        "fragment_id": "node2_0003_frag_12",
+        "candidate_clusters": [
+          {
+            "cluster_index": 8,
+            "score": 0.5933333333333333,
+            "reasons": [
+              "multiset_jaccard=0.33",
+              "direction=forward",
+              "end_code_matches",
+              "triplet_compatibility=0.00",
+              "anchor_hint_mismatch_95",
+              "anchor_hint_matches_53"
+            ]
+          },
+          {
+            "cluster_index": 1,
+            "score": 0.51,
+            "reasons": [
+              "multiset_jaccard=0.25",
+              "direction=reversed",
+              "end_code_matches",
+              "triplet_compatibility=0.00",
+              "anchor_hint_matches_95",
+              "anchor_hint_mismatch_53"
+            ]
+          }
+        ]
+      },
+      {
+        "fragment_id": "node2_0003_frag_5",
+        "candidate_clusters": [
+          {
+            "cluster_index": 5,
+            "score": 0.5933333333333333,
+            "reasons": [
+              "multiset_jaccard=0.33",
+              "direction=forward",
+              "end_code_matches",
+              "triplet_compatibility=0.00",
+              "anchor_hint_mismatch_11",
+              "anchor_hint_matches_15"
+            ]
+          },
+          {
+            "cluster_index": 6,
+            "score": 0.5933333333333333,
+            "reasons": [
+              "multiset_jaccard=0.33",
+              "direction=reversed",
+              "start_code_matches",
+              "triplet_compatibility=0.00",
+              "anchor_hint_mismatch_11",
+              "anchor_hint_matches_15"
+            ]
+          },
+          {
+            "cluster_index": 11,
+            "score": 0.5933333333333333,
+            "reasons": [
+              "multiset_jaccard=0.33",
+              "direction=forward",
+              "end_code_matches",
+              "triplet_compatibility=0.00",
+              "anchor_hint_mismatch_11",
+              "anchor_hint_matches_15"
+            ]
+          }
+        ]
+      },
+      {
+        "fragment_id": "node2_0002_frag_6",
+        "candidate_clusters": [
+          {
+            "cluster_index": 6,
+            "score": 0.5933333333333333,
+            "reasons": [
+              "multiset_jaccard=0.33",
+              "direction=reversed",
+              "start_code_matches",
+              "triplet_compatibility=0.00",
+              "anchor_hint_mismatch_11",
+              "anchor_hint_matches_15"
+            ]
+          },
+          {
+            "cluster_index": 8,
+            "score": 0.5933333333333333,
+            "reasons": [
+              "multiset_jaccard=0.33",
+              "direction=reversed",
+              "start_code_matches",
+              "triplet_compatibility=0.00",
+              "anchor_hint_mismatch_11",
+              "anchor_hint_matches_15"
+            ]
+          },
+          {
+            "cluster_index": 9,
+            "score": 0.5933333333333333,
+            "reasons": [
+              "multiset_jaccard=0.33",
+              "direction=reversed",
+              "start_code_matches",
+              "triplet_compatibility=0.00",
+              "anchor_hint_mismatch_11",
+              "anchor_hint_matches_15"
+            ]
+          }
+        ]
+      },
+      {
+        "fragment_id": "node2_0003_frag_9",
+        "candidate_clusters": [
+          {
+            "cluster_index": 6,
+            "score": 0.8333333333333333,
+            "reasons": [
+              "multiset_jaccard=0.33",
+              "direction=forward",
+              "start_code_matches",
+              "triplet_compatibility=0.00",
+              "anchor_hint_matches_15",
+              "anchor_hint_matches_15"
+            ]
+          },
+          {
+            "cluster_index": 11,
+            "score": 0.8333333333333333,
+            "reasons": [
+              "multiset_jaccard=0.33",
+              "direction=forward",
+              "end_code_matches",
+              "triplet_compatibility=0.00",
+              "anchor_hint_matches_15",
+              "anchor_hint_matches_15"
+            ]
+          }
+        ]
+      },
+      {
+        "fragment_id": "node2_0002_frag_12",
+        "candidate_clusters": [
+          {
+            "cluster_index": 7,
+            "score": 0.5933333333333333,
+            "reasons": [
+              "multiset_jaccard=0.33",
+              "direction=forward",
+              "end_code_matches",
+              "triplet_compatibility=0.00",
+              "anchor_hint_mismatch_15",
+              "anchor_hint_matches_95"
+            ]
+          },
+          {
+            "cluster_index": 8,
+            "score": 0.5933333333333333,
+            "reasons": [
+              "multiset_jaccard=0.33",
+              "direction=forward",
+              "start_code_matches",
+              "triplet_compatibility=0.00",
+              "anchor_hint_matches_15",
+              "anchor_hint_mismatch_95"
+            ]
+          },
+          {
+            "cluster_index": 11,
+            "score": 0.5933333333333333,
+            "reasons": [
+              "multiset_jaccard=0.33",
+              "direction=reversed",
+              "end_code_matches",
+              "triplet_compatibility=0.00",
+              "anchor_hint_matches_15",
+              "anchor_hint_mismatch_95"
+            ]
+          }
+        ]
+      },
+      {
+        "fragment_id": "node2_0002_frag_15",
+        "candidate_clusters": [
+          {
+            "cluster_index": 11,
+            "score": 1.7200000000000002,
+            "reasons": [
+              "multiset_jaccard=1.00",
+              "direction=reversed",
+              "start_code_matches",
+              "end_code_matches",
+              "triplet_compatibility=0.00",
+              "anchor_hint_matches_15",
+              "anchor_hint_matches_116",
+              "anchor_endpoint_supported"
+            ]
+          },
+          {
+            "cluster_index": 12,
+            "score": 1.7200000000000002,
+            "reasons": [
+              "multiset_jaccard=1.00",
+              "direction=reversed",
+              "start_code_matches",
+              "end_code_matches",
+              "triplet_compatibility=0.00",
+              "anchor_hint_matches_15",
+              "anchor_hint_matches_116",
+              "anchor_endpoint_supported"
+            ]
+          }
+        ]
+      },
+      {
+        "fragment_id": "node2_0004_frag_15",
+        "candidate_clusters": [
+          {
+            "cluster_index": 13,
+            "score": 0.6533333333333333,
+            "reasons": [
+              "multiset_jaccard=0.33",
+              "direction=forward",
+              "start_code_matches",
+              "triplet_compatibility=0.00",
+              "anchor_hint_matches_95"
+            ]
+          },
+          {
+            "cluster_index": 15,
+            "score": 0.6533333333333333,
+            "reasons": [
+              "multiset_jaccard=0.33",
+              "direction=reversed",
+              "end_code_matches",
+              "triplet_compatibility=0.00",
+              "anchor_hint_matches_95"
+            ]
+          },
+          {
+            "cluster_index": 16,
+            "score": 0.6533333333333333,
+            "reasons": [
+              "multiset_jaccard=0.33",
+              "direction=reversed",
+              "end_code_matches",
+              "triplet_compatibility=0.00",
+              "anchor_hint_matches_95"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "anchor_attachment_hypotheses": [
+    {
+      "scene_branch_id": "SB_0",
+      "side": "start",
+      "scene_node_id": "190#1",
+      "is_anchor": false,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_0",
+      "side": "end",
+      "scene_node_id": "190#1",
+      "is_anchor": false,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_1",
+      "side": "start",
+      "scene_node_id": "116#1",
+      "is_anchor": true,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_1",
+      "side": "end",
+      "scene_node_id": "95#1",
+      "is_anchor": false,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_2",
+      "side": "start",
+      "scene_node_id": "190#1",
+      "is_anchor": false,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_2",
+      "side": "end",
+      "scene_node_id": "53#1",
+      "is_anchor": false,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_3",
+      "side": "start",
+      "scene_node_id": "11#1",
+      "is_anchor": true,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_3",
+      "side": "end",
+      "scene_node_id": "95#1",
+      "is_anchor": false,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_4",
+      "side": "start",
+      "scene_node_id": "95#2",
+      "is_anchor": false,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_4",
+      "side": "end",
+      "scene_node_id": "202#2",
+      "is_anchor": false,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_5",
+      "side": "start",
+      "scene_node_id": "15#2",
+      "is_anchor": false,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_5",
+      "side": "end",
+      "scene_node_id": "15#1",
+      "is_anchor": false,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_6",
+      "side": "start",
+      "scene_node_id": "15#3",
+      "is_anchor": false,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_6",
+      "side": "end",
+      "scene_node_id": "202#2",
+      "is_anchor": false,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_7",
+      "side": "start",
+      "scene_node_id": "53#2",
+      "is_anchor": false,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_7",
+      "side": "end",
+      "scene_node_id": "95#1",
+      "is_anchor": false,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_8",
+      "side": "start",
+      "scene_node_id": "15#2",
+      "is_anchor": false,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_8",
+      "side": "end",
+      "scene_node_id": "53#2",
+      "is_anchor": false,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_9",
+      "side": "start",
+      "scene_node_id": "15#2",
+      "is_anchor": false,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_9",
+      "side": "end",
+      "scene_node_id": "95#1",
+      "is_anchor": false,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_10",
+      "side": "start",
+      "scene_node_id": "116#1",
+      "is_anchor": true,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_10",
+      "side": "end",
+      "scene_node_id": "15#1",
+      "is_anchor": false,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_11",
+      "side": "start",
+      "scene_node_id": "116#1",
+      "is_anchor": true,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_11",
+      "side": "end",
+      "scene_node_id": "15#3",
+      "is_anchor": false,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_12",
+      "side": "start",
+      "scene_node_id": "116#1",
+      "is_anchor": true,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_12",
+      "side": "end",
+      "scene_node_id": "15#2",
+      "is_anchor": false,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_13",
+      "side": "start",
+      "scene_node_id": "95#1",
+      "is_anchor": false,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_13",
+      "side": "end",
+      "scene_node_id": "11#1",
+      "is_anchor": true,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_14",
+      "side": "start",
+      "scene_node_id": "11#1",
+      "is_anchor": true,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_14",
+      "side": "end",
+      "scene_node_id": "53#2",
+      "is_anchor": false,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_15",
+      "side": "start",
+      "scene_node_id": "53#1",
+      "is_anchor": false,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_15",
+      "side": "end",
+      "scene_node_id": "95#1",
+      "is_anchor": false,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_16",
+      "side": "start",
+      "scene_node_id": "202#1",
+      "is_anchor": false,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_16",
+      "side": "end",
+      "scene_node_id": "95#2",
+      "is_anchor": false,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_17",
+      "side": "start",
+      "scene_node_id": "77#1",
+      "is_anchor": true,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_17",
+      "side": "end",
+      "scene_node_id": "15#1",
+      "is_anchor": false,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_18",
+      "side": "start",
+      "scene_node_id": "202#2",
+      "is_anchor": false,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_18",
+      "side": "end",
+      "scene_node_id": "53#2",
+      "is_anchor": false,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_19",
+      "side": "start",
+      "scene_node_id": "53#2",
+      "is_anchor": false,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_19",
+      "side": "end",
+      "scene_node_id": "202#2",
+      "is_anchor": false,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_20",
+      "side": "start",
+      "scene_node_id": "15#2",
+      "is_anchor": false,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    },
+    {
+      "scene_branch_id": "SB_20",
+      "side": "end",
+      "scene_node_id": "77#1",
+      "is_anchor": true,
+      "hypothesis": "direct_reid_from_fragment_endpoint"
+    }
+  ]
+}

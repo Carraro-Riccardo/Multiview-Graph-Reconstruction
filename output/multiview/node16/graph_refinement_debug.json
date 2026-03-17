@@ -1,0 +1,258 @@
+{
+  "accepted_edges": [
+    {
+      "edge_id": "CE_1",
+      "nodes": [
+        "116#1",
+        "95#1"
+      ],
+      "accepted_via": "scene_branch",
+      "evidence_sources": [
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ]
+    },
+    {
+      "edge_id": "CE_5",
+      "nodes": [
+        "15#1",
+        "95#3"
+      ],
+      "accepted_via": "scene_branch",
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ]
+    },
+    {
+      "edge_id": "CE_0",
+      "nodes": [
+        "116#1",
+        "15#1"
+      ],
+      "accepted_via": "residual_candidate",
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ]
+    }
+  ],
+  "rejected_edges": [
+    {
+      "edge_id": "CE_2",
+      "nodes": [
+        "116#1",
+        "95#2"
+      ],
+      "reason": "shortcut_edge_weakened_by_reconciliation",
+      "evidence_sources": [
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "reconciliation_notes": [
+        "weakened_direct_edge_due_to_path=['116#1', '15#1', '95#2']",
+        "novel_views=[]",
+        "triplet_support=8"
+      ]
+    },
+    {
+      "edge_id": "CE_3",
+      "nodes": [
+        "116#1",
+        "95#3"
+      ],
+      "reason": "shortcut_edge_weakened_by_reconciliation",
+      "evidence_sources": [
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "reconciliation_notes": [
+        "weakened_direct_edge_due_to_path=['116#1', '15#1', '95#3']",
+        "novel_views=[]",
+        "triplet_support=8"
+      ]
+    },
+    {
+      "edge_id": "CE_4",
+      "nodes": [
+        "15#1",
+        "95#2"
+      ],
+      "reason": "shortcut_edge_weakened_by_reconciliation",
+      "evidence_sources": [
+        "cooc_prior",
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "reconciliation_notes": [
+        "weakened_direct_edge_due_to_path=['15#1', '95#3', '95#2']",
+        "novel_views=['node16_0001']",
+        "triplet_support=0"
+      ]
+    },
+    {
+      "edge_id": "CE_6",
+      "nodes": [
+        "95#2",
+        "95#3"
+      ],
+      "reason": "shortcut_edge_weakened_by_reconciliation",
+      "evidence_sources": [
+        "knn_residual",
+        "scene_branch",
+        "triplet_prior"
+      ],
+      "reconciliation_notes": [
+        "weakened_direct_edge_due_to_path=['95#2', '15#1', '95#3']",
+        "novel_views=['node16_0001']",
+        "triplet_support=1"
+      ]
+    }
+  ],
+  "branch_acceptance": [
+    {
+      "scene_branch_id": "SB_5",
+      "accepted_pairs": [
+        [
+          "116#1",
+          "95#1"
+        ]
+      ],
+      "support_count": 2,
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "95#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "116#1",
+          "is_anchor": true,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "reasons": [
+        "support_count=2",
+        "images=node16_0001,node16_0002",
+        "canonical_codes=[95, 116]",
+        "anchor_attachments_available"
+      ]
+    },
+    {
+      "scene_branch_id": "SB_1",
+      "accepted_pairs": [
+        [
+          "15#1",
+          "95#3"
+        ]
+      ],
+      "support_count": 1,
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "95#3",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "15#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "reasons": [
+        "support_count=1",
+        "images=node16_0002",
+        "canonical_codes=[95, 15]",
+        "anchor_attachments_available"
+      ]
+    },
+    {
+      "scene_branch_id": "SB_6",
+      "accepted_pairs": [
+        [
+          "116#1",
+          "95#1"
+        ]
+      ],
+      "support_count": 1,
+      "attachment_anchors": [
+        {
+          "side": "start",
+          "scene_node_id": "95#1",
+          "is_anchor": false,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        },
+        {
+          "side": "end",
+          "scene_node_id": "116#1",
+          "is_anchor": true,
+          "hypothesis": "direct_reid_from_fragment_endpoint"
+        }
+      ],
+      "reasons": [
+        "support_count=1",
+        "images=node16_0002",
+        "canonical_codes=[95, 116]",
+        "anchor_attachments_available"
+      ]
+    }
+  ],
+  "branch_pruning": [
+    {
+      "scene_branch_id": "SB_0",
+      "reason": "shortcut_edge_replaced_by_hidden_path_('116#1', '95#3')",
+      "branch_support_count": 2
+    },
+    {
+      "scene_branch_id": "SB_4",
+      "reason": "shortcut_edge_replaced_by_hidden_path_('116#1', '95#2')",
+      "branch_support_count": 2
+    },
+    {
+      "scene_branch_id": "SB_2",
+      "reason": "shortcut_edge_replaced_by_hidden_path_('15#1', '95#2')",
+      "branch_support_count": 1
+    },
+    {
+      "scene_branch_id": "SB_3",
+      "reason": "shortcut_edge_replaced_by_hidden_path_('95#2', '95#3')",
+      "branch_support_count": 1
+    }
+  ],
+  "triplet_validation": [
+    {
+      "center": "15#1",
+      "triplet_key": [
+        95,
+        15,
+        116
+      ],
+      "triplet_count": 8,
+      "validated": true
+    },
+    {
+      "center": "116#1",
+      "triplet_key": [
+        15,
+        116,
+        95
+      ],
+      "triplet_count": 0,
+      "validated": false
+    }
+  ],
+  "is_connected": false,
+  "n_isolated": 1
+}

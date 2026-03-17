@@ -1,0 +1,429 @@
+{
+  "n_branch_fragments": 7,
+  "branch_fragments": [
+    {
+      "branch_fragment_id": "node6_0002_frag_0",
+      "image_id": "node6_0002",
+      "ordered_observed_node_ids": [
+        "node6_0002_1",
+        "node6_0002_0",
+        "node6_0002_3"
+      ],
+      "ordered_codes": [
+        15,
+        95,
+        95
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node6_0002_1",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node6_0002_3",
+          "code": 95,
+          "name": "Bout bic.",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node6_0002_1",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node6_0002_3",
+          "code": 95,
+          "name": "Bout bic.",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8160802721977234,
+      "local_evidence_metadata": {
+        "length": 3,
+        "mean_detection_confidence": 0.8160802721977234,
+        "triplets": [
+          {
+            "triplet_key": [
+              15,
+              95,
+              95
+            ],
+            "triplet_count": 0
+          }
+        ],
+        "distances": [
+          0.11031950432634013,
+          0.1961844041088445
+        ],
+        "forbidden_adjacent_pairs": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node6_0002_frag_1",
+      "image_id": "node6_0002",
+      "ordered_observed_node_ids": [
+        "node6_0002_1",
+        "node6_0002_2"
+      ],
+      "ordered_codes": [
+        15,
+        54
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node6_0002_1",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node6_0002_2",
+          "code": 54,
+          "name": "Curva 22",
+          "local_degree": 2,
+          "role": "endpoint",
+          "is_anchor_candidate": false,
+          "is_terminal_candidate": true
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node6_0002_1",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.7978451251983643,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.7978451251983643,
+        "triplets": [],
+        "distances": [
+          0.1702634300793039
+        ],
+        "forbidden_adjacent_pairs": [
+          true
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node6_0002_frag_2",
+      "image_id": "node6_0002",
+      "ordered_observed_node_ids": [
+        "node6_0002_1",
+        "node6_0002_3"
+      ],
+      "ordered_codes": [
+        15,
+        95
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node6_0002_1",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        },
+        {
+          "observed_node_id": "node6_0002_3",
+          "code": 95,
+          "name": "Bout bic.",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "start",
+          "observed_node_id": "node6_0002_1",
+          "code": 15,
+          "name": "Saracinesca",
+          "hint_type": "anchor_endpoint"
+        },
+        {
+          "side": "end",
+          "observed_node_id": "node6_0002_3",
+          "code": 95,
+          "name": "Bout bic.",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.8213045001029968,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.8213045001029968,
+        "triplets": [],
+        "distances": [
+          0.09074963849354867
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node6_0002_frag_3",
+      "image_id": "node6_0002",
+      "ordered_observed_node_ids": [
+        "node6_0002_2",
+        "node6_0002_3"
+      ],
+      "ordered_codes": [
+        54,
+        95
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node6_0002_2",
+          "code": 54,
+          "name": "Curva 22",
+          "local_degree": 2,
+          "role": "endpoint",
+          "is_anchor_candidate": false,
+          "is_terminal_candidate": true
+        },
+        {
+          "observed_node_id": "node6_0002_3",
+          "code": 95,
+          "name": "Bout bic.",
+          "local_degree": 3,
+          "role": "anchor",
+          "is_anchor_candidate": true,
+          "is_terminal_candidate": false
+        }
+      ],
+      "anchor_attachment_hints": [
+        {
+          "side": "end",
+          "observed_node_id": "node6_0002_3",
+          "code": 95,
+          "name": "Bout bic.",
+          "hint_type": "anchor_endpoint"
+        }
+      ],
+      "confidence": 0.788407564163208,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.788407564163208,
+        "triplets": [],
+        "distances": [
+          0.08104197927774776
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node6_0003_frag_0",
+      "image_id": "node6_0003",
+      "ordered_observed_node_ids": [
+        "node6_0003_2",
+        "node6_0003_0",
+        "node6_0003_1",
+        "node6_0003_2"
+      ],
+      "ordered_codes": [
+        54,
+        15,
+        95,
+        54
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node6_0003_2",
+          "code": 54,
+          "name": "Curva 22",
+          "local_degree": 2,
+          "role": "endpoint",
+          "is_anchor_candidate": false,
+          "is_terminal_candidate": true
+        },
+        {
+          "observed_node_id": "node6_0003_2",
+          "code": 54,
+          "name": "Curva 22",
+          "local_degree": 2,
+          "role": "endpoint",
+          "is_anchor_candidate": false,
+          "is_terminal_candidate": true
+        }
+      ],
+      "anchor_attachment_hints": [],
+      "confidence": 0.7934976816177368,
+      "local_evidence_metadata": {
+        "length": 4,
+        "mean_detection_confidence": 0.7934976816177368,
+        "triplets": [
+          {
+            "triplet_key": [
+              54,
+              15,
+              95
+            ],
+            "triplet_count": 0
+          },
+          {
+            "triplet_key": [
+              15,
+              95,
+              54
+            ],
+            "triplet_count": 2
+          }
+        ],
+        "distances": [
+          0.22285799699984185,
+          0.1827513047967563,
+          0.3727598298748604
+        ],
+        "forbidden_adjacent_pairs": [
+          true,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node6_0006_frag_0",
+      "image_id": "node6_0006",
+      "ordered_observed_node_ids": [
+        "node6_0006_0",
+        "node6_0006_1"
+      ],
+      "ordered_codes": [
+        15,
+        95
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node6_0006_0",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 1,
+          "role": "endpoint",
+          "is_anchor_candidate": false,
+          "is_terminal_candidate": true
+        },
+        {
+          "observed_node_id": "node6_0006_1",
+          "code": 95,
+          "name": "Bout bic.",
+          "local_degree": 1,
+          "role": "endpoint",
+          "is_anchor_candidate": false,
+          "is_terminal_candidate": true
+        }
+      ],
+      "anchor_attachment_hints": [],
+      "confidence": 0.8135384321212769,
+      "local_evidence_metadata": {
+        "length": 2,
+        "mean_detection_confidence": 0.8135384321212769,
+        "triplets": [],
+        "distances": [
+          0.22249540432727843
+        ],
+        "forbidden_adjacent_pairs": [
+          false
+        ]
+      }
+    },
+    {
+      "branch_fragment_id": "node6_0007_frag_0",
+      "image_id": "node6_0007",
+      "ordered_observed_node_ids": [
+        "node6_0007_0",
+        "node6_0007_2",
+        "node6_0007_3",
+        "node6_0007_1"
+      ],
+      "ordered_codes": [
+        15,
+        95,
+        95,
+        54
+      ],
+      "endpoint_candidates": [
+        {
+          "observed_node_id": "node6_0007_0",
+          "code": 15,
+          "name": "Saracinesca",
+          "local_degree": 1,
+          "role": "endpoint",
+          "is_anchor_candidate": false,
+          "is_terminal_candidate": true
+        },
+        {
+          "observed_node_id": "node6_0007_1",
+          "code": 54,
+          "name": "Curva 22",
+          "local_degree": 1,
+          "role": "endpoint",
+          "is_anchor_candidate": false,
+          "is_terminal_candidate": true
+        }
+      ],
+      "anchor_attachment_hints": [],
+      "confidence": 0.8224644362926483,
+      "local_evidence_metadata": {
+        "length": 4,
+        "mean_detection_confidence": 0.8224644362926483,
+        "triplets": [
+          {
+            "triplet_key": [
+              15,
+              95,
+              95
+            ],
+            "triplet_count": 0
+          },
+          {
+            "triplet_key": [
+              54,
+              95,
+              95
+            ],
+            "triplet_count": 0
+          }
+        ],
+        "distances": [
+          0.07841242917535293,
+          0.1628862629961024,
+          0.06680932834065036
+        ],
+        "forbidden_adjacent_pairs": [
+          false,
+          false,
+          false
+        ]
+      }
+    }
+  ]
+}

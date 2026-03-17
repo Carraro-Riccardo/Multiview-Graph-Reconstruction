@@ -1,0 +1,38 @@
+{
+  "n_anchor_nodes": 1,
+  "anchor_nodes": [
+    {
+      "anchor_id": "AN_54#1",
+      "scene_node_id": "54#1",
+      "code": 54,
+      "name": "Curva 22",
+      "valence": 2,
+      "anchor_type": "strong_endpoint",
+      "is_hub": false,
+      "is_strong_endpoint": true,
+      "support_count": 3,
+      "support_images": [
+        "node6_0002",
+        "node6_0003",
+        "node6_0007"
+      ],
+      "anchor_rank": 0.755,
+      "evidence": {
+        "supporting_observed_ids": [
+          "node6_0002_2",
+          "node6_0003_2",
+          "node6_0007_1"
+        ],
+        "local_structural_signature": {
+          "self_code": 54,
+          "nearby_code_histogram": {
+            "95": 3,
+            "15": 2
+          },
+          "anchor_hint_score": 0.0,
+          "terminal_hint_count": 3
+        }
+      }
+    }
+  ]
+}

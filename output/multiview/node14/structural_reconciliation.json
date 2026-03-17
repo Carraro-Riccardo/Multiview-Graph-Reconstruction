@@ -1,0 +1,98 @@
+{
+  "direct_edge_kept": [
+    {
+      "edge_id": "CE_0",
+      "involved_scene_nodes": [
+        "119#1",
+        "159#1"
+      ],
+      "decision": "direct_edge_kept",
+      "reason": "no_strong_hidden_intermediate_evidence"
+    },
+    {
+      "edge_id": "CE_1",
+      "involved_scene_nodes": [
+        "119#1",
+        "83#1"
+      ],
+      "decision": "direct_edge_kept",
+      "reason": "no_strong_hidden_intermediate_evidence"
+    }
+  ],
+  "direct_edge_weakened": [
+    {
+      "edge_id": "CE_2",
+      "involved_scene_nodes": [
+        "159#1",
+        "83#1"
+      ],
+      "decision": "direct_edge_weakened",
+      "supporting_views": [
+        "node14_0003",
+        "node14_0004"
+      ],
+      "explanation": {
+        "intermediate_scene_node_id": "119#1",
+        "path": [
+          "159#1",
+          "119#1",
+          "83#1"
+        ],
+        "supporting_views": [
+          "node14_0001",
+          "node14_0002",
+          "node14_0003",
+          "node14_0004"
+        ],
+        "novel_views": [
+          "node14_0001",
+          "node14_0002"
+        ],
+        "supporting_triplets": 1,
+        "degree_consistency_notes": {
+          "intermediate": "degree2_chain_component",
+          "direct_edge_weak": true,
+          "path_is_stronger": true
+        },
+        "edge_ids": [
+          "CE_0",
+          "CE_1"
+        ],
+        "score_tuple": [
+          4,
+          1,
+          2,
+          2
+        ]
+      }
+    }
+  ],
+  "direct_edge_expanded": [
+    {
+      "edge_id": "CE_2",
+      "involved_scene_nodes": [
+        "159#1",
+        "83#1"
+      ],
+      "decision": "direct_edge_expanded_into_2_step_path",
+      "expanded_path": [
+        "159#1",
+        "119#1",
+        "83#1"
+      ],
+      "supporting_views": [
+        "node14_0001",
+        "node14_0002",
+        "node14_0003",
+        "node14_0004"
+      ],
+      "supporting_triplets": 1,
+      "degree_consistency_notes": {
+        "intermediate": "degree2_chain_component",
+        "direct_edge_weak": true,
+        "path_is_stronger": true
+      }
+    }
+  ],
+  "ambiguous_cases_not_resolved": []
+}

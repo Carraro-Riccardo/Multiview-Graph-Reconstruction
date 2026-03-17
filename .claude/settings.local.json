@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(mkdir -p core)",
-      "Bash(mv models.py detection.py graph_engine.py visualization.py debug_utils.py DataAugmentor.py core/)",
-      "Bash(python -c \"import graph_fusion; print\\(''OK''\\)\")"
-    ]
-  }
-}

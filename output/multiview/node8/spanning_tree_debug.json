@@ -1,0 +1,13 @@
+{
+  "already_connected": false,
+  "n_forced": 1,
+  "is_connected_after": true,
+  "forced_edges": [
+    {
+      "a": "116#1",
+      "b": "15#2",
+      "via": "candidate_bridge",
+      "priority": "(5, 5, 36, 1)"
+    }
+  ]
+}

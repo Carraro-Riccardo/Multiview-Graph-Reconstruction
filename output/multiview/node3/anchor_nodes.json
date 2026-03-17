@@ -1,0 +1,167 @@
+{
+  "n_anchor_nodes": 5,
+  "anchor_nodes": [
+    {
+      "anchor_id": "AN_192#1",
+      "scene_node_id": "192#1",
+      "code": 192,
+      "name": "Croce",
+      "valence": 4,
+      "anchor_type": "cross",
+      "is_hub": true,
+      "is_strong_endpoint": false,
+      "support_count": 5,
+      "support_images": [
+        "node3_0005",
+        "node3_0006",
+        "node3_0008",
+        "node3_0010",
+        "node3_0011"
+      ],
+      "anchor_rank": 1.0,
+      "evidence": {
+        "supporting_observed_ids": [
+          "node3_0005_5",
+          "node3_0010_1",
+          "node3_0008_9",
+          "node3_0006_3",
+          "node3_0011_2"
+        ],
+        "local_structural_signature": {
+          "self_code": 192,
+          "nearby_code_histogram": {
+            "95": 5,
+            "15": 5
+          },
+          "anchor_hint_score": 1.0,
+          "terminal_hint_count": 2
+        }
+      }
+    },
+    {
+      "anchor_id": "AN_11#1",
+      "scene_node_id": "11#1",
+      "code": 11,
+      "name": "Giunto",
+      "valence": 2,
+      "anchor_type": "strong_endpoint",
+      "is_hub": false,
+      "is_strong_endpoint": true,
+      "support_count": 5,
+      "support_images": [
+        "node3_0005",
+        "node3_0006",
+        "node3_0008",
+        "node3_0010",
+        "node3_0011"
+      ],
+      "anchor_rank": 0.8,
+      "evidence": {
+        "supporting_observed_ids": [
+          "node3_0010_13",
+          "node3_0008_4",
+          "node3_0011_13",
+          "node3_0006_2",
+          "node3_0005_3"
+        ],
+        "local_structural_signature": {
+          "self_code": 11,
+          "nearby_code_histogram": {
+            "53": 5,
+            "95": 3
+          },
+          "anchor_hint_score": 0.0,
+          "terminal_hint_count": 5
+        }
+      }
+    },
+    {
+      "anchor_id": "AN_11#2",
+      "scene_node_id": "11#2",
+      "code": 11,
+      "name": "Giunto",
+      "valence": 2,
+      "anchor_type": "strong_endpoint",
+      "is_hub": false,
+      "is_strong_endpoint": true,
+      "support_count": 5,
+      "support_images": [
+        "node3_0005",
+        "node3_0006",
+        "node3_0008",
+        "node3_0010",
+        "node3_0011"
+      ],
+      "anchor_rank": 0.8,
+      "evidence": {
+        "supporting_observed_ids": [
+          "node3_0006_8",
+          "node3_0010_0",
+          "node3_0011_0",
+          "node3_0005_4",
+          "node3_0008_0"
+        ],
+        "local_structural_signature": {
+          "self_code": 11,
+          "nearby_code_histogram": {},
+          "anchor_hint_score": 0.0,
+          "terminal_hint_count": 5
+        }
+      }
+    },
+    {
+      "anchor_id": "AN_11#3",
+      "scene_node_id": "11#3",
+      "code": 11,
+      "name": "Giunto",
+      "valence": 2,
+      "anchor_type": "strong_endpoint",
+      "is_hub": false,
+      "is_strong_endpoint": true,
+      "support_count": 2,
+      "support_images": [
+        "node3_0010",
+        "node3_0011"
+      ],
+      "anchor_rank": 0.71,
+      "evidence": {
+        "supporting_observed_ids": [
+          "node3_0010_12",
+          "node3_0011_11"
+        ],
+        "local_structural_signature": {
+          "self_code": 11,
+          "nearby_code_histogram": {},
+          "anchor_hint_score": 0.0,
+          "terminal_hint_count": 2
+        }
+      }
+    },
+    {
+      "anchor_id": "AN_11#4",
+      "scene_node_id": "11#4",
+      "code": 11,
+      "name": "Giunto",
+      "valence": 2,
+      "anchor_type": "strong_endpoint",
+      "is_hub": false,
+      "is_strong_endpoint": true,
+      "support_count": 1,
+      "support_images": [
+        "node3_0008"
+      ],
+      "anchor_rank": 0.665,
+      "evidence": {
+        "supporting_observed_ids": [
+          "node3_0008_6"
+        ],
+        "local_structural_signature": {
+          "self_code": 11,
+          "nearby_code_histogram": {},
+          "anchor_hint_score": 0.0,
+          "terminal_hint_count": 1
+        }
+      }
+    }
+  ]
+}

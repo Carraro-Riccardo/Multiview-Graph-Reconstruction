@@ -20,9 +20,10 @@ def _load_simple_dotenv(dotenv_path: Path = Path(".env")) -> None:
 _load_simple_dotenv()
 
 # ── Paths ─────────────────────────────────────────────────────
-IMAGES_DIR = Path("C:\\Users\\ricca\\Desktop\\images\\val")
-WORK_DIR   = Path("./output")
-PDF_DIR    = Path("./folder_with_pdf")
+IMAGES_DIR      = Path("C:\\Users\\ricca\\Desktop\\images\\val")
+LABELS_EXT_DIR  = Path("C:\\Users\\ricca\\Desktop\\labels_extended")
+WORK_DIR        = Path("./output")
+PDF_DIR         = Path("./folder_with_pdf")
 COMPONENTS_PDF_PATH = Path("./components.pdf")
 PDF_PRIOR_ENABLED = True
 PDF_DIAGRAM_CANDIDATES_ENABLED = True

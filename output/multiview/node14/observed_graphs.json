@@ -1,0 +1,987 @@
+{
+  "n_views": 4,
+  "observed_graphs": [
+    {
+      "image_id": "node14_0001",
+      "n_nodes": 2,
+      "n_edges": 1,
+      "n_branch_fragments": 1,
+      "nodes": [
+        {
+          "observed_node_id": "node14_0001_0",
+          "image_id": "node14_0001",
+          "code": 83,
+          "name": "Rampa ab.",
+          "confidence": 0.8424465656280518,
+          "bbox": [
+            0.4237545430660248,
+            0.3060416877269745,
+            0.5263118147850037,
+            0.3939670920372009
+          ],
+          "center": [
+            0.4750331789255142,
+            0.3500043898820877
+          ],
+          "local_degree_estimate": 1,
+          "nearby_codes": [
+            119
+          ]
+        },
+        {
+          "observed_node_id": "node14_0001_1",
+          "image_id": "node14_0001",
+          "code": 119,
+          "name": "Rubinetto",
+          "confidence": 0.8221716284751892,
+          "bbox": [
+            0.20506814122200012,
+            0.24178342521190643,
+            0.33183956146240234,
+            0.3233635723590851
+          ],
+          "center": [
+            0.26845385134220123,
+            0.28257349878549576
+          ],
+          "local_degree_estimate": 1,
+          "nearby_codes": [
+            83
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "source_id": "node14_0001_0",
+          "target_id": "node14_0001_1",
+          "image_id": "node14_0001",
+          "confidence": 0.4359714317889441,
+          "distance": 0.21730610589409166,
+          "cooc_support": 0.047619047619047616,
+          "forbidden": false,
+          "edge_status": "direct_visible",
+          "direct_visible": true,
+          "shortcut_candidate": false,
+          "support_reason": "tight_local_proximity"
+        }
+      ],
+      "local_patterns": [
+        {
+          "type": "pair",
+          "codes": [
+            83,
+            119
+          ],
+          "cooc_count": 1,
+          "forbidden": false
+        }
+      ],
+      "branch_fragments": [
+        {
+          "branch_fragment_id": "node14_0001_frag_0",
+          "image_id": "node14_0001",
+          "ordered_observed_node_ids": [
+            "node14_0001_0",
+            "node14_0001_1"
+          ],
+          "ordered_codes": [
+            83,
+            119
+          ],
+          "endpoint_candidates": [
+            {
+              "observed_node_id": "node14_0001_0",
+              "code": 83,
+              "name": "Rampa ab.",
+              "local_degree": 1,
+              "role": "anchor",
+              "is_anchor_candidate": true,
+              "is_terminal_candidate": false
+            },
+            {
+              "observed_node_id": "node14_0001_1",
+              "code": 119,
+              "name": "Rubinetto",
+              "local_degree": 1,
+              "role": "endpoint",
+              "is_anchor_candidate": false,
+              "is_terminal_candidate": true
+            }
+          ],
+          "anchor_attachment_hints": [
+            {
+              "side": "start",
+              "observed_node_id": "node14_0001_0",
+              "code": 83,
+              "name": "Rampa ab.",
+              "hint_type": "anchor_endpoint"
+            }
+          ],
+          "confidence": 0.8323090970516205,
+          "local_evidence_metadata": {
+            "length": 2,
+            "mean_detection_confidence": 0.8323090970516205,
+            "triplets": [],
+            "distances": [
+              0.21730610589409166
+            ],
+            "forbidden_adjacent_pairs": [
+              false
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "image_id": "node14_0002",
+      "n_nodes": 3,
+      "n_edges": 2,
+      "n_branch_fragments": 1,
+      "nodes": [
+        {
+          "observed_node_id": "node14_0002_0",
+          "image_id": "node14_0002",
+          "code": 83,
+          "name": "Rampa ab.",
+          "confidence": 0.828837513923645,
+          "bbox": [
+            0.5389321446418762,
+            0.38900572061538696,
+            0.6813419461250305,
+            0.5108951926231384
+          ],
+          "center": [
+            0.6101370453834534,
+            0.4499504566192627
+          ],
+          "local_degree_estimate": 1,
+          "nearby_codes": [
+            119
+          ]
+        },
+        {
+          "observed_node_id": "node14_0002_1",
+          "image_id": "node14_0002",
+          "code": 159,
+          "name": "Collare PVC",
+          "confidence": 0.8035959005355835,
+          "bbox": [
+            0.41611120104789734,
+            0.6125295162200928,
+            0.5043359398841858,
+            0.6996304392814636
+          ],
+          "center": [
+            0.46022357046604156,
+            0.6560799777507782
+          ],
+          "local_degree_estimate": 1,
+          "nearby_codes": [
+            119
+          ]
+        },
+        {
+          "observed_node_id": "node14_0002_2",
+          "image_id": "node14_0002",
+          "code": 119,
+          "name": "Rubinetto",
+          "confidence": 0.7915351986885071,
+          "bbox": [
+            0.4860733151435852,
+            0.6080496311187744,
+            0.636346697807312,
+            0.7285251021385193
+          ],
+          "center": [
+            0.5612100064754486,
+            0.6682873666286469
+          ],
+          "local_degree_estimate": 2,
+          "nearby_codes": [
+            159,
+            83
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "source_id": "node14_0002_0",
+          "target_id": "node14_0002_2",
+          "image_id": "node14_0002",
+          "confidence": 0.4243833294936589,
+          "distance": 0.22375178526383052,
+          "cooc_support": 0.047619047619047616,
+          "forbidden": false,
+          "edge_status": "shortcut_candidate",
+          "direct_visible": false,
+          "shortcut_candidate": true,
+          "support_reason": "distant_or_suspicious_local_adjacency"
+        },
+        {
+          "source_id": "node14_0002_1",
+          "target_id": "node14_0002_2",
+          "image_id": "node14_0002",
+          "confidence": 0.4177724307491666,
+          "distance": 0.10172158375240514,
+          "cooc_support": 0.047619047619047616,
+          "forbidden": false,
+          "edge_status": "direct_visible",
+          "direct_visible": true,
+          "shortcut_candidate": false,
+          "support_reason": "tight_local_proximity"
+        }
+      ],
+      "local_patterns": [
+        {
+          "type": "pair",
+          "codes": [
+            83,
+            119
+          ],
+          "cooc_count": 1,
+          "forbidden": false
+        },
+        {
+          "type": "pair",
+          "codes": [
+            119,
+            159
+          ],
+          "cooc_count": 1,
+          "forbidden": false
+        },
+        {
+          "type": "triplet",
+          "center_code": 119,
+          "neighbor_codes": [
+            159,
+            83
+          ],
+          "triplet_key": [
+            83,
+            119,
+            159
+          ],
+          "triplet_count": 1
+        }
+      ],
+      "branch_fragments": [
+        {
+          "branch_fragment_id": "node14_0002_frag_0",
+          "image_id": "node14_0002",
+          "ordered_observed_node_ids": [
+            "node14_0002_0",
+            "node14_0002_2",
+            "node14_0002_1"
+          ],
+          "ordered_codes": [
+            83,
+            119,
+            159
+          ],
+          "endpoint_candidates": [
+            {
+              "observed_node_id": "node14_0002_0",
+              "code": 83,
+              "name": "Rampa ab.",
+              "local_degree": 1,
+              "role": "anchor",
+              "is_anchor_candidate": true,
+              "is_terminal_candidate": false
+            },
+            {
+              "observed_node_id": "node14_0002_1",
+              "code": 159,
+              "name": "Collare PVC",
+              "local_degree": 1,
+              "role": "anchor",
+              "is_anchor_candidate": true,
+              "is_terminal_candidate": false
+            }
+          ],
+          "anchor_attachment_hints": [
+            {
+              "side": "start",
+              "observed_node_id": "node14_0002_0",
+              "code": 83,
+              "name": "Rampa ab.",
+              "hint_type": "anchor_endpoint"
+            },
+            {
+              "side": "end",
+              "observed_node_id": "node14_0002_1",
+              "code": 159,
+              "name": "Collare PVC",
+              "hint_type": "anchor_endpoint"
+            }
+          ],
+          "confidence": 0.8079895377159119,
+          "local_evidence_metadata": {
+            "length": 3,
+            "mean_detection_confidence": 0.8079895377159119,
+            "triplets": [
+              {
+                "triplet_key": [
+                  83,
+                  119,
+                  159
+                ],
+                "triplet_count": 1
+              }
+            ],
+            "distances": [
+              0.22375178526383052,
+              0.10172158375240514
+            ],
+            "forbidden_adjacent_pairs": [
+              false,
+              false
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "image_id": "node14_0003",
+      "n_nodes": 3,
+      "n_edges": 3,
+      "n_branch_fragments": 2,
+      "nodes": [
+        {
+          "observed_node_id": "node14_0003_0",
+          "image_id": "node14_0003",
+          "code": 83,
+          "name": "Rampa ab.",
+          "confidence": 0.862598180770874,
+          "bbox": [
+            0.7257393002510071,
+            0.4750222861766815,
+            0.9142484664916992,
+            0.695382833480835
+          ],
+          "center": [
+            0.8199938833713531,
+            0.5852025598287582
+          ],
+          "local_degree_estimate": 2,
+          "nearby_codes": [
+            159,
+            119
+          ]
+        },
+        {
+          "observed_node_id": "node14_0003_1",
+          "image_id": "node14_0003",
+          "code": 159,
+          "name": "Collare PVC",
+          "confidence": 0.891340970993042,
+          "bbox": [
+            0.4479471743106842,
+            0.5508899092674255,
+            0.5321098566055298,
+            0.6197540163993835
+          ],
+          "center": [
+            0.490028515458107,
+            0.5853219628334045
+          ],
+          "local_degree_estimate": 2,
+          "nearby_codes": [
+            119,
+            83
+          ]
+        },
+        {
+          "observed_node_id": "node14_0003_2",
+          "image_id": "node14_0003",
+          "code": 119,
+          "name": "Rubinetto",
+          "confidence": 0.5352869033813477,
+          "bbox": [
+            0.4740970730781555,
+            0.689060389995575,
+            0.5687131881713867,
+            0.7799569368362427
+          ],
+          "center": [
+            0.5214051306247711,
+            0.7345086634159088
+          ],
+          "local_degree_estimate": 2,
+          "nearby_codes": [
+            159,
+            83
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "source_id": "node14_0003_0",
+          "target_id": "node14_0003_1",
+          "image_id": "node14_0003",
+          "confidence": 0.438484787940979,
+          "distance": 0.32996538951714527,
+          "cooc_support": 0.0,
+          "forbidden": true,
+          "edge_status": "shortcut_candidate",
+          "direct_visible": false,
+          "shortcut_candidate": true,
+          "support_reason": "distant_or_suspicious_local_adjacency"
+        },
+        {
+          "source_id": "node14_0003_0",
+          "target_id": "node14_0003_2",
+          "image_id": "node14_0003",
+          "confidence": 0.3661127601351057,
+          "distance": 0.3338376189633763,
+          "cooc_support": 0.047619047619047616,
+          "forbidden": false,
+          "edge_status": "shortcut_candidate",
+          "direct_visible": false,
+          "shortcut_candidate": true,
+          "support_reason": "distant_or_suspicious_local_adjacency"
+        },
+        {
+          "source_id": "node14_0003_1",
+          "target_id": "node14_0003_2",
+          "image_id": "node14_0003",
+          "confidence": 0.3736406337647211,
+          "distance": 0.15245052840187442,
+          "cooc_support": 0.047619047619047616,
+          "forbidden": false,
+          "edge_status": "direct_visible",
+          "direct_visible": true,
+          "shortcut_candidate": false,
+          "support_reason": "tight_local_proximity"
+        }
+      ],
+      "local_patterns": [
+        {
+          "type": "pair",
+          "codes": [
+            83,
+            159
+          ],
+          "cooc_count": 0,
+          "forbidden": true
+        },
+        {
+          "type": "pair",
+          "codes": [
+            83,
+            119
+          ],
+          "cooc_count": 1,
+          "forbidden": false
+        },
+        {
+          "type": "pair",
+          "codes": [
+            119,
+            159
+          ],
+          "cooc_count": 1,
+          "forbidden": false
+        },
+        {
+          "type": "triplet",
+          "center_code": 83,
+          "neighbor_codes": [
+            159,
+            119
+          ],
+          "triplet_key": [
+            119,
+            83,
+            159
+          ],
+          "triplet_count": 0
+        },
+        {
+          "type": "triplet",
+          "center_code": 159,
+          "neighbor_codes": [
+            119,
+            83
+          ],
+          "triplet_key": [
+            83,
+            159,
+            119
+          ],
+          "triplet_count": 0
+        },
+        {
+          "type": "triplet",
+          "center_code": 119,
+          "neighbor_codes": [
+            159,
+            83
+          ],
+          "triplet_key": [
+            83,
+            119,
+            159
+          ],
+          "triplet_count": 1
+        }
+      ],
+      "branch_fragments": [
+        {
+          "branch_fragment_id": "node14_0003_frag_0",
+          "image_id": "node14_0003",
+          "ordered_observed_node_ids": [
+            "node14_0003_0",
+            "node14_0003_1"
+          ],
+          "ordered_codes": [
+            83,
+            159
+          ],
+          "endpoint_candidates": [
+            {
+              "observed_node_id": "node14_0003_0",
+              "code": 83,
+              "name": "Rampa ab.",
+              "local_degree": 2,
+              "role": "anchor",
+              "is_anchor_candidate": true,
+              "is_terminal_candidate": false
+            },
+            {
+              "observed_node_id": "node14_0003_1",
+              "code": 159,
+              "name": "Collare PVC",
+              "local_degree": 2,
+              "role": "anchor",
+              "is_anchor_candidate": true,
+              "is_terminal_candidate": false
+            }
+          ],
+          "anchor_attachment_hints": [
+            {
+              "side": "start",
+              "observed_node_id": "node14_0003_0",
+              "code": 83,
+              "name": "Rampa ab.",
+              "hint_type": "anchor_endpoint"
+            },
+            {
+              "side": "end",
+              "observed_node_id": "node14_0003_1",
+              "code": 159,
+              "name": "Collare PVC",
+              "hint_type": "anchor_endpoint"
+            }
+          ],
+          "confidence": 0.876969575881958,
+          "local_evidence_metadata": {
+            "length": 2,
+            "mean_detection_confidence": 0.876969575881958,
+            "triplets": [],
+            "distances": [
+              0.32996538951714527
+            ],
+            "forbidden_adjacent_pairs": [
+              true
+            ]
+          }
+        },
+        {
+          "branch_fragment_id": "node14_0003_frag_1",
+          "image_id": "node14_0003",
+          "ordered_observed_node_ids": [
+            "node14_0003_0",
+            "node14_0003_2",
+            "node14_0003_1"
+          ],
+          "ordered_codes": [
+            83,
+            119,
+            159
+          ],
+          "endpoint_candidates": [
+            {
+              "observed_node_id": "node14_0003_0",
+              "code": 83,
+              "name": "Rampa ab.",
+              "local_degree": 2,
+              "role": "anchor",
+              "is_anchor_candidate": true,
+              "is_terminal_candidate": false
+            },
+            {
+              "observed_node_id": "node14_0003_1",
+              "code": 159,
+              "name": "Collare PVC",
+              "local_degree": 2,
+              "role": "anchor",
+              "is_anchor_candidate": true,
+              "is_terminal_candidate": false
+            }
+          ],
+          "anchor_attachment_hints": [
+            {
+              "side": "start",
+              "observed_node_id": "node14_0003_0",
+              "code": 83,
+              "name": "Rampa ab.",
+              "hint_type": "anchor_endpoint"
+            },
+            {
+              "side": "end",
+              "observed_node_id": "node14_0003_1",
+              "code": 159,
+              "name": "Collare PVC",
+              "hint_type": "anchor_endpoint"
+            }
+          ],
+          "confidence": 0.7630753517150879,
+          "local_evidence_metadata": {
+            "length": 3,
+            "mean_detection_confidence": 0.7630753517150879,
+            "triplets": [
+              {
+                "triplet_key": [
+                  83,
+                  119,
+                  159
+                ],
+                "triplet_count": 1
+              }
+            ],
+            "distances": [
+              0.3338376189633763,
+              0.15245052840187442
+            ],
+            "forbidden_adjacent_pairs": [
+              false,
+              false
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "image_id": "node14_0004",
+      "n_nodes": 3,
+      "n_edges": 3,
+      "n_branch_fragments": 2,
+      "nodes": [
+        {
+          "observed_node_id": "node14_0004_0",
+          "image_id": "node14_0004",
+          "code": 83,
+          "name": "Rampa ab.",
+          "confidence": 0.8582953810691833,
+          "bbox": [
+            0.4987403154373169,
+            0.40001043677330017,
+            0.584120512008667,
+            0.4990801513195038
+          ],
+          "center": [
+            0.5414304137229919,
+            0.449545294046402
+          ],
+          "local_degree_estimate": 2,
+          "nearby_codes": [
+            159,
+            119
+          ]
+        },
+        {
+          "observed_node_id": "node14_0004_1",
+          "image_id": "node14_0004",
+          "code": 119,
+          "name": "Rubinetto",
+          "confidence": 0.7416870594024658,
+          "bbox": [
+            0.6122321486473083,
+            0.5269221067428589,
+            0.719338059425354,
+            0.6150544285774231
+          ],
+          "center": [
+            0.6657851040363312,
+            0.570988267660141
+          ],
+          "local_degree_estimate": 2,
+          "nearby_codes": [
+            159,
+            83
+          ]
+        },
+        {
+          "observed_node_id": "node14_0004_2",
+          "image_id": "node14_0004",
+          "code": 159,
+          "name": "Collare PVC",
+          "confidence": 0.8191924095153809,
+          "bbox": [
+            0.5440437197685242,
+            0.5688868165016174,
+            0.6173136234283447,
+            0.6346579194068909
+          ],
+          "center": [
+            0.5806786715984344,
+            0.6017723679542542
+          ],
+          "local_degree_estimate": 2,
+          "nearby_codes": [
+            119,
+            83
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "source_id": "node14_0004_0",
+          "target_id": "node14_0004_2",
+          "image_id": "node14_0004",
+          "confidence": 0.41937194764614105,
+          "distance": 0.1572053045441022,
+          "cooc_support": 0.0,
+          "forbidden": true,
+          "edge_status": "shortcut_candidate",
+          "direct_visible": false,
+          "shortcut_candidate": true,
+          "support_reason": "distant_or_suspicious_local_adjacency"
+        },
+        {
+          "source_id": "node14_0004_0",
+          "target_id": "node14_0004_1",
+          "image_id": "node14_0004",
+          "confidence": 0.4190430201235272,
+          "distance": 0.1738173893575491,
+          "cooc_support": 0.047619047619047616,
+          "forbidden": false,
+          "edge_status": "plausible_local_adjacency",
+          "direct_visible": false,
+          "shortcut_candidate": false,
+          "support_reason": "partial_view_local_adjacency"
+        },
+        {
+          "source_id": "node14_0004_1",
+          "target_id": "node14_0004_2",
+          "image_id": "node14_0004",
+          "confidence": 0.40880176566895987,
+          "distance": 0.09050284897849514,
+          "cooc_support": 0.047619047619047616,
+          "forbidden": false,
+          "edge_status": "direct_visible",
+          "direct_visible": true,
+          "shortcut_candidate": false,
+          "support_reason": "tight_local_proximity"
+        }
+      ],
+      "local_patterns": [
+        {
+          "type": "pair",
+          "codes": [
+            83,
+            159
+          ],
+          "cooc_count": 0,
+          "forbidden": true
+        },
+        {
+          "type": "pair",
+          "codes": [
+            83,
+            119
+          ],
+          "cooc_count": 1,
+          "forbidden": false
+        },
+        {
+          "type": "pair",
+          "codes": [
+            119,
+            159
+          ],
+          "cooc_count": 1,
+          "forbidden": false
+        },
+        {
+          "type": "triplet",
+          "center_code": 83,
+          "neighbor_codes": [
+            159,
+            119
+          ],
+          "triplet_key": [
+            119,
+            83,
+            159
+          ],
+          "triplet_count": 0
+        },
+        {
+          "type": "triplet",
+          "center_code": 119,
+          "neighbor_codes": [
+            159,
+            83
+          ],
+          "triplet_key": [
+            83,
+            119,
+            159
+          ],
+          "triplet_count": 1
+        },
+        {
+          "type": "triplet",
+          "center_code": 159,
+          "neighbor_codes": [
+            119,
+            83
+          ],
+          "triplet_key": [
+            83,
+            159,
+            119
+          ],
+          "triplet_count": 0
+        }
+      ],
+      "branch_fragments": [
+        {
+          "branch_fragment_id": "node14_0004_frag_0",
+          "image_id": "node14_0004",
+          "ordered_observed_node_ids": [
+            "node14_0004_0",
+            "node14_0004_1",
+            "node14_0004_2"
+          ],
+          "ordered_codes": [
+            83,
+            119,
+            159
+          ],
+          "endpoint_candidates": [
+            {
+              "observed_node_id": "node14_0004_0",
+              "code": 83,
+              "name": "Rampa ab.",
+              "local_degree": 2,
+              "role": "anchor",
+              "is_anchor_candidate": true,
+              "is_terminal_candidate": false
+            },
+            {
+              "observed_node_id": "node14_0004_2",
+              "code": 159,
+              "name": "Collare PVC",
+              "local_degree": 2,
+              "role": "anchor",
+              "is_anchor_candidate": true,
+              "is_terminal_candidate": false
+            }
+          ],
+          "anchor_attachment_hints": [
+            {
+              "side": "start",
+              "observed_node_id": "node14_0004_0",
+              "code": 83,
+              "name": "Rampa ab.",
+              "hint_type": "anchor_endpoint"
+            },
+            {
+              "side": "end",
+              "observed_node_id": "node14_0004_2",
+              "code": 159,
+              "name": "Collare PVC",
+              "hint_type": "anchor_endpoint"
+            }
+          ],
+          "confidence": 0.8063916166623434,
+          "local_evidence_metadata": {
+            "length": 3,
+            "mean_detection_confidence": 0.8063916166623434,
+            "triplets": [
+              {
+                "triplet_key": [
+                  83,
+                  119,
+                  159
+                ],
+                "triplet_count": 1
+              }
+            ],
+            "distances": [
+              0.1738173893575491,
+              0.09050284897849514
+            ],
+            "forbidden_adjacent_pairs": [
+              false,
+              false
+            ]
+          }
+        },
+        {
+          "branch_fragment_id": "node14_0004_frag_1",
+          "image_id": "node14_0004",
+          "ordered_observed_node_ids": [
+            "node14_0004_0",
+            "node14_0004_2"
+          ],
+          "ordered_codes": [
+            83,
+            159
+          ],
+          "endpoint_candidates": [
+            {
+              "observed_node_id": "node14_0004_0",
+              "code": 83,
+              "name": "Rampa ab.",
+              "local_degree": 2,
+              "role": "anchor",
+              "is_anchor_candidate": true,
+              "is_terminal_candidate": false
+            },
+            {
+              "observed_node_id": "node14_0004_2",
+              "code": 159,
+              "name": "Collare PVC",
+              "local_degree": 2,
+              "role": "anchor",
+              "is_anchor_candidate": true,
+              "is_terminal_candidate": false
+            }
+          ],
+          "anchor_attachment_hints": [
+            {
+              "side": "start",
+              "observed_node_id": "node14_0004_0",
+              "code": 83,
+              "name": "Rampa ab.",
+              "hint_type": "anchor_endpoint"
+            },
+            {
+              "side": "end",
+              "observed_node_id": "node14_0004_2",
+              "code": 159,
+              "name": "Collare PVC",
+              "hint_type": "anchor_endpoint"
+            }
+          ],
+          "confidence": 0.8387438952922821,
+          "local_evidence_metadata": {
+            "length": 2,
+            "mean_detection_confidence": 0.8387438952922821,
+            "triplets": [],
+            "distances": [
+              0.1572053045441022
+            ],
+            "forbidden_adjacent_pairs": [
+              true
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
