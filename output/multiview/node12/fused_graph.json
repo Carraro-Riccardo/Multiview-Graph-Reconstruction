@@ -1,0 +1,89 @@
+{
+  "total_images": 3,
+  "n_nodes": 3,
+  "n_edges": 2,
+  "is_connected": true,
+  "nodes": [
+    {
+      "id": "83#1",
+      "code": 83,
+      "name": "Rampa ab.",
+      "confidence": 0.8149229884147644,
+      "support_count": 1,
+      "support_images": [
+        "node12_0004"
+      ],
+      "degree": 1,
+      "max_degree": 1,
+      "is_anchor": false
+    },
+    {
+      "id": "119#1",
+      "code": 119,
+      "name": "Rubinetto",
+      "confidence": 0.8211316466331482,
+      "support_count": 1,
+      "support_images": [
+        "node12_0001"
+      ],
+      "degree": 2,
+      "max_degree": 2,
+      "is_anchor": false
+    },
+    {
+      "id": "159#1",
+      "code": 159,
+      "name": "Collare PVC",
+      "confidence": 0.8173398971557617,
+      "support_count": 1,
+      "support_images": [
+        "node12_0002"
+      ],
+      "degree": 1,
+      "max_degree": 1,
+      "is_anchor": false
+    }
+  ],
+  "edges": [
+    {
+      "node_a": "83#1",
+      "node_b": "119#1",
+      "support_count": 0,
+      "supporting_images": [],
+      "branch_support_count": 0,
+      "knn_support_count": 0,
+      "cooc_count": 0,
+      "triplet_support": 0,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "structural_fallback"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": true,
+      "forced_reason": "spanning_tree_structural_fallback",
+      "consistency_score": null,
+      "consistency_n_visible": 0
+    },
+    {
+      "node_a": "119#1",
+      "node_b": "159#1",
+      "support_count": 0,
+      "supporting_images": [],
+      "branch_support_count": 0,
+      "knn_support_count": 0,
+      "cooc_count": 0,
+      "triplet_support": 0,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "structural_fallback"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": true,
+      "forced_reason": "spanning_tree_structural_fallback",
+      "consistency_score": null,
+      "consistency_n_visible": 0
+    }
+  ]
+}

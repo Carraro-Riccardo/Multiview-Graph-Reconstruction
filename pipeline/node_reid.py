@@ -45,6 +45,22 @@ SOFT_MERGE_BETA               = 0.45   # weight of cross-group co-association
 PATCH_EXPAND_RATIO = 0.35
 MIN_PATCH_SIZE     = 48
 
+# ── Algorithm selection ───────────────────────────────────────────────────────
+# True  → skip seed runs entirely; use direct pairwise cosine similarity
+#         as affinity signal (cluster count emerges from data, not seed image)
+# False → original multi-seed co-association matrix approach
+REID_USE_DIRECT_PAIRWISE = False
+
+# ── Instance-level neighbourhood enhancement ─────────────────────────────────
+# After computing the base pair affinity (co-association or direct pairwise),
+# run NBRHD_ROUNDS iterations of neighbourhood-augmented refinement.
+# In each round: cluster → build neighbourhood profiles per detection
+# (which cluster-IDs are the KNN neighbours of this detection?) → reweight
+# affinity as  α·visual  +  (1−α)·neighbourhood_instance_sim.
+# Set NBRHD_ROUNDS = 0 to disable.
+NBRHD_ROUNDS = 2
+NBRHD_ALPHA  = 0.65   # weight for visual (co-assoc) signal
+
 
 # ── SceneNode (downstream-compatible) ───────────────────────────────────────
 @dataclass
@@ -154,6 +170,7 @@ def _build_items(
                 "confidence":       obs.confidence,
                 "center":           obs.center,
                 "embedding":        emb,
+                "nearby_codes":     list(obs.nearby_codes),
             }
             all_items.append(item)
             items_by_image[image_id].append(item)
@@ -226,28 +243,176 @@ def _run_single_seed(
 
         for code, qids in q_by_code.items():
             cand_gids = by_code.get(code, [])
-            if not cand_gids:
-                continue
             qids = sorted(qids, key=lambda i: (-item_by_id[i]["confidence"], i))
-            S = np.zeros((len(cand_gids), len(qids)), dtype=np.float32)
-            for r, gid in enumerate(cand_gids):
-                for c, qid in enumerate(qids):
-                    S[r, c] = _cosine_sim(groups[gid]["prototype"], item_by_id[qid]["embedding"])
 
-            row_ind, col_ind = linear_sum_assignment(-S)
-            for r, c in zip(row_ind, col_ind):
-                sim = float(S[r, c])
-                if REID_ALLOW_UNMATCHED and sim < REID_MATCH_THRESHOLD:
-                    continue
-                gid = cand_gids[r]
-                qid = qids[c]
-                assignment[qid] = gid
-                groups[gid]["members"].append(qid)
-                new_proto = _mean_proto(groups[gid]["members"], item_by_id)
-                if new_proto is not None:
-                    groups[gid]["prototype"] = new_proto
+            if cand_gids:
+                S = np.zeros((len(cand_gids), len(qids)), dtype=np.float32)
+                for r, gid in enumerate(cand_gids):
+                    for c, qid in enumerate(qids):
+                        S[r, c] = _cosine_sim(groups[gid]["prototype"], item_by_id[qid]["embedding"])
+
+                row_ind, col_ind = linear_sum_assignment(-S)
+                for r, c in zip(row_ind, col_ind):
+                    sim = float(S[r, c])
+                    if REID_ALLOW_UNMATCHED and sim < REID_MATCH_THRESHOLD:
+                        continue
+                    gid = cand_gids[r]
+                    qid = qids[c]
+                    assignment[qid] = gid
+                    groups[gid]["members"].append(qid)
+                    new_proto = _mean_proto(groups[gid]["members"], item_by_id)
+                    if new_proto is not None:
+                        groups[gid]["prototype"] = new_proto
 
     return {"seed_image": seed_img_id, "assignment": assignment}
+
+
+# ── Direct pairwise affinity (replaces co-association) ───────────────────────
+def _build_direct_pairwise_affinity(all_items: list, item_by_id: dict) -> dict:
+    """
+    Compute pair_stats from raw pairwise cosine similarity instead of seed runs.
+
+    For every pair of detections (same code, different images, both with valid
+    embeddings) the 'ratio' is set to the direct cosine similarity.  The greedy
+    clustering step then uses this as affinity, so the cluster count is driven
+    by the data rather than by which image was chosen as seed.
+    """
+    by_code: dict[int, list[str]] = defaultdict(list)
+    for item in all_items:
+        if item["embedding"] is not None:
+            by_code[item["code"]].append(item["observed_node_id"])
+
+    pair_stats: dict[tuple, dict] = {}
+    for ids in by_code.values():
+        for i in range(len(ids)):
+            for j in range(i + 1, len(ids)):
+                a, b = ids[i], ids[j]
+                if item_by_id[a]["image_id"] == item_by_id[b]["image_id"]:
+                    continue
+                sim = _cosine_sim(item_by_id[a]["embedding"], item_by_id[b]["embedding"])
+                key = _pair_key(a, b)
+                # co_observed is set to COASSOC_MIN_RUNS so the min-runs
+                # filter in _affinity() is always satisfied.
+                pair_stats[key] = {
+                    "same_group": sim,
+                    "co_observed": COASSOC_MIN_RUNS,
+                    "ratio": sim,
+                }
+
+    return pair_stats
+
+
+# ── Instance-level neighbourhood enhancement ─────────────────────────────────
+
+def _counter_cosine_sim(c1: dict, c2: dict) -> float:
+    """Cosine similarity between two frequency dicts (cluster-ID → count)."""
+    if not c1 or not c2:
+        return 0.0
+    keys = set(c1) | set(c2)
+    v1 = np.array([c1.get(k, 0) for k in keys], dtype=float)
+    v2 = np.array([c2.get(k, 0) for k in keys], dtype=float)
+    n1, n2 = np.linalg.norm(v1), np.linalg.norm(v2)
+    if n1 < 1e-8 or n2 < 1e-8:
+        return 0.0
+    return float(np.dot(v1, v2) / (n1 * n2))
+
+
+def _get_cluster_assignment(
+    all_items: list,
+    item_by_id: dict,
+    pair_stats: dict,
+) -> dict[str, str]:
+    """Run greedy clustering and return {detection_id: cluster_id} dict."""
+    items_by_code: dict[int, list[str]] = defaultdict(list)
+    for item in all_items:
+        items_by_code[item["code"]].append(item["observed_node_id"])
+    assignment: dict[str, str] = {}
+    for code, code_ids in sorted(items_by_code.items()):
+        clusters = _greedy_cluster_code(code, code_ids, item_by_id, pair_stats)
+        for k, cluster in enumerate(clusters, start=1):
+            cid = f"{code}#{k}"
+            for det_id in cluster:
+                assignment[det_id] = cid
+    return assignment
+
+
+def _enhance_with_instance_neighborhoods(
+    base_pair_stats: dict,
+    all_items: list,
+    item_by_id: dict,
+    observed_graphs: list,
+) -> dict:
+    """
+    Iteratively augment pair affinity with instance-level neighbourhood signal.
+
+    Each round:
+      1. Greedy-cluster using current pair_stats → cluster assignment.
+      2. For each detection D, build its neighbourhood profile:
+         a Counter of cluster-IDs of D's KNN neighbours in its image.
+         (KNN edges come from the observed-graph edge list.)
+      3. Two detections score higher if their neighbourhood profiles overlap,
+         i.e. they are surrounded by the same physical instances.
+      4. New ratio = NBRHD_ALPHA · visual_ratio + (1−NBRHD_ALPHA) · nbr_sim.
+
+    Only pairs already present in base_pair_stats are updated; we never add
+    new pairs, so spurious long-range links cannot be introduced.
+    """
+    if NBRHD_ROUNDS == 0:
+        return base_pair_stats
+
+    # Build detection → set of KNN-neighbour detection IDs from observed graphs.
+    # Edges are cross-type KNN, so the profile naturally encodes the local
+    # structural context (which *types* and *instances* surround this detection).
+    neighbors_of: dict[str, set[str]] = defaultdict(set)
+    for og in observed_graphs:
+        for edge in og.edges:
+            neighbors_of[edge.source_id].add(edge.target_id)
+            neighbors_of[edge.target_id].add(edge.source_id)
+
+    current_stats = base_pair_stats
+
+    for round_idx in range(NBRHD_ROUNDS):
+        # Step 1 — provisional clustering
+        assignment = _get_cluster_assignment(all_items, item_by_id, current_stats)
+
+        # Step 2 — neighbourhood profile per detection
+        nbr_profile: dict[str, dict[str, int]] = {}
+        for det_id in item_by_id:
+            profile: dict[str, int] = {}
+            for nbr_id in neighbors_of.get(det_id, set()):
+                cid = assignment.get(nbr_id)
+                if cid:
+                    profile[cid] = profile.get(cid, 0) + 1
+            nbr_profile[det_id] = profile
+
+        # Step 3 & 4 — compute enhanced affinity for every tracked pair
+        new_stats: dict[tuple, dict] = {}
+        n_nbr_signal = 0
+        for key, st in base_pair_stats.items():
+            a, b = key
+            visual  = st["ratio"]
+            nbr_sim = _counter_cosine_sim(
+                nbr_profile.get(a, {}),
+                nbr_profile.get(b, {}),
+            )
+            combined = NBRHD_ALPHA * visual + (1.0 - NBRHD_ALPHA) * nbr_sim
+            if nbr_sim > 0:
+                n_nbr_signal += 1
+            new_stats[key] = {
+                "same_group":   combined,
+                "co_observed":  st["co_observed"],
+                "ratio":        combined,
+                "visual_ratio": visual,
+                "nbr_sim":      nbr_sim,
+            }
+
+        current_stats = new_stats
+        print(
+            f"  [ReID-Nbr] round {round_idx + 1}/{NBRHD_ROUNDS}: "
+            f"{n_nbr_signal}/{len(new_stats)} pairs have neighbourhood signal"
+        )
+
+    return current_stats
 
 
 # ── Co-association matrix ─────────────────────────────────────────────────────
@@ -533,14 +698,21 @@ def identify_scene_nodes(
 
     print(f"  [ReID] building embeddings done: {len(all_items)} instances across {len(image_ids)} views")
 
-    # Multi-seed runs (every image acts as seed once)
-    single_seed_runs = [
-        _run_single_seed(seed, image_ids, items_by_image, item_by_id)
-        for seed in image_ids
-    ]
+    if REID_USE_DIRECT_PAIRWISE:
+        print(f"  [ReID] using direct pairwise cosine affinity (no seed runs)")
+        pair_stats = _build_direct_pairwise_affinity(all_items, item_by_id)
+    else:
+        # Multi-seed runs (every image acts as seed once)
+        single_seed_runs = [
+            _run_single_seed(seed, image_ids, items_by_image, item_by_id)
+            for seed in image_ids
+        ]
+        pair_stats = _build_coassoc(single_seed_runs, item_by_id)
 
-    # Co-association matrix
-    pair_stats = _build_coassoc(single_seed_runs, item_by_id)
+    # Iterative instance-level neighbourhood enhancement
+    pair_stats = _enhance_with_instance_neighborhoods(
+        pair_stats, all_items, item_by_id, observed_graphs
+    )
 
     # Greedy cluster per component code
     items_by_code: dict[int, list[str]] = defaultdict(list)
@@ -562,8 +734,10 @@ def identify_scene_nodes(
     # Assemble SceneNode objects
     scene_nodes = _build_scene_nodes(groups, item_by_id, observed_graphs)
 
+    n_seed_runs = 0 if REID_USE_DIRECT_PAIRWISE else len(single_seed_runs)
     debug = {
-        "n_seed_runs":    len(single_seed_runs),
+        "mode":           "direct_pairwise" if REID_USE_DIRECT_PAIRWISE else "seed_coassoc",
+        "n_seed_runs":    n_seed_runs,
         "n_pair_stats":   len(pair_stats),
         "n_scene_nodes":  len(scene_nodes),
         "observed_to_scene": {
@@ -573,7 +747,7 @@ def identify_scene_nodes(
         },
     }
 
-    _print_reid_summary(scene_nodes, all_items, len(single_seed_runs), len(pair_stats))
+    _print_reid_summary(scene_nodes, all_items, n_seed_runs, len(pair_stats))
     return scene_nodes, debug
 
 

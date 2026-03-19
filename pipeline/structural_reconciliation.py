@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from config import COOC_COUNTS, DEGREE_SATURATION, TRIPLET_COUNTS
+from config import COOC_COUNTS, DEGREE_SATURATION, FORBIDDEN_PAIRS, TRIPLET_COUNTS
 
 
 def _pair(a: str, b: str) -> tuple[str, str]:
@@ -48,6 +48,13 @@ def reconcile_shortcut_edges(scene_nodes: list, candidate_edges: list) -> tuple[
         expansion_options = []
         for scene_c in scene_nodes:
             if scene_c.scene_node_id in direct_pair:
+                continue
+
+            # Skip expansions where either path leg is a forbidden pair —
+            # a path through a physically impossible connection cannot explain away a valid edge.
+            if _norm_pair(node_a.fused_code, scene_c.fused_code) in FORBIDDEN_PAIRS:
+                continue
+            if _norm_pair(scene_c.fused_code, node_b.fused_code) in FORBIDDEN_PAIRS:
                 continue
 
             edge_ac = edge_by_pair.get(_pair(direct_edge.scene_node_a, scene_c.scene_node_id))

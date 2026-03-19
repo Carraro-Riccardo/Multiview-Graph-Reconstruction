@@ -1,0 +1,291 @@
+{
+  "node_id": 9,
+  "node_mean_consistency": 0.9011286332714904,
+  "n_views": 7,
+  "edges": [
+    {
+      "a": "15#5",
+      "b": "192#1",
+      "n_visible": 2,
+      "n_supported": 1,
+      "n_violated": 1,
+      "violated_in": [
+        "node9_0001"
+      ],
+      "supported_in": [
+        "node9_0006"
+      ],
+      "global_consistency": 0.5,
+      "verdict": "partially_consistent"
+    },
+    {
+      "a": "11#2",
+      "b": "15#1",
+      "n_visible": 6,
+      "n_supported": 4,
+      "n_violated": 2,
+      "violated_in": [
+        "node9_0002",
+        "node9_0005"
+      ],
+      "supported_in": [
+        "node9_0001",
+        "node9_0003",
+        "node9_0004",
+        "node9_0006"
+      ],
+      "global_consistency": 0.6666666666666666,
+      "verdict": "partially_consistent"
+    },
+    {
+      "a": "11#1",
+      "b": "15#4",
+      "n_visible": 5,
+      "n_supported": 4,
+      "n_violated": 1,
+      "violated_in": [
+        "node9_0001"
+      ],
+      "supported_in": [
+        "node9_0002",
+        "node9_0005",
+        "node9_0006",
+        "node9_0007"
+      ],
+      "global_consistency": 0.8,
+      "verdict": "partially_consistent"
+    },
+    {
+      "a": "15#2",
+      "b": "95#2",
+      "n_visible": 5,
+      "n_supported": 4,
+      "n_violated": 1,
+      "violated_in": [
+        "node9_0003"
+      ],
+      "supported_in": [
+        "node9_0001",
+        "node9_0002",
+        "node9_0004",
+        "node9_0005"
+      ],
+      "global_consistency": 0.8,
+      "verdict": "partially_consistent"
+    },
+    {
+      "a": "15#2",
+      "b": "95#3",
+      "n_visible": 5,
+      "n_supported": 4,
+      "n_violated": 1,
+      "violated_in": [
+        "node9_0001"
+      ],
+      "supported_in": [
+        "node9_0003",
+        "node9_0004",
+        "node9_0006",
+        "node9_0007"
+      ],
+      "global_consistency": 0.8,
+      "verdict": "partially_consistent"
+    },
+    {
+      "a": "255#1",
+      "b": "255#2",
+      "n_visible": 6,
+      "n_supported": 5,
+      "n_violated": 1,
+      "violated_in": [
+        "node9_0001"
+      ],
+      "supported_in": [
+        "node9_0002",
+        "node9_0003",
+        "node9_0004",
+        "node9_0005",
+        "node9_0007"
+      ],
+      "global_consistency": 0.8333333333333334,
+      "verdict": "partially_consistent"
+    },
+    {
+      "a": "192#1",
+      "b": "255#1",
+      "n_visible": 7,
+      "n_supported": 6,
+      "n_violated": 1,
+      "violated_in": [
+        "node9_0001"
+      ],
+      "supported_in": [
+        "node9_0002",
+        "node9_0003",
+        "node9_0004",
+        "node9_0005",
+        "node9_0006",
+        "node9_0007"
+      ],
+      "global_consistency": 0.8571428571428571,
+      "verdict": "partially_consistent"
+    },
+    {
+      "a": "15#1",
+      "b": "15#5",
+      "n_visible": 2,
+      "n_supported": 2,
+      "n_violated": 0,
+      "violated_in": [],
+      "supported_in": [
+        "node9_0001",
+        "node9_0006"
+      ],
+      "global_consistency": 1.0,
+      "verdict": "always_consistent"
+    },
+    {
+      "a": "15#3",
+      "b": "255#2",
+      "n_visible": 5,
+      "n_supported": 5,
+      "n_violated": 0,
+      "violated_in": [],
+      "supported_in": [
+        "node9_0001",
+        "node9_0003",
+        "node9_0004",
+        "node9_0005",
+        "node9_0007"
+      ],
+      "global_consistency": 1.0,
+      "verdict": "always_consistent"
+    },
+    {
+      "a": "15#4",
+      "b": "95#2",
+      "n_visible": 3,
+      "n_supported": 3,
+      "n_violated": 0,
+      "violated_in": [],
+      "supported_in": [
+        "node9_0001",
+        "node9_0002",
+        "node9_0005"
+      ],
+      "global_consistency": 1.0,
+      "verdict": "always_consistent"
+    },
+    {
+      "a": "15#6",
+      "b": "255#1",
+      "n_visible": 2,
+      "n_supported": 2,
+      "n_violated": 0,
+      "violated_in": [],
+      "supported_in": [
+        "node9_0003",
+        "node9_0004"
+      ],
+      "global_consistency": 1.0,
+      "verdict": "always_consistent"
+    },
+    {
+      "a": "15#6",
+      "b": "95#1",
+      "n_visible": 2,
+      "n_supported": 2,
+      "n_violated": 0,
+      "violated_in": [],
+      "supported_in": [
+        "node9_0003",
+        "node9_0004"
+      ],
+      "global_consistency": 1.0,
+      "verdict": "always_consistent"
+    },
+    {
+      "a": "15#7",
+      "b": "192#1",
+      "n_visible": 1,
+      "n_supported": 1,
+      "n_violated": 0,
+      "violated_in": [],
+      "supported_in": [
+        "node9_0001"
+      ],
+      "global_consistency": 1.0,
+      "verdict": "always_consistent"
+    },
+    {
+      "a": "15#8",
+      "b": "192#1",
+      "n_visible": 1,
+      "n_supported": 1,
+      "n_violated": 0,
+      "violated_in": [],
+      "supported_in": [
+        "node9_0001"
+      ],
+      "global_consistency": 1.0,
+      "verdict": "always_consistent"
+    },
+    {
+      "a": "95#1",
+      "b": "255#3",
+      "n_visible": 3,
+      "n_supported": 3,
+      "n_violated": 0,
+      "violated_in": [],
+      "supported_in": [
+        "node9_0001",
+        "node9_0003",
+        "node9_0004"
+      ],
+      "global_consistency": 1.0,
+      "verdict": "always_consistent"
+    },
+    {
+      "a": "95#3",
+      "b": "255#2",
+      "n_visible": 4,
+      "n_supported": 4,
+      "n_violated": 0,
+      "violated_in": [],
+      "supported_in": [
+        "node9_0001",
+        "node9_0003",
+        "node9_0004",
+        "node9_0007"
+      ],
+      "global_consistency": 1.0,
+      "verdict": "always_consistent"
+    },
+    {
+      "a": "192#1",
+      "b": "255#3",
+      "n_visible": 5,
+      "n_supported": 5,
+      "n_violated": 0,
+      "violated_in": [],
+      "supported_in": [
+        "node9_0001",
+        "node9_0002",
+        "node9_0003",
+        "node9_0004",
+        "node9_0005"
+      ],
+      "global_consistency": 1.0,
+      "verdict": "always_consistent"
+    }
+  ],
+  "problem_edges": [
+    "15#5 — 192#1",
+    "11#2 — 15#1",
+    "11#1 — 15#4",
+    "15#2 — 95#2",
+    "15#2 — 95#3",
+    "255#1 — 255#2",
+    "192#1 — 255#1"
+  ]
+}

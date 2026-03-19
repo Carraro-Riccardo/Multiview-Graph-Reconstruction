@@ -13,11 +13,11 @@
       "node2_0007"
     ],
     "supporting_observed_ids": [
-      "node2_0002_11",
-      "node2_0003_10",
-      "node2_0007_0",
       "node2_0004_9",
-      "node2_0005_7"
+      "node2_0005_7",
+      "node2_0007_0",
+      "node2_0002_11",
+      "node2_0003_10"
     ],
     "local_structural_signature": {
       "self_code": 11,
@@ -49,10 +49,10 @@
     ],
     "supporting_observed_ids": [
       "node2_0002_12",
-      "node2_0005_10",
       "node2_0003_3",
-      "node2_0007_9",
-      "node2_0004_8"
+      "node2_0005_10",
+      "node2_0004_8",
+      "node2_0007_9"
     ],
     "local_structural_signature": {
       "self_code": 15,
@@ -88,9 +88,9 @@
     ],
     "supporting_observed_ids": [
       "node2_0002_5",
+      "node2_0003_11",
       "node2_0005_3",
       "node2_0004_3",
-      "node2_0003_11",
       "node2_0007_11"
     ],
     "local_structural_signature": {
@@ -126,8 +126,8 @@
       "node2_0002_3",
       "node2_0003_5",
       "node2_0005_1",
-      "node2_0007_1",
-      "node2_0004_7"
+      "node2_0004_7",
+      "node2_0007_1"
     ],
     "local_structural_signature": {
       "self_code": 15,
@@ -158,19 +158,19 @@
       "node2_0007"
     ],
     "supporting_observed_ids": [
-      "node2_0002_8",
+      "node2_0004_1",
       "node2_0005_0",
-      "node2_0003_8",
       "node2_0007_7",
-      "node2_0004_1"
+      "node2_0003_8",
+      "node2_0002_8"
     ],
     "local_structural_signature": {
       "self_code": 53,
       "nearby_code_histogram": {
+        "202": 3,
         "95": 2,
         "11": 2,
-        "15": 2,
-        "202": 3
+        "15": 2
       },
       "anchor_hint_score": 0.4,
       "terminal_hint_count": 3
@@ -194,19 +194,19 @@
       "node2_0007"
     ],
     "supporting_observed_ids": [
-      "node2_0002_2",
       "node2_0004_4",
-      "node2_0003_0",
+      "node2_0005_8",
       "node2_0007_4",
-      "node2_0005_8"
+      "node2_0003_0",
+      "node2_0002_2"
     ],
     "local_structural_signature": {
       "self_code": 53,
       "nearby_code_histogram": {
-        "202": 2,
         "95": 3,
         "11": 3,
-        "15": 2
+        "15": 2,
+        "202": 2
       },
       "anchor_hint_score": 0.4,
       "terminal_hint_count": 2
@@ -232,9 +232,9 @@
     "supporting_observed_ids": [
       "node2_0002_1",
       "node2_0003_2",
-      "node2_0007_5",
       "node2_0005_2",
-      "node2_0004_5"
+      "node2_0004_5",
+      "node2_0007_5"
     ],
     "local_structural_signature": {
       "self_code": 77,
@@ -263,11 +263,11 @@
       "node2_0007"
     ],
     "supporting_observed_ids": [
-      "node2_0002_9",
-      "node2_0003_12",
-      "node2_0005_6",
       "node2_0004_6",
-      "node2_0007_3"
+      "node2_0005_6",
+      "node2_0007_3",
+      "node2_0002_9",
+      "node2_0003_12"
     ],
     "local_structural_signature": {
       "self_code": 95,
@@ -299,8 +299,8 @@
     "supporting_observed_ids": [
       "node2_0002_6",
       "node2_0003_9",
-      "node2_0004_11",
-      "node2_0005_12"
+      "node2_0005_12",
+      "node2_0004_11"
     ],
     "local_structural_signature": {
       "self_code": 95,
@@ -332,10 +332,10 @@
     ],
     "supporting_observed_ids": [
       "node2_0002_7",
+      "node2_0005_11",
       "node2_0004_12",
       "node2_0003_6",
-      "node2_0007_2",
-      "node2_0005_11"
+      "node2_0007_2"
     ],
     "local_structural_signature": {
       "self_code": 116,
@@ -366,9 +366,9 @@
     "supporting_observed_ids": [
       "node2_0002_0",
       "node2_0005_5",
-      "node2_0007_6",
+      "node2_0004_0",
       "node2_0003_1",
-      "node2_0004_0"
+      "node2_0007_6"
     ],
     "local_structural_signature": {
       "self_code": 190,
@@ -399,19 +399,19 @@
       "node2_0007"
     ],
     "supporting_observed_ids": [
-      "node2_0002_4",
       "node2_0004_2",
       "node2_0007_8",
+      "node2_0005_4",
       "node2_0003_4",
-      "node2_0005_4"
+      "node2_0002_4"
     ],
     "local_structural_signature": {
       "self_code": 202,
       "nearby_code_histogram": {
-        "95": 2,
+        "53": 3,
         "190": 5,
-        "15": 2,
-        "53": 3
+        "95": 2,
+        "15": 2
       },
       "anchor_hint_score": 0.4,
       "terminal_hint_count": 0
@@ -436,10 +436,10 @@
     ],
     "supporting_observed_ids": [
       "node2_0002_10",
+      "node2_0003_7",
       "node2_0007_10",
-      "node2_0004_10",
       "node2_0005_9",
-      "node2_0003_7"
+      "node2_0004_10"
     ],
     "local_structural_signature": {
       "self_code": 202,

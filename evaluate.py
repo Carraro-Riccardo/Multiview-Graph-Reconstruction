@@ -23,6 +23,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 import numpy as np
+from scipy.optimize import linear_sum_assignment
 
 from config import (
     COMPONENT_INFO,
@@ -32,8 +33,9 @@ from config import (
     WORK_DIR,
 )
 
-MULTIVIEW_DIR = WORK_DIR / "multiview"
-CACHE_DIR     = WORK_DIR / "detection_cache"
+MULTIVIEW_DIR   = WORK_DIR / "multiview"
+CACHE_DIR       = WORK_DIR / "detection_cache"
+ANNOTATIONS_DIR = Path("C:\\Users\\ricca\\Desktop\\annotations")
 
 # IoU minima per considerare un match detection→GT
 IOU_THRESH = 0.30
@@ -237,6 +239,143 @@ def compute_scene_node_purity(
     }
 
 
+# ── GT graph loading ──────────────────────────────────────────────────────────
+
+def load_gt_graph(node_id: int) -> dict | None:
+    """Carica il grafo GT da annotations/node{id}_gt.json."""
+    p = ANNOTATIONS_DIR / f"node{node_id}_gt.json"
+    if not p.exists():
+        return None
+    data = json.loads(p.read_text(encoding="utf-8"))
+    nodes = {n["nid"]: n for n in data.get("nodes", [])}
+    edges = [tuple(sorted(e)) for e in data.get("edges", [])]
+    return {"nodes": nodes, "edges": edges}
+
+
+# ── Bijective pred→GT mapping via Hungarian matching ─────────────────────────
+
+def build_bijective_mapping(sn_purities: list, gt_data: dict) -> dict[str, str]:
+    """
+    Per ogni codice, costruisce una cost matrix (pred_nodes × gt_instances)
+    dove cost[i][j] = numero di detection del pred node i che matchano il GT
+    instance j (via IoU). Usa Hungarian matching per assegnare biiettivamente
+    ogni pred node a un GT instance, eliminando collisioni e orfani artificiali.
+
+    Ritorna sn_to_gt: {scene_node_id -> "code#gt_iid"}
+    """
+    by_code: dict[int, list] = defaultdict(list)
+    for sn, pur in sn_purities:
+        by_code[sn["fused_code"]].append((sn, pur))
+
+    gt_by_code: dict[int, list] = defaultdict(list)
+    for iid, inst in gt_data["instances_by_id"].items():
+        gt_by_code[inst["code"]].append(iid)
+
+    sn_to_gt: dict[str, str] = {}
+    for code, items in by_code.items():
+        gt_iids = gt_by_code.get(code, [])
+        if not gt_iids:
+            continue
+
+        n_pred = len(items)
+        n_gt   = len(gt_iids)
+
+        # Cost matrix: voti[i][j] = detection di pred_i che matchano GT_j
+        cost = np.zeros((n_pred, n_gt))
+        for i, (sn, pur) in enumerate(items):
+            votes = pur["gt_instance_votes"]
+            for j, gt_iid in enumerate(gt_iids):
+                cost[i, j] = votes.get(gt_iid, 0)
+
+        # Massimizza i voti (Hungarian minimizza → neghiamo)
+        row_ind, col_ind = linear_sum_assignment(-cost)
+
+        for i, j in zip(row_ind, col_ind):
+            if cost[i, j] > 0:  # assegna solo se c'è almeno un voto
+                sn_id  = items[i][0]["scene_node_id"]
+                gt_iid = gt_iids[j]
+                sn_to_gt[sn_id] = f"{code}#{gt_iid}"
+
+    return sn_to_gt
+
+
+# ── Edge evaluation ───────────────────────────────────────────────────────────
+
+def evaluate_graph_edges(
+    node_id: int,
+    sn_purities: list,          # [(scene_node_dict, purity_dict), ...]
+    gt_data: dict,
+) -> dict | None:
+    """
+    Confronta gli edge del grafo predetto con il grafo GT.
+
+    Usa Hungarian matching bipartito per costruire una mappatura biiettiva
+    pred_node → GT_nid, eliminando collisioni (più pred → stesso GT) che
+    causavano FP/FN artificiali.
+    """
+    gt_graph = load_gt_graph(node_id)
+    if gt_graph is None:
+        return None
+
+    fused_path = MULTIVIEW_DIR / f"node{node_id}" / "fused_graph.json"
+    if not fused_path.exists():
+        return None
+    fused = json.loads(fused_path.read_text(encoding="utf-8"))
+
+    sn_to_gt = build_bijective_mapping(sn_purities, gt_data)
+
+    gt_edges_set: set[tuple] = set(gt_graph["edges"])
+
+    # Traduci edge pred in spazio GT
+    pred_edges_gt: set[tuple] = set()
+    pred_edges_raw: list[tuple] = []          # (pred_a, pred_b, gt_a, gt_b)
+    unmapped_count = 0
+    for e in fused.get("edges", []):
+        a, b = e["node_a"], e["node_b"]
+        ga, gb = sn_to_gt.get(a), sn_to_gt.get(b)
+        if ga and gb and ga != gb:
+            pair = tuple(sorted([ga, gb]))
+            pred_edges_gt.add(pair)
+            pred_edges_raw.append((a, b, ga, gb))
+        else:
+            unmapped_count += 1
+            pred_edges_raw.append((a, b, ga or "?", gb or "?"))
+
+    tp_set = gt_edges_set & pred_edges_gt
+    fp_set = pred_edges_gt - gt_edges_set
+    fn_set = gt_edges_set - pred_edges_gt
+
+    prec = len(tp_set) / (len(tp_set) + len(fp_set)) if (tp_set or fp_set) else 0.0
+    rec  = len(tp_set) / (len(tp_set) + len(fn_set)) if (tp_set or fn_set) else 0.0
+    f1   = 2 * prec * rec / (prec + rec) if (prec + rec) > 0 else 0.0
+
+    # Etichetta leggibile per un GT nid
+    def _label(nid: str) -> str:
+        n = gt_graph["nodes"].get(nid)
+        if n:
+            return f"{n['name']} ({nid})"
+        return nid
+
+    # Costruisci righe di stampa ordinate
+    gt_edge_rows = []
+    for pair in sorted(gt_edges_set, key=lambda p: (p[0].split("#")[0], p)):
+        status = "OK" if pair in tp_set else "FN"
+        gt_edge_rows.append((pair, status, _label(pair[0]), _label(pair[1])))
+
+    fp_rows = []
+    for pair in sorted(fp_set, key=lambda p: (p[0].split("#")[0], p)):
+        fp_rows.append((pair, _label(pair[0]), _label(pair[1])))
+
+    return {
+        "tp": len(tp_set), "fp": len(fp_set), "fn": len(fn_set),
+        "prec": prec, "rec": rec, "f1": f1,
+        "unmapped": unmapped_count,
+        "gt_edge_rows": gt_edge_rows,
+        "fp_rows": fp_rows,
+        "sn_to_gt": sn_to_gt,
+    }
+
+
 # ── Per-node evaluation ───────────────────────────────────────────────────────
 
 def evaluate_node(node_id: int) -> dict | None:
@@ -293,8 +432,11 @@ def evaluate_node(node_id: int) -> dict | None:
                  if precision is not None and recall is not None
                     and (precision + recall) > 0 else None)
 
-    valid_purities = [p["purity"] for _, p in sn_purities if p["purity"] is not None]
-    avg_purity     = float(np.mean(valid_purities)) if valid_purities else None
+    # Purity pesata: Σ majority_count / Σ n_matched
+    # Più giusta della media semplice: un nodo con 2 obs conta meno di uno con 5
+    total_majority = sum(p["majority_count"] for _, p in sn_purities if p["n_matched"] > 0)
+    total_matched  = sum(p["n_matched"]      for _, p in sn_purities if p["n_matched"] > 0)
+    avg_purity     = total_majority / total_matched if total_matched > 0 else None
 
     # ── Print ─────────────────────────────────────────────────────────────────
     print(f"\n{'═' * (W + 4)}")
@@ -350,17 +492,48 @@ def evaluate_node(node_id: int) -> dict | None:
               f"{pur['n_matched']:>9}{p_str:>8}  {mid}{flag}")
     print(f"  {'─' * W}")
 
+    # ── Edge evaluation ───────────────────────────────────────────────────────
+    edge_res = evaluate_graph_edges(node_id, sn_purities, gt_data)
+    edge_f1 = None
+    if edge_res is not None:
+        edge_f1 = edge_res["f1"]
+        tp_e, fp_e, fn_e = edge_res["tp"], edge_res["fp"], edge_res["fn"]
+        prec_e, rec_e = edge_res["prec"], edge_res["rec"]
+
+        print(f"\n  {'── Edge comparison (GT vs Pred) ':─<{W}}")
+        print(f"  {'GT edge':<52}  status")
+        print(f"  {'─' * W}")
+        for pair, status, la, lb in edge_res["gt_edge_rows"]:
+            mark = "OK" if status == "OK" else "MANCANTE"
+            print(f"  {la:<25} -- {lb:<25}  {mark}")
+
+        if edge_res["fp_rows"]:
+            print(f"\n  {'── Edge in eccesso (FP) ':─<{W}}")
+            for pair, la, lb in edge_res["fp_rows"]:
+                print(f"  {la:<25} -- {lb:<25}  EXTRA")
+
+        if edge_res["unmapped"] > 0:
+            print(f"  (edge pred non mappati a GT: {edge_res['unmapped']})")
+
+        print(f"  {'─' * W}")
+        print(f"  Edge  TP={tp_e}  FP={fp_e}  FN={fn_e}"
+              f"  prec={prec_e:.3f}  rec={rec_e:.3f}  F1={edge_f1:.3f}")
+        print(f"  {'─' * W}")
+
     return {
-        "node_id":    node_id,
-        "gt_total":   total_gt,
-        "pred_total": total_pred,
-        "tp":         total_tp,
-        "fp":         total_fp,
-        "fn":         total_fn,
-        "precision":  precision,
-        "recall":     recall,
-        "f1":         f1,
-        "avg_purity": avg_purity,
+        "node_id":        node_id,
+        "gt_total":       total_gt,
+        "pred_total":     total_pred,
+        "tp":             total_tp,
+        "fp":             total_fp,
+        "fn":             total_fn,
+        "precision":      precision,
+        "recall":         recall,
+        "f1":             f1,
+        "avg_purity":     avg_purity,
+        "total_majority": total_majority,
+        "total_matched":  total_matched,
+        "edge_f1":        edge_f1,
     }
 
 
@@ -392,26 +565,30 @@ def main():
     print(f"  SUMMARY  —  {len(rows)} nodes")
     print(f"{'═' * (W + 4)}")
     print(f"  {'node':>5}{'gt':>6}{'pred':>6}{'tp':>5}{'fp':>5}{'fn':>5}"
-          f"{'prec':>8}{'rec':>8}{'F1':>8}{'purity':>8}")
-    print(f"  {'─' * (W + 2)}")
+          f"{'prec':>8}{'rec':>8}{'F1':>8}{'purity':>8}{'edgeF1':>8}")
+    print(f"  {'─' * (W + 6)}")
     for r in sorted(rows, key=lambda x: x["node_id"]):
-        fmt = lambda v: f"{v:.3f}" if v is not None else " n/a"
+        fmt = lambda v: f"{v:.3f}" if v is not None else "  n/a"
         print(f"  {r['node_id']:>5}{r['gt_total']:>6}{r['pred_total']:>6}"
               f"{r['tp']:>5}{r['fp']:>5}{r['fn']:>5}"
               f"{fmt(r['precision']):>8}{fmt(r['recall']):>8}"
-              f"{fmt(r['f1']):>8}{fmt(r['avg_purity']):>8}")
-    print(f"  {'─' * (W + 2)}")
+              f"{fmt(r['f1']):>8}{fmt(r['avg_purity']):>8}{fmt(r.get('edge_f1')):>8}")
+    print(f"  {'─' * (W + 6)}")
 
-    # Medie
+    # Medie — purity pesata globale (Σ majority / Σ matched su tutti i nodi)
     def _mean(key):
-        vals = [r[key] for r in rows if r[key] is not None]
+        vals = [r[key] for r in rows if r.get(key) is not None]
         return float(np.mean(vals)) if vals else None
 
-    fmt = lambda v: f"{v:.3f}" if v is not None else " n/a"
+    total_maj_all = sum(r.get("total_majority", 0) for r in rows)
+    total_mat_all = sum(r.get("total_matched",  0) for r in rows)
+    global_purity = total_maj_all / total_mat_all if total_mat_all > 0 else None
+
+    fmt = lambda v: f"{v:.3f}" if v is not None else "  n/a"
     print(f"  {'mean':>5}{'':>6}{'':>6}{'':>5}{'':>5}{'':>5}"
           f"{fmt(_mean('precision')):>8}{fmt(_mean('recall')):>8}"
-          f"{fmt(_mean('f1')):>8}{fmt(_mean('avg_purity')):>8}")
-    print(f"  {'─' * (W + 2)}")
+          f"{fmt(_mean('f1')):>8}{fmt(global_purity):>8}{fmt(_mean('edge_f1')):>8}")
+    print(f"  {'─' * (W + 6)}")
 
 
 if __name__ == "__main__":

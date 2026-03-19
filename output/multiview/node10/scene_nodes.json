@@ -1,0 +1,79 @@
+[
+  {
+    "scene_node_id": "61#1",
+    "fused_code": 61,
+    "fused_name": "Rampa cond.",
+    "fused_confidence": 0.8296831846237183,
+    "support_count": 1,
+    "support_images": [
+      "node10_0003"
+    ],
+    "supporting_observed_ids": [
+      "node10_0003_0"
+    ],
+    "local_structural_signature": {
+      "self_code": 61,
+      "nearby_code_histogram": {},
+      "anchor_hint_score": 1.0,
+      "terminal_hint_count": 1
+    },
+    "max_degree": 4,
+    "anchor_hint_score": 1.0,
+    "representative_branch_roles": [],
+    "representative_triplet_hints": []
+  },
+  {
+    "scene_node_id": "119#1",
+    "fused_code": 119,
+    "fused_name": "Rubinetto",
+    "fused_confidence": 0.7987781465053558,
+    "support_count": 2,
+    "support_images": [
+      "node10_0004",
+      "node10_0005"
+    ],
+    "supporting_observed_ids": [
+      "node10_0004_1",
+      "node10_0005_0"
+    ],
+    "local_structural_signature": {
+      "self_code": 119,
+      "nearby_code_histogram": {
+        "159": 1
+      },
+      "anchor_hint_score": 0.0,
+      "terminal_hint_count": 2
+    },
+    "max_degree": 2,
+    "anchor_hint_score": 0.0,
+    "representative_branch_roles": [],
+    "representative_triplet_hints": []
+  },
+  {
+    "scene_node_id": "159#1",
+    "fused_code": 159,
+    "fused_name": "Collare PVC",
+    "fused_confidence": 0.8144466876983643,
+    "support_count": 2,
+    "support_images": [
+      "node10_0001",
+      "node10_0004"
+    ],
+    "supporting_observed_ids": [
+      "node10_0001_0",
+      "node10_0004_0"
+    ],
+    "local_structural_signature": {
+      "self_code": 159,
+      "nearby_code_histogram": {
+        "119": 1
+      },
+      "anchor_hint_score": 1.0,
+      "terminal_hint_count": 2
+    },
+    "max_degree": 3,
+    "anchor_hint_score": 1.0,
+    "representative_branch_roles": [],
+    "representative_triplet_hints": []
+  }
+]

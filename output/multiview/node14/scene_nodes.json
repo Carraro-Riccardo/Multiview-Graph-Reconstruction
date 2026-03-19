@@ -14,8 +14,8 @@
     "supporting_observed_ids": [
       "node14_0001_0",
       "node14_0002_0",
-      "node14_0004_0",
-      "node14_0003_0"
+      "node14_0003_0",
+      "node14_0004_0"
     ],
     "local_structural_signature": {
       "self_code": 83,
@@ -44,16 +44,16 @@
       "node14_0004"
     ],
     "supporting_observed_ids": [
-      "node14_0001_1",
-      "node14_0003_2",
+      "node14_0002_2",
       "node14_0004_1",
-      "node14_0002_2"
+      "node14_0003_2",
+      "node14_0001_1"
     ],
     "local_structural_signature": {
       "self_code": 119,
       "nearby_code_histogram": {
-        "83": 4,
-        "159": 3
+        "159": 3,
+        "83": 4
       },
       "anchor_hint_score": 0.0,
       "terminal_hint_count": 1
@@ -75,9 +75,9 @@
       "node14_0004"
     ],
     "supporting_observed_ids": [
-      "node14_0002_1",
+      "node14_0003_1",
       "node14_0004_2",
-      "node14_0003_1"
+      "node14_0002_1"
     ],
     "local_structural_signature": {
       "self_code": 159,

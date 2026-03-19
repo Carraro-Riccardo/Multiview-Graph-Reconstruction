@@ -6,6 +6,7 @@ from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 
 from config import COOC_COUNTS, FORBIDDEN_PAIRS, TRIPLET_COUNTS
+from .instance_spatial_edges import build_instance_spatial_cooccurrence, debug_summary as _isc_debug
 
 
 @dataclass
@@ -157,7 +158,47 @@ def build_candidate_graph(
         evidence["support_reasons"].update(info["support_reasons"])
         evidence["acceptance_reasons"].append("residual_local_hypothesis_support")
 
-    candidate_edges: list[CandidateEdge] = []
+    # ── Step 4c: instance-level spatial co-occurrence (bypass K limit) ───────
+    # Per ogni coppia di scene nodes che condivide almeno una vista,
+    # calcola la distanza 2D diretta (senza limite K).  Questo recupera
+    # le connessioni mancanti quando più istanze dello stesso tipo si
+    # raggruppano e saturano i K slot KNN degli altri nodi.
+    already_covered = set(edge_evidence.keys())
+    isc_candidates = build_instance_spatial_cooccurrence(
+        scene_nodes, observed_graphs, existing_pairs=already_covered
+    )
+    print(f"  [InstanceSpatial] {len(isc_candidates)} additional candidates")
+    if isc_candidates:
+        print(_isc_debug(isc_candidates, top_k=10))
+
+    for isc in isc_candidates:
+        a = isc["scene_node_a"]
+        b = isc["scene_node_b"]
+        pair = _sorted_pair(a, b)
+        if pair in edge_evidence:
+            # già coperto — aggiunge solo le immagini mancanti
+            edge_evidence[pair]["evidence_sources"].add("instance_spatial_cooc")
+            edge_evidence[pair]["supporting_images"].update(isc["supporting_images"])
+            continue
+
+        edge_evidence[pair] = {
+            "evidence_sources":   {"instance_spatial_cooc"},
+            "supporting_images":  set(isc["supporting_images"]),
+            "branch_ids":         set(),
+            "acceptance_reasons": ["instance_spatial_proximity"],
+            "branch_support_count": 0,
+            "knn_support_count":   isc["n_adjacent"],
+            "residual_support_count": isc["n_adjacent"],
+            # direct_visible = n_adjacent: spazialmente vicini in N viste è
+            # visibilità diretta — protegge dalla weakening in reconciliation
+            "direct_visible_support_count": isc["n_adjacent"],
+            "shortcut_candidate_support_count": 0,
+            "observational_status_votes": Counter(),
+            "support_reasons": Counter({"instance_spatial_cooc": isc["n_adjacent"]}),
+        }
+
+    # ── Rebuild candidate_edges with potentially new pairs ────────────────
+    candidate_edges = []
     for edge_idx, pair in enumerate(sorted(edge_evidence.keys())):
         scene_a, scene_b = pair
         node_a = scene_by_id[scene_a]
@@ -200,6 +241,7 @@ def build_candidate_graph(
     debug = {
         "anchor_node_ids": sorted(anchor_ids),
         "branch_edge_steps": branch_debug,
+        "instance_spatial_candidates": len(isc_candidates),
         "residual_pairs": [
             {
                 "pair": list(pair),
@@ -213,7 +255,8 @@ def build_candidate_graph(
 
     print(
         f"  [CandidateGraph] {len(candidate_edges)} candidates from "
-        f"{len(scene_branches)} scene branches and {len(residual_knn)} residual pairs"
+        f"{len(scene_branches)} scene branches, {len(residual_knn)} residual pairs, "
+        f"{len(isc_candidates)} instance-spatial"
     )
     return candidate_edges, debug
 

@@ -14,9 +14,9 @@
     ],
     "supporting_observed_ids": [
       "node4_0001_2",
+      "node4_0006_5",
       "node4_0004_1",
       "node4_0002_6",
-      "node4_0006_5",
       "node4_0007_7"
     ],
     "local_structural_signature": {
@@ -47,19 +47,19 @@
       "node4_0007"
     ],
     "supporting_observed_ids": [
-      "node4_0001_0",
       "node4_0006_8",
-      "node4_0002_1",
+      "node4_0004_6",
+      "node4_0001_0",
       "node4_0007_0",
-      "node4_0004_6"
+      "node4_0002_1"
     ],
     "local_structural_signature": {
       "self_code": 15,
       "nearby_code_histogram": {
         "95": 3,
         "54": 1,
-        "202": 1,
-        "116": 1
+        "116": 1,
+        "202": 1
       },
       "anchor_hint_score": 0.0,
       "terminal_hint_count": 2
@@ -83,9 +83,9 @@
     ],
     "supporting_observed_ids": [
       "node4_0001_1",
-      "node4_0007_1",
+      "node4_0002_4",
       "node4_0006_2",
-      "node4_0002_4"
+      "node4_0007_1"
     ],
     "local_structural_signature": {
       "self_code": 15,
@@ -139,7 +139,7 @@
     "scene_node_id": "53#1",
     "fused_code": 53,
     "fused_name": "Tubo",
-    "fused_confidence": 0.8323877573013305,
+    "fused_confidence": 0.8418828010559082,
     "support_count": 5,
     "support_images": [
       "node4_0001",
@@ -149,24 +149,23 @@
       "node4_0007"
     ],
     "supporting_observed_ids": [
-      "node4_0001_15",
-      "node4_0006_15",
-      "node4_0007_4",
-      "node4_0002_9",
+      "node4_0006_4",
+      "node4_0002_13",
+      "node4_0001_9",
+      "node4_0007_14",
       "node4_0004_0"
     ],
     "local_structural_signature": {
       "self_code": 53,
       "nearby_code_histogram": {
-        "15": 2,
-        "95": 2,
-        "202": 2
+        "202": 9,
+        "195": 3
       },
-      "anchor_hint_score": 0.0,
-      "terminal_hint_count": 4
+      "anchor_hint_score": 0.4,
+      "terminal_hint_count": 0
     },
     "max_degree": 2,
-    "anchor_hint_score": 0.0,
+    "anchor_hint_score": 0.4,
     "representative_branch_roles": [],
     "representative_triplet_hints": []
   },
@@ -174,7 +173,7 @@
     "scene_node_id": "53#2",
     "fused_code": 53,
     "fused_name": "Tubo",
-    "fused_confidence": 0.8433722704648972,
+    "fused_confidence": 0.8315034657716751,
     "support_count": 4,
     "support_images": [
       "node4_0001",
@@ -183,22 +182,22 @@
       "node4_0007"
     ],
     "supporting_observed_ids": [
-      "node4_0001_9",
-      "node4_0007_14",
-      "node4_0006_4",
-      "node4_0002_13"
+      "node4_0001_15",
+      "node4_0002_9",
+      "node4_0006_15",
+      "node4_0007_4"
     ],
     "local_structural_signature": {
       "self_code": 53,
       "nearby_code_histogram": {
-        "202": 7,
-        "195": 3
+        "15": 2,
+        "95": 2
       },
-      "anchor_hint_score": 0.5,
-      "terminal_hint_count": 0
+      "anchor_hint_score": 0.0,
+      "terminal_hint_count": 4
     },
     "max_degree": 2,
-    "anchor_hint_score": 0.5,
+    "anchor_hint_score": 0.0,
     "representative_branch_roles": [],
     "representative_triplet_hints": []
   },
@@ -216,17 +215,17 @@
       "node4_0007"
     ],
     "supporting_observed_ids": [
-      "node4_0001_7",
-      "node4_0007_2",
-      "node4_0006_7",
       "node4_0004_10",
-      "node4_0002_0"
+      "node4_0006_7",
+      "node4_0002_0",
+      "node4_0001_7",
+      "node4_0007_2"
     ],
     "local_structural_signature": {
       "self_code": 54,
       "nearby_code_histogram": {
-        "15": 2,
-        "95": 2
+        "95": 2,
+        "15": 2
       },
       "anchor_hint_score": 0.2,
       "terminal_hint_count": 5
@@ -250,9 +249,9 @@
     ],
     "supporting_observed_ids": [
       "node4_0001_6",
-      "node4_0004_11",
       "node4_0006_9",
-      "node4_0002_12"
+      "node4_0002_12",
+      "node4_0004_11"
     ],
     "local_structural_signature": {
       "self_code": 75,
@@ -283,11 +282,11 @@
       "node4_0007"
     ],
     "supporting_observed_ids": [
-      "node4_0001_5",
-      "node4_0002_2",
-      "node4_0007_5",
+      "node4_0004_4",
       "node4_0006_12",
-      "node4_0004_4"
+      "node4_0007_5",
+      "node4_0002_2",
+      "node4_0001_5"
     ],
     "local_structural_signature": {
       "self_code": 95,
@@ -321,8 +320,8 @@
       "node4_0001_12",
       "node4_0006_14",
       "node4_0002_15",
-      "node4_0007_12",
-      "node4_0004_12"
+      "node4_0004_12",
+      "node4_0007_12"
     ],
     "local_structural_signature": {
       "self_code": 95,
@@ -384,17 +383,17 @@
     ],
     "supporting_observed_ids": [
       "node4_0001_11",
-      "node4_0004_9",
+      "node4_0006_13",
       "node4_0002_11",
-      "node4_0007_8",
-      "node4_0006_13"
+      "node4_0004_9",
+      "node4_0007_8"
     ],
     "local_structural_signature": {
       "self_code": 116,
       "nearby_code_histogram": {
         "75": 4,
-        "15": 3,
-        "95": 1
+        "95": 1,
+        "15": 3
       },
       "anchor_hint_score": 1.0,
       "terminal_hint_count": 2
@@ -421,8 +420,8 @@
       "node4_0001_10",
       "node4_0002_3",
       "node4_0004_2",
-      "node4_0007_13",
-      "node4_0006_3"
+      "node4_0006_3",
+      "node4_0007_13"
     ],
     "local_structural_signature": {
       "self_code": 195,
@@ -453,10 +452,10 @@
     ],
     "supporting_observed_ids": [
       "node4_0001_3",
-      "node4_0007_9",
-      "node4_0006_6",
       "node4_0002_8",
-      "node4_0004_7"
+      "node4_0006_6",
+      "node4_0004_7",
+      "node4_0007_9"
     ],
     "local_structural_signature": {
       "self_code": 195,
@@ -488,10 +487,10 @@
     ],
     "supporting_observed_ids": [
       "node4_0001_8",
-      "node4_0007_10",
       "node4_0002_5",
+      "node4_0006_11",
       "node4_0004_5",
-      "node4_0006_11"
+      "node4_0007_10"
     ],
     "local_structural_signature": {
       "self_code": 202,
@@ -523,11 +522,11 @@
       "node4_0007"
     ],
     "supporting_observed_ids": [
-      "node4_0001_14",
-      "node4_0007_11",
       "node4_0006_10",
+      "node4_0007_11",
+      "node4_0004_8",
       "node4_0002_14",
-      "node4_0004_8"
+      "node4_0001_14"
     ],
     "local_structural_signature": {
       "self_code": 202,
@@ -558,9 +557,9 @@
     ],
     "supporting_observed_ids": [
       "node4_0001_4",
-      "node4_0004_3",
+      "node4_0002_7",
       "node4_0006_1",
-      "node4_0002_7"
+      "node4_0004_3"
     ],
     "local_structural_signature": {
       "self_code": 202,

@@ -19,7 +19,7 @@
       ],
       "degree": 1,
       "max_degree": 1,
-      "is_anchor": true
+      "is_anchor": false
     },
     {
       "id": "15#1",
@@ -102,7 +102,7 @@
         "node2_0005",
         "node2_0007"
       ],
-      "degree": 3,
+      "degree": 2,
       "max_degree": 2,
       "is_anchor": false
     },
@@ -121,7 +121,7 @@
       ],
       "degree": 1,
       "max_degree": 1,
-      "is_anchor": true
+      "is_anchor": false
     },
     {
       "id": "95#1",
@@ -136,7 +136,7 @@
         "node2_0005",
         "node2_0007"
       ],
-      "degree": 3,
+      "degree": 2,
       "max_degree": 2,
       "is_anchor": false
     },
@@ -152,7 +152,7 @@
         "node2_0004",
         "node2_0005"
       ],
-      "degree": 1,
+      "degree": 2,
       "max_degree": 2,
       "is_anchor": false
     },
@@ -169,7 +169,7 @@
         "node2_0005",
         "node2_0007"
       ],
-      "degree": 1,
+      "degree": 3,
       "max_degree": 3,
       "is_anchor": true
     },
@@ -220,7 +220,7 @@
         "node2_0005",
         "node2_0007"
       ],
-      "degree": 3,
+      "degree": 2,
       "max_degree": 2,
       "is_anchor": false
     }
@@ -231,31 +231,28 @@
       "node_b": "53#2",
       "support_count": 3,
       "supporting_images": [
-        "node2_0002",
-        "node2_0003",
         "node2_0004",
         "node2_0005",
         "node2_0007"
       ],
-      "branch_support_count": 2,
+      "branch_support_count": 0,
       "knn_support_count": 3,
-      "cooc_count": 5,
-      "triplet_support": 5,
+      "cooc_count": 0,
+      "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "cooc_prior",
-        "knn_residual",
-        "scene_branch",
-        "triplet_prior"
+        "direct_adjacency"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
       "forced": false,
-      "forced_reason": null
+      "forced_reason": null,
+      "consistency_score": 0.6,
+      "consistency_n_visible": 5
     },
     {
       "node_a": "15#1",
-      "node_b": "15#2",
+      "node_b": "116#1",
       "support_count": 4,
       "supporting_images": [
         "node2_0002",
@@ -263,46 +260,68 @@
         "node2_0004",
         "node2_0005"
       ],
-      "branch_support_count": 1,
+      "branch_support_count": 0,
       "knn_support_count": 4,
       "cooc_count": 0,
-      "triplet_support": 87,
+      "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "knn_residual",
-        "scene_branch",
-        "triplet_prior"
+        "direct_adjacency"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
-      "forced": true,
-      "forced_reason": "spanning_tree_candidate_bridge"
+      "forced": false,
+      "forced_reason": null,
+      "consistency_score": 1.0,
+      "consistency_n_visible": 5
     },
     {
       "node_a": "15#1",
       "node_b": "77#1",
       "support_count": 2,
       "supporting_images": [
+        "node2_0004",
+        "node2_0005"
+      ],
+      "branch_support_count": 0,
+      "knn_support_count": 2,
+      "cooc_count": 0,
+      "triplet_support": 0,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "direct_adjacency"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": false,
+      "forced_reason": null,
+      "consistency_score": 0.8,
+      "consistency_n_visible": 5
+    },
+    {
+      "node_a": "15#2",
+      "node_b": "116#1",
+      "support_count": 4,
+      "supporting_images": [
         "node2_0002",
         "node2_0003",
         "node2_0004",
         "node2_0005"
       ],
-      "branch_support_count": 1,
-      "knn_support_count": 2,
-      "cooc_count": 1,
-      "triplet_support": 1,
+      "branch_support_count": 0,
+      "knn_support_count": 4,
+      "cooc_count": 0,
+      "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "cooc_prior",
-        "knn_residual",
-        "scene_branch",
-        "triplet_prior"
+        "direct_adjacency"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
-      "forced": true,
-      "forced_reason": "spanning_tree_candidate_bridge"
+      "forced": false,
+      "forced_reason": null,
+      "consistency_score": 1.0,
+      "consistency_n_visible": 5
     },
     {
       "node_a": "15#2",
@@ -314,21 +333,20 @@
         "node2_0004",
         "node2_0005"
       ],
-      "branch_support_count": 1,
+      "branch_support_count": 0,
       "knn_support_count": 4,
-      "cooc_count": 21,
-      "triplet_support": 34,
+      "cooc_count": 0,
+      "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "cooc_prior",
-        "knn_residual",
-        "scene_branch",
-        "triplet_prior"
+        "direct_adjacency"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
-      "forced": true,
-      "forced_reason": "spanning_tree_candidate_bridge"
+      "forced": false,
+      "forced_reason": null,
+      "consistency_score": 0.8,
+      "consistency_n_visible": 5
     },
     {
       "node_a": "15#3",
@@ -341,152 +359,116 @@
         "node2_0005",
         "node2_0007"
       ],
-      "branch_support_count": 2,
+      "branch_support_count": 0,
       "knn_support_count": 5,
-      "cooc_count": 12,
-      "triplet_support": 24,
+      "cooc_count": 0,
+      "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "cooc_prior",
-        "knn_residual",
-        "scene_branch",
-        "triplet_prior"
+        "direct_adjacency"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
       "forced": false,
-      "forced_reason": null
+      "forced_reason": null,
+      "consistency_score": 1.0,
+      "consistency_n_visible": 5
     },
     {
       "node_a": "15#3",
-      "node_b": "95#1",
-      "support_count": 1,
-      "supporting_images": [
-        "node2_0002",
-        "node2_0003",
-        "node2_0004",
-        "node2_0005",
-        "node2_0007"
-      ],
-      "branch_support_count": 1,
-      "knn_support_count": 1,
-      "cooc_count": 21,
-      "triplet_support": 34,
-      "forbidden_flag": false,
-      "evidence_sources": [
-        "cooc_prior",
-        "knn_residual",
-        "scene_branch",
-        "triplet_prior"
-      ],
-      "weakened_by_reconciliation": false,
-      "expanded_by_paths": [],
-      "forced": false,
-      "forced_reason": null
-    },
-    {
-      "node_a": "53#1",
-      "node_b": "202#1",
-      "support_count": 3,
-      "supporting_images": [
-        "node2_0002",
-        "node2_0003",
-        "node2_0004",
-        "node2_0005",
-        "node2_0007"
-      ],
-      "branch_support_count": 1,
-      "knn_support_count": 3,
-      "cooc_count": 3,
-      "triplet_support": 4,
-      "forbidden_flag": false,
-      "evidence_sources": [
-        "cooc_prior",
-        "knn_residual",
-        "scene_branch",
-        "triplet_prior"
-      ],
-      "weakened_by_reconciliation": false,
-      "expanded_by_paths": [],
-      "forced": false,
-      "forced_reason": null
-    },
-    {
-      "node_a": "53#2",
-      "node_b": "95#1",
-      "support_count": 3,
-      "supporting_images": [
-        "node2_0002",
-        "node2_0003",
-        "node2_0004",
-        "node2_0005",
-        "node2_0007"
-      ],
-      "branch_support_count": 2,
-      "knn_support_count": 3,
-      "cooc_count": 6,
-      "triplet_support": 11,
-      "forbidden_flag": false,
-      "evidence_sources": [
-        "cooc_prior",
-        "knn_residual",
-        "scene_branch",
-        "triplet_prior"
-      ],
-      "weakened_by_reconciliation": false,
-      "expanded_by_paths": [],
-      "forced": false,
-      "forced_reason": null
-    },
-    {
-      "node_a": "53#2",
-      "node_b": "202#2",
-      "support_count": 2,
-      "supporting_images": [
-        "node2_0002",
-        "node2_0003"
-      ],
-      "branch_support_count": 2,
-      "knn_support_count": 2,
-      "cooc_count": 3,
-      "triplet_support": 4,
-      "forbidden_flag": false,
-      "evidence_sources": [
-        "cooc_prior",
-        "knn_residual",
-        "scene_branch",
-        "triplet_prior"
-      ],
-      "weakened_by_reconciliation": false,
-      "expanded_by_paths": [],
-      "forced": true,
-      "forced_reason": "spanning_tree_candidate_bridge"
-    },
-    {
-      "node_a": "95#2",
-      "node_b": "202#2",
-      "support_count": 2,
+      "node_b": "95#2",
+      "support_count": 4,
       "supporting_images": [
         "node2_0002",
         "node2_0003",
         "node2_0004",
         "node2_0005"
       ],
-      "branch_support_count": 1,
-      "knn_support_count": 2,
-      "cooc_count": 2,
-      "triplet_support": 4,
+      "branch_support_count": 0,
+      "knn_support_count": 4,
+      "cooc_count": 0,
+      "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "cooc_prior",
-        "knn_residual",
-        "scene_branch",
-        "triplet_prior"
+        "direct_adjacency"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
       "forced": false,
-      "forced_reason": null
+      "forced_reason": null,
+      "consistency_score": 1.0,
+      "consistency_n_visible": 4
+    },
+    {
+      "node_a": "53#1",
+      "node_b": "202#1",
+      "support_count": 3,
+      "supporting_images": [
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "branch_support_count": 0,
+      "knn_support_count": 3,
+      "cooc_count": 0,
+      "triplet_support": 0,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "direct_adjacency"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": false,
+      "forced_reason": null,
+      "consistency_score": 0.6,
+      "consistency_n_visible": 5
+    },
+    {
+      "node_a": "53#2",
+      "node_b": "95#1",
+      "support_count": 3,
+      "supporting_images": [
+        "node2_0004",
+        "node2_0005",
+        "node2_0007"
+      ],
+      "branch_support_count": 0,
+      "knn_support_count": 3,
+      "cooc_count": 0,
+      "triplet_support": 0,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "direct_adjacency"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": false,
+      "forced_reason": null,
+      "consistency_score": 0.6,
+      "consistency_n_visible": 5
+    },
+    {
+      "node_a": "95#2",
+      "node_b": "202#2",
+      "support_count": 2,
+      "supporting_images": [
+        "node2_0004",
+        "node2_0005"
+      ],
+      "branch_support_count": 0,
+      "knn_support_count": 2,
+      "cooc_count": 0,
+      "triplet_support": 0,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "direct_adjacency"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": false,
+      "forced_reason": null,
+      "consistency_score": 1.0,
+      "consistency_n_visible": 4
     },
     {
       "node_a": "190#1",
@@ -499,21 +481,20 @@
         "node2_0005",
         "node2_0007"
       ],
-      "branch_support_count": 1,
+      "branch_support_count": 0,
       "knn_support_count": 5,
-      "cooc_count": 2,
-      "triplet_support": 3,
+      "cooc_count": 0,
+      "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "cooc_prior",
-        "knn_residual",
-        "scene_branch",
-        "triplet_prior"
+        "direct_adjacency"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
       "forced": false,
-      "forced_reason": null
+      "forced_reason": null,
+      "consistency_score": 1.0,
+      "consistency_n_visible": 5
     },
     {
       "node_a": "190#1",
@@ -526,21 +507,20 @@
         "node2_0005",
         "node2_0007"
       ],
-      "branch_support_count": 1,
+      "branch_support_count": 0,
       "knn_support_count": 5,
-      "cooc_count": 2,
-      "triplet_support": 3,
+      "cooc_count": 0,
+      "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "cooc_prior",
-        "knn_residual",
-        "scene_branch",
-        "triplet_prior"
+        "direct_adjacency"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
       "forced": false,
-      "forced_reason": null
+      "forced_reason": null,
+      "consistency_score": 1.0,
+      "consistency_n_visible": 5
     }
   ]
 }

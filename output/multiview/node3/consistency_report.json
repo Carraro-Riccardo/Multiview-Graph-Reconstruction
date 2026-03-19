@@ -1,0 +1,224 @@
+{
+  "node_id": 3,
+  "node_mean_consistency": 0.8692307692307694,
+  "n_views": 5,
+  "edges": [
+    {
+      "a": "11#2",
+      "b": "53#2",
+      "n_visible": 5,
+      "n_supported": 1,
+      "n_violated": 4,
+      "violated_in": [
+        "node3_0005",
+        "node3_0006",
+        "node3_0010",
+        "node3_0011"
+      ],
+      "supported_in": [
+        "node3_0008"
+      ],
+      "global_consistency": 0.2,
+      "verdict": "partially_consistent"
+    },
+    {
+      "a": "11#1",
+      "b": "53#3",
+      "n_visible": 5,
+      "n_supported": 5,
+      "n_violated": 0,
+      "violated_in": [],
+      "supported_in": [
+        "node3_0005",
+        "node3_0006",
+        "node3_0008",
+        "node3_0010",
+        "node3_0011"
+      ],
+      "global_consistency": 1.0,
+      "verdict": "always_consistent"
+    },
+    {
+      "a": "11#3",
+      "b": "53#1",
+      "n_visible": 2,
+      "n_supported": 2,
+      "n_violated": 0,
+      "violated_in": [],
+      "supported_in": [
+        "node3_0010",
+        "node3_0011"
+      ],
+      "global_consistency": 1.0,
+      "verdict": "always_consistent"
+    },
+    {
+      "a": "11#4",
+      "b": "53#1",
+      "n_visible": 1,
+      "n_supported": 1,
+      "n_violated": 0,
+      "violated_in": [],
+      "supported_in": [
+        "node3_0008"
+      ],
+      "global_consistency": 1.0,
+      "verdict": "always_consistent"
+    },
+    {
+      "a": "15#1",
+      "b": "53#1",
+      "n_visible": 3,
+      "n_supported": 3,
+      "n_violated": 0,
+      "violated_in": [],
+      "supported_in": [
+        "node3_0008",
+        "node3_0010",
+        "node3_0011"
+      ],
+      "global_consistency": 1.0,
+      "verdict": "always_consistent"
+    },
+    {
+      "a": "15#1",
+      "b": "95#2",
+      "n_visible": 3,
+      "n_supported": 3,
+      "n_violated": 0,
+      "violated_in": [],
+      "supported_in": [
+        "node3_0008",
+        "node3_0010",
+        "node3_0011"
+      ],
+      "global_consistency": 1.0,
+      "verdict": "always_consistent"
+    },
+    {
+      "a": "15#1",
+      "b": "192#1",
+      "n_visible": 3,
+      "n_supported": 3,
+      "n_violated": 0,
+      "violated_in": [],
+      "supported_in": [
+        "node3_0008",
+        "node3_0010",
+        "node3_0011"
+      ],
+      "global_consistency": 1.0,
+      "verdict": "always_consistent"
+    },
+    {
+      "a": "15#1",
+      "b": "95#1",
+      "n_visible": 3,
+      "n_supported": 3,
+      "n_violated": 0,
+      "violated_in": [],
+      "supported_in": [
+        "node3_0008",
+        "node3_0010",
+        "node3_0011"
+      ],
+      "global_consistency": 1.0,
+      "verdict": "always_consistent"
+    },
+    {
+      "a": "15#2",
+      "b": "95#3",
+      "n_visible": 3,
+      "n_supported": 3,
+      "n_violated": 0,
+      "violated_in": [],
+      "supported_in": [
+        "node3_0008",
+        "node3_0010",
+        "node3_0011"
+      ],
+      "global_consistency": 1.0,
+      "verdict": "always_consistent"
+    },
+    {
+      "a": "15#2",
+      "b": "192#1",
+      "n_visible": 3,
+      "n_supported": 3,
+      "n_violated": 0,
+      "violated_in": [],
+      "supported_in": [
+        "node3_0008",
+        "node3_0010",
+        "node3_0011"
+      ],
+      "global_consistency": 1.0,
+      "verdict": "always_consistent"
+    },
+    {
+      "a": "15#3",
+      "b": "192#1",
+      "n_visible": 2,
+      "n_supported": 2,
+      "n_violated": 0,
+      "violated_in": [],
+      "supported_in": [
+        "node3_0010",
+        "node3_0011"
+      ],
+      "global_consistency": 1.0,
+      "verdict": "always_consistent"
+    },
+    {
+      "a": "15#4",
+      "b": "95#1",
+      "n_visible": 2,
+      "n_supported": 2,
+      "n_violated": 0,
+      "violated_in": [],
+      "supported_in": [
+        "node3_0010",
+        "node3_0011"
+      ],
+      "global_consistency": 1.0,
+      "verdict": "always_consistent"
+    },
+    {
+      "a": "53#2",
+      "b": "95#1",
+      "n_visible": 5,
+      "n_supported": 5,
+      "n_violated": 0,
+      "violated_in": [],
+      "supported_in": [
+        "node3_0005",
+        "node3_0006",
+        "node3_0008",
+        "node3_0010",
+        "node3_0011"
+      ],
+      "global_consistency": 1.0,
+      "verdict": "always_consistent"
+    },
+    {
+      "a": "53#3",
+      "b": "95#3",
+      "n_visible": 5,
+      "n_supported": 5,
+      "n_violated": 0,
+      "violated_in": [],
+      "supported_in": [
+        "node3_0005",
+        "node3_0006",
+        "node3_0008",
+        "node3_0010",
+        "node3_0011"
+      ],
+      "global_consistency": 1.0,
+      "verdict": "always_consistent"
+    }
+  ],
+  "problem_edges": [
+    "11#2 — 53#2"
+  ]
+}

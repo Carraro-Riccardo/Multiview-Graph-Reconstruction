@@ -19,38 +19,38 @@
       ],
       "degree": 1,
       "max_degree": 1,
-      "is_anchor": true
+      "is_anchor": false
     },
     {
       "id": "11#2",
       "code": 11,
       "name": "Giunto",
-      "confidence": 0.8117483496665955,
-      "support_count": 5,
+      "confidence": 0.8062867522239685,
+      "support_count": 4,
       "support_images": [
         "node3_0005",
         "node3_0006",
+        "node3_0010",
+        "node3_0011"
+      ],
+      "degree": 1,
+      "max_degree": 1,
+      "is_anchor": false
+    },
+    {
+      "id": "11#3",
+      "code": 11,
+      "name": "Giunto",
+      "confidence": 0.8077066739400228,
+      "support_count": 3,
+      "support_images": [
         "node3_0008",
         "node3_0010",
         "node3_0011"
       ],
       "degree": 1,
       "max_degree": 1,
-      "is_anchor": true
-    },
-    {
-      "id": "11#3",
-      "code": 11,
-      "name": "Giunto",
-      "confidence": 0.7947626411914825,
-      "support_count": 2,
-      "support_images": [
-        "node3_0010",
-        "node3_0011"
-      ],
-      "degree": 1,
-      "max_degree": 1,
-      "is_anchor": true
+      "is_anchor": false
     },
     {
       "id": "11#4",
@@ -63,7 +63,7 @@
       ],
       "degree": 1,
       "max_degree": 1,
-      "is_anchor": true
+      "is_anchor": false
     },
     {
       "id": "15#1",
@@ -105,7 +105,7 @@
         "node3_0010",
         "node3_0011"
       ],
-      "degree": 1,
+      "degree": 2,
       "max_degree": 2,
       "is_anchor": false
     },
@@ -119,7 +119,7 @@
         "node3_0010",
         "node3_0011"
       ],
-      "degree": 1,
+      "degree": 2,
       "max_degree": 2,
       "is_anchor": false
     },
@@ -136,7 +136,7 @@
         "node3_0010",
         "node3_0011"
       ],
-      "degree": 5,
+      "degree": 2,
       "max_degree": 2,
       "is_anchor": false
     },
@@ -187,7 +187,7 @@
         "node3_0010",
         "node3_0011"
       ],
-      "degree": 4,
+      "degree": 2,
       "max_degree": 2,
       "is_anchor": false
     },
@@ -238,7 +238,7 @@
         "node3_0010",
         "node3_0011"
       ],
-      "degree": 1,
+      "degree": 4,
       "max_degree": 4,
       "is_anchor": true
     }
@@ -255,21 +255,20 @@
         "node3_0010",
         "node3_0011"
       ],
-      "branch_support_count": 2,
+      "branch_support_count": 0,
       "knn_support_count": 5,
-      "cooc_count": 5,
-      "triplet_support": 5,
+      "cooc_count": 0,
+      "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "cooc_prior",
-        "knn_residual",
-        "scene_branch",
-        "triplet_prior"
+        "direct_adjacency"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
       "forced": false,
-      "forced_reason": null
+      "forced_reason": null,
+      "consistency_score": 1.0,
+      "consistency_n_visible": 5
     },
     {
       "node_a": "11#2",
@@ -287,11 +286,13 @@
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
       "forced": true,
-      "forced_reason": "spanning_tree_structural_fallback"
+      "forced_reason": "spanning_tree_structural_fallback",
+      "consistency_score": 0.25,
+      "consistency_n_visible": 4
     },
     {
       "node_a": "11#3",
-      "node_b": "53#1",
+      "node_b": "53#2",
       "support_count": 0,
       "supporting_images": [],
       "branch_support_count": 0,
@@ -305,11 +306,13 @@
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
       "forced": true,
-      "forced_reason": "spanning_tree_structural_fallback"
+      "forced_reason": "spanning_tree_structural_fallback",
+      "consistency_score": 0.3333333333333333,
+      "consistency_n_visible": 3
     },
     {
       "node_a": "11#4",
-      "node_b": "53#1",
+      "node_b": "15#3",
       "support_count": 0,
       "supporting_images": [],
       "branch_support_count": 0,
@@ -323,7 +326,9 @@
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
       "forced": true,
-      "forced_reason": "spanning_tree_structural_fallback"
+      "forced_reason": "spanning_tree_structural_fallback",
+      "consistency_score": null,
+      "consistency_n_visible": 0
     },
     {
       "node_a": "15#1",
@@ -334,21 +339,20 @@
         "node3_0010",
         "node3_0011"
       ],
-      "branch_support_count": 1,
+      "branch_support_count": 0,
       "knn_support_count": 3,
-      "cooc_count": 6,
-      "triplet_support": 19,
+      "cooc_count": 0,
+      "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "cooc_prior",
-        "knn_residual",
-        "scene_branch",
-        "triplet_prior"
+        "direct_adjacency"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
       "forced": false,
-      "forced_reason": null
+      "forced_reason": null,
+      "consistency_score": 1.0,
+      "consistency_n_visible": 3
     },
     {
       "node_a": "15#1",
@@ -361,49 +365,46 @@
       ],
       "branch_support_count": 0,
       "knn_support_count": 3,
-      "cooc_count": 21,
-      "triplet_support": 34,
+      "cooc_count": 0,
+      "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "cooc_prior",
-        "knn_residual",
-        "triplet_prior"
+        "direct_adjacency"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
       "forced": false,
-      "forced_reason": null
+      "forced_reason": null,
+      "consistency_score": 1.0,
+      "consistency_n_visible": 3
     },
     {
       "node_a": "15#2",
       "node_b": "95#3",
       "support_count": 3,
       "supporting_images": [
-        "node3_0005",
-        "node3_0006",
         "node3_0008",
         "node3_0010",
         "node3_0011"
       ],
-      "branch_support_count": 1,
+      "branch_support_count": 0,
       "knn_support_count": 3,
-      "cooc_count": 21,
-      "triplet_support": 34,
+      "cooc_count": 0,
+      "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "cooc_prior",
-        "knn_residual",
-        "scene_branch",
-        "triplet_prior"
+        "direct_adjacency"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
       "forced": false,
-      "forced_reason": null
+      "forced_reason": null,
+      "consistency_score": 1.0,
+      "consistency_n_visible": 3
     },
     {
       "node_a": "15#2",
-      "node_b": "95#1",
+      "node_b": "192#1",
       "support_count": 0,
       "supporting_images": [],
       "branch_support_count": 0,
@@ -417,11 +418,13 @@
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
       "forced": true,
-      "forced_reason": "spanning_tree_structural_fallback"
+      "forced_reason": "spanning_tree_structural_fallback",
+      "consistency_score": 1.0,
+      "consistency_n_visible": 3
     },
     {
       "node_a": "15#3",
-      "node_b": "95#1",
+      "node_b": "192#1",
       "support_count": 0,
       "supporting_images": [],
       "branch_support_count": 0,
@@ -435,31 +438,55 @@
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
       "forced": true,
-      "forced_reason": "spanning_tree_structural_fallback"
+      "forced_reason": "spanning_tree_structural_fallback",
+      "consistency_score": 1.0,
+      "consistency_n_visible": 2
     },
     {
       "node_a": "15#4",
-      "node_b": "53#1",
+      "node_b": "192#1",
       "support_count": 2,
       "supporting_images": [
-        "node3_0008",
         "node3_0010",
         "node3_0011"
       ],
-      "branch_support_count": 1,
+      "branch_support_count": 0,
       "knn_support_count": 2,
       "cooc_count": 0,
-      "triplet_support": 6,
-      "forbidden_flag": true,
+      "triplet_support": 0,
+      "forbidden_flag": false,
       "evidence_sources": [
-        "knn_residual",
-        "scene_branch",
-        "triplet_prior"
+        "direct_adjacency"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
-      "forced": true,
-      "forced_reason": "spanning_tree_candidate_bridge"
+      "forced": false,
+      "forced_reason": null,
+      "consistency_score": 1.0,
+      "consistency_n_visible": 2
+    },
+    {
+      "node_a": "15#4",
+      "node_b": "95#2",
+      "support_count": 2,
+      "supporting_images": [
+        "node3_0010",
+        "node3_0011"
+      ],
+      "branch_support_count": 0,
+      "knn_support_count": 2,
+      "cooc_count": 0,
+      "triplet_support": 0,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "direct_adjacency"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": false,
+      "forced_reason": null,
+      "consistency_score": 1.0,
+      "consistency_n_visible": 2
     },
     {
       "node_a": "53#1",
@@ -468,25 +495,23 @@
       "supporting_images": [
         "node3_0005",
         "node3_0006",
-        "node3_0008",
         "node3_0010",
         "node3_0011"
       ],
-      "branch_support_count": 1,
+      "branch_support_count": 0,
       "knn_support_count": 4,
-      "cooc_count": 6,
-      "triplet_support": 11,
+      "cooc_count": 0,
+      "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "cooc_prior",
-        "knn_residual",
-        "scene_branch",
-        "triplet_prior"
+        "direct_adjacency"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
       "forced": false,
-      "forced_reason": null
+      "forced_reason": null,
+      "consistency_score": 1.0,
+      "consistency_n_visible": 5
     },
     {
       "node_a": "53#2",
@@ -495,50 +520,23 @@
       "supporting_images": [
         "node3_0005",
         "node3_0006",
-        "node3_0008",
         "node3_0010",
         "node3_0011"
       ],
-      "branch_support_count": 1,
+      "branch_support_count": 0,
       "knn_support_count": 4,
-      "cooc_count": 6,
-      "triplet_support": 11,
+      "cooc_count": 0,
+      "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "cooc_prior",
-        "knn_residual",
-        "scene_branch",
-        "triplet_prior"
+        "direct_adjacency"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
       "forced": false,
-      "forced_reason": null
-    },
-    {
-      "node_a": "53#2",
-      "node_b": "95#2",
-      "support_count": 1,
-      "supporting_images": [
-        "node3_0008",
-        "node3_0010",
-        "node3_0011"
-      ],
-      "branch_support_count": 1,
-      "knn_support_count": 1,
-      "cooc_count": 6,
-      "triplet_support": 11,
-      "forbidden_flag": false,
-      "evidence_sources": [
-        "cooc_prior",
-        "knn_residual",
-        "scene_branch",
-        "triplet_prior"
-      ],
-      "weakened_by_reconciliation": false,
-      "expanded_by_paths": [],
-      "forced": false,
-      "forced_reason": null
+      "forced_reason": null,
+      "consistency_score": 1.0,
+      "consistency_n_visible": 5
     },
     {
       "node_a": "53#3",
@@ -551,21 +549,20 @@
         "node3_0010",
         "node3_0011"
       ],
-      "branch_support_count": 1,
+      "branch_support_count": 0,
       "knn_support_count": 5,
-      "cooc_count": 6,
-      "triplet_support": 11,
+      "cooc_count": 0,
+      "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "cooc_prior",
-        "knn_residual",
-        "scene_branch",
-        "triplet_prior"
+        "direct_adjacency"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
       "forced": false,
-      "forced_reason": null
+      "forced_reason": null,
+      "consistency_score": 1.0,
+      "consistency_n_visible": 5
     }
   ]
 }

@@ -18,13 +18,21 @@ def _max_allowed_degree(code: int) -> int:
     return physical_valence
 
 
-def _edge_priority(edge, n_total_views: int) -> tuple:
+def _edge_priority(edge, n_total_views: int, max_degree: dict | None = None) -> tuple:
     direct_support = edge.branch_support_count * 2 + edge.knn_support_count
     prior_support = edge.triplet_support + edge.cooc_count
     shortcut_penalty = 1 if edge.weakened_by_reconciliation else 0
     forbidden_penalty = 1 if edge.forbidden_pair_flag else 0
     normalized_views = edge.support_count / max(n_total_views, 1)
+    # Hub bonus: edges incident to high-valence nodes (Tee, Croce, …) go first.
+    # Bonus = max extra valence beyond 2, so Tee(3)→1, Croce(4)→2, others→0.
+    hub_bonus = 0
+    if max_degree:
+        da = max_degree.get(edge.scene_node_a, 2)
+        db = max_degree.get(edge.scene_node_b, 2)
+        hub_bonus = max(max(0, da - 2), max(0, db - 2))
     return (
+        hub_bonus,
         direct_support,
         normalized_views,
         prior_support,
@@ -75,9 +83,72 @@ def refine_candidate_graph(
     }
     accepted_pairs: set[tuple[str, str]] = set()
 
+    # ── Hub pre-claim pass ────────────────────────────────────────────────────
+    # Hub nodes (max_degree >= 3: Tee FL, Croce, …) are the structural backbone.
+    # Before branch/residual processing consumes their neighbours, pre-claim their
+    # best-evidenced connections (knn_support >= 2) so branch processing cannot
+    # saturate hub-adjacent nodes before the hub fills its slots.
+    hub_preclaim_log = []
+    hub_cands = sorted(
+        [
+            e for e in candidate_edges
+            if not e.forbidden_pair_flag
+            and not e.weakened_by_reconciliation
+            and e.knn_support_count >= 2
+            and (
+                max_degree.get(e.scene_node_a, 2) >= 3
+                or max_degree.get(e.scene_node_b, 2) >= 3
+            )
+        ],
+        key=lambda e: (
+            max(max_degree.get(e.scene_node_a, 2), max_degree.get(e.scene_node_b, 2)),
+            e.branch_support_count * 2 + e.knn_support_count,
+            e.support_count,
+        ),
+        reverse=True,
+    )
+    for edge in hub_cands:
+        pair = (min(edge.scene_node_a, edge.scene_node_b),
+                max(edge.scene_node_a, edge.scene_node_b))
+        a, b = pair
+        if pair in accepted_pairs:
+            continue
+        if degree_used[a] >= max_degree[a] or degree_used[b] >= max_degree[b]:
+            continue
+        degree_used[a] += 1
+        degree_used[b] += 1
+        graph.add_edge(
+            a, b,
+            support_count=edge.support_count,
+            supporting_images=edge.supporting_images,
+            branch_support_count=edge.branch_support_count,
+            knn_support_count=edge.knn_support_count,
+            cooc_count=edge.cooc_count,
+            triplet_support=edge.triplet_support,
+            forbidden_flag=edge.forbidden_pair_flag,
+            evidence_sources=edge.evidence_sources,
+            weakened_by_reconciliation=edge.weakened_by_reconciliation,
+            expanded_by_paths=edge.expanded_by_paths,
+        )
+        accepted_pairs.add(pair)
+        hub_preclaim_log.append({"edge_id": edge.edge_id, "nodes": [a, b],
+                                  "accepted_via": "hub_preclaim"})
+        debug["accepted_edges"].append({"edge_id": edge.edge_id, "nodes": [a, b],
+                                         "accepted_via": "hub_preclaim",
+                                         "evidence_sources": edge.evidence_sources})
+    debug["hub_preclaim"] = hub_preclaim_log
+
+    def _branch_hub_score(branch) -> int:
+        """Sum of extra valence beyond 2 for each hub node in the branch."""
+        return sum(
+            max(0, max_degree.get(nid, 2) - 2)
+            for nid in branch.fused_ordered_scene_node_ids
+        )
+
     sorted_branches = sorted(
         scene_branches,
         key=lambda branch: (
+            -_branch_hub_score(branch),   # hub-rich branches go first
             -branch.support_count,
             -len(branch.attachment_anchors),
             -len(branch.fused_ordered_scene_node_ids),
@@ -106,17 +177,21 @@ def refine_candidate_graph(
             if edge.weakened_by_reconciliation:
                 branch_reject_reason = f"shortcut_edge_replaced_by_hidden_path_{pair}"
                 break
-            if edge.forbidden_pair_flag and edge.branch_support_count == 0:
-                branch_reject_reason = f"forbidden_without_branch_support_{pair}"
+            if edge.forbidden_pair_flag:
+                branch_reject_reason = f"forbidden_pair_{pair}"
                 break
 
             a, b = pair
-            if degree_used[a] >= max_degree[a]:
-                branch_reject_reason = f"degree_saturation_at_{a}"
-                break
-            if degree_used[b] >= max_degree[b]:
-                branch_reject_reason = f"degree_saturation_at_{b}"
-                break
+            # If this pair was already pre-claimed (hub pass), it is already in
+            # the graph and degree_used — don't check degree again, just include
+            # it so the branch can pass through without being rejected.
+            if pair not in accepted_pairs:
+                if degree_used[a] >= max_degree[a]:
+                    branch_reject_reason = f"degree_saturation_at_{a}"
+                    break
+                if degree_used[b] >= max_degree[b]:
+                    branch_reject_reason = f"degree_saturation_at_{b}"
+                    break
             branch_edges.append((pair, edge))
 
         if branch_reject_reason is not None:
@@ -169,7 +244,7 @@ def refine_candidate_graph(
             if (min(edge.scene_node_a, edge.scene_node_b), max(edge.scene_node_a, edge.scene_node_b))
             not in accepted_pairs
         ],
-        key=lambda edge: _edge_priority(edge, n_total_views),
+        key=lambda edge: _edge_priority(edge, n_total_views, max_degree),
         reverse=True,
     )
 
@@ -185,8 +260,8 @@ def refine_candidate_graph(
             reject_reason = f"degree_saturation_at_{a}"
         elif degree_used[b] >= max_degree[b]:
             reject_reason = f"degree_saturation_at_{b}"
-        elif edge.forbidden_pair_flag and edge.branch_support_count == 0 and edge.triplet_support == 0:
-            reject_reason = "forbidden_pair_without_branch_or_triplet_support"
+        elif edge.forbidden_pair_flag:
+            reject_reason = "forbidden_pair"
 
         if reject_reason is not None:
             debug["rejected_edges"].append({
@@ -299,11 +374,21 @@ def force_spanning_tree(
     def _different_components(a: str, b: str) -> bool:
         return _find(idx_map[a]) != _find(idx_map[b])
 
-    def _can_connect(a: str, b: str) -> bool:
-        """True if neither endpoint is a saturated diameter node."""
-        if max_deg[a] == 0 and degree_used[a] > 0:   # diameter node already used
+    def _can_connect(a: str, b: str, override_degree: bool = False) -> bool:
+        """True if both endpoints can accept one more edge.
+
+        override_degree=True is used as absolute last resort: allows exceeding
+        max_degree but still blocks diameter-code nodes that are already used.
+        """
+        if max_deg[a] == 0 and degree_used[a] > 0:
             return False
         if max_deg[b] == 0 and degree_used[b] > 0:
+            return False
+        if override_degree:
+            return True
+        if max_deg[a] > 0 and degree_used[a] >= max_deg[a]:
+            return False
+        if max_deg[b] > 0 and degree_used[b] >= max_deg[b]:
             return False
         return True
 
@@ -317,7 +402,11 @@ def force_spanning_tree(
 
     # ── Pass 1: candidate bridges ─────────────────────────────────────────────
     def _cand_priority(edge) -> tuple:
+        da = max_deg.get(edge.scene_node_a, 2)
+        db = max_deg.get(edge.scene_node_b, 2)
+        hub_bonus = max(max(0, da - 2), max(0, db - 2))
         return (
+            hub_bonus,
             edge.branch_support_count * 2 + edge.knn_support_count,
             edge.support_count,
             edge.triplet_support + edge.cooc_count,
@@ -331,6 +420,8 @@ def force_spanning_tree(
         if not _different_components(a, b):
             continue
         if not _can_connect(a, b):
+            continue
+        if edge.forbidden_pair_flag:
             continue
 
         _add_forced(a, b, {
@@ -350,7 +441,7 @@ def force_spanning_tree(
         if nx.is_connected(graph):
             break
 
-    # ── Pass 2: structural fallback ───────────────────────────────────────────
+    # ── Pass 2: structural fallback (degree-respecting) ───────────────────────
     if not nx.is_connected(graph):
         _max_cooc = max(COOC_COUNTS.values()) if COOC_COUNTS else 1
 
@@ -364,9 +455,13 @@ def force_spanning_tree(
                 return -1.0
             cooc    = COOC_COUNTS.get(_norm(ca, cb), 0) / _max_cooc
             support = (graph.nodes[a]["support_count"] + graph.nodes[b]["support_count"]) / 20.0
-            return cooc + support
+            # Strongly prefer bridging through unsaturated hub nodes (Tee, Croce, ...)
+            da = max_deg.get(a, 2)
+            db = max_deg.get(b, 2)
+            hub_bonus = max(max(0, da - 2), max(0, db - 2)) * 2.0
+            return cooc + support + hub_bonus
 
-        for _ in range(len(nodes)):          # safety cap
+        for _ in range(len(nodes)):
             if nx.is_connected(graph):
                 break
             comps = sorted(nx.connected_components(graph), key=len, reverse=True)
@@ -382,8 +477,8 @@ def force_spanning_tree(
                         if s > best_score:
                             best_score, best_a, best_b = s, a, b
 
-            if best_a is None:
-                break   # no valid pair found at all
+            if best_a is None or best_score < 0:
+                break  # no degree-respecting non-forbidden bridge exists
 
             _add_forced(best_a, best_b, {
                 "support_count":        0,
@@ -399,6 +494,12 @@ def force_spanning_tree(
             })
             forced_log.append({"a": best_a, "b": best_b, "via": "structural_fallback",
                                 "structural_score": best_score})
+
+    # Note: if the graph is still disconnected here, the remaining isolated nodes
+    # could not be connected without violating physical degree constraints or
+    # adding forbidden-pair edges.  We intentionally accept disconnection rather
+    # than produce a physically impossible graph.  These nodes are likely
+    # phantom detections from re-ID over-segmentation.
 
     debug = {
         "already_connected":   False,
@@ -445,6 +546,8 @@ def serialize_fused_graph(graph: nx.Graph, n_total_views: int) -> dict:
             "expanded_by_paths": attrs.get("expanded_by_paths", []),
             "forced": attrs.get("forced", False),
             "forced_reason": attrs.get("forced_reason", None),
+            "consistency_score": attrs.get("consistency_score", None),
+            "consistency_n_visible": attrs.get("consistency_n_visible", None),
         })
 
     return {
