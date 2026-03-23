@@ -1,46 +1,40 @@
 """pipeline/direct_graph_builder.py
 
 Direct per-image adjacency graph builder.
-Replaces Steps 3–6 of the pipeline (multiview_fusion, candidate_scene_graph,
+Replaces Steps 3-6 of the pipeline (multiview_fusion, candidate_scene_graph,
 structural_reconciliation, graph_refinement).
 
 Algorithm
 ---------
-1. For every view, map each observed detection → scene node ID (from ReID).
-2. For every pair of scene nodes visible in the same view, measure the pixel
-   distance between their detection centres.  If the distance is below a
-   per-view threshold (median KNN distance × ADJACENCY_FACTOR), cast one
-   adjacency vote for that pair.
-3. After collecting votes across all views, apply shortcut suppression:
-   if A–C votes exist but A–B and B–C also exist (through a degree-2 chain
-   node B), deprioritise A–C so the path A–B–C is preferred.
-4. Build the final graph greedily, hub-first (max_degree ≥ 3 nodes first),
-   respecting forbidden pairs and physical degree constraints.
-5. Return also a list of BridgeEdge objects (all voted pairs) so the existing
-   force_spanning_tree pass can still close any remaining gaps.
+1. For every view, map each observed detection -> scene node ID (from ReID).
+2. Aggregate direct 2D adjacency votes from the observed KNN graph.
+3. Optionally fuse extra 3D votes from VGGT world points when available.
+4. Apply shortcut suppression for weak 2D-only long jumps.
+5. Build the final graph greedily, hub-first, respecting forbidden pairs,
+   cycle avoidance, and physical degree constraints.
+6. Return also a list of BridgeEdge objects so the existing spanning-tree pass
+   can still close any remaining gaps.
 """
+
 from __future__ import annotations
 
-import math
 from collections import defaultdict
 from dataclasses import dataclass, field
 
 import networkx as nx
-import numpy as np
 
 from config import (
     COMPONENT_INFO,
     DEGREE_SATURATION,
     DIAMETER_CODES,
     FORBIDDEN_PAIRS,
+    VGGT_3D_VOTE_WEIGHT,
 )
 
-# A pair is "adjacent" in a view if distance ≤ median-KNN-dist × this factor.
-# Tighter than DIST_MULTIPLIER (2.5) to reduce A–C shortcuts.
+# A pair is "adjacent" in a view if distance <= median-KNN-dist * this factor.
+# Tighter than DIST_MULTIPLIER (2.5) to reduce A-C shortcuts.
 ADJACENCY_FACTOR: float = 1.8
 
-
-# ── Helpers ──────────────────────────────────────────────────────────────────
 
 def _max_allowed_degree(code: int) -> int:
     physical_valence = COMPONENT_INFO.get(code, (2, ""))[0]
@@ -59,17 +53,16 @@ def _norm_code(ca: int, cb: int) -> tuple[int, int]:
     return (min(ca, cb), max(ca, cb))
 
 
-# ── BridgeEdge ────────────────────────────────────────────────────────────────
-
 @dataclass
 class BridgeEdge:
     """Lightweight drop-in replacement for CandidateEdge used by force_spanning_tree."""
+
     scene_node_a: str
     scene_node_b: str
-    vote_count: int
+    vote_count: float
     supporting_images: list = field(default_factory=list)
     forbidden_pair_flag: bool = False
-    support_count: int = 0
+    support_count: float = 0
     branch_support_count: int = 0
     knn_support_count: int = 0
     triplet_support: int = 0
@@ -77,42 +70,25 @@ class BridgeEdge:
     evidence_sources: list = field(default_factory=lambda: ["direct_adjacency"])
     weakened_by_reconciliation: bool = False
     direct_visible_support_count: int = 0
+    vggt_support_count: int = 0
+    vggt_score: float = 0.0
+    vggt_min_distance: float | None = None
     edge_id: str = ""
 
-
-# ── Main entry point ──────────────────────────────────────────────────────────
 
 def build_direct_graph(
     scene_nodes: list,
     observed_graphs: list,
     n_total_views: int,
+    vggt_edge_hints: dict | None = None,
 ) -> tuple[nx.Graph, list, dict]:
-    """
-    Build the fused graph directly from per-image scene node adjacency votes.
+    """Build the fused graph directly from 2D adjacency votes plus optional 3D hints."""
 
-    Parameters
-    ----------
-    scene_nodes      : list of SceneNode objects (from ReID, Step 2)
-    observed_graphs  : list of ObservedGraph objects (from Step 1)
-    n_total_views    : total number of views
-
-    Returns
-    -------
-    graph            : nx.Graph with scene nodes and directly-voted edges
-    bridge_edges     : list[BridgeEdge] — ALL voted pairs (for spanning-tree)
-    debug            : dict with diagnostics
-    """
-
-    # ── Build lookup tables ───────────────────────────────────────────────
     obs_to_scene: dict[str, str] = {}
-    sn_code:    dict[str, int]   = {}
-    sn_support: dict[str, int]   = {}
-    sn_images:  dict[str, list]  = {}
+    sn_code: dict[str, int] = {}
 
     for sn in scene_nodes:
-        sn_code[sn.scene_node_id]    = sn.fused_code
-        sn_support[sn.scene_node_id] = sn.support_count
-        sn_images[sn.scene_node_id]  = list(getattr(sn, "support_images", []))
+        sn_code[sn.scene_node_id] = sn.fused_code
         for obs_id in sn.supporting_observed_ids:
             obs_to_scene[obs_id] = sn.scene_node_id
 
@@ -122,12 +98,8 @@ def build_direct_graph(
     }
     anchor_ids = {sid for sid, md in max_degree.items() if md >= 3}
 
-    # ── Step 1 — per-view adjacency votes ────────────────────────────────
-    # Use the KNN edges already built in each ObservedGraph (K=3, per-view).
-    # Each edge = two detections that are KNN neighbours in that view.
-    # We map detection ids → scene node ids and aggregate votes per pair.
-    vote_count: dict[tuple, int]  = defaultdict(int)
-    vote_views: dict[tuple, list] = defaultdict(list)
+    direct_vote_count: dict[tuple[str, str], int] = defaultdict(int)
+    direct_vote_views: dict[tuple[str, str], list[str]] = defaultdict(list)
 
     for og in observed_graphs:
         for edge in og.edges:
@@ -139,37 +111,43 @@ def build_direct_graph(
             if _norm_code(ca, cb) in FORBIDDEN_PAIRS:
                 continue
             pair = _norm(sn_a, sn_b)
-            vote_count[pair] += 1
-            vote_views[pair].append(og.image_id)
+            direct_vote_count[pair] += 1
+            direct_vote_views[pair].append(og.image_id)
 
-    # ── Step 2 — shortcut suppression ────────────────────────────────────
-    # If both A–B and B–C have votes (B a degree-2 chain node), the direct
-    # edge A–C is a likely shortcut.  Mark it — it will be considered last.
-    shortcut_pairs: set[tuple] = set()
-    MIN_PATH_VOTES = 1
+    vggt_edge_hints = vggt_edge_hints or {}
+    combined_pairs = set(direct_vote_count.keys()) | set(vggt_edge_hints.keys())
 
-    for pair_ac in list(vote_count.keys()):
+    def _combined_score(pair: tuple[str, str]) -> float:
+        direct_votes = direct_vote_count.get(pair, 0)
+        vggt_votes = float(vggt_edge_hints.get(pair, {}).get("vote_count", 0))
+        return float(direct_votes) + vggt_votes * VGGT_3D_VOTE_WEIGHT
+
+    shortcut_pairs: set[tuple[str, str]] = set()
+    min_path_votes = 1
+
+    for pair_ac in list(direct_vote_count.keys()):
+        if vggt_edge_hints.get(pair_ac, {}).get("vote_count", 0) > 0:
+            continue
         a, c = pair_ac
         for b in sn_code:
             if b in (a, c):
                 continue
-            if max_degree.get(b, 2) != 2:       # only suppress via chain nodes
+            if max_degree.get(b, 2) != 2:
                 continue
-            v_ab = vote_count.get(_norm(a, b), 0)
-            v_bc = vote_count.get(_norm(b, c), 0)
-            if v_ab >= MIN_PATH_VOTES and v_bc >= MIN_PATH_VOTES:
+            v_ab = direct_vote_count.get(_norm(a, b), 0)
+            v_bc = direct_vote_count.get(_norm(b, c), 0)
+            if v_ab >= min_path_votes and v_bc >= min_path_votes:
                 shortcut_pairs.add(pair_ac)
                 break
 
-    # ── Step 3 — hub-first greedy graph building ──────────────────────────
-    def _priority(pair: tuple) -> tuple:
+    def _priority(pair: tuple[str, str]) -> tuple:
         a, b = pair
-        hub_bonus  = max(max(0, max_degree.get(a, 2) - 2),
-                         max(0, max_degree.get(b, 2) - 2))
-        is_shortcut = 1 if pair in shortcut_pairs else 0
-        return (hub_bonus, -is_shortcut, vote_count[pair])
+        hub_bonus = max(max(0, max_degree.get(a, 2) - 2), max(0, max_degree.get(b, 2) - 2))
+        shortcut_penalty = 1 if pair in shortcut_pairs else 0
+        vggt_votes = vggt_edge_hints.get(pair, {}).get("vote_count", 0)
+        return (vggt_votes, hub_bonus, -shortcut_penalty, _combined_score(pair))
 
-    sorted_pairs = sorted(vote_count.keys(), key=_priority, reverse=True)
+    sorted_pairs = sorted(combined_pairs, key=_priority, reverse=True)
 
     graph = nx.Graph()
     for sn in scene_nodes:
@@ -185,120 +163,159 @@ def build_direct_graph(
             is_anchor=sn.scene_node_id in anchor_ids,
         )
 
-    # Union-Find for cycle detection
     all_nodes = [sn.scene_node_id for sn in scene_nodes]
-    _uf_parent = {n: n for n in all_nodes}
+    uf_parent = {n: n for n in all_nodes}
 
     def _uf_find(x: str) -> str:
-        while _uf_parent[x] != x:
-            _uf_parent[x] = _uf_parent[_uf_parent[x]]
-            x = _uf_parent[x]
+        while uf_parent[x] != x:
+            uf_parent[x] = uf_parent[uf_parent[x]]
+            x = uf_parent[x]
         return x
 
     def _uf_union(x: str, y: str) -> None:
-        _uf_parent[_uf_find(x)] = _uf_find(y)
+        uf_parent[_uf_find(x)] = _uf_find(y)
 
     def _same_component(x: str, y: str) -> bool:
         return _uf_find(x) == _uf_find(y)
 
     degree_used: dict[str, int] = defaultdict(int)
-    accepted_log: list[dict]    = []
-    rejected_log: list[dict]    = []
+    accepted_log: list[dict] = []
+    rejected_log: list[dict] = []
 
     for pair in sorted_pairs:
         a, b = pair
-        vc   = vote_count[pair]
+        direct_votes = direct_vote_count.get(pair, 0)
+        vggt_hint = vggt_edge_hints.get(pair, {})
+        vggt_votes = int(vggt_hint.get("vote_count", 0))
+        combined_votes = _combined_score(pair)
 
-        # Diameter nodes never connect
         if max_degree.get(a, 0) == 0 or max_degree.get(b, 0) == 0:
-            rejected_log.append({"pair": list(pair), "reason": "diameter_node", "votes": vc})
+            rejected_log.append({"pair": list(pair), "reason": "diameter_node", "votes": combined_votes})
             continue
-
-        # Degree saturation
         if degree_used[a] >= max_degree.get(a, 2):
-            rejected_log.append({"pair": list(pair), "reason": f"deg_sat_{a}", "votes": vc})
+            rejected_log.append({"pair": list(pair), "reason": f"deg_sat_{a}", "votes": combined_votes})
             continue
         if degree_used[b] >= max_degree.get(b, 2):
-            rejected_log.append({"pair": list(pair), "reason": f"deg_sat_{b}", "votes": vc})
+            rejected_log.append({"pair": list(pair), "reason": f"deg_sat_{b}", "votes": combined_votes})
             continue
-
-        # Cycle check: skip if both endpoints already connected
         if _same_component(a, b):
-            rejected_log.append({"pair": list(pair), "reason": "would_create_cycle", "votes": vc})
+            rejected_log.append({"pair": list(pair), "reason": "would_create_cycle", "votes": combined_votes})
             continue
 
         is_shortcut = pair in shortcut_pairs
         degree_used[a] += 1
         degree_used[b] += 1
         _uf_union(a, b)
+
+        supporting_images = sorted(
+            set(direct_vote_views.get(pair, [])) | set(vggt_hint.get("supporting_images", []))
+        )
+        evidence_sources = []
+        if direct_votes > 0:
+            evidence_sources.append("direct_adjacency")
+        if vggt_votes > 0:
+            evidence_sources.append("vggt_3d")
+        if is_shortcut:
+            evidence_sources.append("shortcut_candidate")
+
         graph.add_edge(
-            a, b,
-            vote_count=vc,
-            support_count=vc,
-            supporting_images=vote_views[pair],
+            a,
+            b,
+            vote_count=combined_votes,
+            support_count=combined_votes,
+            supporting_images=supporting_images,
             branch_support_count=0,
-            knn_support_count=vc,
+            knn_support_count=direct_votes,
+            vggt_support_count=vggt_votes,
+            vggt_score=vggt_hint.get("score", 0.0),
+            vggt_min_distance=vggt_hint.get("min_dist"),
             cooc_count=0,
             triplet_support=0,
             forbidden_flag=False,
-            evidence_sources=["direct_adjacency"] + (["shortcut_candidate"] if is_shortcut else []),
+            evidence_sources=evidence_sources,
             shortcut_suppressed=is_shortcut,
             forced=False,
             forced_reason=None,
         )
-        accepted_log.append({"pair": list(pair), "votes": vc, "shortcut": is_shortcut})
-
-    # ── Build BridgeEdge list for spanning-tree fallback ─────────────────
-    bridge_edges: list[BridgeEdge] = [
-        BridgeEdge(
-            scene_node_a=a,
-            scene_node_b=b,
-            vote_count=vc,
-            supporting_images=vote_views[(min(a,b), max(a,b))],
-            forbidden_pair_flag=False,
-            support_count=vc,
-            branch_support_count=0,
-            knn_support_count=vc,
-            triplet_support=0,
-            cooc_count=0,
-            evidence_sources=["direct_adjacency"],
-            weakened_by_reconciliation=False,
-            direct_visible_support_count=vc,
-            edge_id=f"DA_{a}_{b}",
+        accepted_log.append(
+            {
+                "pair": list(pair),
+                "votes": combined_votes,
+                "direct_votes": direct_votes,
+                "vggt_votes": vggt_votes,
+                "shortcut": is_shortcut,
+            }
         )
-        for (a, b), vc in sorted(
-            vote_count.items(), key=lambda x: x[1], reverse=True
-        )
-    ]
 
-    # ── Debug summary ─────────────────────────────────────────────────────
-    n_isolated  = sum(1 for n in graph.nodes() if graph.degree(n) == 0)
-    is_conn     = nx.is_connected(graph) if graph.number_of_nodes() > 0 else True
+    bridge_edges: list[BridgeEdge] = []
+    for a, b in sorted(combined_pairs, key=lambda pair: _combined_score(pair), reverse=True):
+        pair = _norm(a, b)
+        direct_votes = direct_vote_count.get(pair, 0)
+        vggt_hint = vggt_edge_hints.get(pair, {})
+        vggt_votes = int(vggt_hint.get("vote_count", 0))
+        evidence_sources = []
+        if direct_votes > 0:
+            evidence_sources.append("direct_adjacency")
+        if vggt_votes > 0:
+            evidence_sources.append("vggt_3d")
+        bridge_edges.append(
+            BridgeEdge(
+                scene_node_a=a,
+                scene_node_b=b,
+                vote_count=_combined_score(pair),
+                supporting_images=sorted(
+                    set(direct_vote_views.get(pair, [])) | set(vggt_hint.get("supporting_images", []))
+                ),
+                forbidden_pair_flag=False,
+                support_count=_combined_score(pair),
+                branch_support_count=0,
+                knn_support_count=direct_votes,
+                triplet_support=0,
+                cooc_count=0,
+                evidence_sources=evidence_sources,
+                weakened_by_reconciliation=False,
+                direct_visible_support_count=direct_votes,
+                vggt_support_count=vggt_votes,
+                vggt_score=float(vggt_hint.get("score", 0.0)),
+                vggt_min_distance=vggt_hint.get("min_dist"),
+                edge_id=f"DA_{a}_{b}",
+            )
+        )
+
+    n_isolated = sum(1 for n in graph.nodes() if graph.degree(n) == 0)
+    is_conn = nx.is_connected(graph) if graph.number_of_nodes() > 0 else True
 
     debug = {
-        "n_pairs_voted":         len(vote_count),
+        "n_pairs_voted": len(combined_pairs),
+        "n_pairs_with_vggt": sum(
+            1 for hint in vggt_edge_hints.values() if hint.get("vote_count", 0) > 0
+        ),
         "n_shortcut_suppressed": len(shortcut_pairs),
-        "n_edges_accepted":      graph.number_of_edges(),
-        "n_isolated":            n_isolated,
-        "is_connected":          is_conn,
-        "adjacency_factor":      ADJACENCY_FACTOR,
+        "n_edges_accepted": graph.number_of_edges(),
+        "n_isolated": n_isolated,
+        "is_connected": is_conn,
+        "adjacency_factor": ADJACENCY_FACTOR,
+        "vggt_vote_weight": VGGT_3D_VOTE_WEIGHT,
         "vote_distribution": sorted(
             [
                 {
-                    "pair":     list(p),
-                    "votes":    v,
-                    "shortcut": p in shortcut_pairs,
+                    "pair": list(pair),
+                    "votes": _combined_score(pair),
+                    "direct_votes": direct_vote_count.get(pair, 0),
+                    "vggt_votes": vggt_edge_hints.get(pair, {}).get("vote_count", 0),
+                    "shortcut": pair in shortcut_pairs,
                 }
-                for p, v in vote_count.items()
+                for pair in combined_pairs
             ],
-            key=lambda x: -x["votes"],
+            key=lambda item: (-item["votes"], -item["vggt_votes"], -item["direct_votes"]),
         )[:40],
         "accepted_edges": accepted_log[:30],
         "rejected_edges": rejected_log[:30],
     }
 
     print(
-        f"  [DirectGraph] voted_pairs={len(vote_count)}"
+        f"  [DirectGraph] voted_pairs={len(combined_pairs)}"
+        f"  vggt_pairs={debug['n_pairs_with_vggt']}"
         f"  shortcuts={len(shortcut_pairs)}"
         f"  edges={graph.number_of_edges()}"
         f"  isolated={n_isolated}"
