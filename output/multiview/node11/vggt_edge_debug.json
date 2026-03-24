@@ -1,17 +1,9 @@
 {
   "generation": {
-    "status": "ok",
+    "status": "already_present",
     "artifact_dir": "output\\multiview\\node11\\vggt",
-    "generated": true,
-    "returncode": 0,
-    "stdout": "Warning: Found images with different shapes: {(392, 518), (518, 518)}\n{\n  \"status\": \"ok\",\n  \"device\": \"cpu\",\n  \"model_id\": \"facebook/VGGT-1B\",\n  \"preprocess_mode\": \"crop\",\n  \"n_images\": 4,\n  \"elapsed_sec\": 385.606,\n  \"saved_files\": [\n    \"output\\\\multiview\\\\node11\\\\vggt\\\\node11_0003.npz\",\n    \"output\\\\multiview\\\\node11\\\\vggt\\\\node11_0004.npz\",\n    \"output\\\\multiview\\\\node11\\\\vggt\\\\node11_0006.npz\",\n    \"output\\\\multiview\\\\node11\\\\vggt\\\\node11_0007.npz\"\n  ]\n}\n",
-    "stderr": "",
-    "missing_files_before": [
-      "output\\multiview\\node11\\vggt\\node11_0003.npz",
-      "output\\multiview\\node11\\vggt\\node11_0004.npz",
-      "output\\multiview\\node11\\vggt\\node11_0006.npz",
-      "output\\multiview\\node11\\vggt\\node11_0007.npz"
-    ]
+    "generated": false,
+    "missing_files": []
   },
   "enabled": true,
   "search_roots": [
@@ -116,6 +108,8 @@
   },
   "n_loaded_images": 4,
   "n_scene_geometries": 7,
+  "n_merged_nodes": 0,
+  "merge_log": [],
   "scene_cutoff": 0.06248747538775206,
   "port_cutoff": 0.05311435407958925,
   "loaded_images": {
@@ -171,8 +165,8 @@
       ],
       "axis": [
         -0.9639962911605835,
-        0.008222382515668869,
-        0.26578855514526367
+        0.008222381584346294,
+        0.2657885253429413
       ],
       "n_observations": 3
     },
@@ -435,8 +429,8 @@
       ],
       "scene_axis_a": [
         -0.9639962911605835,
-        0.008222382515668869,
-        0.26578855514526367
+        0.008222381584346294,
+        0.2657885253429413
       ],
       "scene_axis_b": [
         -0.9979846477508545,

@@ -4,7 +4,7 @@
   "model_id": "facebook/VGGT-1B",
   "preprocess_mode": "crop",
   "n_images": 2,
-  "elapsed_sec": 170.978,
+  "elapsed_sec": 311.374,
   "saved_files": [
     "output\\multiview\\node16\\vggt\\node16_0001.npz",
     "output\\multiview\\node16\\vggt\\node16_0002.npz"

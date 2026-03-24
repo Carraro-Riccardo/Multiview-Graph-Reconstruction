@@ -106,6 +106,7 @@ def run_multiview_pipeline(node_id: int, image_paths: list, output_dir: Path | N
             n_merged = len(_merge_log)
             if n_merged > 0:
                 scene_nodes = replay_merge_log(scene_nodes, _merge_log, observed_graphs)
+                save_json(output_dir / "scene_nodes.json", serialize_scene_nodes(scene_nodes))
                 print(f"  [VGGT] cache hit — replayed {n_merged} merge(s)")
                 for entry in _merge_log:
                     print(
@@ -126,6 +127,7 @@ def run_multiview_pipeline(node_id: int, image_paths: list, output_dir: Path | N
             n_merged = vggt_edge_payload.get("n_merged_nodes", 0)
             if n_merged > 0:
                 scene_nodes = vggt_edge_payload["_scene_nodes_merged"]
+                save_json(output_dir / "scene_nodes.json", serialize_scene_nodes(scene_nodes))
                 merge_log = vggt_edge_payload.get("merge_log", [])
                 print(f"  [VGGT] merged {n_merged} duplicate scene node(s):")
                 for entry in merge_log:

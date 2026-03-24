@@ -17,10 +17,10 @@
     "supporting_observed_ids": [
       "node9_0002_3",
       "node9_0005_5",
-      "node9_0004_3",
-      "node9_0003_1",
-      "node9_0006_0",
       "node9_0007_0",
+      "node9_0006_0",
+      "node9_0003_1",
+      "node9_0004_3",
       "node9_0001_0"
     ],
     "local_structural_signature": {
@@ -56,8 +56,8 @@
       "node9_0003_5",
       "node9_0006_7",
       "node9_0001_5",
-      "node9_0005_2",
-      "node9_0002_1"
+      "node9_0002_1",
+      "node9_0005_2"
     ],
     "local_structural_signature": {
       "self_code": 11,
@@ -369,20 +369,27 @@
     "fused_code": 95,
     "fused_name": "Bout bic.",
     "fused_confidence": 0.8002005577087402,
-    "support_count": 5,
+    "support_count": 10,
     "support_images": [
       "node9_0001",
+      "node9_0002",
       "node9_0003",
       "node9_0004",
+      "node9_0005",
       "node9_0006",
       "node9_0007"
     ],
     "supporting_observed_ids": [
-      "node9_0007_8",
-      "node9_0006_10",
+      "node9_0004_9",
       "node9_0001_14",
+      "node9_0007_8",
       "node9_0004_7",
-      "node9_0003_4"
+      "node9_0006_10",
+      "node9_0001_10",
+      "node9_0003_4",
+      "node9_0002_2",
+      "node9_0005_4",
+      "node9_0003_11"
     ],
     "local_structural_signature": {
       "self_code": 95,
@@ -395,42 +402,6 @@
     },
     "max_degree": 2,
     "anchor_hint_score": 1.0,
-    "representative_branch_roles": [],
-    "representative_triplet_hints": []
-  },
-  {
-    "scene_node_id": "95#2",
-    "fused_code": 95,
-    "fused_name": "Bout bic.",
-    "fused_confidence": 0.8676943898200988,
-    "support_count": 5,
-    "support_images": [
-      "node9_0001",
-      "node9_0002",
-      "node9_0003",
-      "node9_0004",
-      "node9_0005"
-    ],
-    "supporting_observed_ids": [
-      "node9_0002_2",
-      "node9_0005_4",
-      "node9_0001_10",
-      "node9_0004_9",
-      "node9_0003_11"
-    ],
-    "local_structural_signature": {
-      "self_code": 95,
-      "nearby_code_histogram": {
-        "15": 5,
-        "255": 7,
-        "95": 1,
-        "11": 1
-      },
-      "anchor_hint_score": 0.8,
-      "terminal_hint_count": 0
-    },
-    "max_degree": 2,
-    "anchor_hint_score": 0.8,
     "representative_branch_roles": [],
     "representative_triplet_hints": []
   },
@@ -450,9 +421,9 @@
     "supporting_observed_ids": [
       "node9_0006_3",
       "node9_0007_3",
+      "node9_0001_6",
       "node9_0004_1",
-      "node9_0003_2",
-      "node9_0001_6"
+      "node9_0003_2"
     ],
     "local_structural_signature": {
       "self_code": 95,
@@ -487,11 +458,11 @@
     ],
     "supporting_observed_ids": [
       "node9_0007_5",
-      "node9_0004_5",
-      "node9_0003_7",
       "node9_0006_9",
       "node9_0002_5",
       "node9_0005_10",
+      "node9_0004_5",
+      "node9_0003_7",
       "node9_0001_4"
     ],
     "local_structural_signature": {
@@ -513,7 +484,7 @@
     "fused_code": 255,
     "fused_name": "Tee rid.",
     "fused_confidence": 0.7609626139913287,
-    "support_count": 7,
+    "support_count": 12,
     "support_images": [
       "node9_0001",
       "node9_0002",
@@ -525,12 +496,17 @@
     ],
     "supporting_observed_ids": [
       "node9_0007_6",
-      "node9_0006_2",
       "node9_0005_1",
-      "node9_0002_4",
+      "node9_0001_3",
+      "node9_0004_10",
+      "node9_0002_6",
       "node9_0003_10",
+      "node9_0001_15",
       "node9_0004_6",
-      "node9_0001_15"
+      "node9_0002_4",
+      "node9_0005_8",
+      "node9_0003_6",
+      "node9_0006_2"
     ],
     "local_structural_signature": {
       "self_code": 255,
@@ -564,11 +540,11 @@
     ],
     "supporting_observed_ids": [
       "node9_0001_7",
-      "node9_0004_4",
       "node9_0003_8",
+      "node9_0004_4",
       "node9_0007_7",
-      "node9_0005_7",
-      "node9_0002_8"
+      "node9_0002_8",
+      "node9_0005_7"
     ],
     "local_structural_signature": {
       "self_code": 255,
@@ -578,41 +554,6 @@
         "95": 2,
         "11": 2,
         "255": 2
-      },
-      "anchor_hint_score": 1.0,
-      "terminal_hint_count": 0
-    },
-    "max_degree": 3,
-    "anchor_hint_score": 1.0,
-    "representative_branch_roles": [],
-    "representative_triplet_hints": []
-  },
-  {
-    "scene_node_id": "255#3",
-    "fused_code": 255,
-    "fused_name": "Tee rid.",
-    "fused_confidence": 0.767086386680603,
-    "support_count": 5,
-    "support_images": [
-      "node9_0001",
-      "node9_0002",
-      "node9_0003",
-      "node9_0004",
-      "node9_0005"
-    ],
-    "supporting_observed_ids": [
-      "node9_0001_3",
-      "node9_0002_6",
-      "node9_0003_6",
-      "node9_0004_10",
-      "node9_0005_8"
-    ],
-    "local_structural_signature": {
-      "self_code": 255,
-      "nearby_code_histogram": {
-        "15": 10,
-        "192": 3,
-        "11": 2
       },
       "anchor_hint_score": 1.0,
       "terminal_hint_count": 0

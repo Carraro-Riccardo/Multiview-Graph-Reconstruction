@@ -400,11 +400,19 @@ def _merge_duplicate_scene_nodes(
                     continue
                 centroid_b = scene_geom[b_id]["centroid"]
                 n_obs_b = scene_geom[b_id]["n_observations"]
+
+                # Single-observation nodes have unreliable VGGT geometry (only one
+                # frame's worth of data). Never use them as the merge candidate to
+                # avoid absorbing real GT components whose centroid happened to land
+                # close to a neighbour due to VGGT noise.
+                if n_obs_b < 2:
+                    continue
+
                 dist = float(np.linalg.norm(centroid_a - centroid_b))
 
                 if dist <= confident_thr:
                     reason = "confident"
-                elif dist <= tentative_thr and min(n_obs_a, n_obs_b) <= VGGT_3D_MERGE_LOW_OBS_THRESHOLD:
+                elif dist <= tentative_thr and n_obs_b <= VGGT_3D_MERGE_LOW_OBS_THRESHOLD:
                     reason = "tentative_low_obs"
                 else:
                     continue

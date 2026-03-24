@@ -1,19 +1,9 @@
 {
   "generation": {
-    "status": "ok",
+    "status": "already_present",
     "artifact_dir": "output\\multiview\\node5\\vggt",
-    "generated": true,
-    "returncode": 0,
-    "stdout": "Warning: Found images with different shapes: {(238, 518), (518, 518)}\n{\n  \"status\": \"ok\",\n  \"device\": \"cpu\",\n  \"model_id\": \"facebook/VGGT-1B\",\n  \"preprocess_mode\": \"crop\",\n  \"n_images\": 6,\n  \"elapsed_sec\": 748.134,\n  \"saved_files\": [\n    \"output\\\\multiview\\\\node5\\\\vggt\\\\node5_0001.npz\",\n    \"output\\\\multiview\\\\node5\\\\vggt\\\\node5_0002.npz\",\n    \"output\\\\multiview\\\\node5\\\\vggt\\\\node5_0003.npz\",\n    \"output\\\\multiview\\\\node5\\\\vggt\\\\node5_0004.npz\",\n    \"output\\\\multiview\\\\node5\\\\vggt\\\\node5_0005.npz\",\n    \"output\\\\multiview\\\\node5\\\\vggt\\\\node5_0006.npz\"\n  ]\n}\n",
-    "stderr": "Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n",
-    "missing_files_before": [
-      "output\\multiview\\node5\\vggt\\node5_0001.npz",
-      "output\\multiview\\node5\\vggt\\node5_0002.npz",
-      "output\\multiview\\node5\\vggt\\node5_0003.npz",
-      "output\\multiview\\node5\\vggt\\node5_0004.npz",
-      "output\\multiview\\node5\\vggt\\node5_0005.npz",
-      "output\\multiview\\node5\\vggt\\node5_0006.npz"
-    ]
+    "generated": false,
+    "missing_files": []
   },
   "enabled": true,
   "search_roots": [
@@ -146,6 +136,8 @@
   },
   "n_loaded_images": 6,
   "n_scene_geometries": 11,
+  "n_merged_nodes": 0,
+  "merge_log": [],
   "scene_cutoff": 0.09583276323974133,
   "port_cutoff": 0.08145784875378012,
   "loaded_images": {
@@ -193,7 +185,7 @@
         [
           -0.04669754207134247,
           0.039826564490795135,
-          0.9583045840263367
+          0.9583045244216919
         ],
         [
           -0.061997514218091965,
@@ -202,8 +194,8 @@
         ]
       ],
       "axis": [
-        -0.22659289836883545,
-        -0.30919843912124634,
+        -0.22659292817115784,
+        -0.3091984689235687,
         -0.923608124256134
       ],
       "n_observations": 6
@@ -272,13 +264,13 @@
         ],
         [
           0.19380353391170502,
-          -0.029885273426771164,
+          -0.029885275289416313,
           0.9694596529006958
         ]
       ],
       "axis": [
         -0.5229604244232178,
-        0.4060116410255432,
+        0.4060116112232208,
         -0.7494444251060486
       ],
       "n_observations": 6
@@ -366,20 +358,20 @@
       ],
       "ports": [
         [
-          0.11349841952323914,
-          -0.015718501061201096,
+          0.11349842697381973,
+          -0.015718502923846245,
           0.9407024383544922
         ],
         [
-          0.16060994565486908,
+          0.16060993075370789,
           -0.06044258177280426,
           1.0218331813812256
         ]
       ],
       "axis": [
-        0.4532899260520935,
-        -0.4303188920021057,
-        0.7806112170219421
+        0.4532898962497711,
+        -0.4303188621997833,
+        0.7806112766265869
       ],
       "n_observations": 5
     },
@@ -594,7 +586,7 @@
       "mean_port_dist": 0.08855492621660233,
       "min_port_dist": 0.06604237109422684,
       "axis_alignment": 0.8819214344024658,
-      "scene_port_dist": 0.06724173575639725,
+      "scene_port_dist": 0.06724175065755844,
       "scene_axis_alignment": 0.9967918992042542,
       "cutoff": 0.09583276323974133,
       "port_cutoff": 0.08145784875378012,
@@ -617,31 +609,31 @@
         ],
         [
           0.19380353391170502,
-          -0.029885273426771164,
+          -0.029885275289416313,
           0.9694596529006958
         ]
       ],
       "scene_ports_b": [
         [
-          0.11349841952323914,
-          -0.015718501061201096,
+          0.11349842697381973,
+          -0.015718502923846245,
           0.9407024383544922
         ],
         [
-          0.16060994565486908,
+          0.16060993075370789,
           -0.06044258177280426,
           1.0218331813812256
         ]
       ],
       "scene_axis_a": [
         -0.5229604244232178,
-        0.4060116410255432,
+        0.4060116112232208,
         -0.7494444251060486
       ],
       "scene_axis_b": [
-        0.4532899260520935,
-        -0.4303188920021057,
-        0.7806112170219421
+        0.4532898962497711,
+        -0.4303188621997833,
+        0.7806112766265869
       ]
     },
     {
@@ -801,8 +793,8 @@
       "mean_port_dist": 0.1785139391819636,
       "min_port_dist": 0.05138546973466873,
       "axis_alignment": 0.726787214477857,
-      "scene_port_dist": 0.1100095883011818,
-      "scene_axis_alignment": 0.7633006572723389,
+      "scene_port_dist": 0.1100095584988594,
+      "scene_axis_alignment": 0.7633007168769836,
       "cutoff": 0.09583276323974133,
       "port_cutoff": 0.08145784875378012,
       "mutual_topk": false,
@@ -820,7 +812,7 @@
         [
           -0.04669754207134247,
           0.039826564490795135,
-          0.9583045840263367
+          0.9583045244216919
         ],
         [
           -0.061997514218091965,
@@ -841,8 +833,8 @@
         ]
       ],
       "scene_axis_a": [
-        -0.22659289836883545,
-        -0.30919843912124634,
+        -0.22659292817115784,
+        -0.3091984689235687,
         -0.923608124256134
       ],
       "scene_axis_b": [

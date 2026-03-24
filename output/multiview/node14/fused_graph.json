@@ -98,7 +98,7 @@
       "vggt_score": 0.9166666666666666,
       "vggt_min_distance": 0.10939260572195053,
       "vggt_port_distance": 0.09121408313512802,
-      "vggt_axis_alignment": 0.9326318502426147,
+      "vggt_axis_alignment": 0.9326319098472595,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,

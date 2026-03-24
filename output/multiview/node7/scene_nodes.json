@@ -74,7 +74,7 @@
     "fused_code": 15,
     "fused_name": "Saracinesca",
     "fused_confidence": 0.827109158039093,
-    "support_count": 5,
+    "support_count": 7,
     "support_images": [
       "node7_0001",
       "node7_0002",
@@ -84,10 +84,12 @@
     ],
     "supporting_observed_ids": [
       "node7_0003_0",
-      "node7_0004_0",
-      "node7_0005_2",
       "node7_0001_4",
-      "node7_0002_2"
+      "node7_0002_9",
+      "node7_0002_2",
+      "node7_0001_6",
+      "node7_0004_0",
+      "node7_0005_2"
     ],
     "local_structural_signature": {
       "self_code": 15,
@@ -102,34 +104,6 @@
     },
     "max_degree": 2,
     "anchor_hint_score": 0.6,
-    "representative_branch_roles": [],
-    "representative_triplet_hints": []
-  },
-  {
-    "scene_node_id": "15#4",
-    "fused_code": 15,
-    "fused_name": "Saracinesca",
-    "fused_confidence": 0.784646064043045,
-    "support_count": 2,
-    "support_images": [
-      "node7_0001",
-      "node7_0002"
-    ],
-    "supporting_observed_ids": [
-      "node7_0001_6",
-      "node7_0002_9"
-    ],
-    "local_structural_signature": {
-      "self_code": 15,
-      "nearby_code_histogram": {
-        "95": 1,
-        "255": 1
-      },
-      "anchor_hint_score": 0.0,
-      "terminal_hint_count": 2
-    },
-    "max_degree": 2,
-    "anchor_hint_score": 0.0,
     "representative_branch_roles": [],
     "representative_triplet_hints": []
   },
@@ -337,10 +311,10 @@
     ],
     "supporting_observed_ids": [
       "node7_0001_12",
+      "node7_0005_6",
       "node7_0002_5",
       "node7_0003_4",
-      "node7_0004_4",
-      "node7_0005_6"
+      "node7_0004_4"
     ],
     "local_structural_signature": {
       "self_code": 95,
@@ -393,7 +367,7 @@
     "fused_code": 255,
     "fused_name": "Tee rid.",
     "fused_confidence": 0.7637104749679565,
-    "support_count": 5,
+    "support_count": 10,
     "support_images": [
       "node7_0001",
       "node7_0002",
@@ -402,11 +376,16 @@
       "node7_0005"
     ],
     "supporting_observed_ids": [
-      "node7_0001_9",
-      "node7_0002_10",
+      "node7_0005_7",
       "node7_0003_9",
+      "node7_0005_8",
+      "node7_0001_7",
       "node7_0004_9",
-      "node7_0005_7"
+      "node7_0004_1",
+      "node7_0002_7",
+      "node7_0003_1",
+      "node7_0002_10",
+      "node7_0001_9"
     ],
     "local_structural_signature": {
       "self_code": 255,
@@ -416,40 +395,6 @@
       },
       "anchor_hint_score": 1.0,
       "terminal_hint_count": 2
-    },
-    "max_degree": 3,
-    "anchor_hint_score": 1.0,
-    "representative_branch_roles": [],
-    "representative_triplet_hints": []
-  },
-  {
-    "scene_node_id": "255#2",
-    "fused_code": 255,
-    "fused_name": "Tee rid.",
-    "fused_confidence": 0.779380714893341,
-    "support_count": 5,
-    "support_images": [
-      "node7_0001",
-      "node7_0002",
-      "node7_0003",
-      "node7_0004",
-      "node7_0005"
-    ],
-    "supporting_observed_ids": [
-      "node7_0005_8",
-      "node7_0001_7",
-      "node7_0002_7",
-      "node7_0004_1",
-      "node7_0003_1"
-    ],
-    "local_structural_signature": {
-      "self_code": 255,
-      "nearby_code_histogram": {
-        "255": 5,
-        "15": 8
-      },
-      "anchor_hint_score": 1.0,
-      "terminal_hint_count": 0
     },
     "max_degree": 3,
     "anchor_hint_score": 1.0,

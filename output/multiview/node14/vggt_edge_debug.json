@@ -1,17 +1,9 @@
 {
   "generation": {
-    "status": "ok",
+    "status": "already_present",
     "artifact_dir": "output\\multiview\\node14\\vggt",
-    "generated": true,
-    "returncode": 0,
-    "stdout": "Warning: Found images with different shapes: {(392, 518), (518, 518)}\n{\n  \"status\": \"ok\",\n  \"device\": \"cpu\",\n  \"model_id\": \"facebook/VGGT-1B\",\n  \"preprocess_mode\": \"crop\",\n  \"n_images\": 4,\n  \"elapsed_sec\": 383.844,\n  \"saved_files\": [\n    \"output\\\\multiview\\\\node14\\\\vggt\\\\node14_0001.npz\",\n    \"output\\\\multiview\\\\node14\\\\vggt\\\\node14_0002.npz\",\n    \"output\\\\multiview\\\\node14\\\\vggt\\\\node14_0003.npz\",\n    \"output\\\\multiview\\\\node14\\\\vggt\\\\node14_0004.npz\"\n  ]\n}\n",
-    "stderr": "",
-    "missing_files_before": [
-      "output\\multiview\\node14\\vggt\\node14_0001.npz",
-      "output\\multiview\\node14\\vggt\\node14_0002.npz",
-      "output\\multiview\\node14\\vggt\\node14_0003.npz",
-      "output\\multiview\\node14\\vggt\\node14_0004.npz"
-    ]
+    "generated": false,
+    "missing_files": []
   },
   "enabled": true,
   "search_roots": [
@@ -116,6 +108,8 @@
   },
   "n_loaded_images": 4,
   "n_scene_geometries": 3,
+  "n_merged_nodes": 0,
+  "merge_log": [],
   "scene_cutoff": 0.11328918635845185,
   "port_cutoff": 0.09629580840468407,
   "loaded_images": {
@@ -134,19 +128,19 @@
       ],
       "ports": [
         [
-          -0.017550047487020493,
+          -0.017550045624375343,
           -0.1150849312543869,
           0.7455326318740845
         ],
         [
           -0.08682338893413544,
-          -0.024814248085021973,
+          -0.024814240634441376,
           1.0773260593414307
         ]
       ],
       "axis": [
-        -0.19749344885349274,
-        0.25735539197921753,
+        -0.19749346375465393,
+        0.2573554217815399,
         0.945919930934906
       ],
       "n_observations": 4
@@ -171,8 +165,8 @@
       ],
       "axis": [
         -0.4161357283592224,
-        0.19810700416564941,
-        0.8874596357345581
+        0.1981070339679718,
+        0.8874596953392029
       ],
       "n_observations": 4
     },
@@ -223,7 +217,7 @@
       "min_port_dist": 0.084062360227108,
       "axis_alignment": 0.8616695205370585,
       "scene_port_dist": 0.09121408313512802,
-      "scene_axis_alignment": 0.9326318502426147,
+      "scene_axis_alignment": 0.9326319098472595,
       "cutoff": 0.11328918635845185,
       "port_cutoff": 0.09629580840468407,
       "mutual_topk": true,
@@ -263,8 +257,8 @@
       ],
       "scene_axis_a": [
         -0.4161357283592224,
-        0.19810700416564941,
-        0.8874596357345581
+        0.1981070339679718,
+        0.8874596953392029
       ],
       "scene_axis_b": [
         -0.3575689196586609,

@@ -14,9 +14,9 @@
     ],
     "supporting_observed_ids": [
       "node8_0001_8",
-      "node8_0003_8",
       "node8_0002_6",
       "node8_0005_5",
+      "node8_0003_8",
       "node8_0004_5"
     ],
     "local_structural_signature": {
@@ -48,10 +48,10 @@
     ],
     "supporting_observed_ids": [
       "node8_0001_3",
-      "node8_0004_7",
-      "node8_0002_7",
       "node8_0003_6",
-      "node8_0005_3"
+      "node8_0002_7",
+      "node8_0005_3",
+      "node8_0004_7"
     ],
     "local_structural_signature": {
       "self_code": 11,
@@ -82,8 +82,8 @@
     ],
     "supporting_observed_ids": [
       "node8_0001_7",
-      "node8_0003_5",
       "node8_0002_0",
+      "node8_0003_5",
       "node8_0004_4",
       "node8_0005_4"
     ],
@@ -119,8 +119,8 @@
       "node8_0001_6",
       "node8_0003_3",
       "node8_0002_5",
-      "node8_0004_6",
-      "node8_0005_7"
+      "node8_0005_7",
+      "node8_0004_6"
     ],
     "local_structural_signature": {
       "self_code": 15,
@@ -152,10 +152,10 @@
     ],
     "supporting_observed_ids": [
       "node8_0001_2",
+      "node8_0002_8",
       "node8_0003_4",
       "node8_0004_8",
-      "node8_0005_8",
-      "node8_0002_8"
+      "node8_0005_8"
     ],
     "local_structural_signature": {
       "self_code": 15,
@@ -189,8 +189,8 @@
       "node8_0001_4",
       "node8_0005_2",
       "node8_0003_7",
-      "node8_0004_0",
-      "node8_0002_1"
+      "node8_0002_1",
+      "node8_0004_0"
     ],
     "local_structural_signature": {
       "self_code": 95,
@@ -253,9 +253,9 @@
     ],
     "supporting_observed_ids": [
       "node8_0001_1",
-      "node8_0003_2",
-      "node8_0005_0",
       "node8_0004_1",
+      "node8_0005_0",
+      "node8_0003_2",
       "node8_0002_2"
     ],
     "local_structural_signature": {
@@ -290,8 +290,8 @@
       "node8_0001_0",
       "node8_0004_3",
       "node8_0005_6",
-      "node8_0003_1",
-      "node8_0002_3"
+      "node8_0002_3",
+      "node8_0003_1"
     ],
     "local_structural_signature": {
       "self_code": 207,
