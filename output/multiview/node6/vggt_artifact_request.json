@@ -1,0 +1,94 @@
+{
+  "format_version": 1,
+  "description": "Per-view VGGT point maps required by the edge builder.",
+  "supported_formats": [
+    {
+      "suffix": ".npy",
+      "shape": "(H, W, 3)",
+      "dtype": "float32/float64",
+      "example_name": "node6_0002.npy"
+    },
+    {
+      "suffix": ".npz",
+      "keys": [
+        "world_points",
+        "points3d",
+        "points",
+        "xyz",
+        "pointmap"
+      ],
+      "shape": "(H, W, 3)",
+      "example_name": "node6_0002.npz"
+    },
+    {
+      "suffix": ".json",
+      "keys": [
+        "world_points",
+        "points3d",
+        "points",
+        "xyz",
+        "pointmap"
+      ],
+      "shape": "(H, W, 3)",
+      "example_name": "node6_0002.json"
+    }
+  ],
+  "expected_images": [
+    {
+      "image_id": "node6_0002",
+      "accepted_names": [
+        "node6_0002.npy",
+        "node6_0002.npz",
+        "node6_0002.json",
+        "node6_0002_world_points.npy",
+        "node6_0002_world_points.npz",
+        "node6_0002_world_points.json",
+        "node6_0002_pointmap.npy",
+        "node6_0002_pointmap.npz",
+        "node6_0002_pointmap.json"
+      ]
+    },
+    {
+      "image_id": "node6_0003",
+      "accepted_names": [
+        "node6_0003.npy",
+        "node6_0003.npz",
+        "node6_0003.json",
+        "node6_0003_world_points.npy",
+        "node6_0003_world_points.npz",
+        "node6_0003_world_points.json",
+        "node6_0003_pointmap.npy",
+        "node6_0003_pointmap.npz",
+        "node6_0003_pointmap.json"
+      ]
+    },
+    {
+      "image_id": "node6_0006",
+      "accepted_names": [
+        "node6_0006.npy",
+        "node6_0006.npz",
+        "node6_0006.json",
+        "node6_0006_world_points.npy",
+        "node6_0006_world_points.npz",
+        "node6_0006_world_points.json",
+        "node6_0006_pointmap.npy",
+        "node6_0006_pointmap.npz",
+        "node6_0006_pointmap.json"
+      ]
+    },
+    {
+      "image_id": "node6_0007",
+      "accepted_names": [
+        "node6_0007.npy",
+        "node6_0007.npz",
+        "node6_0007.json",
+        "node6_0007_world_points.npy",
+        "node6_0007_world_points.npz",
+        "node6_0007_world_points.json",
+        "node6_0007_pointmap.npy",
+        "node6_0007_pointmap.npz",
+        "node6_0007_pointmap.json"
+      ]
+    }
+  ]
+}

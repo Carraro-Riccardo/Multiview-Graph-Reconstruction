@@ -73,6 +73,8 @@ class BridgeEdge:
     vggt_support_count: int = 0
     vggt_score: float = 0.0
     vggt_min_distance: float | None = None
+    vggt_port_distance: float | None = None
+    vggt_axis_alignment: float = 0.0
     edge_id: str = ""
 
 
@@ -229,6 +231,8 @@ def build_direct_graph(
             vggt_support_count=vggt_votes,
             vggt_score=vggt_hint.get("score", 0.0),
             vggt_min_distance=vggt_hint.get("min_dist"),
+            vggt_port_distance=vggt_hint.get("scene_port_dist", vggt_hint.get("min_port_dist")),
+            vggt_axis_alignment=vggt_hint.get("scene_axis_alignment", vggt_hint.get("axis_alignment", 0.0)),
             cooc_count=0,
             triplet_support=0,
             forbidden_flag=False,
@@ -278,6 +282,8 @@ def build_direct_graph(
                 vggt_support_count=vggt_votes,
                 vggt_score=float(vggt_hint.get("score", 0.0)),
                 vggt_min_distance=vggt_hint.get("min_dist"),
+                vggt_port_distance=vggt_hint.get("scene_port_dist", vggt_hint.get("min_port_dist")),
+                vggt_axis_alignment=vggt_hint.get("scene_axis_alignment", vggt_hint.get("axis_alignment", 0.0)),
                 edge_id=f"DA_{a}_{b}",
             )
         )

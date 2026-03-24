@@ -1,0 +1,16 @@
+{
+  "status": "ok",
+  "artifact_dir": "output\\multiview\\node5\\vggt",
+  "generated": true,
+  "returncode": 0,
+  "stdout": "Warning: Found images with different shapes: {(238, 518), (518, 518)}\n{\n  \"status\": \"ok\",\n  \"device\": \"cpu\",\n  \"model_id\": \"facebook/VGGT-1B\",\n  \"preprocess_mode\": \"crop\",\n  \"n_images\": 6,\n  \"elapsed_sec\": 748.134,\n  \"saved_files\": [\n    \"output\\\\multiview\\\\node5\\\\vggt\\\\node5_0001.npz\",\n    \"output\\\\multiview\\\\node5\\\\vggt\\\\node5_0002.npz\",\n    \"output\\\\multiview\\\\node5\\\\vggt\\\\node5_0003.npz\",\n    \"output\\\\multiview\\\\node5\\\\vggt\\\\node5_0004.npz\",\n    \"output\\\\multiview\\\\node5\\\\vggt\\\\node5_0005.npz\",\n    \"output\\\\multiview\\\\node5\\\\vggt\\\\node5_0006.npz\"\n  ]\n}\n",
+  "stderr": "Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n",
+  "missing_files_before": [
+    "output\\multiview\\node5\\vggt\\node5_0001.npz",
+    "output\\multiview\\node5\\vggt\\node5_0002.npz",
+    "output\\multiview\\node5\\vggt\\node5_0003.npz",
+    "output\\multiview\\node5\\vggt\\node5_0004.npz",
+    "output\\multiview\\node5\\vggt\\node5_0005.npz",
+    "output\\multiview\\node5\\vggt\\node5_0006.npz"
+  ]
+}

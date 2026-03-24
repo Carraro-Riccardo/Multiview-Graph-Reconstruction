@@ -1,0 +1,108 @@
+{
+  "format_version": 1,
+  "description": "Per-view VGGT point maps required by the edge builder.",
+  "supported_formats": [
+    {
+      "suffix": ".npy",
+      "shape": "(H, W, 3)",
+      "dtype": "float32/float64",
+      "example_name": "node7_0001.npy"
+    },
+    {
+      "suffix": ".npz",
+      "keys": [
+        "world_points",
+        "points3d",
+        "points",
+        "xyz",
+        "pointmap"
+      ],
+      "shape": "(H, W, 3)",
+      "example_name": "node7_0001.npz"
+    },
+    {
+      "suffix": ".json",
+      "keys": [
+        "world_points",
+        "points3d",
+        "points",
+        "xyz",
+        "pointmap"
+      ],
+      "shape": "(H, W, 3)",
+      "example_name": "node7_0001.json"
+    }
+  ],
+  "expected_images": [
+    {
+      "image_id": "node7_0001",
+      "accepted_names": [
+        "node7_0001.npy",
+        "node7_0001.npz",
+        "node7_0001.json",
+        "node7_0001_world_points.npy",
+        "node7_0001_world_points.npz",
+        "node7_0001_world_points.json",
+        "node7_0001_pointmap.npy",
+        "node7_0001_pointmap.npz",
+        "node7_0001_pointmap.json"
+      ]
+    },
+    {
+      "image_id": "node7_0002",
+      "accepted_names": [
+        "node7_0002.npy",
+        "node7_0002.npz",
+        "node7_0002.json",
+        "node7_0002_world_points.npy",
+        "node7_0002_world_points.npz",
+        "node7_0002_world_points.json",
+        "node7_0002_pointmap.npy",
+        "node7_0002_pointmap.npz",
+        "node7_0002_pointmap.json"
+      ]
+    },
+    {
+      "image_id": "node7_0003",
+      "accepted_names": [
+        "node7_0003.npy",
+        "node7_0003.npz",
+        "node7_0003.json",
+        "node7_0003_world_points.npy",
+        "node7_0003_world_points.npz",
+        "node7_0003_world_points.json",
+        "node7_0003_pointmap.npy",
+        "node7_0003_pointmap.npz",
+        "node7_0003_pointmap.json"
+      ]
+    },
+    {
+      "image_id": "node7_0004",
+      "accepted_names": [
+        "node7_0004.npy",
+        "node7_0004.npz",
+        "node7_0004.json",
+        "node7_0004_world_points.npy",
+        "node7_0004_world_points.npz",
+        "node7_0004_world_points.json",
+        "node7_0004_pointmap.npy",
+        "node7_0004_pointmap.npz",
+        "node7_0004_pointmap.json"
+      ]
+    },
+    {
+      "image_id": "node7_0005",
+      "accepted_names": [
+        "node7_0005.npy",
+        "node7_0005.npz",
+        "node7_0005.json",
+        "node7_0005_world_points.npy",
+        "node7_0005_world_points.npz",
+        "node7_0005_world_points.json",
+        "node7_0005_pointmap.npy",
+        "node7_0005_pointmap.npz",
+        "node7_0005_pointmap.json"
+      ]
+    }
+  ]
+}

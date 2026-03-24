@@ -1,0 +1,66 @@
+{
+  "format_version": 1,
+  "description": "Per-view VGGT point maps required by the edge builder.",
+  "supported_formats": [
+    {
+      "suffix": ".npy",
+      "shape": "(H, W, 3)",
+      "dtype": "float32/float64",
+      "example_name": "node16_0001.npy"
+    },
+    {
+      "suffix": ".npz",
+      "keys": [
+        "world_points",
+        "points3d",
+        "points",
+        "xyz",
+        "pointmap"
+      ],
+      "shape": "(H, W, 3)",
+      "example_name": "node16_0001.npz"
+    },
+    {
+      "suffix": ".json",
+      "keys": [
+        "world_points",
+        "points3d",
+        "points",
+        "xyz",
+        "pointmap"
+      ],
+      "shape": "(H, W, 3)",
+      "example_name": "node16_0001.json"
+    }
+  ],
+  "expected_images": [
+    {
+      "image_id": "node16_0001",
+      "accepted_names": [
+        "node16_0001.npy",
+        "node16_0001.npz",
+        "node16_0001.json",
+        "node16_0001_world_points.npy",
+        "node16_0001_world_points.npz",
+        "node16_0001_world_points.json",
+        "node16_0001_pointmap.npy",
+        "node16_0001_pointmap.npz",
+        "node16_0001_pointmap.json"
+      ]
+    },
+    {
+      "image_id": "node16_0002",
+      "accepted_names": [
+        "node16_0002.npy",
+        "node16_0002.npz",
+        "node16_0002.json",
+        "node16_0002_world_points.npy",
+        "node16_0002_world_points.npz",
+        "node16_0002_world_points.json",
+        "node16_0002_pointmap.npy",
+        "node16_0002_pointmap.npz",
+        "node16_0002_pointmap.json"
+      ]
+    }
+  ]
+}

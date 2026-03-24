@@ -10,3 +10,14 @@ __pycache__/
 .env.*
 !.env.example
 **/claude/**
+**/claude/**/*
+**/claude/**/*
+./tmp/
+tmp/
+**/.vscode/
+**/tmp/
+**/python312/
+**/python312/**
+**/get-pip.py
+**/python-3.12.10-embed-amd64.zip
+**/python-3.12.10-embed-amd64.zip/**

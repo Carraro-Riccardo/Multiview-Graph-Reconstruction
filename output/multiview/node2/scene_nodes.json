@@ -14,10 +14,10 @@
     ],
     "supporting_observed_ids": [
       "node2_0004_9",
-      "node2_0005_7",
       "node2_0007_0",
-      "node2_0002_11",
-      "node2_0003_10"
+      "node2_0005_7",
+      "node2_0003_10",
+      "node2_0002_11"
     ],
     "local_structural_signature": {
       "self_code": 11,
@@ -50,8 +50,8 @@
     "supporting_observed_ids": [
       "node2_0002_12",
       "node2_0003_3",
-      "node2_0005_10",
       "node2_0004_8",
+      "node2_0005_10",
       "node2_0007_9"
     ],
     "local_structural_signature": {
@@ -89,8 +89,8 @@
     "supporting_observed_ids": [
       "node2_0002_5",
       "node2_0003_11",
-      "node2_0005_3",
       "node2_0004_3",
+      "node2_0005_3",
       "node2_0007_11"
     ],
     "local_structural_signature": {
@@ -159,8 +159,8 @@
     ],
     "supporting_observed_ids": [
       "node2_0004_1",
-      "node2_0005_0",
       "node2_0007_7",
+      "node2_0005_0",
       "node2_0003_8",
       "node2_0002_8"
     ],
@@ -299,8 +299,8 @@
     "supporting_observed_ids": [
       "node2_0002_6",
       "node2_0003_9",
-      "node2_0005_12",
-      "node2_0004_11"
+      "node2_0004_11",
+      "node2_0005_12"
     ],
     "local_structural_signature": {
       "self_code": 95,
@@ -332,9 +332,9 @@
     ],
     "supporting_observed_ids": [
       "node2_0002_7",
-      "node2_0005_11",
       "node2_0004_12",
       "node2_0003_6",
+      "node2_0005_11",
       "node2_0007_2"
     ],
     "local_structural_signature": {
@@ -365,9 +365,9 @@
     ],
     "supporting_observed_ids": [
       "node2_0002_0",
+      "node2_0003_1",
       "node2_0005_5",
       "node2_0004_0",
-      "node2_0003_1",
       "node2_0007_6"
     ],
     "local_structural_signature": {
@@ -402,8 +402,8 @@
       "node2_0004_2",
       "node2_0007_8",
       "node2_0005_4",
-      "node2_0003_4",
-      "node2_0002_4"
+      "node2_0002_4",
+      "node2_0003_4"
     ],
     "local_structural_signature": {
       "self_code": 202,

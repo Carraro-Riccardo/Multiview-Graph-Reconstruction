@@ -1,0 +1,94 @@
+{
+  "format_version": 1,
+  "description": "Per-view VGGT point maps required by the edge builder.",
+  "supported_formats": [
+    {
+      "suffix": ".npy",
+      "shape": "(H, W, 3)",
+      "dtype": "float32/float64",
+      "example_name": "node14_0001.npy"
+    },
+    {
+      "suffix": ".npz",
+      "keys": [
+        "world_points",
+        "points3d",
+        "points",
+        "xyz",
+        "pointmap"
+      ],
+      "shape": "(H, W, 3)",
+      "example_name": "node14_0001.npz"
+    },
+    {
+      "suffix": ".json",
+      "keys": [
+        "world_points",
+        "points3d",
+        "points",
+        "xyz",
+        "pointmap"
+      ],
+      "shape": "(H, W, 3)",
+      "example_name": "node14_0001.json"
+    }
+  ],
+  "expected_images": [
+    {
+      "image_id": "node14_0001",
+      "accepted_names": [
+        "node14_0001.npy",
+        "node14_0001.npz",
+        "node14_0001.json",
+        "node14_0001_world_points.npy",
+        "node14_0001_world_points.npz",
+        "node14_0001_world_points.json",
+        "node14_0001_pointmap.npy",
+        "node14_0001_pointmap.npz",
+        "node14_0001_pointmap.json"
+      ]
+    },
+    {
+      "image_id": "node14_0002",
+      "accepted_names": [
+        "node14_0002.npy",
+        "node14_0002.npz",
+        "node14_0002.json",
+        "node14_0002_world_points.npy",
+        "node14_0002_world_points.npz",
+        "node14_0002_world_points.json",
+        "node14_0002_pointmap.npy",
+        "node14_0002_pointmap.npz",
+        "node14_0002_pointmap.json"
+      ]
+    },
+    {
+      "image_id": "node14_0003",
+      "accepted_names": [
+        "node14_0003.npy",
+        "node14_0003.npz",
+        "node14_0003.json",
+        "node14_0003_world_points.npy",
+        "node14_0003_world_points.npz",
+        "node14_0003_world_points.json",
+        "node14_0003_pointmap.npy",
+        "node14_0003_pointmap.npz",
+        "node14_0003_pointmap.json"
+      ]
+    },
+    {
+      "image_id": "node14_0004",
+      "accepted_names": [
+        "node14_0004.npy",
+        "node14_0004.npz",
+        "node14_0004.json",
+        "node14_0004_world_points.npy",
+        "node14_0004_world_points.npz",
+        "node14_0004_world_points.json",
+        "node14_0004_pointmap.npy",
+        "node14_0004_pointmap.npz",
+        "node14_0004_pointmap.json"
+      ]
+    }
+  ]
+}

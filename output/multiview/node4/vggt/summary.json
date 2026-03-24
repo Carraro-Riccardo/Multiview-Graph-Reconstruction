@@ -1,0 +1,15 @@
+{
+  "status": "ok",
+  "device": "cpu",
+  "model_id": "facebook/VGGT-1B",
+  "preprocess_mode": "crop",
+  "n_images": 5,
+  "elapsed_sec": 1177.99,
+  "saved_files": [
+    "output\\multiview\\node4\\vggt\\node4_0001.npz",
+    "output\\multiview\\node4\\vggt\\node4_0002.npz",
+    "output\\multiview\\node4\\vggt\\node4_0004.npz",
+    "output\\multiview\\node4\\vggt\\node4_0006.npz",
+    "output\\multiview\\node4\\vggt\\node4_0007.npz"
+  ]
+}

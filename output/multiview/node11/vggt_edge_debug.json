@@ -1,0 +1,448 @@
+{
+  "generation": {
+    "status": "ok",
+    "artifact_dir": "output\\multiview\\node11\\vggt",
+    "generated": true,
+    "returncode": 0,
+    "stdout": "Warning: Found images with different shapes: {(392, 518), (518, 518)}\n{\n  \"status\": \"ok\",\n  \"device\": \"cpu\",\n  \"model_id\": \"facebook/VGGT-1B\",\n  \"preprocess_mode\": \"crop\",\n  \"n_images\": 4,\n  \"elapsed_sec\": 385.606,\n  \"saved_files\": [\n    \"output\\\\multiview\\\\node11\\\\vggt\\\\node11_0003.npz\",\n    \"output\\\\multiview\\\\node11\\\\vggt\\\\node11_0004.npz\",\n    \"output\\\\multiview\\\\node11\\\\vggt\\\\node11_0006.npz\",\n    \"output\\\\multiview\\\\node11\\\\vggt\\\\node11_0007.npz\"\n  ]\n}\n",
+    "stderr": "",
+    "missing_files_before": [
+      "output\\multiview\\node11\\vggt\\node11_0003.npz",
+      "output\\multiview\\node11\\vggt\\node11_0004.npz",
+      "output\\multiview\\node11\\vggt\\node11_0006.npz",
+      "output\\multiview\\node11\\vggt\\node11_0007.npz"
+    ]
+  },
+  "enabled": true,
+  "search_roots": [
+    "output\\multiview\\node11\\vggt",
+    "output\\multiview\\node11",
+    "output\\vggt\\node11",
+    "output\\vggt"
+  ],
+  "artifact_request": {
+    "format_version": 1,
+    "description": "Per-view VGGT point maps required by the edge builder.",
+    "supported_formats": [
+      {
+        "suffix": ".npy",
+        "shape": "(H, W, 3)",
+        "dtype": "float32/float64",
+        "example_name": "node11_0003.npy"
+      },
+      {
+        "suffix": ".npz",
+        "keys": [
+          "world_points",
+          "points3d",
+          "points",
+          "xyz",
+          "pointmap"
+        ],
+        "shape": "(H, W, 3)",
+        "example_name": "node11_0003.npz"
+      },
+      {
+        "suffix": ".json",
+        "keys": [
+          "world_points",
+          "points3d",
+          "points",
+          "xyz",
+          "pointmap"
+        ],
+        "shape": "(H, W, 3)",
+        "example_name": "node11_0003.json"
+      }
+    ],
+    "expected_images": [
+      {
+        "image_id": "node11_0003",
+        "accepted_names": [
+          "node11_0003.npy",
+          "node11_0003.npz",
+          "node11_0003.json",
+          "node11_0003_world_points.npy",
+          "node11_0003_world_points.npz",
+          "node11_0003_world_points.json",
+          "node11_0003_pointmap.npy",
+          "node11_0003_pointmap.npz",
+          "node11_0003_pointmap.json"
+        ]
+      },
+      {
+        "image_id": "node11_0004",
+        "accepted_names": [
+          "node11_0004.npy",
+          "node11_0004.npz",
+          "node11_0004.json",
+          "node11_0004_world_points.npy",
+          "node11_0004_world_points.npz",
+          "node11_0004_world_points.json",
+          "node11_0004_pointmap.npy",
+          "node11_0004_pointmap.npz",
+          "node11_0004_pointmap.json"
+        ]
+      },
+      {
+        "image_id": "node11_0006",
+        "accepted_names": [
+          "node11_0006.npy",
+          "node11_0006.npz",
+          "node11_0006.json",
+          "node11_0006_world_points.npy",
+          "node11_0006_world_points.npz",
+          "node11_0006_world_points.json",
+          "node11_0006_pointmap.npy",
+          "node11_0006_pointmap.npz",
+          "node11_0006_pointmap.json"
+        ]
+      },
+      {
+        "image_id": "node11_0007",
+        "accepted_names": [
+          "node11_0007.npy",
+          "node11_0007.npz",
+          "node11_0007.json",
+          "node11_0007_world_points.npy",
+          "node11_0007_world_points.npz",
+          "node11_0007_world_points.json",
+          "node11_0007_pointmap.npy",
+          "node11_0007_pointmap.npz",
+          "node11_0007_pointmap.json"
+        ]
+      }
+    ]
+  },
+  "n_loaded_images": 4,
+  "n_scene_geometries": 7,
+  "scene_cutoff": 0.06248747538775206,
+  "port_cutoff": 0.05311435407958925,
+  "loaded_images": {
+    "node11_0003": "output\\multiview\\node11\\vggt\\node11_0003.npz",
+    "node11_0004": "output\\multiview\\node11\\vggt\\node11_0004.npz",
+    "node11_0006": "output\\multiview\\node11\\vggt\\node11_0006.npz",
+    "node11_0007": "output\\multiview\\node11\\vggt\\node11_0007.npz"
+  },
+  "skipped_images": [],
+  "scene_geometry": {
+    "15#1": {
+      "centroid": [
+        0.07030729204416275,
+        -0.16981080174446106,
+        1.1370854377746582
+      ],
+      "ports": [
+        [
+          0.08160905539989471,
+          -0.16580285131931305,
+          1.028957486152649
+        ],
+        [
+          0.06613225489854813,
+          -0.17129139602184296,
+          1.1770294904708862
+        ]
+      ],
+      "axis": [
+        -0.10388527810573578,
+        -0.036840859800577164,
+        0.9939067363739014
+      ],
+      "n_observations": 4
+    },
+    "15#2": {
+      "centroid": [
+        -0.11490708589553833,
+        -0.022151054814457893,
+        1.1220149993896484
+      ],
+      "ports": [
+        [
+          -0.09270620346069336,
+          -0.02234041690826416,
+          1.115893840789795
+        ],
+        [
+          -0.14158104360103607,
+          -0.02192354016005993,
+          1.1293693780899048
+        ]
+      ],
+      "axis": [
+        -0.9639962911605835,
+        0.008222382515668869,
+        0.26578855514526367
+      ],
+      "n_observations": 3
+    },
+    "15#3": {
+      "centroid": [
+        0.07328201830387115,
+        0.11713582277297974,
+        1.0836752653121948
+      ],
+      "ports": [
+        [
+          0.07771442830562592,
+          0.1321193277835846,
+          1.150707721710205
+        ],
+        [
+          0.06606362015008926,
+          0.0927344411611557,
+          0.974509596824646
+        ]
+      ],
+      "axis": [
+        -0.0643969401717186,
+        -0.21769018471240997,
+        -0.9738911986351013
+      ],
+      "n_observations": 3
+    },
+    "95#1": {
+      "centroid": [
+        0.07488764822483063,
+        -0.2086029350757599,
+        1.1491355895996094
+      ],
+      "ports": [
+        [
+          0.08177749067544937,
+          -0.17845867574214935,
+          0.9580074548721313
+        ],
+        [
+          0.07379540055990219,
+          -0.21338172256946564,
+          1.1794352531433105
+        ]
+      ],
+      "axis": [
+        -0.035585589706897736,
+        -0.15569312870502472,
+        0.987164318561554
+      ],
+      "n_observations": 4
+    },
+    "95#2": {
+      "centroid": [
+        -0.18097186088562012,
+        -0.02286454290151596,
+        1.1397411823272705
+      ],
+      "ports": [
+        [
+          -0.15486514568328857,
+          -0.0234356876462698,
+          1.138182520866394
+        ],
+        [
+          -0.20571528375148773,
+          -0.02232322469353676,
+          1.1412184238433838
+        ]
+      ],
+      "axis": [
+        -0.9979846477508545,
+        0.021833205595612526,
+        0.059581805020570755
+      ],
+      "n_observations": 4
+    },
+    "95#3": {
+      "centroid": [
+        0.07002376019954681,
+        0.1625213623046875,
+        1.092162013053894
+      ],
+      "ports": [
+        [
+          0.0827847495675087,
+          0.15765157341957092,
+          1.078236699104309
+        ],
+        [
+          0.04388555511832237,
+          0.17249609529972076,
+          1.12068510055542
+        ]
+      ],
+      "axis": [
+        -0.6542192101478577,
+        0.24966007471084595,
+        0.7139097452163696
+      ],
+      "n_observations": 3
+    },
+    "116#1": {
+      "centroid": [
+        0.07176308333873749,
+        -0.020724114030599594,
+        1.1434224843978882
+      ],
+      "ports": [
+        [
+          0.0909157544374466,
+          -0.01974317990243435,
+          1.1518853902816772
+        ],
+        [
+          0.04797052964568138,
+          -0.021942686289548874,
+          1.1329092979431152
+        ]
+      ],
+      "axis": [
+        -0.9136825203895569,
+        -0.046795666217803955,
+        -0.40372562408447266
+      ],
+      "n_observations": 4
+    }
+  },
+  "pair_hints": [
+    {
+      "pair": [
+        "15#1",
+        "95#1"
+      ],
+      "score": 1.0,
+      "raw_score": 1.0,
+      "shared_views": 4,
+      "vote_count": 4,
+      "supporting_images": [
+        "node11_0003",
+        "node11_0004",
+        "node11_0006",
+        "node11_0007"
+      ],
+      "mean_dist": 0.04341003578156233,
+      "min_dist": 0.03845525160431862,
+      "max_dist": 0.049969788640737534,
+      "mean_port_dist": 0.0436050109565258,
+      "min_port_dist": 0.03939318284392357,
+      "axis_alignment": 0.9836312532424927,
+      "scene_port_dist": 0.0428498201072216,
+      "scene_axis_alignment": 0.9905819296836853,
+      "cutoff": 0.06248747538775206,
+      "port_cutoff": 0.05311435407958925,
+      "mutual_topk": true,
+      "scene_centroid_a": [
+        0.07030729204416275,
+        -0.16981080174446106,
+        1.1370854377746582
+      ],
+      "scene_centroid_b": [
+        0.07488764822483063,
+        -0.2086029350757599,
+        1.1491355895996094
+      ],
+      "scene_ports_a": [
+        [
+          0.08160905539989471,
+          -0.16580285131931305,
+          1.028957486152649
+        ],
+        [
+          0.06613225489854813,
+          -0.17129139602184296,
+          1.1770294904708862
+        ]
+      ],
+      "scene_ports_b": [
+        [
+          0.08177749067544937,
+          -0.17845867574214935,
+          0.9580074548721313
+        ],
+        [
+          0.07379540055990219,
+          -0.21338172256946564,
+          1.1794352531433105
+        ]
+      ],
+      "scene_axis_a": [
+        -0.10388527810573578,
+        -0.036840859800577164,
+        0.9939067363739014
+      ],
+      "scene_axis_b": [
+        -0.035585589706897736,
+        -0.15569312870502472,
+        0.987164318561554
+      ]
+    },
+    {
+      "pair": [
+        "15#2",
+        "95#2"
+      ],
+      "score": 1.0,
+      "raw_score": 1.0,
+      "shared_views": 3,
+      "vote_count": 3,
+      "supporting_images": [
+        "node11_0003",
+        "node11_0004",
+        "node11_0007"
+      ],
+      "mean_dist": 0.06803377717733383,
+      "min_dist": 0.06369020789861679,
+      "max_dist": 0.07311520725488663,
+      "mean_port_dist": 0.017388354676465195,
+      "min_port_dist": 0.009942571632564068,
+      "axis_alignment": 0.9720446268717448,
+      "scene_port_dist": 0.016013288870453835,
+      "scene_axis_alignment": 0.9780691862106323,
+      "cutoff": 0.06248747538775206,
+      "port_cutoff": 0.05311435407958925,
+      "mutual_topk": true,
+      "scene_centroid_a": [
+        -0.11490708589553833,
+        -0.022151054814457893,
+        1.1220149993896484
+      ],
+      "scene_centroid_b": [
+        -0.18097186088562012,
+        -0.02286454290151596,
+        1.1397411823272705
+      ],
+      "scene_ports_a": [
+        [
+          -0.09270620346069336,
+          -0.02234041690826416,
+          1.115893840789795
+        ],
+        [
+          -0.14158104360103607,
+          -0.02192354016005993,
+          1.1293693780899048
+        ]
+      ],
+      "scene_ports_b": [
+        [
+          -0.15486514568328857,
+          -0.0234356876462698,
+          1.138182520866394
+        ],
+        [
+          -0.20571528375148773,
+          -0.02232322469353676,
+          1.1412184238433838
+        ]
+      ],
+      "scene_axis_a": [
+        -0.9639962911605835,
+        0.008222382515668869,
+        0.26578855514526367
+      ],
+      "scene_axis_b": [
+        -0.9979846477508545,
+        0.021833205595612526,
+        0.059581805020570755
+      ]
+    }
+  ]
+}

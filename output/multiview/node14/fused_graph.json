@@ -56,7 +56,7 @@
     {
       "node_a": "83#1",
       "node_b": "119#1",
-      "support_count": 4,
+      "support_count": 4.0,
       "supporting_images": [
         "node14_0001",
         "node14_0002",
@@ -65,6 +65,11 @@
       ],
       "branch_support_count": 0,
       "knn_support_count": 4,
+      "vggt_support_count": 0,
+      "vggt_score": 0.0,
+      "vggt_min_distance": null,
+      "vggt_port_distance": null,
+      "vggt_axis_alignment": 0.0,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
@@ -81,7 +86,7 @@
     {
       "node_a": "119#1",
       "node_b": "159#1",
-      "support_count": 3,
+      "support_count": 6.0,
       "supporting_images": [
         "node14_0002",
         "node14_0003",
@@ -89,11 +94,17 @@
       ],
       "branch_support_count": 0,
       "knn_support_count": 3,
+      "vggt_support_count": 2,
+      "vggt_score": 0.9166666666666666,
+      "vggt_min_distance": 0.10939260572195053,
+      "vggt_port_distance": 0.09121408313512802,
+      "vggt_axis_alignment": 0.9326318502426147,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "direct_adjacency"
+        "direct_adjacency",
+        "vggt_3d"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],

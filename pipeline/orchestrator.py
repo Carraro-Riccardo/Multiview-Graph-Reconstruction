@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 import networkx as nx
@@ -14,7 +15,8 @@ from .graph_refinement import force_spanning_tree, serialize_fused_graph
 from .node_reid import identify_scene_nodes, serialize_scene_nodes
 from .observed_graphs import build_all_observed_graphs
 from .spatial_consistency import run_consistency_pass
-from .vggt_3d_edges import build_vggt_edge_hints, build_vggt_search_roots
+from .vggt_runtime import ensure_vggt_artifacts
+from .vggt_3d_edges import build_vggt_edge_hints, build_vggt_search_roots, replay_merge_log
 
 _W = 72
 
@@ -67,27 +69,104 @@ def run_multiview_pipeline(node_id: int, image_paths: list, output_dir: Path | N
     print(f"  {len(scene_nodes)} scene nodes from {total_obs} observations")
 
     vggt_edge_payload = {"enabled": False, "pair_hints": {}}
+    vggt_generation = {"status": "not_requested", "generated": False}
     if VGGT_EDGE_ENABLED:
+        vggt_generation = ensure_vggt_artifacts(output_dir, image_paths)
         search_roots = build_vggt_search_roots(node_id, output_dir, WORK_DIR)
-        vggt_edge_payload = build_vggt_edge_hints(scene_nodes, observed_graphs, search_roots)
-        save_json(
-            output_dir / "vggt_edge_debug.json",
-            {
-                "enabled": vggt_edge_payload.get("enabled", False),
-                "search_roots": vggt_edge_payload.get("search_roots", []),
-                "n_loaded_images": vggt_edge_payload.get("n_loaded_images", 0),
-                "n_scene_centroids": vggt_edge_payload.get("n_scene_centroids", 0),
-                "scene_cutoff": vggt_edge_payload.get("scene_cutoff"),
-                "loaded_images": vggt_edge_payload.get("loaded_images", {}),
-                "skipped_images": vggt_edge_payload.get("skipped_images", []),
-                "pair_hints": vggt_edge_payload.get("pair_hints_serialized", []),
-            },
-        )
-        print(
-            f"  [VGGT] loaded_views={vggt_edge_payload.get('n_loaded_images', 0)}/"
-            f"{len(observed_graphs)}  scene_centroids={vggt_edge_payload.get('n_scene_centroids', 0)}  "
-            f"edge_hints={len(vggt_edge_payload.get('pair_hints', {}))}"
-        )
+
+        # ── Cache check ────────────────────────────────────────────────────────
+        # If all .npz files were already present AND vggt_edge_debug.json exists
+        # with the same set of scene-node IDs as the current ReID output, we can
+        # skip the expensive build_vggt_edge_hints() call entirely.
+        debug_path = output_dir / "vggt_edge_debug.json"
+        _cache_hit = False
+        if vggt_generation.get("status") == "already_present" and debug_path.exists():
+            try:
+                _cached = json.loads(debug_path.read_text(encoding="utf-8"))
+                # Require "merge_log" key: absent in pre-merge-logic caches → forces recompute.
+                if "merge_log" not in _cached:
+                    raise ValueError("legacy cache format — no merge_log")
+                # Reconstruct the original (pre-merge) scene-node IDs from the cache:
+                # scene_geometry holds post-merge IDs; merge_log records the dropped ones.
+                _cached_post_merge_ids = set(_cached.get("scene_geometry", {}).keys())
+                _cached_dropped_ids = {e["dropped"] for e in _cached.get("merge_log", [])}
+                _cached_original_ids = _cached_post_merge_ids | _cached_dropped_ids
+                _current_ids = {sn.scene_node_id for sn in scene_nodes}
+                if _current_ids == _cached_original_ids:
+                    _cache_hit = True
+            except Exception:
+                pass  # malformed or legacy cache → fall through to full recompute
+
+        if _cache_hit:
+            _merge_log = _cached.get("merge_log", [])
+            _pair_hints = {
+                (entry["pair"][0], entry["pair"][1]): {k: v for k, v in entry.items() if k != "pair"}
+                for entry in _cached.get("pair_hints", [])
+            }
+            n_merged = len(_merge_log)
+            if n_merged > 0:
+                scene_nodes = replay_merge_log(scene_nodes, _merge_log, observed_graphs)
+                print(f"  [VGGT] cache hit — replayed {n_merged} merge(s)")
+                for entry in _merge_log:
+                    print(
+                        f"    {entry['dropped']} → {entry['kept']}"
+                        f"  dist={entry['dist_m']:.3f}m  ({entry['reason']})"
+                    )
+            vggt_edge_payload = {"enabled": True, "pair_hints": _pair_hints}
+            print(
+                f"  [VGGT] generation={vggt_generation.get('status')}  "
+                f"cache=hit  merged={n_merged}  "
+                f"edge_hints={len(_pair_hints)}"
+            )
+        # ── Full recompute ─────────────────────────────────────────────────────
+        else:
+            vggt_edge_payload = build_vggt_edge_hints(scene_nodes, observed_graphs, search_roots)
+
+            # Apply VGGT-based duplicate merges
+            n_merged = vggt_edge_payload.get("n_merged_nodes", 0)
+            if n_merged > 0:
+                scene_nodes = vggt_edge_payload["_scene_nodes_merged"]
+                merge_log = vggt_edge_payload.get("merge_log", [])
+                print(f"  [VGGT] merged {n_merged} duplicate scene node(s):")
+                for entry in merge_log:
+                    print(
+                        f"    {entry['dropped']} → {entry['kept']}"
+                        f"  dist={entry['dist_m']:.3f}m"
+                        f"  obs={entry['n_obs_dropped']}+{entry['n_obs_kept']}"
+                        f"  ({entry['reason']})"
+                    )
+
+            save_json(
+                output_dir / "vggt_edge_debug.json",
+                {
+                    "generation": vggt_generation,
+                    "enabled": vggt_edge_payload.get("enabled", False),
+                    "search_roots": vggt_edge_payload.get("search_roots", []),
+                    "artifact_request": vggt_edge_payload.get("artifact_request", {}),
+                    "n_loaded_images": vggt_edge_payload.get("n_loaded_images", 0),
+                    "n_scene_geometries": vggt_edge_payload.get("n_scene_geometries", 0),
+                    "n_merged_nodes": n_merged,
+                    "merge_log": vggt_edge_payload.get("merge_log", []),
+                    "scene_cutoff": vggt_edge_payload.get("scene_cutoff"),
+                    "port_cutoff": vggt_edge_payload.get("port_cutoff"),
+                    "loaded_images": vggt_edge_payload.get("loaded_images", {}),
+                    "skipped_images": vggt_edge_payload.get("skipped_images", []),
+                    "scene_geometry": vggt_edge_payload.get("scene_geometry", {}),
+                    "pair_hints": vggt_edge_payload.get("pair_hints_serialized", []),
+                },
+            )
+            save_json(
+                output_dir / "vggt_artifact_request.json",
+                vggt_edge_payload.get("artifact_request", {}),
+            )
+            print(
+                f"  [VGGT] generation={vggt_generation.get('status')}  "
+                f"cache=miss  "
+                f"loaded_views={vggt_edge_payload.get('n_loaded_images', 0)}/"
+                f"{len(observed_graphs)}  "
+                f"scene_geometries={vggt_edge_payload.get('n_scene_geometries', 0)}  "
+                f"merged={n_merged}  edge_hints={len(vggt_edge_payload.get('pair_hints', {}))}"
+            )
 
     print("\n  [Step 3] Direct per-image adjacency graph")
     _sep()

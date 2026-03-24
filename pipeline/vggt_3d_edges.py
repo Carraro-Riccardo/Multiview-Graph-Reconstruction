@@ -26,10 +26,15 @@ import numpy as np
 from config import (
     FORBIDDEN_PAIRS,
     VGGT_3D_ADJACENCY_FACTOR,
+    VGGT_3D_AXIS_ALIGNMENT_MIN,
     VGGT_3D_MAX_POINTS_PER_OBSERVATION,
+    VGGT_3D_MERGE_CONFIDENT_FACTOR,
+    VGGT_3D_MERGE_LOW_OBS_THRESHOLD,
+    VGGT_3D_MERGE_TENTATIVE_FACTOR,
     VGGT_3D_MIN_POINTS_PER_OBSERVATION,
     VGGT_3D_MIN_SCORE,
     VGGT_3D_MUTUAL_TOP_K,
+    VGGT_3D_PORT_DISTANCE_FACTOR,
     VGGT_EDGE_SEARCH_GLOB,
 )
 
@@ -64,6 +69,51 @@ def build_vggt_search_roots(node_id: int, output_dir: Path, work_dir: Path) -> l
         work_dir / vggt_dir_name,
     ]
     return _unique_paths(roots)
+
+
+def build_vggt_artifact_request(image_ids: list[str]) -> dict:
+    """Describe the minimal artefacts expected from a future VGGT export."""
+    return {
+        "format_version": 1,
+        "description": "Per-view VGGT point maps required by the edge builder.",
+        "supported_formats": [
+            {
+                "suffix": ".npy",
+                "shape": "(H, W, 3)",
+                "dtype": "float32/float64",
+                "example_name": f"{image_ids[0]}.npy" if image_ids else "nodeX_0001.npy",
+            },
+            {
+                "suffix": ".npz",
+                "keys": ["world_points", "points3d", "points", "xyz", "pointmap"],
+                "shape": "(H, W, 3)",
+                "example_name": f"{image_ids[0]}.npz" if image_ids else "nodeX_0001.npz",
+            },
+            {
+                "suffix": ".json",
+                "keys": ["world_points", "points3d", "points", "xyz", "pointmap"],
+                "shape": "(H, W, 3)",
+                "example_name": f"{image_ids[0]}.json" if image_ids else "nodeX_0001.json",
+            },
+        ],
+        "expected_images": [
+            {
+                "image_id": image_id,
+                "accepted_names": [
+                    f"{image_id}.npy",
+                    f"{image_id}.npz",
+                    f"{image_id}.json",
+                    f"{image_id}_world_points.npy",
+                    f"{image_id}_world_points.npz",
+                    f"{image_id}_world_points.json",
+                    f"{image_id}_pointmap.npy",
+                    f"{image_id}_pointmap.npz",
+                    f"{image_id}_pointmap.json",
+                ],
+            }
+            for image_id in image_ids
+        ],
+    }
 
 
 def _candidate_files_for_image(image_id: str, search_roots: list[Path]) -> list[Path]:
@@ -125,10 +175,27 @@ def _load_pointmap(path: Path) -> np.ndarray | None:
     return arr
 
 
-def _bbox_centroid_from_pointmap(
+def _safe_unit(vec: np.ndarray | None) -> np.ndarray | None:
+    if vec is None:
+        return None
+    norm = float(np.linalg.norm(vec))
+    if norm < 1e-8:
+        return None
+    return (vec / norm).astype(np.float32)
+
+
+def _align_axis(axis: np.ndarray, reference: np.ndarray | None) -> np.ndarray:
+    if reference is None:
+        return axis
+    if float(np.dot(axis, reference)) < 0.0:
+        return -axis
+    return axis
+
+
+def _estimate_observation_geometry(
     pointmap: np.ndarray,
     bbox_norm: list[float],
-) -> tuple[np.ndarray | None, int]:
+) -> dict | None:
     h, w = pointmap.shape[:2]
     x1, y1, x2, y2 = bbox_norm
     px1 = max(0, min(w - 1, int(np.floor(x1 * w))))
@@ -138,40 +205,99 @@ def _bbox_centroid_from_pointmap(
 
     crop = pointmap[py1:py2, px1:px2]
     if crop.size == 0:
-        return None, 0
+        return None
 
     pts = crop.reshape(-1, 3)
-    finite_mask = np.isfinite(pts).all(axis=1)
-    pts = pts[finite_mask]
+    pts = pts[np.isfinite(pts).all(axis=1)]
     if len(pts) < VGGT_3D_MIN_POINTS_PER_OBSERVATION:
-        return None, int(len(pts))
+        return None
 
     if len(pts) > VGGT_3D_MAX_POINTS_PER_OBSERVATION:
         step = max(1, len(pts) // VGGT_3D_MAX_POINTS_PER_OBSERVATION)
         pts = pts[::step][:VGGT_3D_MAX_POINTS_PER_OBSERVATION]
 
-    centroid = np.median(pts, axis=0)
-    return centroid.astype(np.float32), int(len(pts))
+    centroid = np.median(pts, axis=0).astype(np.float32)
+    centered = pts - centroid
+    cov = centered.T @ centered / max(len(centered) - 1, 1)
+
+    try:
+        eigvals, eigvecs = np.linalg.eigh(cov)
+    except np.linalg.LinAlgError:
+        axis = None
+    else:
+        axis = _safe_unit(eigvecs[:, int(np.argmax(eigvals))].astype(np.float32))
+
+    port_a = centroid.copy()
+    port_b = centroid.copy()
+    if axis is not None:
+        projections = centered @ axis
+        lo = float(np.quantile(projections, 0.10))
+        hi = float(np.quantile(projections, 0.90))
+        port_a = (centroid + axis * lo).astype(np.float32)
+        port_b = (centroid + axis * hi).astype(np.float32)
+
+    return {
+        "centroid": centroid,
+        "axis": axis,
+        "ports": [port_a, port_b],
+        "n_points": int(len(pts)),
+    }
 
 
-def _scene_centroids(obs_centroids: dict[str, np.ndarray], scene_nodes: list) -> dict[str, np.ndarray]:
-    centroids: dict[str, np.ndarray] = {}
+def _aggregate_scene_geometry(obs_geometry: dict[str, dict], scene_nodes: list) -> dict[str, dict]:
+    scene_geom: dict[str, dict] = {}
     for sn in scene_nodes:
-        pts = [
-            obs_centroids[obs_id]
+        geoms = [
+            obs_geometry[obs_id]
             for obs_id in sn.supporting_observed_ids
-            if obs_id in obs_centroids
+            if obs_id in obs_geometry
         ]
-        if not pts:
+        if not geoms:
             continue
-        centroids[sn.scene_node_id] = np.median(np.stack(pts), axis=0).astype(np.float32)
-    return centroids
+
+        centroids = np.stack([g["centroid"] for g in geoms], axis=0)
+        centroid = np.median(centroids, axis=0).astype(np.float32)
+
+        ref_axis = None
+        axes = []
+        for geom in geoms:
+            axis = geom.get("axis")
+            if axis is None:
+                continue
+            if ref_axis is None:
+                ref_axis = axis
+            axes.append(_align_axis(axis, ref_axis))
+        axis = _safe_unit(np.mean(np.stack(axes, axis=0), axis=0)) if axes else None
+
+        ports = []
+        if axis is not None:
+            projected = []
+            for geom in geoms:
+                for port in geom["ports"]:
+                    projected.append(float(np.dot(port - centroid, axis)))
+            if projected:
+                lo = float(np.quantile(projected, 0.15))
+                hi = float(np.quantile(projected, 0.85))
+                ports = [
+                    (centroid + axis * lo).astype(np.float32),
+                    (centroid + axis * hi).astype(np.float32),
+                ]
+        if not ports:
+            ports = [centroid.copy(), centroid.copy()]
+
+        scene_geom[sn.scene_node_id] = {
+            "centroid": centroid,
+            "axis": axis,
+            "ports": ports,
+            "n_observations": len(geoms),
+        }
+    return scene_geom
 
 
-def _scene_cutoff(scene_centroids: dict[str, np.ndarray]) -> float | None:
-    if len(scene_centroids) < 2:
+def _scene_cutoff(scene_geom: dict[str, dict]) -> float | None:
+    if len(scene_geom) < 2:
         return None
-    pts = np.stack(list(scene_centroids.values()))
+    pts = np.stack([geom["centroid"] for geom in scene_geom.values()], axis=0)
     dists = np.linalg.norm(pts[:, None, :] - pts[None, :, :], axis=2)
     np.fill_diagonal(dists, np.inf)
     nn = dists.min(axis=1)
@@ -181,11 +307,11 @@ def _scene_cutoff(scene_centroids: dict[str, np.ndarray]) -> float | None:
     return float(np.median(nn)) * VGGT_3D_ADJACENCY_FACTOR
 
 
-def _knn_rank_map(scene_centroids: dict[str, np.ndarray]) -> dict[str, list[str]]:
-    if len(scene_centroids) < 2:
+def _knn_rank_map(scene_geom: dict[str, dict]) -> dict[str, list[str]]:
+    if len(scene_geom) < 2:
         return {}
-    ids = list(scene_centroids.keys())
-    pts = np.stack([scene_centroids[sid] for sid in ids])
+    ids = list(scene_geom.keys())
+    pts = np.stack([scene_geom[sid]["centroid"] for sid in ids], axis=0)
     dists = np.linalg.norm(pts[:, None, :] - pts[None, :, :], axis=2)
     np.fill_diagonal(dists, np.inf)
     rank_map: dict[str, list[str]] = {}
@@ -195,20 +321,179 @@ def _knn_rank_map(scene_centroids: dict[str, np.ndarray]) -> dict[str, list[str]
     return rank_map
 
 
+def _port_distance(geom_a: dict, geom_b: dict) -> float:
+    best = float("inf")
+    for port_a in geom_a["ports"]:
+        for port_b in geom_b["ports"]:
+            best = min(best, float(np.linalg.norm(port_a - port_b)))
+    return best
+
+
+def _axis_alignment(geom_a: dict, geom_b: dict) -> float:
+    axis_a = geom_a.get("axis")
+    axis_b = geom_b.get("axis")
+    if axis_a is None or axis_b is None:
+        return 0.0
+    return float(abs(np.dot(axis_a, axis_b)))
+
+
+def _pair_geometry_stats(geom_a: dict, geom_b: dict) -> dict:
+    centroid_dist = float(np.linalg.norm(geom_a["centroid"] - geom_b["centroid"]))
+    port_dist = _port_distance(geom_a, geom_b)
+    axis_alignment = _axis_alignment(geom_a, geom_b)
+    return {
+        "centroid_dist": centroid_dist,
+        "port_dist": port_dist,
+        "axis_alignment": axis_alignment,
+    }
+
+
+def _merge_duplicate_scene_nodes(
+    scene_nodes: list,
+    scene_geom: dict[str, dict],
+    cutoff: float | None,
+) -> tuple[list, list[dict]]:
+    """Merge scene nodes of the same component type whose VGGT centroids are too close.
+
+    Two merge criteria (both require identical fused_code):
+    - Confident merge  : distance < CONFIDENT_FACTOR * cutoff  (any n_observations)
+    - Tentative merge  : distance < TENTATIVE_FACTOR * cutoff
+                         AND min(n_obs_a, n_obs_b) <= LOW_OBS_THRESHOLD
+
+    The node with more observations is kept; its supporting_observed_ids absorbs the other.
+    Returns (updated_scene_nodes, merge_log).
+    """
+    if cutoff is None or len(scene_nodes) < 2:
+        return scene_nodes, []
+
+    confident_thr = cutoff * VGGT_3D_MERGE_CONFIDENT_FACTOR
+    tentative_thr = cutoff * VGGT_3D_MERGE_TENTATIVE_FACTOR
+
+    sn_by_id = {sn.scene_node_id: sn for sn in scene_nodes}
+
+    by_code: dict[int, list[str]] = defaultdict(list)
+    for sn in scene_nodes:
+        if sn.scene_node_id in scene_geom:
+            by_code[sn.fused_code].append(sn.scene_node_id)
+
+    to_drop: set[str] = set()
+    merge_log: list[dict] = []
+
+    for node_ids in by_code.values():
+        if len(node_ids) < 2:
+            continue
+        # Sort descending by n_observations so the most-observed node is always "a"
+        node_ids_sorted = sorted(
+            node_ids,
+            key=lambda nid: scene_geom[nid]["n_observations"],
+            reverse=True,
+        )
+        for i in range(len(node_ids_sorted)):
+            a_id = node_ids_sorted[i]
+            if a_id in to_drop:
+                continue
+            centroid_a = scene_geom[a_id]["centroid"]
+            n_obs_a = scene_geom[a_id]["n_observations"]
+            for j in range(i + 1, len(node_ids_sorted)):
+                b_id = node_ids_sorted[j]
+                if b_id in to_drop:
+                    continue
+                centroid_b = scene_geom[b_id]["centroid"]
+                n_obs_b = scene_geom[b_id]["n_observations"]
+                dist = float(np.linalg.norm(centroid_a - centroid_b))
+
+                if dist <= confident_thr:
+                    reason = "confident"
+                elif dist <= tentative_thr and min(n_obs_a, n_obs_b) <= VGGT_3D_MERGE_LOW_OBS_THRESHOLD:
+                    reason = "tentative_low_obs"
+                else:
+                    continue
+
+                sn_a = sn_by_id[a_id]
+                sn_b = sn_by_id[b_id]
+                # Absorb b's observations into a
+                sn_a.supporting_observed_ids = list(
+                    set(sn_a.supporting_observed_ids) | set(sn_b.supporting_observed_ids)
+                )
+                to_drop.add(b_id)
+                merge_log.append({
+                    "kept": a_id,
+                    "dropped": b_id,
+                    "dist_m": round(dist, 4),
+                    "n_obs_kept": n_obs_a,
+                    "n_obs_dropped": n_obs_b,
+                    "reason": reason,
+                })
+
+    if not to_drop:
+        return scene_nodes, []
+
+    merged = [sn for sn in scene_nodes if sn.scene_node_id not in to_drop]
+    return merged, merge_log
+
+
+def replay_merge_log(
+    scene_nodes: list,
+    merge_log: list[dict],
+    observed_graphs: list,
+) -> list:
+    """Re-apply a previously computed merge_log to a fresh set of SceneNodes.
+
+    Used when loading VGGT results from cache: the merge decisions are stored in
+    vggt_edge_debug.json and replayed here so that scene_nodes reflects the same
+    merged state as if build_vggt_edge_hints had run from scratch.
+    Entries whose IDs are not found in the current scene_nodes are silently skipped.
+    """
+    sn_by_id = {sn.scene_node_id: sn for sn in scene_nodes}
+    obs_to_image: dict[str, str] = {
+        obs_id: og.image_id
+        for og in observed_graphs
+        for obs_id in og.nodes
+    }
+
+    to_drop: set[str] = set()
+    for entry in merge_log:
+        kept_id = entry["kept"]
+        dropped_id = entry["dropped"]
+        if kept_id not in sn_by_id or dropped_id not in sn_by_id:
+            continue
+        sn_kept = sn_by_id[kept_id]
+        sn_dropped = sn_by_id[dropped_id]
+        sn_kept.supporting_observed_ids = list(
+            set(sn_kept.supporting_observed_ids) | set(sn_dropped.supporting_observed_ids)
+        )
+        to_drop.add(dropped_id)
+
+    if to_drop:
+        for sn in scene_nodes:
+            if sn.scene_node_id in to_drop:
+                continue
+            imgs = sorted({
+                obs_to_image[oid]
+                for oid in sn.supporting_observed_ids
+                if oid in obs_to_image
+            })
+            sn.support_images = imgs
+            sn.support_count = len(sn.supporting_observed_ids)
+
+    return [sn for sn in scene_nodes if sn.scene_node_id not in to_drop]
+
+
 def build_vggt_edge_hints(
     scene_nodes: list,
     observed_graphs: list,
     search_roots: list[Path],
 ) -> dict:
-    """Estimate scene-node 3D centroids and candidate edge hints from VGGT point maps."""
-    obs_to_scene = {}
-    sn_code = {}
+    """Estimate scene-node 3D geometry and candidate edge hints from VGGT point maps."""
+    obs_to_scene: dict[str, str] = {}
+    sn_code: dict[str, int] = {}
     for sn in scene_nodes:
         sn_code[sn.scene_node_id] = sn.fused_code
         for obs_id in sn.supporting_observed_ids:
             obs_to_scene[obs_id] = sn.scene_node_id
 
-    obs_centroids: dict[str, np.ndarray] = {}
+    image_ids = [og.image_id for og in observed_graphs]
+    obs_geometry: dict[str, dict] = {}
     loaded_images: dict[str, str] = {}
     skipped_images: list[dict] = []
 
@@ -232,93 +517,156 @@ def build_vggt_edge_hints(
 
         loaded_images[image_id] = str(chosen)
         for obs_id, obs_node in og.nodes.items():
-            centroid, _ = _bbox_centroid_from_pointmap(pointmap, list(obs_node.bbox))
-            if centroid is None:
+            geom = _estimate_observation_geometry(pointmap, list(obs_node.bbox))
+            if geom is None:
                 continue
-            obs_centroids[obs_id] = centroid
+            obs_geometry[obs_id] = geom
 
-    scene_centroids = _scene_centroids(obs_centroids, scene_nodes)
-    cutoff = _scene_cutoff(scene_centroids)
-    rank_map = _knn_rank_map(scene_centroids)
+    scene_geom = _aggregate_scene_geometry(obs_geometry, scene_nodes)
+    cutoff = _scene_cutoff(scene_geom)
 
-    pair_view_dists: dict[tuple[str, str], dict[str, float]] = defaultdict(dict)
+    # ── Duplicate-node merge via VGGT 3D centroids ──────────────────────────
+    scene_nodes, merge_log = _merge_duplicate_scene_nodes(scene_nodes, scene_geom, cutoff)
+    if merge_log:
+        # Build obs_id → image_id mapping to refresh support_images / support_count
+        obs_to_image: dict[str, str] = {}
+        for og in observed_graphs:
+            for obs_id in og.nodes:
+                obs_to_image[obs_id] = og.image_id
+        for sn in scene_nodes:
+            imgs = sorted({
+                obs_to_image[oid]
+                for oid in sn.supporting_observed_ids
+                if oid in obs_to_image
+            })
+            sn.support_images = imgs
+            sn.support_count = len(sn.supporting_observed_ids)
+        # Rebuild obs→scene and code maps on merged nodes
+        obs_to_scene = {}
+        sn_code = {}
+        for sn in scene_nodes:
+            sn_code[sn.scene_node_id] = sn.fused_code
+            for obs_id in sn.supporting_observed_ids:
+                obs_to_scene[obs_id] = sn.scene_node_id
+        # Recompute geometry on merged nodes
+        scene_geom = _aggregate_scene_geometry(obs_geometry, scene_nodes)
+        cutoff = _scene_cutoff(scene_geom)
+    # ────────────────────────────────────────────────────────────────────────
+
+    rank_map = _knn_rank_map(scene_geom)
+    port_cutoff = (cutoff * VGGT_3D_PORT_DISTANCE_FACTOR) if cutoff is not None else None
+
+    pair_view_stats: dict[tuple[str, str], dict[str, dict]] = defaultdict(dict)
     for og in observed_graphs:
         image_id = og.image_id
-        present_scene_nodes: list[str] = []
+        per_scene_obs: dict[str, str] = {}
         for obs_id in og.nodes:
             sn_id = obs_to_scene.get(obs_id)
-            if sn_id is None or obs_id not in obs_centroids:
+            if sn_id is None or obs_id not in obs_geometry:
                 continue
-            present_scene_nodes.append(sn_id)
-        present_scene_nodes = sorted(set(present_scene_nodes))
+            per_scene_obs.setdefault(sn_id, obs_id)
+
+        present_scene_nodes = sorted(per_scene_obs.keys())
         for i in range(len(present_scene_nodes)):
             for j in range(i + 1, len(present_scene_nodes)):
                 a = present_scene_nodes[i]
                 b = present_scene_nodes[j]
-                obs_a = next(
-                    (oid for oid in og.nodes if obs_to_scene.get(oid) == a and oid in obs_centroids),
-                    None,
-                )
-                obs_b = next(
-                    (oid for oid in og.nodes if obs_to_scene.get(oid) == b and oid in obs_centroids),
-                    None,
-                )
-                if obs_a is None or obs_b is None:
-                    continue
-                pair_view_dists[_norm_scene_pair(a, b)][image_id] = float(
-                    np.linalg.norm(obs_centroids[obs_a] - obs_centroids[obs_b])
+                pair_view_stats[_norm_scene_pair(a, b)][image_id] = _pair_geometry_stats(
+                    obs_geometry[per_scene_obs[a]],
+                    obs_geometry[per_scene_obs[b]],
                 )
 
     pair_hints: dict[tuple[str, str], dict] = {}
-    if cutoff is not None:
-        for pair, view_dists in pair_view_dists.items():
+    if cutoff is not None and port_cutoff is not None:
+        for pair, view_stats in pair_view_stats.items():
             a, b = pair
             code_pair = _norm_code_pair(sn_code.get(a, 0), sn_code.get(b, 0))
             if code_pair in FORBIDDEN_PAIRS:
                 continue
-
-            distances = list(view_dists.values())
-            if not distances:
+            if a not in scene_geom or b not in scene_geom:
                 continue
 
-            close_views = [img_id for img_id, dist in view_dists.items() if dist <= cutoff]
-            shared_views = len(view_dists)
-            close_count = len(close_views)
-            score = close_count / shared_views if shared_views > 0 else 0.0
+            centroid_distances = [stats["centroid_dist"] for stats in view_stats.values()]
+            port_distances = [stats["port_dist"] for stats in view_stats.values()]
+            alignments = [stats["axis_alignment"] for stats in view_stats.values()]
+            if not centroid_distances or not port_distances:
+                continue
+
+            geom_scene_stats = _pair_geometry_stats(scene_geom[a], scene_geom[b])
+            good_views = []
+            for img_id, stats in view_stats.items():
+                port_ok = stats["port_dist"] <= port_cutoff
+                centroid_ok = stats["centroid_dist"] <= cutoff
+                align_ok = stats["axis_alignment"] >= VGGT_3D_AXIS_ALIGNMENT_MIN
+                if port_ok and (centroid_ok or align_ok):
+                    good_views.append(img_id)
+
+            shared_views = len(view_stats)
+            vote_count = len(good_views)
+            score = vote_count / shared_views if shared_views > 0 else 0.0
 
             a_ranked = b in rank_map.get(a, [])
             b_ranked = a in rank_map.get(b, [])
-            if score < VGGT_3D_MIN_SCORE and not (a_ranked and b_ranked and close_count > 0):
+            mutual_topk = bool(a_ranked and b_ranked)
+            geom_bonus = 0.0
+            if geom_scene_stats["port_dist"] <= port_cutoff:
+                geom_bonus += 0.15
+            if geom_scene_stats["axis_alignment"] >= VGGT_3D_AXIS_ALIGNMENT_MIN:
+                geom_bonus += 0.10
+            final_score = min(1.0, score + geom_bonus)
+
+            if final_score < VGGT_3D_MIN_SCORE and not (mutual_topk and vote_count > 0):
                 continue
-            if close_count == 0:
+            if vote_count == 0:
                 continue
 
             pair_hints[pair] = {
-                "score": float(score),
+                "score": float(final_score),
+                "raw_score": float(score),
                 "shared_views": int(shared_views),
-                "vote_count": int(close_count),
-                "supporting_images": sorted(close_views),
-                "mean_dist": float(np.mean(distances)),
-                "min_dist": float(np.min(distances)),
-                "max_dist": float(np.max(distances)),
+                "vote_count": int(vote_count),
+                "supporting_images": sorted(good_views),
+                "mean_dist": float(np.mean(centroid_distances)),
+                "min_dist": float(np.min(centroid_distances)),
+                "max_dist": float(np.max(centroid_distances)),
+                "mean_port_dist": float(np.mean(port_distances)),
+                "min_port_dist": float(np.min(port_distances)),
+                "axis_alignment": float(np.mean(alignments)),
+                "scene_port_dist": float(geom_scene_stats["port_dist"]),
+                "scene_axis_alignment": float(geom_scene_stats["axis_alignment"]),
                 "cutoff": float(cutoff),
-                "mutual_topk": bool(a_ranked and b_ranked),
-                "scene_centroid_a": scene_centroids.get(a).tolist() if a in scene_centroids else None,
-                "scene_centroid_b": scene_centroids.get(b).tolist() if b in scene_centroids else None,
+                "port_cutoff": float(port_cutoff),
+                "mutual_topk": mutual_topk,
+                "scene_centroid_a": scene_geom[a]["centroid"].tolist(),
+                "scene_centroid_b": scene_geom[b]["centroid"].tolist(),
+                "scene_ports_a": [port.tolist() for port in scene_geom[a]["ports"]],
+                "scene_ports_b": [port.tolist() for port in scene_geom[b]["ports"]],
+                "scene_axis_a": scene_geom[a]["axis"].tolist() if scene_geom[a]["axis"] is not None else None,
+                "scene_axis_b": scene_geom[b]["axis"].tolist() if scene_geom[b]["axis"] is not None else None,
             }
 
     return {
         "enabled": True,
         "search_roots": [str(path) for path in search_roots],
+        "artifact_request": build_vggt_artifact_request(image_ids),
         "loaded_images": loaded_images,
         "skipped_images": skipped_images,
         "n_loaded_images": len(loaded_images),
-        "n_observation_centroids": len(obs_centroids),
-        "n_scene_centroids": len(scene_centroids),
+        "n_observation_geometries": len(obs_geometry),
+        "n_scene_geometries": len(scene_geom),
+        "n_merged_nodes": len(merge_log),
+        "merge_log": merge_log,
+        "_scene_nodes_merged": scene_nodes,  # updated SceneNode list for orchestrator
         "scene_cutoff": cutoff,
-        "scene_centroids": {
-            sid: centroid.tolist()
-            for sid, centroid in scene_centroids.items()
+        "port_cutoff": port_cutoff,
+        "scene_geometry": {
+            sid: {
+                "centroid": geom["centroid"].tolist(),
+                "ports": [port.tolist() for port in geom["ports"]],
+                "axis": geom["axis"].tolist() if geom["axis"] is not None else None,
+                "n_observations": geom["n_observations"],
+            }
+            for sid, geom in scene_geom.items()
         },
         "pair_hints": pair_hints,
         "pair_hints_serialized": [
@@ -328,7 +676,7 @@ def build_vggt_edge_hints(
             }
             for (a, b), hint in sorted(
                 pair_hints.items(),
-                key=lambda item: (-item[1]["vote_count"], item[1]["mean_dist"]),
+                key=lambda item: (-item[1]["score"], -item[1]["vote_count"], item[1]["mean_port_dist"]),
             )
         ],
     }

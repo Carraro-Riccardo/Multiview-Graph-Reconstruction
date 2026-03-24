@@ -1,8 +1,8 @@
 {
   "total_images": 5,
   "n_nodes": 17,
-  "n_edges": 16,
-  "is_connected": true,
+  "n_edges": 15,
+  "is_connected": false,
   "nodes": [
     {
       "id": "11#1",
@@ -116,7 +116,7 @@
         "node4_0006",
         "node4_0007"
       ],
-      "degree": 1,
+      "degree": 0,
       "max_degree": 1,
       "is_anchor": false
     },
@@ -197,7 +197,7 @@
         "node4_0006",
         "node4_0007"
       ],
-      "degree": 3,
+      "degree": 2,
       "max_degree": 3,
       "is_anchor": true
     },
@@ -290,7 +290,7 @@
     {
       "node_a": "11#1",
       "node_b": "195#2",
-      "support_count": 5,
+      "support_count": 12.5,
       "supporting_images": [
         "node4_0001",
         "node4_0002",
@@ -300,33 +300,17 @@
       ],
       "branch_support_count": 0,
       "knn_support_count": 5,
+      "vggt_support_count": 5,
+      "vggt_score": 1.0,
+      "vggt_min_distance": 0.03987913578748703,
+      "vggt_port_distance": 0.08102551847696304,
+      "vggt_axis_alignment": 0.9747073650360107,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "direct_adjacency"
-      ],
-      "weakened_by_reconciliation": false,
-      "expanded_by_paths": [],
-      "forced": false,
-      "forced_reason": null,
-      "consistency_score": 1.0,
-      "consistency_n_visible": 5
-    },
-    {
-      "node_a": "15#1",
-      "node_b": "116#1",
-      "support_count": 1,
-      "supporting_images": [
-        "node4_0004"
-      ],
-      "branch_support_count": 0,
-      "knn_support_count": 1,
-      "cooc_count": 0,
-      "triplet_support": 0,
-      "forbidden_flag": false,
-      "evidence_sources": [
-        "direct_adjacency"
+        "direct_adjacency",
+        "vggt_3d"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
@@ -338,18 +322,24 @@
     {
       "node_a": "15#1",
       "node_b": "95#1",
-      "support_count": 2,
+      "support_count": 5.0,
       "supporting_images": [
         "node4_0004",
         "node4_0006"
       ],
       "branch_support_count": 0,
       "knn_support_count": 2,
+      "vggt_support_count": 2,
+      "vggt_score": 0.5,
+      "vggt_min_distance": 0.04387814551591873,
+      "vggt_port_distance": 0.143203005194664,
+      "vggt_axis_alignment": 0.39790380001068115,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "direct_adjacency"
+        "direct_adjacency",
+        "vggt_3d"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
@@ -359,14 +349,19 @@
       "consistency_n_visible": 5
     },
     {
-      "node_a": "15#2",
-      "node_b": "95#3",
-      "support_count": 1,
+      "node_a": "15#1",
+      "node_b": "116#1",
+      "support_count": 1.0,
       "supporting_images": [
-        "node4_0007"
+        "node4_0004"
       ],
       "branch_support_count": 0,
       "knn_support_count": 1,
+      "vggt_support_count": 0,
+      "vggt_score": 0.0,
+      "vggt_min_distance": null,
+      "vggt_port_distance": null,
+      "vggt_axis_alignment": 0.0,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
@@ -378,17 +373,50 @@
       "forced": false,
       "forced_reason": null,
       "consistency_score": 1.0,
-      "consistency_n_visible": 2
+      "consistency_n_visible": 5
     },
     {
       "node_a": "15#2",
-      "node_b": "116#1",
-      "support_count": 1,
+      "node_b": "95#3",
+      "support_count": 2.5,
       "supporting_images": [
         "node4_0007"
       ],
       "branch_support_count": 0,
       "knn_support_count": 1,
+      "vggt_support_count": 1,
+      "vggt_score": 0.6,
+      "vggt_min_distance": 0.05987090989947319,
+      "vggt_port_distance": 0.1349998116493225,
+      "vggt_axis_alignment": 0.9101059436798096,
+      "cooc_count": 0,
+      "triplet_support": 0,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "direct_adjacency",
+        "vggt_3d"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": false,
+      "forced_reason": null,
+      "consistency_score": 1.0,
+      "consistency_n_visible": 2
+    },
+    {
+      "node_a": "15#2",
+      "node_b": "116#1",
+      "support_count": 1.0,
+      "supporting_images": [
+        "node4_0007"
+      ],
+      "branch_support_count": 0,
+      "knn_support_count": 1,
+      "vggt_support_count": 0,
+      "vggt_score": 0.0,
+      "vggt_min_distance": null,
+      "vggt_port_distance": null,
+      "vggt_axis_alignment": 0.0,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
@@ -404,18 +432,24 @@
     },
     {
       "node_a": "15#3",
-      "node_b": "116#1",
-      "support_count": 1,
+      "node_b": "95#1",
+      "support_count": 2.5,
       "supporting_images": [
-        "node4_0002"
+        "node4_0007"
       ],
       "branch_support_count": 0,
       "knn_support_count": 1,
+      "vggt_support_count": 1,
+      "vggt_score": 0.35,
+      "vggt_min_distance": 0.05614408850669861,
+      "vggt_port_distance": 0.12451903522014618,
+      "vggt_axis_alignment": 0.2379295825958252,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "direct_adjacency"
+        "direct_adjacency",
+        "vggt_3d"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
@@ -431,6 +465,11 @@
       "supporting_images": [],
       "branch_support_count": 0,
       "knn_support_count": 0,
+      "vggt_support_count": 0,
+      "vggt_score": 0.0,
+      "vggt_min_distance": null,
+      "vggt_port_distance": null,
+      "vggt_axis_alignment": 0.0,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
@@ -447,7 +486,7 @@
     {
       "node_a": "53#1",
       "node_b": "202#2",
-      "support_count": 5,
+      "support_count": 12.5,
       "supporting_images": [
         "node4_0001",
         "node4_0002",
@@ -457,11 +496,17 @@
       ],
       "branch_support_count": 0,
       "knn_support_count": 5,
+      "vggt_support_count": 5,
+      "vggt_score": 1.0,
+      "vggt_min_distance": 0.036652520298957825,
+      "vggt_port_distance": 0.06887289136648178,
+      "vggt_axis_alignment": 0.969211995601654,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "direct_adjacency"
+        "direct_adjacency",
+        "vggt_3d"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
@@ -473,7 +518,7 @@
     {
       "node_a": "53#1",
       "node_b": "202#3",
-      "support_count": 4,
+      "support_count": 10.0,
       "supporting_images": [
         "node4_0001",
         "node4_0002",
@@ -482,11 +527,17 @@
       ],
       "branch_support_count": 0,
       "knn_support_count": 4,
+      "vggt_support_count": 4,
+      "vggt_score": 1.0,
+      "vggt_min_distance": 0.08302241563796997,
+      "vggt_port_distance": 0.028816841542720795,
+      "vggt_axis_alignment": 0.3983897566795349,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "direct_adjacency"
+        "direct_adjacency",
+        "vggt_3d"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
@@ -498,18 +549,24 @@
     {
       "node_a": "53#2",
       "node_b": "95#3",
-      "support_count": 2,
+      "support_count": 5.0,
       "supporting_images": [
         "node4_0006",
         "node4_0007"
       ],
       "branch_support_count": 0,
       "knn_support_count": 2,
+      "vggt_support_count": 2,
+      "vggt_score": 1.0,
+      "vggt_min_distance": 0.03646572306752205,
+      "vggt_port_distance": 0.09688134491443634,
+      "vggt_axis_alignment": 0.711219310760498,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "direct_adjacency"
+        "direct_adjacency",
+        "vggt_3d"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
@@ -519,32 +576,9 @@
       "consistency_n_visible": 2
     },
     {
-      "node_a": "54#1",
-      "node_b": "95#1",
-      "support_count": 2,
-      "supporting_images": [
-        "node4_0004",
-        "node4_0006"
-      ],
-      "branch_support_count": 0,
-      "knn_support_count": 2,
-      "cooc_count": 0,
-      "triplet_support": 0,
-      "forbidden_flag": false,
-      "evidence_sources": [
-        "direct_adjacency"
-      ],
-      "weakened_by_reconciliation": false,
-      "expanded_by_paths": [],
-      "forced": false,
-      "forced_reason": null,
-      "consistency_score": 1.0,
-      "consistency_n_visible": 5
-    },
-    {
       "node_a": "75#1",
       "node_b": "95#2",
-      "support_count": 4,
+      "support_count": 10.0,
       "supporting_images": [
         "node4_0001",
         "node4_0002",
@@ -553,11 +587,17 @@
       ],
       "branch_support_count": 0,
       "knn_support_count": 4,
+      "vggt_support_count": 4,
+      "vggt_score": 1.0,
+      "vggt_min_distance": 0.044309843331575394,
+      "vggt_port_distance": 0.05641724541783333,
+      "vggt_axis_alignment": 0.9277405142784119,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "direct_adjacency"
+        "direct_adjacency",
+        "vggt_3d"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
@@ -569,7 +609,7 @@
     {
       "node_a": "95#2",
       "node_b": "202#1",
-      "support_count": 5,
+      "support_count": 12.5,
       "supporting_images": [
         "node4_0001",
         "node4_0002",
@@ -579,11 +619,17 @@
       ],
       "branch_support_count": 0,
       "knn_support_count": 5,
+      "vggt_support_count": 5,
+      "vggt_score": 1.0,
+      "vggt_min_distance": 0.0278481338173151,
+      "vggt_port_distance": 0.038645897060632706,
+      "vggt_axis_alignment": 0.9101947546005249,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "direct_adjacency"
+        "direct_adjacency",
+        "vggt_3d"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
@@ -595,7 +641,7 @@
     {
       "node_a": "195#1",
       "node_b": "202#1",
-      "support_count": 5,
+      "support_count": 12.5,
       "supporting_images": [
         "node4_0001",
         "node4_0002",
@@ -605,11 +651,17 @@
       ],
       "branch_support_count": 0,
       "knn_support_count": 5,
+      "vggt_support_count": 5,
+      "vggt_score": 1.0,
+      "vggt_min_distance": 0.050947993993759155,
+      "vggt_port_distance": 0.0675329938530922,
+      "vggt_axis_alignment": 0.8632255792617798,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "direct_adjacency"
+        "direct_adjacency",
+        "vggt_3d"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
@@ -621,7 +673,7 @@
     {
       "node_a": "195#1",
       "node_b": "202#2",
-      "support_count": 5,
+      "support_count": 8.0,
       "supporting_images": [
         "node4_0001",
         "node4_0002",
@@ -631,11 +683,17 @@
       ],
       "branch_support_count": 0,
       "knn_support_count": 5,
+      "vggt_support_count": 2,
+      "vggt_score": 0.5,
+      "vggt_min_distance": 0.08199004083871841,
+      "vggt_port_distance": 0.09701243042945862,
+      "vggt_axis_alignment": 0.9481092691421509,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "direct_adjacency"
+        "direct_adjacency",
+        "vggt_3d"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
@@ -647,7 +705,7 @@
     {
       "node_a": "195#2",
       "node_b": "202#3",
-      "support_count": 4,
+      "support_count": 10.0,
       "supporting_images": [
         "node4_0001",
         "node4_0002",
@@ -656,11 +714,17 @@
       ],
       "branch_support_count": 0,
       "knn_support_count": 4,
+      "vggt_support_count": 4,
+      "vggt_score": 1.0,
+      "vggt_min_distance": 0.06561735272407532,
+      "vggt_port_distance": 0.07822190225124359,
+      "vggt_axis_alignment": 0.9319791793823242,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "direct_adjacency"
+        "direct_adjacency",
+        "vggt_3d"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],

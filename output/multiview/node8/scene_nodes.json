@@ -14,10 +14,10 @@
     ],
     "supporting_observed_ids": [
       "node8_0001_8",
-      "node8_0005_5",
       "node8_0003_8",
-      "node8_0004_5",
-      "node8_0002_6"
+      "node8_0002_6",
+      "node8_0005_5",
+      "node8_0004_5"
     ],
     "local_structural_signature": {
       "self_code": 11,
@@ -48,10 +48,10 @@
     ],
     "supporting_observed_ids": [
       "node8_0001_3",
-      "node8_0005_3",
       "node8_0004_7",
       "node8_0002_7",
-      "node8_0003_6"
+      "node8_0003_6",
+      "node8_0005_3"
     ],
     "local_structural_signature": {
       "self_code": 11,
@@ -82,8 +82,8 @@
     ],
     "supporting_observed_ids": [
       "node8_0001_7",
-      "node8_0002_0",
       "node8_0003_5",
+      "node8_0002_0",
       "node8_0004_4",
       "node8_0005_4"
     ],
@@ -117,10 +117,10 @@
     ],
     "supporting_observed_ids": [
       "node8_0001_6",
-      "node8_0002_5",
       "node8_0003_3",
-      "node8_0005_7",
-      "node8_0004_6"
+      "node8_0002_5",
+      "node8_0004_6",
+      "node8_0005_7"
     ],
     "local_structural_signature": {
       "self_code": 15,
@@ -152,10 +152,10 @@
     ],
     "supporting_observed_ids": [
       "node8_0001_2",
-      "node8_0002_8",
       "node8_0003_4",
+      "node8_0004_8",
       "node8_0005_8",
-      "node8_0004_8"
+      "node8_0002_8"
     ],
     "local_structural_signature": {
       "self_code": 15,
@@ -188,8 +188,8 @@
     "supporting_observed_ids": [
       "node8_0001_4",
       "node8_0005_2",
-      "node8_0004_0",
       "node8_0003_7",
+      "node8_0004_0",
       "node8_0002_1"
     ],
     "local_structural_signature": {
@@ -220,8 +220,8 @@
     ],
     "supporting_observed_ids": [
       "node8_0001_5",
-      "node8_0005_1",
       "node8_0004_2",
+      "node8_0005_1",
       "node8_0003_0",
       "node8_0002_4"
     ],
@@ -254,8 +254,8 @@
     "supporting_observed_ids": [
       "node8_0001_1",
       "node8_0003_2",
-      "node8_0004_1",
       "node8_0005_0",
+      "node8_0004_1",
       "node8_0002_2"
     ],
     "local_structural_signature": {

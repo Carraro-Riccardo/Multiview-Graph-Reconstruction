@@ -253,6 +253,8 @@ def run_consistency_pass(
                 "vggt_support_count":      best_swap.vggt_support_count,
                 "vggt_score":              best_swap.vggt_score,
                 "vggt_min_distance":       best_swap.vggt_min_distance,
+                "vggt_port_distance":      best_swap.vggt_port_distance,
+                "vggt_axis_alignment":     best_swap.vggt_axis_alignment,
                 "cooc_count":              best_swap.cooc_count,
                 "triplet_support":         best_swap.triplet_support,
                 "forbidden_flag":          best_swap.forbidden_pair_flag,

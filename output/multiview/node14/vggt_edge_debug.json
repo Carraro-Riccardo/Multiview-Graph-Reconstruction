@@ -1,0 +1,276 @@
+{
+  "generation": {
+    "status": "ok",
+    "artifact_dir": "output\\multiview\\node14\\vggt",
+    "generated": true,
+    "returncode": 0,
+    "stdout": "Warning: Found images with different shapes: {(392, 518), (518, 518)}\n{\n  \"status\": \"ok\",\n  \"device\": \"cpu\",\n  \"model_id\": \"facebook/VGGT-1B\",\n  \"preprocess_mode\": \"crop\",\n  \"n_images\": 4,\n  \"elapsed_sec\": 383.844,\n  \"saved_files\": [\n    \"output\\\\multiview\\\\node14\\\\vggt\\\\node14_0001.npz\",\n    \"output\\\\multiview\\\\node14\\\\vggt\\\\node14_0002.npz\",\n    \"output\\\\multiview\\\\node14\\\\vggt\\\\node14_0003.npz\",\n    \"output\\\\multiview\\\\node14\\\\vggt\\\\node14_0004.npz\"\n  ]\n}\n",
+    "stderr": "",
+    "missing_files_before": [
+      "output\\multiview\\node14\\vggt\\node14_0001.npz",
+      "output\\multiview\\node14\\vggt\\node14_0002.npz",
+      "output\\multiview\\node14\\vggt\\node14_0003.npz",
+      "output\\multiview\\node14\\vggt\\node14_0004.npz"
+    ]
+  },
+  "enabled": true,
+  "search_roots": [
+    "output\\multiview\\node14\\vggt",
+    "output\\multiview\\node14",
+    "output\\vggt\\node14",
+    "output\\vggt"
+  ],
+  "artifact_request": {
+    "format_version": 1,
+    "description": "Per-view VGGT point maps required by the edge builder.",
+    "supported_formats": [
+      {
+        "suffix": ".npy",
+        "shape": "(H, W, 3)",
+        "dtype": "float32/float64",
+        "example_name": "node14_0001.npy"
+      },
+      {
+        "suffix": ".npz",
+        "keys": [
+          "world_points",
+          "points3d",
+          "points",
+          "xyz",
+          "pointmap"
+        ],
+        "shape": "(H, W, 3)",
+        "example_name": "node14_0001.npz"
+      },
+      {
+        "suffix": ".json",
+        "keys": [
+          "world_points",
+          "points3d",
+          "points",
+          "xyz",
+          "pointmap"
+        ],
+        "shape": "(H, W, 3)",
+        "example_name": "node14_0001.json"
+      }
+    ],
+    "expected_images": [
+      {
+        "image_id": "node14_0001",
+        "accepted_names": [
+          "node14_0001.npy",
+          "node14_0001.npz",
+          "node14_0001.json",
+          "node14_0001_world_points.npy",
+          "node14_0001_world_points.npz",
+          "node14_0001_world_points.json",
+          "node14_0001_pointmap.npy",
+          "node14_0001_pointmap.npz",
+          "node14_0001_pointmap.json"
+        ]
+      },
+      {
+        "image_id": "node14_0002",
+        "accepted_names": [
+          "node14_0002.npy",
+          "node14_0002.npz",
+          "node14_0002.json",
+          "node14_0002_world_points.npy",
+          "node14_0002_world_points.npz",
+          "node14_0002_world_points.json",
+          "node14_0002_pointmap.npy",
+          "node14_0002_pointmap.npz",
+          "node14_0002_pointmap.json"
+        ]
+      },
+      {
+        "image_id": "node14_0003",
+        "accepted_names": [
+          "node14_0003.npy",
+          "node14_0003.npz",
+          "node14_0003.json",
+          "node14_0003_world_points.npy",
+          "node14_0003_world_points.npz",
+          "node14_0003_world_points.json",
+          "node14_0003_pointmap.npy",
+          "node14_0003_pointmap.npz",
+          "node14_0003_pointmap.json"
+        ]
+      },
+      {
+        "image_id": "node14_0004",
+        "accepted_names": [
+          "node14_0004.npy",
+          "node14_0004.npz",
+          "node14_0004.json",
+          "node14_0004_world_points.npy",
+          "node14_0004_world_points.npz",
+          "node14_0004_world_points.json",
+          "node14_0004_pointmap.npy",
+          "node14_0004_pointmap.npz",
+          "node14_0004_pointmap.json"
+        ]
+      }
+    ]
+  },
+  "n_loaded_images": 4,
+  "n_scene_geometries": 3,
+  "scene_cutoff": 0.11328918635845185,
+  "port_cutoff": 0.09629580840468407,
+  "loaded_images": {
+    "node14_0001": "output\\multiview\\node14\\vggt\\node14_0001.npz",
+    "node14_0002": "output\\multiview\\node14\\vggt\\node14_0002.npz",
+    "node14_0003": "output\\multiview\\node14\\vggt\\node14_0003.npz",
+    "node14_0004": "output\\multiview\\node14\\vggt\\node14_0004.npz"
+  },
+  "skipped_images": [],
+  "scene_geometry": {
+    "83#1": {
+      "centroid": [
+        -0.02259717509150505,
+        -0.10850797593593597,
+        0.7697064876556396
+      ],
+      "ports": [
+        [
+          -0.017550047487020493,
+          -0.1150849312543869,
+          0.7455326318740845
+        ],
+        [
+          -0.08682338893413544,
+          -0.024814248085021973,
+          1.0773260593414307
+        ]
+      ],
+      "axis": [
+        -0.19749344885349274,
+        0.25735539197921753,
+        0.945919930934906
+      ],
+      "n_observations": 4
+    },
+    "119#1": {
+      "centroid": [
+        -0.17714673280715942,
+        -0.1692083477973938,
+        0.9490319490432739
+      ],
+      "ports": [
+        [
+          -0.14928509294986725,
+          -0.18247225880622864,
+          0.8896136283874512
+        ],
+        [
+          -0.22874435782432556,
+          -0.1446446031332016,
+          1.059070110321045
+        ]
+      ],
+      "axis": [
+        -0.4161357283592224,
+        0.19810700416564941,
+        0.8874596357345581
+      ],
+      "n_observations": 4
+    },
+    "159#1": {
+      "centroid": [
+        -0.14253386855125427,
+        -0.19512039422988892,
+        1.02095365524292
+      ],
+      "ports": [
+        [
+          -0.1329176127910614,
+          -0.1907413899898529,
+          0.9962229132652283
+        ],
+        [
+          -0.15794944763183594,
+          -0.20214027166366577,
+          1.0605988502502441
+        ]
+      ],
+      "axis": [
+        -0.3575689196586609,
+        -0.1628282368183136,
+        0.919582188129425
+      ],
+      "n_observations": 3
+    }
+  },
+  "pair_hints": [
+    {
+      "pair": [
+        "119#1",
+        "159#1"
+      ],
+      "score": 0.9166666666666666,
+      "raw_score": 0.6666666666666666,
+      "shared_views": 3,
+      "vote_count": 2,
+      "supporting_images": [
+        "node14_0002",
+        "node14_0004"
+      ],
+      "mean_dist": 0.13257512698570886,
+      "min_dist": 0.10939260572195053,
+      "max_dist": 0.15933039784431458,
+      "mean_port_dist": 0.10690612842639287,
+      "min_port_dist": 0.084062360227108,
+      "axis_alignment": 0.8616695205370585,
+      "scene_port_dist": 0.09121408313512802,
+      "scene_axis_alignment": 0.9326318502426147,
+      "cutoff": 0.11328918635845185,
+      "port_cutoff": 0.09629580840468407,
+      "mutual_topk": true,
+      "scene_centroid_a": [
+        -0.17714673280715942,
+        -0.1692083477973938,
+        0.9490319490432739
+      ],
+      "scene_centroid_b": [
+        -0.14253386855125427,
+        -0.19512039422988892,
+        1.02095365524292
+      ],
+      "scene_ports_a": [
+        [
+          -0.14928509294986725,
+          -0.18247225880622864,
+          0.8896136283874512
+        ],
+        [
+          -0.22874435782432556,
+          -0.1446446031332016,
+          1.059070110321045
+        ]
+      ],
+      "scene_ports_b": [
+        [
+          -0.1329176127910614,
+          -0.1907413899898529,
+          0.9962229132652283
+        ],
+        [
+          -0.15794944763183594,
+          -0.20214027166366577,
+          1.0605988502502441
+        ]
+      ],
+      "scene_axis_a": [
+        -0.4161357283592224,
+        0.19810700416564941,
+        0.8874596357345581
+      ],
+      "scene_axis_b": [
+        -0.3575689196586609,
+        -0.1628282368183136,
+        0.919582188129425
+      ]
+    }
+  ]
+}

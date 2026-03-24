@@ -70,7 +70,7 @@
     {
       "node_a": "15#1",
       "node_b": "95#1",
-      "support_count": 4,
+      "support_count": 7.0,
       "supporting_images": [
         "node6_0002",
         "node6_0003",
@@ -79,11 +79,17 @@
       ],
       "branch_support_count": 0,
       "knn_support_count": 4,
+      "vggt_support_count": 2,
+      "vggt_score": 0.75,
+      "vggt_min_distance": 0.4543338418006897,
+      "vggt_port_distance": 0.19291934370994568,
+      "vggt_axis_alignment": 0.8960021734237671,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "direct_adjacency"
+        "direct_adjacency",
+        "vggt_3d"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
@@ -95,12 +101,17 @@
     {
       "node_a": "15#1",
       "node_b": "95#2",
-      "support_count": 1,
+      "support_count": 1.0,
       "supporting_images": [
         "node6_0002"
       ],
       "branch_support_count": 0,
       "knn_support_count": 1,
+      "vggt_support_count": 0,
+      "vggt_score": 0.0,
+      "vggt_min_distance": null,
+      "vggt_port_distance": null,
+      "vggt_axis_alignment": 0.0,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
@@ -117,18 +128,24 @@
     {
       "node_a": "54#1",
       "node_b": "95#2",
-      "support_count": 2,
+      "support_count": 5.0,
       "supporting_images": [
         "node6_0002",
         "node6_0007"
       ],
       "branch_support_count": 0,
       "knn_support_count": 2,
+      "vggt_support_count": 2,
+      "vggt_score": 1.0,
+      "vggt_min_distance": 0.09391124546527863,
+      "vggt_port_distance": 0.10048095881938934,
+      "vggt_axis_alignment": 0.9864354133605957,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "direct_adjacency"
+        "direct_adjacency",
+        "vggt_3d"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],

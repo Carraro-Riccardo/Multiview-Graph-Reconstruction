@@ -117,18 +117,27 @@
   "edges": [
     {
       "node_a": "15#1",
-      "node_b": "116#1",
-      "support_count": 1,
+      "node_b": "95#1",
+      "support_count": 10.0,
       "supporting_images": [
-        "node11_0006"
+        "node11_0003",
+        "node11_0004",
+        "node11_0006",
+        "node11_0007"
       ],
       "branch_support_count": 0,
-      "knn_support_count": 1,
+      "knn_support_count": 4,
+      "vggt_support_count": 4,
+      "vggt_score": 1.0,
+      "vggt_min_distance": 0.03845525160431862,
+      "vggt_port_distance": 0.0428498201072216,
+      "vggt_axis_alignment": 0.9905819296836853,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "direct_adjacency"
+        "direct_adjacency",
+        "vggt_3d"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
@@ -139,16 +148,18 @@
     },
     {
       "node_a": "15#1",
-      "node_b": "95#1",
-      "support_count": 4,
+      "node_b": "116#1",
+      "support_count": 1.0,
       "supporting_images": [
-        "node11_0003",
-        "node11_0004",
-        "node11_0006",
-        "node11_0007"
+        "node11_0006"
       ],
       "branch_support_count": 0,
-      "knn_support_count": 4,
+      "knn_support_count": 1,
+      "vggt_support_count": 0,
+      "vggt_score": 0.0,
+      "vggt_min_distance": null,
+      "vggt_port_distance": null,
+      "vggt_axis_alignment": 0.0,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
@@ -165,7 +176,7 @@
     {
       "node_a": "15#2",
       "node_b": "95#2",
-      "support_count": 3,
+      "support_count": 7.5,
       "supporting_images": [
         "node11_0003",
         "node11_0004",
@@ -173,11 +184,17 @@
       ],
       "branch_support_count": 0,
       "knn_support_count": 3,
+      "vggt_support_count": 3,
+      "vggt_score": 1.0,
+      "vggt_min_distance": 0.06369020789861679,
+      "vggt_port_distance": 0.016013288870453835,
+      "vggt_axis_alignment": 0.9780691862106323,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "direct_adjacency"
+        "direct_adjacency",
+        "vggt_3d"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
@@ -193,6 +210,11 @@
       "supporting_images": [],
       "branch_support_count": 0,
       "knn_support_count": 0,
+      "vggt_support_count": 0,
+      "vggt_score": 0.0,
+      "vggt_min_distance": null,
+      "vggt_port_distance": null,
+      "vggt_axis_alignment": 0.0,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
@@ -209,7 +231,7 @@
     {
       "node_a": "15#3",
       "node_b": "95#3",
-      "support_count": 3,
+      "support_count": 3.0,
       "supporting_images": [
         "node11_0003",
         "node11_0004",
@@ -217,6 +239,11 @@
       ],
       "branch_support_count": 0,
       "knn_support_count": 3,
+      "vggt_support_count": 0,
+      "vggt_score": 0.0,
+      "vggt_min_distance": null,
+      "vggt_port_distance": null,
+      "vggt_axis_alignment": 0.0,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
@@ -237,6 +264,11 @@
       "supporting_images": [],
       "branch_support_count": 0,
       "knn_support_count": 0,
+      "vggt_support_count": 0,
+      "vggt_score": 0.0,
+      "vggt_min_distance": null,
+      "vggt_port_distance": null,
+      "vggt_axis_alignment": 0.0,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
