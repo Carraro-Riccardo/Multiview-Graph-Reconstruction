@@ -51,9 +51,19 @@ def run_multiview_pipeline(node_id: int, image_paths: list, output_dir: Path | N
     print(f"  views accepted : {len(observed_graphs)}/{len(image_paths)}")
     print(f"  total detections (post-filter) : {total_obs}")
 
-    print("\n  [Step 2] Node re-identification (multi-seed + co-association + soft-merge)")
+    # ── VGGT artefacts (needed for both re-id 3D constraints and edge hints) ───
+    vggt_edge_payload = {"enabled": False, "pair_hints": {}}
+    vggt_generation = {"status": "not_requested", "generated": False}
+    search_roots: list = []
+    if VGGT_EDGE_ENABLED:
+        vggt_generation = ensure_vggt_artifacts(output_dir, image_paths)
+        search_roots = build_vggt_search_roots(node_id, output_dir, WORK_DIR)
+
+    print("\n  [Step 2] Node re-identification (multi-seed + co-association + VGGT-3D + soft-merge)")
     _sep()
-    scene_nodes, _ = identify_scene_nodes(observed_graphs, image_paths=image_paths)
+    scene_nodes, _ = identify_scene_nodes(
+        observed_graphs, image_paths=image_paths, search_roots=search_roots
+    )
     save_json(output_dir / "scene_nodes.json", serialize_scene_nodes(scene_nodes))
 
     col = 16
@@ -68,11 +78,7 @@ def run_multiview_pipeline(node_id: int, image_paths: list, output_dir: Path | N
     _sep()
     print(f"  {len(scene_nodes)} scene nodes from {total_obs} observations")
 
-    vggt_edge_payload = {"enabled": False, "pair_hints": {}}
-    vggt_generation = {"status": "not_requested", "generated": False}
     if VGGT_EDGE_ENABLED:
-        vggt_generation = ensure_vggt_artifacts(output_dir, image_paths)
-        search_roots = build_vggt_search_roots(node_id, output_dir, WORK_DIR)
 
         # ── Cache check ────────────────────────────────────────────────────────
         # If all .npz files were already present AND vggt_edge_debug.json exists
