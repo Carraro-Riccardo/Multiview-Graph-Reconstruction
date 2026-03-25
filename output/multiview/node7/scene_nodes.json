@@ -83,13 +83,13 @@
       "node7_0005"
     ],
     "supporting_observed_ids": [
-      "node7_0003_0",
-      "node7_0001_4",
       "node7_0002_9",
       "node7_0002_2",
-      "node7_0001_6",
       "node7_0004_0",
-      "node7_0005_2"
+      "node7_0003_0",
+      "node7_0001_6",
+      "node7_0005_2",
+      "node7_0001_4"
     ],
     "local_structural_signature": {
       "self_code": 15,
@@ -312,8 +312,8 @@
     "supporting_observed_ids": [
       "node7_0001_12",
       "node7_0005_6",
-      "node7_0002_5",
       "node7_0003_4",
+      "node7_0002_5",
       "node7_0004_4"
     ],
     "local_structural_signature": {
@@ -376,15 +376,15 @@
       "node7_0005"
     ],
     "supporting_observed_ids": [
-      "node7_0005_7",
       "node7_0003_9",
-      "node7_0005_8",
-      "node7_0001_7",
+      "node7_0005_7",
       "node7_0004_9",
-      "node7_0004_1",
-      "node7_0002_7",
+      "node7_0001_7",
       "node7_0003_1",
       "node7_0002_10",
+      "node7_0004_1",
+      "node7_0002_7",
+      "node7_0005_8",
       "node7_0001_9"
     ],
     "local_structural_signature": {

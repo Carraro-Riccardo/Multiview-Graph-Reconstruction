@@ -1,7 +1,7 @@
 {
   "total_images": 7,
-  "n_nodes": 16,
-  "n_edges": 15,
+  "n_nodes": 14,
+  "n_edges": 13,
   "is_connected": true,
   "nodes": [
     {
@@ -84,11 +84,12 @@
       "code": 15,
       "name": "Saracinesca",
       "confidence": 0.8144827485084534,
-      "support_count": 5,
+      "support_count": 6,
       "support_images": [
         "node9_0001",
         "node9_0003",
         "node9_0004",
+        "node9_0005",
         "node9_0006",
         "node9_0007"
       ],
@@ -132,36 +133,11 @@
       "code": 15,
       "name": "Saracinesca",
       "confidence": 0.796716570854187,
-      "support_count": 2,
+      "support_count": 3,
       "support_images": [
+        "node9_0001",
         "node9_0003",
         "node9_0004"
-      ],
-      "degree": 2,
-      "max_degree": 2,
-      "is_anchor": false
-    },
-    {
-      "id": "15#7",
-      "code": 15,
-      "name": "Saracinesca",
-      "confidence": 0.8348127007484436,
-      "support_count": 1,
-      "support_images": [
-        "node9_0005"
-      ],
-      "degree": 1,
-      "max_degree": 2,
-      "is_anchor": false
-    },
-    {
-      "id": "15#8",
-      "code": 15,
-      "name": "Saracinesca",
-      "confidence": 0.658053457736969,
-      "support_count": 1,
-      "support_images": [
-        "node9_0001"
       ],
       "degree": 1,
       "max_degree": 2,
@@ -212,7 +188,7 @@
         "node9_0006",
         "node9_0007"
       ],
-      "degree": 2,
+      "degree": 1,
       "max_degree": 2,
       "is_anchor": false
     },
@@ -276,11 +252,14 @@
   "edges": [
     {
       "node_a": "11#1",
-      "node_b": "15#1",
-      "support_count": 0,
-      "supporting_images": [],
+      "node_b": "15#2",
+      "support_count": 2.0,
+      "supporting_images": [
+        "node9_0003",
+        "node9_0004"
+      ],
       "branch_support_count": 0,
-      "knn_support_count": 0,
+      "knn_support_count": 2,
       "vggt_support_count": 0,
       "vggt_score": 0.0,
       "vggt_min_distance": null,
@@ -290,30 +269,32 @@
       "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "structural_fallback"
+        "direct_adjacency"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
-      "forced": true,
-      "forced_reason": "spanning_tree_structural_fallback",
-      "consistency_score": 0.2857142857142857,
+      "forced": false,
+      "forced_reason": null,
+      "consistency_score": 0.42857142857142855,
       "consistency_n_visible": 7
     },
     {
       "node_a": "11#2",
-      "node_b": "255#2",
-      "support_count": 5.0,
+      "node_b": "15#1",
+      "support_count": 8.5,
       "supporting_images": [
-        "node9_0002",
-        "node9_0005"
+        "node9_0001",
+        "node9_0003",
+        "node9_0004",
+        "node9_0006"
       ],
       "branch_support_count": 0,
-      "knn_support_count": 2,
-      "vggt_support_count": 2,
-      "vggt_score": 0.5,
-      "vggt_min_distance": 0.12159350514411926,
-      "vggt_port_distance": 0.2608233094215393,
-      "vggt_axis_alignment": 0.2677282691001892,
+      "knn_support_count": 4,
+      "vggt_support_count": 3,
+      "vggt_score": 0.6,
+      "vggt_min_distance": 0.13979953527450562,
+      "vggt_port_distance": 0.12808264791965485,
+      "vggt_axis_alignment": 0.26480811834335327,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
@@ -325,24 +306,23 @@
       "expanded_by_paths": [],
       "forced": false,
       "forced_reason": null,
-      "consistency_score": 0.8,
-      "consistency_n_visible": 5
+      "consistency_score": 0.6666666666666666,
+      "consistency_n_visible": 6
     },
     {
       "node_a": "15#1",
-      "node_b": "95#1",
-      "support_count": 7.0,
+      "node_b": "255#1",
+      "support_count": 6.0,
       "supporting_images": [
         "node9_0001",
         "node9_0002",
         "node9_0003",
         "node9_0004",
         "node9_0005",
-        "node9_0006",
         "node9_0007"
       ],
       "branch_support_count": 0,
-      "knn_support_count": 7,
+      "knn_support_count": 6,
       "vggt_support_count": 0,
       "vggt_score": 0.0,
       "vggt_min_distance": null,
@@ -352,7 +332,8 @@
       "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "direct_adjacency"
+        "direct_adjacency",
+        "shortcut_candidate"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
@@ -395,52 +376,24 @@
       "consistency_n_visible": 6
     },
     {
-      "node_a": "15#2",
-      "node_b": "192#1",
-      "support_count": 3.0,
-      "supporting_images": [
-        "node9_0003",
-        "node9_0004",
-        "node9_0007"
-      ],
-      "branch_support_count": 0,
-      "knn_support_count": 3,
-      "vggt_support_count": 0,
-      "vggt_score": 0.0,
-      "vggt_min_distance": null,
-      "vggt_port_distance": null,
-      "vggt_axis_alignment": 0.0,
-      "cooc_count": 0,
-      "triplet_support": 0,
-      "forbidden_flag": false,
-      "evidence_sources": [
-        "direct_adjacency"
-      ],
-      "weakened_by_reconciliation": false,
-      "expanded_by_paths": [],
-      "forced": false,
-      "forced_reason": null,
-      "consistency_score": 1.0,
-      "consistency_n_visible": 7
-    },
-    {
       "node_a": "15#3",
       "node_b": "255#1",
-      "support_count": 9.5,
+      "support_count": 12.0,
       "supporting_images": [
         "node9_0001",
         "node9_0003",
         "node9_0004",
+        "node9_0005",
         "node9_0006",
         "node9_0007"
       ],
       "branch_support_count": 0,
-      "knn_support_count": 5,
-      "vggt_support_count": 3,
-      "vggt_score": 0.85,
+      "knn_support_count": 6,
+      "vggt_support_count": 4,
+      "vggt_score": 0.9166666666666666,
       "vggt_min_distance": 0.10994048416614532,
-      "vggt_port_distance": 0.10128655284643173,
-      "vggt_axis_alignment": 0.9009469747543335,
+      "vggt_port_distance": 0.10583741217851639,
+      "vggt_axis_alignment": 0.6383383274078369,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
@@ -453,7 +406,7 @@
       "forced": false,
       "forced_reason": null,
       "consistency_score": 1.0,
-      "consistency_n_visible": 5
+      "consistency_n_visible": 6
     },
     {
       "node_a": "15#3",
@@ -469,8 +422,8 @@
       "vggt_support_count": 3,
       "vggt_score": 0.85,
       "vggt_min_distance": 0.07633545249700546,
-      "vggt_port_distance": 0.07862306386232376,
-      "vggt_axis_alignment": 0.9909935593605042,
+      "vggt_port_distance": 0.07127714902162552,
+      "vggt_axis_alignment": 0.9981392025947571,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
@@ -573,102 +526,20 @@
     },
     {
       "node_a": "15#6",
-      "node_b": "255#1",
-      "support_count": 3.5,
-      "supporting_images": [
-        "node9_0003",
-        "node9_0004"
-      ],
-      "branch_support_count": 0,
-      "knn_support_count": 2,
-      "vggt_support_count": 1,
-      "vggt_score": 0.6,
-      "vggt_min_distance": 0.19424505531787872,
-      "vggt_port_distance": 0.1410466730594635,
-      "vggt_axis_alignment": 0.6759810447692871,
-      "cooc_count": 0,
-      "triplet_support": 0,
-      "forbidden_flag": false,
-      "evidence_sources": [
-        "direct_adjacency",
-        "vggt_3d"
-      ],
-      "weakened_by_reconciliation": false,
-      "expanded_by_paths": [],
-      "forced": false,
-      "forced_reason": null,
-      "consistency_score": 1.0,
-      "consistency_n_visible": 2
-    },
-    {
-      "node_a": "15#6",
       "node_b": "192#1",
-      "support_count": 2.0,
+      "support_count": 4.5,
       "supporting_images": [
+        "node9_0001",
         "node9_0003",
         "node9_0004"
       ],
       "branch_support_count": 0,
-      "knn_support_count": 2,
-      "vggt_support_count": 0,
-      "vggt_score": 0.0,
-      "vggt_min_distance": null,
-      "vggt_port_distance": null,
-      "vggt_axis_alignment": 0.0,
-      "cooc_count": 0,
-      "triplet_support": 0,
-      "forbidden_flag": false,
-      "evidence_sources": [
-        "direct_adjacency"
-      ],
-      "weakened_by_reconciliation": false,
-      "expanded_by_paths": [],
-      "forced": false,
-      "forced_reason": null,
-      "consistency_score": 1.0,
-      "consistency_n_visible": 2
-    },
-    {
-      "node_a": "15#7",
-      "node_b": "255#1",
-      "support_count": 1.0,
-      "supporting_images": [
-        "node9_0005"
-      ],
-      "branch_support_count": 0,
-      "knn_support_count": 1,
-      "vggt_support_count": 0,
-      "vggt_score": 0.0,
-      "vggt_min_distance": null,
-      "vggt_port_distance": null,
-      "vggt_axis_alignment": 0.0,
-      "cooc_count": 0,
-      "triplet_support": 0,
-      "forbidden_flag": false,
-      "evidence_sources": [
-        "direct_adjacency"
-      ],
-      "weakened_by_reconciliation": false,
-      "expanded_by_paths": [],
-      "forced": false,
-      "forced_reason": null,
-      "consistency_score": 1.0,
-      "consistency_n_visible": 1
-    },
-    {
-      "node_a": "15#8",
-      "node_b": "95#3",
-      "support_count": 2.5,
-      "supporting_images": [
-        "node9_0001"
-      ],
-      "branch_support_count": 0,
-      "knn_support_count": 1,
+      "knn_support_count": 3,
       "vggt_support_count": 1,
-      "vggt_score": 1.0,
-      "vggt_min_distance": 0.17010419070720673,
-      "vggt_port_distance": 0.12687146663665771,
-      "vggt_axis_alignment": 0.9281761050224304,
+      "vggt_score": 0.43333333333333335,
+      "vggt_min_distance": 0.12272365391254425,
+      "vggt_port_distance": 0.14404073357582092,
+      "vggt_axis_alignment": 0.5544508099555969,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
@@ -681,7 +552,7 @@
       "forced": false,
       "forced_reason": null,
       "consistency_score": 1.0,
-      "consistency_n_visible": 1
+      "consistency_n_visible": 3
     },
     {
       "node_a": "15#9",
@@ -710,6 +581,70 @@
       "forced_reason": null,
       "consistency_score": 1.0,
       "consistency_n_visible": 1
+    },
+    {
+      "node_a": "95#1",
+      "node_b": "255#2",
+      "support_count": 3.0,
+      "supporting_images": [
+        "node9_0003",
+        "node9_0004",
+        "node9_0007"
+      ],
+      "branch_support_count": 0,
+      "knn_support_count": 3,
+      "vggt_support_count": 0,
+      "vggt_score": 0.0,
+      "vggt_min_distance": null,
+      "vggt_port_distance": null,
+      "vggt_axis_alignment": 0.0,
+      "cooc_count": 0,
+      "triplet_support": 0,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "direct_adjacency",
+        "shortcut_candidate"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": false,
+      "forced_reason": null,
+      "consistency_score": 1.0,
+      "consistency_n_visible": 6
+    },
+    {
+      "node_a": "192#1",
+      "node_b": "255#1",
+      "support_count": 15.0,
+      "supporting_images": [
+        "node9_0001",
+        "node9_0002",
+        "node9_0003",
+        "node9_0004",
+        "node9_0005",
+        "node9_0006",
+        "node9_0007"
+      ],
+      "branch_support_count": 0,
+      "knn_support_count": 9,
+      "vggt_support_count": 4,
+      "vggt_score": 0.8214285714285714,
+      "vggt_min_distance": 0.13327564299106598,
+      "vggt_port_distance": 0.11399945616722107,
+      "vggt_axis_alignment": 0.8339576125144958,
+      "cooc_count": 0,
+      "triplet_support": 0,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "direct_adjacency",
+        "vggt_3d"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": false,
+      "forced_reason": null,
+      "consistency_score": 1.0,
+      "consistency_n_visible": 7
     }
   ]
 }

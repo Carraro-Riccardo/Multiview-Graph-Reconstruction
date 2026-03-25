@@ -1,6 +1,6 @@
 {
   "generation": {
-    "status": "ok",
+    "status": "stale_rerun",
     "artifact_dir": "output\\multiview\\node16\\vggt",
     "generated": true,
     "returncode": 0,

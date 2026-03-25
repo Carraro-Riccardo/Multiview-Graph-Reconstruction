@@ -14,9 +14,9 @@
     ],
     "supporting_observed_ids": [
       "node4_0001_2",
+      "node4_0002_6",
       "node4_0006_5",
       "node4_0004_1",
-      "node4_0002_6",
       "node4_0007_7"
     ],
     "local_structural_signature": {
@@ -116,16 +116,16 @@
     "supporting_observed_ids": [
       "node4_0001_13",
       "node4_0002_10",
-      "node4_0006_0",
-      "node4_0007_3"
+      "node4_0007_3",
+      "node4_0006_0"
     ],
     "local_structural_signature": {
       "self_code": 15,
       "nearby_code_histogram": {
         "53": 2,
         "116": 1,
-        "54": 1,
-        "95": 1
+        "95": 1,
+        "54": 1
       },
       "anchor_hint_score": 0.0,
       "terminal_hint_count": 3
@@ -150,8 +150,8 @@
     ],
     "supporting_observed_ids": [
       "node4_0006_4",
-      "node4_0001_9",
       "node4_0002_13",
+      "node4_0001_9",
       "node4_0007_14",
       "node4_0004_0"
     ],
@@ -184,8 +184,8 @@
     "supporting_observed_ids": [
       "node4_0001_15",
       "node4_0002_9",
-      "node4_0006_15",
-      "node4_0007_4"
+      "node4_0007_4",
+      "node4_0006_15"
     ],
     "local_structural_signature": {
       "self_code": 53,
@@ -249,8 +249,8 @@
     ],
     "supporting_observed_ids": [
       "node4_0001_6",
-      "node4_0002_12",
       "node4_0006_9",
+      "node4_0002_12",
       "node4_0004_11"
     ],
     "local_structural_signature": {
@@ -284,9 +284,9 @@
     "supporting_observed_ids": [
       "node4_0004_4",
       "node4_0006_12",
-      "node4_0007_5",
+      "node4_0001_5",
       "node4_0002_2",
-      "node4_0001_5"
+      "node4_0007_5"
     ],
     "local_structural_signature": {
       "self_code": 95,
@@ -384,8 +384,8 @@
     "supporting_observed_ids": [
       "node4_0001_11",
       "node4_0004_9",
-      "node4_0006_13",
       "node4_0002_11",
+      "node4_0006_13",
       "node4_0007_8"
     ],
     "local_structural_signature": {
@@ -418,10 +418,10 @@
     ],
     "supporting_observed_ids": [
       "node4_0001_10",
-      "node4_0006_3",
-      "node4_0007_13",
       "node4_0002_3",
-      "node4_0004_2"
+      "node4_0004_2",
+      "node4_0006_3",
+      "node4_0007_13"
     ],
     "local_structural_signature": {
       "self_code": 195,
@@ -453,8 +453,8 @@
     "supporting_observed_ids": [
       "node4_0001_3",
       "node4_0002_8",
-      "node4_0004_7",
       "node4_0006_6",
+      "node4_0004_7",
       "node4_0007_9"
     ],
     "local_structural_signature": {
@@ -524,8 +524,8 @@
     "supporting_observed_ids": [
       "node4_0006_10",
       "node4_0007_11",
-      "node4_0002_14",
       "node4_0001_14",
+      "node4_0002_14",
       "node4_0004_8"
     ],
     "local_structural_signature": {
@@ -558,8 +558,8 @@
     "supporting_observed_ids": [
       "node4_0001_4",
       "node4_0002_7",
-      "node4_0006_1",
-      "node4_0004_3"
+      "node4_0004_3",
+      "node4_0006_1"
     ],
     "local_structural_signature": {
       "self_code": 202,

@@ -31,7 +31,9 @@ from config import COMPONENT_INFO
 REID_MATCH_THRESHOLD      = 0.55   # min cosine sim for seed assignment acceptance
 REID_ALLOW_UNMATCHED      = True   # skip weak matches instead of forcing them
 
-COASSOC_MIN_RUNS          = 2      # min co-observations for a pair to count
+_COASSOC_MIN_RUNS_BASE    = 2      # immutable baseline for adaptive formula
+COASSOC_MIN_RUNS          = 2      # effective value; overridden per-call in identify_scene_nodes
+                                       # (adaptive formula: max(1, min(BASE, n_images // 3)))
 COASSOC_MIN_RATIO         = 0.60   # min same_group / co_observed ratio
 FINAL_GROUP_MIN_AFFINITY  = 0.60   # min mean affinity to join a greedy cluster
 
@@ -54,12 +56,18 @@ REID_USE_DIRECT_PAIRWISE = False
 # ── Instance-level neighbourhood enhancement ─────────────────────────────────
 # After computing the base pair affinity (co-association or direct pairwise),
 # run NBRHD_ROUNDS iterations of neighbourhood-augmented refinement.
-# In each round: cluster → build neighbourhood profiles per detection
-# (which cluster-IDs are the KNN neighbours of this detection?) → reweight
-# affinity as  α·visual  +  (1−α)·neighbourhood_instance_sim.
+#
+# Each round blends two signals:
+#   visual  — base co-association / pairwise cosine ratio  (weight NBRHD_ALPHA)
+#   cls_nbr — dynamic: cosine sim between cluster-ID histograms of KNN
+#             neighbours (which instances surround this detection?).
+#             Recomputed every round as clustering improves.
+#
+# Combined affinity:  α·visual + (1−α)·cls_nbr
+#
 # Set NBRHD_ROUNDS = 0 to disable.
 NBRHD_ROUNDS = 2
-NBRHD_ALPHA  = 0.65   # weight for visual (co-assoc) signal
+NBRHD_ALPHA  = 0.65   # weight for visual (co-assoc) signal vs neighbourhood
 
 
 # ── SceneNode (downstream-compatible) ───────────────────────────────────────
@@ -345,24 +353,19 @@ def _enhance_with_instance_neighborhoods(
     """
     Iteratively augment pair affinity with instance-level neighbourhood signal.
 
-    Each round:
-      1. Greedy-cluster using current pair_stats → cluster assignment.
-      2. For each detection D, build its neighbourhood profile:
-         a Counter of cluster-IDs of D's KNN neighbours in its image.
-         (KNN edges come from the observed-graph edge list.)
-      3. Two detections score higher if their neighbourhood profiles overlap,
-         i.e. they are surrounded by the same physical instances.
-      4. New ratio = NBRHD_ALPHA · visual_ratio + (1−NBRHD_ALPHA) · nbr_sim.
+    Each round blends:
+        visual  — base co-association / pairwise cosine ratio  (weight NBRHD_ALPHA)
+        cls_nbr — cosine sim between cluster-ID histograms of KNN neighbours.
+                  Recomputed every round as clustering improves.
 
-    Only pairs already present in base_pair_stats are updated; we never add
-    new pairs, so spurious long-range links cannot be introduced.
+    Combined affinity:  α·visual + (1−α)·cls_nbr
+
+    Only pairs already present in base_pair_stats are updated.
     """
     if NBRHD_ROUNDS == 0:
         return base_pair_stats
 
     # Build detection → set of KNN-neighbour detection IDs from observed graphs.
-    # Edges are cross-type KNN, so the profile naturally encodes the local
-    # structural context (which *types* and *instances* surround this detection).
     neighbors_of: dict[str, set[str]] = defaultdict(set)
     for og in observed_graphs:
         for edge in og.edges:
@@ -375,41 +378,41 @@ def _enhance_with_instance_neighborhoods(
         # Step 1 — provisional clustering
         assignment = _get_cluster_assignment(all_items, item_by_id, current_stats)
 
-        # Step 2 — neighbourhood profile per detection
-        nbr_profile: dict[str, dict[str, int]] = {}
+        # Step 2 — cluster-ID neighbourhood profile per detection
+        cls_nbr_profile: dict[str, dict[str, int]] = {}
         for det_id in item_by_id:
             profile: dict[str, int] = {}
             for nbr_id in neighbors_of.get(det_id, set()):
                 cid = assignment.get(nbr_id)
                 if cid:
                     profile[cid] = profile.get(cid, 0) + 1
-            nbr_profile[det_id] = profile
+            cls_nbr_profile[det_id] = profile
 
-        # Step 3 & 4 — compute enhanced affinity for every tracked pair
+        # Step 3 — blend visual + cls_nbr
         new_stats: dict[tuple, dict] = {}
-        n_nbr_signal = 0
+        n_signal = 0
         for key, st in base_pair_stats.items():
-            a, b = key
-            visual  = st["ratio"]
-            nbr_sim = _counter_cosine_sim(
-                nbr_profile.get(a, {}),
-                nbr_profile.get(b, {}),
+            a, b   = key
+            visual = st["ratio"]
+            cls_nbr = _counter_cosine_sim(
+                cls_nbr_profile.get(a, {}),
+                cls_nbr_profile.get(b, {}),
             )
-            combined = NBRHD_ALPHA * visual + (1.0 - NBRHD_ALPHA) * nbr_sim
-            if nbr_sim > 0:
-                n_nbr_signal += 1
+            combined = NBRHD_ALPHA * visual + (1.0 - NBRHD_ALPHA) * cls_nbr
+            if cls_nbr > 0:
+                n_signal += 1
             new_stats[key] = {
-                "same_group":   combined,
-                "co_observed":  st["co_observed"],
-                "ratio":        combined,
+                "same_group":  combined,
+                "co_observed": st["co_observed"],
+                "ratio":       combined,
                 "visual_ratio": visual,
-                "nbr_sim":      nbr_sim,
+                "cls_nbr_sim":  cls_nbr,
             }
 
         current_stats = new_stats
         print(
             f"  [ReID-Nbr] round {round_idx + 1}/{NBRHD_ROUNDS}: "
-            f"{n_nbr_signal}/{len(new_stats)} pairs have neighbourhood signal"
+            f"signal={n_signal}/{len(new_stats)}"
         )
 
     return current_stats
@@ -695,8 +698,19 @@ def identify_scene_nodes(
         return [], {"error": "no_items"}
 
     image_ids = sorted(items_by_image.keys())
+    n_images  = len(image_ids)
 
-    print(f"  [ReID] building embeddings done: {len(all_items)} instances across {len(image_ids)} views")
+    # Adaptive min-runs: scale the evidence bar with view count.
+    # In scenes with few images a detection can co-occur in at most
+    # (n_images − 1) seed runs; requiring 2 runs would block all singletons.
+    # Formula: max(1, min(BASE, n_images // 3))
+    #   ≤5 views  → 1   (most nodes)
+    #   6–8 views → 2   (unchanged from baseline)
+    global COASSOC_MIN_RUNS
+    COASSOC_MIN_RUNS = max(1, min(_COASSOC_MIN_RUNS_BASE, n_images // 3))
+
+    print(f"  [ReID] building embeddings done: {len(all_items)} instances across {n_images} views  "
+          f"(COASSOC_MIN_RUNS={COASSOC_MIN_RUNS})")
 
     if REID_USE_DIRECT_PAIRWISE:
         print(f"  [ReID] using direct pairwise cosine affinity (no seed runs)")

@@ -360,6 +360,11 @@ def _merge_duplicate_scene_nodes(
     - Tentative merge  : distance < TENTATIVE_FACTOR * cutoff
                          AND min(n_obs_a, n_obs_b) <= LOW_OBS_THRESHOLD
 
+    Singleton nodes (n_obs=1) are allowed as merge candidates in both regimes,
+    but only when their single image is NOT already present in the target cluster
+    (image-conflict guard). This prevents merging two distinct components that
+    happen to be spatially close but are both visible in the same view.
+
     The node with more observations is kept; its supporting_observed_ids absorbs the other.
     Returns (updated_scene_nodes, merge_log).
     """
@@ -401,13 +406,6 @@ def _merge_duplicate_scene_nodes(
                 centroid_b = scene_geom[b_id]["centroid"]
                 n_obs_b = scene_geom[b_id]["n_observations"]
 
-                # Single-observation nodes have unreliable VGGT geometry (only one
-                # frame's worth of data). Never use them as the merge candidate to
-                # avoid absorbing real GT components whose centroid happened to land
-                # close to a neighbour due to VGGT noise.
-                if n_obs_b < 2:
-                    continue
-
                 dist = float(np.linalg.norm(centroid_a - centroid_b))
 
                 if dist <= confident_thr:
@@ -416,6 +414,16 @@ def _merge_duplicate_scene_nodes(
                     reason = "tentative_low_obs"
                 else:
                     continue
+
+                # For singleton nodes (n_obs=1) guard against image conflicts:
+                # if the singleton's only image is already in the target cluster,
+                # they are different detections in the same view → distinct components.
+                if n_obs_b == 1:
+                    singleton_img = sn_by_id[b_id].supporting_observed_ids[0].rsplit("_", 1)[0]
+                    cluster_imgs  = {oid.rsplit("_", 1)[0]
+                                     for oid in sn_by_id[a_id].supporting_observed_ids}
+                    if singleton_img in cluster_imgs:
+                        continue
 
                 sn_a = sn_by_id[a_id]
                 sn_b = sn_by_id[b_id]

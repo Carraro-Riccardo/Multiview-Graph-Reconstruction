@@ -350,13 +350,11 @@
     },
     {
       "node_a": "15#1",
-      "node_b": "116#1",
-      "support_count": 1.0,
-      "supporting_images": [
-        "node4_0004"
-      ],
+      "node_b": "75#1",
+      "support_count": 0,
+      "supporting_images": [],
       "branch_support_count": 0,
-      "knn_support_count": 1,
+      "knn_support_count": 0,
       "vggt_support_count": 0,
       "vggt_score": 0.0,
       "vggt_min_distance": null,
@@ -366,14 +364,14 @@
       "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "direct_adjacency"
+        "structural_fallback"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
-      "forced": false,
-      "forced_reason": null,
+      "forced": true,
+      "forced_reason": "spanning_tree_structural_fallback",
       "consistency_score": 1.0,
-      "consistency_n_visible": 5
+      "consistency_n_visible": 4
     },
     {
       "node_a": "15#2",
@@ -388,7 +386,7 @@
       "vggt_score": 0.6,
       "vggt_min_distance": 0.05987090989947319,
       "vggt_port_distance": 0.1349998116493225,
-      "vggt_axis_alignment": 0.9101059436798096,
+      "vggt_axis_alignment": 0.9101058840751648,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
@@ -443,7 +441,7 @@
       "vggt_score": 0.35,
       "vggt_min_distance": 0.05614408850669861,
       "vggt_port_distance": 0.12451903522014618,
-      "vggt_axis_alignment": 0.2379295825958252,
+      "vggt_axis_alignment": 0.2379295974969864,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
@@ -460,11 +458,13 @@
     },
     {
       "node_a": "15#3",
-      "node_b": "75#1",
-      "support_count": 0,
-      "supporting_images": [],
+      "node_b": "116#1",
+      "support_count": 1.0,
+      "supporting_images": [
+        "node4_0002"
+      ],
       "branch_support_count": 0,
-      "knn_support_count": 0,
+      "knn_support_count": 1,
       "vggt_support_count": 0,
       "vggt_score": 0.0,
       "vggt_min_distance": null,
@@ -474,14 +474,14 @@
       "triplet_support": 0,
       "forbidden_flag": false,
       "evidence_sources": [
-        "structural_fallback"
+        "direct_adjacency"
       ],
       "weakened_by_reconciliation": false,
       "expanded_by_paths": [],
-      "forced": true,
-      "forced_reason": "spanning_tree_structural_fallback",
-      "consistency_score": 0.0,
-      "consistency_n_visible": 3
+      "forced": false,
+      "forced_reason": null,
+      "consistency_score": 0.5,
+      "consistency_n_visible": 4
     },
     {
       "node_a": "53#1",
@@ -687,7 +687,7 @@
       "vggt_score": 0.5,
       "vggt_min_distance": 0.08199004083871841,
       "vggt_port_distance": 0.09701243042945862,
-      "vggt_axis_alignment": 0.9481092691421509,
+      "vggt_axis_alignment": 0.9481093287467957,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
@@ -718,7 +718,7 @@
       "vggt_score": 1.0,
       "vggt_min_distance": 0.06561735272407532,
       "vggt_port_distance": 0.07822190225124359,
-      "vggt_axis_alignment": 0.9319791197776794,
+      "vggt_axis_alignment": 0.9319790601730347,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
