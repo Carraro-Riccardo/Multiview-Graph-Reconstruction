@@ -15,19 +15,19 @@
       "node9_0007"
     ],
     "supporting_observed_ids": [
-      "node9_0002_3",
-      "node9_0005_5",
+      "node9_0003_1",
+      "node9_0004_3",
       "node9_0007_0",
       "node9_0006_0",
-      "node9_0001_0",
-      "node9_0003_1",
-      "node9_0004_3"
+      "node9_0005_5",
+      "node9_0002_3",
+      "node9_0001_0"
     ],
     "local_structural_signature": {
       "self_code": 11,
       "nearby_code_histogram": {
-        "192": 2,
-        "15": 4
+        "15": 4,
+        "192": 2
       },
       "anchor_hint_score": 0.0,
       "terminal_hint_count": 7
@@ -52,18 +52,18 @@
       "node9_0006"
     ],
     "supporting_observed_ids": [
+      "node9_0001_5",
       "node9_0004_8",
       "node9_0003_5",
       "node9_0006_7",
-      "node9_0001_5",
-      "node9_0005_2",
-      "node9_0002_1"
+      "node9_0002_1",
+      "node9_0005_2"
     ],
     "local_structural_signature": {
       "self_code": 11,
       "nearby_code_histogram": {
-        "15": 10,
-        "255": 5
+        "255": 5,
+        "15": 10
       },
       "anchor_hint_score": 0.5,
       "terminal_hint_count": 6
@@ -77,7 +77,7 @@
     "scene_node_id": "15#1",
     "fused_code": 15,
     "fused_name": "Saracinesca",
-    "fused_confidence": 0.8020955068724496,
+    "fused_confidence": 0.7979088595935276,
     "support_count": 7,
     "support_images": [
       "node9_0001",
@@ -90,20 +90,20 @@
     ],
     "supporting_observed_ids": [
       "node9_0006_6",
-      "node9_0007_9",
-      "node9_0004_11",
-      "node9_0003_9",
+      "node9_0003_12",
+      "node9_0004_12",
       "node9_0001_8",
-      "node9_0002_0",
-      "node9_0005_0"
+      "node9_0002_9",
+      "node9_0005_6",
+      "node9_0007_9"
     ],
     "local_structural_signature": {
       "self_code": 15,
       "nearby_code_histogram": {
         "15": 6,
-        "11": 3,
-        "255": 6,
-        "95": 6
+        "11": 4,
+        "255": 8,
+        "95": 3
       },
       "anchor_hint_score": 1.0,
       "terminal_hint_count": 0
@@ -117,7 +117,48 @@
     "scene_node_id": "15#2",
     "fused_code": 15,
     "fused_name": "Saracinesca",
-    "fused_confidence": 0.8031651888574872,
+    "fused_confidence": 0.8174448779651097,
+    "support_count": 7,
+    "support_images": [
+      "node9_0001",
+      "node9_0002",
+      "node9_0003",
+      "node9_0004",
+      "node9_0005",
+      "node9_0006",
+      "node9_0007"
+    ],
+    "supporting_observed_ids": [
+      "node9_0003_0",
+      "node9_0004_0",
+      "node9_0007_4",
+      "node9_0006_1",
+      "node9_0001_1",
+      "node9_0005_3",
+      "node9_0002_7"
+    ],
+    "local_structural_signature": {
+      "self_code": 15,
+      "nearby_code_histogram": {
+        "192": 5,
+        "255": 9,
+        "15": 2,
+        "11": 1,
+        "95": 2
+      },
+      "anchor_hint_score": 0.8571428571428571,
+      "terminal_hint_count": 1
+    },
+    "max_degree": 2,
+    "anchor_hint_score": 0.8571428571428571,
+    "representative_branch_roles": [],
+    "representative_triplet_hints": []
+  },
+  {
+    "scene_node_id": "15#3",
+    "fused_code": 15,
+    "fused_name": "Saracinesca",
+    "fused_confidence": 0.8002033063343593,
     "support_count": 7,
     "support_images": [
       "node9_0001",
@@ -130,21 +171,20 @@
     ],
     "supporting_observed_ids": [
       "node9_0001_2",
-      "node9_0004_0",
-      "node9_0003_0",
-      "node9_0002_9",
-      "node9_0005_6",
       "node9_0007_2",
-      "node9_0006_5"
+      "node9_0006_5",
+      "node9_0005_0",
+      "node9_0002_0",
+      "node9_0003_3",
+      "node9_0004_2"
     ],
     "local_structural_signature": {
       "self_code": 15,
       "nearby_code_histogram": {
-        "255": 8,
+        "255": 6,
+        "95": 6,
         "192": 3,
-        "15": 3,
-        "11": 1,
-        "95": 2
+        "15": 2
       },
       "anchor_hint_score": 0.7142857142857143,
       "terminal_hint_count": 2
@@ -155,70 +195,30 @@
     "representative_triplet_hints": []
   },
   {
-    "scene_node_id": "15#3",
+    "scene_node_id": "15#4",
     "fused_code": 15,
     "fused_name": "Saracinesca",
-    "fused_confidence": 0.8144827485084534,
-    "support_count": 6,
+    "fused_confidence": 0.831578940153122,
+    "support_count": 4,
     "support_images": [
       "node9_0001",
       "node9_0003",
       "node9_0004",
-      "node9_0005",
-      "node9_0006",
-      "node9_0007"
+      "node9_0006"
     ],
     "supporting_observed_ids": [
-      "node9_0004_12",
-      "node9_0006_4",
-      "node9_0005_9",
-      "node9_0003_12",
-      "node9_0001_9",
-      "node9_0007_1"
+      "node9_0004_11",
+      "node9_0001_11",
+      "node9_0003_9",
+      "node9_0006_8"
     ],
     "local_structural_signature": {
       "self_code": 15,
       "nearby_code_histogram": {
-        "95": 4,
-        "255": 5,
-        "15": 4,
-        "11": 2
-      },
-      "anchor_hint_score": 1.0,
-      "terminal_hint_count": 0
-    },
-    "max_degree": 2,
-    "anchor_hint_score": 1.0,
-    "representative_branch_roles": [],
-    "representative_triplet_hints": []
-  },
-  {
-    "scene_node_id": "15#4",
-    "fused_code": 15,
-    "fused_name": "Saracinesca",
-    "fused_confidence": 0.8190805196762085,
-    "support_count": 5,
-    "support_images": [
-      "node9_0001",
-      "node9_0002",
-      "node9_0005",
-      "node9_0006",
-      "node9_0007"
-    ],
-    "supporting_observed_ids": [
-      "node9_0002_7",
-      "node9_0005_3",
-      "node9_0001_13",
-      "node9_0006_1",
-      "node9_0007_4"
-    ],
-    "local_structural_signature": {
-      "self_code": 15,
-      "nearby_code_histogram": {
+        "255": 3,
+        "11": 3,
         "95": 3,
-        "255": 9,
-        "192": 2,
-        "11": 1
+        "15": 3
       },
       "anchor_hint_score": 1.0,
       "terminal_hint_count": 0
@@ -232,23 +232,27 @@
     "scene_node_id": "15#5",
     "fused_code": 15,
     "fused_name": "Saracinesca",
-    "fused_confidence": 0.8331933915615082,
-    "support_count": 2,
+    "fused_confidence": 0.819303035736084,
+    "support_count": 4,
     "support_images": [
       "node9_0001",
-      "node9_0006"
+      "node9_0005",
+      "node9_0006",
+      "node9_0007"
     ],
     "supporting_observed_ids": [
-      "node9_0001_11",
-      "node9_0006_8"
+      "node9_0001_9",
+      "node9_0007_1",
+      "node9_0006_4",
+      "node9_0005_9"
     ],
     "local_structural_signature": {
       "self_code": 15,
       "nearby_code_histogram": {
-        "95": 1,
-        "15": 3,
-        "255": 1,
-        "11": 1
+        "95": 3,
+        "255": 4,
+        "15": 4,
+        "192": 1
       },
       "anchor_hint_score": 1.0,
       "terminal_hint_count": 0
@@ -262,23 +266,18 @@
     "scene_node_id": "15#6",
     "fused_code": 15,
     "fused_name": "Saracinesca",
-    "fused_confidence": 0.796716570854187,
-    "support_count": 3,
+    "fused_confidence": 0.8214570879936218,
+    "support_count": 1,
     "support_images": [
-      "node9_0001",
-      "node9_0003",
-      "node9_0004"
+      "node9_0001"
     ],
     "supporting_observed_ids": [
-      "node9_0004_2",
-      "node9_0003_3",
-      "node9_0001_12"
+      "node9_0001_13"
     ],
     "local_structural_signature": {
       "self_code": 15,
       "nearby_code_histogram": {
-        "192": 2,
-        "95": 2,
+        "95": 1,
         "255": 2
       },
       "anchor_hint_score": 1.0,
@@ -290,27 +289,29 @@
     "representative_triplet_hints": []
   },
   {
-    "scene_node_id": "15#9",
+    "scene_node_id": "15#7",
     "fused_code": 15,
     "fused_name": "Saracinesca",
-    "fused_confidence": 0.8346104621887207,
+    "fused_confidence": 0.658053457736969,
     "support_count": 1,
     "support_images": [
       "node9_0001"
     ],
     "supporting_observed_ids": [
-      "node9_0001_1"
+      "node9_0001_12"
     ],
     "local_structural_signature": {
       "self_code": 15,
       "nearby_code_histogram": {
+        "95": 1,
+        "15": 1,
         "192": 1
       },
-      "anchor_hint_score": 0.0,
-      "terminal_hint_count": 1
+      "anchor_hint_score": 1.0,
+      "terminal_hint_count": 0
     },
     "max_degree": 2,
-    "anchor_hint_score": 0.0,
+    "anchor_hint_score": 1.0,
     "representative_branch_roles": [],
     "representative_triplet_hints": []
   },
@@ -318,8 +319,8 @@
     "scene_node_id": "95#1",
     "fused_code": 95,
     "fused_name": "Bout bic.",
-    "fused_confidence": 0.8002005577087402,
-    "support_count": 10,
+    "fused_confidence": 0.8396631649562291,
+    "support_count": 7,
     "support_images": [
       "node9_0001",
       "node9_0002",
@@ -330,22 +331,55 @@
       "node9_0007"
     ],
     "supporting_observed_ids": [
-      "node9_0007_8",
-      "node9_0001_10",
-      "node9_0006_10",
-      "node9_0001_14",
-      "node9_0003_4",
-      "node9_0004_7",
-      "node9_0003_11",
-      "node9_0004_9",
       "node9_0002_2",
-      "node9_0005_4"
+      "node9_0005_4",
+      "node9_0006_10",
+      "node9_0007_8",
+      "node9_0004_7",
+      "node9_0003_4",
+      "node9_0001_10"
     ],
     "local_structural_signature": {
       "self_code": 95,
       "nearby_code_histogram": {
-        "255": 8,
-        "15": 7
+        "15": 8,
+        "255": 12
+      },
+      "anchor_hint_score": 0.8571428571428571,
+      "terminal_hint_count": 0
+    },
+    "max_degree": 2,
+    "anchor_hint_score": 0.8571428571428571,
+    "representative_branch_roles": [],
+    "representative_triplet_hints": []
+  },
+  {
+    "scene_node_id": "95#2",
+    "fused_code": 95,
+    "fused_name": "Bout bic.",
+    "fused_confidence": 0.8252135992050171,
+    "support_count": 5,
+    "support_images": [
+      "node9_0001",
+      "node9_0003",
+      "node9_0004",
+      "node9_0006",
+      "node9_0007"
+    ],
+    "supporting_observed_ids": [
+      "node9_0001_6",
+      "node9_0007_3",
+      "node9_0006_3",
+      "node9_0003_2",
+      "node9_0004_1"
+    ],
+    "local_structural_signature": {
+      "self_code": 95,
+      "nearby_code_histogram": {
+        "15": 6,
+        "255": 5,
+        "192": 2,
+        "95": 2
       },
       "anchor_hint_score": 1.0,
       "terminal_hint_count": 0
@@ -359,29 +393,25 @@
     "scene_node_id": "95#3",
     "fused_code": 95,
     "fused_name": "Bout bic.",
-    "fused_confidence": 0.8252135992050171,
-    "support_count": 5,
+    "fused_confidence": 0.8206108609835306,
+    "support_count": 3,
     "support_images": [
       "node9_0001",
       "node9_0003",
-      "node9_0004",
-      "node9_0006",
-      "node9_0007"
+      "node9_0004"
     ],
     "supporting_observed_ids": [
-      "node9_0006_3",
-      "node9_0007_3",
-      "node9_0003_2",
-      "node9_0004_1",
-      "node9_0001_6"
+      "node9_0001_14",
+      "node9_0004_9",
+      "node9_0003_11"
     ],
     "local_structural_signature": {
       "self_code": 95,
       "nearby_code_histogram": {
-        "15": 6,
-        "255": 5,
-        "192": 2,
-        "95": 2
+        "15": 4,
+        "255": 3,
+        "95": 1,
+        "11": 1
       },
       "anchor_hint_score": 1.0,
       "terminal_hint_count": 0
@@ -407,13 +437,13 @@
       "node9_0007"
     ],
     "supporting_observed_ids": [
+      "node9_0001_4",
+      "node9_0003_7",
+      "node9_0004_5",
       "node9_0007_5",
       "node9_0006_9",
       "node9_0002_5",
-      "node9_0005_10",
-      "node9_0003_7",
-      "node9_0004_5",
-      "node9_0001_4"
+      "node9_0005_10"
     ],
     "local_structural_signature": {
       "self_code": 192,
@@ -433,8 +463,8 @@
     "scene_node_id": "255#1",
     "fused_code": 255,
     "fused_name": "Tee rid.",
-    "fused_confidence": 0.7609626139913287,
-    "support_count": 12,
+    "fused_confidence": 0.75450256892613,
+    "support_count": 7,
     "support_images": [
       "node9_0001",
       "node9_0002",
@@ -445,26 +475,20 @@
       "node9_0007"
     ],
     "supporting_observed_ids": [
-      "node9_0005_1",
-      "node9_0001_15",
-      "node9_0003_10",
-      "node9_0007_6",
       "node9_0002_4",
-      "node9_0002_6",
-      "node9_0003_6",
-      "node9_0004_6",
-      "node9_0004_10",
-      "node9_0005_8",
-      "node9_0001_3",
-      "node9_0006_2"
+      "node9_0007_7",
+      "node9_0005_1",
+      "node9_0004_4",
+      "node9_0003_8",
+      "node9_0006_2",
+      "node9_0001_3"
     ],
     "local_structural_signature": {
       "self_code": 255,
       "nearby_code_histogram": {
-        "15": 10,
-        "95": 4,
-        "192": 6,
-        "11": 1
+        "15": 11,
+        "192": 7,
+        "95": 3
       },
       "anchor_hint_score": 1.0,
       "terminal_hint_count": 0
@@ -478,10 +502,44 @@
     "scene_node_id": "255#2",
     "fused_code": 255,
     "fused_name": "Tee rid.",
-    "fused_confidence": 0.738857497771581,
-    "support_count": 6,
+    "fused_confidence": 0.7582905173301697,
+    "support_count": 5,
     "support_images": [
       "node9_0001",
+      "node9_0002",
+      "node9_0003",
+      "node9_0004",
+      "node9_0005"
+    ],
+    "supporting_observed_ids": [
+      "node9_0001_15",
+      "node9_0003_6",
+      "node9_0004_10",
+      "node9_0005_7",
+      "node9_0002_8"
+    ],
+    "local_structural_signature": {
+      "self_code": 255,
+      "nearby_code_histogram": {
+        "15": 8,
+        "11": 5,
+        "255": 2
+      },
+      "anchor_hint_score": 1.0,
+      "terminal_hint_count": 0
+    },
+    "max_degree": 3,
+    "anchor_hint_score": 1.0,
+    "representative_branch_roles": [],
+    "representative_triplet_hints": []
+  },
+  {
+    "scene_node_id": "255#3",
+    "fused_code": 255,
+    "fused_name": "Tee rid.",
+    "fused_confidence": 0.7449074864387513,
+    "support_count": 5,
+    "support_images": [
       "node9_0002",
       "node9_0003",
       "node9_0004",
@@ -489,21 +547,44 @@
       "node9_0007"
     ],
     "supporting_observed_ids": [
-      "node9_0001_7",
-      "node9_0004_4",
-      "node9_0003_8",
-      "node9_0007_7",
-      "node9_0005_7",
-      "node9_0002_8"
+      "node9_0007_6",
+      "node9_0005_8",
+      "node9_0002_6",
+      "node9_0003_10",
+      "node9_0004_6"
     ],
     "local_structural_signature": {
       "self_code": 255,
       "nearby_code_histogram": {
-        "192": 4,
-        "15": 8,
-        "95": 2,
-        "11": 2,
-        "255": 2
+        "15": 7,
+        "95": 3,
+        "192": 5
+      },
+      "anchor_hint_score": 1.0,
+      "terminal_hint_count": 0
+    },
+    "max_degree": 3,
+    "anchor_hint_score": 1.0,
+    "representative_branch_roles": [],
+    "representative_triplet_hints": []
+  },
+  {
+    "scene_node_id": "255#4",
+    "fused_code": 255,
+    "fused_name": "Tee rid.",
+    "fused_confidence": 0.7978072166442871,
+    "support_count": 1,
+    "support_images": [
+      "node9_0001"
+    ],
+    "supporting_observed_ids": [
+      "node9_0001_7"
+    ],
+    "local_structural_signature": {
+      "self_code": 255,
+      "nearby_code_histogram": {
+        "192": 1,
+        "15": 2
       },
       "anchor_hint_score": 1.0,
       "terminal_hint_count": 0

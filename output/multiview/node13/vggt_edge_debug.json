@@ -1,6 +1,6 @@
 {
   "generation": {
-    "status": "stale_rerun",
+    "status": "already_present",
     "artifact_dir": "output\\multiview\\node13\\vggt",
     "generated": false,
     "missing_files": []

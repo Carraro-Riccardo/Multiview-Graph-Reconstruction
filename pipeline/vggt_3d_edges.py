@@ -24,6 +24,8 @@ from pathlib import Path
 import numpy as np
 
 from config import (
+    COOC_COUNTS,
+    COMPONENT_INFO,
     FORBIDDEN_PAIRS,
     VGGT_3D_ADJACENCY_FACTOR,
     VGGT_3D_AXIS_ALIGNMENT_MIN,
@@ -365,6 +367,10 @@ def _merge_duplicate_scene_nodes(
     (image-conflict guard). This prevents merging two distinct components that
     happen to be spatially close but are both visible in the same view.
 
+    Exception: if the singleton is *ultra-close* (dist < 2 cm and < 20% of
+    confident_thr) it is almost certainly a duplicate detection of the same
+    physical component in the same image, so the image-conflict guard is lifted.
+
     The node with more observations is kept; its supporting_observed_ids absorbs the other.
     Returns (updated_scene_nodes, merge_log).
     """
@@ -373,6 +379,9 @@ def _merge_duplicate_scene_nodes(
 
     confident_thr = cutoff * VGGT_3D_MERGE_CONFIDENT_FACTOR
     tentative_thr = cutoff * VGGT_3D_MERGE_TENTATIVE_FACTOR
+    # Threshold below which an image-conflicted singleton is treated as a pure
+    # duplicate detection (override the image-conflict guard).
+    dup_override_thr = min(confident_thr * 0.20, 0.020)
 
     sn_by_id = {sn.scene_node_id: sn for sn in scene_nodes}
 
@@ -418,12 +427,15 @@ def _merge_duplicate_scene_nodes(
                 # For singleton nodes (n_obs=1) guard against image conflicts:
                 # if the singleton's only image is already in the target cluster,
                 # they are different detections in the same view → distinct components.
+                # Exception: ultra-close distance → almost certainly a duplicate detection.
                 if n_obs_b == 1:
                     singleton_img = sn_by_id[b_id].supporting_observed_ids[0].rsplit("_", 1)[0]
                     cluster_imgs  = {oid.rsplit("_", 1)[0]
                                      for oid in sn_by_id[a_id].supporting_observed_ids}
-                    if singleton_img in cluster_imgs:
+                    if singleton_img in cluster_imgs and dist > dup_override_thr:
                         continue
+                    if singleton_img in cluster_imgs and dist <= dup_override_thr:
+                        reason = "dup_override"
 
                 sn_a = sn_by_id[a_id]
                 sn_b = sn_by_id[b_id]
@@ -446,6 +458,90 @@ def _merge_duplicate_scene_nodes(
 
     merged = [sn for sn in scene_nodes if sn.scene_node_id not in to_drop]
     return merged, merge_log
+
+
+# ── Majority-vote code correction ─────────────────────────────────────────────
+
+def _majority_vote_code(
+    obs_ids: list[str],
+    obs_to_code: dict[str, int],
+    neighbor_codes: list[int],
+) -> int | None:
+    """Return the majority-vote hydraulic code for a set of observations.
+
+    When votes are tied, use COOC_COUNTS compatibility with co-occurring
+    neighbor codes to break the tie. Falls back to the first winner if no
+    COOC data is available.
+    """
+    from collections import Counter
+    votes: Counter = Counter(obs_to_code[oid] for oid in obs_ids if oid in obs_to_code)
+    if not votes:
+        return None
+    max_count = max(votes.values())
+    winners = [code for code, cnt in votes.items() if cnt == max_count]
+    if len(winners) == 1:
+        return winners[0]
+    if neighbor_codes:
+        scores = {
+            code: sum(
+                COOC_COUNTS.get((min(code, n), max(code, n)), 0)
+                for n in neighbor_codes
+            )
+            for code in winners
+        }
+        return max(scores, key=lambda c: scores[c])
+    return winners[0]
+
+
+def _apply_majority_vote_codes(
+    scene_nodes: list,
+    observed_graphs: list,
+) -> tuple[list, list[dict]]:
+    """Recompute fused_code / fused_name for each scene node via majority vote.
+
+    Returns (scene_nodes, vote_log) where vote_log records nodes whose code
+    was corrected.  scene_nodes is the same list, mutated in place.
+    """
+    obs_to_code: dict[str, int] = {}
+    for og in observed_graphs:
+        for obs_id, obs_node in og.nodes.items():
+            obs_to_code[obs_id] = obs_node.code
+
+    # Build image → set-of-scene-nodes map for neighbour-code lookup
+    img_to_sn_ids: dict[str, set[str]] = defaultdict(set)
+    for sn in scene_nodes:
+        for oid in sn.supporting_observed_ids:
+            img = oid.rsplit("_", 1)[0]
+            img_to_sn_ids[img].add(sn.scene_node_id)
+
+    sn_by_id = {sn.scene_node_id: sn for sn in scene_nodes}
+
+    vote_log: list[dict] = []
+    for sn in scene_nodes:
+        # Neighbour codes: codes of other scene nodes co-visible in the same images
+        neighbour_codes: list[int] = []
+        for oid in sn.supporting_observed_ids:
+            img = oid.rsplit("_", 1)[0]
+            for nid in img_to_sn_ids[img]:
+                if nid != sn.scene_node_id and nid in sn_by_id:
+                    neighbour_codes.append(sn_by_id[nid].fused_code)
+
+        new_code = _majority_vote_code(sn.supporting_observed_ids, obs_to_code, neighbour_codes)
+        if new_code is None or new_code == sn.fused_code:
+            continue
+
+        old_code = sn.fused_code
+        sn.fused_code = new_code
+        info = COMPONENT_INFO.get(new_code, {})
+        sn.fused_name = info.get("name", str(new_code))
+        vote_log.append({
+            "scene_node_id": sn.scene_node_id,
+            "old_code":      old_code,
+            "new_code":      new_code,
+            "n_obs":         len(sn.supporting_observed_ids),
+        })
+
+    return scene_nodes, vote_log
 
 
 def replay_merge_log(
@@ -541,15 +637,17 @@ def build_vggt_edge_hints(
     scene_geom = _aggregate_scene_geometry(obs_geometry, scene_nodes)
     cutoff = _scene_cutoff(scene_geom)
 
-    # ── Duplicate-node merge via VGGT 3D centroids ──────────────────────────
+    # ── Duplicate-node merge via VGGT 3D centroids (pass 1) ─────────────────
     scene_nodes, merge_log = _merge_duplicate_scene_nodes(scene_nodes, scene_geom, cutoff)
-    if merge_log:
-        # Build obs_id → image_id mapping to refresh support_images / support_count
-        obs_to_image: dict[str, str] = {}
-        for og in observed_graphs:
-            for obs_id in og.nodes:
-                obs_to_image[obs_id] = og.image_id
-        for sn in scene_nodes:
+    vote_log: list[dict] = []
+
+    def _refresh_support(sns):
+        obs_to_image: dict[str, str] = {
+            obs_id: og.image_id
+            for og in observed_graphs
+            for obs_id in og.nodes
+        }
+        for sn in sns:
             imgs = sorted({
                 obs_to_image[oid]
                 for oid in sn.supporting_observed_ids
@@ -557,6 +655,9 @@ def build_vggt_edge_hints(
             })
             sn.support_images = imgs
             sn.support_count = len(sn.supporting_observed_ids)
+
+    if merge_log:
+        _refresh_support(scene_nodes)
         # Rebuild obs→scene and code maps on merged nodes
         obs_to_scene = {}
         sn_code = {}
@@ -567,6 +668,30 @@ def build_vggt_edge_hints(
         # Recompute geometry on merged nodes
         scene_geom = _aggregate_scene_geometry(obs_geometry, scene_nodes)
         cutoff = _scene_cutoff(scene_geom)
+
+    # ── Majority-vote code correction ────────────────────────────────────────
+    scene_nodes, vote_log = _apply_majority_vote_codes(scene_nodes, observed_graphs)
+
+    # ── Second merge pass: picks up same-code nodes after code corrections ───
+    merge_log_2: list[dict] = []
+    if vote_log:
+        scene_geom = _aggregate_scene_geometry(obs_geometry, scene_nodes)
+        cutoff = _scene_cutoff(scene_geom)
+        scene_nodes, merge_log_2 = _merge_duplicate_scene_nodes(scene_nodes, scene_geom, cutoff)
+        if merge_log_2:
+            _refresh_support(scene_nodes)
+            scene_geom = _aggregate_scene_geometry(obs_geometry, scene_nodes)
+            cutoff = _scene_cutoff(scene_geom)
+        merge_log = merge_log + merge_log_2
+
+    if merge_log or vote_log:
+        # Rebuild obs→scene and code maps after all merges / corrections
+        obs_to_scene = {}
+        sn_code = {}
+        for sn in scene_nodes:
+            sn_code[sn.scene_node_id] = sn.fused_code
+            for obs_id in sn.supporting_observed_ids:
+                obs_to_scene[obs_id] = sn.scene_node_id
     # ────────────────────────────────────────────────────────────────────────
 
     rank_map = _knn_rank_map(scene_geom)

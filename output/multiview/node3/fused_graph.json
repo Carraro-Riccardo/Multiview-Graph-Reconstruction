@@ -8,7 +8,7 @@
       "id": "11#1",
       "code": 11,
       "name": "Giunto",
-      "confidence": 0.8077141761779785,
+      "confidence": 0.8094795227050782,
       "support_count": 5,
       "support_images": [
         "node3_0005",
@@ -25,11 +25,12 @@
       "id": "11#2",
       "code": 11,
       "name": "Giunto",
-      "confidence": 0.8062867522239685,
-      "support_count": 4,
+      "confidence": 0.8077141761779785,
+      "support_count": 5,
       "support_images": [
         "node3_0005",
         "node3_0006",
+        "node3_0008",
         "node3_0010",
         "node3_0011"
       ],
@@ -41,12 +42,11 @@
       "id": "11#3",
       "code": 11,
       "name": "Giunto",
-      "confidence": 0.8077066739400228,
-      "support_count": 3,
+      "confidence": 0.8163493275642395,
+      "support_count": 2,
       "support_images": [
         "node3_0008",
-        "node3_0010",
-        "node3_0011"
+        "node3_0010"
       ],
       "degree": 1,
       "max_degree": 1,
@@ -56,10 +56,10 @@
       "id": "11#4",
       "code": 11,
       "name": "Giunto",
-      "confidence": 0.8279047012329102,
+      "confidence": 0.7960754632949829,
       "support_count": 1,
       "support_images": [
-        "node3_0008"
+        "node3_0011"
       ],
       "degree": 1,
       "max_degree": 1,
@@ -69,7 +69,7 @@
       "id": "15#1",
       "code": 15,
       "name": "Saracinesca",
-      "confidence": 0.8320305943489075,
+      "confidence": 0.8339835405349731,
       "support_count": 3,
       "support_images": [
         "node3_0008",
@@ -113,7 +113,7 @@
       "id": "15#4",
       "code": 15,
       "name": "Saracinesca",
-      "confidence": 0.8317413330078125,
+      "confidence": 0.828811913728714,
       "support_count": 2,
       "support_images": [
         "node3_0010",
@@ -178,7 +178,7 @@
       "id": "95#1",
       "code": 95,
       "name": "Bout bic.",
-      "confidence": 0.8051244616508484,
+      "confidence": 0.7949710726737976,
       "support_count": 5,
       "support_images": [
         "node3_0005",
@@ -195,7 +195,7 @@
       "id": "95#2",
       "code": 95,
       "name": "Bout bic.",
-      "confidence": 0.7925966382026672,
+      "confidence": 0.802750027179718,
       "support_count": 5,
       "support_images": [
         "node3_0005",
@@ -246,38 +246,6 @@
   "edges": [
     {
       "node_a": "11#1",
-      "node_b": "53#3",
-      "support_count": 12.5,
-      "supporting_images": [
-        "node3_0005",
-        "node3_0006",
-        "node3_0008",
-        "node3_0010",
-        "node3_0011"
-      ],
-      "branch_support_count": 0,
-      "knn_support_count": 5,
-      "vggt_support_count": 5,
-      "vggt_score": 1.0,
-      "vggt_min_distance": 0.037781182676553726,
-      "vggt_port_distance": 0.03138905018568039,
-      "vggt_axis_alignment": 0.45731067657470703,
-      "cooc_count": 0,
-      "triplet_support": 0,
-      "forbidden_flag": false,
-      "evidence_sources": [
-        "direct_adjacency",
-        "vggt_3d"
-      ],
-      "weakened_by_reconciliation": false,
-      "expanded_by_paths": [],
-      "forced": false,
-      "forced_reason": null,
-      "consistency_score": 1.0,
-      "consistency_n_visible": 5
-    },
-    {
-      "node_a": "11#2",
       "node_b": "53#2",
       "support_count": 0,
       "supporting_images": [],
@@ -299,7 +267,39 @@
       "forced": true,
       "forced_reason": "spanning_tree_structural_fallback",
       "consistency_score": 0.0,
-      "consistency_n_visible": 4
+      "consistency_n_visible": 5
+    },
+    {
+      "node_a": "11#2",
+      "node_b": "53#3",
+      "support_count": 12.5,
+      "supporting_images": [
+        "node3_0005",
+        "node3_0006",
+        "node3_0008",
+        "node3_0010",
+        "node3_0011"
+      ],
+      "branch_support_count": 0,
+      "knn_support_count": 5,
+      "vggt_support_count": 5,
+      "vggt_score": 1.0,
+      "vggt_min_distance": 0.037781182676553726,
+      "vggt_port_distance": 0.03209444880485535,
+      "vggt_axis_alignment": 0.6520630121231079,
+      "cooc_count": 0,
+      "triplet_support": 0,
+      "forbidden_flag": false,
+      "evidence_sources": [
+        "direct_adjacency",
+        "vggt_3d"
+      ],
+      "weakened_by_reconciliation": false,
+      "expanded_by_paths": [],
+      "forced": false,
+      "forced_reason": null,
+      "consistency_score": 1.0,
+      "consistency_n_visible": 5
     },
     {
       "node_a": "11#3",
@@ -323,8 +323,8 @@
       "expanded_by_paths": [],
       "forced": true,
       "forced_reason": "spanning_tree_structural_fallback",
-      "consistency_score": 0.6666666666666666,
-      "consistency_n_visible": 3
+      "consistency_score": 0.0,
+      "consistency_n_visible": 2
     },
     {
       "node_a": "11#4",
@@ -348,8 +348,8 @@
       "expanded_by_paths": [],
       "forced": true,
       "forced_reason": "spanning_tree_structural_fallback",
-      "consistency_score": null,
-      "consistency_n_visible": 0
+      "consistency_score": 0.0,
+      "consistency_n_visible": 1
     },
     {
       "node_a": "15#1",
@@ -364,9 +364,9 @@
       "knn_support_count": 3,
       "vggt_support_count": 3,
       "vggt_score": 1.0,
-      "vggt_min_distance": 0.05827975645661354,
-      "vggt_port_distance": 0.0595870316028595,
-      "vggt_axis_alignment": 0.6440818309783936,
+      "vggt_min_distance": 0.05878609046339989,
+      "vggt_port_distance": 0.05539087578654289,
+      "vggt_axis_alignment": 0.9406927824020386,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
@@ -393,10 +393,10 @@
       "branch_support_count": 0,
       "knn_support_count": 3,
       "vggt_support_count": 1,
-      "vggt_score": 0.5833333333333333,
+      "vggt_score": 0.43333333333333335,
       "vggt_min_distance": 0.05793870985507965,
-      "vggt_port_distance": 0.053917501121759415,
-      "vggt_axis_alignment": 0.8487347960472107,
+      "vggt_port_distance": 0.061535101383924484,
+      "vggt_axis_alignment": 0.8967369198799133,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
@@ -502,9 +502,9 @@
       "knn_support_count": 2,
       "vggt_support_count": 2,
       "vggt_score": 1.0,
-      "vggt_min_distance": 0.059198930859565735,
-      "vggt_port_distance": 0.05057579651474953,
-      "vggt_axis_alignment": 0.7411039471626282,
+      "vggt_min_distance": 0.05827975645661354,
+      "vggt_port_distance": 0.053914815187454224,
+      "vggt_axis_alignment": 0.7017437219619751,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
@@ -549,21 +549,22 @@
     },
     {
       "node_a": "53#1",
-      "node_b": "95#2",
-      "support_count": 10.0,
+      "node_b": "95#1",
+      "support_count": 12.5,
       "supporting_images": [
         "node3_0005",
         "node3_0006",
+        "node3_0008",
         "node3_0010",
         "node3_0011"
       ],
       "branch_support_count": 0,
-      "knn_support_count": 4,
-      "vggt_support_count": 4,
+      "knn_support_count": 5,
+      "vggt_support_count": 5,
       "vggt_score": 1.0,
       "vggt_min_distance": 0.047151900827884674,
-      "vggt_port_distance": 0.0540219247341156,
-      "vggt_axis_alignment": 0.9996107816696167,
+      "vggt_port_distance": 0.050351452082395554,
+      "vggt_axis_alignment": 0.9967465996742249,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
@@ -580,21 +581,22 @@
     },
     {
       "node_a": "53#2",
-      "node_b": "95#1",
-      "support_count": 10.0,
+      "node_b": "95#2",
+      "support_count": 12.5,
       "supporting_images": [
         "node3_0005",
         "node3_0006",
+        "node3_0008",
         "node3_0010",
         "node3_0011"
       ],
       "branch_support_count": 0,
-      "knn_support_count": 4,
-      "vggt_support_count": 4,
-      "vggt_score": 0.9500000000000001,
+      "knn_support_count": 5,
+      "vggt_support_count": 5,
+      "vggt_score": 1.0,
       "vggt_min_distance": 0.029208466410636902,
-      "vggt_port_distance": 0.020321663469076157,
-      "vggt_axis_alignment": 0.029248639941215515,
+      "vggt_port_distance": 0.03423220291733742,
+      "vggt_axis_alignment": 0.9655528664588928,
       "cooc_count": 0,
       "triplet_support": 0,
       "forbidden_flag": false,
@@ -612,7 +614,7 @@
     {
       "node_a": "53#3",
       "node_b": "95#3",
-      "support_count": 11.0,
+      "support_count": 8.0,
       "supporting_images": [
         "node3_0005",
         "node3_0006",
@@ -622,10 +624,10 @@
       ],
       "branch_support_count": 0,
       "knn_support_count": 5,
-      "vggt_support_count": 4,
-      "vggt_score": 1.0,
+      "vggt_support_count": 2,
+      "vggt_score": 0.65,
       "vggt_min_distance": 0.06225108727812767,
-      "vggt_port_distance": 0.05785026401281357,
+      "vggt_port_distance": 0.05785026773810387,
       "vggt_axis_alignment": 0.9994148015975952,
       "cooc_count": 0,
       "triplet_support": 0,

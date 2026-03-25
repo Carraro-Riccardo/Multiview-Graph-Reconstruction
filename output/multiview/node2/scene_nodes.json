@@ -16,8 +16,8 @@
       "node2_0004_9",
       "node2_0007_0",
       "node2_0005_7",
-      "node2_0002_11",
-      "node2_0003_10"
+      "node2_0003_10",
+      "node2_0002_11"
     ],
     "local_structural_signature": {
       "self_code": 11,
@@ -38,8 +38,8 @@
     "scene_node_id": "15#1",
     "fused_code": 15,
     "fused_name": "Saracinesca",
-    "fused_confidence": 0.7783336162567138,
-    "support_count": 10,
+    "fused_confidence": 0.8043681859970093,
+    "support_count": 5,
     "support_images": [
       "node2_0002",
       "node2_0003",
@@ -48,27 +48,55 @@
       "node2_0007"
     ],
     "supporting_observed_ids": [
-      "node2_0004_3",
+      "node2_0007_1",
       "node2_0005_3",
-      "node2_0005_10",
-      "node2_0004_8",
-      "node2_0007_11",
-      "node2_0007_9",
-      "node2_0003_11",
-      "node2_0002_12",
-      "node2_0002_5",
-      "node2_0003_3"
+      "node2_0004_3",
+      "node2_0003_3",
+      "node2_0002_12"
     ],
     "local_structural_signature": {
       "self_code": 15,
       "nearby_code_histogram": {
-        "95": 2,
-        "53": 2,
-        "15": 4,
-        "116": 2,
-        "77": 2,
-        "202": 1,
-        "190": 1
+        "116": 3,
+        "95": 5,
+        "53": 4,
+        "15": 2
+      },
+      "anchor_hint_score": 0.8,
+      "terminal_hint_count": 0
+    },
+    "max_degree": 2,
+    "anchor_hint_score": 0.8,
+    "representative_branch_roles": [],
+    "representative_triplet_hints": []
+  },
+  {
+    "scene_node_id": "15#2",
+    "fused_code": 15,
+    "fused_name": "Saracinesca",
+    "fused_confidence": 0.7486976742744446,
+    "support_count": 5,
+    "support_images": [
+      "node2_0002",
+      "node2_0003",
+      "node2_0004",
+      "node2_0005",
+      "node2_0007"
+    ],
+    "supporting_observed_ids": [
+      "node2_0007_9",
+      "node2_0004_7",
+      "node2_0003_5",
+      "node2_0002_3",
+      "node2_0005_1"
+    ],
+    "local_structural_signature": {
+      "self_code": 15,
+      "nearby_code_histogram": {
+        "202": 5,
+        "190": 1,
+        "95": 4,
+        "116": 4
       },
       "anchor_hint_score": 0.8,
       "terminal_hint_count": 0
@@ -82,7 +110,7 @@
     "scene_node_id": "15#3",
     "fused_code": 15,
     "fused_name": "Saracinesca",
-    "fused_confidence": 0.7888335227966309,
+    "fused_confidence": 0.8241395115852356,
     "support_count": 5,
     "support_images": [
       "node2_0002",
@@ -92,21 +120,22 @@
       "node2_0007"
     ],
     "supporting_observed_ids": [
-      "node2_0002_3",
-      "node2_0003_5",
-      "node2_0004_7",
-      "node2_0005_1",
-      "node2_0007_1"
+      "node2_0004_8",
+      "node2_0005_10",
+      "node2_0003_11",
+      "node2_0002_5",
+      "node2_0007_11"
     ],
     "local_structural_signature": {
       "self_code": 15,
       "nearby_code_histogram": {
-        "95": 5,
-        "116": 5,
-        "202": 4
+        "116": 4,
+        "77": 2,
+        "15": 4,
+        "95": 2
       },
       "anchor_hint_score": 0.8,
-      "terminal_hint_count": 0
+      "terminal_hint_count": 1
     },
     "max_degree": 2,
     "anchor_hint_score": 0.8,
@@ -117,43 +146,7 @@
     "scene_node_id": "53#1",
     "fused_code": 53,
     "fused_name": "Tubo",
-    "fused_confidence": 0.8133815407752991,
-    "support_count": 5,
-    "support_images": [
-      "node2_0002",
-      "node2_0003",
-      "node2_0004",
-      "node2_0005",
-      "node2_0007"
-    ],
-    "supporting_observed_ids": [
-      "node2_0004_1",
-      "node2_0005_0",
-      "node2_0007_7",
-      "node2_0003_8",
-      "node2_0002_8"
-    ],
-    "local_structural_signature": {
-      "self_code": 53,
-      "nearby_code_histogram": {
-        "202": 3,
-        "95": 2,
-        "11": 2,
-        "15": 2
-      },
-      "anchor_hint_score": 0.4,
-      "terminal_hint_count": 3
-    },
-    "max_degree": 2,
-    "anchor_hint_score": 0.4,
-    "representative_branch_roles": [],
-    "representative_triplet_hints": []
-  },
-  {
-    "scene_node_id": "53#2",
-    "fused_code": 53,
-    "fused_name": "Tubo",
-    "fused_confidence": 0.8214931130409241,
+    "fused_confidence": 0.8113572001457214,
     "support_count": 5,
     "support_images": [
       "node2_0002",
@@ -164,24 +157,56 @@
     ],
     "supporting_observed_ids": [
       "node2_0004_4",
+      "node2_0002_8",
       "node2_0005_8",
-      "node2_0007_4",
-      "node2_0003_0",
-      "node2_0002_2"
+      "node2_0003_8",
+      "node2_0007_4"
     ],
     "local_structural_signature": {
       "self_code": 53,
       "nearby_code_histogram": {
-        "95": 3,
-        "11": 3,
-        "15": 2,
-        "202": 2
+        "95": 5,
+        "11": 5,
+        "15": 4
       },
-      "anchor_hint_score": 0.4,
-      "terminal_hint_count": 2
+      "anchor_hint_score": 0.8,
+      "terminal_hint_count": 0
     },
     "max_degree": 2,
-    "anchor_hint_score": 0.4,
+    "anchor_hint_score": 0.8,
+    "representative_branch_roles": [],
+    "representative_triplet_hints": []
+  },
+  {
+    "scene_node_id": "53#2",
+    "fused_code": 53,
+    "fused_name": "Tubo",
+    "fused_confidence": 0.8235174536705017,
+    "support_count": 5,
+    "support_images": [
+      "node2_0002",
+      "node2_0003",
+      "node2_0004",
+      "node2_0005",
+      "node2_0007"
+    ],
+    "supporting_observed_ids": [
+      "node2_0004_1",
+      "node2_0002_2",
+      "node2_0005_0",
+      "node2_0003_0",
+      "node2_0007_7"
+    ],
+    "local_structural_signature": {
+      "self_code": 53,
+      "nearby_code_histogram": {
+        "202": 5
+      },
+      "anchor_hint_score": 0.0,
+      "terminal_hint_count": 5
+    },
+    "max_degree": 2,
+    "anchor_hint_score": 0.0,
     "representative_branch_roles": [],
     "representative_triplet_hints": []
   },
@@ -200,10 +225,10 @@
     ],
     "supporting_observed_ids": [
       "node2_0002_1",
-      "node2_0003_2",
-      "node2_0007_5",
       "node2_0004_5",
-      "node2_0005_2"
+      "node2_0003_2",
+      "node2_0005_2",
+      "node2_0007_5"
     ],
     "local_structural_signature": {
       "self_code": 77,
@@ -233,8 +258,8 @@
     ],
     "supporting_observed_ids": [
       "node2_0004_6",
-      "node2_0005_6",
       "node2_0007_3",
+      "node2_0005_6",
       "node2_0002_9",
       "node2_0003_12"
     ],
@@ -267,9 +292,9 @@
     ],
     "supporting_observed_ids": [
       "node2_0002_6",
+      "node2_0005_12",
       "node2_0003_9",
-      "node2_0004_11",
-      "node2_0005_12"
+      "node2_0004_11"
     ],
     "local_structural_signature": {
       "self_code": 95,
@@ -301,8 +326,8 @@
     ],
     "supporting_observed_ids": [
       "node2_0002_7",
-      "node2_0003_6",
       "node2_0005_11",
+      "node2_0003_6",
       "node2_0004_12",
       "node2_0007_2"
     ],
@@ -334,9 +359,9 @@
     ],
     "supporting_observed_ids": [
       "node2_0002_0",
-      "node2_0003_1",
-      "node2_0005_5",
       "node2_0004_0",
+      "node2_0005_5",
+      "node2_0003_1",
       "node2_0007_6"
     ],
     "local_structural_signature": {
@@ -358,7 +383,7 @@
     "scene_node_id": "202#1",
     "fused_code": 202,
     "fused_name": "Antisfilo",
-    "fused_confidence": 0.7875269889831543,
+    "fused_confidence": 0.8082124948501587,
     "support_count": 5,
     "support_images": [
       "node2_0002",
@@ -368,25 +393,24 @@
       "node2_0007"
     ],
     "supporting_observed_ids": [
-      "node2_0004_2",
-      "node2_0005_4",
-      "node2_0007_8",
+      "node2_0004_10",
+      "node2_0005_9",
+      "node2_0003_4",
       "node2_0002_4",
-      "node2_0003_4"
+      "node2_0007_10"
     ],
     "local_structural_signature": {
       "self_code": 202,
       "nearby_code_histogram": {
-        "53": 3,
+        "95": 4,
         "190": 5,
-        "95": 2,
-        "15": 2
+        "15": 5
       },
-      "anchor_hint_score": 0.4,
+      "anchor_hint_score": 0.8,
       "terminal_hint_count": 0
     },
     "max_degree": 2,
-    "anchor_hint_score": 0.4,
+    "anchor_hint_score": 0.8,
     "representative_branch_roles": [],
     "representative_triplet_hints": []
   },
@@ -394,7 +418,7 @@
     "scene_node_id": "202#2",
     "fused_code": 202,
     "fused_name": "Antisfilo",
-    "fused_confidence": 0.8233719110488892,
+    "fused_confidence": 0.8026864051818847,
     "support_count": 5,
     "support_images": [
       "node2_0002",
@@ -406,24 +430,22 @@
     "supporting_observed_ids": [
       "node2_0002_10",
       "node2_0003_7",
-      "node2_0007_10",
-      "node2_0005_9",
-      "node2_0004_10"
+      "node2_0005_4",
+      "node2_0004_2",
+      "node2_0007_8"
     ],
     "local_structural_signature": {
       "self_code": 202,
       "nearby_code_histogram": {
-        "53": 2,
+        "53": 5,
         "190": 5,
-        "202": 2,
-        "15": 3,
-        "95": 2
+        "202": 2
       },
-      "anchor_hint_score": 0.8,
+      "anchor_hint_score": 0.4,
       "terminal_hint_count": 0
     },
     "max_degree": 2,
-    "anchor_hint_score": 0.8,
+    "anchor_hint_score": 0.4,
     "representative_branch_roles": [],
     "representative_triplet_hints": []
   }

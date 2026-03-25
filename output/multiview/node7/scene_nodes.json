@@ -3,7 +3,7 @@
     "scene_node_id": "15#1",
     "fused_code": 15,
     "fused_name": "Saracinesca",
-    "fused_confidence": 0.8092057466506958,
+    "fused_confidence": 0.8099052786827088,
     "support_count": 5,
     "support_images": [
       "node7_0001",
@@ -13,21 +13,22 @@
       "node7_0005"
     ],
     "supporting_observed_ids": [
-      "node7_0001_1",
-      "node7_0002_8",
-      "node7_0003_2",
-      "node7_0004_2",
-      "node7_0005_1"
+      "node7_0003_0",
+      "node7_0004_0",
+      "node7_0001_6",
+      "node7_0005_2",
+      "node7_0002_9"
     ],
     "local_structural_signature": {
       "self_code": 15,
       "nearby_code_histogram": {
-        "95": 7,
-        "255": 3,
-        "15": 1
+        "75": 3,
+        "95": 4,
+        "15": 2,
+        "255": 1
       },
       "anchor_hint_score": 0.4,
-      "terminal_hint_count": 1
+      "terminal_hint_count": 2
     },
     "max_degree": 2,
     "anchor_hint_score": 0.4,
@@ -39,7 +40,7 @@
     "fused_code": 15,
     "fused_name": "Saracinesca",
     "fused_confidence": 0.8318857908248901,
-    "support_count": 5,
+    "support_count": 7,
     "support_images": [
       "node7_0001",
       "node7_0002",
@@ -49,10 +50,12 @@
     ],
     "supporting_observed_ids": [
       "node7_0003_7",
+      "node7_0001_8",
       "node7_0004_7",
       "node7_0002_0",
-      "node7_0001_8",
-      "node7_0005_3"
+      "node7_0005_3",
+      "node7_0001_3",
+      "node7_0002_8"
     ],
     "local_structural_signature": {
       "self_code": 15,
@@ -73,37 +76,32 @@
     "scene_node_id": "15#3",
     "fused_code": 15,
     "fused_name": "Saracinesca",
-    "fused_confidence": 0.827109158039093,
-    "support_count": 7,
+    "fused_confidence": 0.8057073652744293,
+    "support_count": 4,
     "support_images": [
       "node7_0001",
-      "node7_0002",
       "node7_0003",
       "node7_0004",
       "node7_0005"
     ],
     "supporting_observed_ids": [
-      "node7_0002_9",
-      "node7_0002_2",
-      "node7_0004_0",
-      "node7_0003_0",
-      "node7_0001_6",
-      "node7_0005_2",
-      "node7_0001_4"
+      "node7_0003_2",
+      "node7_0004_2",
+      "node7_0001_1",
+      "node7_0005_1"
     ],
     "local_structural_signature": {
       "self_code": 15,
       "nearby_code_histogram": {
-        "75": 3,
-        "95": 4,
-        "15": 2,
-        "255": 3
+        "95": 6,
+        "15": 1,
+        "255": 1
       },
-      "anchor_hint_score": 0.6,
+      "anchor_hint_score": 0.25,
       "terminal_hint_count": 1
     },
     "max_degree": 2,
-    "anchor_hint_score": 0.6,
+    "anchor_hint_score": 0.25,
     "representative_branch_roles": [],
     "representative_triplet_hints": []
   },
@@ -140,25 +138,27 @@
     "scene_node_id": "15#6",
     "fused_code": 15,
     "fused_name": "Saracinesca",
-    "fused_confidence": 0.8310784697532654,
-    "support_count": 1,
+    "fused_confidence": 0.8276557624340057,
+    "support_count": 2,
     "support_images": [
-      "node7_0001"
+      "node7_0001",
+      "node7_0002"
     ],
     "supporting_observed_ids": [
-      "node7_0001_3"
+      "node7_0001_4",
+      "node7_0002_2"
     ],
     "local_structural_signature": {
       "self_code": 15,
       "nearby_code_histogram": {
-        "95": 1,
-        "255": 1
+        "255": 3,
+        "95": 1
       },
-      "anchor_hint_score": 0.0,
-      "terminal_hint_count": 0
+      "anchor_hint_score": 0.5,
+      "terminal_hint_count": 1
     },
     "max_degree": 2,
-    "anchor_hint_score": 0.0,
+    "anchor_hint_score": 0.5,
     "representative_branch_roles": [],
     "representative_triplet_hints": []
   },
@@ -196,7 +196,7 @@
     "scene_node_id": "95#1",
     "fused_code": 95,
     "fused_name": "Bout bic.",
-    "fused_confidence": 0.8320545315742492,
+    "fused_confidence": 0.8388638019561767,
     "support_count": 5,
     "support_images": [
       "node7_0001",
@@ -208,19 +208,18 @@
     "supporting_observed_ids": [
       "node7_0003_6",
       "node7_0004_6",
-      "node7_0002_6",
-      "node7_0005_4",
-      "node7_0001_11"
+      "node7_0005_0",
+      "node7_0001_11",
+      "node7_0002_6"
     ],
     "local_structural_signature": {
       "self_code": 95,
       "nearby_code_histogram": {
         "15": 7,
-        "255": 2,
-        "75": 1
+        "255": 2
       },
       "anchor_hint_score": 0.2,
-      "terminal_hint_count": 1
+      "terminal_hint_count": 2
     },
     "max_degree": 2,
     "anchor_hint_score": 0.2,
@@ -278,8 +277,8 @@
     "supporting_observed_ids": [
       "node7_0005_9",
       "node7_0001_10",
-      "node7_0003_3",
       "node7_0004_3",
+      "node7_0003_3",
       "node7_0002_3"
     ],
     "local_structural_signature": {
@@ -311,10 +310,10 @@
     ],
     "supporting_observed_ids": [
       "node7_0001_12",
-      "node7_0005_6",
-      "node7_0003_4",
       "node7_0002_5",
-      "node7_0004_4"
+      "node7_0004_4",
+      "node7_0005_6",
+      "node7_0003_4"
     ],
     "local_structural_signature": {
       "self_code": 95,
@@ -334,28 +333,74 @@
     "scene_node_id": "95#5",
     "fused_code": 95,
     "fused_name": "Bout bic.",
-    "fused_confidence": 0.8166113495826721,
-    "support_count": 4,
+    "fused_confidence": 0.8134625554084778,
+    "support_count": 2,
     "support_images": [
-      "node7_0001",
       "node7_0003",
-      "node7_0004",
-      "node7_0005"
+      "node7_0004"
     ],
     "supporting_observed_ids": [
-      "node7_0005_0",
-      "node7_0004_8",
       "node7_0003_8",
+      "node7_0004_8"
+    ],
+    "local_structural_signature": {
+      "self_code": 95,
+      "nearby_code_histogram": {
+        "75": 2
+      },
+      "anchor_hint_score": 0.0,
+      "terminal_hint_count": 2
+    },
+    "max_degree": 2,
+    "anchor_hint_score": 0.0,
+    "representative_branch_roles": [],
+    "representative_triplet_hints": []
+  },
+  {
+    "scene_node_id": "95#6",
+    "fused_code": 95,
+    "fused_name": "Bout bic.",
+    "fused_confidence": 0.810637354850769,
+    "support_count": 1,
+    "support_images": [
+      "node7_0001"
+    ],
+    "supporting_observed_ids": [
       "node7_0001_2"
     ],
     "local_structural_signature": {
       "self_code": 95,
       "nearby_code_histogram": {
-        "15": 2,
-        "75": 2
+        "15": 1
       },
       "anchor_hint_score": 0.0,
-      "terminal_hint_count": 4
+      "terminal_hint_count": 1
+    },
+    "max_degree": 2,
+    "anchor_hint_score": 0.0,
+    "representative_branch_roles": [],
+    "representative_triplet_hints": []
+  },
+  {
+    "scene_node_id": "95#7",
+    "fused_code": 95,
+    "fused_name": "Bout bic.",
+    "fused_confidence": 0.7948365807533264,
+    "support_count": 1,
+    "support_images": [
+      "node7_0005"
+    ],
+    "supporting_observed_ids": [
+      "node7_0005_4"
+    ],
+    "local_structural_signature": {
+      "self_code": 95,
+      "nearby_code_histogram": {
+        "75": 1,
+        "15": 1
+      },
+      "anchor_hint_score": 0.0,
+      "terminal_hint_count": 0
     },
     "max_degree": 2,
     "anchor_hint_score": 0.0,
@@ -367,7 +412,7 @@
     "fused_code": 255,
     "fused_name": "Tee rid.",
     "fused_confidence": 0.7637104749679565,
-    "support_count": 10,
+    "support_count": 5,
     "support_images": [
       "node7_0001",
       "node7_0002",
@@ -376,16 +421,11 @@
       "node7_0005"
     ],
     "supporting_observed_ids": [
-      "node7_0003_9",
-      "node7_0005_7",
-      "node7_0004_9",
-      "node7_0001_7",
-      "node7_0003_1",
       "node7_0002_10",
-      "node7_0004_1",
-      "node7_0002_7",
-      "node7_0005_8",
-      "node7_0001_9"
+      "node7_0001_9",
+      "node7_0004_9",
+      "node7_0003_9",
+      "node7_0005_7"
     ],
     "local_structural_signature": {
       "self_code": 255,
@@ -395,6 +435,40 @@
       },
       "anchor_hint_score": 1.0,
       "terminal_hint_count": 2
+    },
+    "max_degree": 3,
+    "anchor_hint_score": 1.0,
+    "representative_branch_roles": [],
+    "representative_triplet_hints": []
+  },
+  {
+    "scene_node_id": "255#2",
+    "fused_code": 255,
+    "fused_name": "Tee rid.",
+    "fused_confidence": 0.779380714893341,
+    "support_count": 5,
+    "support_images": [
+      "node7_0001",
+      "node7_0002",
+      "node7_0003",
+      "node7_0004",
+      "node7_0005"
+    ],
+    "supporting_observed_ids": [
+      "node7_0005_8",
+      "node7_0001_7",
+      "node7_0003_1",
+      "node7_0004_1",
+      "node7_0002_7"
+    ],
+    "local_structural_signature": {
+      "self_code": 255,
+      "nearby_code_histogram": {
+        "255": 5,
+        "15": 8
+      },
+      "anchor_hint_score": 1.0,
+      "terminal_hint_count": 0
     },
     "max_degree": 3,
     "anchor_hint_score": 1.0,

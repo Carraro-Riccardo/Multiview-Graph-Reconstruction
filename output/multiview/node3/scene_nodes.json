@@ -3,6 +3,37 @@
     "scene_node_id": "11#1",
     "fused_code": 11,
     "fused_name": "Giunto",
+    "fused_confidence": 0.8094795227050782,
+    "support_count": 5,
+    "support_images": [
+      "node3_0005",
+      "node3_0006",
+      "node3_0008",
+      "node3_0010",
+      "node3_0011"
+    ],
+    "supporting_observed_ids": [
+      "node3_0006_8",
+      "node3_0008_6",
+      "node3_0011_0",
+      "node3_0005_4",
+      "node3_0010_12"
+    ],
+    "local_structural_signature": {
+      "self_code": 11,
+      "nearby_code_histogram": {},
+      "anchor_hint_score": 0.0,
+      "terminal_hint_count": 5
+    },
+    "max_degree": 2,
+    "anchor_hint_score": 0.0,
+    "representative_branch_roles": [],
+    "representative_triplet_hints": []
+  },
+  {
+    "scene_node_id": "11#2",
+    "fused_code": 11,
+    "fused_name": "Giunto",
     "fused_confidence": 0.8077141761779785,
     "support_count": 5,
     "support_images": [
@@ -13,10 +44,10 @@
       "node3_0011"
     ],
     "supporting_observed_ids": [
-      "node3_0010_13",
-      "node3_0011_13",
-      "node3_0008_4",
       "node3_0005_3",
+      "node3_0011_13",
+      "node3_0010_13",
+      "node3_0008_4",
       "node3_0006_2"
     ],
     "local_structural_signature": {
@@ -34,55 +65,24 @@
     "representative_triplet_hints": []
   },
   {
-    "scene_node_id": "11#2",
-    "fused_code": 11,
-    "fused_name": "Giunto",
-    "fused_confidence": 0.8062867522239685,
-    "support_count": 4,
-    "support_images": [
-      "node3_0005",
-      "node3_0006",
-      "node3_0010",
-      "node3_0011"
-    ],
-    "supporting_observed_ids": [
-      "node3_0005_4",
-      "node3_0006_8",
-      "node3_0010_0",
-      "node3_0011_0"
-    ],
-    "local_structural_signature": {
-      "self_code": 11,
-      "nearby_code_histogram": {},
-      "anchor_hint_score": 0.0,
-      "terminal_hint_count": 4
-    },
-    "max_degree": 2,
-    "anchor_hint_score": 0.0,
-    "representative_branch_roles": [],
-    "representative_triplet_hints": []
-  },
-  {
     "scene_node_id": "11#3",
     "fused_code": 11,
     "fused_name": "Giunto",
-    "fused_confidence": 0.8077066739400228,
-    "support_count": 3,
+    "fused_confidence": 0.8163493275642395,
+    "support_count": 2,
     "support_images": [
       "node3_0008",
-      "node3_0010",
-      "node3_0011"
+      "node3_0010"
     ],
     "supporting_observed_ids": [
-      "node3_0008_0",
-      "node3_0010_12",
-      "node3_0011_11"
+      "node3_0010_0",
+      "node3_0008_0"
     ],
     "local_structural_signature": {
       "self_code": 11,
       "nearby_code_histogram": {},
       "anchor_hint_score": 0.0,
-      "terminal_hint_count": 3
+      "terminal_hint_count": 2
     },
     "max_degree": 2,
     "anchor_hint_score": 0.0,
@@ -93,13 +93,13 @@
     "scene_node_id": "11#4",
     "fused_code": 11,
     "fused_name": "Giunto",
-    "fused_confidence": 0.8279047012329102,
+    "fused_confidence": 0.7960754632949829,
     "support_count": 1,
     "support_images": [
-      "node3_0008"
+      "node3_0011"
     ],
     "supporting_observed_ids": [
-      "node3_0008_6"
+      "node3_0011_11"
     ],
     "local_structural_signature": {
       "self_code": 11,
@@ -116,7 +116,7 @@
     "scene_node_id": "15#1",
     "fused_code": 15,
     "fused_name": "Saracinesca",
-    "fused_confidence": 0.8320305943489075,
+    "fused_confidence": 0.8339835405349731,
     "support_count": 3,
     "support_images": [
       "node3_0008",
@@ -124,22 +124,22 @@
       "node3_0011"
     ],
     "supporting_observed_ids": [
-      "node3_0010_5",
-      "node3_0011_4",
-      "node3_0008_11"
+      "node3_0008_11",
+      "node3_0010_4",
+      "node3_0011_1"
     ],
     "local_structural_signature": {
       "self_code": 15,
       "nearby_code_histogram": {
         "95": 3,
         "192": 3,
-        "53": 1
+        "53": 3
       },
-      "anchor_hint_score": 0.3333333333333333,
+      "anchor_hint_score": 1.0,
       "terminal_hint_count": 0
     },
     "max_degree": 2,
-    "anchor_hint_score": 0.3333333333333333,
+    "anchor_hint_score": 1.0,
     "representative_branch_roles": [],
     "representative_triplet_hints": []
   },
@@ -202,28 +202,27 @@
     "scene_node_id": "15#4",
     "fused_code": 15,
     "fused_name": "Saracinesca",
-    "fused_confidence": 0.8317413330078125,
+    "fused_confidence": 0.828811913728714,
     "support_count": 2,
     "support_images": [
       "node3_0010",
       "node3_0011"
     ],
     "supporting_observed_ids": [
-      "node3_0010_4",
-      "node3_0011_1"
+      "node3_0010_5",
+      "node3_0011_4"
     ],
     "local_structural_signature": {
       "self_code": 15,
       "nearby_code_histogram": {
         "95": 2,
-        "192": 2,
-        "53": 2
+        "192": 2
       },
-      "anchor_hint_score": 1.0,
+      "anchor_hint_score": 0.0,
       "terminal_hint_count": 0
     },
     "max_degree": 2,
-    "anchor_hint_score": 1.0,
+    "anchor_hint_score": 0.0,
     "representative_branch_roles": [],
     "representative_triplet_hints": []
   },
@@ -241,11 +240,11 @@
       "node3_0011"
     ],
     "supporting_observed_ids": [
-      "node3_0005_2",
-      "node3_0006_1",
-      "node3_0011_8",
+      "node3_0008_5",
       "node3_0010_10",
-      "node3_0008_5"
+      "node3_0011_8",
+      "node3_0005_2",
+      "node3_0006_1"
     ],
     "local_structural_signature": {
       "self_code": 53,
@@ -277,9 +276,9 @@
     "supporting_observed_ids": [
       "node3_0005_7",
       "node3_0006_4",
-      "node3_0010_3",
+      "node3_0008_8",
       "node3_0011_3",
-      "node3_0008_8"
+      "node3_0010_3"
     ],
     "local_structural_signature": {
       "self_code": 53,
@@ -311,8 +310,8 @@
       "node3_0005_0",
       "node3_0006_0",
       "node3_0008_2",
-      "node3_0010_2",
-      "node3_0011_6"
+      "node3_0011_6",
+      "node3_0010_2"
     ],
     "local_structural_signature": {
       "self_code": 53,
@@ -333,7 +332,7 @@
     "scene_node_id": "95#1",
     "fused_code": 95,
     "fused_name": "Bout bic.",
-    "fused_confidence": 0.8051244616508484,
+    "fused_confidence": 0.7949710726737976,
     "support_count": 5,
     "support_images": [
       "node3_0005",
@@ -343,24 +342,24 @@
       "node3_0011"
     ],
     "supporting_observed_ids": [
-      "node3_0010_7",
-      "node3_0011_10",
-      "node3_0005_6",
-      "node3_0006_5",
-      "node3_0008_10"
+      "node3_0008_10",
+      "node3_0010_9",
+      "node3_0011_12",
+      "node3_0005_8",
+      "node3_0006_7"
     ],
     "local_structural_signature": {
       "self_code": 95,
       "nearby_code_histogram": {
         "53": 5,
         "15": 3,
-        "192": 1
+        "192": 5
       },
-      "anchor_hint_score": 0.2,
-      "terminal_hint_count": 2
+      "anchor_hint_score": 0.6,
+      "terminal_hint_count": 0
     },
     "max_degree": 2,
-    "anchor_hint_score": 0.2,
+    "anchor_hint_score": 0.6,
     "representative_branch_roles": [],
     "representative_triplet_hints": []
   },
@@ -368,7 +367,7 @@
     "scene_node_id": "95#2",
     "fused_code": 95,
     "fused_name": "Bout bic.",
-    "fused_confidence": 0.7925966382026672,
+    "fused_confidence": 0.802750027179718,
     "support_count": 5,
     "support_images": [
       "node3_0005",
@@ -378,24 +377,23 @@
       "node3_0011"
     ],
     "supporting_observed_ids": [
-      "node3_0005_8",
-      "node3_0006_7",
-      "node3_0011_12",
-      "node3_0010_9",
-      "node3_0008_7"
+      "node3_0008_7",
+      "node3_0005_6",
+      "node3_0006_5",
+      "node3_0011_10",
+      "node3_0010_7"
     ],
     "local_structural_signature": {
       "self_code": 95,
       "nearby_code_histogram": {
         "53": 5,
-        "192": 4,
         "15": 2
       },
-      "anchor_hint_score": 0.4,
-      "terminal_hint_count": 1
+      "anchor_hint_score": 0.0,
+      "terminal_hint_count": 3
     },
     "max_degree": 2,
-    "anchor_hint_score": 0.4,
+    "anchor_hint_score": 0.0,
     "representative_branch_roles": [],
     "representative_triplet_hints": []
   },
@@ -415,8 +413,8 @@
     "supporting_observed_ids": [
       "node3_0010_8",
       "node3_0011_7",
-      "node3_0005_1",
       "node3_0008_3",
+      "node3_0005_1",
       "node3_0006_6"
     ],
     "local_structural_signature": {
@@ -448,11 +446,11 @@
       "node3_0011"
     ],
     "supporting_observed_ids": [
-      "node3_0010_1",
+      "node3_0008_9",
       "node3_0011_2",
-      "node3_0005_5",
+      "node3_0010_1",
       "node3_0006_3",
-      "node3_0008_9"
+      "node3_0005_5"
     ],
     "local_structural_signature": {
       "self_code": 192,
