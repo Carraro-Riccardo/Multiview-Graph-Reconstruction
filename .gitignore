@@ -23,12 +23,16 @@ tmp/
 **/python-3.12.10-embed-amd64.zip/**
 **/slurm/**
 
-# Pipeline output — ignore all generated artifacts
-output/
-# ...except VGGT point maps (expensive to recompute, ~minutes per node)
-!output/
+# Pipeline output — ignore all generated artifacts,
+# except VGGT point maps (expensive to recompute, ~minutes per node).
+# Rules must be specified level-by-level: git cannot re-include a file
+# once its parent directory is excluded.
+output/*
 !output/multiview/
+output/multiview/*
 !output/multiview/*/
+output/multiview/*/*
 !output/multiview/*/vggt/
+output/multiview/*/vggt/*
 !output/multiview/*/vggt/*.npz
 !output/multiview/*/vggt/*.json
