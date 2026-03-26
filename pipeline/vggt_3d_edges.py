@@ -18,7 +18,7 @@ Supported point-map formats
 from __future__ import annotations
 
 import json
-from collections import defaultdict
+from collections import Counter, defaultdict
 from pathlib import Path
 
 import numpy as np
@@ -473,7 +473,6 @@ def _majority_vote_code(
     neighbor codes to break the tie. Falls back to the first winner if no
     COOC data is available.
     """
-    from collections import Counter
     votes: Counter = Counter(obs_to_code[oid] for oid in obs_ids if oid in obs_to_code)
     if not votes:
         return None
@@ -589,6 +588,27 @@ def replay_merge_log(
             sn.support_count = len(sn.supporting_observed_ids)
 
     return [sn for sn in scene_nodes if sn.scene_node_id not in to_drop]
+
+
+def replay_vote_log(scene_nodes: list, vote_log: list[dict]) -> list:
+    """Re-apply a previously computed vote_log to a fresh set of SceneNodes.
+
+    Used when loading VGGT results from cache: the code corrections are stored
+    in vggt_edge_debug.json and replayed here. Entries whose IDs are not found
+    in the current scene_nodes are silently skipped.
+    """
+    sn_by_id = {sn.scene_node_id: sn for sn in scene_nodes}
+    for entry in vote_log:
+        sn = sn_by_id.get(entry["scene_node_id"])
+        if sn is None:
+            continue
+        # Only apply if the node still has the expected old code (sanity check)
+        if sn.fused_code != entry["old_code"]:
+            continue
+        sn.fused_code = entry["new_code"]
+        info = COMPONENT_INFO.get(entry["new_code"], {})
+        sn.fused_name = info.get("name", str(entry["new_code"]))
+    return scene_nodes
 
 
 def build_vggt_edge_hints(
@@ -797,6 +817,8 @@ def build_vggt_edge_hints(
         "n_scene_geometries": len(scene_geom),
         "n_merged_nodes": len(merge_log),
         "merge_log": merge_log,
+        "n_code_corrections": len(vote_log),
+        "vote_log": vote_log,
         "_scene_nodes_merged": scene_nodes,  # updated SceneNode list for orchestrator
         "scene_cutoff": cutoff,
         "port_cutoff": port_cutoff,

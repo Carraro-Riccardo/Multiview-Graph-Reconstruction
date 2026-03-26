@@ -17,9 +17,14 @@ GT format (labels_extended):
 
 from __future__ import annotations
 
+import io
 import json
 import sys
 from collections import Counter, defaultdict
+
+# Force UTF-8 output on Windows (avoids cp1252 UnicodeEncodeError for box-drawing chars)
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 from pathlib import Path
 
 import numpy as np

@@ -16,7 +16,7 @@ from .node_reid import identify_scene_nodes, serialize_scene_nodes
 from .observed_graphs import build_all_observed_graphs
 from .spatial_consistency import run_consistency_pass
 from .vggt_runtime import ensure_vggt_artifacts
-from .vggt_3d_edges import build_vggt_edge_hints, build_vggt_search_roots, replay_merge_log
+from .vggt_3d_edges import build_vggt_edge_hints, build_vggt_search_roots, replay_merge_log, replay_vote_log
 
 _W = 72
 
@@ -89,9 +89,9 @@ def run_multiview_pipeline(node_id: int, image_paths: list, output_dir: Path | N
         if vggt_generation.get("status") == "already_present" and debug_path.exists():
             try:
                 _cached = json.loads(debug_path.read_text(encoding="utf-8"))
-                # Require "merge_log" key: absent in pre-merge-logic caches → forces recompute.
-                if "merge_log" not in _cached:
-                    raise ValueError("legacy cache format — no merge_log")
+                # Require "vote_log" key: absent in pre-vote-logic caches → forces recompute.
+                if "merge_log" not in _cached or "vote_log" not in _cached:
+                    raise ValueError("legacy cache format — missing merge_log or vote_log")
                 # Reconstruct the original (pre-merge) scene-node IDs from the cache:
                 # scene_geometry holds post-merge IDs; merge_log records the dropped ones.
                 _cached_post_merge_ids = set(_cached.get("scene_geometry", {}).keys())
@@ -105,35 +105,51 @@ def run_multiview_pipeline(node_id: int, image_paths: list, output_dir: Path | N
 
         if _cache_hit:
             _merge_log = _cached.get("merge_log", [])
+            _vote_log  = _cached.get("vote_log", [])
             _pair_hints = {
                 (entry["pair"][0], entry["pair"][1]): {k: v for k, v in entry.items() if k != "pair"}
                 for entry in _cached.get("pair_hints", [])
             }
-            n_merged = len(_merge_log)
+            n_merged    = len(_merge_log)
+            n_corrected = len(_vote_log)
+            needs_save  = False
             if n_merged > 0:
                 scene_nodes = replay_merge_log(scene_nodes, _merge_log, observed_graphs)
-                save_json(output_dir / "scene_nodes.json", serialize_scene_nodes(scene_nodes))
+                needs_save = True
                 print(f"  [VGGT] cache hit — replayed {n_merged} merge(s)")
                 for entry in _merge_log:
                     print(
                         f"    {entry['dropped']} → {entry['kept']}"
                         f"  dist={entry['dist_m']:.3f}m  ({entry['reason']})"
                     )
+            if n_corrected > 0:
+                scene_nodes = replay_vote_log(scene_nodes, _vote_log)
+                needs_save = True
+                print(f"  [VGGT] cache hit — replayed {n_corrected} code correction(s)")
+                for entry in _vote_log:
+                    print(
+                        f"    {entry['scene_node_id']}: "
+                        f"{entry['old_code']} → {entry['new_code']}"
+                    )
+            if needs_save:
+                save_json(output_dir / "scene_nodes.json", serialize_scene_nodes(scene_nodes))
             vggt_edge_payload = {"enabled": True, "pair_hints": _pair_hints}
             print(
                 f"  [VGGT] generation={vggt_generation.get('status')}  "
-                f"cache=hit  merged={n_merged}  "
+                f"cache=hit  merged={n_merged}  corrected={n_corrected}  "
                 f"edge_hints={len(_pair_hints)}"
             )
         # ── Full recompute ─────────────────────────────────────────────────────
         else:
             vggt_edge_payload = build_vggt_edge_hints(scene_nodes, observed_graphs, search_roots)
 
-            # Apply VGGT-based duplicate merges
+            # Apply VGGT-based duplicate merges + code corrections
             n_merged = vggt_edge_payload.get("n_merged_nodes", 0)
-            if n_merged > 0:
+            n_corrected = vggt_edge_payload.get("n_code_corrections", 0)
+            if n_merged > 0 or n_corrected > 0:
                 scene_nodes = vggt_edge_payload["_scene_nodes_merged"]
                 save_json(output_dir / "scene_nodes.json", serialize_scene_nodes(scene_nodes))
+            if n_merged > 0:
                 merge_log = vggt_edge_payload.get("merge_log", [])
                 print(f"  [VGGT] merged {n_merged} duplicate scene node(s):")
                 for entry in merge_log:
@@ -142,6 +158,15 @@ def run_multiview_pipeline(node_id: int, image_paths: list, output_dir: Path | N
                         f"  dist={entry['dist_m']:.3f}m"
                         f"  obs={entry['n_obs_dropped']}+{entry['n_obs_kept']}"
                         f"  ({entry['reason']})"
+                    )
+            if n_corrected > 0:
+                vote_log = vggt_edge_payload.get("vote_log", [])
+                print(f"  [VGGT] corrected {n_corrected} scene node code(s) via majority vote:")
+                for entry in vote_log:
+                    print(
+                        f"    {entry['scene_node_id']}: "
+                        f"{entry['old_code']} → {entry['new_code']}"
+                        f"  (n_obs={entry['n_obs']})"
                     )
 
             save_json(
@@ -155,6 +180,8 @@ def run_multiview_pipeline(node_id: int, image_paths: list, output_dir: Path | N
                     "n_scene_geometries": vggt_edge_payload.get("n_scene_geometries", 0),
                     "n_merged_nodes": n_merged,
                     "merge_log": vggt_edge_payload.get("merge_log", []),
+                    "n_code_corrections": n_corrected,
+                    "vote_log": vggt_edge_payload.get("vote_log", []),
                     "scene_cutoff": vggt_edge_payload.get("scene_cutoff"),
                     "port_cutoff": vggt_edge_payload.get("port_cutoff"),
                     "loaded_images": vggt_edge_payload.get("loaded_images", {}),
@@ -173,7 +200,8 @@ def run_multiview_pipeline(node_id: int, image_paths: list, output_dir: Path | N
                 f"loaded_views={vggt_edge_payload.get('n_loaded_images', 0)}/"
                 f"{len(observed_graphs)}  "
                 f"scene_geometries={vggt_edge_payload.get('n_scene_geometries', 0)}  "
-                f"merged={n_merged}  edge_hints={len(vggt_edge_payload.get('pair_hints', {}))}"
+                f"merged={n_merged}  corrected={n_corrected}  "
+                f"edge_hints={len(vggt_edge_payload.get('pair_hints', {}))}"
             )
 
     print("\n  [Step 3] Direct per-image adjacency graph")
