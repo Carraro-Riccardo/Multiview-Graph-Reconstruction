@@ -20,9 +20,16 @@ import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 
-import numpy as np
-from scipy.optimize import linear_sum_assignment
+ROOT = Path(__file__).resolve().parent
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
+import numpy as np
+
+from core.linear_assignment import linear_sum_assignment
 from config import COMPONENT_INFO, CONF_THRESHOLD, DIAMETER_CODES, IMAGES_DIR, LABELS_EXT_DIR, WORK_DIR
 
 NODE_ID     = int(sys.argv[1]) if len(sys.argv) > 1 else 9

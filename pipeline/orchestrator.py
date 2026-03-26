@@ -12,13 +12,14 @@ from core.debug_utils import save_json
 from core.detection import discover_nodes
 from .direct_graph_builder import build_direct_graph
 from .graph_refinement import force_spanning_tree, serialize_fused_graph
-from .node_reid import identify_scene_nodes, serialize_scene_nodes
+from .node_reid import identify_scene_nodes, merge_spurious_singletons, serialize_scene_nodes
 from .observed_graphs import build_all_observed_graphs
 from .spatial_consistency import run_consistency_pass
 from .vggt_runtime import ensure_vggt_artifacts
 from .vggt_3d_edges import build_vggt_edge_hints, build_vggt_search_roots, replay_merge_log, replay_vote_log
 
 _W = 72
+_VGGT_CACHE_VERSION = 2
 
 
 def _sep(char="-"):
@@ -61,9 +62,11 @@ def run_multiview_pipeline(node_id: int, image_paths: list, output_dir: Path | N
 
     print("\n  [Step 2] Node re-identification (multi-seed + co-association + VGGT-3D + soft-merge)")
     _sep()
-    scene_nodes, _ = identify_scene_nodes(
+    scene_nodes, reid_debug = identify_scene_nodes(
         observed_graphs, image_paths=image_paths, search_roots=search_roots
     )
+    save_json(output_dir / "scene_nodes_reid_raw.json", serialize_scene_nodes(scene_nodes))
+    save_json(output_dir / "reid_debug.json", reid_debug)
     save_json(output_dir / "scene_nodes.json", serialize_scene_nodes(scene_nodes))
 
     col = 16
@@ -89,6 +92,8 @@ def run_multiview_pipeline(node_id: int, image_paths: list, output_dir: Path | N
         if vggt_generation.get("status") == "already_present" and debug_path.exists():
             try:
                 _cached = json.loads(debug_path.read_text(encoding="utf-8"))
+                if _cached.get("cache_version") != _VGGT_CACHE_VERSION:
+                    raise ValueError("stale VGGT cache version")
                 # Require "vote_log" key: absent in pre-vote-logic caches → forces recompute.
                 if "merge_log" not in _cached or "vote_log" not in _cached:
                     raise ValueError("legacy cache format — missing merge_log or vote_log")
@@ -133,7 +138,13 @@ def run_multiview_pipeline(node_id: int, image_paths: list, output_dir: Path | N
                     )
             if needs_save:
                 save_json(output_dir / "scene_nodes.json", serialize_scene_nodes(scene_nodes))
-            vggt_edge_payload = {"enabled": True, "pair_hints": _pair_hints}
+            vggt_edge_payload = {
+                "enabled": True,
+                "pair_hints": _pair_hints,
+                "scene_geometry": _cached.get("scene_geometry", {}),
+                "scene_cutoff": _cached.get("scene_cutoff"),
+                "port_cutoff": _cached.get("port_cutoff"),
+            }
             print(
                 f"  [VGGT] generation={vggt_generation.get('status')}  "
                 f"cache=hit  merged={n_merged}  corrected={n_corrected}  "
@@ -172,6 +183,7 @@ def run_multiview_pipeline(node_id: int, image_paths: list, output_dir: Path | N
             save_json(
                 output_dir / "vggt_edge_debug.json",
                 {
+                    "cache_version": _VGGT_CACHE_VERSION,
                     "generation": vggt_generation,
                     "enabled": vggt_edge_payload.get("enabled", False),
                     "search_roots": vggt_edge_payload.get("search_roots", []),
@@ -203,6 +215,18 @@ def run_multiview_pipeline(node_id: int, image_paths: list, output_dir: Path | N
                 f"merged={n_merged}  corrected={n_corrected}  "
                 f"edge_hints={len(vggt_edge_payload.get('pair_hints', {}))}"
             )
+
+    # ── Spurious singleton merge (post-VGGT, uses 3D geometry when available) ──
+    _scene_geom   = vggt_edge_payload.get("scene_geometry") or {}
+    _scene_cutoff = vggt_edge_payload.get("scene_cutoff")
+    scene_nodes, _spur_log = merge_spurious_singletons(
+        scene_nodes, observed_graphs,
+        scene_geom=_scene_geom or None,
+        scene_cutoff=_scene_cutoff,
+        pair_hints=vggt_edge_payload.get("pair_hints"),
+    )
+    if _spur_log:
+        save_json(output_dir / "scene_nodes.json", serialize_scene_nodes(scene_nodes))
 
     print("\n  [Step 3] Direct per-image adjacency graph")
     _sep()

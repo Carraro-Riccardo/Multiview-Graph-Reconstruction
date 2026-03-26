@@ -63,7 +63,7 @@ VGGT_3D_MERGE_LOW_OBS_THRESHOLD  = int(  os.getenv("VGGT_3D_MERGE_LOW_OBS_THRESH
 # ── Soglie e parametri ────────────────────────────────────────
 CONF_THRESHOLD  = 0.5
 YOLO_CONF       = 0.05
-YOLO_IOU        = 0.4
+YOLO_IOU        = 0.3
 YOLO_IMGSZ      = 1280
 SKIP_NODES      = {}
 MIN_IMAGES      = 2

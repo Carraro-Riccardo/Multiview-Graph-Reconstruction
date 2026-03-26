@@ -8,6 +8,13 @@ Usage:
 from __future__ import annotations
 
 import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 from pipeline.orchestrator import run_multiview_all, run_multiview_pipeline
 from config import IMAGES_DIR

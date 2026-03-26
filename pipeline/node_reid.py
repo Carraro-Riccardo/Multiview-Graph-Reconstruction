@@ -17,19 +17,21 @@ from __future__ import annotations
 
 import cv2
 import numpy as np
-from collections import defaultdict
+from collections import Counter, defaultdict
 from dataclasses import dataclass
 from itertools import combinations
 from pathlib import Path
-from scipy.optimize import linear_sum_assignment
 
 from .branch_fragments import is_anchor, is_terminal
+from core.linear_assignment import linear_sum_assignment
 from config import COMPONENT_INFO
 
 
 # ── RE-ID hyper-parameters ──────────────────────────────────────────────────
 REID_MATCH_THRESHOLD      = 0.55   # min cosine sim for seed assignment acceptance
 REID_ALLOW_UNMATCHED      = True   # skip weak matches instead of forcing them
+REID_VISUAL_WEIGHT        = 0.85   # appearance term in seed matching
+REID_CONTEXT_WEIGHT       = 0.15   # local-neighbourhood term in seed matching
 
 _COASSOC_MIN_RUNS_BASE    = 2      # immutable baseline for adaptive formula
 COASSOC_MIN_RUNS          = 2      # effective value; overridden per-call in identify_scene_nodes
@@ -43,6 +45,22 @@ SOFT_MERGE_MIN_CROSS_COASSOC  = 0.20
 SOFT_MERGE_MIN_COMBINED_SCORE = 0.58
 SOFT_MERGE_ALPHA              = 0.55   # weight of prototype cosine similarity
 SOFT_MERGE_BETA               = 0.45   # weight of cross-group co-association
+SOFT_MERGE_ALLOW_IMAGE_SUBSET_REPAIR = True
+SOFT_MERGE_MAX_SUBSET_GROUP_SUPPORT  = 3
+SOFT_MERGE_MAX_REPAIRABLE_OVERLAP_IMAGES = 1
+SOFT_MERGE_MIN_UNIQUE_IMAGE_GAIN = 2
+SOFT_MERGE_MIN_REPAIR_KEEP_SCORE = 0.55
+SOFT_MERGE_MIN_REPAIR_MARGIN = 0.05
+SOFT_MERGE_REPAIRED_PROTO_EPS = 0.01
+SOFT_MERGE_REPAIRED_MIN_CROSS_COASSOC = 0.50
+SOFT_MERGE_REPAIRED_MIN_COMBINED_SCORE = 0.62
+
+SAME_IMAGE_REPAIR_ENABLED        = True
+SAME_IMAGE_REPAIR_ROUNDS         = 3
+SAME_IMAGE_REPAIR_MIN_GAIN       = 0.08
+SAME_IMAGE_REPAIR_MIN_SCORE      = 0.35
+SAME_IMAGE_REPAIR_ALPHA          = 0.60   # prototype fit
+SAME_IMAGE_REPAIR_BETA           = 0.40   # pairwise fit to support outside current image
 
 PATCH_EXPAND_RATIO = 0.35
 MIN_PATCH_SIZE     = 48
@@ -211,6 +229,42 @@ def _cosine_sim(a: np.ndarray | None, b: np.ndarray | None) -> float:
     return float(np.dot(a, b))   # both are pre-normalised
 
 
+def _multiset_jaccard(values_a: list[int], values_b: list[int]) -> float:
+    if not values_a and not values_b:
+        return 0.0
+    counter_a = Counter(values_a)
+    counter_b = Counter(values_b)
+    keys = set(counter_a) | set(counter_b)
+    intersection = sum(min(counter_a.get(key, 0), counter_b.get(key, 0)) for key in keys)
+    union = sum(max(counter_a.get(key, 0), counter_b.get(key, 0)) for key in keys)
+    if union == 0:
+        return 0.0
+    return float(intersection / union)
+
+
+def _group_context_sim(group_member_ids: list[str], query_id: str, item_by_id: dict) -> float:
+    query_codes = item_by_id[query_id]["nearby_codes"]
+    if not query_codes:
+        return 0.0
+    vals = [
+        _multiset_jaccard(item_by_id[member_id]["nearby_codes"], query_codes)
+        for member_id in group_member_ids
+        if item_by_id[member_id]["nearby_codes"]
+    ]
+    return float(np.mean(vals)) if vals else 0.0
+
+
+def _blend_seed_similarity(visual_sim: float, context_sim: float, has_context: bool) -> float:
+    if not has_context:
+        return visual_sim
+    total = REID_VISUAL_WEIGHT + REID_CONTEXT_WEIGHT
+    if total <= 0:
+        return visual_sim
+    alpha = REID_VISUAL_WEIGHT / total
+    beta = REID_CONTEXT_WEIGHT / total
+    return alpha * visual_sim + beta * context_sim
+
+
 def _mean_proto(ids: list[str], item_by_id: dict) -> np.ndarray | None:
     embs = [item_by_id[i]["embedding"] for i in ids if item_by_id[i]["embedding"] is not None]
     if not embs:
@@ -271,7 +325,12 @@ def _run_single_seed(
                 S = np.zeros((len(cand_gids), len(qids)), dtype=np.float32)
                 for r, gid in enumerate(cand_gids):
                     for c, qid in enumerate(qids):
-                        S[r, c] = _cosine_sim(groups[gid]["prototype"], item_by_id[qid]["embedding"])
+                        visual_sim = _cosine_sim(groups[gid]["prototype"], item_by_id[qid]["embedding"])
+                        context_sim = _group_context_sim(groups[gid]["members"], qid, item_by_id)
+                        has_context = bool(item_by_id[qid]["nearby_codes"]) and any(
+                            item_by_id[member_id]["nearby_codes"] for member_id in groups[gid]["members"]
+                        )
+                        S[r, c] = _blend_seed_similarity(visual_sim, context_sim, has_context)
 
                 row_ind, col_ind = linear_sum_assignment(-S)
                 for r, c in zip(row_ind, col_ind):
@@ -625,6 +684,138 @@ def _greedy_cluster_code(
 
 
 # ── Soft post-merge ───────────────────────────────────────────────────────────
+def _score_obs_to_support(
+    obs_id: str,
+    support_ids: list[str],
+    item_by_id: dict,
+    pair_stats: dict,
+) -> dict:
+    proto = _mean_proto(support_ids, item_by_id)
+    proto_fit = _cosine_sim(item_by_id[obs_id]["embedding"], proto)
+    pair_vals = [
+        float(pair_stats[_pair_key(obs_id, other_id)]["ratio"])
+        for other_id in support_ids
+        if item_by_id[other_id]["image_id"] != item_by_id[obs_id]["image_id"]
+        and _pair_key(obs_id, other_id) in pair_stats
+    ]
+    pair_fit = float(np.mean(pair_vals)) if pair_vals else 0.0
+    score = SAME_IMAGE_REPAIR_ALPHA * proto_fit + SAME_IMAGE_REPAIR_BETA * pair_fit
+    return {
+        "score": score,
+        "proto_fit": proto_fit,
+        "pair_fit": pair_fit,
+        "support_count": len(support_ids),
+    }
+
+
+def _repair_soft_merge_overlap(
+    ids1: list[str],
+    ids2: list[str],
+    item_by_id: dict,
+    pair_stats: dict,
+) -> tuple[list[str], list[str], dict] | None:
+    imgs1 = {item_by_id[i]["image_id"] for i in ids1}
+    imgs2 = {item_by_id[i]["image_id"] for i in ids2}
+    overlap_images = sorted(imgs1 & imgs2)
+    if not overlap_images:
+        return list(ids1), list(ids2), {
+            "overlap_images": [],
+            "repaired": False,
+            "chosen": [],
+            "dropped": [],
+        }
+
+    unique_gain = len(imgs1 | imgs2) - max(len(imgs1), len(imgs2))
+    if (
+        not SOFT_MERGE_ALLOW_IMAGE_SUBSET_REPAIR
+        or len(overlap_images) > SOFT_MERGE_MAX_REPAIRABLE_OVERLAP_IMAGES
+        or min(len(ids1), len(ids2)) > SOFT_MERGE_MAX_SUBSET_GROUP_SUPPORT
+        or unique_gain < SOFT_MERGE_MIN_UNIQUE_IMAGE_GAIN
+    ):
+        return None
+
+    remaining_support = [
+        obs_id
+        for obs_id in ids1 + ids2
+        if item_by_id[obs_id]["image_id"] not in overlap_images
+    ]
+    if len(remaining_support) < 2:
+        return None
+
+    kept_by_image: dict[str, str] = {}
+    chosen_meta: list[dict] = []
+    dropped_meta: list[dict] = []
+    support_context = list(remaining_support)
+
+    for image_id in overlap_images:
+        candidates = [
+            obs_id
+            for obs_id in ids1 + ids2
+            if item_by_id[obs_id]["image_id"] == image_id
+        ]
+        scored = []
+        for obs_id in candidates:
+            meta = _score_obs_to_support(obs_id, support_context, item_by_id, pair_stats)
+            scored.append((meta["score"], obs_id, meta))
+        scored.sort(reverse=True)
+        if not scored:
+            return None
+        best_score, best_obs_id, best_meta = scored[0]
+        second_score = scored[1][0] if len(scored) > 1 else -1.0
+        if (
+            best_score < SOFT_MERGE_MIN_REPAIR_KEEP_SCORE
+            or best_score - second_score < SOFT_MERGE_MIN_REPAIR_MARGIN
+        ):
+            return None
+        kept_by_image[image_id] = best_obs_id
+        chosen_meta.append({
+            "image_id": image_id,
+            "obs_id": best_obs_id,
+            "score": best_score,
+            "proto_fit": best_meta["proto_fit"],
+            "pair_fit": best_meta["pair_fit"],
+        })
+        for _, dropped_obs_id, dropped_meta_entry in scored[1:]:
+            dropped_meta.append({
+                "image_id": image_id,
+                "obs_id": dropped_obs_id,
+                "score": dropped_meta_entry["score"],
+                "proto_fit": dropped_meta_entry["proto_fit"],
+                "pair_fit": dropped_meta_entry["pair_fit"],
+            })
+        support_context.append(best_obs_id)
+
+    repaired_ids1 = [
+        obs_id for obs_id in ids1
+        if item_by_id[obs_id]["image_id"] not in overlap_images or kept_by_image[item_by_id[obs_id]["image_id"]] == obs_id
+    ]
+    repaired_ids2 = [
+        obs_id for obs_id in ids2
+        if item_by_id[obs_id]["image_id"] not in overlap_images or kept_by_image[item_by_id[obs_id]["image_id"]] == obs_id
+    ]
+    if not repaired_ids1 or not repaired_ids2:
+        return None
+
+    return repaired_ids1, repaired_ids2, {
+        "overlap_images": overlap_images,
+        "unique_image_gain": unique_gain,
+        "repaired": True,
+        "chosen": chosen_meta,
+        "dropped": dropped_meta,
+    }
+
+
+def _soft_merge_thresholds(overlap_repair: bool) -> tuple[float, float, float]:
+    proto_threshold = SOFT_MERGE_MIN_PROTO_SIM
+    cross_threshold = SOFT_MERGE_MIN_CROSS_COASSOC
+    score_threshold = SOFT_MERGE_MIN_COMBINED_SCORE
+    if overlap_repair:
+        proto_threshold -= SOFT_MERGE_REPAIRED_PROTO_EPS
+        cross_threshold = max(cross_threshold, SOFT_MERGE_REPAIRED_MIN_CROSS_COASSOC)
+        score_threshold = max(score_threshold, SOFT_MERGE_REPAIRED_MIN_COMBINED_SCORE)
+    return proto_threshold, cross_threshold, score_threshold
+
+
 def _run_soft_post_merge(
     groups: dict,
     groups_by_code: dict,
@@ -651,18 +842,34 @@ def _run_soft_post_merge(
         if g1["code"] != g2["code"]:
             return False, None
         ids1, ids2 = g1["member_ids"], g2["member_ids"]
-        imgs1 = {item_by_id[i]["image_id"] for i in ids1}
-        imgs2 = {item_by_id[i]["image_id"] for i in ids2}
-        if imgs1 & imgs2:
+        repaired = _repair_soft_merge_overlap(ids1, ids2, item_by_id, pair_stats)
+        if repaired is None:
             return False, None
-        p1, p2 = _proto(ids1), _proto(ids2)
+        eval_ids1, eval_ids2, repair_meta = repaired
+        overlap_images = repair_meta["overlap_images"]
+        overlap_repair = repair_meta["repaired"]
+        proto_threshold, cross_threshold, score_threshold = _soft_merge_thresholds(overlap_repair)
+        p1, p2 = _proto(eval_ids1), _proto(eval_ids2)
         proto_sim   = _cosine_sim(p1, p2)
-        cross_coass = _cross_coassoc(ids1, ids2)
+        cross_coass = _cross_coassoc(eval_ids1, eval_ids2)
         score = SOFT_MERGE_ALPHA * proto_sim + SOFT_MERGE_BETA * cross_coass
-        if proto_sim   < SOFT_MERGE_MIN_PROTO_SIM:      return False, None
-        if cross_coass < SOFT_MERGE_MIN_CROSS_COASSOC:  return False, None
-        if score       < SOFT_MERGE_MIN_COMBINED_SCORE: return False, None
-        return True, {"proto_sim": proto_sim, "cross_coassoc": cross_coass, "score": score}
+        if proto_sim   < proto_threshold:               return False, None
+        if cross_coass < cross_threshold:               return False, None
+        if score       < score_threshold:               return False, None
+        return True, {
+            "proto_sim": proto_sim,
+            "cross_coassoc": cross_coass,
+            "score": score,
+            "overlap_images": overlap_images,
+            "overlap_repair": overlap_repair,
+            "thresholds": {
+                "proto": proto_threshold,
+                "cross": cross_threshold,
+                "score": score_threshold,
+            },
+            "repair_meta": repair_meta,
+            "merged_member_ids": list(dict.fromkeys(eval_ids1 + eval_ids2)),
+        }
 
     # Collect and sort candidate merges by score
     merge_candidates = []
@@ -690,7 +897,7 @@ def _run_soft_post_merge(
         code = active[gid1]["code"]
         merge_count_by_code[code] += 1
         gid_new  = f"{code}#SM{merge_count_by_code[code]}"
-        ids_union = list(dict.fromkeys(active[gid1]["member_ids"] + active[gid2]["member_ids"]))
+        ids_union = list(ms.get("merged_member_ids") or dict.fromkeys(active[gid1]["member_ids"] + active[gid2]["member_ids"]))
 
         # Resolve image conflicts: keep the detection closest to the merged proto
         proto_union = _proto(ids_union)
@@ -788,6 +995,471 @@ def _build_scene_nodes(groups: dict, item_by_id: dict, observed_graphs: list) ->
 
 
 # ── Main entry point ─────────────────────────────────────────────────────────
+def _observation_image_counts(obs_ids: list[str], item_by_id: dict) -> dict[str, list[str]]:
+    by_image: dict[str, list[str]] = defaultdict(list)
+    for obs_id in obs_ids:
+        by_image[item_by_id[obs_id]["image_id"]].append(obs_id)
+    return {img: sorted(ids) for img, ids in sorted(by_image.items())}
+
+
+def _observation_budget_violations(obs_ids: list[str], item_by_id: dict) -> list[dict]:
+    violations = []
+    by_image = _observation_image_counts(obs_ids, item_by_id)
+    for image_id, image_obs in by_image.items():
+        if len(image_obs) <= 1:
+            continue
+        violations.append({
+            "image_id": image_id,
+            "count": len(image_obs),
+            "observed_ids": image_obs,
+        })
+    return violations
+
+
+def _group_proto_similarity(ids1: list[str], ids2: list[str], item_by_id: dict) -> float:
+    return _cosine_sim(_mean_proto(ids1, item_by_id), _mean_proto(ids2, item_by_id))
+
+
+def _group_cross_coassoc(ids1: list[str], ids2: list[str], item_by_id: dict, pair_stats: dict) -> float:
+    vals = [
+        pair_stats[_pair_key(a, b)]["ratio"]
+        for a in ids1 for b in ids2
+        if a != b
+        and item_by_id[a]["image_id"] != item_by_id[b]["image_id"]
+        and _pair_key(a, b) in pair_stats
+    ]
+    return float(np.mean(vals)) if vals else 0.0
+
+
+def _summarize_cross_pairs(ids1: list[str], ids2: list[str], item_by_id: dict, pair_stats: dict) -> dict:
+    samples = []
+    total_pairs = 0
+    n_with_stats = 0
+    n_effective = 0
+    n_below_ratio = 0
+    n_below_runs = 0
+
+    for a in ids1:
+        for b in ids2:
+            if a == b or item_by_id[a]["image_id"] == item_by_id[b]["image_id"]:
+                continue
+            total_pairs += 1
+            st = pair_stats.get(_pair_key(a, b))
+            if st is None:
+                continue
+            n_with_stats += 1
+            ratio = float(st.get("ratio", 0.0))
+            co_observed = int(st.get("co_observed", 0))
+            effective = ratio >= COASSOC_MIN_RATIO and co_observed >= COASSOC_MIN_RUNS
+            if effective:
+                n_effective += 1
+            elif co_observed < COASSOC_MIN_RUNS:
+                n_below_runs += 1
+            else:
+                n_below_ratio += 1
+            samples.append({
+                "a": a,
+                "b": b,
+                "ratio": ratio,
+                "co_observed": co_observed,
+                "same_group": float(st.get("same_group", 0.0)),
+                "effective_affinity": ratio if effective else 0.0,
+                "visual_ratio": float(st.get("visual_ratio", ratio)),
+                "cls_nbr_sim": float(st.get("cls_nbr_sim", 0.0)),
+                "vggt_dist": st.get("vggt_dist"),
+                "vggt_override": st.get("vggt_override"),
+            })
+
+    samples_sorted = sorted(
+        samples,
+        key=lambda entry: (
+            -entry["effective_affinity"],
+            -entry["ratio"],
+            -entry["co_observed"],
+            entry["a"],
+            entry["b"],
+        ),
+    )
+    ratios = [entry["ratio"] for entry in samples]
+    return {
+        "n_cross_pairs": total_pairs,
+        "n_with_pair_stats": n_with_stats,
+        "n_missing_pair_stats": total_pairs - n_with_stats,
+        "n_effective_affinity": n_effective,
+        "n_below_ratio": n_below_ratio,
+        "n_below_runs": n_below_runs,
+        "mean_ratio": float(np.mean(ratios)) if ratios else 0.0,
+        "max_ratio": float(np.max(ratios)) if ratios else 0.0,
+        "top_pairs": samples_sorted[:5],
+        "bottom_pairs": list(reversed(samples_sorted[-5:])),
+    }
+
+
+def _soft_merge_decision(g1: dict, g2: dict, item_by_id: dict, pair_stats: dict) -> dict:
+    ids1 = list(g1["member_ids"])
+    ids2 = list(g2["member_ids"])
+    repaired = _repair_soft_merge_overlap(ids1, ids2, item_by_id, pair_stats)
+    if repaired is None:
+        overlap_images = sorted(
+            {item_by_id[i]["image_id"] for i in ids1}
+            & {item_by_id[i]["image_id"] for i in ids2}
+        )
+        return {
+            "blocked_by_image_overlap": bool(overlap_images),
+            "overlap_images": overlap_images,
+            "overlap_repair": False,
+            "proto_sim": _group_proto_similarity(ids1, ids2, item_by_id),
+            "cross_coassoc": _group_cross_coassoc(ids1, ids2, item_by_id, pair_stats),
+            "score": SOFT_MERGE_ALPHA * _group_proto_similarity(ids1, ids2, item_by_id)
+            + SOFT_MERGE_BETA * _group_cross_coassoc(ids1, ids2, item_by_id, pair_stats),
+            "pass_proto": _group_proto_similarity(ids1, ids2, item_by_id) >= SOFT_MERGE_MIN_PROTO_SIM,
+            "pass_cross_coassoc": _group_cross_coassoc(ids1, ids2, item_by_id, pair_stats) >= SOFT_MERGE_MIN_CROSS_COASSOC,
+            "pass_score": (
+                SOFT_MERGE_ALPHA * _group_proto_similarity(ids1, ids2, item_by_id)
+                + SOFT_MERGE_BETA * _group_cross_coassoc(ids1, ids2, item_by_id, pair_stats)
+            ) >= SOFT_MERGE_MIN_COMBINED_SCORE,
+            "can_merge": False,
+        }
+    eval_ids1, eval_ids2, repair_meta = repaired
+    overlap_images = repair_meta["overlap_images"]
+    overlap_repair = repair_meta["repaired"]
+    proto_threshold, cross_threshold, score_threshold = _soft_merge_thresholds(overlap_repair)
+    proto_sim = _group_proto_similarity(eval_ids1, eval_ids2, item_by_id)
+    cross_coassoc = _group_cross_coassoc(eval_ids1, eval_ids2, item_by_id, pair_stats)
+    score = SOFT_MERGE_ALPHA * proto_sim + SOFT_MERGE_BETA * cross_coassoc
+    return {
+        "blocked_by_image_overlap": bool(overlap_images) and not overlap_repair,
+        "overlap_images": overlap_images,
+        "overlap_repair": overlap_repair,
+        "repair_meta": repair_meta,
+        "proto_sim": proto_sim,
+        "cross_coassoc": cross_coassoc,
+        "score": score,
+        "pass_proto": proto_sim >= proto_threshold,
+        "pass_cross_coassoc": cross_coassoc >= cross_threshold,
+        "pass_score": score >= score_threshold,
+        "thresholds": {
+            "proto": proto_threshold,
+            "cross": cross_threshold,
+            "score": score_threshold,
+        },
+        "can_merge": (
+            (not overlap_images or overlap_repair)
+            and proto_sim >= proto_threshold
+            and cross_coassoc >= cross_threshold
+            and score >= score_threshold
+        ),
+    }
+
+
+def _score_obs_to_group(
+    obs_id: str,
+    group_id: str,
+    assignment: dict[str, str],
+    item_by_id: dict,
+    pair_stats: dict,
+) -> dict:
+    image_id = item_by_id[obs_id]["image_id"]
+    support_ids = [
+        other_id
+        for other_id, other_group_id in assignment.items()
+        if other_group_id == group_id and item_by_id[other_id]["image_id"] != image_id
+    ]
+    raw_vals = [
+        float(pair_stats[_pair_key(obs_id, other_id)]["ratio"])
+        for other_id in support_ids
+        if _pair_key(obs_id, other_id) in pair_stats
+    ]
+    pair_fit = float(np.mean(raw_vals)) if raw_vals else 0.0
+    proto = _mean_proto(support_ids, item_by_id)
+    proto_fit = _cosine_sim(item_by_id[obs_id]["embedding"], proto)
+    score = SAME_IMAGE_REPAIR_ALPHA * proto_fit + SAME_IMAGE_REPAIR_BETA * pair_fit
+    return {
+        "score": score,
+        "proto_fit": proto_fit,
+        "pair_fit": pair_fit,
+        "support_count": len(support_ids),
+    }
+
+
+def _build_groups_from_assignment(
+    assignment: dict[str, str],
+    code: int,
+    item_by_id: dict,
+) -> tuple[dict[str, dict], list[str]]:
+    by_group: dict[str, list[str]] = defaultdict(list)
+    for obs_id, group_id in assignment.items():
+        by_group[group_id].append(obs_id)
+
+    groups: dict[str, dict] = {}
+    active_group_ids: list[str] = []
+    for group_id in sorted(by_group):
+        member_ids = sorted(by_group[group_id], key=lambda obs_id: (item_by_id[obs_id]["image_id"], obs_id))
+        if not member_ids:
+            continue
+        groups[group_id] = {"code": code, "member_ids": member_ids, "group_id": group_id}
+        active_group_ids.append(group_id)
+    return groups, active_group_ids
+
+
+def _repair_same_image_conflicts(
+    groups: dict,
+    groups_by_code: dict,
+    item_by_id: dict,
+    pair_stats: dict,
+) -> tuple[dict, dict, list[dict]]:
+    if not SAME_IMAGE_REPAIR_ENABLED:
+        return groups, groups_by_code, []
+
+    updated_groups = {gid: {"code": group["code"], "member_ids": list(group["member_ids"]), "group_id": gid} for gid, group in groups.items()}
+    updated_groups_by_code = {code: list(group_ids) for code, group_ids in groups_by_code.items()}
+    repair_log: list[dict] = []
+
+    for code, group_ids in sorted(updated_groups_by_code.items()):
+        if len(group_ids) <= 1:
+            continue
+        code_group_ids = [gid for gid in group_ids if gid in updated_groups]
+        assignment = {
+            obs_id: gid
+            for gid in code_group_ids
+            for obs_id in updated_groups[gid]["member_ids"]
+        }
+        if not assignment:
+            continue
+
+        code_obs_ids = sorted(assignment.keys(), key=lambda obs_id: (item_by_id[obs_id]["image_id"], obs_id))
+        images = sorted({item_by_id[obs_id]["image_id"] for obs_id in code_obs_ids})
+
+        for round_idx in range(SAME_IMAGE_REPAIR_ROUNDS):
+            round_changed = False
+            for image_id in images:
+                image_obs_ids = [obs_id for obs_id in code_obs_ids if item_by_id[obs_id]["image_id"] == image_id]
+                if len(image_obs_ids) <= 1:
+                    continue
+
+                active_group_ids = sorted({
+                    group_id
+                    for group_id in code_group_ids
+                    if any(assigned_group_id == group_id for assigned_group_id in assignment.values())
+                })
+                if len(active_group_ids) <= 1:
+                    continue
+
+                row_by_obs_id = {obs_id: row for row, obs_id in enumerate(image_obs_ids)}
+                col_by_group_id = {group_id: col for col, group_id in enumerate(active_group_ids)}
+                score_matrix = np.zeros((len(image_obs_ids), len(active_group_ids)), dtype=float)
+                for row, obs_id in enumerate(image_obs_ids):
+                    for col, group_id in enumerate(active_group_ids):
+                        meta = _score_obs_to_group(obs_id, group_id, assignment, item_by_id, pair_stats)
+                        score_matrix[row, col] = meta["score"]
+
+                current_pairs = []
+                current_total = 0.0
+                for row, obs_id in enumerate(image_obs_ids):
+                    current_group_id = assignment[obs_id]
+                    if current_group_id not in active_group_ids:
+                        continue
+                    col = active_group_ids.index(current_group_id)
+                    current_pairs.append((row, col))
+                    current_total += score_matrix[row, col]
+
+                if not current_pairs:
+                    continue
+
+                row_ind, col_ind = linear_sum_assignment(-score_matrix)
+                optimal_pairs = list(zip(row_ind.tolist(), col_ind.tolist()))
+                optimal_total = float(sum(score_matrix[row, col] for row, col in optimal_pairs))
+                gain = optimal_total - current_total
+                changed_assignments = [
+                    (image_obs_ids[row], active_group_ids[col])
+                    for row, col in optimal_pairs
+                    if assignment[image_obs_ids[row]] != active_group_ids[col]
+                ]
+                if not changed_assignments:
+                    continue
+
+                min_optimal_score = min(score_matrix[row, col] for row, col in optimal_pairs)
+                if gain < SAME_IMAGE_REPAIR_MIN_GAIN or min_optimal_score < SAME_IMAGE_REPAIR_MIN_SCORE:
+                    continue
+
+                before_assignment = {obs_id: assignment[obs_id] for obs_id in image_obs_ids}
+                for obs_id, new_group_id in changed_assignments:
+                    assignment[obs_id] = new_group_id
+
+                round_changed = True
+                repair_log.append({
+                    "code": code,
+                    "image_id": image_id,
+                    "round": round_idx + 1,
+                    "gain": gain,
+                    "current_total": current_total,
+                    "optimal_total": optimal_total,
+                    "before": before_assignment,
+                    "after": {obs_id: assignment[obs_id] for obs_id in image_obs_ids},
+                    "changes": [
+                        {
+                            "obs_id": obs_id,
+                            "from_group": before_assignment[obs_id],
+                            "to_group": new_group_id,
+                            "new_score": score_matrix[row_by_obs_id[obs_id], col_by_group_id[new_group_id]],
+                        }
+                        for obs_id, new_group_id in changed_assignments
+                    ],
+                })
+
+            if not round_changed:
+                break
+
+        rebuilt_groups, rebuilt_group_ids = _build_groups_from_assignment(assignment, code, item_by_id)
+        for gid in list(code_group_ids):
+            updated_groups.pop(gid, None)
+        updated_groups.update(rebuilt_groups)
+        updated_groups_by_code[code] = rebuilt_group_ids
+
+    if repair_log:
+        print(
+            f"  [ReID-Repair] same-image reassignments: {len(repair_log)}"
+        )
+
+    return updated_groups, updated_groups_by_code, repair_log
+
+
+def _serialize_reid_debug(
+    all_items: list[dict],
+    item_by_id: dict,
+    pair_stats: dict,
+    groups: dict,
+    groups_by_code: dict,
+    scene_nodes: list[SceneNode],
+    n_seed_runs: int,
+    repair_log: list[dict],
+) -> dict:
+    item_payload = {
+        item["observed_node_id"]: {
+            "observed_node_id": item["observed_node_id"],
+            "image_id": item["image_id"],
+            "code": int(item["code"]),
+            "confidence": float(item["confidence"]),
+            "center": [float(item["center"][0]), float(item["center"][1])],
+            "nearby_codes": [int(code) for code in item["nearby_codes"]],
+            "has_embedding": item["embedding"] is not None,
+        }
+        for item in sorted(all_items, key=lambda entry: (entry["code"], entry["image_id"], entry["observed_node_id"]))
+    }
+
+    pair_payload = []
+    for (a, b), st in sorted(pair_stats.items(), key=lambda entry: (item_by_id[entry[0][0]]["code"], entry[0][0], entry[0][1])):
+        pair_payload.append({
+            "a": a,
+            "b": b,
+            "code": int(item_by_id[a]["code"]),
+            "image_a": item_by_id[a]["image_id"],
+            "image_b": item_by_id[b]["image_id"],
+            "same_group": float(st.get("same_group", 0.0)),
+            "co_observed": int(st.get("co_observed", 0)),
+            "ratio": float(st.get("ratio", 0.0)),
+            "visual_ratio": float(st.get("visual_ratio", st.get("ratio", 0.0))),
+            "cls_nbr_sim": float(st.get("cls_nbr_sim", 0.0)),
+            "vggt_dist": st.get("vggt_dist"),
+            "vggt_override": st.get("vggt_override"),
+            "effective_affinity": _affinity(a, b, pair_stats),
+        })
+
+    groups_payload = {}
+    scene_node_by_id = {sn.scene_node_id: sn for sn in scene_nodes}
+    for group_id, group in sorted(groups.items()):
+        member_ids = list(group["member_ids"])
+        obs_per_image = _observation_image_counts(member_ids, item_by_id)
+        groups_payload[group_id] = {
+            "group_id": group_id,
+            "code": int(group["code"]),
+            "member_ids": member_ids,
+            "support_count": len(member_ids),
+            "support_images": sorted(obs_per_image.keys()),
+            "observations_per_image": obs_per_image,
+            "observation_budget_violations": _observation_budget_violations(member_ids, item_by_id),
+            "fused_confidence": float(scene_node_by_id[group_id].fused_confidence) if group_id in scene_node_by_id else None,
+        }
+
+    cross_group_analysis = []
+    for code, group_ids in sorted(groups_by_code.items()):
+        for i in range(len(group_ids)):
+            for j in range(i + 1, len(group_ids)):
+                gid_a = group_ids[i]
+                gid_b = group_ids[j]
+                group_a = groups[gid_a]
+                group_b = groups[gid_b]
+                obs_a = list(group_a["member_ids"])
+                obs_b = list(group_b["member_ids"])
+                merged_obs = obs_a + obs_b
+                image_counts = Counter(item_by_id[obs_id]["image_id"] for obs_id in merged_obs)
+                cross_group_analysis.append({
+                    "code": int(code),
+                    "group_a": gid_a,
+                    "group_b": gid_b,
+                    "support_a": len(obs_a),
+                    "support_b": len(obs_b),
+                    "images_a": sorted({item_by_id[obs_id]["image_id"] for obs_id in obs_a}),
+                    "images_b": sorted({item_by_id[obs_id]["image_id"] for obs_id in obs_b}),
+                    "merged_obs_count": len(merged_obs),
+                    "merged_unique_images": len(image_counts),
+                    "merged_duplicate_images": sorted(
+                        image_id for image_id, count in image_counts.items() if count > 1
+                    ),
+                    "cross_pair_summary": _summarize_cross_pairs(obs_a, obs_b, item_by_id, pair_stats),
+                    "soft_merge": _soft_merge_decision(group_a, group_b, item_by_id, pair_stats),
+                })
+
+    observation_budget_violations = []
+    for scene_node in sorted(scene_nodes, key=lambda node: (node.fused_code, node.scene_node_id)):
+        violations = _observation_budget_violations(scene_node.supporting_observed_ids, item_by_id)
+        if not violations:
+            continue
+        observation_budget_violations.append({
+            "scene_node_id": scene_node.scene_node_id,
+            "code": int(scene_node.fused_code),
+            "support_count": int(scene_node.support_count),
+            "support_images": list(scene_node.support_images),
+            "violations": violations,
+        })
+
+    return {
+        "mode": "direct_pairwise" if REID_USE_DIRECT_PAIRWISE else "seed_coassoc",
+        "thresholds": {
+            "reid_match_threshold": REID_MATCH_THRESHOLD,
+            "coassoc_min_runs": COASSOC_MIN_RUNS,
+            "coassoc_min_ratio": COASSOC_MIN_RATIO,
+            "final_group_min_affinity": FINAL_GROUP_MIN_AFFINITY,
+            "same_image_repair_enabled": SAME_IMAGE_REPAIR_ENABLED,
+            "same_image_repair_rounds": SAME_IMAGE_REPAIR_ROUNDS,
+            "same_image_repair_min_gain": SAME_IMAGE_REPAIR_MIN_GAIN,
+            "same_image_repair_min_score": SAME_IMAGE_REPAIR_MIN_SCORE,
+            "soft_merge_enabled": SOFT_MERGE_ENABLED,
+            "soft_merge_min_proto_sim": SOFT_MERGE_MIN_PROTO_SIM,
+            "soft_merge_min_cross_coassoc": SOFT_MERGE_MIN_CROSS_COASSOC,
+            "soft_merge_min_combined_score": SOFT_MERGE_MIN_COMBINED_SCORE,
+            "soft_merge_allow_image_subset_repair": SOFT_MERGE_ALLOW_IMAGE_SUBSET_REPAIR,
+            "soft_merge_max_subset_group_support": SOFT_MERGE_MAX_SUBSET_GROUP_SUPPORT,
+            "soft_merge_repaired_min_cross_coassoc": SOFT_MERGE_REPAIRED_MIN_CROSS_COASSOC,
+            "soft_merge_repaired_min_combined_score": SOFT_MERGE_REPAIRED_MIN_COMBINED_SCORE,
+        },
+        "n_seed_runs": int(n_seed_runs),
+        "n_pair_stats": len(pair_stats),
+        "n_scene_nodes": len(scene_nodes),
+        "same_image_repair_log": repair_log,
+        "items": item_payload,
+        "pair_stats": pair_payload,
+        "groups": groups_payload,
+        "cross_group_analysis": cross_group_analysis,
+        "observation_budget_violations": observation_budget_violations,
+        "observed_to_scene": {
+            iid: sn.scene_node_id
+            for sn in scene_nodes
+            for iid in sn.supporting_observed_ids
+        },
+    }
+
+
 def identify_scene_nodes(
     observed_graphs: list,
     image_paths: list[Path] | None = None,
@@ -856,6 +1528,10 @@ def identify_scene_nodes(
             groups[gid] = {"code": code, "member_ids": cluster, "group_id": gid}
             groups_by_code[code].append(gid)
 
+    groups, groups_by_code, repair_log = _repair_same_image_conflicts(
+        groups, groups_by_code, item_by_id, pair_stats
+    )
+
     # Soft post-merge
     groups, groups_by_code = _run_soft_post_merge(groups, groups_by_code, item_by_id, pair_stats)
 
@@ -863,17 +1539,16 @@ def identify_scene_nodes(
     scene_nodes = _build_scene_nodes(groups, item_by_id, observed_graphs)
 
     n_seed_runs = 0 if REID_USE_DIRECT_PAIRWISE else len(single_seed_runs)
-    debug = {
-        "mode":           "direct_pairwise" if REID_USE_DIRECT_PAIRWISE else "seed_coassoc",
-        "n_seed_runs":    n_seed_runs,
-        "n_pair_stats":   len(pair_stats),
-        "n_scene_nodes":  len(scene_nodes),
-        "observed_to_scene": {
-            iid: sn.scene_node_id
-            for sn in scene_nodes
-            for iid in sn.supporting_observed_ids
-        },
-    }
+    debug = _serialize_reid_debug(
+        all_items=all_items,
+        item_by_id=item_by_id,
+        pair_stats=pair_stats,
+        groups=groups,
+        groups_by_code=groups_by_code,
+        scene_nodes=scene_nodes,
+        n_seed_runs=n_seed_runs,
+        repair_log=repair_log,
+    )
 
     _print_reid_summary(scene_nodes, all_items, n_seed_runs, len(pair_stats))
     return scene_nodes, debug
@@ -935,3 +1610,241 @@ def serialize_scene_nodes(scene_nodes: list[SceneNode]) -> list[dict]:
         }
         for sn in scene_nodes
     ]
+
+
+def merge_spurious_singletons(
+    scene_nodes: list[SceneNode],
+    observed_graphs: list,
+    scene_geom: dict | None = None,
+    scene_cutoff: float | None = None,
+    pair_hints: list[dict] | None = None,
+    pos_factor: float = 0.5,
+    iou_threshold: float = 0.30,
+) -> tuple[list[SceneNode], list[dict]]:
+    """Merge singleton scene nodes that are likely spurious duplicates.
+
+    Level 1 – 3D positional duplicate: centroid within pos_factor * scene_cutoff
+    of a higher-support same-code node.
+
+    Level 2 – 2D detection overlap: the singleton's sole detection has
+    IoU >= iou_threshold with any detection of a higher-support same-code node
+    in the same image.
+    """
+    obs_by_id: dict[str, object] = {}
+    for og in observed_graphs:
+        for obs_id, obs in og.nodes.items():
+            obs_by_id[obs_id] = obs
+
+    sn_by_id = {sn.scene_node_id: sn for sn in scene_nodes}
+    parent = {sn.scene_node_id: sn.scene_node_id for sn in scene_nodes}
+
+    def _find(x: str) -> str:
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    def _union(dropped: str, kept: str) -> None:
+        parent[_find(dropped)] = _find(kept)
+
+    def _iou(b1: list, b2: list) -> float:
+        ix1, iy1 = max(b1[0], b2[0]), max(b1[1], b2[1])
+        ix2, iy2 = min(b1[2], b2[2]), min(b1[3], b2[3])
+        inter = max(0.0, ix2 - ix1) * max(0.0, iy2 - iy1)
+        if inter == 0:
+            return 0.0
+        a1 = (b1[2] - b1[0]) * (b1[3] - b1[1])
+        a2 = (b2[2] - b2[0]) * (b2[3] - b2[1])
+        return inter / (a1 + a2 - inter)
+
+    strong_partners: dict[str, set[str]] = defaultdict(set)
+    if isinstance(pair_hints, dict):
+        pair_hint_entries = []
+        for pair, meta in pair_hints.items():
+            if not isinstance(pair, tuple) or len(pair) != 2:
+                continue
+            pair_hint_entries.append((pair, meta if isinstance(meta, dict) else {}))
+    else:
+        pair_hint_entries = []
+        for hint in pair_hints or []:
+            if isinstance(hint, dict):
+                pair = hint.get("pair") or []
+                meta = hint
+            elif isinstance(hint, tuple) and len(hint) == 2 and isinstance(hint[1], dict):
+                pair, meta = hint
+            else:
+                continue
+            if len(pair) != 2:
+                continue
+            pair_hint_entries.append((tuple(pair), meta))
+
+    for pair, meta in pair_hint_entries:
+        if float(meta.get("score", 0.0)) < 0.75:
+            continue
+        a_id, b_id = pair
+        strong_partners[a_id].add(b_id)
+        strong_partners[b_id].add(a_id)
+
+    merge_log: list[dict] = []
+
+    for sn in scene_nodes:
+        if sn.support_count != 1:
+            continue
+        candidates = sorted(
+            [o for o in scene_nodes
+             if o.scene_node_id != sn.scene_node_id
+             and o.fused_code == sn.fused_code
+             and o.support_count > 1],
+            key=lambda o: -o.support_count,
+        )
+        same_code_candidates = sorted(
+            [o for o in scene_nodes
+             if o.scene_node_id != sn.scene_node_id
+             and o.fused_code == sn.fused_code],
+            key=lambda o: (-o.support_count, o.scene_node_id),
+        )
+        if not same_code_candidates:
+            continue
+
+        kept_id, reason = None, None
+
+        # Level 1: 3D positional duplicate
+        if scene_geom and scene_cutoff and sn.scene_node_id in scene_geom:
+            ca = scene_geom[sn.scene_node_id]["centroid"]
+            max_dist = scene_cutoff * pos_factor
+            for other in candidates:
+                if other.scene_node_id not in scene_geom:
+                    continue
+                cb = scene_geom[other.scene_node_id]["centroid"]
+                dist = float(sum((x - y) ** 2 for x, y in zip(ca, cb)) ** 0.5)
+                if dist <= max_dist:
+                    kept_id = other.scene_node_id
+                    reason = f"3d_pos_dup  dist={dist:.4f}m  ({dist/scene_cutoff:.2f}x)"
+                    break
+
+        # Level 2: 2D detection overlap
+        if kept_id is None and sn.supporting_observed_ids:
+            my_obs = obs_by_id.get(sn.supporting_observed_ids[0])
+            if my_obs is not None:
+                for other in candidates:
+                    for oid in other.supporting_observed_ids:
+                        o_obs = obs_by_id.get(oid)
+                        if o_obs is None or o_obs.image_id != my_obs.image_id:
+                            continue
+                        iou = _iou(my_obs.bbox, o_obs.bbox)
+                        if iou >= iou_threshold:
+                            kept_id = other.scene_node_id
+                            reason = f"2d_overlap  iou={iou:.3f}  img={my_obs.image_id}"
+                            break
+                    if kept_id:
+                        break
+
+        # Level 3: same-code singleton/low-support clusters sharing a strong 3D partner.
+        if (
+            kept_id is None
+            and scene_geom and scene_cutoff
+            and sn.scene_node_id in scene_geom
+            and strong_partners.get(sn.scene_node_id)
+        ):
+            ca = scene_geom[sn.scene_node_id]["centroid"]
+            best_shared = None
+            for other in same_code_candidates:
+                if other.scene_node_id not in scene_geom:
+                    continue
+                if set(sn.support_images) & set(other.support_images):
+                    continue
+                shared = sorted(
+                    strong_partners.get(sn.scene_node_id, set())
+                    & strong_partners.get(other.scene_node_id, set())
+                )
+                if not shared:
+                    continue
+                if not any(sn_by_id.get(pid) and sn_by_id[pid].support_count >= 2 for pid in shared):
+                    continue
+                cb = scene_geom[other.scene_node_id]["centroid"]
+                dist = float(sum((x - y) ** 2 for x, y in zip(ca, cb)) ** 0.5)
+                if dist > scene_cutoff:
+                    continue
+                candidate = (
+                    len(shared),
+                    other.support_count,
+                    -dist,
+                    other.scene_node_id,
+                )
+                if best_shared is None or candidate > best_shared[0]:
+                    best_shared = (
+                        candidate,
+                        other.scene_node_id,
+                        dist,
+                        shared,
+                    )
+            if best_shared is not None:
+                _, best_other_id, best_dist, shared = best_shared
+                if sn_by_id[best_other_id].support_count >= sn.support_count:
+                    kept_id = best_other_id
+                    dropped_id = sn.scene_node_id
+                else:
+                    kept_id = sn.scene_node_id
+                    dropped_id = best_other_id
+                reason = (
+                    f"3d_shared_partner  dist={best_dist:.4f}m  "
+                    f"({best_dist/scene_cutoff:.2f}x)  shared={','.join(shared)}"
+                )
+                if _find(dropped_id) != _find(kept_id):
+                    _union(dropped_id, kept_id)
+                    merge_log.append({
+                        "dropped": dropped_id,
+                        "kept": kept_id,
+                        "reason": reason,
+                        "code": sn.fused_code,
+                    })
+                continue
+
+        if kept_id is None or _find(sn.scene_node_id) == _find(kept_id):
+            continue
+
+        _union(sn.scene_node_id, kept_id)
+        merge_log.append({"dropped": sn.scene_node_id, "kept": kept_id,
+                          "reason": reason, "code": sn.fused_code})
+
+    if not merge_log:
+        return scene_nodes, []
+
+    groups: dict[str, list[str]] = defaultdict(list)
+    for sn in scene_nodes:
+        groups[_find(sn.scene_node_id)].append(sn.scene_node_id)
+
+    merged: list[SceneNode] = []
+    for root, members in groups.items():
+        if len(members) == 1:
+            merged.append(sn_by_id[root])
+            continue
+        keeper = sn_by_id[root]
+        all_obs = list(keeper.supporting_observed_ids)
+        all_imgs = set(keeper.support_images)
+        for mid in members:
+            if mid == root:
+                continue
+            m = sn_by_id[mid]
+            all_obs.extend(m.supporting_observed_ids)
+            all_imgs.update(m.support_images)
+        merged.append(SceneNode(
+            scene_node_id=keeper.scene_node_id,
+            fused_code=keeper.fused_code,
+            fused_name=keeper.fused_name,
+            fused_confidence=keeper.fused_confidence,
+            support_count=len(set(all_obs)),
+            support_images=sorted(all_imgs),
+            supporting_observed_ids=list(set(all_obs)),
+            local_structural_signature=keeper.local_structural_signature,
+            max_degree=keeper.max_degree,
+            anchor_hint_score=keeper.anchor_hint_score,
+            representative_branch_roles=keeper.representative_branch_roles,
+            representative_triplet_hints=keeper.representative_triplet_hints,
+        ))
+
+    n_merged = len(scene_nodes) - len(merged)
+    print(f"  [SpuriousMerge] merged {n_merged} spurious singleton(s)")
+    for e in merge_log:
+        print(f"    {e['dropped']} -> {e['kept']}  {e['reason']}")
+    return merged, merge_log

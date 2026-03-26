@@ -416,9 +416,17 @@ def _merge_duplicate_scene_nodes(
                 n_obs_b = scene_geom[b_id]["n_observations"]
 
                 dist = float(np.linalg.norm(centroid_a - centroid_b))
+                imgs_a = set(sn_by_id[a_id].support_images)
+                imgs_b = set(sn_by_id[b_id].support_images)
+                support_subset = bool(imgs_b) and imgs_b.issubset(imgs_a) and len(imgs_b) < len(imgs_a)
 
                 if dist <= confident_thr:
-                    reason = "confident"
+                    if n_obs_b <= VGGT_3D_MERGE_LOW_OBS_THRESHOLD:
+                        reason = "confident"
+                    elif support_subset:
+                        reason = "confident_subset"
+                    else:
+                        continue
                 elif dist <= tentative_thr and n_obs_b <= VGGT_3D_MERGE_LOW_OBS_THRESHOLD:
                     reason = "tentative_low_obs"
                 else:
