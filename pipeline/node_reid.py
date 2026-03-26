@@ -1,10 +1,11 @@
 """Step 2 – node re-identification.
 
 For every component code the algorithm:
-  1. Determines k (number of physical instances) = max detections of that code
-     in any single image.  This is a structural observation: each image can
-     see each physical component at most once (after NMS), so the densest
-     single-image count equals the total number of instances.
+  1. Determines k (number of physical instances) via greedy graph coloring of
+     the incompatibility graph: two observations are incompatible if they come
+     from the same image.  The chromatic number of this graph is the minimum
+     k that satisfies all constraints, correctly handling cases where no single
+     image sees all instances simultaneously.
   2. If k == 1: all detections belong to the one instance (trivial).
   3. If k > 1: cluster detections via K-Means on ResNet-50 patch embeddings,
      then apply the same-image hard constraint (two detections from the same
@@ -12,7 +13,7 @@ For every component code the algorithm:
   4. VGGT 3D distances (< VGGT_REID_CONFIDENT_DIST = 0.08 m) are used as a
      hard-merge bonus in the affinity matrix.
 
-No dataset-tuned thresholds.  k comes directly from the detection structure;
+No dataset-tuned thresholds.  k comes from the incompatibility graph structure;
 the only physical constant is VGGT_REID_CONFIDENT_DIST.
 """
 
@@ -266,9 +267,32 @@ def _cluster_code(
     if n == 1:
         return [list(code_ids)]
 
-    # ── k from detection structure ────────────────────────────────────────────
-    img_counts = Counter(item_by_id[oid]["image_id"] for oid in code_ids)
-    k = max(img_counts.values())
+    # ── k from incompatibility graph (chromatic number estimate) ─────────────
+    # Two observations are incompatible if they come from the same image
+    # (they cannot be the same physical instance).  The minimum number of
+    # clusters that satisfies all incompatibility constraints equals the
+    # chromatic number of this graph.  Greedy coloring gives an exact result
+    # for interval/perfect graphs, and a tight upper bound otherwise.
+    # This correctly handles cases where no single image sees all instances
+    # (e.g. image A sees {1,2}, image B sees {2,3} → k=3, max_per_image=2).
+    img_of = {oid: item_by_id[oid]["image_id"] for oid in code_ids}
+    # adjacency list: obs → set of obs from same image
+    incompat: dict[str, set[str]] = {oid: set() for oid in code_ids}
+    img_to_obs: dict[str, list[str]] = defaultdict(list)
+    for oid in code_ids:
+        img_to_obs[img_of[oid]].append(oid)
+    for peers in img_to_obs.values():
+        for i in range(len(peers)):
+            for j in range(i + 1, len(peers)):
+                incompat[peers[i]].add(peers[j])
+                incompat[peers[j]].add(peers[i])
+
+    # Greedy coloring ordered by degree descending (DSATUR-lite)
+    color: dict[str, int] = {}
+    for oid in sorted(code_ids, key=lambda x: -len(incompat[x])):
+        used = {color[nb] for nb in incompat[oid] if nb in color}
+        color[oid] = next(c for c in range(n) if c not in used)
+    k = max(color.values()) + 1
 
     if k == 1:
         return [list(code_ids)]
