@@ -2,8 +2,12 @@
 import json
 
 import cv2
-import matplotlib.pyplot as plt
 import numpy as np
+
+try:
+    import matplotlib.pyplot as plt
+except Exception:  # pragma: no cover - optional in lightweight runtime
+    plt = None
 
 from config import WORK_DIR, COMPONENT_INFO
 
@@ -63,6 +67,8 @@ def save_view_selection(debug_dirs: dict, all_views: list, scores: list, best_vi
         })
     save_json(debug_dirs["views"] / "view_selection.json", payload)
 
+    if plt is None:
+        return
     names = [item["image"] for item in payload]
     vals = [item["score"] for item in payload]
     colors = ["#00ff88" if item["is_best"] else "#4c78a8" for item in payload]
@@ -84,6 +90,8 @@ def save_type_consensus(debug_dirs: dict, type_consensus: dict) -> None:
     ]
     save_json(debug_dirs["multiview"] / "type_consensus.json", pairs)
 
+    if plt is None:
+        return
     codes = sorted({code for pair in type_consensus for code in pair})
     if not codes:
         return
@@ -115,7 +123,7 @@ def save_candidate_snapshot(debug_dirs: dict, best_view_path: Path, dets: list,
                             pair_features: dict, selected_pairs=None,
                             filename: str = "candidate_edges.png",
                             title: str = "Candidate edges") -> None:
-    if not pair_features:
+    if plt is None or not pair_features:
         return
     selected_pairs = {tuple(pair) for pair in (selected_pairs or [])}
 

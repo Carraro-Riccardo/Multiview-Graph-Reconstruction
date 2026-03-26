@@ -238,11 +238,20 @@ def _estimate_observation_geometry(
         port_a = (centroid + axis * lo).astype(np.float32)
         port_b = (centroid + axis * hi).astype(np.float32)
 
+    # Keep a compact point-cloud sample for min-distance re-id matching.
+    # 128 points is enough to detect cloud overlap while staying lightweight.
+    if len(pts) > 128:
+        idx = np.linspace(0, len(pts) - 1, 128, dtype=int)
+        pts_sample = pts[idx].astype(np.float32)
+    else:
+        pts_sample = pts.astype(np.float32)
+
     return {
-        "centroid": centroid,
-        "axis": axis,
-        "ports": [port_a, port_b],
-        "n_points": int(len(pts)),
+        "centroid":  centroid,
+        "axis":      axis,
+        "ports":     [port_a, port_b],
+        "n_points":  int(len(pts)),
+        "pts_sample": pts_sample,
     }
 
 
@@ -416,9 +425,17 @@ def _merge_duplicate_scene_nodes(
                 n_obs_b = scene_geom[b_id]["n_observations"]
 
                 dist = float(np.linalg.norm(centroid_a - centroid_b))
+                imgs_a = set(sn_by_id[a_id].support_images)
+                imgs_b = set(sn_by_id[b_id].support_images)
+                support_subset = bool(imgs_b) and imgs_b.issubset(imgs_a) and len(imgs_b) < len(imgs_a)
 
                 if dist <= confident_thr:
-                    reason = "confident"
+                    if n_obs_b <= VGGT_3D_MERGE_LOW_OBS_THRESHOLD:
+                        reason = "confident"
+                    elif support_subset:
+                        reason = "confident_subset"
+                    else:
+                        continue
                 elif dist <= tentative_thr and n_obs_b <= VGGT_3D_MERGE_LOW_OBS_THRESHOLD:
                     reason = "tentative_low_obs"
                 else:

@@ -25,7 +25,7 @@ import numpy as np
 from PIL import Image
 
 # ── CONFIG ────────────────────────────────────────────────────────────────────
-NODE_ID      = 2
+NODE_ID      = 7
 WORK_DIR     = Path("./output/multiview")
 CACHE_DIR    = Path("./output/detection_cache")
 IMAGES_DIR   = Path("C:/Users/ricca/Desktop/images/val")

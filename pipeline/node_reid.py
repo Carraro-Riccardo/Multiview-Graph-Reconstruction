@@ -1,90 +1,46 @@
-"""Step 2 - node re-identification: multi-seed co-association + soft post-merge.
+"""Step 2 – node re-identification.
 
-Each ObservedNode (one detection in one image) is assigned to a SceneNode
-(the unique physical component it represents) by:
-  1. Running N single-seed assignments (one per image) using Hungarian matching
-     on cosine similarity of ResNet-50 patch embeddings.
-  2. Building a co-association matrix: how often each pair of detected instances
-     was placed in the same group across all seed runs.
-  3. Greedy clustering per component code using the co-association matrix.
-  4. Optional soft post-merge: merge groups with high prototype similarity
-     AND high cross-group co-association score.
+For every component code the algorithm:
+  1. Determines k (number of physical instances) = max detections of that code
+     in any single image.  This is a structural observation: each image can
+     see each physical component at most once (after NMS), so the densest
+     single-image count equals the total number of instances.
+  2. If k == 1: all detections belong to the one instance (trivial).
+  3. If k > 1: cluster detections via K-Means on ResNet-50 patch embeddings,
+     then apply the same-image hard constraint (two detections from the same
+     image can never be the same instance).
+  4. VGGT 3D distances (< VGGT_REID_CONFIDENT_DIST = 0.08 m) are used as a
+     hard-merge bonus in the affinity matrix.
 
-Output: list[SceneNode] compatible with the rest of the multiview pipeline.
+No dataset-tuned thresholds.  k comes directly from the detection structure;
+the only physical constant is VGGT_REID_CONFIDENT_DIST.
 """
 
 from __future__ import annotations
 
 import cv2
 import numpy as np
-from collections import defaultdict
+from collections import Counter, defaultdict
 from dataclasses import dataclass
-from itertools import combinations
 from pathlib import Path
-from scipy.optimize import linear_sum_assignment
 
 from .branch_fragments import is_anchor, is_terminal
 from config import COMPONENT_INFO
 
 
-# ── RE-ID hyper-parameters ──────────────────────────────────────────────────
-REID_MATCH_THRESHOLD      = 0.55   # min cosine sim for seed assignment acceptance
-REID_ALLOW_UNMATCHED      = True   # skip weak matches instead of forcing them
-
-_COASSOC_MIN_RUNS_BASE    = 2      # immutable baseline for adaptive formula
-COASSOC_MIN_RUNS          = 2      # effective value; overridden per-call in identify_scene_nodes
-                                       # (adaptive formula: max(1, min(BASE, n_images // 3)))
-COASSOC_MIN_RATIO         = 0.60   # min same_group / co_observed ratio
-FINAL_GROUP_MIN_AFFINITY  = 0.60   # min mean affinity to join a greedy cluster
-
-SOFT_MERGE_ENABLED            = True
-SOFT_MERGE_MIN_PROTO_SIM      = 0.72
-SOFT_MERGE_MIN_CROSS_COASSOC  = 0.20
-SOFT_MERGE_MIN_COMBINED_SCORE = 0.58
-SOFT_MERGE_ALPHA              = 0.55   # weight of prototype cosine similarity
-SOFT_MERGE_BETA               = 0.45   # weight of cross-group co-association
-
+# ── Patch extraction ──────────────────────────────────────────────────────────
 PATCH_EXPAND_RATIO = 0.35
 MIN_PATCH_SIZE     = 48
 
-# ── Algorithm selection ───────────────────────────────────────────────────────
-# True  → skip seed runs entirely; use direct pairwise cosine similarity
-#         as affinity signal (cluster count emerges from data, not seed image)
-# False → original multi-seed co-association matrix approach
-REID_USE_DIRECT_PAIRWISE = False
-
-# ── Instance-level neighbourhood enhancement ─────────────────────────────────
-# After computing the base pair affinity (co-association or direct pairwise),
-# run NBRHD_ROUNDS iterations of neighbourhood-augmented refinement.
-#
-# Each round blends two signals:
-#   visual  — base co-association / pairwise cosine ratio  (weight NBRHD_ALPHA)
-#   cls_nbr — dynamic: cosine sim between cluster-ID histograms of KNN
-#             neighbours (which instances surround this detection?).
-#             Recomputed every round as clustering improves.
-#
-# Combined affinity:  α·visual + (1−α)·cls_nbr
-#
-# Set NBRHD_ROUNDS = 0 to disable.
-NBRHD_ROUNDS = 2
-NBRHD_ALPHA  = 0.65   # weight for visual (co-assoc) signal vs neighbourhood
-
-# ── VGGT 3D re-id constraints ─────────────────────────────────────────────────
-# When VGGT point maps are available (search_roots passed to identify_scene_nodes),
-# per-detection 3D centroids are extracted and used to hard-constrain the visual
-# clustering:
-#
-#   dist ≤ CONFIDENT_DIST  → forced same instance (pair added/overridden in pair_stats)
-#   dist > SPLIT_DIST      → forced different (pair removed from pair_stats)
-#   in between             → visual co-association decides as before
-#
-# Set VGGT_REID_ENABLED = False to revert to pure visual re-id.
+# ── VGGT 3D hard-merge threshold ─────────────────────────────────────────────
+# Detections whose 3-D centroids are closer than this (metres) are the same
+# physical object regardless of visual appearance.  This is a physical /
+# sensor-noise constant, NOT a dataset-tuned hyperparameter.
 VGGT_REID_ENABLED        = True
-VGGT_REID_CONFIDENT_DIST = 0.08   # m — hard merge (generous for per-detection centroid noise)
-VGGT_REID_SPLIT_DIST     = None   # disabled: splits are handled by visual co-association ratio
+VGGT_REID_CONFIDENT_DIST = 0.08   # m
 
 
-# ── SceneNode (downstream-compatible) ───────────────────────────────────────
+# ── SceneNode (downstream-compatible) ────────────────────────────────────────
 @dataclass
 class SceneNode:
     scene_node_id: str
@@ -101,7 +57,7 @@ class SceneNode:
     representative_triplet_hints: list[list[int]]
 
 
-# ── Embedding model (lazy singleton) ────────────────────────────────────────
+# ── Embedding model (lazy singleton) ─────────────────────────────────────────
 _emb_model     = None
 _emb_transform = None
 
@@ -156,15 +112,12 @@ def _expand_box(x1: int, y1: int, x2: int, y2: int, w: int, h: int) -> tuple:
     return ex1, ey1, ex2, ey2
 
 
-# ── Items: ObservedNode + visual embedding ───────────────────────────────────
+# ── Items: ObservedNode + visual embedding ────────────────────────────────────
 def _build_items(
     observed_graphs: list,
     image_paths: list[Path],
 ) -> tuple[list[dict], dict[str, list[dict]]]:
-    """
-    Build one item per ObservedNode carrying the visual embedding needed for RE-ID.
-    Returns (all_items, items_by_image).
-    """
+    """Build one item per ObservedNode with a ResNet-50 visual embedding."""
     path_by_stem = {p.stem: p for p in image_paths}
     all_items: list[dict] = []
     items_by_image: dict[str, list[dict]] = defaultdict(list)
@@ -200,173 +153,11 @@ def _build_items(
     return all_items, dict(items_by_image)
 
 
-# ── Helpers ──────────────────────────────────────────────────────────────────
-def _pair_key(a: str, b: str) -> tuple:
-    return (a, b) if a < b else (b, a)
-
-
-def _cosine_sim(a: np.ndarray | None, b: np.ndarray | None) -> float:
-    if a is None or b is None:
-        return 0.0
-    return float(np.dot(a, b))   # both are pre-normalised
-
-
-def _mean_proto(ids: list[str], item_by_id: dict) -> np.ndarray | None:
-    embs = [item_by_id[i]["embedding"] for i in ids if item_by_id[i]["embedding"] is not None]
-    if not embs:
-        return None
-    proto = np.mean(np.stack(embs), axis=0)
-    return proto / (np.linalg.norm(proto) + 1e-8)
-
-
-def _valid_ids_for_image(image_id: str, items_by_image: dict, item_by_id: dict) -> list[str]:
-    return [
-        item["observed_node_id"]
-        for item in items_by_image.get(image_id, [])
-        if item["embedding"] is not None
-    ]
-
-
-# ── Single-seed assignment ────────────────────────────────────────────────────
-def _run_single_seed(
-    seed_img_id: str,
-    image_ids: list[str],
-    items_by_image: dict,
-    item_by_id: dict,
-) -> dict:
-    assignment: dict[str, str] = {}
-    groups:     dict[str, dict] = {}
-    by_code:    dict[int, list[str]] = defaultdict(list)
-
-    seed_ids = _valid_ids_for_image(seed_img_id, items_by_image, item_by_id)
-    seed_by_code: dict[int, list[str]] = defaultdict(list)
-    for iid in seed_ids:
-        seed_by_code[item_by_id[iid]["code"]].append(iid)
-
-    for code, ids in seed_by_code.items():
-        ids = sorted(ids, key=lambda i: (-item_by_id[i]["confidence"], i))
-        for k, iid in enumerate(ids, start=1):
-            gid = f"{code}#{k}"
-            assignment[iid] = gid
-            groups[gid] = {
-                "code":      code,
-                "members":   [iid],
-                "prototype": item_by_id[iid]["embedding"].copy(),
-            }
-            by_code[code].append(gid)
-
-    for img_id in image_ids:
-        if img_id == seed_img_id:
-            continue
-        q_by_code: dict[int, list[str]] = defaultdict(list)
-        for item in items_by_image.get(img_id, []):
-            if item["embedding"] is not None:
-                q_by_code[item["code"]].append(item["observed_node_id"])
-
-        for code, qids in q_by_code.items():
-            cand_gids = by_code.get(code, [])
-            qids = sorted(qids, key=lambda i: (-item_by_id[i]["confidence"], i))
-
-            if cand_gids:
-                S = np.zeros((len(cand_gids), len(qids)), dtype=np.float32)
-                for r, gid in enumerate(cand_gids):
-                    for c, qid in enumerate(qids):
-                        S[r, c] = _cosine_sim(groups[gid]["prototype"], item_by_id[qid]["embedding"])
-
-                row_ind, col_ind = linear_sum_assignment(-S)
-                for r, c in zip(row_ind, col_ind):
-                    sim = float(S[r, c])
-                    if REID_ALLOW_UNMATCHED and sim < REID_MATCH_THRESHOLD:
-                        continue
-                    gid = cand_gids[r]
-                    qid = qids[c]
-                    assignment[qid] = gid
-                    groups[gid]["members"].append(qid)
-                    new_proto = _mean_proto(groups[gid]["members"], item_by_id)
-                    if new_proto is not None:
-                        groups[gid]["prototype"] = new_proto
-
-    return {"seed_image": seed_img_id, "assignment": assignment}
-
-
-# ── Direct pairwise affinity (replaces co-association) ───────────────────────
-def _build_direct_pairwise_affinity(all_items: list, item_by_id: dict) -> dict:
-    """
-    Compute pair_stats from raw pairwise cosine similarity instead of seed runs.
-
-    For every pair of detections (same code, different images, both with valid
-    embeddings) the 'ratio' is set to the direct cosine similarity.  The greedy
-    clustering step then uses this as affinity, so the cluster count is driven
-    by the data rather than by which image was chosen as seed.
-    """
-    by_code: dict[int, list[str]] = defaultdict(list)
-    for item in all_items:
-        if item["embedding"] is not None:
-            by_code[item["code"]].append(item["observed_node_id"])
-
-    pair_stats: dict[tuple, dict] = {}
-    for ids in by_code.values():
-        for i in range(len(ids)):
-            for j in range(i + 1, len(ids)):
-                a, b = ids[i], ids[j]
-                if item_by_id[a]["image_id"] == item_by_id[b]["image_id"]:
-                    continue
-                sim = _cosine_sim(item_by_id[a]["embedding"], item_by_id[b]["embedding"])
-                key = _pair_key(a, b)
-                # co_observed is set to COASSOC_MIN_RUNS so the min-runs
-                # filter in _affinity() is always satisfied.
-                pair_stats[key] = {
-                    "same_group": sim,
-                    "co_observed": COASSOC_MIN_RUNS,
-                    "ratio": sim,
-                }
-
-    return pair_stats
-
-
-# ── Instance-level neighbourhood enhancement ─────────────────────────────────
-
-def _counter_cosine_sim(c1: dict, c2: dict) -> float:
-    """Cosine similarity between two frequency dicts (cluster-ID → count)."""
-    if not c1 or not c2:
-        return 0.0
-    keys = set(c1) | set(c2)
-    v1 = np.array([c1.get(k, 0) for k in keys], dtype=float)
-    v2 = np.array([c2.get(k, 0) for k in keys], dtype=float)
-    n1, n2 = np.linalg.norm(v1), np.linalg.norm(v2)
-    if n1 < 1e-8 or n2 < 1e-8:
-        return 0.0
-    return float(np.dot(v1, v2) / (n1 * n2))
-
-
-def _get_cluster_assignment(
-    all_items: list,
-    item_by_id: dict,
-    pair_stats: dict,
-) -> dict[str, str]:
-    """Run greedy clustering and return {detection_id: cluster_id} dict."""
-    items_by_code: dict[int, list[str]] = defaultdict(list)
-    for item in all_items:
-        items_by_code[item["code"]].append(item["observed_node_id"])
-    assignment: dict[str, str] = {}
-    for code, code_ids in sorted(items_by_code.items()):
-        clusters = _greedy_cluster_code(code, code_ids, item_by_id, pair_stats)
-        for k, cluster in enumerate(clusters, start=1):
-            cid = f"{code}#{k}"
-            for det_id in cluster:
-                assignment[det_id] = cid
-    return assignment
-
-
-# ── VGGT 3D geometry loader ───────────────────────────────────────────────────
+# ── VGGT geometry ─────────────────────────────────────────────────────────────
 def _load_obs_geometry(observed_graphs: list, search_roots: list) -> dict[str, dict]:
-    """Extract per-detection 3D centroid from VGGT point maps.
-
-    Imports the private helpers from vggt_3d_edges so we don't duplicate the
-    point-map loading logic.  Returns {} if no point maps can be found.
-    """
+    """Extract per-detection 3D centroid from VGGT point maps."""
     try:
-        from .vggt_3d_edges import (  # noqa: PLC0415
+        from .vggt_3d_edges import (
             _candidate_files_for_image,
             _estimate_observation_geometry,
             _load_pointmap,
@@ -399,335 +190,141 @@ def _load_obs_geometry(observed_graphs: list, search_roots: list) -> dict[str, d
     return obs_geometry
 
 
-def _apply_vggt_3d_constraints(
-    pair_stats: dict,
-    obs_geometry: dict,
-    all_items: list,
+# ── 3D cloud distance ────────────────────────────────────────────────────────
+def _cloud_min_dist(ga: dict, gb: dict) -> float:
+    """Minimum Euclidean distance between two point-cloud samples.
+
+    Using the minimum rather than centroid-centroid distance is view-invariant:
+    the same physical component seen from different angles exposes different
+    surfaces, so centroids may differ by 0.3-0.6 m, but the closest points on
+    the two clouds are always within the component's physical size (~5-15 cm).
+    Falls back to centroid distance if no point-cloud sample is available.
+    """
+    pa = ga.get("pts_sample")
+    pb = gb.get("pts_sample")
+    if pa is None or pb is None:
+        return float(np.linalg.norm(
+            np.asarray(ga["centroid"]) - np.asarray(gb["centroid"])
+        ))
+    # Efficient batched min-distance: (m,1,3) - (1,n,3) → (m,n)
+    diff = pa[:, None, :] - pb[None, :, :]
+    return float(np.sqrt((diff * diff).sum(axis=2)).min())
+
+
+# ── Per-code clustering ───────────────────────────────────────────────────────
+def _enforce_same_image_split(
+    labels: np.ndarray,
+    code_ids: list[str],
     item_by_id: dict,
-) -> dict:
-    """Hard-constrain pair affinities using VGGT 3D centroid distances.
+) -> np.ndarray:
+    """If two detections from the same image share a label, reassign the
+    lower-confidence one to a new singleton cluster."""
+    labels = labels.copy()
+    max_label = int(labels.max())
+    seen: dict[tuple, int] = {}  # (image_id, label) → index
 
-    For every same-code, different-image pair (a, b) where both have 3D geometry:
-      dist ≤ CONFIDENT_DIST  → ratio=1.0, force merge (add pair if missing)
-      dist > SPLIT_DIST      → remove pair from pair_stats (affinity = 0)
-      else                   → leave unchanged (visual signal decides)
-    """
-    by_code: dict[int, list[str]] = defaultdict(list)
-    for item in all_items:
-        by_code[item["code"]].append(item["observed_node_id"])
+    for i, obs_id in enumerate(code_ids):
+        img = item_by_id[obs_id]["image_id"]
+        lbl = int(labels[i])
+        key = (img, lbl)
+        if key in seen:
+            j = seen[key]
+            conf_i = item_by_id[obs_id]["confidence"]
+            conf_j = item_by_id[code_ids[j]]["confidence"]
+            if conf_i >= conf_j:
+                max_label += 1
+                labels[j] = max_label
+                seen[key] = i
+            else:
+                max_label += 1
+                labels[i] = max_label
+        else:
+            seen[key] = i
 
-    n_forced_merge = n_forced_split = 0
-
-    for det_ids in by_code.values():
-        for i, a in enumerate(det_ids):
-            geom_a = obs_geometry.get(a)
-            if geom_a is None:
-                continue
-            for b in det_ids[i + 1:]:
-                if item_by_id[a]["image_id"] == item_by_id[b]["image_id"]:
-                    continue  # same image → always distinct
-                geom_b = obs_geometry.get(b)
-                if geom_b is None:
-                    continue
-                dist = float(np.linalg.norm(geom_a["centroid"] - geom_b["centroid"]))
-                key = _pair_key(a, b)
-                if dist <= VGGT_REID_CONFIDENT_DIST:
-                    pair_stats[key] = {
-                        "same_group":    1.0,
-                        "co_observed":   _COASSOC_MIN_RUNS_BASE,
-                        "ratio":         1.0,
-                        "vggt_dist":     dist,
-                        "vggt_override": "merge",
-                    }
-                    n_forced_merge += 1
-                elif VGGT_REID_SPLIT_DIST is not None and dist > VGGT_REID_SPLIT_DIST:
-                    if pair_stats.pop(key, None) is not None:
-                        n_forced_split += 1
-
-    print(
-        f"  [VGGT-ReID] constraints: forced_merge={n_forced_merge}  "
-        f"forced_split={n_forced_split}"
-    )
-    return pair_stats
+    return labels
 
 
-def _enhance_with_instance_neighborhoods(
-    base_pair_stats: dict,
-    all_items: list,
-    item_by_id: dict,
-    observed_graphs: list,
-) -> dict:
-    """
-    Iteratively augment pair affinity with instance-level neighbourhood signal.
-
-    Each round blends:
-        visual  — base co-association / pairwise cosine ratio  (weight NBRHD_ALPHA)
-        cls_nbr — cosine sim between cluster-ID histograms of KNN neighbours.
-                  Recomputed every round as clustering improves.
-
-    Combined affinity:  α·visual + (1−α)·cls_nbr
-
-    Only pairs already present in base_pair_stats are updated.
-    """
-    if NBRHD_ROUNDS == 0:
-        return base_pair_stats
-
-    # Build detection → set of KNN-neighbour detection IDs from observed graphs.
-    neighbors_of: dict[str, set[str]] = defaultdict(set)
-    for og in observed_graphs:
-        for edge in og.edges:
-            neighbors_of[edge.source_id].add(edge.target_id)
-            neighbors_of[edge.target_id].add(edge.source_id)
-
-    current_stats = base_pair_stats
-
-    for round_idx in range(NBRHD_ROUNDS):
-        # Step 1 — provisional clustering
-        assignment = _get_cluster_assignment(all_items, item_by_id, current_stats)
-
-        # Step 2 — cluster-ID neighbourhood profile per detection
-        cls_nbr_profile: dict[str, dict[str, int]] = {}
-        for det_id in item_by_id:
-            profile: dict[str, int] = {}
-            for nbr_id in neighbors_of.get(det_id, set()):
-                cid = assignment.get(nbr_id)
-                if cid:
-                    profile[cid] = profile.get(cid, 0) + 1
-            cls_nbr_profile[det_id] = profile
-
-        # Step 3 — blend visual + cls_nbr
-        new_stats: dict[tuple, dict] = {}
-        n_signal = 0
-        for key, st in base_pair_stats.items():
-            a, b   = key
-            visual = st["ratio"]
-            cls_nbr = _counter_cosine_sim(
-                cls_nbr_profile.get(a, {}),
-                cls_nbr_profile.get(b, {}),
-            )
-            combined = NBRHD_ALPHA * visual + (1.0 - NBRHD_ALPHA) * cls_nbr
-            if cls_nbr > 0:
-                n_signal += 1
-            new_stats[key] = {
-                "same_group":  combined,
-                "co_observed": st["co_observed"],
-                "ratio":       combined,
-                "visual_ratio": visual,
-                "cls_nbr_sim":  cls_nbr,
-            }
-
-        current_stats = new_stats
-        print(
-            f"  [ReID-Nbr] round {round_idx + 1}/{NBRHD_ROUNDS}: "
-            f"signal={n_signal}/{len(new_stats)}"
-        )
-
-    return current_stats
-
-
-# ── Co-association matrix ─────────────────────────────────────────────────────
-def _build_coassoc(single_seed_runs: list[dict], item_by_id: dict) -> dict:
-    pair_stats: dict[tuple, dict] = {}
-
-    for run in single_seed_runs:
-        assignment = run["assignment"]
-        assigned_by_code: dict[int, list[str]] = defaultdict(list)
-        local_groups: dict[tuple, list[str]]   = defaultdict(list)
-
-        for iid, gid in assignment.items():
-            code = item_by_id[iid]["code"]
-            assigned_by_code[code].append(iid)
-            local_groups[(code, gid)].append(iid)
-
-        for code, ids in assigned_by_code.items():
-            for a, b in combinations(ids, 2):
-                if item_by_id[a]["image_id"] == item_by_id[b]["image_id"]:
-                    continue
-                key = _pair_key(a, b)
-                st  = pair_stats.setdefault(key, {"same_group": 0, "co_observed": 0, "ratio": 0.0})
-                st["co_observed"] += 1
-
-        for (code, gid), ids in local_groups.items():
-            for a, b in combinations(ids, 2):
-                if item_by_id[a]["image_id"] == item_by_id[b]["image_id"]:
-                    continue
-                key = _pair_key(a, b)
-                st  = pair_stats.setdefault(key, {"same_group": 0, "co_observed": 0, "ratio": 0.0})
-                st["same_group"] += 1
-
-    for st in pair_stats.values():
-        st["ratio"] = st["same_group"] / st["co_observed"] if st["co_observed"] > 0 else 0.0
-
-    return pair_stats
-
-
-# ── Greedy clustering per component code ─────────────────────────────────────
-def _affinity(a: str, b: str, pair_stats: dict) -> float:
-    st = pair_stats.get(_pair_key(a, b))
-    if st is None or st["co_observed"] < COASSOC_MIN_RUNS or st["ratio"] < COASSOC_MIN_RATIO:
-        return 0.0
-    return st["ratio"]
-
-
-def _greedy_cluster_code(
+def _cluster_code(
     code: int,
     code_ids: list[str],
     item_by_id: dict,
-    pair_stats: dict,
+    obs_geometry: dict[str, dict],
 ) -> list[list[str]]:
-    node_strength = {
-        iid: sum(
-            _affinity(iid, jid, pair_stats)
-            for jid in code_ids
-            if iid != jid and item_by_id[iid]["image_id"] != item_by_id[jid]["image_id"]
-        )
-        for iid in code_ids
-    }
-    ordered = sorted(
-        code_ids,
-        key=lambda i: (-node_strength[i], item_by_id[i]["image_id"], i),
-    )
+    """Cluster detections of one component code into scene-node groups.
 
-    unassigned = set(code_ids)
-    clusters: list[list[str]] = []
+    k = max detections of this code in any single image (structural estimate:
+    each image sees each physical instance at most once after NMS, so the
+    densest image count equals the scene's instance count).
 
-    while unassigned:
-        seed = next((i for i in ordered if i in unassigned), next(iter(unassigned)))
-        group = [seed]
-        unassigned.remove(seed)
-        used_images = {item_by_id[seed]["image_id"]}
+    Affinity matrix (used by K-Means on spectral embedding):
+      - same image              → 0.0  (hard constraint)
+      - VGGT min-cloud < 0.08m → 0.98 (hard: certainly same instance)
+      - both have embeddings    → max(0, cosine_similarity)
+      - one/both missing emb    → 0.3  (neutral)
+    """
+    n = len(code_ids)
+    if n == 1:
+        return [list(code_ids)]
 
-        while True:
-            best_cand, best_score = None, -1.0
-            for cand in list(unassigned):
-                if item_by_id[cand]["image_id"] in used_images:
-                    continue
-                nonzero = [_affinity(cand, m, pair_stats) for m in group]
-                nonzero = [x for x in nonzero if x > 0]
-                if not nonzero:
-                    continue
-                avg = float(np.mean(nonzero))
-                if avg >= FINAL_GROUP_MIN_AFFINITY and avg > best_score:
-                    best_score, best_cand = avg, cand
-            if best_cand is None:
-                break
-            group.append(best_cand)
-            unassigned.remove(best_cand)
-            used_images.add(item_by_id[best_cand]["image_id"])
+    # ── k from detection structure ────────────────────────────────────────────
+    img_counts = Counter(item_by_id[oid]["image_id"] for oid in code_ids)
+    k = max(img_counts.values())
 
-        clusters.append(group)
+    if k == 1:
+        return [list(code_ids)]
 
-    def _sort_key(cluster):
+    # ── Affinity matrix ───────────────────────────────────────────────────────
+    A = np.zeros((n, n), dtype=np.float64)
+    for i in range(n):
+        a = code_ids[i]
+        ga = obs_geometry.get(a)
+        for j in range(i + 1, n):
+            b = code_ids[j]
+            if item_by_id[a]["image_id"] == item_by_id[b]["image_id"]:
+                continue  # same image → 0 (leave as zero)
+            # VGGT hard merge
+            val = 0.0
+            if ga is not None:
+                gb = obs_geometry.get(b)
+                if gb is not None and _cloud_min_dist(ga, gb) <= VGGT_REID_CONFIDENT_DIST:
+                    val = 0.98
+            if val == 0.0:
+                # Visual similarity
+                ea = item_by_id[a].get("embedding")
+                eb = item_by_id[b].get("embedding")
+                if ea is not None and eb is not None:
+                    val = max(0.0, float(np.dot(ea, eb)))
+                else:
+                    val = 0.3
+            A[i, j] = A[j, i] = val
+
+    # ── K-Means on normalised spectral embedding ──────────────────────────────
+    # Normalised Laplacian → k smallest eigenvectors → K-Means
+    d = A.sum(axis=1).clip(1e-10)
+    D_isqrt = 1.0 / np.sqrt(d)
+    L = np.eye(n) - (A * D_isqrt[:, None]) * D_isqrt[None, :]
+    _, V = np.linalg.eigh(L)
+    X = V[:, :k]
+    norms = np.linalg.norm(X, axis=1, keepdims=True).clip(1e-10)
+    X = X / norms
+
+    from sklearn.cluster import KMeans
+    labels = KMeans(n_clusters=k, n_init=20, random_state=42).fit_predict(X)
+    labels = _enforce_same_image_split(labels, code_ids, item_by_id)
+
+    groups: dict[int, list[str]] = defaultdict(list)
+    for idx, obs_id in enumerate(code_ids):
+        groups[int(labels[idx])].append(obs_id)
+
+    def _sort_key(cluster: list[str]) -> tuple:
         centers = [item_by_id[i]["center"] for i in cluster]
-        return (-len(cluster), float(np.mean([c[1] for c in centers])), float(np.mean([c[0] for c in centers])))
+        return (
+            -len(cluster),
+            float(np.mean([c[1] for c in centers])),
+            float(np.mean([c[0] for c in centers])),
+        )
 
-    return sorted(clusters, key=_sort_key)
-
-
-# ── Soft post-merge ───────────────────────────────────────────────────────────
-def _run_soft_post_merge(
-    groups: dict,
-    groups_by_code: dict,
-    item_by_id: dict,
-    pair_stats: dict,
-) -> tuple[dict, dict]:
-    if not SOFT_MERGE_ENABLED:
-        return groups, groups_by_code
-
-    def _proto(ids):
-        return _mean_proto(ids, item_by_id)
-
-    def _cross_coassoc(ids1, ids2):
-        vals = [
-            pair_stats[_pair_key(a, b)]["ratio"]
-            for a in ids1 for b in ids2
-            if a != b
-            and item_by_id[a]["image_id"] != item_by_id[b]["image_id"]
-            and _pair_key(a, b) in pair_stats
-        ]
-        return float(np.mean(vals)) if vals else 0.0
-
-    def _can_merge(g1, g2):
-        if g1["code"] != g2["code"]:
-            return False, None
-        ids1, ids2 = g1["member_ids"], g2["member_ids"]
-        imgs1 = {item_by_id[i]["image_id"] for i in ids1}
-        imgs2 = {item_by_id[i]["image_id"] for i in ids2}
-        if imgs1 & imgs2:
-            return False, None
-        p1, p2 = _proto(ids1), _proto(ids2)
-        proto_sim   = _cosine_sim(p1, p2)
-        cross_coass = _cross_coassoc(ids1, ids2)
-        score = SOFT_MERGE_ALPHA * proto_sim + SOFT_MERGE_BETA * cross_coass
-        if proto_sim   < SOFT_MERGE_MIN_PROTO_SIM:      return False, None
-        if cross_coass < SOFT_MERGE_MIN_CROSS_COASSOC:  return False, None
-        if score       < SOFT_MERGE_MIN_COMBINED_SCORE: return False, None
-        return True, {"proto_sim": proto_sim, "cross_coassoc": cross_coass, "score": score}
-
-    # Collect and sort candidate merges by score
-    merge_candidates = []
-    for code, gids in groups_by_code.items():
-        for i in range(len(gids)):
-            for j in range(i + 1, len(gids)):
-                ok, ms = _can_merge(groups[gids[i]], groups[gids[j]])
-                if ok:
-                    merge_candidates.append((ms["score"], gids[i], gids[j]))
-    merge_candidates.sort(reverse=True)
-
-    active   = dict(groups)
-    consumed: set[str] = set()
-    merge_count_by_code: dict[int, int] = defaultdict(int)
-
-    for _, gid1, gid2 in merge_candidates:
-        if gid1 in consumed or gid2 in consumed:
-            continue
-        if gid1 not in active or gid2 not in active:
-            continue
-        ok, ms = _can_merge(active[gid1], active[gid2])
-        if not ok:
-            continue
-
-        code = active[gid1]["code"]
-        merge_count_by_code[code] += 1
-        gid_new  = f"{code}#SM{merge_count_by_code[code]}"
-        ids_union = list(dict.fromkeys(active[gid1]["member_ids"] + active[gid2]["member_ids"]))
-
-        # Resolve image conflicts: keep the detection closest to the merged proto
-        proto_union = _proto(ids_union)
-        by_image: dict[str, list[str]] = defaultdict(list)
-        for iid in ids_union:
-            by_image[item_by_id[iid]["image_id"]].append(iid)
-        kept = []
-        for img_ids in by_image.values():
-            if len(img_ids) == 1:
-                kept.append(img_ids[0])
-            else:
-                best = max(img_ids, key=lambda i: _cosine_sim(item_by_id[i]["embedding"], proto_union))
-                kept.append(best)
-
-        active[gid_new] = {"code": code, "member_ids": sorted(kept, key=lambda i: (item_by_id[i]["image_id"], i))}
-        consumed |= {gid1, gid2}
-        del active[gid1], active[gid2]
-
-    # Re-number groups stably per code
-    def _group_sort_key(g):
-        centers = [item_by_id[i]["center"] for i in g["member_ids"]]
-        return (-len(g["member_ids"]), float(np.mean([c[1] for c in centers])), float(np.mean([c[0] for c in centers])))
-
-    final_groups:   dict[str, dict] = {}
-    final_by_code:  dict[int, list[str]] = defaultdict(list)
-    by_code_groups: dict[int, list[dict]] = defaultdict(list)
-    for g in active.values():
-        by_code_groups[g["code"]].append(g)
-
-    for code, group_list in by_code_groups.items():
-        for k, g in enumerate(sorted(group_list, key=_group_sort_key), start=1):
-            gid = f"{code}#{k}"
-            g["group_id"] = gid
-            final_groups[gid]   = g
-            final_by_code[code].append(gid)
-
-    return final_groups, dict(final_by_code)
+    return sorted(groups.values(), key=_sort_key)
 
 
 # ── SceneNode assembly ────────────────────────────────────────────────────────
@@ -741,11 +338,9 @@ def _build_scene_nodes(groups: dict, item_by_id: dict, observed_graphs: list) ->
         member_ids = g["member_ids"]
         valence, name = COMPONENT_INFO.get(code, (2, f"code_{code}"))
 
-        support_images    = sorted({item_by_id[i]["image_id"] for i in member_ids})
-        fused_confidence  = float(np.mean([item_by_id[i]["confidence"] for i in member_ids]))
+        support_images   = sorted({item_by_id[i]["image_id"] for i in member_ids})
+        fused_confidence = float(np.mean([item_by_id[i]["confidence"] for i in member_ids]))
 
-        # Structural hints used by graph reconstruction downstream
-        from collections import Counter
         all_nearby: list[int] = []
         anchor_count = terminal_count = 0
         for iid in member_ids:
@@ -763,10 +358,10 @@ def _build_scene_nodes(groups: dict, item_by_id: dict, observed_graphs: list) ->
             anchor_count / max(len(member_ids), 1) + (0.3 if is_anchor(code) else 0.0)
         )
         local_structural_signature = {
-            "self_code":               code,
-            "nearby_code_histogram":   dict(Counter(all_nearby)),
-            "anchor_hint_score":       anchor_hint_score,
-            "terminal_hint_count":     terminal_count,
+            "self_code":             code,
+            "nearby_code_histogram": dict(Counter(all_nearby)),
+            "anchor_hint_score":     anchor_hint_score,
+            "terminal_hint_count":   terminal_count,
         }
 
         scene_nodes.append(SceneNode(
@@ -787,7 +382,7 @@ def _build_scene_nodes(groups: dict, item_by_id: dict, observed_graphs: list) ->
     return scene_nodes
 
 
-# ── Main entry point ─────────────────────────────────────────────────────────
+# ── Main entry point ──────────────────────────────────────────────────────────
 def identify_scene_nodes(
     observed_graphs: list,
     image_paths: list[Path] | None = None,
@@ -796,7 +391,6 @@ def identify_scene_nodes(
     from config import IMAGES_DIR
 
     if image_paths is None:
-        # Fallback: scan default images directory
         image_paths = list(IMAGES_DIR.glob("*.jpg"))
 
     all_items, items_by_image = _build_items(observed_graphs, image_paths)
@@ -805,106 +399,63 @@ def identify_scene_nodes(
     if not all_items:
         return [], {"error": "no_items"}
 
-    image_ids = sorted(items_by_image.keys())
-    n_images  = len(image_ids)
+    n_images = len(items_by_image)
+    print(f"  [ReID] {len(all_items)} detections across {n_images} images")
 
-    # Adaptive min-runs: scale the evidence bar with view count.
-    # In scenes with few images a detection can co-occur in at most
-    # (n_images − 1) seed runs; requiring 2 runs would block all singletons.
-    # Formula: max(1, min(BASE, n_images // 3))
-    #   ≤5 views  → 1   (most nodes)
-    #   6–8 views → 2   (unchanged from baseline)
-    global COASSOC_MIN_RUNS
-    COASSOC_MIN_RUNS = max(1, min(_COASSOC_MIN_RUNS_BASE, n_images // 3))
-
-    print(f"  [ReID] building embeddings done: {len(all_items)} instances across {n_images} views  "
-          f"(COASSOC_MIN_RUNS={COASSOC_MIN_RUNS})")
-
-    if REID_USE_DIRECT_PAIRWISE:
-        print(f"  [ReID] using direct pairwise cosine affinity (no seed runs)")
-        pair_stats = _build_direct_pairwise_affinity(all_items, item_by_id)
-    else:
-        # Multi-seed runs (every image acts as seed once)
-        single_seed_runs = [
-            _run_single_seed(seed, image_ids, items_by_image, item_by_id)
-            for seed in image_ids
-        ]
-        pair_stats = _build_coassoc(single_seed_runs, item_by_id)
-
-    # VGGT 3D hard constraints: override visual affinities where 3D distance is decisive
+    # VGGT 3D hard constraints
+    obs_geometry: dict[str, dict] = {}
     if VGGT_REID_ENABLED and search_roots:
         obs_geometry = _load_obs_geometry(observed_graphs, list(search_roots))
-        if obs_geometry:
-            pair_stats = _apply_vggt_3d_constraints(pair_stats, obs_geometry, all_items, item_by_id)
 
-    # Iterative instance-level neighbourhood enhancement
-    pair_stats = _enhance_with_instance_neighborhoods(
-        pair_stats, all_items, item_by_id, observed_graphs
-    )
-
-    # Greedy cluster per component code
+    # Spectral clustering per component code
     items_by_code: dict[int, list[str]] = defaultdict(list)
     for item in all_items:
         items_by_code[item["code"]].append(item["observed_node_id"])
 
-    groups:        dict[str, dict] = {}
+    groups:         dict[str, dict] = {}
     groups_by_code: dict[int, list[str]] = defaultdict(list)
     for code, code_ids in sorted(items_by_code.items()):
-        clusters = _greedy_cluster_code(code, code_ids, item_by_id, pair_stats)
+        clusters = _cluster_code(code, code_ids, item_by_id, obs_geometry)
         for k, cluster in enumerate(clusters, start=1):
             gid = f"{code}#{k}"
             groups[gid] = {"code": code, "member_ids": cluster, "group_id": gid}
             groups_by_code[code].append(gid)
 
-    # Soft post-merge
-    groups, groups_by_code = _run_soft_post_merge(groups, groups_by_code, item_by_id, pair_stats)
-
-    # Assemble SceneNode objects
     scene_nodes = _build_scene_nodes(groups, item_by_id, observed_graphs)
 
-    n_seed_runs = 0 if REID_USE_DIRECT_PAIRWISE else len(single_seed_runs)
-    debug = {
-        "mode":           "direct_pairwise" if REID_USE_DIRECT_PAIRWISE else "seed_coassoc",
-        "n_seed_runs":    n_seed_runs,
-        "n_pair_stats":   len(pair_stats),
-        "n_scene_nodes":  len(scene_nodes),
-        "observed_to_scene": {
-            iid: sn.scene_node_id
-            for sn in scene_nodes
-            for iid in sn.supporting_observed_ids
-        },
+    _print_reid_summary(scene_nodes, all_items)
+    return scene_nodes, {
+        "n_scene_nodes": len(scene_nodes),
+        "n_detections":  len(all_items),
+        "n_images":      n_images,
+        "n_vggt_geometries": len(obs_geometry),
     }
 
-    _print_reid_summary(scene_nodes, all_items, n_seed_runs, len(pair_stats))
-    return scene_nodes, debug
 
-
-def _print_reid_summary(scene_nodes: list, all_items: list, n_seeds: int, n_pairs: int) -> None:
+# ── Summary printer ───────────────────────────────────────────────────────────
+def _print_reid_summary(scene_nodes: list, all_items: list) -> None:
     n_obs   = len(all_items)
     n_scene = len(scene_nodes)
-
-    # Group scene nodes by code for a compact per-code table
-    from collections import defaultdict as _dd
-    by_code: dict = _dd(list)
+    by_code: dict = defaultdict(list)
     for sn in scene_nodes:
         by_code[sn.fused_code].append(sn)
 
-    col = 18  # name column width
+    col = 18
     print(f"\n  {'─' * 62}")
     print(f"  {'RE-ID SUMMARY':^62}")
     print(f"  {'─' * 62}")
     print(f"  {'code':<6}{'name':<{col}}{'groups':>7}{'obs':>6}{'views':>7}{'conf':>7}")
     print(f"  {'─' * 62}")
     for code in sorted(by_code):
-        nodes      = by_code[code]
-        name       = nodes[0].fused_name
-        n_groups   = len(nodes)
-        total_obs  = sum(sn.support_count for sn in nodes)
-        all_imgs   = {img for sn in nodes for img in sn.support_images}
-        avg_conf   = sum(sn.fused_confidence for sn in nodes) / n_groups
+        nodes    = by_code[code]
+        name     = nodes[0].fused_name
+        n_groups = len(nodes)
+        total_obs = sum(sn.support_count for sn in nodes)
+        all_imgs  = {img for sn in nodes for img in sn.support_images}
+        avg_conf  = sum(sn.fused_confidence for sn in nodes) / n_groups
         print(f"  {code:<6}{name:<{col}}{n_groups:>7}{total_obs:>6}{len(all_imgs):>7}{avg_conf:>7.2f}")
     print(f"  {'─' * 62}")
-    print(f"  total: {n_scene} scene nodes  |  {n_obs} observed  |  {n_seeds} seed runs  |  {n_pairs} pairs")
+    print(f"  total: {n_scene} scene nodes  |  {n_obs} detections")
     print(f"  {'─' * 62}\n")
 
 
@@ -935,3 +486,236 @@ def serialize_scene_nodes(scene_nodes: list[SceneNode]) -> list[dict]:
         }
         for sn in scene_nodes
     ]
+
+
+# ── Post-VGGT spurious singleton removal ─────────────────────────────────────
+def merge_spurious_singletons(
+    scene_nodes: list[SceneNode],
+    observed_graphs: list,
+    scene_geom: dict | None = None,
+    scene_cutoff: float | None = None,
+    pair_hints: list[dict] | None = None,
+    pos_factor: float = 0.5,
+    iou_threshold: float = 0.30,
+) -> tuple[list[SceneNode], list[dict]]:
+    """Merge singleton scene nodes that are likely spurious duplicates.
+
+    Level 1 – 3D positional duplicate: centroid within pos_factor * scene_cutoff
+    of a higher-support same-code node.
+
+    Level 2 – 2D detection overlap: the singleton's sole detection has
+    IoU >= iou_threshold with any detection of a higher-support same-code node
+    in the same image.
+
+    Level 3 – shared VGGT edge partner: two low-support nodes of the same code
+    that share a strong VGGT-confirmed neighbour and are within scene_cutoff.
+    """
+    obs_by_id: dict[str, object] = {}
+    for og in observed_graphs:
+        for obs_id, obs in og.nodes.items():
+            obs_by_id[obs_id] = obs
+
+    sn_by_id = {sn.scene_node_id: sn for sn in scene_nodes}
+    parent = {sn.scene_node_id: sn.scene_node_id for sn in scene_nodes}
+
+    def _find(x: str) -> str:
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    def _union(dropped: str, kept: str) -> None:
+        parent[_find(dropped)] = _find(kept)
+
+    def _iou(b1: list, b2: list) -> float:
+        ix1, iy1 = max(b1[0], b2[0]), max(b1[1], b2[1])
+        ix2, iy2 = min(b1[2], b2[2]), min(b1[3], b2[3])
+        inter = max(0.0, ix2 - ix1) * max(0.0, iy2 - iy1)
+        if inter == 0:
+            return 0.0
+        a1 = (b1[2] - b1[0]) * (b1[3] - b1[1])
+        a2 = (b2[2] - b2[0]) * (b2[3] - b2[1])
+        return inter / (a1 + a2 - inter)
+
+    # Build strong-partner index from VGGT pair hints
+    strong_partners: dict[str, set[str]] = defaultdict(set)
+    if isinstance(pair_hints, dict):
+        pair_hint_entries = []
+        for pair, meta in pair_hints.items():
+            if not isinstance(pair, tuple) or len(pair) != 2:
+                continue
+            pair_hint_entries.append((pair, meta if isinstance(meta, dict) else {}))
+    else:
+        pair_hint_entries = []
+        for hint in pair_hints or []:
+            if isinstance(hint, dict):
+                pair = hint.get("pair") or []
+                meta = hint
+            elif isinstance(hint, tuple) and len(hint) == 2 and isinstance(hint[1], dict):
+                pair, meta = hint
+            else:
+                continue
+            if len(pair) != 2:
+                continue
+            pair_hint_entries.append((tuple(pair), meta))
+
+    for pair, meta in pair_hint_entries:
+        if float(meta.get("score", 0.0)) < 0.75:
+            continue
+        a_id, b_id = pair
+        strong_partners[a_id].add(b_id)
+        strong_partners[b_id].add(a_id)
+
+    merge_log: list[dict] = []
+
+    for sn in scene_nodes:
+        if sn.support_count != 1:
+            continue
+        candidates = sorted(
+            [o for o in scene_nodes
+             if o.scene_node_id != sn.scene_node_id
+             and o.fused_code == sn.fused_code
+             and o.support_count > 1],
+            key=lambda o: -o.support_count,
+        )
+        same_code_candidates = sorted(
+            [o for o in scene_nodes
+             if o.scene_node_id != sn.scene_node_id
+             and o.fused_code == sn.fused_code],
+            key=lambda o: (-o.support_count, o.scene_node_id),
+        )
+        if not same_code_candidates:
+            continue
+
+        kept_id, reason = None, None
+
+        # Level 1: 3D positional duplicate
+        if scene_geom and scene_cutoff and sn.scene_node_id in scene_geom:
+            ca = scene_geom[sn.scene_node_id]["centroid"]
+            max_dist = scene_cutoff * pos_factor
+            for other in candidates:
+                if other.scene_node_id not in scene_geom:
+                    continue
+                cb = scene_geom[other.scene_node_id]["centroid"]
+                dist = float(sum((x - y) ** 2 for x, y in zip(ca, cb)) ** 0.5)
+                if dist <= max_dist:
+                    kept_id = other.scene_node_id
+                    reason = f"3d_pos_dup  dist={dist:.4f}m  ({dist/scene_cutoff:.2f}x)"
+                    break
+
+        # Level 2: 2D detection overlap
+        if kept_id is None and sn.supporting_observed_ids:
+            my_obs = obs_by_id.get(sn.supporting_observed_ids[0])
+            if my_obs is not None:
+                for other in candidates:
+                    for oid in other.supporting_observed_ids:
+                        o_obs = obs_by_id.get(oid)
+                        if o_obs is None or o_obs.image_id != my_obs.image_id:
+                            continue
+                        iou = _iou(my_obs.bbox, o_obs.bbox)
+                        if iou >= iou_threshold:
+                            kept_id = other.scene_node_id
+                            reason = f"2d_overlap  iou={iou:.3f}  img={my_obs.image_id}"
+                            break
+                    if kept_id:
+                        break
+
+        # Level 3: shared VGGT edge partner
+        if (
+            kept_id is None
+            and scene_geom and scene_cutoff
+            and sn.scene_node_id in scene_geom
+            and strong_partners.get(sn.scene_node_id)
+        ):
+            ca = scene_geom[sn.scene_node_id]["centroid"]
+            best_shared = None
+            for other in same_code_candidates:
+                if other.scene_node_id not in scene_geom:
+                    continue
+                if set(sn.support_images) & set(other.support_images):
+                    continue
+                shared = sorted(
+                    strong_partners.get(sn.scene_node_id, set())
+                    & strong_partners.get(other.scene_node_id, set())
+                )
+                if not shared:
+                    continue
+                if not any(sn_by_id.get(pid) and sn_by_id[pid].support_count >= 2 for pid in shared):
+                    continue
+                cb = scene_geom[other.scene_node_id]["centroid"]
+                dist = float(sum((x - y) ** 2 for x, y in zip(ca, cb)) ** 0.5)
+                if dist > scene_cutoff:
+                    continue
+                candidate = (len(shared), other.support_count, -dist, other.scene_node_id)
+                if best_shared is None or candidate > best_shared[0]:
+                    best_shared = (candidate, other.scene_node_id, dist, shared)
+            if best_shared is not None:
+                _, best_other_id, best_dist, shared = best_shared
+                if sn_by_id[best_other_id].support_count >= sn.support_count:
+                    kept_id = best_other_id
+                    dropped_id = sn.scene_node_id
+                else:
+                    kept_id = sn.scene_node_id
+                    dropped_id = best_other_id
+                reason = (
+                    f"3d_shared_partner  dist={best_dist:.4f}m  "
+                    f"({best_dist/scene_cutoff:.2f}x)  shared={','.join(shared)}"
+                )
+                if _find(dropped_id) != _find(kept_id):
+                    _union(dropped_id, kept_id)
+                    merge_log.append({
+                        "dropped": dropped_id, "kept": kept_id,
+                        "reason": reason, "code": sn.fused_code,
+                    })
+                continue
+
+        if kept_id is None or _find(sn.scene_node_id) == _find(kept_id):
+            continue
+
+        _union(sn.scene_node_id, kept_id)
+        merge_log.append({
+            "dropped": sn.scene_node_id, "kept": kept_id,
+            "reason": reason, "code": sn.fused_code,
+        })
+
+    if not merge_log:
+        return scene_nodes, []
+
+    groups: dict[str, list[str]] = defaultdict(list)
+    for sn in scene_nodes:
+        groups[_find(sn.scene_node_id)].append(sn.scene_node_id)
+
+    merged: list[SceneNode] = []
+    for root, members in groups.items():
+        if len(members) == 1:
+            merged.append(sn_by_id[root])
+            continue
+        keeper = sn_by_id[root]
+        all_obs = list(keeper.supporting_observed_ids)
+        all_imgs = set(keeper.support_images)
+        for mid in members:
+            if mid == root:
+                continue
+            m = sn_by_id[mid]
+            all_obs.extend(m.supporting_observed_ids)
+            all_imgs.update(m.support_images)
+        merged.append(SceneNode(
+            scene_node_id=keeper.scene_node_id,
+            fused_code=keeper.fused_code,
+            fused_name=keeper.fused_name,
+            fused_confidence=keeper.fused_confidence,
+            support_count=len(set(all_obs)),
+            support_images=sorted(all_imgs),
+            supporting_observed_ids=list(set(all_obs)),
+            local_structural_signature=keeper.local_structural_signature,
+            max_degree=keeper.max_degree,
+            anchor_hint_score=keeper.anchor_hint_score,
+            representative_branch_roles=keeper.representative_branch_roles,
+            representative_triplet_hints=keeper.representative_triplet_hints,
+        ))
+
+    n_merged = len(scene_nodes) - len(merged)
+    print(f"  [SpuriousMerge] merged {n_merged} spurious singleton(s)")
+    for e in merge_log:
+        print(f"    {e['dropped']} -> {e['kept']}  {e['reason']}")
+    return merged, merge_log

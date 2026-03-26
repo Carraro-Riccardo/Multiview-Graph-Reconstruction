@@ -20,16 +20,20 @@ from __future__ import annotations
 import io
 import json
 import sys
+from pathlib import Path
 from collections import Counter, defaultdict
+
+ROOT = Path(__file__).resolve().parent
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 # Force UTF-8 output on Windows (avoids cp1252 UnicodeEncodeError for box-drawing chars)
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-from pathlib import Path
 
 import numpy as np
-from scipy.optimize import linear_sum_assignment
 
+from core.linear_assignment import linear_sum_assignment
 from config import (
     COMPONENT_INFO,
     CONF_THRESHOLD,
