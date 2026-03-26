@@ -20,9 +20,9 @@ def _load_simple_dotenv(dotenv_path: Path = Path(".env")) -> None:
 _load_simple_dotenv()
 
 # ── Paths ─────────────────────────────────────────────────────
-IMAGES_DIR      = Path("C:\\Users\\ricca\\Desktop\\images\\val")
-LABELS_EXT_DIR  = Path("C:\\Users\\ricca\\Desktop\\labels_extended")
-WORK_DIR        = Path("./output")
+IMAGES_DIR      = Path(os.environ["IMAGES_DIR"])
+LABELS_EXT_DIR  = Path(os.environ["LABELS_EXT_DIR"])
+WORK_DIR        = Path(os.getenv("WORK_DIR", "./output"))
 PDF_DIR         = Path("./folder_with_pdf")
 COMPONENTS_PDF_PATH = Path("./components.pdf")
 PDF_PRIOR_ENABLED = True
@@ -38,6 +38,27 @@ PDF_CLUSTER_PREVIEW_TOP_K = 5
 PDF_COMPONENT_MIN_PRIMITIVES = 2
 PDF_CLUSTER_CELL_DIVISOR = 48.0
 PDF_CLUSTER_EXPAND_FRAC = 0.006
+VGGT_EDGE_ENABLED = os.getenv("VGGT_EDGE_ENABLED", "1").strip().lower() not in {"0", "false", "no", "off"}
+VGGT_EDGE_SEARCH_GLOB = os.getenv("VGGT_EDGE_SEARCH_GLOB", "vggt")
+VGGT_GENERATE_IF_MISSING = os.getenv("VGGT_GENERATE_IF_MISSING", "1").strip().lower() not in {"0", "false", "no", "off"}
+VGGT_EMBEDDED_PYTHON = Path(os.getenv("VGGT_EMBEDDED_PYTHON", str(Path("./python312/python.exe"))))
+VGGT_MODEL_ID = os.getenv("VGGT_MODEL_ID", "facebook/VGGT-1B")
+VGGT_PREPROCESS_MODE = os.getenv("VGGT_PREPROCESS_MODE", "crop").strip().lower()
+VGGT_3D_ADJACENCY_FACTOR = float(os.getenv("VGGT_3D_ADJACENCY_FACTOR", "1.35"))
+VGGT_3D_MIN_SCORE = float(os.getenv("VGGT_3D_MIN_SCORE", "0.34"))
+VGGT_3D_MUTUAL_TOP_K = int(os.getenv("VGGT_3D_MUTUAL_TOP_K", "3"))
+VGGT_3D_MIN_POINTS_PER_OBSERVATION = int(os.getenv("VGGT_3D_MIN_POINTS_PER_OBSERVATION", "12"))
+VGGT_3D_MAX_POINTS_PER_OBSERVATION = int(os.getenv("VGGT_3D_MAX_POINTS_PER_OBSERVATION", "256"))
+VGGT_3D_VOTE_WEIGHT = float(os.getenv("VGGT_3D_VOTE_WEIGHT", "1.5"))
+VGGT_3D_PORT_DISTANCE_FACTOR = float(os.getenv("VGGT_3D_PORT_DISTANCE_FACTOR", "0.85"))
+VGGT_3D_AXIS_ALIGNMENT_MIN = float(os.getenv("VGGT_3D_AXIS_ALIGNMENT_MIN", "0.15"))
+# Duplicate-node merging via VGGT 3D centroids
+# Nodes of the same type within CONFIDENT_FACTOR * scene_cutoff are always merged.
+# Nodes within TENTATIVE_FACTOR * scene_cutoff are merged only when the weaker node
+# has at most LOW_OBS_THRESHOLD observations (likely a ReID split of a legitimate node).
+VGGT_3D_MERGE_CONFIDENT_FACTOR   = float(os.getenv("VGGT_3D_MERGE_CONFIDENT_FACTOR",   "0.50"))
+VGGT_3D_MERGE_TENTATIVE_FACTOR   = float(os.getenv("VGGT_3D_MERGE_TENTATIVE_FACTOR",   "0.75"))
+VGGT_3D_MERGE_LOW_OBS_THRESHOLD  = int(  os.getenv("VGGT_3D_MERGE_LOW_OBS_THRESHOLD",  "2"))
 
 # ── Soglie e parametri ────────────────────────────────────────
 CONF_THRESHOLD  = 0.5

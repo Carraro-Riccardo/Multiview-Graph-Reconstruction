@@ -31,7 +31,9 @@ from config import COMPONENT_INFO
 REID_MATCH_THRESHOLD      = 0.55   # min cosine sim for seed assignment acceptance
 REID_ALLOW_UNMATCHED      = True   # skip weak matches instead of forcing them
 
-COASSOC_MIN_RUNS          = 2      # min co-observations for a pair to count
+_COASSOC_MIN_RUNS_BASE    = 2      # immutable baseline for adaptive formula
+COASSOC_MIN_RUNS          = 2      # effective value; overridden per-call in identify_scene_nodes
+                                       # (adaptive formula: max(1, min(BASE, n_images // 3)))
 COASSOC_MIN_RATIO         = 0.60   # min same_group / co_observed ratio
 FINAL_GROUP_MIN_AFFINITY  = 0.60   # min mean affinity to join a greedy cluster
 
@@ -54,12 +56,32 @@ REID_USE_DIRECT_PAIRWISE = False
 # ── Instance-level neighbourhood enhancement ─────────────────────────────────
 # After computing the base pair affinity (co-association or direct pairwise),
 # run NBRHD_ROUNDS iterations of neighbourhood-augmented refinement.
-# In each round: cluster → build neighbourhood profiles per detection
-# (which cluster-IDs are the KNN neighbours of this detection?) → reweight
-# affinity as  α·visual  +  (1−α)·neighbourhood_instance_sim.
+#
+# Each round blends two signals:
+#   visual  — base co-association / pairwise cosine ratio  (weight NBRHD_ALPHA)
+#   cls_nbr — dynamic: cosine sim between cluster-ID histograms of KNN
+#             neighbours (which instances surround this detection?).
+#             Recomputed every round as clustering improves.
+#
+# Combined affinity:  α·visual + (1−α)·cls_nbr
+#
 # Set NBRHD_ROUNDS = 0 to disable.
 NBRHD_ROUNDS = 2
-NBRHD_ALPHA  = 0.65   # weight for visual (co-assoc) signal
+NBRHD_ALPHA  = 0.65   # weight for visual (co-assoc) signal vs neighbourhood
+
+# ── VGGT 3D re-id constraints ─────────────────────────────────────────────────
+# When VGGT point maps are available (search_roots passed to identify_scene_nodes),
+# per-detection 3D centroids are extracted and used to hard-constrain the visual
+# clustering:
+#
+#   dist ≤ CONFIDENT_DIST  → forced same instance (pair added/overridden in pair_stats)
+#   dist > SPLIT_DIST      → forced different (pair removed from pair_stats)
+#   in between             → visual co-association decides as before
+#
+# Set VGGT_REID_ENABLED = False to revert to pure visual re-id.
+VGGT_REID_ENABLED        = True
+VGGT_REID_CONFIDENT_DIST = 0.08   # m — hard merge (generous for per-detection centroid noise)
+VGGT_REID_SPLIT_DIST     = None   # disabled: splits are handled by visual co-association ratio
 
 
 # ── SceneNode (downstream-compatible) ───────────────────────────────────────
@@ -336,6 +358,99 @@ def _get_cluster_assignment(
     return assignment
 
 
+# ── VGGT 3D geometry loader ───────────────────────────────────────────────────
+def _load_obs_geometry(observed_graphs: list, search_roots: list) -> dict[str, dict]:
+    """Extract per-detection 3D centroid from VGGT point maps.
+
+    Imports the private helpers from vggt_3d_edges so we don't duplicate the
+    point-map loading logic.  Returns {} if no point maps can be found.
+    """
+    try:
+        from .vggt_3d_edges import (  # noqa: PLC0415
+            _candidate_files_for_image,
+            _estimate_observation_geometry,
+            _load_pointmap,
+        )
+    except ImportError:
+        return {}
+
+    obs_geometry: dict[str, dict] = {}
+    n_loaded = 0
+    for og in observed_graphs:
+        candidates = _candidate_files_for_image(og.image_id, search_roots)
+        pointmap = None
+        for path in candidates:
+            pointmap = _load_pointmap(path)
+            if pointmap is not None:
+                break
+        if pointmap is None:
+            continue
+        n_loaded += 1
+        for obs_id, obs_node in og.nodes.items():
+            geom = _estimate_observation_geometry(pointmap, list(obs_node.bbox))
+            if geom is not None:
+                obs_geometry[obs_id] = geom
+
+    if n_loaded:
+        print(
+            f"  [VGGT-ReID] loaded {n_loaded}/{len(observed_graphs)} point maps "
+            f"→ {len(obs_geometry)} detection geometries"
+        )
+    return obs_geometry
+
+
+def _apply_vggt_3d_constraints(
+    pair_stats: dict,
+    obs_geometry: dict,
+    all_items: list,
+    item_by_id: dict,
+) -> dict:
+    """Hard-constrain pair affinities using VGGT 3D centroid distances.
+
+    For every same-code, different-image pair (a, b) where both have 3D geometry:
+      dist ≤ CONFIDENT_DIST  → ratio=1.0, force merge (add pair if missing)
+      dist > SPLIT_DIST      → remove pair from pair_stats (affinity = 0)
+      else                   → leave unchanged (visual signal decides)
+    """
+    by_code: dict[int, list[str]] = defaultdict(list)
+    for item in all_items:
+        by_code[item["code"]].append(item["observed_node_id"])
+
+    n_forced_merge = n_forced_split = 0
+
+    for det_ids in by_code.values():
+        for i, a in enumerate(det_ids):
+            geom_a = obs_geometry.get(a)
+            if geom_a is None:
+                continue
+            for b in det_ids[i + 1:]:
+                if item_by_id[a]["image_id"] == item_by_id[b]["image_id"]:
+                    continue  # same image → always distinct
+                geom_b = obs_geometry.get(b)
+                if geom_b is None:
+                    continue
+                dist = float(np.linalg.norm(geom_a["centroid"] - geom_b["centroid"]))
+                key = _pair_key(a, b)
+                if dist <= VGGT_REID_CONFIDENT_DIST:
+                    pair_stats[key] = {
+                        "same_group":    1.0,
+                        "co_observed":   _COASSOC_MIN_RUNS_BASE,
+                        "ratio":         1.0,
+                        "vggt_dist":     dist,
+                        "vggt_override": "merge",
+                    }
+                    n_forced_merge += 1
+                elif VGGT_REID_SPLIT_DIST is not None and dist > VGGT_REID_SPLIT_DIST:
+                    if pair_stats.pop(key, None) is not None:
+                        n_forced_split += 1
+
+    print(
+        f"  [VGGT-ReID] constraints: forced_merge={n_forced_merge}  "
+        f"forced_split={n_forced_split}"
+    )
+    return pair_stats
+
+
 def _enhance_with_instance_neighborhoods(
     base_pair_stats: dict,
     all_items: list,
@@ -345,24 +460,19 @@ def _enhance_with_instance_neighborhoods(
     """
     Iteratively augment pair affinity with instance-level neighbourhood signal.
 
-    Each round:
-      1. Greedy-cluster using current pair_stats → cluster assignment.
-      2. For each detection D, build its neighbourhood profile:
-         a Counter of cluster-IDs of D's KNN neighbours in its image.
-         (KNN edges come from the observed-graph edge list.)
-      3. Two detections score higher if their neighbourhood profiles overlap,
-         i.e. they are surrounded by the same physical instances.
-      4. New ratio = NBRHD_ALPHA · visual_ratio + (1−NBRHD_ALPHA) · nbr_sim.
+    Each round blends:
+        visual  — base co-association / pairwise cosine ratio  (weight NBRHD_ALPHA)
+        cls_nbr — cosine sim between cluster-ID histograms of KNN neighbours.
+                  Recomputed every round as clustering improves.
 
-    Only pairs already present in base_pair_stats are updated; we never add
-    new pairs, so spurious long-range links cannot be introduced.
+    Combined affinity:  α·visual + (1−α)·cls_nbr
+
+    Only pairs already present in base_pair_stats are updated.
     """
     if NBRHD_ROUNDS == 0:
         return base_pair_stats
 
     # Build detection → set of KNN-neighbour detection IDs from observed graphs.
-    # Edges are cross-type KNN, so the profile naturally encodes the local
-    # structural context (which *types* and *instances* surround this detection).
     neighbors_of: dict[str, set[str]] = defaultdict(set)
     for og in observed_graphs:
         for edge in og.edges:
@@ -375,41 +485,41 @@ def _enhance_with_instance_neighborhoods(
         # Step 1 — provisional clustering
         assignment = _get_cluster_assignment(all_items, item_by_id, current_stats)
 
-        # Step 2 — neighbourhood profile per detection
-        nbr_profile: dict[str, dict[str, int]] = {}
+        # Step 2 — cluster-ID neighbourhood profile per detection
+        cls_nbr_profile: dict[str, dict[str, int]] = {}
         for det_id in item_by_id:
             profile: dict[str, int] = {}
             for nbr_id in neighbors_of.get(det_id, set()):
                 cid = assignment.get(nbr_id)
                 if cid:
                     profile[cid] = profile.get(cid, 0) + 1
-            nbr_profile[det_id] = profile
+            cls_nbr_profile[det_id] = profile
 
-        # Step 3 & 4 — compute enhanced affinity for every tracked pair
+        # Step 3 — blend visual + cls_nbr
         new_stats: dict[tuple, dict] = {}
-        n_nbr_signal = 0
+        n_signal = 0
         for key, st in base_pair_stats.items():
-            a, b = key
-            visual  = st["ratio"]
-            nbr_sim = _counter_cosine_sim(
-                nbr_profile.get(a, {}),
-                nbr_profile.get(b, {}),
+            a, b   = key
+            visual = st["ratio"]
+            cls_nbr = _counter_cosine_sim(
+                cls_nbr_profile.get(a, {}),
+                cls_nbr_profile.get(b, {}),
             )
-            combined = NBRHD_ALPHA * visual + (1.0 - NBRHD_ALPHA) * nbr_sim
-            if nbr_sim > 0:
-                n_nbr_signal += 1
+            combined = NBRHD_ALPHA * visual + (1.0 - NBRHD_ALPHA) * cls_nbr
+            if cls_nbr > 0:
+                n_signal += 1
             new_stats[key] = {
-                "same_group":   combined,
-                "co_observed":  st["co_observed"],
-                "ratio":        combined,
+                "same_group":  combined,
+                "co_observed": st["co_observed"],
+                "ratio":       combined,
                 "visual_ratio": visual,
-                "nbr_sim":      nbr_sim,
+                "cls_nbr_sim":  cls_nbr,
             }
 
         current_stats = new_stats
         print(
             f"  [ReID-Nbr] round {round_idx + 1}/{NBRHD_ROUNDS}: "
-            f"{n_nbr_signal}/{len(new_stats)} pairs have neighbourhood signal"
+            f"signal={n_signal}/{len(new_stats)}"
         )
 
     return current_stats
@@ -681,6 +791,7 @@ def _build_scene_nodes(groups: dict, item_by_id: dict, observed_graphs: list) ->
 def identify_scene_nodes(
     observed_graphs: list,
     image_paths: list[Path] | None = None,
+    search_roots: list[Path] | None = None,
 ) -> tuple[list[SceneNode], dict]:
     from config import IMAGES_DIR
 
@@ -695,8 +806,19 @@ def identify_scene_nodes(
         return [], {"error": "no_items"}
 
     image_ids = sorted(items_by_image.keys())
+    n_images  = len(image_ids)
 
-    print(f"  [ReID] building embeddings done: {len(all_items)} instances across {len(image_ids)} views")
+    # Adaptive min-runs: scale the evidence bar with view count.
+    # In scenes with few images a detection can co-occur in at most
+    # (n_images − 1) seed runs; requiring 2 runs would block all singletons.
+    # Formula: max(1, min(BASE, n_images // 3))
+    #   ≤5 views  → 1   (most nodes)
+    #   6–8 views → 2   (unchanged from baseline)
+    global COASSOC_MIN_RUNS
+    COASSOC_MIN_RUNS = max(1, min(_COASSOC_MIN_RUNS_BASE, n_images // 3))
+
+    print(f"  [ReID] building embeddings done: {len(all_items)} instances across {n_images} views  "
+          f"(COASSOC_MIN_RUNS={COASSOC_MIN_RUNS})")
 
     if REID_USE_DIRECT_PAIRWISE:
         print(f"  [ReID] using direct pairwise cosine affinity (no seed runs)")
@@ -708,6 +830,12 @@ def identify_scene_nodes(
             for seed in image_ids
         ]
         pair_stats = _build_coassoc(single_seed_runs, item_by_id)
+
+    # VGGT 3D hard constraints: override visual affinities where 3D distance is decisive
+    if VGGT_REID_ENABLED and search_roots:
+        obs_geometry = _load_obs_geometry(observed_graphs, list(search_roots))
+        if obs_geometry:
+            pair_stats = _apply_vggt_3d_constraints(pair_stats, obs_geometry, all_items, item_by_id)
 
     # Iterative instance-level neighbourhood enhancement
     pair_stats = _enhance_with_instance_neighborhoods(

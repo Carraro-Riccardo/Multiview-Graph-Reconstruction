@@ -406,6 +406,7 @@ def force_spanning_tree(
         db = max_deg.get(edge.scene_node_b, 2)
         hub_bonus = max(max(0, da - 2), max(0, db - 2))
         return (
+            edge.vggt_support_count,
             hub_bonus,
             edge.branch_support_count * 2 + edge.knn_support_count,
             edge.support_count,
@@ -429,6 +430,11 @@ def force_spanning_tree(
             "supporting_images":          edge.supporting_images,
             "branch_support_count":       edge.branch_support_count,
             "knn_support_count":          edge.knn_support_count,
+            "vggt_support_count":         edge.vggt_support_count,
+            "vggt_score":                 edge.vggt_score,
+            "vggt_min_distance":          edge.vggt_min_distance,
+            "vggt_port_distance":         edge.vggt_port_distance,
+            "vggt_axis_alignment":        edge.vggt_axis_alignment,
             "cooc_count":                 edge.cooc_count,
             "triplet_support":            edge.triplet_support,
             "forbidden_flag":             edge.forbidden_pair_flag,
@@ -538,6 +544,11 @@ def serialize_fused_graph(graph: nx.Graph, n_total_views: int) -> dict:
             "supporting_images": attrs.get("supporting_images", []),
             "branch_support_count": attrs.get("branch_support_count", 0),
             "knn_support_count": attrs.get("knn_support_count", 0),
+            "vggt_support_count": attrs.get("vggt_support_count", 0),
+            "vggt_score": attrs.get("vggt_score", 0.0),
+            "vggt_min_distance": attrs.get("vggt_min_distance", None),
+            "vggt_port_distance": attrs.get("vggt_port_distance", None),
+            "vggt_axis_alignment": attrs.get("vggt_axis_alignment", 0.0),
             "cooc_count": attrs.get("cooc_count", 0),
             "triplet_support": attrs.get("triplet_support", 0),
             "forbidden_flag": attrs.get("forbidden_flag", False),

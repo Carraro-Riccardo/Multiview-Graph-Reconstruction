@@ -1,12 +1,13 @@
-"""Image-only multi-view hydraulic reconstruction — direct adjacency pipeline."""
+"""Image-only multi-view hydraulic reconstruction - direct adjacency pipeline."""
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 import networkx as nx
 
-from config import IMAGES_DIR, MIN_IMAGES, SKIP_NODES, WORK_DIR
+from config import IMAGES_DIR, MIN_IMAGES, SKIP_NODES, VGGT_EDGE_ENABLED, WORK_DIR
 from core.debug_utils import save_json
 from core.detection import discover_nodes
 from .direct_graph_builder import build_direct_graph
@@ -14,12 +15,15 @@ from .graph_refinement import force_spanning_tree, serialize_fused_graph
 from .node_reid import identify_scene_nodes, serialize_scene_nodes
 from .observed_graphs import build_all_observed_graphs
 from .spatial_consistency import run_consistency_pass
+from .vggt_runtime import ensure_vggt_artifacts
+from .vggt_3d_edges import build_vggt_edge_hints, build_vggt_search_roots, replay_merge_log, replay_vote_log
 
-_W = 72   # separator width
+_W = 72
 
 
-def _sep(char="─"):
-    print(f"  {'─' * _W}" if char == "─" else f"  {'═' * _W}")
+def _sep(char="-"):
+    fill = "-" if char == "-" else "="
+    print(f"  {fill * _W}")
 
 
 def _output_dir(node_id: int) -> Path:
@@ -32,26 +36,34 @@ def run_multiview_pipeline(node_id: int, image_paths: list, output_dir: Path | N
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    print(f"\n{'═' * (_W + 4)}")
-    print(f"  NODE {node_id}  —  {len(image_paths)} views  —  {output_dir}")
-    print(f"{'═' * (_W + 4)}")
+    print(f"\n{'=' * (_W + 4)}")
+    print(f"  NODE {node_id}  -  {len(image_paths)} views  -  {output_dir}")
+    print(f"{'=' * (_W + 4)}")
 
-    # ── Step 1: per-view observed graphs ─────────────────────────────────────
-    print(f"\n  [Step 1] Per-view detection & local graph hypotheses")
+    print("\n  [Step 1] Per-view detection & local graph hypotheses")
     _sep()
     observed_graphs = build_all_observed_graphs(image_paths)
     if not observed_graphs:
-        print(f"  [node {node_id}] ERROR: no valid detections in any view — skipping")
+        print(f"  [node {node_id}] ERROR: no valid detections in any view - skipping")
         return {"status": "error", "reason": "no_detections", "node_id": node_id}
 
     total_obs = sum(len(og.nodes) for og in observed_graphs)
     print(f"  views accepted : {len(observed_graphs)}/{len(image_paths)}")
     print(f"  total detections (post-filter) : {total_obs}")
 
-    # ── Step 2: node re-identification ───────────────────────────────────────
-    print(f"\n  [Step 2] Node re-identification (multi-seed + co-association + soft-merge)")
+    # ── VGGT artefacts (needed for both re-id 3D constraints and edge hints) ───
+    vggt_edge_payload = {"enabled": False, "pair_hints": {}}
+    vggt_generation = {"status": "not_requested", "generated": False}
+    search_roots: list = []
+    if VGGT_EDGE_ENABLED:
+        vggt_generation = ensure_vggt_artifacts(output_dir, image_paths)
+        search_roots = build_vggt_search_roots(node_id, output_dir, WORK_DIR)
+
+    print("\n  [Step 2] Node re-identification (multi-seed + co-association + VGGT-3D + soft-merge)")
     _sep()
-    scene_nodes, _ = identify_scene_nodes(observed_graphs, image_paths=image_paths)
+    scene_nodes, _ = identify_scene_nodes(
+        observed_graphs, image_paths=image_paths, search_roots=search_roots
+    )
     save_json(output_dir / "scene_nodes.json", serialize_scene_nodes(scene_nodes))
 
     col = 16
@@ -66,18 +78,145 @@ def run_multiview_pipeline(node_id: int, image_paths: list, output_dir: Path | N
     _sep()
     print(f"  {len(scene_nodes)} scene nodes from {total_obs} observations")
 
-    # ── Step 3: direct per-image adjacency graph ──────────────────────────────
-    print(f"\n  [Step 3] Direct per-image adjacency graph")
+    if VGGT_EDGE_ENABLED:
+
+        # ── Cache check ────────────────────────────────────────────────────────
+        # If all .npz files were already present AND vggt_edge_debug.json exists
+        # with the same set of scene-node IDs as the current ReID output, we can
+        # skip the expensive build_vggt_edge_hints() call entirely.
+        debug_path = output_dir / "vggt_edge_debug.json"
+        _cache_hit = False
+        if vggt_generation.get("status") == "already_present" and debug_path.exists():
+            try:
+                _cached = json.loads(debug_path.read_text(encoding="utf-8"))
+                # Require "vote_log" key: absent in pre-vote-logic caches → forces recompute.
+                if "merge_log" not in _cached or "vote_log" not in _cached:
+                    raise ValueError("legacy cache format — missing merge_log or vote_log")
+                # Reconstruct the original (pre-merge) scene-node IDs from the cache:
+                # scene_geometry holds post-merge IDs; merge_log records the dropped ones.
+                _cached_post_merge_ids = set(_cached.get("scene_geometry", {}).keys())
+                _cached_dropped_ids = {e["dropped"] for e in _cached.get("merge_log", [])}
+                _cached_original_ids = _cached_post_merge_ids | _cached_dropped_ids
+                _current_ids = {sn.scene_node_id for sn in scene_nodes}
+                if _current_ids == _cached_original_ids:
+                    _cache_hit = True
+            except Exception:
+                pass  # malformed or legacy cache → fall through to full recompute
+
+        if _cache_hit:
+            _merge_log = _cached.get("merge_log", [])
+            _vote_log  = _cached.get("vote_log", [])
+            _pair_hints = {
+                (entry["pair"][0], entry["pair"][1]): {k: v for k, v in entry.items() if k != "pair"}
+                for entry in _cached.get("pair_hints", [])
+            }
+            n_merged    = len(_merge_log)
+            n_corrected = len(_vote_log)
+            needs_save  = False
+            if n_merged > 0:
+                scene_nodes = replay_merge_log(scene_nodes, _merge_log, observed_graphs)
+                needs_save = True
+                print(f"  [VGGT] cache hit — replayed {n_merged} merge(s)")
+                for entry in _merge_log:
+                    print(
+                        f"    {entry['dropped']} → {entry['kept']}"
+                        f"  dist={entry['dist_m']:.3f}m  ({entry['reason']})"
+                    )
+            if n_corrected > 0:
+                scene_nodes = replay_vote_log(scene_nodes, _vote_log)
+                needs_save = True
+                print(f"  [VGGT] cache hit — replayed {n_corrected} code correction(s)")
+                for entry in _vote_log:
+                    print(
+                        f"    {entry['scene_node_id']}: "
+                        f"{entry['old_code']} → {entry['new_code']}"
+                    )
+            if needs_save:
+                save_json(output_dir / "scene_nodes.json", serialize_scene_nodes(scene_nodes))
+            vggt_edge_payload = {"enabled": True, "pair_hints": _pair_hints}
+            print(
+                f"  [VGGT] generation={vggt_generation.get('status')}  "
+                f"cache=hit  merged={n_merged}  corrected={n_corrected}  "
+                f"edge_hints={len(_pair_hints)}"
+            )
+        # ── Full recompute ─────────────────────────────────────────────────────
+        else:
+            vggt_edge_payload = build_vggt_edge_hints(scene_nodes, observed_graphs, search_roots)
+
+            # Apply VGGT-based duplicate merges + code corrections
+            n_merged = vggt_edge_payload.get("n_merged_nodes", 0)
+            n_corrected = vggt_edge_payload.get("n_code_corrections", 0)
+            if n_merged > 0 or n_corrected > 0:
+                scene_nodes = vggt_edge_payload["_scene_nodes_merged"]
+                save_json(output_dir / "scene_nodes.json", serialize_scene_nodes(scene_nodes))
+            if n_merged > 0:
+                merge_log = vggt_edge_payload.get("merge_log", [])
+                print(f"  [VGGT] merged {n_merged} duplicate scene node(s):")
+                for entry in merge_log:
+                    print(
+                        f"    {entry['dropped']} → {entry['kept']}"
+                        f"  dist={entry['dist_m']:.3f}m"
+                        f"  obs={entry['n_obs_dropped']}+{entry['n_obs_kept']}"
+                        f"  ({entry['reason']})"
+                    )
+            if n_corrected > 0:
+                vote_log = vggt_edge_payload.get("vote_log", [])
+                print(f"  [VGGT] corrected {n_corrected} scene node code(s) via majority vote:")
+                for entry in vote_log:
+                    print(
+                        f"    {entry['scene_node_id']}: "
+                        f"{entry['old_code']} → {entry['new_code']}"
+                        f"  (n_obs={entry['n_obs']})"
+                    )
+
+            save_json(
+                output_dir / "vggt_edge_debug.json",
+                {
+                    "generation": vggt_generation,
+                    "enabled": vggt_edge_payload.get("enabled", False),
+                    "search_roots": vggt_edge_payload.get("search_roots", []),
+                    "artifact_request": vggt_edge_payload.get("artifact_request", {}),
+                    "n_loaded_images": vggt_edge_payload.get("n_loaded_images", 0),
+                    "n_scene_geometries": vggt_edge_payload.get("n_scene_geometries", 0),
+                    "n_merged_nodes": n_merged,
+                    "merge_log": vggt_edge_payload.get("merge_log", []),
+                    "n_code_corrections": n_corrected,
+                    "vote_log": vggt_edge_payload.get("vote_log", []),
+                    "scene_cutoff": vggt_edge_payload.get("scene_cutoff"),
+                    "port_cutoff": vggt_edge_payload.get("port_cutoff"),
+                    "loaded_images": vggt_edge_payload.get("loaded_images", {}),
+                    "skipped_images": vggt_edge_payload.get("skipped_images", []),
+                    "scene_geometry": vggt_edge_payload.get("scene_geometry", {}),
+                    "pair_hints": vggt_edge_payload.get("pair_hints_serialized", []),
+                },
+            )
+            save_json(
+                output_dir / "vggt_artifact_request.json",
+                vggt_edge_payload.get("artifact_request", {}),
+            )
+            print(
+                f"  [VGGT] generation={vggt_generation.get('status')}  "
+                f"cache=miss  "
+                f"loaded_views={vggt_edge_payload.get('n_loaded_images', 0)}/"
+                f"{len(observed_graphs)}  "
+                f"scene_geometries={vggt_edge_payload.get('n_scene_geometries', 0)}  "
+                f"merged={n_merged}  corrected={n_corrected}  "
+                f"edge_hints={len(vggt_edge_payload.get('pair_hints', {}))}"
+            )
+
+    print("\n  [Step 3] Direct per-image adjacency graph")
     _sep()
     fused_graph, bridge_edges, direct_debug = build_direct_graph(
-        scene_nodes, observed_graphs, len(observed_graphs),
+        scene_nodes,
+        observed_graphs,
+        len(observed_graphs),
+        vggt_edge_hints=vggt_edge_payload.get("pair_hints", {}),
     )
-    n_voted   = direct_debug["n_pairs_voted"]
+    n_voted = direct_debug["n_pairs_voted"]
     n_shortcuts = direct_debug["n_shortcut_suppressed"]
     print(f"  voted pairs={n_voted}  shortcuts suppressed={n_shortcuts}  edges={fused_graph.number_of_edges()}")
 
-    # ── Step 4: spanning-tree forcing ─────────────────────────────────────────
-    print(f"\n  [Step 4] Spanning-tree forcing")
+    print("\n  [Step 4] Spanning-tree forcing")
     _sep()
     fused_graph, span_debug = force_spanning_tree(fused_graph, bridge_edges)
     n_forced = span_debug["n_forced"]
@@ -85,54 +224,53 @@ def run_multiview_pipeline(node_id: int, image_paths: list, output_dir: Path | N
     for fe in span_debug["forced_edges"]:
         print(f"    {fe['a']}  --({fe['via']})->  {fe['b']}")
 
-    # ── Step 5: spatial consistency pruning ───────────────────────────────────
-    print(f"\n  [Step 5] Spatial consistency pruning")
+    print("\n  [Step 5] Spatial consistency pruning")
     _sep()
     fused_graph, consistency_debug = run_consistency_pass(
-        scene_nodes, observed_graphs, fused_graph, bridge_edges,
+        scene_nodes, observed_graphs, fused_graph, bridge_edges
     )
     n_pruned = consistency_debug.get("n_pruned", 0)
     print(f"  pruned={n_pruned}  swapped={consistency_debug.get('n_swapped', 0)}")
 
-    # ── Save final outputs (only what matters) ────────────────────────────────
     save_json(output_dir / "fused_graph.json", serialize_fused_graph(fused_graph, len(observed_graphs)))
 
-    # ── Final graph summary ───────────────────────────────────────────────────
     n_isolated = sum(1 for nid in fused_graph.nodes() if fused_graph.degree(nid) == 0)
-    connected  = nx.is_connected(fused_graph) if fused_graph.number_of_nodes() > 0 else True
+    connected = nx.is_connected(fused_graph) if fused_graph.number_of_nodes() > 0 else True
 
-    print(f"\n  {'─' * _W}")
-    print(f"  FINAL GRAPH  —  node {node_id}")
-    print(f"  {'─' * _W}")
-    print(f"  nodes: {fused_graph.number_of_nodes()}   edges: {fused_graph.number_of_edges()}   "
-          f"isolated: {n_isolated}   {'CONNECTED' if connected else 'DISCONNECTED'}")
-    print(f"  {'─' * _W}")
+    print(f"\n  {'-' * _W}")
+    print(f"  FINAL GRAPH  -  node {node_id}")
+    print(f"  {'-' * _W}")
+    print(
+        f"  nodes: {fused_graph.number_of_nodes()}   edges: {fused_graph.number_of_edges()}   "
+        f"isolated: {n_isolated}   {'CONNECTED' if connected else 'DISCONNECTED'}"
+    )
+    print(f"  {'-' * _W}")
     print(f"  {'node_id':<18}{'name':<16}{'code':>6}{'deg':>5}{'val':>5}  support_images")
-    print(f"  {'─' * _W}")
-    for nid in sorted(fused_graph.nodes(), key=lambda x: (fused_graph.nodes[x].get("code", 0), x)):
-        nd   = fused_graph.nodes[nid]
-        deg  = fused_graph.degree(nid)
-        val  = nd.get("valence", nd.get("max_degree", "?"))
+    print(f"  {'-' * _W}")
+    for nid in sorted(fused_graph.nodes(), key=lambda x: (fused_graph.nodes[x].get('code', 0), x)):
+        nd = fused_graph.nodes[nid]
+        deg = fused_graph.degree(nid)
+        val = nd.get("valence", nd.get("max_degree", "?"))
         name = nd.get("name", nd.get("fused_name", "?"))
         code = nd.get("code", nd.get("fused_code", "?"))
         imgs = ", ".join(nd.get("support_images", []))
         flag = " !" if deg == 0 else ""
         print(f"  {nid:<18}{name:<16}{str(code):>6}{deg:>5}{str(val):>5}  {imgs}{flag}")
-    print(f"  {'─' * _W}")
+    print(f"  {'-' * _W}")
     print(f"  output: {output_dir}")
 
     return {
-        "status":         "ok",
-        "node_id":        node_id,
-        "n_views":        len(observed_graphs),
-        "n_scene_nodes":  len(scene_nodes),
-        "n_voted_pairs":  n_voted,
-        "n_final_nodes":  fused_graph.number_of_nodes(),
-        "n_final_edges":  fused_graph.number_of_edges(),
+        "status": "ok",
+        "node_id": node_id,
+        "n_views": len(observed_graphs),
+        "n_scene_nodes": len(scene_nodes),
+        "n_voted_pairs": n_voted,
+        "n_final_nodes": fused_graph.number_of_nodes(),
+        "n_final_edges": fused_graph.number_of_edges(),
         "n_forced_edges": n_forced,
-        "n_isolated":     n_isolated,
-        "connected":      connected,
-        "output_dir":     str(output_dir),
+        "n_isolated": n_isolated,
+        "connected": connected,
+        "output_dir": str(output_dir),
     }
 
 
@@ -152,15 +290,14 @@ def run_multiview_all(images_dir: Path | None = None) -> dict:
     for node_id, image_paths in sorted(eligible.items()):
         results[node_id] = run_multiview_pipeline(node_id, image_paths)
 
-    # ── Cross-node summary ────────────────────────────────────────────────────
     ok_results = [r for r in results.values() if r.get("status") == "ok"]
     if ok_results:
-        print(f"\n\n{'═' * (_W + 4)}")
-        print(f"  OVERALL SUMMARY  —  {len(ok_results)}/{len(results)} nodes completed")
-        print(f"{'═' * (_W + 4)}")
+        print(f"\n\n{'=' * (_W + 4)}")
+        print(f"  OVERALL SUMMARY  -  {len(ok_results)}/{len(results)} nodes completed")
+        print(f"{'=' * (_W + 4)}")
         hdr = f"  {'node':>5}{'views':>7}{'scene_n':>9}{'voted_p':>9}{'final_n':>9}{'final_e':>9}{'forced':>8}{'iso':>5}  conn"
         print(hdr)
-        print(f"  {'─' * (_W + 2)}")
+        print(f"  {'-' * (_W + 2)}")
         for r in sorted(ok_results, key=lambda x: x["node_id"]):
             conn = "Y" if r["connected"] else "N"
             print(
@@ -173,7 +310,7 @@ def run_multiview_all(images_dir: Path | None = None) -> dict:
                 f"{r.get('n_forced_edges', 0):>8}"
                 f"{r['n_isolated']:>5}  {conn}"
             )
-        print(f"  {'─' * (_W + 2)}")
+        print(f"  {'-' * (_W + 2)}")
 
     return results
 
