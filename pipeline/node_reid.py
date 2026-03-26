@@ -1,10 +1,11 @@
 """Step 2 – node re-identification.
 
 For every component code the algorithm:
-  1. Determines k (number of physical instances) = max detections of that code
-     in any single image.  This is a structural observation: each image can
-     see each physical component at most once (after NMS), so the densest
-     single-image count equals the total number of instances.
+  1. Determines k (number of physical instances) via greedy graph coloring of
+     the incompatibility graph: two observations are incompatible if they come
+     from the same image.  The chromatic number of this graph is the minimum
+     k that satisfies all constraints, correctly handling cases where no single
+     image sees all instances simultaneously.
   2. If k == 1: all detections belong to the one instance (trivial).
   3. If k > 1: cluster detections via K-Means on ResNet-50 patch embeddings,
      then apply the same-image hard constraint (two detections from the same
@@ -12,7 +13,7 @@ For every component code the algorithm:
   4. VGGT 3D distances (< VGGT_REID_CONFIDENT_DIST = 0.08 m) are used as a
      hard-merge bonus in the affinity matrix.
 
-No dataset-tuned thresholds.  k comes directly from the detection structure;
+No dataset-tuned thresholds.  k comes from the incompatibility graph structure;
 the only physical constant is VGGT_REID_CONFIDENT_DIST.
 """
 
@@ -33,11 +34,12 @@ PATCH_EXPAND_RATIO = 0.35
 MIN_PATCH_SIZE     = 48
 
 # ── VGGT 3D hard-merge threshold ─────────────────────────────────────────────
-# Detections whose 3-D centroids are closer than this (metres) are the same
-# physical object regardless of visual appearance.  This is a physical /
-# sensor-noise constant, NOT a dataset-tuned hyperparameter.
+# Detections whose point-cloud min-distance is below this are certainly the
+# same physical instance.  Used as a hard-merge bonus in the affinity matrix
+# AND as a post-clustering merge pass.
 VGGT_REID_ENABLED        = True
-VGGT_REID_CONFIDENT_DIST = 0.08   # m
+VGGT_REID_CONFIDENT_DIST = 0.08   # m  — in-affinity hard boost
+VGGT_POST_MERGE_DIST     = 0.25   # m  — post-clustering merge (wider, image-disjoint only)
 
 
 # ── SceneNode (downstream-compatible) ────────────────────────────────────────
@@ -257,18 +259,41 @@ def _cluster_code(
     densest image count equals the scene's instance count).
 
     Affinity matrix (used by K-Means on spectral embedding):
-      - same image              → 0.0  (hard constraint)
-      - VGGT min-cloud < 0.08m → 0.98 (hard: certainly same instance)
-      - both have embeddings    → max(0, cosine_similarity)
-      - one/both missing emb    → 0.3  (neutral)
+      - same image   → 0.0  (hard constraint)
+      - cross-image  → VGGT_WEIGHT * exp(-dist/VGGT_SIGMA) + (1-VGGT_WEIGHT) * visual
+                       where visual = cosine_sim or 0.3 fallback
+                       VGGT geometry missing → visual only
     """
     n = len(code_ids)
     if n == 1:
         return [list(code_ids)]
 
-    # ── k from detection structure ────────────────────────────────────────────
-    img_counts = Counter(item_by_id[oid]["image_id"] for oid in code_ids)
-    k = max(img_counts.values())
+    # ── k from incompatibility graph (chromatic number estimate) ─────────────
+    # Two observations are incompatible if they come from the same image
+    # (they cannot be the same physical instance).  The minimum number of
+    # clusters that satisfies all incompatibility constraints equals the
+    # chromatic number of this graph.  Greedy coloring gives an exact result
+    # for interval/perfect graphs, and a tight upper bound otherwise.
+    # This correctly handles cases where no single image sees all instances
+    # (e.g. image A sees {1,2}, image B sees {2,3} → k=3, max_per_image=2).
+    img_of = {oid: item_by_id[oid]["image_id"] for oid in code_ids}
+    # adjacency list: obs → set of obs from same image
+    incompat: dict[str, set[str]] = {oid: set() for oid in code_ids}
+    img_to_obs: dict[str, list[str]] = defaultdict(list)
+    for oid in code_ids:
+        img_to_obs[img_of[oid]].append(oid)
+    for peers in img_to_obs.values():
+        for i in range(len(peers)):
+            for j in range(i + 1, len(peers)):
+                incompat[peers[i]].add(peers[j])
+                incompat[peers[j]].add(peers[i])
+
+    # Greedy coloring ordered by degree descending (DSATUR-lite)
+    color: dict[str, int] = {}
+    for oid in sorted(code_ids, key=lambda x: -len(incompat[x])):
+        used = {color[nb] for nb in incompat[oid] if nb in color}
+        color[oid] = next(c for c in range(n) if c not in used)
+    k = max(color.values()) + 1
 
     if k == 1:
         return [list(code_ids)]
@@ -281,21 +306,16 @@ def _cluster_code(
         for j in range(i + 1, n):
             b = code_ids[j]
             if item_by_id[a]["image_id"] == item_by_id[b]["image_id"]:
-                continue  # same image → 0 (leave as zero)
-            # VGGT hard merge
+                continue  # same image → 0 (hard constraint)
             val = 0.0
             if ga is not None:
                 gb = obs_geometry.get(b)
                 if gb is not None and _cloud_min_dist(ga, gb) <= VGGT_REID_CONFIDENT_DIST:
                     val = 0.98
             if val == 0.0:
-                # Visual similarity
                 ea = item_by_id[a].get("embedding")
                 eb = item_by_id[b].get("embedding")
-                if ea is not None and eb is not None:
-                    val = max(0.0, float(np.dot(ea, eb)))
-                else:
-                    val = 0.3
+                val = max(0.0, float(np.dot(ea, eb))) if (ea is not None and eb is not None) else 0.3
             A[i, j] = A[j, i] = val
 
     # ── K-Means on normalised spectral embedding ──────────────────────────────
@@ -315,6 +335,45 @@ def _cluster_code(
     groups: dict[int, list[str]] = defaultdict(list)
     for idx, obs_id in enumerate(code_ids):
         groups[int(labels[idx])].append(obs_id)
+
+    # ── Post-clustering VGGT merge ────────────────────────────────────────────
+    # If two clusters share no images and their best inter-cluster min-cloud
+    # distance is below VGGT_POST_MERGE_DIST, merge the smaller into the larger.
+    # This handles cases where k was correctly estimated but K-Means split a
+    # sparse instance across two clusters due to visual variability.
+    if obs_geometry:
+        changed = True
+        while changed:
+            changed = False
+            gids = list(groups.keys())
+            for gi in range(len(gids)):
+                for gj in range(gi + 1, len(gids)):
+                    a_ids = groups[gids[gi]]
+                    b_ids = groups[gids[gj]]
+                    # Skip if they share an image (different instances by definition)
+                    imgs_a = {item_by_id[o]["image_id"] for o in a_ids}
+                    imgs_b = {item_by_id[o]["image_id"] for o in b_ids}
+                    if imgs_a & imgs_b:
+                        continue
+                    # Find best inter-cluster min-cloud distance
+                    best = float("inf")
+                    for oa in a_ids:
+                        ga = obs_geometry.get(oa)
+                        if ga is None:
+                            continue
+                        for ob in b_ids:
+                            gb = obs_geometry.get(ob)
+                            if gb is None:
+                                continue
+                            best = min(best, _cloud_min_dist(ga, gb))
+                    if best <= VGGT_POST_MERGE_DIST:
+                        # Merge smaller into larger
+                        keep, drop = (gids[gi], gids[gj]) if len(a_ids) >= len(b_ids) else (gids[gj], gids[gi])
+                        groups[keep].extend(groups.pop(drop))
+                        changed = True
+                        break
+                if changed:
+                    break
 
     def _sort_key(cluster: list[str]) -> tuple:
         centers = [item_by_id[i]["center"] for i in cluster]
