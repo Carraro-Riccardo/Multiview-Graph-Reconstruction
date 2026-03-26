@@ -26,7 +26,7 @@ import numpy as np
 from config import DIST_MULTIPLIER
 
 # ── Config ─────────────────────────────────────────────────────────────────────
-# Same spatial factor used in instance_spatial_edges.py
+# Same spatial factor used in direct_graph_builder.py (ADJACENCY_FACTOR)
 CONSISTENCY_CUTOFF_FACTOR: float = 1.8
 
 # Edge is a prune candidate if consistent in fewer than this fraction of visible views
