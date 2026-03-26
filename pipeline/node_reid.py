@@ -34,11 +34,12 @@ PATCH_EXPAND_RATIO = 0.35
 MIN_PATCH_SIZE     = 48
 
 # ── VGGT 3D hard-merge threshold ─────────────────────────────────────────────
-# Detections whose 3-D centroids are closer than this (metres) are the same
-# physical object regardless of visual appearance.  This is a physical /
-# sensor-noise constant, NOT a dataset-tuned hyperparameter.
+# Detections whose point-cloud min-distance is below this are certainly the
+# same physical instance.  Used as a hard-merge bonus in the affinity matrix
+# AND as a post-clustering merge pass.
 VGGT_REID_ENABLED        = True
-VGGT_REID_CONFIDENT_DIST = 0.08   # m
+VGGT_REID_CONFIDENT_DIST = 0.08   # m  — in-affinity hard boost
+VGGT_POST_MERGE_DIST     = 0.25   # m  — post-clustering merge (wider, image-disjoint only)
 
 
 # ── SceneNode (downstream-compatible) ────────────────────────────────────────
@@ -258,10 +259,10 @@ def _cluster_code(
     densest image count equals the scene's instance count).
 
     Affinity matrix (used by K-Means on spectral embedding):
-      - same image              → 0.0  (hard constraint)
-      - VGGT min-cloud < 0.08m → 0.98 (hard: certainly same instance)
-      - both have embeddings    → max(0, cosine_similarity)
-      - one/both missing emb    → 0.3  (neutral)
+      - same image   → 0.0  (hard constraint)
+      - cross-image  → VGGT_WEIGHT * exp(-dist/VGGT_SIGMA) + (1-VGGT_WEIGHT) * visual
+                       where visual = cosine_sim or 0.3 fallback
+                       VGGT geometry missing → visual only
     """
     n = len(code_ids)
     if n == 1:
@@ -305,21 +306,16 @@ def _cluster_code(
         for j in range(i + 1, n):
             b = code_ids[j]
             if item_by_id[a]["image_id"] == item_by_id[b]["image_id"]:
-                continue  # same image → 0 (leave as zero)
-            # VGGT hard merge
+                continue  # same image → 0 (hard constraint)
             val = 0.0
             if ga is not None:
                 gb = obs_geometry.get(b)
                 if gb is not None and _cloud_min_dist(ga, gb) <= VGGT_REID_CONFIDENT_DIST:
                     val = 0.98
             if val == 0.0:
-                # Visual similarity
                 ea = item_by_id[a].get("embedding")
                 eb = item_by_id[b].get("embedding")
-                if ea is not None and eb is not None:
-                    val = max(0.0, float(np.dot(ea, eb)))
-                else:
-                    val = 0.3
+                val = max(0.0, float(np.dot(ea, eb))) if (ea is not None and eb is not None) else 0.3
             A[i, j] = A[j, i] = val
 
     # ── K-Means on normalised spectral embedding ──────────────────────────────
@@ -339,6 +335,45 @@ def _cluster_code(
     groups: dict[int, list[str]] = defaultdict(list)
     for idx, obs_id in enumerate(code_ids):
         groups[int(labels[idx])].append(obs_id)
+
+    # ── Post-clustering VGGT merge ────────────────────────────────────────────
+    # If two clusters share no images and their best inter-cluster min-cloud
+    # distance is below VGGT_POST_MERGE_DIST, merge the smaller into the larger.
+    # This handles cases where k was correctly estimated but K-Means split a
+    # sparse instance across two clusters due to visual variability.
+    if obs_geometry:
+        changed = True
+        while changed:
+            changed = False
+            gids = list(groups.keys())
+            for gi in range(len(gids)):
+                for gj in range(gi + 1, len(gids)):
+                    a_ids = groups[gids[gi]]
+                    b_ids = groups[gids[gj]]
+                    # Skip if they share an image (different instances by definition)
+                    imgs_a = {item_by_id[o]["image_id"] for o in a_ids}
+                    imgs_b = {item_by_id[o]["image_id"] for o in b_ids}
+                    if imgs_a & imgs_b:
+                        continue
+                    # Find best inter-cluster min-cloud distance
+                    best = float("inf")
+                    for oa in a_ids:
+                        ga = obs_geometry.get(oa)
+                        if ga is None:
+                            continue
+                        for ob in b_ids:
+                            gb = obs_geometry.get(ob)
+                            if gb is None:
+                                continue
+                            best = min(best, _cloud_min_dist(ga, gb))
+                    if best <= VGGT_POST_MERGE_DIST:
+                        # Merge smaller into larger
+                        keep, drop = (gids[gi], gids[gj]) if len(a_ids) >= len(b_ids) else (gids[gj], gids[gi])
+                        groups[keep].extend(groups.pop(drop))
+                        changed = True
+                        break
+                if changed:
+                    break
 
     def _sort_key(cluster: list[str]) -> tuple:
         centers = [item_by_id[i]["center"] for i in cluster]
