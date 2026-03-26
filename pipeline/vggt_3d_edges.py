@@ -238,11 +238,20 @@ def _estimate_observation_geometry(
         port_a = (centroid + axis * lo).astype(np.float32)
         port_b = (centroid + axis * hi).astype(np.float32)
 
+    # Keep a compact point-cloud sample for min-distance re-id matching.
+    # 128 points is enough to detect cloud overlap while staying lightweight.
+    if len(pts) > 128:
+        idx = np.linspace(0, len(pts) - 1, 128, dtype=int)
+        pts_sample = pts[idx].astype(np.float32)
+    else:
+        pts_sample = pts.astype(np.float32)
+
     return {
-        "centroid": centroid,
-        "axis": axis,
-        "ports": [port_a, port_b],
-        "n_points": int(len(pts)),
+        "centroid":  centroid,
+        "axis":      axis,
+        "ports":     [port_a, port_b],
+        "n_points":  int(len(pts)),
+        "pts_sample": pts_sample,
     }
 
 

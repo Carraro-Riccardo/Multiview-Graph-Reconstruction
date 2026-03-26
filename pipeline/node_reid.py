@@ -1,17 +1,19 @@
-"""Step 2 – node re-identification via spectral clustering.
+"""Step 2 – node re-identification.
 
 For every component code the algorithm:
-  1. Extracts a ResNet-50 patch embedding for each detection.
-  2. Builds a pairwise affinity matrix (cosine similarity), with:
-       - same-image pairs clamped to 0   (always distinct instances)
-       - VGGT 3D pairs < CONFIDENT_DIST  forced to 0.98 (same instance)
-  3. Applies spectral clustering with k chosen automatically via the
-     largest eigenvalue gap of the normalised Laplacian.
-  4. Enforces the same-image hard constraint on the cluster labels.
+  1. Determines k (number of physical instances) = max detections of that code
+     in any single image.  This is a structural observation: each image can
+     see each physical component at most once (after NMS), so the densest
+     single-image count equals the total number of instances.
+  2. If k == 1: all detections belong to the one instance (trivial).
+  3. If k > 1: cluster detections via K-Means on ResNet-50 patch embeddings,
+     then apply the same-image hard constraint (two detections from the same
+     image can never be the same instance).
+  4. VGGT 3D distances (< VGGT_REID_CONFIDENT_DIST = 0.08 m) are used as a
+     hard-merge bonus in the affinity matrix.
 
-No hand-tuned thresholds on affinity scores.  The only physical constant
-is VGGT_REID_CONFIDENT_DIST (distance in metres below which two detections
-are certainly the same object — set by sensor noise, not dataset statistics).
+No dataset-tuned thresholds.  k comes directly from the detection structure;
+the only physical constant is VGGT_REID_CONFIDENT_DIST.
 """
 
 from __future__ import annotations
@@ -23,7 +25,6 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from .branch_fragments import is_anchor, is_terminal
-from core.linear_assignment import linear_sum_assignment
 from config import COMPONENT_INFO
 
 
@@ -116,7 +117,7 @@ def _build_items(
     observed_graphs: list,
     image_paths: list[Path],
 ) -> tuple[list[dict], dict[str, list[dict]]]:
-    """Build one item per ObservedNode carrying the visual embedding for RE-ID."""
+    """Build one item per ObservedNode with a ResNet-50 visual embedding."""
     path_by_stem = {p.stem: p for p in image_paths}
     all_items: list[dict] = []
     items_by_image: dict[str, list[dict]] = defaultdict(list)
@@ -150,21 +151,6 @@ def _build_items(
             items_by_image[image_id].append(item)
 
     return all_items, dict(items_by_image)
-
-
-# ── Helpers ───────────────────────────────────────────────────────────────────
-def _cosine_sim(a: np.ndarray | None, b: np.ndarray | None) -> float:
-    if a is None or b is None:
-        return 0.0
-    return float(np.dot(a, b))   # both pre-normalised
-
-
-def _mean_proto(ids: list[str], item_by_id: dict) -> np.ndarray | None:
-    embs = [item_by_id[i]["embedding"] for i in ids if item_by_id[i]["embedding"] is not None]
-    if not embs:
-        return None
-    proto = np.mean(np.stack(embs), axis=0)
-    return proto / (np.linalg.norm(proto) + 1e-8)
 
 
 # ── VGGT geometry ─────────────────────────────────────────────────────────────
@@ -204,101 +190,38 @@ def _load_obs_geometry(observed_graphs: list, search_roots: list) -> dict[str, d
     return obs_geometry
 
 
-# ── Affinity matrix ───────────────────────────────────────────────────────────
-def _build_affinity_matrix(
-    code_ids: list[str],
-    item_by_id: dict,
-    obs_geometry: dict[str, dict],
-) -> np.ndarray:
-    """Build (n, n) symmetric affinity matrix for spectral clustering.
+# ── 3D cloud distance ────────────────────────────────────────────────────────
+def _cloud_min_dist(ga: dict, gb: dict) -> float:
+    """Minimum Euclidean distance between two point-cloud samples.
 
-    Rules (in priority order):
-      1. Same image           → 0.0  (hard: always distinct)
-      2. VGGT dist < CONFIDENT_DIST → 0.98 (hard: same instance)
-      3. Both have embeddings → max(0, cosine_sim)
-      4. One/both missing emb → 0.3  (neutral: let topology decide)
+    Using the minimum rather than centroid-centroid distance is view-invariant:
+    the same physical component seen from different angles exposes different
+    surfaces, so centroids may differ by 0.3-0.6 m, but the closest points on
+    the two clouds are always within the component's physical size (~5-15 cm).
+    Falls back to centroid distance if no point-cloud sample is available.
     """
-    n = len(code_ids)
-    A = np.zeros((n, n), dtype=np.float64)
-
-    for i in range(n):
-        a = code_ids[i]
-        ga = obs_geometry.get(a)
-        for j in range(i + 1, n):
-            b = code_ids[j]
-            # Rule 1: same image → 0
-            if item_by_id[a]["image_id"] == item_by_id[b]["image_id"]:
-                continue
-            # Rule 2: VGGT hard merge
-            if ga is not None:
-                gb = obs_geometry.get(b)
-                if gb is not None:
-                    dist = float(np.linalg.norm(ga["centroid"] - gb["centroid"]))
-                    if dist <= VGGT_REID_CONFIDENT_DIST:
-                        A[i, j] = A[j, i] = 0.98
-                        continue
-            # Rule 3/4: visual similarity
-            emb_a = item_by_id[a]["embedding"]
-            emb_b = item_by_id[b]["embedding"]
-            if emb_a is not None and emb_b is not None:
-                A[i, j] = A[j, i] = max(0.0, float(np.dot(emb_a, emb_b)))
-            else:
-                A[i, j] = A[j, i] = 0.3  # neutral
-
-    return A
+    pa = ga.get("pts_sample")
+    pb = gb.get("pts_sample")
+    if pa is None or pb is None:
+        return float(np.linalg.norm(
+            np.asarray(ga["centroid"]) - np.asarray(gb["centroid"])
+        ))
+    # Efficient batched min-distance: (m,1,3) - (1,n,3) → (m,n)
+    diff = pa[:, None, :] - pb[None, :, :]
+    return float(np.sqrt((diff * diff).sum(axis=2)).min())
 
 
-# ── Spectral clustering ───────────────────────────────────────────────────────
-def _spectral_cluster(A: np.ndarray) -> np.ndarray:
-    """Spectral clustering with automatic k via largest eigenvalue gap.
-
-    Computes the normalised symmetric Laplacian L = I − D^{-½} A D^{-½},
-    finds the largest gap among the first min(n, 10) eigenvalues of L, and
-    uses the corresponding k eigenvectors as input to K-Means.
-
-    Returns integer cluster labels in [0, k-1].
-    """
-    n = len(A)
-    if n == 1:
-        return np.array([0])
-
-    # Normalised Laplacian
-    d = A.sum(axis=1).clip(1e-10)
-    D_isqrt = 1.0 / np.sqrt(d)
-    L = np.eye(n) - (A * D_isqrt[:, None]) * D_isqrt[None, :]
-
-    # Eigenvalues (ascending). k well-separated clusters → k eigenvalues ≈ 0.
-    max_k = min(n, 10)
-    eigenvalues = np.linalg.eigvalsh(L)   # already sorted ascending
-
-    # Largest gap determines k
-    gaps = np.diff(eigenvalues[:max_k + 1])
-    k = int(np.argmax(gaps)) + 1
-
-    if k == 1:
-        return np.zeros(n, dtype=int)
-
-    # Spectral embedding: k eigenvectors with smallest eigenvalues
-    _, V = np.linalg.eigh(L)
-    X = V[:, :k]
-    norms = np.linalg.norm(X, axis=1, keepdims=True).clip(1e-10)
-    X = X / norms
-
-    from sklearn.cluster import KMeans
-    labels = KMeans(n_clusters=k, n_init=20, random_state=42).fit_predict(X)
-    return labels.astype(int)
-
-
+# ── Per-code clustering ───────────────────────────────────────────────────────
 def _enforce_same_image_split(
     labels: np.ndarray,
     code_ids: list[str],
     item_by_id: dict,
 ) -> np.ndarray:
-    """Post-process: if two detections from the same image share a label,
-    assign the lower-confidence one to a new singleton cluster."""
+    """If two detections from the same image share a label, reassign the
+    lower-confidence one to a new singleton cluster."""
     labels = labels.copy()
     max_label = int(labels.max())
-    seen: dict[tuple[str, int], int] = {}  # (image_id, label) → index
+    seen: dict[tuple, int] = {}  # (image_id, label) → index
 
     for i, obs_id in enumerate(code_ids):
         img = item_by_id[obs_id]["image_id"]
@@ -321,19 +244,72 @@ def _enforce_same_image_split(
     return labels
 
 
-# ── Per-code clustering ───────────────────────────────────────────────────────
 def _cluster_code(
     code: int,
     code_ids: list[str],
     item_by_id: dict,
     obs_geometry: dict[str, dict],
 ) -> list[list[str]]:
-    """Cluster all detections of one component code into scene-node groups."""
-    if len(code_ids) == 1:
+    """Cluster detections of one component code into scene-node groups.
+
+    k = max detections of this code in any single image (structural estimate:
+    each image sees each physical instance at most once after NMS, so the
+    densest image count equals the scene's instance count).
+
+    Affinity matrix (used by K-Means on spectral embedding):
+      - same image              → 0.0  (hard constraint)
+      - VGGT min-cloud < 0.08m → 0.98 (hard: certainly same instance)
+      - both have embeddings    → max(0, cosine_similarity)
+      - one/both missing emb    → 0.3  (neutral)
+    """
+    n = len(code_ids)
+    if n == 1:
         return [list(code_ids)]
 
-    A = _build_affinity_matrix(code_ids, item_by_id, obs_geometry)
-    labels = _spectral_cluster(A)
+    # ── k from detection structure ────────────────────────────────────────────
+    img_counts = Counter(item_by_id[oid]["image_id"] for oid in code_ids)
+    k = max(img_counts.values())
+
+    if k == 1:
+        return [list(code_ids)]
+
+    # ── Affinity matrix ───────────────────────────────────────────────────────
+    A = np.zeros((n, n), dtype=np.float64)
+    for i in range(n):
+        a = code_ids[i]
+        ga = obs_geometry.get(a)
+        for j in range(i + 1, n):
+            b = code_ids[j]
+            if item_by_id[a]["image_id"] == item_by_id[b]["image_id"]:
+                continue  # same image → 0 (leave as zero)
+            # VGGT hard merge
+            val = 0.0
+            if ga is not None:
+                gb = obs_geometry.get(b)
+                if gb is not None and _cloud_min_dist(ga, gb) <= VGGT_REID_CONFIDENT_DIST:
+                    val = 0.98
+            if val == 0.0:
+                # Visual similarity
+                ea = item_by_id[a].get("embedding")
+                eb = item_by_id[b].get("embedding")
+                if ea is not None and eb is not None:
+                    val = max(0.0, float(np.dot(ea, eb)))
+                else:
+                    val = 0.3
+            A[i, j] = A[j, i] = val
+
+    # ── K-Means on normalised spectral embedding ──────────────────────────────
+    # Normalised Laplacian → k smallest eigenvectors → K-Means
+    d = A.sum(axis=1).clip(1e-10)
+    D_isqrt = 1.0 / np.sqrt(d)
+    L = np.eye(n) - (A * D_isqrt[:, None]) * D_isqrt[None, :]
+    _, V = np.linalg.eigh(L)
+    X = V[:, :k]
+    norms = np.linalg.norm(X, axis=1, keepdims=True).clip(1e-10)
+    X = X / norms
+
+    from sklearn.cluster import KMeans
+    labels = KMeans(n_clusters=k, n_init=20, random_state=42).fit_predict(X)
     labels = _enforce_same_image_split(labels, code_ids, item_by_id)
 
     groups: dict[int, list[str]] = defaultdict(list)
