@@ -283,6 +283,12 @@ def run_multiview_pipeline(node_id: int, image_paths: list, output_dir: Path | N
     print(f"  {'-' * _W}")
     print(f"  output: {output_dir}")
 
+    # ── Bird's-eye view ───────────────────────────────────────────────────────
+    from .bird_view import render_bird_view
+    bv_path = render_bird_view(output_dir)
+    if bv_path:
+        print(f"  [BirdView] saved → {bv_path.name}")
+
     return {
         "status": "ok",
         "node_id": node_id,
