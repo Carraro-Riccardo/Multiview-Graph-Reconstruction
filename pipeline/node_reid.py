@@ -246,11 +246,72 @@ def _enforce_same_image_split(
     return labels
 
 
+def _build_neighborhood_signatures(
+    item_by_id: dict,
+    obs_geometry: dict,
+    k: int = 3,
+) -> dict[str, frozenset]:
+    """Compute a 3D neighborhood signature for every observation.
+
+    For each observation `a` in image `i`, find the `k` nearest observations
+    of a DIFFERENT component code within the same image, using VGGT centroid
+    distances (global 3D frame → view-invariant).
+
+    signature(a) = frozenset of component codes of those k nearest neighbors.
+
+    Two observations of the same physical instance will always be surrounded
+    by the same physical components → same signature, regardless of viewpoint.
+    """
+    # Group all obs by image
+    img_to_obs: dict[str, list[str]] = defaultdict(list)
+    for oid in item_by_id:
+        img_to_obs[item_by_id[oid]["image_id"]].append(oid)
+
+    signatures: dict[str, frozenset] = {}
+    for img_id, obs_ids in img_to_obs.items():
+        for oid in obs_ids:
+            g_a = obs_geometry.get(oid)
+            if g_a is None:
+                signatures[oid] = frozenset()
+                continue
+            code_a = item_by_id[oid]["code"]
+            ca = np.array(g_a["centroid"][:3], dtype=np.float64)
+
+            neighbors: list[tuple[float, int]] = []
+            for other in obs_ids:
+                if other == oid:
+                    continue
+                if item_by_id[other]["code"] == code_a:
+                    continue  # same code → not informative
+                g_b = obs_geometry.get(other)
+                if g_b is None:
+                    continue
+                cb = np.array(g_b["centroid"][:3], dtype=np.float64)
+                dist = float(np.linalg.norm(ca - cb))
+                neighbors.append((dist, item_by_id[other]["code"]))
+
+            neighbors.sort()
+            signatures[oid] = frozenset(code for _, code in neighbors[:k])
+    return signatures
+
+
+def _neighborhood_jaccard(sig_a: frozenset, sig_b: frozenset) -> float | None:
+    """Jaccard similarity between two neighborhood signatures.
+    Returns None if either signature is empty (no geometry available).
+    """
+    if not sig_a or not sig_b:
+        return None
+    inter = len(sig_a & sig_b)
+    union = len(sig_a | sig_b)
+    return inter / union if union > 0 else None
+
+
 def _cluster_code(
     code: int,
     code_ids: list[str],
     item_by_id: dict,
     obs_geometry: dict[str, dict],
+    neighborhood_sigs: dict[str, frozenset] | None = None,
 ) -> list[list[str]]:
     """Cluster detections of one component code into scene-node groups.
 
@@ -259,10 +320,11 @@ def _cluster_code(
     densest image count equals the scene's instance count).
 
     Affinity matrix (used by K-Means on spectral embedding):
-      - same image   → 0.0  (hard constraint)
-      - cross-image  → VGGT_WEIGHT * exp(-dist/VGGT_SIGMA) + (1-VGGT_WEIGHT) * visual
-                       where visual = cosine_sim or 0.3 fallback
-                       VGGT geometry missing → visual only
+      - same image            → 0.0  (hard constraint)
+      - neighborhood Jaccard  = 0 (both sigs non-empty) → 0.0 (hard exclusion:
+                                different neighbors means different instance)
+      - VGGT min-cloud < 0.08m → 0.98 (hard: certainly same instance)
+      - otherwise             → max(0, cosine_sim) or 0.3 fallback
     """
     n = len(code_ids)
     if n == 1:
@@ -307,6 +369,17 @@ def _cluster_code(
             b = code_ids[j]
             if item_by_id[a]["image_id"] == item_by_id[b]["image_id"]:
                 continue  # same image → 0 (hard constraint)
+
+            # Neighborhood hard exclusion: if both signatures are non-empty
+            # and share no neighbor codes, they cannot be the same instance.
+            if neighborhood_sigs is not None:
+                jac = _neighborhood_jaccard(
+                    neighborhood_sigs.get(a, frozenset()),
+                    neighborhood_sigs.get(b, frozenset()),
+                )
+                if jac is not None and jac == 0.0:
+                    continue  # leave as 0 — different neighborhood → different instance
+
             val = 0.0
             if ga is not None:
                 gb = obs_geometry.get(b)
@@ -466,6 +539,13 @@ def identify_scene_nodes(
     if VGGT_REID_ENABLED and search_roots:
         obs_geometry = _load_obs_geometry(observed_graphs, list(search_roots))
 
+    # Neighborhood signatures (3D, per-image, cross-code)
+    neighborhood_sigs: dict[str, frozenset] = {}
+    if obs_geometry:
+        neighborhood_sigs = _build_neighborhood_signatures(item_by_id, obs_geometry)
+        n_sigs = sum(1 for s in neighborhood_sigs.values() if s)
+        print(f"  [ReID] neighborhood signatures: {n_sigs}/{len(neighborhood_sigs)} non-empty")
+
     # Spectral clustering per component code
     items_by_code: dict[int, list[str]] = defaultdict(list)
     for item in all_items:
@@ -474,7 +554,8 @@ def identify_scene_nodes(
     groups:         dict[str, dict] = {}
     groups_by_code: dict[int, list[str]] = defaultdict(list)
     for code, code_ids in sorted(items_by_code.items()):
-        clusters = _cluster_code(code, code_ids, item_by_id, obs_geometry)
+        clusters = _cluster_code(code, code_ids, item_by_id, obs_geometry,
+                                 neighborhood_sigs=neighborhood_sigs or None)
         for k, cluster in enumerate(clusters, start=1):
             gid = f"{code}#{k}"
             groups[gid] = {"code": code, "member_ids": cluster, "group_id": gid}
