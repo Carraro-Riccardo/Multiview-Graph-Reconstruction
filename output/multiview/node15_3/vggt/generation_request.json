@@ -1,0 +1,9 @@
+{
+  "output_dir": "output\\multiview\\node15_3\\vggt",
+  "image_paths": [
+    "C:\\Users\\ricca\\Desktop\\images\\val\\node15_3_0001.jpg"
+  ],
+  "model_id": "facebook/VGGT-1B",
+  "preprocess_mode": "crop",
+  "force": false
+}
