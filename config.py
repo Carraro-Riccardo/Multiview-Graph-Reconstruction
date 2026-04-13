@@ -3,7 +3,7 @@
 import os
 
 
-def _load_simple_dotenv(dotenv_path: Path = Path(".env")) -> None:
+def _load_simple_dotenv(dotenv_path: Path = Path(__file__).parent / ".env") -> None:
     if not dotenv_path.exists():
         return
     for raw_line in dotenv_path.read_text(encoding="utf-8").splitlines():
