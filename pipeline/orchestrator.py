@@ -27,11 +27,11 @@ def _sep(char="-"):
     print(f"  {fill * _W}")
 
 
-def _output_dir(node_id: int) -> Path:
+def _output_dir(node_id: str) -> Path:
     return WORK_DIR / "multiview" / f"node{node_id}"
 
 
-def run_multiview_pipeline(node_id: int, image_paths: list, output_dir: Path | None = None) -> dict:
+def run_multiview_pipeline(node_id: str, image_paths: list, output_dir: Path | None = None) -> dict:
     if output_dir is None:
         output_dir = _output_dir(node_id)
     output_dir = Path(output_dir)
@@ -313,11 +313,14 @@ def run_multiview_all(images_dir: Path | None = None) -> dict:
         for node_id, image_paths in discover_nodes(images_dir).items()
         if node_id not in SKIP_NODES and len(image_paths) >= MIN_IMAGES
     }
-    node_ids = sorted(eligible)
+    def _sort_key(node_id: str):
+        return [int(p) for p in node_id.split("_")]
+
+    node_ids = sorted(eligible, key=_sort_key)
     print(f"\nNodes to process: {node_ids}")
 
     results = {}
-    for node_id, image_paths in sorted(eligible.items()):
+    for node_id, image_paths in sorted(eligible.items(), key=lambda kv: _sort_key(kv[0])):
         results[node_id] = run_multiview_pipeline(node_id, image_paths)
 
     ok_results = [r for r in results.values() if r.get("status") == "ok"]
@@ -328,7 +331,7 @@ def run_multiview_all(images_dir: Path | None = None) -> dict:
         hdr = f"  {'node':>5}{'views':>7}{'scene_n':>9}{'voted_p':>9}{'final_n':>9}{'final_e':>9}{'forced':>8}{'iso':>5}  conn"
         print(hdr)
         print(f"  {'-' * (_W + 2)}")
-        for r in sorted(ok_results, key=lambda x: x["node_id"]):
+        for r in sorted(ok_results, key=lambda x: [int(p) for p in str(x["node_id"]).split("_")]):
             conn = "Y" if r["connected"] else "N"
             print(
                 f"  {r['node_id']:>5}"

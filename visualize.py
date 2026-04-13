@@ -44,7 +44,7 @@ _PALETTE = [
 
 # ── Graph loading ─────────────────────────────────────────────────────────────
 
-def load_fused_graph(node_id: int) -> tuple[nx.Graph, dict]:
+def load_fused_graph(node_id: str) -> tuple[nx.Graph, dict]:
     json_path = WORK_DIR / f"node{node_id}" / "fused_graph.json"
     if not json_path.exists():
         raise FileNotFoundError(f"fused_graph.json not found: {json_path}")
@@ -165,7 +165,7 @@ def _edge_label(attrs: dict, n_views: int) -> str:
 
 # ── Main plot ─────────────────────────────────────────────────────────────────
 
-def plot_node_graph(node_id: int) -> Path:
+def plot_node_graph(node_id: str) -> Path:
     G, data   = load_fused_graph(node_id)
     n_views   = data.get("total_images", 1)
     n_nodes   = G.number_of_nodes()
@@ -285,6 +285,6 @@ def _code_name(G: nx.Graph, code: int) -> str:
 
 
 if __name__ == "__main__":
-    node_ids = [int(a) for a in sys.argv[1:]] if len(sys.argv) > 1 else [NODE_ID]
+    node_ids = sys.argv[1:] if len(sys.argv) > 1 else [str(NODE_ID)]
     for nid in node_ids:
         plot_node_graph(nid)

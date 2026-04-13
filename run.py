@@ -23,7 +23,7 @@ from core.detection import discover_nodes
 
 def main() -> None:
     if len(sys.argv) > 1:
-        node_ids = [int(a) for a in sys.argv[1:]]
+        node_ids = sys.argv[1:]
         all_nodes = discover_nodes(IMAGES_DIR)
         for nid in node_ids:
             if nid not in all_nodes:

@@ -28,13 +28,24 @@ def _get_model_bundle():
     return _MODEL_BUNDLE
 
 def discover_nodes(images_dir: Path) -> dict:
-    """Raccoglie le immagini per nodo dal pattern node<id>_*.jpg."""
+    """Raccoglie le immagini per nodo dal pattern node<id>_<frame>.jpg.
+
+    L'ID del nodo è tutto ciò che segue "node" fino all'ultimo segmento
+    puramente numerico (il frame index). Esempi:
+      node17_0042.jpg    -> id "17"
+      node17_2_0042.jpg  -> id "17_2"
+      node15_1_0042.jpg  -> id "15_1"
+    """
     node_map = defaultdict(list)
     for img in sorted(images_dir.glob("node*_*.jpg")):
-        m = re.match(r"node(\d+)_", img.name)
+        m = re.match(r"^node(.+)_(\d+)\.jpg$", img.name)
         if m:
-            node_map[int(m.group(1))].append(img)
-    return dict(sorted(node_map.items()))
+            node_map[m.group(1)].append(img)
+
+    def _sort_key(node_id: str):
+        return [int(p) for p in node_id.split("_")]
+
+    return dict(sorted(node_map.items(), key=lambda kv: _sort_key(kv[0])))
 
 
 

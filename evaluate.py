@@ -102,7 +102,7 @@ def load_gt_for_image(image_stem: str) -> list[dict]:
     return instances
 
 
-def load_gt_for_node(node_id: int) -> dict:
+def load_gt_for_node(node_id: str) -> dict:
     """
     Aggrega GT per tutte le immagini del nodo.
     Ritorna:
@@ -141,7 +141,7 @@ def load_gt_for_node(node_id: int) -> dict:
 
 # ── Scene node loading ────────────────────────────────────────────────────────
 
-def load_scene_nodes(node_id: int) -> list[dict]:
+def load_scene_nodes(node_id: str) -> list[dict]:
     p = MULTIVIEW_DIR / f"node{node_id}" / "scene_nodes.json"
     if not p.exists():
         return []
@@ -250,7 +250,7 @@ def compute_scene_node_purity(
 
 # ── GT graph loading ──────────────────────────────────────────────────────────
 
-def load_gt_graph(node_id: int) -> dict | None:
+def load_gt_graph(node_id: str) -> dict | None:
     """Carica il grafo GT da annotations/node{id}_gt.json."""
     p = ANNOTATIONS_DIR / f"node{node_id}_gt.json"
     if not p.exists():
@@ -311,7 +311,7 @@ def build_bijective_mapping(sn_purities: list, gt_data: dict) -> dict[str, str]:
 # ── Edge evaluation ───────────────────────────────────────────────────────────
 
 def evaluate_graph_edges(
-    node_id: int,
+    node_id: str,
     sn_purities: list,          # [(scene_node_dict, purity_dict), ...]
     gt_data: dict,
 ) -> dict | None:
@@ -387,7 +387,7 @@ def evaluate_graph_edges(
 
 # ── Per-node evaluation ───────────────────────────────────────────────────────
 
-def evaluate_node(node_id: int) -> dict | None:
+def evaluate_node(node_id: str) -> dict | None:
     scene_nodes = load_scene_nodes(node_id)
     if not scene_nodes:
         print(f"  [node {node_id}] scene_nodes.json non trovato — skip")
@@ -550,12 +550,14 @@ def evaluate_node(node_id: int) -> dict | None:
 
 def main():
     if len(sys.argv) > 1:
-        node_ids = [int(a) for a in sys.argv[1:]]
+        node_ids = sys.argv[1:]
     else:
+        def _sort_key(s: str):
+            return [int(p) for p in s.split("_")]
         node_ids = sorted(
-            int(p.name.replace("node", ""))
-            for p in MULTIVIEW_DIR.iterdir()
-            if p.is_dir() and p.name.startswith("node")
+            (p.name[len("node"):] for p in MULTIVIEW_DIR.iterdir()
+             if p.is_dir() and p.name.startswith("node")),
+            key=_sort_key,
         )
 
     print(f"Nodes to evaluate: {node_ids}")
