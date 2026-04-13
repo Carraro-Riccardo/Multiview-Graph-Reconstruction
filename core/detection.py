@@ -43,7 +43,8 @@ def discover_nodes(images_dir: Path) -> dict:
             node_map[m.group(1)].append(img)
 
     def _sort_key(node_id: str):
-        return [int(p) for p in node_id.split("_")]
+        # Sort numerically on numeric parts, lexicographically on others
+        return [int(p) if p.isdigit() else p for p in node_id.split("_")]
 
     return dict(sorted(node_map.items(), key=lambda kv: _sort_key(kv[0])))
 

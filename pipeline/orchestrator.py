@@ -314,7 +314,7 @@ def run_multiview_all(images_dir: Path | None = None) -> dict:
         if node_id not in SKIP_NODES and len(image_paths) >= MIN_IMAGES
     }
     def _sort_key(node_id: str):
-        return [int(p) for p in node_id.split("_")]
+        return [int(p) if p.isdigit() else p for p in node_id.split("_")]
 
     node_ids = sorted(eligible, key=_sort_key)
     print(f"\nNodes to process: {node_ids}")
@@ -331,7 +331,7 @@ def run_multiview_all(images_dir: Path | None = None) -> dict:
         hdr = f"  {'node':>5}{'views':>7}{'scene_n':>9}{'voted_p':>9}{'final_n':>9}{'final_e':>9}{'forced':>8}{'iso':>5}  conn"
         print(hdr)
         print(f"  {'-' * (_W + 2)}")
-        for r in sorted(ok_results, key=lambda x: [int(p) for p in str(x["node_id"]).split("_")]):
+        for r in sorted(ok_results, key=lambda x: [int(p) if p.isdigit() else p for p in str(x["node_id"]).split("_")]):
             conn = "Y" if r["connected"] else "N"
             print(
                 f"  {r['node_id']:>5}"

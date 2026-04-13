@@ -553,7 +553,7 @@ def main():
         node_ids = sys.argv[1:]
     else:
         def _sort_key(s: str):
-            return [int(p) for p in s.split("_")]
+            return [int(p) if p.isdigit() else p for p in s.split("_")]
         node_ids = sorted(
             (p.name[len("node"):] for p in MULTIVIEW_DIR.iterdir()
              if p.is_dir() and p.name.startswith("node")),

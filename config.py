@@ -52,7 +52,7 @@ YOLO_CONF       = 0.05
 YOLO_IOU        = 0.3
 YOLO_IMGSZ      = 1280
 SKIP_NODES      = {}
-MIN_IMAGES      = 2
+MIN_IMAGES      = 1
 K_NEIGHBORS     = 3
 DIST_MULTIPLIER = 2.5
 

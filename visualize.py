@@ -27,9 +27,15 @@ import matplotlib.colors as mcolors
 import networkx as nx
 import numpy as np
 
+ROOT = Path(__file__).resolve().parent
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from config import WORK_DIR as _WORK_DIR  # noqa: E402
+
 # ── CONFIG ───────────────────────────────────────────────────────────────────
 NODE_ID     = 2
-WORK_DIR    = Path("./output/multiview")
+WORK_DIR    = _WORK_DIR / "multiview"
 SHOW_WINDOW = False
 # ─────────────────────────────────────────────────────────────────────────────
 
