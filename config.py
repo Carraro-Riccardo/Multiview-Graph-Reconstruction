@@ -23,6 +23,7 @@ _load_simple_dotenv()
 IMAGES_DIR      = Path(os.environ["IMAGES_DIR"])
 LABELS_EXT_DIR  = Path(os.environ["LABELS_EXT_DIR"])
 WORK_DIR        = Path(os.getenv("WORK_DIR", "./output"))
+YOLO_MODEL_PATH = Path(os.environ["YOLO_MODEL_PATH"])
 VGGT_EDGE_ENABLED = os.getenv("VGGT_EDGE_ENABLED", "1").strip().lower() not in {"0", "false", "no", "off"}
 VGGT_EDGE_SEARCH_GLOB = os.getenv("VGGT_EDGE_SEARCH_GLOB", "vggt")
 VGGT_GENERATE_IF_MISSING = os.getenv("VGGT_GENERATE_IF_MISSING", "1").strip().lower() not in {"0", "false", "no", "off"}
