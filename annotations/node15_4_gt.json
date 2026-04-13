@@ -1,0 +1,40 @@
+{
+  "node_id": "15_4",
+  "best_view": "node15_4_0001.jpg",
+  "nodes": [
+    {
+      "nid": "15#1",
+      "code": 15,
+      "name": "Saracinesca",
+      "valence": 2,
+      "cx": 0.305084,
+      "cy": 0.438148
+    },
+    {
+      "nid": "116#3",
+      "code": 116,
+      "name": "Tee FL",
+      "valence": 3,
+      "cx": 0.44778,
+      "cy": 0.444285
+    },
+    {
+      "nid": "15#2",
+      "code": 15,
+      "name": "Saracinesca",
+      "valence": 2,
+      "cx": 0.397146,
+      "cy": 0.594313
+    }
+  ],
+  "edges": [
+    [
+      "116#3",
+      "15#1"
+    ],
+    [
+      "116#3",
+      "15#2"
+    ]
+  ]
+}

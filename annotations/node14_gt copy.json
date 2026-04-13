@@ -1,0 +1,40 @@
+{
+  "node_id": 14,
+  "best_view": "node14_0001.jpg",
+  "nodes": [
+    {
+      "nid": "119#3",
+      "code": 119,
+      "name": "Rubinetto",
+      "valence": 1,
+      "cx": 0.291641,
+      "cy": 0.275956
+    },
+    {
+      "nid": "83#2",
+      "code": 83,
+      "name": "Rampa ab.",
+      "valence": 3,
+      "cx": 0.475005,
+      "cy": 0.357923
+    },
+    {
+      "nid": "159#4",
+      "code": 159,
+      "name": "Collare PVC",
+      "valence": 3,
+      "cx": 0.340422,
+      "cy": 0.300399
+    }
+  ],
+  "edges": [
+    [
+      "119#3",
+      "159#4"
+    ],
+    [
+      "119#3",
+      "83#2"
+    ]
+  ]
+}
