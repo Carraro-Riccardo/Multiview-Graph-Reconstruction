@@ -11,7 +11,7 @@ from config import IMAGES_DIR, MIN_IMAGES, SKIP_NODES, VGGT_EDGE_ENABLED, WORK_D
 from core.debug_utils import save_json
 from core.detection import discover_nodes
 from .direct_graph_builder import build_direct_graph
-from .graph_refinement import force_spanning_tree, serialize_fused_graph
+from .graph_refinement import fix_boutbic_antipattern, force_spanning_tree, serialize_fused_graph
 from .node_reid import identify_scene_nodes, merge_spurious_singletons, serialize_scene_nodes
 from .observed_graphs import build_all_observed_graphs
 from .spatial_consistency import run_consistency_pass
@@ -239,6 +239,10 @@ def run_multiview_pipeline(node_id: str, image_paths: list, output_dir: Path | N
     n_voted = direct_debug["n_pairs_voted"]
     n_shortcuts = direct_debug["n_shortcut_suppressed"]
     print(f"  voted pairs={n_voted}  shortcuts suppressed={n_shortcuts}  edges={fused_graph.number_of_edges()}")
+
+    fused_graph, boutbic_fixes = fix_boutbic_antipattern(fused_graph)
+    if boutbic_fixes:
+        print(f"  [BoutBicFix] {len(boutbic_fixes)} impossible 15-95-15 edge(s) removed")
 
     print("\n  [Step 4] Spanning-tree forcing")
     _sep()

@@ -324,6 +324,65 @@ def refine_candidate_graph(
     return graph, debug
 
 
+def fix_boutbic_antipattern(
+    graph: nx.Graph,
+) -> tuple[nx.Graph, list]:
+    """Remove structurally impossible (15, 95, 15) patterns from the graph.
+
+    In the full dataset, Bout bic. (code 95) NEVER connects two Saracinesca
+    (code 15) — the pattern has zero GT occurrences.  When the greedy builder
+    produces such a pattern (usually because a marginal vote tied 95 to two
+    different 15 nodes), the weaker of the two 15--95 edges is removed so the
+    freed Saracinesca can reconnect via the spanning tree.
+
+    "Weaker" is defined as lower (knn_support_count + vggt_support_count).
+    Ties are broken by removing the edge with the lower vote_count / support_count.
+    """
+    _BOUTBIC  = 95
+    _SARAC    = 15
+    removed: list[dict] = []
+
+    for nid in list(graph.nodes()):
+        if graph.nodes[nid].get("code") != _BOUTBIC:
+            continue
+        if graph.degree(nid) != 2:
+            continue
+        nb0, nb1 = list(graph.neighbors(nid))
+        if graph.nodes[nb0].get("code") != _SARAC or graph.nodes[nb1].get("code") != _SARAC:
+            continue
+
+        # Both neighbours are Saracinesca — structurally impossible
+        e0 = graph.edges[nid, nb0]
+        e1 = graph.edges[nid, nb1]
+
+        def _strength(e: dict) -> tuple:
+            return (
+                e.get("knn_support_count", 0) + e.get("vggt_support_count", 0),
+                e.get("vote_count", e.get("support_count", 0)),
+            )
+
+        if _strength(e0) <= _strength(e1):
+            weaker_nb = nb0
+        else:
+            weaker_nb = nb1
+
+        graph.remove_edge(nid, weaker_nb)
+        # Seal the boutbic: it now holds its one valid connection.
+        # Lowering max_degree to 1 prevents force_spanning_tree from routing
+        # the freed Saracinesca back through this same boutbic node.
+        graph.nodes[nid]["max_degree"] = 1
+
+        removed.append({
+            "boutbic_node":   nid,
+            "removed_edge":   [nid, weaker_nb],
+            "kept_edge":      [nid, nb1 if weaker_nb == nb0 else nb0],
+            "reason":         "boutbic_15_95_15_antipattern",
+        })
+        print(f"  [BoutBicFix] removed impossible edge {nid}--{weaker_nb} (15-95-15 antipattern)")
+
+    return graph, removed
+
+
 def force_spanning_tree(
     graph: nx.Graph,
     candidate_edges: list,
