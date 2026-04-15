@@ -70,24 +70,24 @@ def _get_embedding_model():
         return _emb_model, _emb_transform
 
     import torch
-    import torchvision.models as M
     import torchvision.transforms as T
 
-    # Use fine-tuned weights if available (zero breaking change otherwise)
-    _FINETUNED = Path(__file__).parent.parent / "reid_finetuned_resnet50" / "weights" / "best.pt"
-    if _FINETUNED.exists():
-        try:
-            from reid_finetuned_resnet50.model import ReIDResNet50
-            model = ReIDResNet50(pretrained=False)
-            model.load_state_dict(torch.load(str(_FINETUNED), map_location="cpu"))
-            model.eval()
-            transform = ReIDResNet50.get_transform()
-            print(f"  [ReID] loaded fine-tuned weights from {_FINETUNED.name}")
-            _emb_model, _emb_transform = model, transform
-            return model, transform
-        except Exception as e:
-            print(f"  [ReID] fine-tuned weights failed to load ({e}), falling back to ImageNet")
+    # DINOv2 ViT-S/14 — fine-grained features, no fine-tuning needed
+    try:
+        model = torch.hub.load("facebookresearch/dinov2", "dinov2_vits14", verbose=False)
+        model.eval()
+        transform = T.Compose([
+            T.Resize((224, 224)),
+            T.ToTensor(),
+            T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+        ])
+        print("  [ReID] using DINOv2 ViT-S/14 embeddings")
+        _emb_model, _emb_transform = model, transform
+        return model, transform
+    except Exception as e:
+        print(f"  [ReID] DINOv2 failed to load ({e}), falling back to ResNet50")
 
+    import torchvision.models as M
     model = M.resnet50(weights=M.ResNet50_Weights.DEFAULT)
     model.fc = torch.nn.Identity()
     model.eval()
@@ -444,6 +444,12 @@ def _cluster_code(
                     imgs_a = {item_by_id[o]["image_id"] for o in a_ids}
                     imgs_b = {item_by_id[o]["image_id"] for o in b_ids}
                     if imgs_a & imgs_b:
+                        continue
+                    # Don't merge two clusters that are both well-supported —
+                    # if both have ≥ half the total images they're likely distinct
+                    # instances that happen to be close in 3D (e.g. collinear valves).
+                    n_images = len(imgs_a | imgs_b)
+                    if len(imgs_a) >= max(2, n_images // 2) and len(imgs_b) >= max(2, n_images // 2):
                         continue
                     # Find best inter-cluster min-cloud distance
                     best = float("inf")

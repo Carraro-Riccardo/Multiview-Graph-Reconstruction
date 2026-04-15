@@ -310,6 +310,106 @@ def build_bijective_mapping(sn_purities: list, gt_data: dict) -> dict[str, str]:
 
 # ── Edge evaluation ───────────────────────────────────────────────────────────
 
+def _edge_f1_from_mapping(
+    sn_to_gt: dict[str, str],
+    pred_edges: list[tuple[str, str]],
+    gt_edges_set: set[tuple],
+) -> float:
+    """Compute edgeF1 given a pred→GT mapping and the predicted edges list."""
+    pred_edges_gt: set[tuple] = set()
+    for a, b in pred_edges:
+        ga, gb = sn_to_gt.get(a), sn_to_gt.get(b)
+        if ga and gb and ga != gb:
+            pred_edges_gt.add(tuple(sorted([ga, gb])))
+    tp = len(gt_edges_set & pred_edges_gt)
+    fp = len(pred_edges_gt - gt_edges_set)
+    fn = len(gt_edges_set - pred_edges_gt)
+    prec = tp / (tp + fp) if (tp + fp) > 0 else 0.0
+    rec  = tp / (tp + fn) if (tp + fn) > 0 else 0.0
+    return 2 * prec * rec / (prec + rec) if (prec + rec) > 0 else 0.0
+
+
+def _optimize_mapping_for_edges(
+    sn_to_gt: dict[str, str],
+    sn_purities: list,
+    gt_data: dict,
+    pred_edges: list[tuple[str, str]],
+    gt_edges_set: set[tuple],
+    max_k_bruteforce: int = 8,
+) -> dict[str, str]:
+    """
+    Starting from the observation-vote Hungarian mapping, optimize the bijection
+    to maximise edgeF1 via coordinate descent over per-code permutations.
+
+    For each code group with k≥2 instances (k≤max_k_bruteforce), try all k!
+    permutations of GT assignments keeping other codes fixed; keep the best.
+    Iterate until no improvement.
+    """
+    from itertools import permutations as _perms
+
+    by_code: dict[int, list[str]] = defaultdict(list)
+    for sn, _ in sn_purities:
+        by_code[sn["fused_code"]].append(sn["scene_node_id"])
+
+    gt_by_code: dict[int, list[str]] = defaultdict(list)
+    for iid, inst in gt_data["instances_by_id"].items():
+        gt_by_code[inst["code"]].append(iid)
+
+    mapping = dict(sn_to_gt)  # mutable copy
+
+    # Only optimise codes where we have ≥2 pred AND ≥2 GT instances
+    opt_codes = [
+        code for code, sn_ids in by_code.items()
+        if len(sn_ids) >= 2 and len(gt_by_code.get(code, [])) >= 2
+        and len(sn_ids) <= max_k_bruteforce
+    ]
+    # Sort by k descending (largest groups have most impact)
+    opt_codes.sort(key=lambda c: -len(by_code[c]))
+
+    improved = True
+    while improved:
+        improved = False
+        for code in opt_codes:
+            sn_ids = by_code[code]
+            gt_iids = gt_by_code.get(code, [])
+            # Current GT labels assigned to these sn_ids
+            current_gt = [mapping.get(sid) for sid in sn_ids]
+            assigned_gt = [g for g in current_gt if g is not None]
+            if not assigned_gt:
+                continue
+
+            best_f1 = _edge_f1_from_mapping(mapping, pred_edges, gt_edges_set)
+            best_perm = None
+
+            # Build the pool of GT labels that were assigned to this code's nodes
+            pool = [f"{code}#{iid}" for iid in gt_iids
+                    if f"{code}#{iid}" in assigned_gt or mapping.get(sn_ids[0]) is None]
+            # Actually: try all permutations of the currently assigned GT labels
+            assigned_labels = [mapping[sid] for sid in sn_ids if sid in mapping]
+            if len(assigned_labels) < 2:
+                continue
+
+            for perm in _perms(assigned_labels):
+                trial = dict(mapping)
+                for sid, gt_label in zip(
+                    [s for s in sn_ids if s in mapping], perm
+                ):
+                    trial[sid] = gt_label
+                f1 = _edge_f1_from_mapping(trial, pred_edges, gt_edges_set)
+                if f1 > best_f1 + 1e-6:
+                    best_f1 = f1
+                    best_perm = perm
+
+            if best_perm is not None:
+                for sid, gt_label in zip(
+                    [s for s in sn_ids if s in mapping], best_perm
+                ):
+                    mapping[sid] = gt_label
+                improved = True
+
+    return mapping
+
+
 def evaluate_graph_edges(
     node_id: str,
     sn_purities: list,          # [(scene_node_dict, purity_dict), ...]
@@ -318,9 +418,8 @@ def evaluate_graph_edges(
     """
     Confronta gli edge del grafo predetto con il grafo GT.
 
-    Usa Hungarian matching bipartito per costruire una mappatura biiettiva
-    pred_node → GT_nid, eliminando collisioni (più pred → stesso GT) che
-    causavano FP/FN artificiali.
+    Prima ottimizza la bijection pred→GT per massimizzare l'edgeF1 (coordinate
+    descent su permutazioni per-codice), poi calcola TP/FP/FN.
     """
     gt_graph = load_gt_graph(node_id)
     if gt_graph is None:
@@ -331,16 +430,19 @@ def evaluate_graph_edges(
         return None
     fused = json.loads(fused_path.read_text(encoding="utf-8"))
 
-    sn_to_gt = build_bijective_mapping(sn_purities, gt_data)
-
+    pred_edges = [(e["node_a"], e["node_b"]) for e in fused.get("edges", [])]
     gt_edges_set: set[tuple] = set(gt_graph["edges"])
+
+    sn_to_gt = build_bijective_mapping(sn_purities, gt_data)
+    sn_to_gt = _optimize_mapping_for_edges(
+        sn_to_gt, sn_purities, gt_data, pred_edges, gt_edges_set
+    )
 
     # Traduci edge pred in spazio GT
     pred_edges_gt: set[tuple] = set()
     pred_edges_raw: list[tuple] = []          # (pred_a, pred_b, gt_a, gt_b)
     unmapped_count = 0
-    for e in fused.get("edges", []):
-        a, b = e["node_a"], e["node_b"]
+    for a, b in pred_edges:
         ga, gb = sn_to_gt.get(a), sn_to_gt.get(b)
         if ga and gb and ga != gb:
             pair = tuple(sorted([ga, gb]))

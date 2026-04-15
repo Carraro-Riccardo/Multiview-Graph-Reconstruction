@@ -22,14 +22,17 @@ import torch.nn as nn
 from PIL import Image
 from torch.utils.data import DataLoader, Dataset
 
+import torchvision.transforms as T
+
 ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(ROOT))
 
 from reid_finetuned_resnet50.model import ReIDResNet50  # noqa: E402
 
-WEIGHTS_DIR = Path(__file__).parent / "weights"
-PAIRS_FILE  = Path(__file__).parent / "pairs.json"
-RANDOM_SEED = 42
+WEIGHTS_DIR  = Path(__file__).parent / "weights"
+PAIRS_FILE   = Path(__file__).parent / "pairs.json"
+RANDOM_SEED  = 42
+PATIENCE     = 10   # early stopping patience (epochs without val improvement)
 
 random.seed(RANDOM_SEED)
 np.random.seed(RANDOM_SEED)
@@ -113,7 +116,7 @@ class NTXentPairLoss(nn.Module):
 
 # ── Training loop ─────────────────────────────────────────────────────────────
 
-def train(epochs: int = 50, batch_size: int = 32, lr: float = 1e-4):
+def train(epochs: int = 30, batch_size: int = 32, lr: float = 1e-4):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Device: {device}")
 
@@ -126,7 +129,23 @@ def train(epochs: int = 50, batch_size: int = 32, lr: float = 1e-4):
     print(f"Train pairs: {len(train_pairs)}  Val pairs: {len(val_pairs)}")
 
     model     = ReIDResNet50().to(device)
-    transform = ReIDResNet50.get_transform()
+
+    # ── augmentation for train (reid-specific) ────────────────────────────
+    train_transform = T.Compose([
+        T.RandomResizedCrop(224, scale=(0.6, 1.0)),        # partial occlusion / zoom
+        T.RandomHorizontalFlip(),
+        T.RandomVerticalFlip(p=0.2),
+        T.ColorJitter(brightness=0.4, contrast=0.4,        # lighting variation
+                      saturation=0.3, hue=0.08),
+        T.RandomGrayscale(p=0.1),
+        T.GaussianBlur(kernel_size=5, sigma=(0.1, 2.0)),   # blur / focus variation
+        T.ToTensor(),
+        T.Normalize(mean=[0.485, 0.456, 0.406],
+                    std=[0.229, 0.224, 0.225]),
+        T.RandomErasing(p=0.3, scale=(0.02, 0.15)),        # random patch occlusion
+    ])
+    val_transform = ReIDResNet50.get_transform()            # no augmentation for val
+
     criterion = NTXentPairLoss(temperature=0.07)
     optimizer = torch.optim.Adam(
         filter(lambda p: p.requires_grad, model.parameters()),
@@ -134,13 +153,14 @@ def train(epochs: int = 50, batch_size: int = 32, lr: float = 1e-4):
     )
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs)
 
-    train_ds = PairDataset(train_pairs, transform, ROOT)
-    val_ds   = PairDataset(val_pairs,   transform, ROOT)
+    train_ds = PairDataset(train_pairs, train_transform, ROOT)
+    val_ds   = PairDataset(val_pairs,   val_transform,   ROOT)
     train_dl = DataLoader(train_ds, batch_size=batch_size, shuffle=True,  num_workers=0)
     val_dl   = DataLoader(val_ds,   batch_size=batch_size, shuffle=False, num_workers=0)
 
     WEIGHTS_DIR.mkdir(exist_ok=True)
-    best_val_loss = float("inf")
+    best_val_loss  = float("inf")
+    epochs_no_imp  = 0
 
     for epoch in range(1, epochs + 1):
         # ── train ──
@@ -184,10 +204,17 @@ def train(epochs: int = 50, batch_size: int = 32, lr: float = 1e-4):
         )
 
         torch.save(model.state_dict(), WEIGHTS_DIR / "last.pt")
-        if v_loss / n_val < best_val_loss:
-            best_val_loss = v_loss / n_val
+        cur_val = v_loss / n_val
+        if cur_val < best_val_loss:
+            best_val_loss = cur_val
+            epochs_no_imp = 0
             torch.save(model.state_dict(), WEIGHTS_DIR / "best.pt")
             print(f"  → best checkpoint saved (val_loss={best_val_loss:.4f})")
+        else:
+            epochs_no_imp += 1
+            if epochs_no_imp >= PATIENCE:
+                print(f"\nEarly stopping at epoch {epoch} (no improvement for {PATIENCE} epochs)")
+                break
 
     print(f"\nDone. Best val loss: {best_val_loss:.4f}")
     print(f"Weights saved to {WEIGHTS_DIR}/")
@@ -195,7 +222,7 @@ def train(epochs: int = 50, batch_size: int = 32, lr: float = 1e-4):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--epochs", type=int, default=50)
+    parser.add_argument("--epochs", type=int, default=30)
     parser.add_argument("--batch",  type=int, default=32)
     parser.add_argument("--lr",     type=float, default=1e-4)
     args = parser.parse_args()

@@ -41,6 +41,7 @@ class ReIDResNet50(nn.Module):
             nn.Linear(2048, 512),
             nn.BatchNorm1d(512),
             nn.ReLU(inplace=True),
+            nn.Dropout(0.3),
             nn.Linear(512, embed_dim),
         )
 
