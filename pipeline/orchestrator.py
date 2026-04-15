@@ -240,9 +240,9 @@ def run_multiview_pipeline(node_id: str, image_paths: list, output_dir: Path | N
     n_shortcuts = direct_debug["n_shortcut_suppressed"]
     print(f"  voted pairs={n_voted}  shortcuts suppressed={n_shortcuts}  edges={fused_graph.number_of_edges()}")
 
-    fused_graph, boutbic_fixes = fix_boutbic_antipattern(fused_graph)
-    if boutbic_fixes:
-        print(f"  [BoutBicFix] {len(boutbic_fixes)} impossible 15-95-15 edge(s) removed")
+    fused_graph, structural_fixes = fix_boutbic_antipattern(fused_graph)
+    if structural_fixes:
+        print(f"  [StructFix] {len(structural_fixes)} structural anti-pattern fix(es) applied")
 
     print("\n  [Step 4] Spanning-tree forcing")
     _sep()

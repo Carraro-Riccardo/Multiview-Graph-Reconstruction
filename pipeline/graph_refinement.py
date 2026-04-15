@@ -380,6 +380,84 @@ def fix_boutbic_antipattern(
         })
         print(f"  [BoutBicFix] removed impossible edge {nid}--{weaker_nb} (15-95-15 antipattern)")
 
+    # ── Pass 2: fix a Saracinesca incorrectly bridging two Tee FL ────────────
+    # (116, 15, 116) with vggt=0 on one edge is a sign the weaker connection
+    # was produced by 2D proximity only.  The valid pattern (e.g. a Saracinesca
+    # between two Tee FL that truly link both) always has vggt >= 1 on both
+    # edges.  When exactly one edge has vggt=0 we remove it and directly wire
+    # the two Tee FL together — they were one hop apart via the Saracinesca and
+    # are evidently the nodes that should be directly connected.
+    _TEE_FL = 116
+
+    for nid in list(graph.nodes()):
+        if graph.nodes[nid].get("code") != _SARAC:
+            continue
+        if graph.degree(nid) != 2:
+            continue
+        nb0, nb1 = list(graph.neighbors(nid))
+        if graph.nodes[nb0].get("code") != _TEE_FL or graph.nodes[nb1].get("code") != _TEE_FL:
+            continue
+
+        e0 = graph.edges[nid, nb0]
+        e1 = graph.edges[nid, nb1]
+        v0 = e0.get("vggt_support_count", 0)
+        v1 = e1.get("vggt_support_count", 0)
+
+        # Only trigger when exactly one side lacks VGGT confirmation
+        if (v0 == 0) == (v1 == 0):
+            continue  # both zero or both non-zero: ambiguous or valid
+
+        weak_nb = nb0 if v0 == 0 else nb1
+        strong_nb = nb1 if v0 == 0 else nb0
+
+        # Remove the unconfirmed edge
+        graph.remove_edge(nid, weak_nb)
+        # Seal the Saracinesca so it stays at degree 1
+        graph.nodes[nid]["max_degree"] = 1
+
+        # Directly wire the two Tee FL if they are in different components
+        # (cycle-safe check via simple connectivity probe)
+        try:
+            nx.shortest_path(graph, weak_nb, strong_nb)
+            already_connected = True
+        except nx.NetworkXNoPath:
+            already_connected = False
+
+        if not already_connected:
+            da = graph.nodes[weak_nb].get("max_degree", 3)
+            db = graph.nodes[strong_nb].get("max_degree", 3)
+            deg_a = graph.degree(weak_nb)
+            deg_b = graph.degree(strong_nb)
+            if deg_a < da and deg_b < db:
+                graph.add_edge(
+                    weak_nb, strong_nb,
+                    vote_count=0,
+                    support_count=0,
+                    knn_support_count=0,
+                    vggt_support_count=0,
+                    vggt_score=0.0,
+                    vggt_min_distance=None,
+                    vggt_port_distance=None,
+                    vggt_axis_alignment=0.0,
+                    cooc_count=0,
+                    triplet_support=0,
+                    forbidden_flag=False,
+                    evidence_sources=["teefl_bridge_fix"],
+                    shortcut_suppressed=False,
+                    forced=True,
+                    forced_reason="teefl_bridge_saracinesca_fix",
+                )
+                removed.append({
+                    "saracinesca_node": nid,
+                    "removed_edge":    [nid, weak_nb],
+                    "added_edge":      [weak_nb, strong_nb],
+                    "reason":          "teefl_bridge_saracinesca_fix",
+                })
+                print(
+                    f"  [TeeFlFix] removed {nid}--{weak_nb} (vggt=0), "
+                    f"bridged {weak_nb}--{strong_nb} directly"
+                )
+
     return graph, removed
 
 

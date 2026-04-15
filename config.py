@@ -87,25 +87,32 @@ VALENCE_COLORS = {
 
 # ── Co-occorrenze empiriche ───────────────────────────────────
 # Conteggio di coppie di tipi connesse osservate nel dataset reale.
+# Ricalcolate su tutti i file annotations/node*_gt.json disponibili.
 COOC_COUNTS = {
-    ( 15,  95): 21,  # Saracinesca ↔ Bout bic.
-    ( 15, 255): 15,  # Saracinesca ↔ Tee rid.
-    ( 15, 116): 12,  # Saracinesca ↔ Tee FL
+    ( 15,  95): 27,  # Saracinesca ↔ Bout bic.
+    ( 15, 116): 26,  # Saracinesca ↔ Tee FL
+    ( 15, 255): 16,  # Saracinesca ↔ Tee rid.
     ( 53,  95):  6,  # Tubo ↔ Bout bic.
     ( 15, 192):  6,  # Saracinesca ↔ Croce
     ( 11,  53):  5,  # Giunto ↔ Tubo
+    ( 15, 175):  3,  # Saracinesca ↔ Curva 90
+    (175, 255):  3,  # Curva 90 ↔ Tee rid.
     ( 53, 202):  3,  # Tubo ↔ Antisfilo
     ( 54,  95):  3,  # Curva 22 ↔ Bout bic.
     ( 15,  75):  3,  # Saracinesca ↔ Riduzione
     ( 75,  95):  3,  # Riduzione ↔ Bout bic.
     (195, 202):  3,  # Curva 45P ↔ Antisfilo
+    ( 15,  27):  2,  # Saracinesca ↔ Gibault FL
+    ( 95, 237):  2,  # Bout bic. ↔ Manicotto
     (190, 202):  2,  # Curva 30 ↔ Antisfilo
     ( 95, 202):  2,  # Bout bic. ↔ Antisfilo
     ( 11, 207):  2,  # Giunto ↔ Bout norm.
     ( 15, 207):  2,  # Saracinesca ↔ Bout norm.
     (192, 255):  2,  # Croce ↔ Tee rid.
+    (116, 116):  1,  # Tee FL ↔ Tee FL
     (119, 159):  1,  # Rubinetto ↔ Collare PVC
     ( 83, 119):  1,  # Rampa ab. ↔ Rubinetto
+    ( 15,  53):  1,  # Saracinesca ↔ Tubo
     ( 15,  77):  1,  # Saracinesca ↔ Tazza
     ( 11, 195):  1,  # Giunto ↔ Curva 45P
     (255, 255):  1,  # Tee rid. ↔ Tee rid.
@@ -118,19 +125,23 @@ COOC_COUNTS = {
 # Strutture locali osservate nel dataset: il nodo centrale ha due vicini A e C.
 # Chiave: (min(a,c), centro, max(a,c)) — la simmetria è normalizzata.
 # Usate per valutare la compatibilità contestuale di un arco proposto.
+# Ricalcolate su tutti i file annotations/node*_gt.json disponibili.
 TRIPLET_COUNTS = {
-    ( 15, 116,  15): 12,  # Saracinesca — Tee FL — Saracinesca
+    ( 15, 116,  15): 23,  # Saracinesca — Tee FL — Saracinesca
+    ( 95,  15, 116): 14,  # Bout bic. — Saracinesca — Tee FL
     ( 15, 255,  15):  9,  # Saracinesca — Tee rid. — Saracinesca
-    ( 95,  15, 116):  8,  # Bout bic. — Saracinesca — Tee FL
     ( 95,  15, 255):  8,  # Bout bic. — Saracinesca — Tee rid.
     ( 15, 192,  15):  7,  # Saracinesca — Croce — Saracinesca
     ( 15,  95,  53):  6,  # Saracinesca — Bout bic. — Tubo
     ( 11,  53,  95):  5,  # Giunto — Tubo — Bout bic.
+    ( 15, 175, 255):  4,  # Saracinesca — Curva 90 — Tee rid.
     ( 15, 255, 255):  4,  # Saracinesca — Tee rid. — Tee rid.
     ( 15, 255, 192):  4,  # Saracinesca — Tee rid. — Croce
     ( 15, 192, 255):  4,  # Saracinesca — Croce — Tee rid.
+    ( 15, 116, 116):  3,  # Saracinesca — Tee FL — Tee FL
     ( 95,  15, 192):  3,  # Bout bic. — Saracinesca — Croce
     ( 15,  75,  95):  3,  # Saracinesca — Riduzione — Bout bic.
+    ( 15,  95, 237):  2,  # Saracinesca — Bout bic. — Manicotto
     ( 15,  95,  54):  2,  # Saracinesca — Bout bic. — Curva 22
     ( 53, 202, 195):  2,  # Tubo — Antisfilo — Curva 45P
     ( 75,  15, 255):  2,  # Riduzione — Saracinesca — Tee rid.
@@ -139,6 +150,14 @@ TRIPLET_COUNTS = {
     ( 11, 207,  15):  2,  # Giunto — Bout norm. — Saracinesca
     (116,  15, 207):  2,  # Tee FL — Saracinesca — Bout norm.
     ( 11, 255,  15):  2,  # Giunto — Tee rid. — Saracinesca
+    (116,  15, 116):  1,  # Tee FL — Saracinesca — Tee FL
+    ( 27,  15, 175):  1,  # Gibault FL — Saracinesca — Curva 90
+    ( 15, 175,  15):  1,  # Saracinesca — Curva 90 — Saracinesca
+    ( 53,  15, 175):  1,  # Tubo — Saracinesca — Curva 90
+    (175, 255, 175):  1,  # Curva 90 — Tee rid. — Curva 90
+    (255, 175, 255):  1,  # Tee rid. — Curva 90 — Tee rid.
+    ( 15, 255, 175):  1,  # Saracinesca — Tee rid. — Curva 90
+    ( 27,  15, 255):  1,  # Gibault FL — Saracinesca — Tee rid.
     ( 83, 119, 159):  1,  # Rampa ab. — Rubinetto — Collare PVC
     ( 53, 202, 190):  1,  # Tubo — Antisfilo — Curva 30
     (202, 190, 202):  1,  # Antisfilo — Curva 30 — Antisfilo
