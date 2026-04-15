@@ -1,0 +1,31 @@
+shurikode,nome_componente,blocco_dxf,note
+15,Saracinesca,ACQ_5_01,
+37,Idrante Soprassuolo,ACQ_5_03A,
+53,Tubatura,Tubatura,
+192,Croce,ACQ_5_06,
+116,Tee FL-FL-FL,ACQ_5_07,
+255,Tee FL Ridotto, ACQ_5_07,
+201,Tee BIC-FL-BIC,ACQ_5_08,
+207,Bout normale,ACQ_5_11,anche "Bout x pvc"
+95,Bout a bicchiere,ACQ_5_12,anche "Tulipe x pvc"
+75,Riduzione FL-FL,ACQ_5_15,
+11,Giunto Gibault o multimateriale,ACQ_5_17,
+237,Manicotto pvc,ACQ_5_18,nel DXF "Manicotto o Bigiunto"
+159,Collare x pvc,ACQ_5_20,nel DXF "Collare da presa o tre pezzi"
+27,Gibault flangiato antisfilo,ACQ_5_55,nel DXF "Giunto Gibault flangiato"
+111,Curva 45,ACQ_5_47,
+175,Curva 90,ACQ_5_43,
+245,Curva PVC 11°,ACQ_5_40,curva BIC SX - angolo non presente esplicitamente nel DXF
+54,Curva PVC 22°,ACQ_5_41,curva BIC DX - angolo non presente esplicitamente nel DXF
+190,Curva PVC 30°,ACQ_5_48,curva 45 2 BICCH - angolo non presente esplicitamente nel DXF
+195,Curva PVC 45°,ACQ_5_48,curva 45 2 BICCH
+235,Curva PVC 90°,ACQ_5_44,curva 90 2 BICCH
+202,Antisfilo x PVC,,non mappato - in sospeso
+250,Allaccio 1",agg_AC_Allaccio,
+252,Allaccio 2",agg_AC_Allaccio,stessa simbologia del 250
+114,Diametro 50,,codice diametro (non blocco geometria)
+125,Diametro 65,,codice diametro (non blocco geometria)
+228,Diametro 80,,codice diametro (non blocco geometria)
+231,Diametro 100,,codice diametro (non blocco geometria)
+244,Diametro 150,,codice diametro (non blocco geometria)
+247,Diametro 200,,codice diametro (non blocco geometria)

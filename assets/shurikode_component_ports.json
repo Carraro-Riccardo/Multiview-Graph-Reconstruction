@@ -1,0 +1,493 @@
+{
+  "schema_version": 1,
+  "description": "Initial CAD-like connection annotations for Shurikode hydraulic components. Directions are expressed in the local, unrotated SVG coordinate system: +x right, +y down.",
+  "source": {
+    "valence": "config.py COMPONENT_INFO",
+    "geometry": "initial manual annotation from SVG shape and hydraulic assumptions"
+  },
+  "port_defaults": {
+    "coordinate_system": "svg_screen",
+    "units": "normalized_direction",
+    "allowed_rotations": [0, 90, 180, 270],
+    "connectable_default": true
+  },
+  "components": {
+    "11": {
+      "name": "Giunto",
+      "valence": 2,
+      "category": "coupling",
+      "symmetry": "axis",
+      "allowed_rotations": [0, 90, 180, 270],
+      "ports": [
+        {"id": "left", "dir": [-1, 0], "kind": "generic"},
+        {"id": "right", "dir": [1, 0], "kind": "generic"}
+      ],
+      "connection_policy": {"role": "inline", "orientation_specific": false},
+      "annotation_status": "initial"
+    },
+    "15": {
+      "name": "Saracinesca",
+      "valence": 2,
+      "category": "valve",
+      "symmetry": "axis",
+      "allowed_rotations": [0, 90, 180, 270],
+      "ports": [
+        {"id": "left", "dir": [-1, 0], "kind": "generic"},
+        {"id": "right", "dir": [1, 0], "kind": "generic"}
+      ],
+      "connection_policy": {
+        "role": "inline_axis",
+        "orientation_specific": false,
+        "only_opposite_flat_side_ports": true
+      },
+      "notes": "Ha solo due porte opposte sui lati piatti. Puo' ruotare nel disegno: se una porta guarda sotto, l'altra deve guardare sopra.",
+      "annotation_status": "initial"
+    },
+    "27": {
+      "name": "Gibault FL",
+      "valence": 2,
+      "category": "coupling",
+      "symmetry": "axis",
+      "allowed_rotations": [0, 90, 180, 270],
+      "ports": [
+        {"id": "left", "dir": [-1, 0], "kind": "flanged"},
+        {"id": "right", "dir": [1, 0], "kind": "generic"}
+      ],
+      "connection_policy": {"role": "inline", "orientation_specific": true},
+      "annotation_status": "initial"
+    },
+    "37": {
+      "name": "Idrante",
+      "valence": 1,
+      "category": "terminal",
+      "symmetry": "terminal",
+      "allowed_rotations": [0, 90, 180, 270],
+      "ports": [
+        {"id": "inlet", "dir": [-1, 0], "kind": "generic"}
+      ],
+      "connection_policy": {"role": "terminal", "orientation_specific": true},
+      "annotation_status": "initial"
+    },
+    "53": {
+      "name": "Tubo",
+      "valence": 2,
+      "category": "pipe",
+      "symmetry": "axis",
+      "allowed_rotations": [0, 90, 180, 270],
+      "ports": [
+        {"id": "left", "dir": [-1, 0], "kind": "generic"},
+        {"id": "right", "dir": [1, 0], "kind": "generic"}
+      ],
+      "connection_policy": {"role": "inline", "orientation_specific": false},
+      "annotation_status": "initial"
+    },
+    "54": {
+      "name": "Curva 22",
+      "valence": 2,
+      "category": "bend",
+      "symmetry": "asymmetric",
+      "allowed_rotations": [0, 90, 180, 270],
+      "ports": [
+        {"id": "left", "dir": [-1, 0], "kind": "generic"},
+        {"id": "angled", "dir": [0.7071, -0.7071], "kind": "generic", "angle_deg": 45}
+      ],
+      "connection_policy": {"role": "bend", "orientation_specific": true},
+      "annotation_status": "approximate"
+    },
+    "61": {
+      "name": "Rampa cond.",
+      "valence": 4,
+      "category": "ramp",
+      "symmetry": "cross_like",
+      "allowed_rotations": [0, 90, 180, 270],
+      "ports": [
+        {"id": "left", "dir": [-1, 0], "kind": "generic"},
+        {"id": "right", "dir": [1, 0], "kind": "generic"},
+        {"id": "top", "dir": [0, -1], "kind": "generic"},
+        {"id": "bottom", "dir": [0, 1], "kind": "generic"}
+      ],
+      "connection_policy": {"role": "junction4", "orientation_specific": true},
+      "annotation_status": "fallback_from_valence"
+    },
+    "75": {
+      "name": "Riduzione",
+      "valence": 2,
+      "category": "reducer",
+      "symmetry": "asymmetric",
+      "allowed_rotations": [0, 180],
+      "ports": [
+        {"id": "large", "dir": [-1, 0], "kind": "generic", "diameter_role": "large"},
+        {"id": "small", "dir": [1, 0], "kind": "generic", "diameter_role": "small"}
+      ],
+      "connection_policy": {
+        "role": "inline_reducer",
+        "orientation_specific": true,
+        "preserve_large_small_sides": true
+      },
+      "notes": "La parte grande e' graficamente a sinistra e la piccola a destra nella posa base; capovolgerla cambia il significato.",
+      "annotation_status": "initial"
+    },
+    "77": {
+      "name": "Tazza",
+      "valence": 2,
+      "category": "fitting",
+      "symmetry": "asymmetric",
+      "allowed_rotations": [0, 90, 180, 270],
+      "ports": [
+        {"id": "left", "dir": [-1, 0], "kind": "generic"},
+        {"id": "right", "dir": [1, 0], "kind": "generic"}
+      ],
+      "connection_policy": {"role": "inline", "orientation_specific": true},
+      "annotation_status": "fallback_from_valence"
+    },
+    "83": {
+      "name": "Rampa ab.",
+      "valence": 3,
+      "category": "ramp",
+      "symmetry": "tee_like",
+      "allowed_rotations": [0, 90, 180, 270],
+      "ports": [
+        {"id": "left", "dir": [-1, 0], "kind": "generic"},
+        {"id": "right", "dir": [1, 0], "kind": "generic"},
+        {"id": "top", "dir": [0, -1], "kind": "generic"}
+      ],
+      "connection_policy": {"role": "junction3", "orientation_specific": true},
+      "annotation_status": "fallback_from_valence"
+    },
+    "85": {
+      "name": "Rampa ind.",
+      "valence": 3,
+      "category": "ramp",
+      "symmetry": "tee_like",
+      "allowed_rotations": [0, 90, 180, 270],
+      "ports": [
+        {"id": "left", "dir": [-1, 0], "kind": "generic"},
+        {"id": "right", "dir": [1, 0], "kind": "generic"},
+        {"id": "top", "dir": [0, -1], "kind": "generic"}
+      ],
+      "connection_policy": {"role": "junction3", "orientation_specific": true},
+      "annotation_status": "fallback_from_valence"
+    },
+    "95": {
+      "name": "Bout bic.",
+      "valence": 2,
+      "category": "socket_adapter",
+      "symmetry": "asymmetric",
+      "allowed_rotations": [0, 90, 180, 270],
+      "ports": [
+        {"id": "socket_side", "dir": [-1, 0], "kind": "socket", "connection_role": "restricted"},
+        {"id": "flat_component_side", "dir": [1, 0], "kind": "generic", "connection_role": "normal"}
+      ],
+      "connection_policy": {
+        "role": "inline_asymmetric",
+        "orientation_specific": true,
+        "restricted_port_ids": ["socket_side"],
+        "restricted_port_note": "Lato a bicchiere/terminale: spesso non deve ospitare alcuni componenti complessi."
+      },
+      "notes": "Il lato piatto/componenti e' quello che normalmente guarda saracinesche e altri pezzi fisici; il lato a bicchiere e' restricted.",
+      "annotation_status": "initial"
+    },
+    "111": {
+      "name": "Curva 45",
+      "valence": 2,
+      "category": "bend",
+      "symmetry": "asymmetric",
+      "allowed_rotations": [0, 90, 180, 270],
+      "ports": [
+        {"id": "straight", "dir": [1, 0], "kind": "generic"},
+        {"id": "angled", "dir": [-0.7071, -0.7071], "kind": "generic", "angle_deg": 45}
+      ],
+      "connection_policy": {"role": "bend", "orientation_specific": true},
+      "annotation_status": "initial"
+    },
+    "114": {
+      "name": "D:50",
+      "valence": 0,
+      "category": "diameter_label",
+      "symmetry": "label",
+      "allowed_rotations": [0],
+      "ports": [],
+      "connection_policy": {"role": "annotation", "connectable": false},
+      "annotation_status": "from_config"
+    },
+    "116": {
+      "name": "Tee FL",
+      "valence": 3,
+      "category": "tee",
+      "symmetry": "tee",
+      "allowed_rotations": [0, 90, 180, 270],
+      "ports": [
+        {"id": "left", "dir": [-1, 0], "kind": "flanged"},
+        {"id": "right", "dir": [1, 0], "kind": "flanged"},
+        {"id": "top", "dir": [0, -1], "kind": "flanged"}
+      ],
+      "connection_policy": {"role": "junction3", "orientation_specific": true, "global_orientation_anchor": true},
+      "annotation_status": "initial"
+    },
+    "119": {
+      "name": "Rubinetto",
+      "valence": 2,
+      "category": "valve",
+      "symmetry": "axis",
+      "allowed_rotations": [0, 90, 180, 270],
+      "ports": [
+        {"id": "left", "dir": [-1, 0], "kind": "generic"},
+        {"id": "right", "dir": [1, 0], "kind": "generic"}
+      ],
+      "connection_policy": {"role": "inline", "orientation_specific": false},
+      "annotation_status": "fallback_from_valence"
+    },
+    "125": {
+      "name": "D:65",
+      "valence": 0,
+      "category": "diameter_label",
+      "symmetry": "label",
+      "allowed_rotations": [0],
+      "ports": [],
+      "connection_policy": {"role": "annotation", "connectable": false},
+      "annotation_status": "from_config"
+    },
+    "159": {
+      "name": "Collare PVC",
+      "valence": 3,
+      "category": "collar",
+      "symmetry": "terminal_branch",
+      "allowed_rotations": [0, 90, 180, 270],
+      "ports": [
+        {"id": "main_left", "dir": [-1, 0], "kind": "pipe"},
+        {"id": "main_right", "dir": [1, 0], "kind": "pipe"},
+        {"id": "branch", "dir": [0, -1], "kind": "tap", "connection_role": "restricted"}
+      ],
+      "connection_policy": {"role": "junction3_restricted_branch", "orientation_specific": true},
+      "annotation_status": "approximate"
+    },
+    "175": {
+      "name": "Curva 90",
+      "valence": 2,
+      "category": "bend",
+      "symmetry": "asymmetric",
+      "allowed_rotations": [0, 90, 180, 270],
+      "ports": [
+        {"id": "left", "dir": [-1, 0], "kind": "generic"},
+        {"id": "bottom", "dir": [0, 1], "kind": "generic", "angle_deg": 90}
+      ],
+      "connection_policy": {"role": "bend", "orientation_specific": true},
+      "annotation_status": "initial"
+    },
+    "190": {
+      "name": "Curva 30",
+      "valence": 2,
+      "category": "bend",
+      "symmetry": "asymmetric",
+      "allowed_rotations": [0, 90, 180, 270],
+      "ports": [
+        {"id": "straight", "dir": [1, 0], "kind": "generic"},
+        {"id": "angled", "dir": [-0.7071, -0.7071], "kind": "generic", "angle_deg": 45}
+      ],
+      "connection_policy": {"role": "bend", "orientation_specific": true},
+      "notes": "Annotazione approssimata: lo Shurikode indica curva 30, ma la direzione discreta iniziale usa diagonale 45.",
+      "annotation_status": "approximate"
+    },
+    "192": {
+      "name": "Croce",
+      "valence": 4,
+      "category": "cross",
+      "symmetry": "cross",
+      "allowed_rotations": [0, 90, 180, 270],
+      "ports": [
+        {"id": "left", "dir": [-1, 0], "kind": "generic"},
+        {"id": "right", "dir": [1, 0], "kind": "generic"},
+        {"id": "top", "dir": [0, -1], "kind": "generic"},
+        {"id": "bottom", "dir": [0, 1], "kind": "generic"}
+      ],
+      "connection_policy": {"role": "junction4", "orientation_specific": true, "global_orientation_anchor": true},
+      "annotation_status": "initial"
+    },
+    "195": {
+      "name": "Curva 45P",
+      "valence": 2,
+      "category": "bend",
+      "symmetry": "asymmetric",
+      "allowed_rotations": [0, 90, 180, 270],
+      "ports": [
+        {"id": "straight", "dir": [1, 0], "kind": "generic"},
+        {"id": "angled", "dir": [-0.7071, -0.7071], "kind": "generic", "angle_deg": 45}
+      ],
+      "connection_policy": {"role": "bend", "orientation_specific": true},
+      "annotation_status": "initial"
+    },
+    "201": {
+      "name": "Tee BIC",
+      "valence": 3,
+      "category": "tee",
+      "symmetry": "tee",
+      "allowed_rotations": [0, 90, 180, 270],
+      "ports": [
+        {"id": "left", "dir": [-1, 0], "kind": "socket"},
+        {"id": "right", "dir": [1, 0], "kind": "socket"},
+        {"id": "top", "dir": [0, -1], "kind": "flanged"}
+      ],
+      "connection_policy": {"role": "junction3", "orientation_specific": true, "global_orientation_anchor": true},
+      "annotation_status": "initial"
+    },
+    "202": {
+      "name": "Antisfilo",
+      "valence": 2,
+      "category": "restraint",
+      "symmetry": "axis",
+      "allowed_rotations": [0, 90, 180, 270],
+      "ports": [
+        {"id": "left", "dir": [-1, 0], "kind": "pvc"},
+        {"id": "right", "dir": [1, 0], "kind": "pvc"}
+      ],
+      "connection_policy": {"role": "inline", "orientation_specific": false},
+      "annotation_status": "fallback_from_valence"
+    },
+    "207": {
+      "name": "Bout norm.",
+      "valence": 2,
+      "category": "adapter",
+      "symmetry": "axis",
+      "allowed_rotations": [0, 90, 180, 270],
+      "ports": [
+        {"id": "left", "dir": [-1, 0], "kind": "generic"},
+        {"id": "right", "dir": [1, 0], "kind": "pvc"}
+      ],
+      "connection_policy": {"role": "inline", "orientation_specific": true},
+      "annotation_status": "initial"
+    },
+    "228": {
+      "name": "D:80",
+      "valence": 0,
+      "category": "diameter_label",
+      "symmetry": "label",
+      "allowed_rotations": [0],
+      "ports": [],
+      "connection_policy": {"role": "annotation", "connectable": false},
+      "annotation_status": "from_config"
+    },
+    "231": {
+      "name": "D:100",
+      "valence": 0,
+      "category": "diameter_label",
+      "symmetry": "label",
+      "allowed_rotations": [0],
+      "ports": [],
+      "connection_policy": {"role": "annotation", "connectable": false},
+      "annotation_status": "from_config"
+    },
+    "232": {
+      "name": "Collare Fe",
+      "valence": 3,
+      "category": "collar",
+      "symmetry": "terminal_branch",
+      "allowed_rotations": [0, 90, 180, 270],
+      "ports": [
+        {"id": "main_left", "dir": [-1, 0], "kind": "pipe"},
+        {"id": "main_right", "dir": [1, 0], "kind": "pipe"},
+        {"id": "branch", "dir": [0, -1], "kind": "tap", "connection_role": "restricted"}
+      ],
+      "connection_policy": {"role": "junction3_restricted_branch", "orientation_specific": true},
+      "annotation_status": "fallback_from_159"
+    },
+    "235": {
+      "name": "Curva 90P",
+      "valence": 2,
+      "category": "bend",
+      "symmetry": "asymmetric",
+      "allowed_rotations": [0, 90, 180, 270],
+      "ports": [
+        {"id": "left", "dir": [-1, 0], "kind": "pvc"},
+        {"id": "bottom", "dir": [0, 1], "kind": "pvc", "angle_deg": 90}
+      ],
+      "connection_policy": {"role": "bend", "orientation_specific": true},
+      "annotation_status": "initial"
+    },
+    "237": {
+      "name": "Manicotto",
+      "valence": 2,
+      "category": "coupling",
+      "symmetry": "axis",
+      "allowed_rotations": [0, 90, 180, 270],
+      "ports": [
+        {"id": "left", "dir": [-1, 0], "kind": "pvc"},
+        {"id": "right", "dir": [1, 0], "kind": "pvc"}
+      ],
+      "connection_policy": {"role": "inline", "orientation_specific": false},
+      "annotation_status": "initial"
+    },
+    "244": {
+      "name": "D:150",
+      "valence": 0,
+      "category": "diameter_label",
+      "symmetry": "label",
+      "allowed_rotations": [0],
+      "ports": [],
+      "connection_policy": {"role": "annotation", "connectable": false},
+      "annotation_status": "from_config"
+    },
+    "245": {
+      "name": "Curva 11",
+      "valence": 2,
+      "category": "bend",
+      "symmetry": "asymmetric",
+      "allowed_rotations": [0, 180],
+      "ports": [
+        {"id": "left", "dir": [-1, 0], "kind": "pvc"},
+        {"id": "slight_angle", "dir": [0.9848, -0.1736], "kind": "pvc", "angle_deg": 11}
+      ],
+      "connection_policy": {"role": "bend", "orientation_specific": true},
+      "annotation_status": "approximate"
+    },
+    "247": {
+      "name": "D:200",
+      "valence": 0,
+      "category": "diameter_label",
+      "symmetry": "label",
+      "allowed_rotations": [0],
+      "ports": [],
+      "connection_policy": {"role": "annotation", "connectable": false},
+      "annotation_status": "from_config"
+    },
+    "250": {
+      "name": "All.1\"",
+      "valence": 0,
+      "category": "service_connection",
+      "symmetry": "terminal",
+      "allowed_rotations": [0, 90, 180, 270],
+      "ports": [
+        {"id": "inlet", "dir": [-1, 0], "kind": "service", "connectable": true}
+      ],
+      "connection_policy": {"role": "terminal_service", "connectable": true, "orientation_specific": true},
+      "notes": "In config e' valenza 0 perche' non partecipa al grafo fisico principale, ma il simbolo ha un lato di aggancio.",
+      "annotation_status": "initial"
+    },
+    "252": {
+      "name": "All.2\"",
+      "valence": 0,
+      "category": "service_connection",
+      "symmetry": "terminal",
+      "allowed_rotations": [0, 90, 180, 270],
+      "ports": [
+        {"id": "inlet", "dir": [-1, 0], "kind": "service", "connectable": true}
+      ],
+      "connection_policy": {"role": "terminal_service", "connectable": true, "orientation_specific": true},
+      "notes": "Stessa simbologia del 250.",
+      "annotation_status": "initial"
+    },
+    "255": {
+      "name": "Tee rid.",
+      "valence": 3,
+      "category": "tee",
+      "symmetry": "tee_asymmetric",
+      "allowed_rotations": [0, 90, 180, 270],
+      "ports": [
+        {"id": "left", "dir": [-1, 0], "kind": "generic"},
+        {"id": "right", "dir": [1, 0], "kind": "generic"},
+        {"id": "top", "dir": [0, -1], "kind": "generic", "diameter_role": "reduced"}
+      ],
+      "connection_policy": {"role": "junction3_reducer", "orientation_specific": true, "global_orientation_anchor": true},
+      "annotation_status": "fallback_from_valence"
+    }
+  }
+}
