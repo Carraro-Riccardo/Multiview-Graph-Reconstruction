@@ -68,9 +68,26 @@ def _get_embedding_model():
     global _emb_model, _emb_transform
     if _emb_model is not None:
         return _emb_model, _emb_transform
+
     import torch
     import torchvision.models as M
     import torchvision.transforms as T
+
+    # Use fine-tuned weights if available (zero breaking change otherwise)
+    _FINETUNED = Path(__file__).parent.parent / "reid_finetuned_resnet50" / "weights" / "best.pt"
+    if _FINETUNED.exists():
+        try:
+            from reid_finetuned_resnet50.model import ReIDResNet50
+            model = ReIDResNet50(pretrained=False)
+            model.load_state_dict(torch.load(str(_FINETUNED), map_location="cpu"))
+            model.eval()
+            transform = ReIDResNet50.get_transform()
+            print(f"  [ReID] loaded fine-tuned weights from {_FINETUNED.name}")
+            _emb_model, _emb_transform = model, transform
+            return model, transform
+        except Exception as e:
+            print(f"  [ReID] fine-tuned weights failed to load ({e}), falling back to ImageNet")
+
     model = M.resnet50(weights=M.ResNet50_Weights.DEFAULT)
     model.fc = torch.nn.Identity()
     model.eval()
