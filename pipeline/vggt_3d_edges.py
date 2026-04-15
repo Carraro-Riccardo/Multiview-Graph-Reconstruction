@@ -433,6 +433,11 @@ def _merge_duplicate_scene_nodes(
                     if n_obs_b <= VGGT_3D_MERGE_LOW_OBS_THRESHOLD:
                         reason = "confident"
                     elif support_subset:
+                        # Don't merge two well-supported clusters: if b covers
+                        # ≥ half of the total unique images, it's a real instance.
+                        n_total_imgs = len(imgs_a | imgs_b)
+                        if len(imgs_b) >= max(2, n_total_imgs // 2):
+                            continue
                         reason = "confident_subset"
                     else:
                         continue
