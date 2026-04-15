@@ -802,6 +802,11 @@ def build_vggt_edge_hints(
                 continue
             if vote_count == 0:
                 continue
+            # Hard veto: if scene-level geometry doesn't confirm adjacency
+            # (port distance exceeds cutoff), require at least 2 supporting views.
+            # This filters marginal single-view hints whose 3D signal is unreliable.
+            if geom_scene_stats["port_dist"] > port_cutoff and vote_count < 2:
+                continue
 
             pair_hints[pair] = {
                 "score": float(final_score),
