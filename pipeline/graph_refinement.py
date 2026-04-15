@@ -449,57 +449,104 @@ def force_spanning_tree(
 
     # ── Pass 2: structural fallback (degree-respecting) ───────────────────────
     if not nx.is_connected(graph):
-        _max_cooc = max(COOC_COUNTS.values()) if COOC_COUNTS else 1
+        _max_cooc   = max(COOC_COUNTS.values())   if COOC_COUNTS   else 1
+        _max_triplet = max(TRIPLET_COUNTS.values()) if TRIPLET_COUNTS else 1
 
         def _norm(x: int, y: int) -> tuple:
             return (min(x, y), max(x, y))
+
+        def _triplet_completion(a: str, b: str) -> float:
+            """Sum of known-triplet counts completed by adding edge A--B.
+
+            For each existing neighbor N of B (B is the hub): check the
+            triplet (ca, cb, cn) where cb is the center.
+            For each existing neighbor N of A (A is the hub): check the
+            triplet (cb, ca, cn) where ca is the center.
+            """
+            ca = graph.nodes[a]["code"]
+            cb = graph.nodes[b]["code"]
+            score = 0.0
+            for nb in graph.neighbors(b):
+                cn = graph.nodes[nb]["code"]
+                key = (min(ca, cn), cb, max(ca, cn))
+                score += TRIPLET_COUNTS.get(key, 0) / _max_triplet
+            for na in graph.neighbors(a):
+                cn = graph.nodes[na]["code"]
+                key = (min(cb, cn), ca, max(cb, cn))
+                score += TRIPLET_COUNTS.get(key, 0) / _max_triplet
+            return score
 
         def _structural_score(a: str, b: str) -> float:
             ca = graph.nodes[a]["code"]
             cb = graph.nodes[b]["code"]
             if _norm(ca, cb) in FORBIDDEN_PAIRS:
                 return -1.0
+            # Co-occurrence: how often this code pair appears adjacent in the dataset
             cooc    = COOC_COUNTS.get(_norm(ca, cb), 0) / _max_cooc
             support = (graph.nodes[a]["support_count"] + graph.nodes[b]["support_count"]) / 20.0
-            # Strongly prefer bridging through unsaturated hub nodes (Tee, Croce, ...)
+            # Hub bonus: reduced weight so COOC/triplet priors can compete
             da = max_deg.get(a, 2)
             db = max_deg.get(b, 2)
-            hub_bonus = max(max(0, da - 2), max(0, db - 2)) * 2.0
-            return cooc + support + hub_bonus
+            hub_bonus = max(max(0, da - 2), max(0, db - 2)) * 0.3
+            # Triplet completion: reward edges that complete known 3-component patterns
+            triplet = _triplet_completion(a, b) * 0.5
+            return cooc + support + hub_bonus + triplet
 
-        for _ in range(len(nodes)):
-            if nx.is_connected(graph):
-                break
-            comps = sorted(nx.connected_components(graph), key=len, reverse=True)
-            main  = comps[0]
+        def _run_fallback_pass(override: bool) -> None:
+            for _ in range(len(nodes)):
+                if nx.is_connected(graph):
+                    break
+                comps = sorted(nx.connected_components(graph), key=len, reverse=True)
+                main  = comps[0]
 
-            best_score, best_a, best_b = -999.0, None, None
-            for other in comps[1:]:
-                for a in main:
-                    for b in other:
-                        if not _can_connect(a, b):
-                            continue
-                        s = _structural_score(a, b)
-                        if s > best_score:
-                            best_score, best_a, best_b = s, a, b
+                best_score, best_a, best_b = -999.0, None, None
+                for other in comps[1:]:
+                    for a in main:
+                        for b in other:
+                            if not _can_connect(a, b, override_degree=override):
+                                continue
+                            # In override mode, only allow code pairs with at least
+                            # one observed co-occurrence — never create absurd edges.
+                            if override:
+                                ca = graph.nodes[a]["code"]
+                                cb = graph.nodes[b]["code"]
+                                if COOC_COUNTS.get(_norm(ca, cb), 0) == 0:
+                                    continue
+                            s = _structural_score(a, b)
+                            if s > best_score:
+                                best_score, best_a, best_b = s, a, b
 
-            if best_a is None or best_score < 0:
-                break  # no degree-respecting non-forbidden bridge exists
+                if best_a is None or best_score < 0:
+                    break
 
-            _add_forced(best_a, best_b, {
-                "support_count":        0,
-                "supporting_images":    [],
-                "branch_support_count": 0,
-                "knn_support_count":    0,
-                "cooc_count":           0,
-                "triplet_support":      0,
-                "forbidden_flag":       False,
-                "evidence_sources":     ["structural_fallback"],
-                "forced_reason":        "spanning_tree_structural_fallback",
-                "structural_score":     best_score,
-            })
-            forced_log.append({"a": best_a, "b": best_b, "via": "structural_fallback",
-                                "structural_score": best_score})
+                reason = "spanning_tree_override" if override else "spanning_tree_structural_fallback"
+                _add_forced(best_a, best_b, {
+                    "support_count":        0,
+                    "supporting_images":    [],
+                    "branch_support_count": 0,
+                    "knn_support_count":    0,
+                    "cooc_count":           0,
+                    "triplet_support":      0,
+                    "forbidden_flag":       False,
+                    "evidence_sources":     ["structural_fallback"],
+                    "forced_reason":        reason,
+                    "structural_score":     best_score,
+                    "override_degree":      override,
+                })
+                forced_log.append({
+                    "a": best_a, "b": best_b,
+                    "via": "structural_fallback" if not override else "override",
+                    "structural_score": best_score,
+                })
+
+        # Degree-respecting pass
+        _run_fallback_pass(override=False)
+
+        # Override pass: last resort for still-isolated nodes — allow exceeding
+        # max_degree only when the code pair has at least one co-occurrence in the
+        # dataset (COOC_COUNTS > 0), so we never produce physically absurd edges.
+        if not nx.is_connected(graph):
+            _run_fallback_pass(override=True)
 
     # Note: if the graph is still disconnected here, the remaining isolated nodes
     # could not be connected without violating physical degree constraints or

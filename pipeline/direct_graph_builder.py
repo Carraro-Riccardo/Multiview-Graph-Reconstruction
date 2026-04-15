@@ -157,6 +157,11 @@ def build_direct_graph(
         if vggt_edge_hints.get(pair_ac, {}).get("vote_count", 0) > 0:
             continue
         a, c = pair_ac
+        # Hub nodes (max_degree >= 3, e.g. Tee rid., Croce) can legitimately
+        # connect directly to many partners. A path A--B--C with a degree-2
+        # bridge does NOT make A--C a shortcut when A or C is itself a hub.
+        if max_degree.get(a, 2) >= 3 or max_degree.get(c, 2) >= 3:
+            continue
         for b in sn_code:
             if b in (a, c):
                 continue
