@@ -433,6 +433,11 @@ def _merge_duplicate_scene_nodes(
                     if n_obs_b <= VGGT_3D_MERGE_LOW_OBS_THRESHOLD:
                         reason = "confident"
                     elif support_subset:
+                        # Don't merge two well-supported clusters: if b covers
+                        # ≥ half of the total unique images, it's a real instance.
+                        n_total_imgs = len(imgs_a | imgs_b)
+                        if len(imgs_b) >= max(2, n_total_imgs // 2):
+                            continue
                         reason = "confident_subset"
                     else:
                         continue
@@ -796,6 +801,11 @@ def build_vggt_edge_hints(
             if final_score < VGGT_3D_MIN_SCORE and not (mutual_topk and vote_count > 0):
                 continue
             if vote_count == 0:
+                continue
+            # Hard veto: if scene-level geometry doesn't confirm adjacency
+            # (port distance exceeds cutoff), require at least 2 supporting views.
+            # This filters marginal single-view hints whose 3D signal is unreliable.
+            if geom_scene_stats["port_dist"] > port_cutoff and vote_count < 2:
                 continue
 
             pair_hints[pair] = {

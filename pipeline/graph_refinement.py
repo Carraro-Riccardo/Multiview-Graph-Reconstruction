@@ -324,6 +324,143 @@ def refine_candidate_graph(
     return graph, debug
 
 
+def fix_boutbic_antipattern(
+    graph: nx.Graph,
+) -> tuple[nx.Graph, list]:
+    """Remove structurally impossible (15, 95, 15) patterns from the graph.
+
+    In the full dataset, Bout bic. (code 95) NEVER connects two Saracinesca
+    (code 15) — the pattern has zero GT occurrences.  When the greedy builder
+    produces such a pattern (usually because a marginal vote tied 95 to two
+    different 15 nodes), the weaker of the two 15--95 edges is removed so the
+    freed Saracinesca can reconnect via the spanning tree.
+
+    "Weaker" is defined as lower (knn_support_count + vggt_support_count).
+    Ties are broken by removing the edge with the lower vote_count / support_count.
+    """
+    _BOUTBIC  = 95
+    _SARAC    = 15
+    removed: list[dict] = []
+
+    for nid in list(graph.nodes()):
+        if graph.nodes[nid].get("code") != _BOUTBIC:
+            continue
+        if graph.degree(nid) != 2:
+            continue
+        nb0, nb1 = list(graph.neighbors(nid))
+        if graph.nodes[nb0].get("code") != _SARAC or graph.nodes[nb1].get("code") != _SARAC:
+            continue
+
+        # Both neighbours are Saracinesca — structurally impossible
+        e0 = graph.edges[nid, nb0]
+        e1 = graph.edges[nid, nb1]
+
+        def _strength(e: dict) -> tuple:
+            return (
+                e.get("knn_support_count", 0) + e.get("vggt_support_count", 0),
+                e.get("vote_count", e.get("support_count", 0)),
+            )
+
+        if _strength(e0) <= _strength(e1):
+            weaker_nb = nb0
+        else:
+            weaker_nb = nb1
+
+        graph.remove_edge(nid, weaker_nb)
+        # Seal the boutbic: it now holds its one valid connection.
+        # Lowering max_degree to 1 prevents force_spanning_tree from routing
+        # the freed Saracinesca back through this same boutbic node.
+        graph.nodes[nid]["max_degree"] = 1
+
+        removed.append({
+            "boutbic_node":   nid,
+            "removed_edge":   [nid, weaker_nb],
+            "kept_edge":      [nid, nb1 if weaker_nb == nb0 else nb0],
+            "reason":         "boutbic_15_95_15_antipattern",
+        })
+        print(f"  [BoutBicFix] removed impossible edge {nid}--{weaker_nb} (15-95-15 antipattern)")
+
+    # ── Pass 2: fix a Saracinesca incorrectly bridging two Tee FL ────────────
+    # (116, 15, 116) with vggt=0 on one edge is a sign the weaker connection
+    # was produced by 2D proximity only.  The valid pattern (e.g. a Saracinesca
+    # between two Tee FL that truly link both) always has vggt >= 1 on both
+    # edges.  When exactly one edge has vggt=0 we remove it and directly wire
+    # the two Tee FL together — they were one hop apart via the Saracinesca and
+    # are evidently the nodes that should be directly connected.
+    _TEE_FL = 116
+
+    for nid in list(graph.nodes()):
+        if graph.nodes[nid].get("code") != _SARAC:
+            continue
+        if graph.degree(nid) != 2:
+            continue
+        nb0, nb1 = list(graph.neighbors(nid))
+        if graph.nodes[nb0].get("code") != _TEE_FL or graph.nodes[nb1].get("code") != _TEE_FL:
+            continue
+
+        e0 = graph.edges[nid, nb0]
+        e1 = graph.edges[nid, nb1]
+        v0 = e0.get("vggt_support_count", 0)
+        v1 = e1.get("vggt_support_count", 0)
+
+        # Only trigger when exactly one side lacks VGGT confirmation
+        if (v0 == 0) == (v1 == 0):
+            continue  # both zero or both non-zero: ambiguous or valid
+
+        weak_nb = nb0 if v0 == 0 else nb1
+        strong_nb = nb1 if v0 == 0 else nb0
+
+        # Remove the unconfirmed edge
+        graph.remove_edge(nid, weak_nb)
+        # Seal the Saracinesca so it stays at degree 1
+        graph.nodes[nid]["max_degree"] = 1
+
+        # Directly wire the two Tee FL if they are in different components
+        # (cycle-safe check via simple connectivity probe)
+        try:
+            nx.shortest_path(graph, weak_nb, strong_nb)
+            already_connected = True
+        except nx.NetworkXNoPath:
+            already_connected = False
+
+        if not already_connected:
+            da = graph.nodes[weak_nb].get("max_degree", 3)
+            db = graph.nodes[strong_nb].get("max_degree", 3)
+            deg_a = graph.degree(weak_nb)
+            deg_b = graph.degree(strong_nb)
+            if deg_a < da and deg_b < db:
+                graph.add_edge(
+                    weak_nb, strong_nb,
+                    vote_count=0,
+                    support_count=0,
+                    knn_support_count=0,
+                    vggt_support_count=0,
+                    vggt_score=0.0,
+                    vggt_min_distance=None,
+                    vggt_port_distance=None,
+                    vggt_axis_alignment=0.0,
+                    cooc_count=0,
+                    triplet_support=0,
+                    forbidden_flag=False,
+                    evidence_sources=["teefl_bridge_fix"],
+                    shortcut_suppressed=False,
+                    forced=True,
+                    forced_reason="teefl_bridge_saracinesca_fix",
+                )
+                removed.append({
+                    "saracinesca_node": nid,
+                    "removed_edge":    [nid, weak_nb],
+                    "added_edge":      [weak_nb, strong_nb],
+                    "reason":          "teefl_bridge_saracinesca_fix",
+                })
+                print(
+                    f"  [TeeFlFix] removed {nid}--{weak_nb} (vggt=0), "
+                    f"bridged {weak_nb}--{strong_nb} directly"
+                )
+
+    return graph, removed
+
+
 def force_spanning_tree(
     graph: nx.Graph,
     candidate_edges: list,
@@ -449,57 +586,104 @@ def force_spanning_tree(
 
     # ── Pass 2: structural fallback (degree-respecting) ───────────────────────
     if not nx.is_connected(graph):
-        _max_cooc = max(COOC_COUNTS.values()) if COOC_COUNTS else 1
+        _max_cooc   = max(COOC_COUNTS.values())   if COOC_COUNTS   else 1
+        _max_triplet = max(TRIPLET_COUNTS.values()) if TRIPLET_COUNTS else 1
 
         def _norm(x: int, y: int) -> tuple:
             return (min(x, y), max(x, y))
+
+        def _triplet_completion(a: str, b: str) -> float:
+            """Sum of known-triplet counts completed by adding edge A--B.
+
+            For each existing neighbor N of B (B is the hub): check the
+            triplet (ca, cb, cn) where cb is the center.
+            For each existing neighbor N of A (A is the hub): check the
+            triplet (cb, ca, cn) where ca is the center.
+            """
+            ca = graph.nodes[a]["code"]
+            cb = graph.nodes[b]["code"]
+            score = 0.0
+            for nb in graph.neighbors(b):
+                cn = graph.nodes[nb]["code"]
+                key = (min(ca, cn), cb, max(ca, cn))
+                score += TRIPLET_COUNTS.get(key, 0) / _max_triplet
+            for na in graph.neighbors(a):
+                cn = graph.nodes[na]["code"]
+                key = (min(cb, cn), ca, max(cb, cn))
+                score += TRIPLET_COUNTS.get(key, 0) / _max_triplet
+            return score
 
         def _structural_score(a: str, b: str) -> float:
             ca = graph.nodes[a]["code"]
             cb = graph.nodes[b]["code"]
             if _norm(ca, cb) in FORBIDDEN_PAIRS:
                 return -1.0
+            # Co-occurrence: how often this code pair appears adjacent in the dataset
             cooc    = COOC_COUNTS.get(_norm(ca, cb), 0) / _max_cooc
             support = (graph.nodes[a]["support_count"] + graph.nodes[b]["support_count"]) / 20.0
-            # Strongly prefer bridging through unsaturated hub nodes (Tee, Croce, ...)
+            # Hub bonus: reduced weight so COOC/triplet priors can compete
             da = max_deg.get(a, 2)
             db = max_deg.get(b, 2)
-            hub_bonus = max(max(0, da - 2), max(0, db - 2)) * 2.0
-            return cooc + support + hub_bonus
+            hub_bonus = max(max(0, da - 2), max(0, db - 2)) * 0.3
+            # Triplet completion: reward edges that complete known 3-component patterns
+            triplet = _triplet_completion(a, b) * 0.5
+            return cooc + support + hub_bonus + triplet
 
-        for _ in range(len(nodes)):
-            if nx.is_connected(graph):
-                break
-            comps = sorted(nx.connected_components(graph), key=len, reverse=True)
-            main  = comps[0]
+        def _run_fallback_pass(override: bool) -> None:
+            for _ in range(len(nodes)):
+                if nx.is_connected(graph):
+                    break
+                comps = sorted(nx.connected_components(graph), key=len, reverse=True)
+                main  = comps[0]
 
-            best_score, best_a, best_b = -999.0, None, None
-            for other in comps[1:]:
-                for a in main:
-                    for b in other:
-                        if not _can_connect(a, b):
-                            continue
-                        s = _structural_score(a, b)
-                        if s > best_score:
-                            best_score, best_a, best_b = s, a, b
+                best_score, best_a, best_b = -999.0, None, None
+                for other in comps[1:]:
+                    for a in main:
+                        for b in other:
+                            if not _can_connect(a, b, override_degree=override):
+                                continue
+                            # In override mode, only allow code pairs with at least
+                            # one observed co-occurrence — never create absurd edges.
+                            if override:
+                                ca = graph.nodes[a]["code"]
+                                cb = graph.nodes[b]["code"]
+                                if COOC_COUNTS.get(_norm(ca, cb), 0) == 0:
+                                    continue
+                            s = _structural_score(a, b)
+                            if s > best_score:
+                                best_score, best_a, best_b = s, a, b
 
-            if best_a is None or best_score < 0:
-                break  # no degree-respecting non-forbidden bridge exists
+                if best_a is None or best_score < 0:
+                    break
 
-            _add_forced(best_a, best_b, {
-                "support_count":        0,
-                "supporting_images":    [],
-                "branch_support_count": 0,
-                "knn_support_count":    0,
-                "cooc_count":           0,
-                "triplet_support":      0,
-                "forbidden_flag":       False,
-                "evidence_sources":     ["structural_fallback"],
-                "forced_reason":        "spanning_tree_structural_fallback",
-                "structural_score":     best_score,
-            })
-            forced_log.append({"a": best_a, "b": best_b, "via": "structural_fallback",
-                                "structural_score": best_score})
+                reason = "spanning_tree_override" if override else "spanning_tree_structural_fallback"
+                _add_forced(best_a, best_b, {
+                    "support_count":        0,
+                    "supporting_images":    [],
+                    "branch_support_count": 0,
+                    "knn_support_count":    0,
+                    "cooc_count":           0,
+                    "triplet_support":      0,
+                    "forbidden_flag":       False,
+                    "evidence_sources":     ["structural_fallback"],
+                    "forced_reason":        reason,
+                    "structural_score":     best_score,
+                    "override_degree":      override,
+                })
+                forced_log.append({
+                    "a": best_a, "b": best_b,
+                    "via": "structural_fallback" if not override else "override",
+                    "structural_score": best_score,
+                })
+
+        # Degree-respecting pass
+        _run_fallback_pass(override=False)
+
+        # Override pass: last resort for still-isolated nodes — allow exceeding
+        # max_degree only when the code pair has at least one co-occurrence in the
+        # dataset (COOC_COUNTS > 0), so we never produce physically absurd edges.
+        if not nx.is_connected(graph):
+            _run_fallback_pass(override=True)
 
     # Note: if the graph is still disconnected here, the remaining isolated nodes
     # could not be connected without violating physical degree constraints or

@@ -102,8 +102,26 @@ def build_direct_graph(
 
     direct_vote_count: dict[tuple[str, str], int] = defaultdict(int)
     direct_vote_views: dict[tuple[str, str], list[str]] = defaultdict(list)
+    # co-occurrence: how many images both scene nodes appear in (opportunity denominator)
+    cooc_opportunity: dict[tuple[str, str], int] = defaultdict(int)
 
     for og in observed_graphs:
+        # scene nodes visible in this image
+        visible_sns: set[str] = set()
+        for node in og.nodes.values():
+            sn = obs_to_scene.get(node.observed_node_id)
+            if sn:
+                visible_sns.add(sn)
+
+        # update co-occurrence opportunity for every pair visible together
+        visible_list = sorted(visible_sns)
+        for i in range(len(visible_list)):
+            for j in range(i + 1, len(visible_list)):
+                pair = _norm(visible_list[i], visible_list[j])
+                ca, cb = sn_code.get(visible_list[i], 0), sn_code.get(visible_list[j], 0)
+                if _norm_code(ca, cb) not in FORBIDDEN_PAIRS:
+                    cooc_opportunity[pair] += 1
+
         for edge in og.edges:
             sn_a = obs_to_scene.get(edge.source_id)
             sn_b = obs_to_scene.get(edge.target_id)
@@ -122,7 +140,15 @@ def build_direct_graph(
     def _combined_score(pair: tuple[str, str]) -> float:
         direct_votes = direct_vote_count.get(pair, 0)
         vggt_votes = float(vggt_edge_hints.get(pair, {}).get("vote_count", 0))
-        return float(direct_votes) + vggt_votes * VGGT_3D_VOTE_WEIGHT
+        # Normalize direct votes by co-occurrence opportunity so that small pure
+        # clusters are not penalised vs large impure ones.  A pair seen adjacent
+        # in 3 out of 4 shared images scores 0.75, same as one seen in 6 out of 8.
+        opp = cooc_opportunity.get(pair, 0)
+        if opp > 0 and direct_votes > 0:
+            adj_direct = (direct_votes / opp) * n_total_views
+        else:
+            adj_direct = float(direct_votes)
+        return adj_direct + vggt_votes * VGGT_3D_VOTE_WEIGHT
 
     shortcut_pairs: set[tuple[str, str]] = set()
     min_path_votes = 1
@@ -131,6 +157,11 @@ def build_direct_graph(
         if vggt_edge_hints.get(pair_ac, {}).get("vote_count", 0) > 0:
             continue
         a, c = pair_ac
+        # Hub nodes (max_degree >= 3, e.g. Tee rid., Croce) can legitimately
+        # connect directly to many partners. A path A--B--C with a degree-2
+        # bridge does NOT make A--C a shortcut when A or C is itself a hub.
+        if max_degree.get(a, 2) >= 3 or max_degree.get(c, 2) >= 3:
+            continue
         for b in sn_code:
             if b in (a, c):
                 continue
