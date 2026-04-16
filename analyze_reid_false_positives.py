@@ -425,10 +425,10 @@ def analyze_node(node_id: int) -> dict | None:
 
 def main() -> None:
     if len(sys.argv) > 1:
-        node_ids = [int(arg) for arg in sys.argv[1:]]
+        node_ids = [str(arg) for arg in sys.argv[1:]]
     else:
         node_ids = sorted(
-            int(path.name.replace("node", ""))
+            str(path.name.replace("node", ""))
             for path in MULTIVIEW_DIR.glob("node*")
             if path.is_dir() and path.name.replace("node", "").isdigit()
         )
