@@ -1,45 +1,35 @@
-"""Step 2 – node re-identification.
+"""Step 2 – node re-identification via DBSCAN on VGGT 3D centroids.
 
 For every component code the algorithm:
-  1. Determines k (number of physical instances) via greedy graph coloring of
-     the incompatibility graph: two observations are incompatible if they come
-     from the same image.  The chromatic number of this graph is the minimum
-     k that satisfies all constraints, correctly handling cases where no single
-     image sees all instances simultaneously.
-  2. If k == 1: all detections belong to the one instance (trivial).
-  3. If k > 1: cluster detections via K-Means on ResNet-50 patch embeddings,
-     then apply the same-image hard constraint (two detections from the same
-     image can never be the same instance).
-  4. VGGT 3D distances (< VGGT_REID_CONFIDENT_DIST = 0.08 m) are used as a
-     hard-merge bonus in the affinity matrix.
+  1. Loads VGGT 3D geometry (centroid + point-cloud sample) for every detection.
+  2. Computes a precomputed pairwise distance matrix, with inf for same-image pairs
+     (hard cannot-link: two detections in the same image are different instances).
+  3. Runs DBSCAN(metric="precomputed", eps, min_samples=1) — automatic k, no
+     threshold tuning beyond eps.
+  4. eps is derived adaptively from the scene scale: eps = EPS_FACTOR * scene_cutoff,
+     where scene_cutoff = median_NN_dist * VGGT_3D_ADJACENCY_FACTOR.
 
-No dataset-tuned thresholds.  k comes from the incompatibility graph structure;
-the only physical constant is VGGT_REID_CONFIDENT_DIST.
+Fallback when VGGT geometry is unavailable: each detection is a singleton per image.
 """
 
 from __future__ import annotations
 
-import cv2
 import numpy as np
 from collections import Counter, defaultdict
 from dataclasses import dataclass
 from pathlib import Path
 
 from .branch_fragments import is_anchor, is_terminal
-from config import COMPONENT_INFO
+from config import COMPONENT_INFO, VGGT_3D_ADJACENCY_FACTOR
 
 
-# ── Patch extraction ──────────────────────────────────────────────────────────
-PATCH_EXPAND_RATIO = 0.35
-MIN_PATCH_SIZE     = 48
+# ── DBSCAN clustering parameters ─────────────────────────────────────────────
+# eps is derived as EPS_FACTOR * scene_cutoff (adaptive, not fixed metres).
+DBSCAN_EPS_FACTOR   = 0.40   # fraction of scene_cutoff for within-code eps
+DBSCAN_FALLBACK_EPS = 0.12   # metres, used only when VGGT geometry unavailable
+DBSCAN_MIN_SAMPLES  = 1      # every detection is a core point (no outlier class)
 
-# ── VGGT 3D hard-merge threshold ─────────────────────────────────────────────
-# Detections whose point-cloud min-distance is below this are certainly the
-# same physical instance.  Used as a hard-merge bonus in the affinity matrix
-# AND as a post-clustering merge pass.
-VGGT_REID_ENABLED        = True
-VGGT_REID_CONFIDENT_DIST = 0.08   # m  — in-affinity hard boost
-VGGT_POST_MERGE_DIST     = 0.25   # m  — post-clustering merge (wider, image-disjoint only)
+VGGT_REID_ENABLED   = True
 
 
 # ── SceneNode (downstream-compatible) ────────────────────────────────────────
@@ -59,111 +49,23 @@ class SceneNode:
     representative_triplet_hints: list[list[int]]
 
 
-# ── Embedding model (lazy singleton) ─────────────────────────────────────────
-_emb_model     = None
-_emb_transform = None
-
-
-def _get_embedding_model():
-    global _emb_model, _emb_transform
-    if _emb_model is not None:
-        return _emb_model, _emb_transform
-
-    import torch
-    import torchvision.transforms as T
-
-    # DINOv2 ViT-S/14 — fine-grained features, no fine-tuning needed
-    try:
-        model = torch.hub.load("facebookresearch/dinov2", "dinov2_vits14", verbose=False)
-        model.eval()
-        transform = T.Compose([
-            T.Resize((224, 224)),
-            T.ToTensor(),
-            T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-        ])
-        print("  [ReID] using DINOv2 ViT-S/14 embeddings")
-        _emb_model, _emb_transform = model, transform
-        return model, transform
-    except Exception as e:
-        print(f"  [ReID] DINOv2 failed to load ({e}), falling back to ResNet50")
-
-    import torchvision.models as M
-    model = M.resnet50(weights=M.ResNet50_Weights.DEFAULT)
-    model.fc = torch.nn.Identity()
-    model.eval()
-    transform = T.Compose([
-        T.Resize((224, 224)),
-        T.ToTensor(),
-        T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-    ])
-    _emb_model, _emb_transform = model, transform
-    return model, transform
-
-
-def _extract_embedding(patch_bgr: np.ndarray) -> np.ndarray | None:
-    if patch_bgr.size == 0:
-        return None
-    try:
-        import torch
-        from PIL import Image
-        model, transform = _get_embedding_model()
-        pil = Image.fromarray(cv2.cvtColor(patch_bgr, cv2.COLOR_BGR2RGB))
-        tensor = transform(pil).unsqueeze(0)
-        with torch.no_grad():
-            emb = model(tensor).squeeze(0).numpy()
-        norm = np.linalg.norm(emb)
-        return emb / (norm + 1e-8)
-    except Exception:
-        return None
-
-
-def _expand_box(x1: int, y1: int, x2: int, y2: int, w: int, h: int) -> tuple:
-    pad_x = max(int((x2 - x1) * PATCH_EXPAND_RATIO), 0)
-    pad_y = max(int((y2 - y1) * PATCH_EXPAND_RATIO), 0)
-    ex1, ey1 = max(0, x1 - pad_x), max(0, y1 - pad_y)
-    ex2, ey2 = min(w, x2 + pad_x), min(h, y2 + pad_y)
-    if ex2 - ex1 < MIN_PATCH_SIZE:
-        cx = (ex1 + ex2) // 2
-        ex1, ex2 = max(0, cx - MIN_PATCH_SIZE // 2), min(w, cx + MIN_PATCH_SIZE // 2)
-    if ey2 - ey1 < MIN_PATCH_SIZE:
-        cy = (ey1 + ey2) // 2
-        ey1, ey2 = max(0, cy - MIN_PATCH_SIZE // 2), min(h, cy + MIN_PATCH_SIZE // 2)
-    return ex1, ey1, ex2, ey2
-
-
-# ── Items: ObservedNode + visual embedding ────────────────────────────────────
+# ── Items: ObservedNode metadata (no visual embedding) ───────────────────────
 def _build_items(
     observed_graphs: list,
-    image_paths: list[Path],
+    image_paths: list[Path] | None = None,  # kept for API compat, unused
 ) -> tuple[list[dict], dict[str, list[dict]]]:
-    """Build one item per ObservedNode with a ResNet-50 visual embedding."""
-    path_by_stem = {p.stem: p for p in image_paths}
     all_items: list[dict] = []
     items_by_image: dict[str, list[dict]] = defaultdict(list)
 
     for og in observed_graphs:
         image_id = og.image_id
-        img_path = path_by_stem.get(image_id)
-        img_bgr  = cv2.imread(str(img_path)) if img_path else None
-        h, w     = (img_bgr.shape[:2] if img_bgr is not None else (1, 1))
-
         for obs in og.nodes.values():
-            emb = None
-            if img_bgr is not None:
-                x1n, y1n, x2n, y2n = obs.bbox
-                x1, y1 = int(x1n * w), int(y1n * h)
-                x2, y2 = int(x2n * w), int(y2n * h)
-                ex1, ey1, ex2, ey2 = _expand_box(x1, y1, x2, y2, w, h)
-                patch = img_bgr[ey1:ey2, ex1:ex2]
-                emb   = _extract_embedding(patch)
-
             item = {
                 "observed_node_id": obs.observed_node_id,
                 "image_id":         image_id,
                 "code":             obs.code,
                 "confidence":       obs.confidence,
                 "center":           obs.center,
-                "embedding":        emb,
                 "nearby_codes":     list(obs.nearby_codes),
             }
             all_items.append(item)
@@ -225,22 +127,39 @@ def _cloud_min_dist(ga: dict, gb: dict) -> float:
         return float(np.linalg.norm(
             np.asarray(ga["centroid"]) - np.asarray(gb["centroid"])
         ))
-    # Efficient batched min-distance: (m,1,3) - (1,n,3) → (m,n)
     diff = pa[:, None, :] - pb[None, :, :]
     return float(np.sqrt((diff * diff).sum(axis=2)).min())
 
 
-# ── Per-code clustering ───────────────────────────────────────────────────────
+# ── Scene 3D scale ────────────────────────────────────────────────────────────
+def _compute_scene_3d_scale(obs_geometry: dict[str, dict]) -> float | None:
+    """Median nearest-neighbour 3D centroid distance across all observations."""
+    if len(obs_geometry) < 2:
+        return None
+    pts = np.stack([np.asarray(g["centroid"][:3]) for g in obs_geometry.values()], axis=0)
+    dists = np.linalg.norm(pts[:, None, :] - pts[None, :, :], axis=2)
+    np.fill_diagonal(dists, np.inf)
+    nn_dists = dists.min(axis=1)
+    nn_dists = nn_dists[np.isfinite(nn_dists)]
+    if len(nn_dists) == 0:
+        return None
+    return float(np.median(nn_dists))
+
+
+# ── Same-image split enforcement ─────────────────────────────────────────────
 def _enforce_same_image_split(
     labels: np.ndarray,
     code_ids: list[str],
     item_by_id: dict,
 ) -> np.ndarray:
-    """If two detections from the same image share a label, reassign the
-    lower-confidence one to a new singleton cluster."""
+    """Safety net: if two detections from the same image share a label, reassign
+    the lower-confidence one to a new singleton cluster.
+
+    With DBSCAN and inf distances this should never trigger, but kept as a guard.
+    """
     labels = labels.copy()
     max_label = int(labels.max())
-    seen: dict[tuple, int] = {}  # (image_id, label) → index
+    seen: dict[tuple, int] = {}
 
     for i, obs_id in enumerate(code_ids):
         img = item_by_id[obs_id]["image_id"]
@@ -263,213 +182,61 @@ def _enforce_same_image_split(
     return labels
 
 
-def _build_neighborhood_signatures(
-    item_by_id: dict,
-    obs_geometry: dict,
-    k: int = 3,
-) -> dict[str, frozenset]:
-    """Compute a 3D neighborhood signature for every observation.
-
-    For each observation `a` in image `i`, find the `k` nearest observations
-    of a DIFFERENT component code within the same image, using VGGT centroid
-    distances (global 3D frame → view-invariant).
-
-    signature(a) = frozenset of component codes of those k nearest neighbors.
-
-    Two observations of the same physical instance will always be surrounded
-    by the same physical components → same signature, regardless of viewpoint.
-    """
-    # Group all obs by image
-    img_to_obs: dict[str, list[str]] = defaultdict(list)
-    for oid in item_by_id:
-        img_to_obs[item_by_id[oid]["image_id"]].append(oid)
-
-    signatures: dict[str, frozenset] = {}
-    for img_id, obs_ids in img_to_obs.items():
-        for oid in obs_ids:
-            g_a = obs_geometry.get(oid)
-            if g_a is None:
-                signatures[oid] = frozenset()
-                continue
-            code_a = item_by_id[oid]["code"]
-            ca = np.array(g_a["centroid"][:3], dtype=np.float64)
-
-            neighbors: list[tuple[float, int]] = []
-            for other in obs_ids:
-                if other == oid:
-                    continue
-                if item_by_id[other]["code"] == code_a:
-                    continue  # same code → not informative
-                g_b = obs_geometry.get(other)
-                if g_b is None:
-                    continue
-                cb = np.array(g_b["centroid"][:3], dtype=np.float64)
-                dist = float(np.linalg.norm(ca - cb))
-                neighbors.append((dist, item_by_id[other]["code"]))
-
-            neighbors.sort()
-            signatures[oid] = frozenset(code for _, code in neighbors[:k])
-    return signatures
-
-
-def _neighborhood_jaccard(sig_a: frozenset, sig_b: frozenset) -> float | None:
-    """Jaccard similarity between two neighborhood signatures.
-    Returns None if either signature is empty (no geometry available).
-    """
-    if not sig_a or not sig_b:
-        return None
-    inter = len(sig_a & sig_b)
-    union = len(sig_a | sig_b)
-    return inter / union if union > 0 else None
-
-
-def _cluster_code(
+# ── DBSCAN per-code clustering ────────────────────────────────────────────────
+def _cluster_code_dbscan(
     code: int,
     code_ids: list[str],
     item_by_id: dict,
     obs_geometry: dict[str, dict],
-    neighborhood_sigs: dict[str, frozenset] | None = None,
+    eps: float,
 ) -> list[list[str]]:
     """Cluster detections of one component code into scene-node groups.
 
-    k = max detections of this code in any single image (structural estimate:
-    each image sees each physical instance at most once after NMS, so the
-    densest image count equals the scene's instance count).
+    Distance matrix: _cloud_min_dist() between point clouds, inf for same-image
+    pairs (hard cannot-link). DBSCAN with min_samples=1 assigns every detection to
+    a cluster; inf distances ensure same-image detections always end up in
+    different clusters.
 
-    Affinity matrix (used by K-Means on spectral embedding):
-      - same image            → 0.0  (hard constraint)
-      - neighborhood Jaccard  = 0 (both sigs non-empty) → 0.0 (hard exclusion:
-                                different neighbors means different instance)
-      - VGGT min-cloud < 0.08m → 0.98 (hard: certainly same instance)
-      - otherwise             → max(0, cosine_sim) or 0.3 fallback
+    Fallback (no VGGT geometry): one singleton cluster per image.
     """
     n = len(code_ids)
     if n == 1:
         return [list(code_ids)]
 
-    # ── k from incompatibility graph (chromatic number estimate) ─────────────
-    # Two observations are incompatible if they come from the same image
-    # (they cannot be the same physical instance).  The minimum number of
-    # clusters that satisfies all incompatibility constraints equals the
-    # chromatic number of this graph.  Greedy coloring gives an exact result
-    # for interval/perfect graphs, and a tight upper bound otherwise.
-    # This correctly handles cases where no single image sees all instances
-    # (e.g. image A sees {1,2}, image B sees {2,3} → k=3, max_per_image=2).
-    img_of = {oid: item_by_id[oid]["image_id"] for oid in code_ids}
-    # adjacency list: obs → set of obs from same image
-    incompat: dict[str, set[str]] = {oid: set() for oid in code_ids}
-    img_to_obs: dict[str, list[str]] = defaultdict(list)
-    for oid in code_ids:
-        img_to_obs[img_of[oid]].append(oid)
-    for peers in img_to_obs.values():
-        for i in range(len(peers)):
-            for j in range(i + 1, len(peers)):
-                incompat[peers[i]].add(peers[j])
-                incompat[peers[j]].add(peers[i])
+    if not obs_geometry:
+        img_groups: dict[str, list[str]] = defaultdict(list)
+        for oid in code_ids:
+            img_groups[item_by_id[oid]["image_id"]].append(oid)
+        return list(img_groups.values())
 
-    # Greedy coloring ordered by degree descending (DSATUR-lite)
-    color: dict[str, int] = {}
-    for oid in sorted(code_ids, key=lambda x: -len(incompat[x])):
-        used = {color[nb] for nb in incompat[oid] if nb in color}
-        color[oid] = next(c for c in range(n) if c not in used)
-    k = max(color.values()) + 1
+    # Build precomputed distance matrix
+    D = np.full((n, n), np.inf, dtype=np.float64)
+    np.fill_diagonal(D, 0.0)
 
-    if k == 1:
-        return [list(code_ids)]
-
-    # ── Affinity matrix ───────────────────────────────────────────────────────
-    A = np.zeros((n, n), dtype=np.float64)
     for i in range(n):
         a = code_ids[i]
         ga = obs_geometry.get(a)
         for j in range(i + 1, n):
             b = code_ids[j]
             if item_by_id[a]["image_id"] == item_by_id[b]["image_id"]:
-                continue  # same image → 0 (hard constraint)
+                continue  # same image → hard cannot-link (stays inf)
+            if ga is None:
+                continue
+            gb = obs_geometry.get(b)
+            if gb is None:
+                continue
+            d = _cloud_min_dist(ga, gb)
+            D[i, j] = D[j, i] = d
 
-            # Neighborhood hard exclusion: if both signatures are non-empty
-            # and share no neighbor codes, they cannot be the same instance.
-            if neighborhood_sigs is not None:
-                jac = _neighborhood_jaccard(
-                    neighborhood_sigs.get(a, frozenset()),
-                    neighborhood_sigs.get(b, frozenset()),
-                )
-                if jac is not None and jac == 0.0:
-                    continue  # leave as 0 — different neighborhood → different instance
-
-            val = 0.0
-            if ga is not None:
-                gb = obs_geometry.get(b)
-                if gb is not None and _cloud_min_dist(ga, gb) <= VGGT_REID_CONFIDENT_DIST:
-                    val = 0.98
-            if val == 0.0:
-                ea = item_by_id[a].get("embedding")
-                eb = item_by_id[b].get("embedding")
-                val = max(0.0, float(np.dot(ea, eb))) if (ea is not None and eb is not None) else 0.3
-            A[i, j] = A[j, i] = val
-
-    # ── K-Means on normalised spectral embedding ──────────────────────────────
-    # Normalised Laplacian → k smallest eigenvectors → K-Means
-    d = A.sum(axis=1).clip(1e-10)
-    D_isqrt = 1.0 / np.sqrt(d)
-    L = np.eye(n) - (A * D_isqrt[:, None]) * D_isqrt[None, :]
-    _, V = np.linalg.eigh(L)
-    X = V[:, :k]
-    norms = np.linalg.norm(X, axis=1, keepdims=True).clip(1e-10)
-    X = X / norms
-
-    from sklearn.cluster import KMeans
-    labels = KMeans(n_clusters=k, n_init=20, random_state=42).fit_predict(X)
+    from sklearn.cluster import DBSCAN
+    labels = DBSCAN(
+        metric="precomputed", eps=eps, min_samples=DBSCAN_MIN_SAMPLES
+    ).fit_predict(D)
     labels = _enforce_same_image_split(labels, code_ids, item_by_id)
 
     groups: dict[int, list[str]] = defaultdict(list)
     for idx, obs_id in enumerate(code_ids):
         groups[int(labels[idx])].append(obs_id)
-
-    # ── Post-clustering VGGT merge ────────────────────────────────────────────
-    # If two clusters share no images and their best inter-cluster min-cloud
-    # distance is below VGGT_POST_MERGE_DIST, merge the smaller into the larger.
-    # This handles cases where k was correctly estimated but K-Means split a
-    # sparse instance across two clusters due to visual variability.
-    if obs_geometry:
-        changed = True
-        while changed:
-            changed = False
-            gids = list(groups.keys())
-            for gi in range(len(gids)):
-                for gj in range(gi + 1, len(gids)):
-                    a_ids = groups[gids[gi]]
-                    b_ids = groups[gids[gj]]
-                    # Skip if they share an image (different instances by definition)
-                    imgs_a = {item_by_id[o]["image_id"] for o in a_ids}
-                    imgs_b = {item_by_id[o]["image_id"] for o in b_ids}
-                    if imgs_a & imgs_b:
-                        continue
-                    # Don't merge two clusters that are both well-supported —
-                    # if both have ≥ half the total images they're likely distinct
-                    # instances that happen to be close in 3D (e.g. collinear valves).
-                    n_images = len(imgs_a | imgs_b)
-                    if len(imgs_a) >= max(2, n_images // 2) and len(imgs_b) >= max(2, n_images // 2):
-                        continue
-                    # Find best inter-cluster min-cloud distance
-                    best = float("inf")
-                    for oa in a_ids:
-                        ga = obs_geometry.get(oa)
-                        if ga is None:
-                            continue
-                        for ob in b_ids:
-                            gb = obs_geometry.get(ob)
-                            if gb is None:
-                                continue
-                            best = min(best, _cloud_min_dist(ga, gb))
-                    if best <= VGGT_POST_MERGE_DIST:
-                        # Merge smaller into larger
-                        keep, drop = (gids[gi], gids[gj]) if len(a_ids) >= len(b_ids) else (gids[gj], gids[gi])
-                        groups[keep].extend(groups.pop(drop))
-                        changed = True
-                        break
-                if changed:
-                    break
 
     def _sort_key(cluster: list[str]) -> tuple:
         centers = [item_by_id[i]["center"] for i in cluster]
@@ -557,32 +324,30 @@ def identify_scene_nodes(
     n_images = len(items_by_image)
     print(f"  [ReID] {len(all_items)} detections across {n_images} images")
 
-    # VGGT 3D hard constraints
     obs_geometry: dict[str, dict] = {}
     if VGGT_REID_ENABLED and search_roots:
         obs_geometry = _load_obs_geometry(observed_graphs, list(search_roots))
 
-    # Neighborhood signatures (3D, per-image, cross-code)
-    neighborhood_sigs: dict[str, frozenset] = {}
-    if obs_geometry:
-        neighborhood_sigs = _build_neighborhood_signatures(item_by_id, obs_geometry)
-        n_sigs = sum(1 for s in neighborhood_sigs.values() if s)
-        print(f"  [ReID] neighborhood signatures: {n_sigs}/{len(neighborhood_sigs)} non-empty")
+    # Compute adaptive eps from scene 3D scale
+    scene_3d_scale = _compute_scene_3d_scale(obs_geometry)
+    if scene_3d_scale is not None:
+        eps = DBSCAN_EPS_FACTOR * scene_3d_scale * VGGT_3D_ADJACENCY_FACTOR
+        print(f"  [ReID-DBSCAN] scene_3d_scale={scene_3d_scale:.3f}m  eps={eps:.3f}m  "
+              f"(factor={DBSCAN_EPS_FACTOR}*{VGGT_3D_ADJACENCY_FACTOR})")
+    else:
+        eps = DBSCAN_FALLBACK_EPS
+        print(f"  [ReID-DBSCAN] no 3D scale, fallback eps={eps:.3f}m")
 
-    # Spectral clustering per component code
     items_by_code: dict[int, list[str]] = defaultdict(list)
     for item in all_items:
         items_by_code[item["code"]].append(item["observed_node_id"])
 
     groups:         dict[str, dict] = {}
-    groups_by_code: dict[int, list[str]] = defaultdict(list)
     for code, code_ids in sorted(items_by_code.items()):
-        clusters = _cluster_code(code, code_ids, item_by_id, obs_geometry,
-                                 neighborhood_sigs=neighborhood_sigs or None)
+        clusters = _cluster_code_dbscan(code, code_ids, item_by_id, obs_geometry, eps)
         for k, cluster in enumerate(clusters, start=1):
             gid = f"{code}#{k}"
             groups[gid] = {"code": code, "member_ids": cluster, "group_id": gid}
-            groups_by_code[code].append(gid)
 
     scene_nodes = _build_scene_nodes(groups, item_by_id, observed_graphs)
 
@@ -592,6 +357,8 @@ def identify_scene_nodes(
         "n_detections":  len(all_items),
         "n_images":      n_images,
         "n_vggt_geometries": len(obs_geometry),
+        "eps": eps,
+        "scene_3d_scale": scene_3d_scale,
     }
 
 
@@ -659,19 +426,17 @@ def merge_spurious_singletons(
     scene_cutoff: float | None = None,
     pair_hints: list[dict] | None = None,
     pos_factor: float = 0.5,
-    iou_threshold: float = 0.30,
+    iou_threshold: float = 0.30,  # kept for API compat, unused
 ) -> tuple[list[SceneNode], list[dict]]:
     """Merge singleton scene nodes that are likely spurious duplicates.
 
     Level 1 – 3D positional duplicate: centroid within pos_factor * scene_cutoff
     of a higher-support same-code node.
 
-    Level 2 – 2D detection overlap: the singleton's sole detection has
-    IoU >= iou_threshold with any detection of a higher-support same-code node
-    in the same image.
-
     Level 3 – shared VGGT edge partner: two low-support nodes of the same code
     that share a strong VGGT-confirmed neighbour and are within scene_cutoff.
+
+    (Level 2 — 2D bounding-box IoU — removed in 3D-only pipeline.)
     """
     obs_by_id: dict[str, object] = {}
     for og in observed_graphs:
@@ -689,16 +454,6 @@ def merge_spurious_singletons(
 
     def _union(dropped: str, kept: str) -> None:
         parent[_find(dropped)] = _find(kept)
-
-    def _iou(b1: list, b2: list) -> float:
-        ix1, iy1 = max(b1[0], b2[0]), max(b1[1], b2[1])
-        ix2, iy2 = min(b1[2], b2[2]), min(b1[3], b2[3])
-        inter = max(0.0, ix2 - ix1) * max(0.0, iy2 - iy1)
-        if inter == 0:
-            return 0.0
-        a1 = (b1[2] - b1[0]) * (b1[3] - b1[1])
-        a2 = (b2[2] - b2[0]) * (b2[3] - b2[1])
-        return inter / (a1 + a2 - inter)
 
     # Build strong-partner index from VGGT pair hints
     strong_partners: dict[str, set[str]] = defaultdict(set)
@@ -765,23 +520,6 @@ def merge_spurious_singletons(
                     kept_id = other.scene_node_id
                     reason = f"3d_pos_dup  dist={dist:.4f}m  ({dist/scene_cutoff:.2f}x)"
                     break
-
-        # Level 2: 2D detection overlap
-        if kept_id is None and sn.supporting_observed_ids:
-            my_obs = obs_by_id.get(sn.supporting_observed_ids[0])
-            if my_obs is not None:
-                for other in candidates:
-                    for oid in other.supporting_observed_ids:
-                        o_obs = obs_by_id.get(oid)
-                        if o_obs is None or o_obs.image_id != my_obs.image_id:
-                            continue
-                        iou = _iou(my_obs.bbox, o_obs.bbox)
-                        if iou >= iou_threshold:
-                            kept_id = other.scene_node_id
-                            reason = f"2d_overlap  iou={iou:.3f}  img={my_obs.image_id}"
-                            break
-                    if kept_id:
-                        break
 
         # Level 3: shared VGGT edge partner
         if (
