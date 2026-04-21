@@ -132,16 +132,33 @@ def _cloud_min_dist(ga: dict, gb: dict) -> float:
 
 
 # ── Scene 3D scale ────────────────────────────────────────────────────────────
-def _compute_scene_3d_scale(obs_geometry: dict[str, dict]) -> float | None:
-    """Median nearest-neighbour 3D centroid distance across all observations."""
-    if len(obs_geometry) < 2:
+def _compute_scene_3d_scale(obs_geometry: dict[str, dict], item_by_id: dict) -> float | None:
+    """Median cross-code nearest-neighbour 3D distance.
+
+    Using ALL-pair NN would measure within-component view-to-view jitter (a few mm),
+    not inter-component spacing. Cross-code NNs skip same-code pairs and therefore
+    capture the physical gap between distinct component types, which is the correct
+    scale for choosing eps (how close two views of the same component can be).
+    """
+    all_ids = [oid for oid in obs_geometry if oid in item_by_id]
+    if len(all_ids) < 2:
         return None
-    pts = np.stack([np.asarray(g["centroid"][:3]) for g in obs_geometry.values()], axis=0)
+
+    pts   = np.stack([np.asarray(obs_geometry[oid]["centroid"][:3]) for oid in all_ids])
+    codes = np.array([item_by_id[oid]["code"] for oid in all_ids])
+
     dists = np.linalg.norm(pts[:, None, :] - pts[None, :, :], axis=2)
     np.fill_diagonal(dists, np.inf)
-    nn_dists = dists.min(axis=1)
-    nn_dists = nn_dists[np.isfinite(nn_dists)]
-    if len(nn_dists) == 0:
+
+    nn_dists = []
+    for i in range(len(all_ids)):
+        # mask same-code pairs to inf so only cross-code distances remain
+        row = dists[i].copy()
+        row[codes == codes[i]] = np.inf
+        if np.isfinite(row).any():
+            nn_dists.append(row[np.isfinite(row)].min())
+
+    if not nn_dists:
         return None
     return float(np.median(nn_dists))
 
@@ -228,10 +245,15 @@ def _cluster_code_dbscan(
             d = _cloud_min_dist(ga, gb)
             D[i, j] = D[j, i] = d
 
+    # sklearn DBSCAN with metric="precomputed" requires finite values.
+    # Replace inf (same-image hard cannot-link) with a large finite sentinel
+    # that is guaranteed to exceed eps, so those pairs are never neighbors.
+    D_finite = np.where(np.isinf(D), max(eps * 1e6, 1e9), D)
+
     from sklearn.cluster import DBSCAN
     labels = DBSCAN(
         metric="precomputed", eps=eps, min_samples=DBSCAN_MIN_SAMPLES
-    ).fit_predict(D)
+    ).fit_predict(D_finite)
     labels = _enforce_same_image_split(labels, code_ids, item_by_id)
 
     groups: dict[int, list[str]] = defaultdict(list)
@@ -328,8 +350,8 @@ def identify_scene_nodes(
     if VGGT_REID_ENABLED and search_roots:
         obs_geometry = _load_obs_geometry(observed_graphs, list(search_roots))
 
-    # Compute adaptive eps from scene 3D scale
-    scene_3d_scale = _compute_scene_3d_scale(obs_geometry)
+    # Compute adaptive eps from cross-code scene 3D scale
+    scene_3d_scale = _compute_scene_3d_scale(obs_geometry, item_by_id)
     if scene_3d_scale is not None:
         eps = DBSCAN_EPS_FACTOR * scene_3d_scale * VGGT_3D_ADJACENCY_FACTOR
         print(f"  [ReID-DBSCAN] scene_3d_scale={scene_3d_scale:.3f}m  eps={eps:.3f}m  "
