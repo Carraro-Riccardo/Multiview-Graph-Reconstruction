@@ -19,6 +19,7 @@ from dataclasses import dataclass, field
 import networkx as nx
 
 from config import (
+    COOC_COUNTS,
     COMPONENT_INFO,
     DEGREE_SATURATION,
     DIAMETER_CODES,
@@ -89,6 +90,8 @@ def build_direct_graph(
     vggt_edge_hints = vggt_edge_hints or {}
     vggt_pairs = set(vggt_edge_hints.keys())
 
+    _max_cooc = max(COOC_COUNTS.values()) if COOC_COUNTS else 1
+
     def _vggt_score(pair: tuple[str, str]) -> float:
         hint = vggt_edge_hints.get(pair, {})
         return float(hint.get("vote_count", 0)) * float(hint.get("score", 0.0))
@@ -96,10 +99,12 @@ def build_direct_graph(
     def _priority(pair: tuple[str, str]) -> tuple:
         a, b = pair
         hint = vggt_edge_hints.get(pair, {})
+        ca, cb = sn_code.get(a, 0), sn_code.get(b, 0)
+        cooc_norm = COOC_COUNTS.get(_norm_code(ca, cb), 0) / _max_cooc
         hub_bonus = max(max(0, max_degree.get(a, 2) - 2), max(0, max_degree.get(b, 2) - 2))
         vggt_votes = hint.get("vote_count", 0)
         vggt_score = hint.get("score", 0.0)
-        return (vggt_votes, hub_bonus, vggt_score)
+        return (vggt_votes, hub_bonus, vggt_score * (1 + cooc_norm))
 
     sorted_pairs = sorted(vggt_pairs, key=_priority, reverse=True)
 
@@ -142,6 +147,10 @@ def build_direct_graph(
         vggt_votes = int(vggt_hint.get("vote_count", 0))
         combined_votes = _vggt_score(pair)
 
+        ca, cb = sn_code.get(a, 0), sn_code.get(b, 0)
+        if _norm_code(ca, cb) in FORBIDDEN_PAIRS:
+            rejected_log.append({"pair": list(pair), "reason": "forbidden_pair", "votes": combined_votes})
+            continue
         if max_degree.get(a, 0) == 0 or max_degree.get(b, 0) == 0:
             rejected_log.append({"pair": list(pair), "reason": "diameter_node", "votes": combined_votes})
             continue

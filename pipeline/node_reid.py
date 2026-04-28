@@ -1,15 +1,16 @@
-"""Step 2 – node re-identification via DBSCAN on VGGT 3D centroids.
+"""Step 2 – node re-identification via graph coloring + constrained agglomerative clustering.
 
 For every component code the algorithm:
   1. Loads VGGT 3D geometry (centroid + point-cloud sample) for every detection.
-  2. Computes a precomputed pairwise distance matrix, with inf for same-image pairs
-     (hard cannot-link: two detections in the same image are different instances).
-  3. Runs DBSCAN(metric="precomputed", eps, min_samples=1) — automatic k, no
-     threshold tuning beyond eps.
-  4. eps is derived adaptively from the scene scale: eps = EPS_FACTOR * scene_cutoff,
-     where scene_cutoff = median_NN_dist * VGGT_3D_ADJACENCY_FACTOR.
+  2. Computes k_min via greedy graph coloring of the incompatibility graph:
+     two detections are incompatible iff they appear in the same image.
+  3. Runs constrained single-linkage agglomerative clustering:
+     - starts from N singleton clusters
+     - iteratively merges the closest pair (by _cloud_min_dist) that shares no image
+     - stops when exactly k_min clusters remain
+  4. Zero tunable parameters — k is determined by scene structure, not thresholds.
 
-Fallback when VGGT geometry is unavailable: each detection is a singleton per image.
+Fallback when VGGT geometry is unavailable: use graph coloring assignment directly.
 """
 
 from __future__ import annotations
@@ -20,16 +21,10 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from .branch_fragments import is_anchor, is_terminal
-from config import COMPONENT_INFO, VGGT_3D_ADJACENCY_FACTOR
+from config import COMPONENT_INFO
 
 
-# ── DBSCAN clustering parameters ─────────────────────────────────────────────
-# eps is derived as EPS_FACTOR * scene_cutoff (adaptive, not fixed metres).
-DBSCAN_EPS_FACTOR   = 0.40   # fraction of scene_cutoff for within-code eps
-DBSCAN_FALLBACK_EPS = 0.12   # metres, used only when VGGT geometry unavailable
-DBSCAN_MIN_SAMPLES  = 1      # every detection is a core point (no outlier class)
-
-VGGT_REID_ENABLED   = True
+VGGT_REID_ENABLED = True
 
 
 # ── SceneNode (downstream-compatible) ────────────────────────────────────────
@@ -131,134 +126,96 @@ def _cloud_min_dist(ga: dict, gb: dict) -> float:
     return float(np.sqrt((diff * diff).sum(axis=2)).min())
 
 
-# ── Scene 3D scale ────────────────────────────────────────────────────────────
-def _compute_scene_3d_scale(obs_geometry: dict[str, dict], item_by_id: dict) -> float | None:
-    """Median cross-code nearest-neighbour 3D distance.
-
-    Using ALL-pair NN would measure within-component view-to-view jitter (a few mm),
-    not inter-component spacing. Cross-code NNs skip same-code pairs and therefore
-    capture the physical gap between distinct component types, which is the correct
-    scale for choosing eps (how close two views of the same component can be).
-    """
-    all_ids = [oid for oid in obs_geometry if oid in item_by_id]
-    if len(all_ids) < 2:
-        return None
-
-    pts   = np.stack([np.asarray(obs_geometry[oid]["centroid"][:3]) for oid in all_ids])
-    codes = np.array([item_by_id[oid]["code"] for oid in all_ids])
-
-    dists = np.linalg.norm(pts[:, None, :] - pts[None, :, :], axis=2)
-    np.fill_diagonal(dists, np.inf)
-
-    nn_dists = []
-    for i in range(len(all_ids)):
-        # mask same-code pairs to inf so only cross-code distances remain
-        row = dists[i].copy()
-        row[codes == codes[i]] = np.inf
-        if np.isfinite(row).any():
-            nn_dists.append(row[np.isfinite(row)].min())
-
-    if not nn_dists:
-        return None
-    return float(np.median(nn_dists))
-
-
-# ── Same-image split enforcement ─────────────────────────────────────────────
-def _enforce_same_image_split(
-    labels: np.ndarray,
-    code_ids: list[str],
-    item_by_id: dict,
-) -> np.ndarray:
-    """Safety net: if two detections from the same image share a label, reassign
-    the lower-confidence one to a new singleton cluster.
-
-    With DBSCAN and inf distances this should never trigger, but kept as a guard.
-    """
-    labels = labels.copy()
-    max_label = int(labels.max())
-    seen: dict[tuple, int] = {}
-
-    for i, obs_id in enumerate(code_ids):
-        img = item_by_id[obs_id]["image_id"]
-        lbl = int(labels[i])
-        key = (img, lbl)
-        if key in seen:
-            j = seen[key]
-            conf_i = item_by_id[obs_id]["confidence"]
-            conf_j = item_by_id[code_ids[j]]["confidence"]
-            if conf_i >= conf_j:
-                max_label += 1
-                labels[j] = max_label
-                seen[key] = i
-            else:
-                max_label += 1
-                labels[i] = max_label
-        else:
-            seen[key] = i
-
-    return labels
-
-
-# ── DBSCAN per-code clustering ────────────────────────────────────────────────
-def _cluster_code_dbscan(
+# ── Agglomerative per-code clustering (zero thresholds) ──────────────────────
+def _cluster_code_agglomerative(
     code: int,
     code_ids: list[str],
     item_by_id: dict,
     obs_geometry: dict[str, dict],
-    eps: float,
 ) -> list[list[str]]:
     """Cluster detections of one component code into scene-node groups.
 
-    Distance matrix: _cloud_min_dist() between point clouds, inf for same-image
-    pairs (hard cannot-link). DBSCAN with min_samples=1 assigns every detection to
-    a cluster; inf distances ensure same-image detections always end up in
-    different clusters.
+    Step 1 — k_min via greedy graph coloring of the incompatibility graph:
+      two detections are incompatible (must be in different clusters) iff they
+      appear in the same image. The chromatic number gives the minimum number
+      of instances that can explain all observations simultaneously.
 
-    Fallback (no VGGT geometry): one singleton cluster per image.
+    Step 2 — constrained single-linkage agglomerative clustering:
+      Start with N singleton clusters.  Repeatedly merge the pair of clusters
+      (ci, cj) with the smallest _cloud_min_dist that share no image, until
+      exactly k_min clusters remain.  Cannot-link = same image.
+
+    Zero tunable parameters — k is derived from scene structure.
+    Fallback (no VGGT geometry): use graph coloring assignment directly.
     """
     n = len(code_ids)
     if n == 1:
         return [list(code_ids)]
 
+    img_of = {oid: item_by_id[oid]["image_id"] for oid in code_ids}
+
+    # Step 1: k_min via DSATUR-lite graph coloring ──────────────────────────
+    img_to_obs: dict[str, list[str]] = defaultdict(list)
+    for oid in code_ids:
+        img_to_obs[img_of[oid]].append(oid)
+
+    incompat: dict[str, set[str]] = {oid: set() for oid in code_ids}
+    for peers in img_to_obs.values():
+        for i in range(len(peers)):
+            for j in range(i + 1, len(peers)):
+                incompat[peers[i]].add(peers[j])
+                incompat[peers[j]].add(peers[i])
+
+    color: dict[str, int] = {}
+    for oid in sorted(code_ids, key=lambda x: -len(incompat[x])):
+        used = {color[nb] for nb in incompat[oid] if nb in color}
+        color[oid] = next(c for c in range(n) if c not in used)
+    k = max(color.values()) + 1
+
+    if k == 1:
+        return [list(code_ids)]
+    if k >= n:
+        return [[oid] for oid in code_ids]
+
+    # Fallback: no VGGT geometry → use coloring assignment directly
     if not obs_geometry:
-        img_groups: dict[str, list[str]] = defaultdict(list)
+        groups: dict[int, list[str]] = defaultdict(list)
         for oid in code_ids:
-            img_groups[item_by_id[oid]["image_id"]].append(oid)
-        return list(img_groups.values())
+            groups[color[oid]].append(oid)
+        return list(groups.values())
 
-    # Build precomputed distance matrix
-    D = np.full((n, n), np.inf, dtype=np.float64)
-    np.fill_diagonal(D, 0.0)
+    # Step 2: greedy agglomerative with cannot-link = same image ─────────────
+    clusters: dict[int, list[str]] = {i: [code_ids[i]] for i in range(n)}
+    cluster_images: dict[int, set[str]] = {i: {img_of[code_ids[i]]} for i in range(n)}
 
-    for i in range(n):
-        a = code_ids[i]
-        ga = obs_geometry.get(a)
-        for j in range(i + 1, n):
-            b = code_ids[j]
-            if item_by_id[a]["image_id"] == item_by_id[b]["image_id"]:
-                continue  # same image → hard cannot-link (stays inf)
-            if ga is None:
-                continue
-            gb = obs_geometry.get(b)
-            if gb is None:
-                continue
-            d = _cloud_min_dist(ga, gb)
-            D[i, j] = D[j, i] = d
+    while len(clusters) > k:
+        cids = list(clusters.keys())
+        best_dist = float('inf')
+        best_i, best_j = None, None
 
-    # sklearn DBSCAN with metric="precomputed" requires finite values.
-    # Replace inf (same-image hard cannot-link) with a large finite sentinel
-    # that is guaranteed to exceed eps, so those pairs are never neighbors.
-    D_finite = np.where(np.isinf(D), max(eps * 1e6, 1e9), D)
+        for ci_idx in range(len(cids)):
+            for cj_idx in range(ci_idx + 1, len(cids)):
+                ci, cj = cids[ci_idx], cids[cj_idx]
+                if cluster_images[ci] & cluster_images[cj]:
+                    continue  # cannot-link: share at least one image
+                for oa in clusters[ci]:
+                    ga = obs_geometry.get(oa)
+                    if ga is None:
+                        continue
+                    for ob in clusters[cj]:
+                        gb = obs_geometry.get(ob)
+                        if gb is None:
+                            continue
+                        d = _cloud_min_dist(ga, gb)
+                        if d < best_dist:
+                            best_dist = d
+                            best_i, best_j = ci, cj
 
-    from sklearn.cluster import DBSCAN
-    labels = DBSCAN(
-        metric="precomputed", eps=eps, min_samples=DBSCAN_MIN_SAMPLES
-    ).fit_predict(D_finite)
-    labels = _enforce_same_image_split(labels, code_ids, item_by_id)
+        if best_i is None:
+            break  # all remaining clusters cannot-link to each other
 
-    groups: dict[int, list[str]] = defaultdict(list)
-    for idx, obs_id in enumerate(code_ids):
-        groups[int(labels[idx])].append(obs_id)
+        clusters[best_i].extend(clusters.pop(best_j))
+        cluster_images[best_i].update(cluster_images.pop(best_j))
 
     def _sort_key(cluster: list[str]) -> tuple:
         centers = [item_by_id[i]["center"] for i in cluster]
@@ -268,7 +225,7 @@ def _cluster_code_dbscan(
             float(np.mean([c[0] for c in centers])),
         )
 
-    return sorted(groups.values(), key=_sort_key)
+    return sorted(clusters.values(), key=_sort_key)
 
 
 # ── SceneNode assembly ────────────────────────────────────────────────────────
@@ -350,23 +307,15 @@ def identify_scene_nodes(
     if VGGT_REID_ENABLED and search_roots:
         obs_geometry = _load_obs_geometry(observed_graphs, list(search_roots))
 
-    # Compute adaptive eps from cross-code scene 3D scale
-    scene_3d_scale = _compute_scene_3d_scale(obs_geometry, item_by_id)
-    if scene_3d_scale is not None:
-        eps = DBSCAN_EPS_FACTOR * scene_3d_scale * VGGT_3D_ADJACENCY_FACTOR
-        print(f"  [ReID-DBSCAN] scene_3d_scale={scene_3d_scale:.3f}m  eps={eps:.3f}m  "
-              f"(factor={DBSCAN_EPS_FACTOR}*{VGGT_3D_ADJACENCY_FACTOR})")
-    else:
-        eps = DBSCAN_FALLBACK_EPS
-        print(f"  [ReID-DBSCAN] no 3D scale, fallback eps={eps:.3f}m")
+    print(f"  [ReID-Agglom] {len(obs_geometry)} detection geometries, zero-threshold clustering")
 
     items_by_code: dict[int, list[str]] = defaultdict(list)
     for item in all_items:
         items_by_code[item["code"]].append(item["observed_node_id"])
 
-    groups:         dict[str, dict] = {}
+    groups: dict[str, dict] = {}
     for code, code_ids in sorted(items_by_code.items()):
-        clusters = _cluster_code_dbscan(code, code_ids, item_by_id, obs_geometry, eps)
+        clusters = _cluster_code_agglomerative(code, code_ids, item_by_id, obs_geometry)
         for k, cluster in enumerate(clusters, start=1):
             gid = f"{code}#{k}"
             groups[gid] = {"code": code, "member_ids": cluster, "group_id": gid}
@@ -375,12 +324,10 @@ def identify_scene_nodes(
 
     _print_reid_summary(scene_nodes, all_items)
     return scene_nodes, {
-        "n_scene_nodes": len(scene_nodes),
-        "n_detections":  len(all_items),
-        "n_images":      n_images,
+        "n_scene_nodes":     len(scene_nodes),
+        "n_detections":      len(all_items),
+        "n_images":          n_images,
         "n_vggt_geometries": len(obs_geometry),
-        "eps": eps,
-        "scene_3d_scale": scene_3d_scale,
     }
 
 
