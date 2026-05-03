@@ -5,7 +5,7 @@ Per-image 2D adjacency votes are no longer used.
 
 Algorithm
 ---------
-1. Sort VGGT hint pairs by priority (vote_count, hub_bonus, score).
+1. Sort VGGT hint pairs by priority (vote_count, cooc-weighted score).
 2. Build the final graph greedily, respecting forbidden pairs,
    cycle avoidance, and physical degree constraints.
 3. Return BridgeEdge objects for the spanning-tree pass.
@@ -21,7 +21,6 @@ import networkx as nx
 from config import (
     COOC_COUNTS,
     COMPONENT_INFO,
-    DEGREE_SATURATION,
     DIAMETER_CODES,
     FORBIDDEN_PAIRS,
 )
@@ -31,8 +30,6 @@ def _max_allowed_degree(code: int) -> int:
     physical_valence = COMPONENT_INFO.get(code, (2, ""))[0]
     if code in DIAMETER_CODES:
         return 0
-    if DEGREE_SATURATION.get(code) == 0.0:
-        return min(1, physical_valence)
     return physical_valence
 
 
@@ -59,8 +56,6 @@ class BridgeEdge:
     triplet_support: int = 0
     cooc_count: int = 0
     evidence_sources: list = field(default_factory=lambda: ["vggt_3d"])
-    weakened_by_reconciliation: bool = False
-    direct_visible_support_count: int = 0
     vggt_support_count: int = 0
     vggt_score: float = 0.0
     vggt_min_distance: float | None = None
@@ -101,10 +96,9 @@ def build_direct_graph(
         hint = vggt_edge_hints.get(pair, {})
         ca, cb = sn_code.get(a, 0), sn_code.get(b, 0)
         cooc_norm = COOC_COUNTS.get(_norm_code(ca, cb), 0) / _max_cooc
-        hub_bonus = max(max(0, max_degree.get(a, 2) - 2), max(0, max_degree.get(b, 2) - 2))
         vggt_votes = hint.get("vote_count", 0)
         vggt_score = hint.get("score", 0.0)
-        return (vggt_votes, hub_bonus, vggt_score * (1 + cooc_norm))
+        return (vggt_votes, vggt_score * (1 + cooc_norm))
 
     sorted_pairs = sorted(vggt_pairs, key=_priority, reverse=True)
 
@@ -188,7 +182,6 @@ def build_direct_graph(
             triplet_support=0,
             forbidden_flag=False,
             evidence_sources=evidence_sources,
-            shortcut_suppressed=False,
             forced=False,
             forced_reason=None,
         )
@@ -218,8 +211,6 @@ def build_direct_graph(
                 triplet_support=0,
                 cooc_count=0,
                 evidence_sources=["vggt_3d"] if vggt_votes > 0 else [],
-                weakened_by_reconciliation=False,
-                direct_visible_support_count=0,
                 vggt_support_count=vggt_votes,
                 vggt_score=float(vggt_hint.get("score", 0.0)),
                 vggt_min_distance=vggt_hint.get("min_dist"),
@@ -238,7 +229,6 @@ def build_direct_graph(
         "n_pairs_with_vggt": sum(
             1 for hint in vggt_edge_hints.values() if hint.get("vote_count", 0) > 0
         ),
-        "n_shortcut_suppressed": 0,
         "n_edges_accepted": graph.number_of_edges(),
         "n_isolated": n_isolated,
         "is_connected": is_conn,

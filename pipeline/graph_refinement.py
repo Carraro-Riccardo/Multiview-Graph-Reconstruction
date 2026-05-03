@@ -6,15 +6,13 @@ from collections import defaultdict
 
 import networkx as nx
 
-from config import COOC_COUNTS, COMPONENT_INFO, DEGREE_SATURATION, DIAMETER_CODES, FORBIDDEN_PAIRS, TRIPLET_COUNTS
+from config import COOC_COUNTS, COMPONENT_INFO, DIAMETER_CODES, FORBIDDEN_PAIRS, TRIPLET_COUNTS
 
 
 def _max_allowed_degree(code: int) -> int:
     physical_valence = COMPONENT_INFO.get(code, (2, ""))[0]
     if code in DIAMETER_CODES:
         return 0
-    if DEGREE_SATURATION.get(code) == 0.0:
-        return min(1, physical_valence)
     return physical_valence
 
 
@@ -90,12 +88,8 @@ def force_spanning_tree(
 
     # ── Pass 1: candidate bridges ─────────────────────────────────────────────
     def _cand_priority(edge) -> tuple:
-        da = max_deg.get(edge.scene_node_a, 2)
-        db = max_deg.get(edge.scene_node_b, 2)
-        hub_bonus = max(max(0, da - 2), max(0, db - 2))
         return (
             edge.vggt_support_count,
-            hub_bonus,
             edge.branch_support_count * 2 + edge.knn_support_count,
             edge.support_count,
             edge.triplet_support + edge.cooc_count,
@@ -164,11 +158,8 @@ def force_spanning_tree(
                 return -1.0
             cooc    = COOC_COUNTS.get(_norm(ca, cb), 0) / _max_cooc
             support = (graph.nodes[a]["support_count"] + graph.nodes[b]["support_count"]) / 20.0
-            da = max_deg.get(a, 2)
-            db = max_deg.get(b, 2)
-            hub_bonus = max(max(0, da - 2), max(0, db - 2)) * 0.3
             triplet = _triplet_completion(a, b) * 0.5
-            return cooc + support + hub_bonus + triplet
+            return cooc + support + triplet
 
         def _run_fallback_pass(override: bool) -> None:
             for _ in range(len(nodes)):
@@ -266,7 +257,6 @@ def serialize_fused_graph(graph: nx.Graph, n_total_views: int) -> dict:
             "triplet_support": attrs.get("triplet_support", 0),
             "forbidden_flag": attrs.get("forbidden_flag", False),
             "evidence_sources": attrs.get("evidence_sources", []),
-            "weakened_by_reconciliation": attrs.get("weakened_by_reconciliation", False),
             "expanded_by_paths": attrs.get("expanded_by_paths", []),
             "forced": attrs.get("forced", False),
             "forced_reason": attrs.get("forced_reason", None),
