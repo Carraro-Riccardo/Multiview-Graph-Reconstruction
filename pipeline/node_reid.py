@@ -4,11 +4,13 @@ For every component code the algorithm:
   1. Loads VGGT 3D geometry (centroid + point-cloud sample) for every detection.
   2. Computes k_min via greedy graph coloring of the incompatibility graph:
      two detections are incompatible iff they appear in the same image.
+     k_min = minimum physical instances required to explain the co-occurrence pattern.
   3. Runs constrained single-linkage agglomerative clustering:
      - starts from N singleton clusters
      - iteratively merges the closest pair (by _cloud_min_dist) that shares no image
      - stops when exactly k_min clusters remain
-  4. Zero tunable parameters — k is determined by scene structure, not thresholds.
+  4. Zero tunable parameters — k is determined by scene structure (cannot-link graph),
+     not thresholds.
 
 Fallback when VGGT geometry is unavailable: use graph coloring assignment directly.
 """
@@ -135,18 +137,18 @@ def _cluster_code_agglomerative(
 ) -> list[list[str]]:
     """Cluster detections of one component code into scene-node groups.
 
-    Step 1 — k_min via greedy graph coloring of the incompatibility graph:
-      two detections are incompatible (must be in different clusters) iff they
-      appear in the same image. The chromatic number gives the minimum number
-      of instances that can explain all observations simultaneously.
+    Algorithm:
+      1. Graph coloring → k_min (hard lower bound from cannot-link constraints).
+      2. Run constrained agglomerative to k_min using rank fusion of two signals:
+           - rank_3d: position in ascending sort by _cloud_min_dist
+           - rank_sim: position in descending sort by Jaccard similarity of
+             co-detected codes (codes of other components in the same image)
+         At each step: merge pair with max score = 1 / (rank_3d × rank_sim).
+         Pairs with no neighborhood data use only rank_3d (rank_sim term omitted).
 
-    Step 2 — constrained single-linkage agglomerative clustering:
-      Start with N singleton clusters.  Repeatedly merge the pair of clusters
-      (ci, cj) with the smallest _cloud_min_dist that share no image, until
-      exactly k_min clusters remain.  Cannot-link = same image.
-
-    Zero tunable parameters — k is derived from scene structure.
-    Fallback (no VGGT geometry): use graph coloring assignment directly.
+    Zero hard-coded weights or thresholds. Ranks are always relative to the
+    current candidate set. Consistent with rank-based edge scoring.
+    Fallback (no VGGT geometry): return graph coloring assignment directly.
     """
     n = len(code_ids)
     if n == 1:
@@ -154,50 +156,63 @@ def _cluster_code_agglomerative(
 
     img_of = {oid: item_by_id[oid]["image_id"] for oid in code_ids}
 
-    # Step 1: k_min via DSATUR-lite graph coloring ──────────────────────────
+    # Graph coloring → k_min ──────────────────────────────────────────────────
     img_to_obs: dict[str, list[str]] = defaultdict(list)
     for oid in code_ids:
         img_to_obs[img_of[oid]].append(oid)
-
     incompat: dict[str, set[str]] = {oid: set() for oid in code_ids}
     for peers in img_to_obs.values():
         for i in range(len(peers)):
             for j in range(i + 1, len(peers)):
                 incompat[peers[i]].add(peers[j])
                 incompat[peers[j]].add(peers[i])
-
     color: dict[str, int] = {}
     for oid in sorted(code_ids, key=lambda x: -len(incompat[x])):
         used = {color[nb] for nb in incompat[oid] if nb in color}
         color[oid] = next(c for c in range(n) if c not in used)
-    k = max(color.values()) + 1
+    k_min = len(set(color.values()))
 
-    if k == 1:
-        return [list(code_ids)]
-    if k >= n:
-        return [[oid] for oid in code_ids]
-
-    # Fallback: no VGGT geometry → use coloring assignment directly
+    # Fallback: no VGGT geometry → return graph coloring assignment directly ──
     if not obs_geometry:
         groups: dict[int, list[str]] = defaultdict(list)
         for oid in code_ids:
             groups[color[oid]].append(oid)
         return list(groups.values())
 
-    # Step 2: greedy agglomerative with cannot-link = same image ─────────────
+    # Build per-observation co-detection sets:
+    # for each obs, which other component codes appear in the same image?
+    # Exclude the current code to avoid self-reference.
+    codet_of: dict[str, frozenset[int]] = {}
+    for oid in code_ids:
+        img = img_of[oid]
+        codet_of[oid] = frozenset(
+            item_by_id[other]["code"]
+            for other in img_to_obs[img]
+            if other != oid and item_by_id[other]["code"] != code
+        )
+
+    # Cluster neighborhood = union of co-detection sets of its members
+    cluster_neigh: dict[int, set[int]] = {
+        i: set(codet_of[code_ids[i]]) for i in range(n)
+    }
+
+    # Constrained agglomerative with rank fusion to k_min ─────────────────────
     clusters: dict[int, list[str]] = {i: [code_ids[i]] for i in range(n)}
     cluster_images: dict[int, set[str]] = {i: {img_of[code_ids[i]]} for i in range(n)}
 
-    while len(clusters) > k:
+    while len(clusters) > k_min:
         cids = list(clusters.keys())
-        best_dist = float('inf')
-        best_i, best_j = None, None
 
+        # Collect all compatible pairs with their 3D distance and neigh sim
+        candidates: list[tuple[int, int, float, float | None]] = []
         for ci_idx in range(len(cids)):
             for cj_idx in range(ci_idx + 1, len(cids)):
                 ci, cj = cids[ci_idx], cids[cj_idx]
                 if cluster_images[ci] & cluster_images[cj]:
-                    continue  # cannot-link: share at least one image
+                    continue  # cannot-link
+
+                # Min 3D cloud distance between clusters
+                best_d = float('inf')
                 for oa in clusters[ci]:
                     ga = obs_geometry.get(oa)
                     if ga is None:
@@ -207,18 +222,52 @@ def _cluster_code_agglomerative(
                         if gb is None:
                             continue
                         d = _cloud_min_dist(ga, gb)
-                        if d < best_dist:
-                            best_dist = d
-                            best_i, best_j = ci, cj
+                        if d < best_d:
+                            best_d = d
 
-        if best_i is None:
-            break  # all remaining clusters cannot-link to each other
+                if not np.isfinite(best_d):
+                    continue
+
+                # Jaccard similarity of co-detection sets
+                na, nb = cluster_neigh[ci], cluster_neigh[cj]
+                union = na | nb
+                sim: float | None = (len(na & nb) / len(union)) if union else None
+
+                candidates.append((ci, cj, best_d, sim))
+
+        if not candidates:
+            break  # no compatible merges remain
+
+        # Rank by 3D distance (ascending)
+        sorted_3d = sorted(range(len(candidates)), key=lambda i: candidates[i][2])
+        rank_3d = [0] * len(candidates)
+        for r, i in enumerate(sorted_3d):
+            rank_3d[i] = r + 1
+
+        # Rank by neighborhood similarity (descending), only among pairs with data
+        has_sim = [(i, candidates[i][3]) for i in range(len(candidates))
+                   if candidates[i][3] is not None]
+        rank_sim = [None] * len(candidates)
+        if has_sim:
+            sorted_sim = sorted(has_sim, key=lambda x: x[1], reverse=True)
+            for r, (i, _) in enumerate(sorted_sim):
+                rank_sim[i] = r + 1
+
+        # Combined score: 1/(rank_3d * rank_sim) if both available, else 1/rank_3d
+        def _score(i: int) -> float:
+            r3 = rank_3d[i]
+            rs = rank_sim[i]
+            return 1.0 / (r3 * rs) if rs is not None else 1.0 / r3
+
+        best_idx = max(range(len(candidates)), key=_score)
+        best_i, best_j = candidates[best_idx][0], candidates[best_idx][1]
 
         clusters[best_i].extend(clusters.pop(best_j))
         cluster_images[best_i].update(cluster_images.pop(best_j))
+        cluster_neigh[best_i].update(cluster_neigh.pop(best_j))
 
     def _sort_key(cluster: list[str]) -> tuple:
-        centers = [item_by_id[i]["center"] for i in cluster]
+        centers = [item_by_id[oid]["center"] for oid in cluster]
         return (
             -len(cluster),
             float(np.mean([c[1] for c in centers])),
@@ -322,12 +371,30 @@ def identify_scene_nodes(
 
     scene_nodes = _build_scene_nodes(groups, item_by_id, observed_graphs)
 
+    # Build obs→scene_node map for debug output
+    obs_to_scene: dict[str, str] = {
+        oid: sn.scene_node_id
+        for sn in scene_nodes
+        for oid in sn.supporting_observed_ids
+    }
+
     _print_reid_summary(scene_nodes, all_items)
     return scene_nodes, {
         "n_scene_nodes":     len(scene_nodes),
         "n_detections":      len(all_items),
         "n_images":          n_images,
         "n_vggt_geometries": len(obs_geometry),
+        # per-detection geometry + assignment — used by plot_reid_geometry.py
+        "obs_geometry": {
+            oid: {
+                "centroid":   list(geom["centroid"]),
+                "image_id":   item_by_id[oid]["image_id"],
+                "code":       item_by_id[oid]["code"],
+                "scene_node": obs_to_scene.get(oid, "?"),
+            }
+            for oid, geom in obs_geometry.items()
+            if oid in item_by_id
+        },
     }
 
 
