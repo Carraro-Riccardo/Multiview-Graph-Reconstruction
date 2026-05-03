@@ -7,7 +7,7 @@ from pathlib import Path
 
 import networkx as nx
 
-from config import IMAGES_DIR, MIN_IMAGES, SKIP_NODES, VGGT_EDGE_ENABLED, WORK_DIR
+from config import IMAGES_DIR, MIN_IMAGES, SKIP_NODES, VGGT_EDGE_ENABLED, VGGT_SKIP_NODES, WORK_DIR
 from core.debug_utils import save_json
 from core.detection import discover_nodes
 from .direct_graph_builder import build_direct_graph
@@ -55,7 +55,10 @@ def run_multiview_pipeline(node_id: str, image_paths: list, output_dir: Path | N
     vggt_edge_payload = {"enabled": False, "pair_hints": {}}
     vggt_generation = {"status": "not_requested", "generated": False}
     search_roots: list = []
-    if VGGT_EDGE_ENABLED:
+    _vggt_active = VGGT_EDGE_ENABLED and node_id not in VGGT_SKIP_NODES
+    if node_id in VGGT_SKIP_NODES:
+        print(f"  [VGGT] skipped for node {node_id} (non-overlapping views)")
+    if _vggt_active:
         vggt_generation = ensure_vggt_artifacts(output_dir, image_paths)
         search_roots = build_vggt_search_roots(node_id, output_dir, WORK_DIR)
 
@@ -65,7 +68,9 @@ def run_multiview_pipeline(node_id: str, image_paths: list, output_dir: Path | N
         observed_graphs, image_paths=image_paths, search_roots=search_roots
     )
     save_json(output_dir / "scene_nodes_reid_raw.json", serialize_scene_nodes(scene_nodes))
+    _obs_geom_payload = reid_debug.pop("obs_geometry", {})
     save_json(output_dir / "reid_debug.json", reid_debug)
+    save_json(output_dir / "reid_geometry.json", _obs_geom_payload)
     save_json(output_dir / "scene_nodes.json", serialize_scene_nodes(scene_nodes))
 
     col = 16
@@ -80,7 +85,7 @@ def run_multiview_pipeline(node_id: str, image_paths: list, output_dir: Path | N
     _sep()
     print(f"  {len(scene_nodes)} scene nodes from {total_obs} observations")
 
-    if VGGT_EDGE_ENABLED:
+    if _vggt_active:
 
         # ── Cache check ────────────────────────────────────────────────────────
         # If all .npz files were already present AND vggt_edge_debug.json exists
