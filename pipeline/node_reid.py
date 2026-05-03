@@ -138,16 +138,21 @@ def _cluster_code_agglomerative(
     """Cluster detections of one component code into scene-node groups.
 
     Algorithm:
-      1. Graph coloring → k_min (hard lower bound from cannot-link constraints).
-      2. Run constrained agglomerative to k_min using rank fusion of two signals:
-           - rank_3d: position in ascending sort by _cloud_min_dist
-           - rank_sim: position in descending sort by Jaccard similarity of
-             co-detected codes (codes of other components in the same image)
-         At each step: merge pair with max score = 1 / (rank_3d × rank_sim).
-         Pairs with no neighborhood data use only rank_3d (rank_sim term omitted).
+      1. Graph coloring → k_min (hard lower bound from same-image cannot-link).
+      2. Constrained agglomerative to natural stopping with two cannot-link types:
+           a. Same-image CL (standard): observations in the same image never merge.
+           b. Structural CL (new): two clusters with completely disjoint combined
+              neighborhoods (Jaccard=0) and each >= MIN_SUPPORT members never merge.
+              Cluster neighborhood = union of co-detected codes across all views.
+              MIN_SUPPORT=2 prevents false positives from singleton occlusion.
+      3. Merge selection uses rank fusion of two signals:
+           - rank_3d: ascending sort by _cloud_min_dist
+           - rank_sim: descending sort by Jaccard of combined neighborhoods
+         Score = 1/(rank_3d × rank_sim). Pairs without neighborhood data: 1/rank_3d.
 
-    Zero hard-coded weights or thresholds. Ranks are always relative to the
-    current candidate set. Consistent with rank-based edge scoring.
+    Natural stopping guarantees k >= k_min (same-image CL is a hard floor).
+    Structural CL can raise k beyond k_min for never-co-visible instances.
+    Zero hard-coded weights or thresholds in metres.
     Fallback (no VGGT geometry): return graph coloring assignment directly.
     """
     n = len(code_ids)
@@ -156,7 +161,7 @@ def _cluster_code_agglomerative(
 
     img_of = {oid: item_by_id[oid]["image_id"] for oid in code_ids}
 
-    # Graph coloring → k_min ──────────────────────────────────────────────────
+    # Graph coloring → k_min (lower bound, same-image cannot-link) ─────────────
     img_to_obs: dict[str, list[str]] = defaultdict(list)
     for oid in code_ids:
         img_to_obs[img_of[oid]].append(oid)
@@ -179,39 +184,51 @@ def _cluster_code_agglomerative(
             groups[color[oid]].append(oid)
         return list(groups.values())
 
-    # Build per-observation co-detection sets:
-    # for each obs, which other component codes appear in the same image?
-    # Exclude the current code to avoid self-reference.
-    codet_of: dict[str, frozenset[int]] = {}
-    for oid in code_ids:
-        img = img_of[oid]
-        codet_of[oid] = frozenset(
+    # Per-observation co-detection set: other codes visible in the same image,
+    # excluding the current code (avoid self-reference).
+    codet_of: dict[str, frozenset[int]] = {
+        oid: frozenset(
             item_by_id[other]["code"]
-            for other in img_to_obs[img]
+            for other in img_to_obs[img_of[oid]]
             if other != oid and item_by_id[other]["code"] != code
         )
+        for oid in code_ids
+    }
 
-    # Cluster neighborhood = union of co-detection sets of its members
+    # Cluster neighborhood = union of member co-detection sets (grows on merge)
     cluster_neigh: dict[int, set[int]] = {
         i: set(codet_of[code_ids[i]]) for i in range(n)
     }
 
-    # Constrained agglomerative with rank fusion to k_min ─────────────────────
+    # Structural CL threshold: min cluster size before structural CL is applied.
+    # Singletons can always merge — one view is not enough to establish a stable
+    # neighborhood fingerprint (partial occlusion may hide shared codes).
+    MIN_SUPPORT = 2
+
     clusters: dict[int, list[str]] = {i: [code_ids[i]] for i in range(n)}
     cluster_images: dict[int, set[str]] = {i: {img_of[code_ids[i]]} for i in range(n)}
 
-    while len(clusters) > k_min:
+    while len(clusters) > 1:
         cids = list(clusters.keys())
 
-        # Collect all compatible pairs with their 3D distance and neigh sim
+        # Collect all compatible pairs with their 3D distance and neigh sim ───
         candidates: list[tuple[int, int, float, float | None]] = []
         for ci_idx in range(len(cids)):
             for cj_idx in range(ci_idx + 1, len(cids)):
                 ci, cj = cids[ci_idx], cids[cj_idx]
-                if cluster_images[ci] & cluster_images[cj]:
-                    continue  # cannot-link
 
-                # Min 3D cloud distance between clusters
+                # Same-image cannot-link
+                if cluster_images[ci] & cluster_images[cj]:
+                    continue
+
+                # Structural cannot-link: only when both clusters have >= MIN_SUPPORT
+                na, nb = cluster_neigh[ci], cluster_neigh[cj]
+                if (len(clusters[ci]) >= MIN_SUPPORT and
+                        len(clusters[cj]) >= MIN_SUPPORT and
+                        na and nb and not (na & nb)):
+                    continue  # disjoint combined neighborhoods
+
+                # Min 3D cloud distance
                 best_d = float('inf')
                 for oa in clusters[ci]:
                     ga = obs_geometry.get(oa)
@@ -228,36 +245,31 @@ def _cluster_code_agglomerative(
                 if not np.isfinite(best_d):
                     continue
 
-                # Jaccard similarity of co-detection sets
-                na, nb = cluster_neigh[ci], cluster_neigh[cj]
+                # Jaccard similarity of combined neighborhoods
                 union = na | nb
                 sim: float | None = (len(na & nb) / len(union)) if union else None
-
                 candidates.append((ci, cj, best_d, sim))
 
         if not candidates:
-            break  # no compatible merges remain
+            break  # natural stopping (same-image CL or structural CL blocks all merges)
 
-        # Rank by 3D distance (ascending)
+        # Rank fusion: 1/(rank_3d × rank_sim) ─────────────────────────────────
         sorted_3d = sorted(range(len(candidates)), key=lambda i: candidates[i][2])
         rank_3d = [0] * len(candidates)
         for r, i in enumerate(sorted_3d):
             rank_3d[i] = r + 1
 
-        # Rank by neighborhood similarity (descending), only among pairs with data
         has_sim = [(i, candidates[i][3]) for i in range(len(candidates))
                    if candidates[i][3] is not None]
-        rank_sim = [None] * len(candidates)
+        rank_sim: list[int | None] = [None] * len(candidates)
         if has_sim:
             sorted_sim = sorted(has_sim, key=lambda x: x[1], reverse=True)
             for r, (i, _) in enumerate(sorted_sim):
                 rank_sim[i] = r + 1
 
-        # Combined score: 1/(rank_3d * rank_sim) if both available, else 1/rank_3d
         def _score(i: int) -> float:
-            r3 = rank_3d[i]
             rs = rank_sim[i]
-            return 1.0 / (r3 * rs) if rs is not None else 1.0 / r3
+            return 1.0 / (rank_3d[i] * rs) if rs is not None else 1.0 / rank_3d[i]
 
         best_idx = max(range(len(candidates)), key=_score)
         best_i, best_j = candidates[best_idx][0], candidates[best_idx][1]
