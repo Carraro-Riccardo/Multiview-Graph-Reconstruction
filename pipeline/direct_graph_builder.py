@@ -51,8 +51,6 @@ class BridgeEdge:
     supporting_images: list = field(default_factory=list)
     forbidden_pair_flag: bool = False
     support_count: float = 0
-    branch_support_count: int = 0
-    knn_support_count: int = 0
     triplet_support: int = 0
     cooc_count: int = 0
     evidence_sources: list = field(default_factory=lambda: ["vggt_3d"])
@@ -171,8 +169,6 @@ def build_direct_graph(
             vote_count=combined_votes,
             support_count=combined_votes,
             supporting_images=supporting_images,
-            branch_support_count=0,
-            knn_support_count=0,
             vggt_support_count=vggt_votes,
             vggt_score=vggt_hint.get("score", 0.0),
             vggt_min_distance=vggt_hint.get("min_dist"),
@@ -206,8 +202,6 @@ def build_direct_graph(
                 supporting_images=sorted(set(vggt_hint.get("supporting_images", []))),
                 forbidden_pair_flag=False,
                 support_count=_vggt_score(pair),
-                branch_support_count=0,
-                knn_support_count=0,
                 triplet_support=0,
                 cooc_count=0,
                 evidence_sources=["vggt_3d"] if vggt_votes > 0 else [],

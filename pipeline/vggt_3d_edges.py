@@ -3,7 +3,7 @@
 This module is intentionally conservative:
 - if no VGGT artefacts are found, it returns an empty payload
 - if a point map cannot be parsed, that view is skipped
-- 2D KNN adjacency remains the baseline signal
+- if VGGT is disabled or skipped, the pipeline falls back to structural-only re-ID
 
 Supported point-map formats
 ---------------------------

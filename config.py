@@ -43,8 +43,6 @@ YOLO_IMGSZ      = 1280
 SKIP_NODES      = {}
 VGGT_SKIP_NODES = {"10", "12", "17_1"}   # nodi senza overlap tra viste
 MIN_IMAGES      = 1
-K_NEIGHBORS     = 3
-DIST_MULTIPLIER = 2.5
 
 # ── Dati dei componenti idraulici ─────────────────────────────
 # Formato: code -> (valenza_fisica, nome)

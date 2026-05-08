@@ -38,7 +38,6 @@ class ObservedLocalGraph:
     nodes: dict
     edges: list = field(default_factory=list)
     local_patterns: list = field(default_factory=list)
-    branch_fragments: list = field(default_factory=list)
 
 
 def build_observed_graph(image_path: Path) -> Optional[ObservedLocalGraph]:

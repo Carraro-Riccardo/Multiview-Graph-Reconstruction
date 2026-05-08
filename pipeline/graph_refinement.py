@@ -90,7 +90,6 @@ def force_spanning_tree(
     def _cand_priority(edge) -> tuple:
         return (
             edge.vggt_support_count,
-            edge.branch_support_count * 2 + edge.knn_support_count,
             edge.support_count,
             edge.triplet_support + edge.cooc_count,
             0 if edge.forbidden_pair_flag else 1,
@@ -110,8 +109,6 @@ def force_spanning_tree(
         _add_forced(a, b, {
             "support_count":              edge.support_count,
             "supporting_images":          edge.supporting_images,
-            "branch_support_count":       edge.branch_support_count,
-            "knn_support_count":          edge.knn_support_count,
             "vggt_support_count":         edge.vggt_support_count,
             "vggt_score":                 edge.vggt_score,
             "vggt_min_distance":          edge.vggt_min_distance,
@@ -190,8 +187,6 @@ def force_spanning_tree(
                 _add_forced(best_a, best_b, {
                     "support_count":        0,
                     "supporting_images":    [],
-                    "branch_support_count": 0,
-                    "knn_support_count":    0,
                     "cooc_count":           0,
                     "triplet_support":      0,
                     "forbidden_flag":       False,
@@ -246,8 +241,6 @@ def serialize_fused_graph(graph: nx.Graph, n_total_views: int) -> dict:
             "node_b": node_b,
             "support_count": attrs.get("support_count", 0),
             "supporting_images": attrs.get("supporting_images", []),
-            "branch_support_count": attrs.get("branch_support_count", 0),
-            "knn_support_count": attrs.get("knn_support_count", 0),
             "vggt_support_count": attrs.get("vggt_support_count", 0),
             "vggt_score": attrs.get("vggt_score", 0.0),
             "vggt_min_distance": attrs.get("vggt_min_distance", None),
@@ -257,11 +250,8 @@ def serialize_fused_graph(graph: nx.Graph, n_total_views: int) -> dict:
             "triplet_support": attrs.get("triplet_support", 0),
             "forbidden_flag": attrs.get("forbidden_flag", False),
             "evidence_sources": attrs.get("evidence_sources", []),
-            "expanded_by_paths": attrs.get("expanded_by_paths", []),
             "forced": attrs.get("forced", False),
             "forced_reason": attrs.get("forced_reason", None),
-            "consistency_score": attrs.get("consistency_score", None),
-            "consistency_n_visible": attrs.get("consistency_n_visible", None),
         })
 
     return {
