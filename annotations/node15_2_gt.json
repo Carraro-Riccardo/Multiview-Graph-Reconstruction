@@ -1,0 +1,15 @@
+{
+  "node_id": "15_2",
+  "best_view": "node15_2_0001.jpg",
+  "nodes": [
+    {
+      "nid": "15#1",
+      "code": 15,
+      "name": "Saracinesca",
+      "valence": 2,
+      "cx": 0.422823,
+      "cy": 0.549645
+    }
+  ],
+  "edges": []
+}
