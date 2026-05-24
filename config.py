@@ -164,30 +164,6 @@ TRIPLET_COUNTS = {
     ( 11,  15, 192):  1,  # Giunto — Saracinesca — Croce
 }
 
-# ── Saturazione del grado per tipo ───────────────────────────
-# Frazione delle istanze nel dataset che raggiungono la valenza completa.
-# IMPORTANTE: saturazione bassa significa che un'estremità del componente
-# è tipicamente fuori dalla scena inquadrata → NON forzare quel collegamento.
-DEGREE_SATURATION = {
-    116: 1.00,  # Tee FL       — sempre visibile con tutti e 3 i bracci
-    192: 1.00,  # Croce        — sempre visibile con tutti e 4 i bracci
-    255: 1.00,  # Tee rid.     — sempre visibile con tutti e 3 i bracci
-    202: 1.00,  # Antisfilo
-    190: 1.00,  # Curva 30
-    195: 1.00,  # Curva 45P
-     75: 1.00,  # Riduzione
-    207: 1.00,  # Bout norm.
-    119: 1.00,  # Rubinetto
-     15: 0.91,  # Saracinesca  — quasi sempre visibile con entrambi i lati
-     53: 0.75,  # Tubo
-     95: 0.44,  # Bout bic.    — spesso terminale (un'estremità sotto terra)
-     83: 0.00,  # Rampa ab.    — sempre terminale nella scena
-    159: 0.00,  # Collare PVC
-     77: 0.00,  # Tazza
-     11: 0.00,  # Giunto       — sempre terminale: l'altro lato è fuori scena
-     54: 0.00,  # Curva 22
-}
-
 # ── Coppie proibite (empiriche dal dataset) ───────────────────
 # Nessuna di queste coppie è mai stata osservata connessa nel dataset.
 FORBIDDEN_PAIRS = frozenset([

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from config import COMPONENT_INFO, DEGREE_SATURATION
+from config import COMPONENT_INFO
 
 
 ANCHOR_CODES: frozenset[int] = frozenset(
@@ -19,7 +19,4 @@ def is_anchor(code: int) -> bool:
 
 
 def is_terminal(code: int) -> bool:
-    if code in TERMINAL_CODES:
-        return True
-    sat = DEGREE_SATURATION.get(code)
-    return sat is not None and sat == 0.0
+    return code in TERMINAL_CODES

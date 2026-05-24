@@ -7,7 +7,7 @@ Pipeline:
          come vicini KNN ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â segnale PRIMARIO, immune alla prospettiva
   2. build_graph_consensus_first(best_dets, type_consensus)
        ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ assegna le istanze in ordine di consenso (tipo) + score contestuale
-         (triplette + saturazione del grado), poi prossimitÃƒÆ’Ã‚Â  spaziale per
+         (triplette + contesto locale), poi prossimitÃƒÆ’Ã‚Â  spaziale per
          disambiguare istanze dello stesso tipo
          + BorÃƒâ€¦Ã‚Â¯vka per connettivitÃƒÆ’Ã‚Â 
   3. confirm_edges_multivista(G, all_views_dets, best_view_idx)
@@ -32,7 +32,7 @@ from scipy.spatial.distance import cdist
 from config import (
     COMPONENT_INFO, DIAMETER_CODES,
     COOC_COUNTS, FORBIDDEN_PAIRS,
-    TRIPLET_COUNTS, DEGREE_SATURATION,
+    TRIPLET_COUNTS,
     K_NEIGHBORS, DIST_MULTIPLIER,
 )
 from .debug_utils import save_consolidation, save_candidate_snapshot, save_solver_summary, save_json
@@ -66,21 +66,8 @@ def get_name(code: int) -> str:
 
 
 def effective_valence(code: int) -> int:
-    """
-    Valenza effettiva tenendo conto della saturazione del grado osservata
-    nel dataset. Un componente con DEGREE_SATURATION=0.00 (es. Giunto) ÃƒÆ’Ã‚Â¨
-    sempre terminale nella scena: non forzare il secondo collegamento.
-    Un componente con saturazione intermedia (es. Bout bic.=0.44) viene
-    trattato come val=1 per default, ma puÃƒÆ’Ã‚Â² raggiungere val=2 se il
-    consenso multi-vista lo supporta fortemente.
-    """
-    val = get_valence(code)
-    sat = DEGREE_SATURATION.get(code, 0.5)
-    if sat == 0.0:
-        return 1              # mai visto con entrambe le connessioni
-    if sat < 0.5 and val >= 2:
-        return 1              # piÃƒÆ’Ã‚Â¹ spesso terminale che non
-    return val
+    """Valenza topologica nominale del componente."""
+    return get_valence(code)
 
 def _is_hub_preferred_neighbor(ca: int, cb: int) -> bool:
     return ((get_valence(ca) >= 3 and cb in HUB_PREFERRED_NEIGHBORS)
@@ -280,9 +267,7 @@ def _hypothesis_context_score(hyp_code: int, neighbor_codes: list,
     if hyp_code not in COMPONENT_INFO:
         return -np.inf
 
-    sat = DEGREE_SATURATION.get(hyp_code, 0.5)
     score = view_support.get(hyp_code, 0.0) * 1.5
-    score += sat * 2.0
 
     pair_scores = []
     for nb in neighbor_codes:
@@ -307,10 +292,7 @@ def _hypothesis_context_score(hyp_code: int, neighbor_codes: list,
 
     mixed_neighbors = set(neighbor_codes[:2])
     if len(mixed_neighbors) >= 2:
-        # In a mixed local context, bridge-like components should win over
-        # terminal-ish ones, and duplicating one neighbor type is suspicious.
-        if sat < 0.5:
-            score -= 1.5
+        # In a mixed local context, duplicating one neighbor type is suspicious.
         if hyp_code in mixed_neighbors:
             score -= 2.5
         if triplet_bonus == 0.0:
@@ -474,7 +456,7 @@ def build_graph_consensus_first(best_dets: list, type_consensus: dict) -> tuple:
                                          Saracinesca ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬Â Curva 22 (0.05)
       2. distanza_norm     [secondario] ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â„¢ tra istanze dello stesso tipo,
                                            sceglie la piÃƒÆ’Ã‚Â¹ vicina
-    Score contestuale dinamico (triplette, saturazione) applicato come
+    Score contestuale dinamico (triplette, contesto locale) applicato come
     tiebreaker nella fase di assegnazione greedy.
 
     Ritorna (G, pos_2d, cutoff).
@@ -509,8 +491,7 @@ def build_graph_consensus_first(best_dets: list, type_consensus: dict) -> tuple:
                    cx=dets[i]["cx"],
                    cy=dets[i]["cy"])
 
-    # CapacitÃƒÆ’Ã‚Â  di collegamento per istanza: usa la valenza effettiva
-    # (tiene conto di DEGREE_SATURATION ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â es. Giunto ÃƒÆ’Ã‚Â¨ sempre terminale)
+    # CapacitÃƒÆ’Ã‚Â  di collegamento per istanza: usa la valenza topologica nominale.
     remaining = {nid: effective_valence(dets[i]["code"])
                  for i, nid in enumerate(nodes)}
 

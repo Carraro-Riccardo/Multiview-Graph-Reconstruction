@@ -84,7 +84,7 @@ La vista migliore fornisce il sistema di coordinate spaziale. Le altre viste con
 
 **Processo** (`consolidate_best_view_codes`):
 - Per ogni detection nella vista migliore, si valuta se esiste un'ipotesi alternativa di tipo meglio supportata dalle altre viste
-- Il punteggio dell'ipotesi considera: supporto nelle altre viste, coerenza con i vicini locali, accordo sul tipo, compatibilità con i pattern a tripletta, saturazione di valenza
+- Il punteggio dell'ipotesi considera: supporto nelle altre viste, coerenza con i vicini locali, accordo sul tipo, compatibilità con i pattern a tripletta
 - La sostituzione avviene **solo** se il punteggio alternativo supera quello originale di almeno 1.5 punti (soglia conservativa)
 - Questa fase **non aggiunge né rimuove nodi**: modifica solo l'etichetta di tipo di nodi esistenti
 
@@ -253,12 +253,6 @@ Usato in due punti:
 2. Come segnale nella consolidazione dei codici (step 4.2)
 
 Cattura la coerenza semantica locale: se un nodo è di tipo X, i suoi vicini tendono ad essere di tipi specifici.
-
-### Saturazione di Valenza (`DEGREE_SATURATION`)
-
-Frazione delle istanze nel dataset in cui un componente di un dato tipo è stato osservato con tutte le sue porte connesse visibili. Esempio: Giunto (code 11) = 0.00 → non è mai stato osservato con entrambi i lati visibili → nella pratica si comporta come un nodo terminale.
-
-Usato in `effective_valence()`: un componente con bassa saturazione viene trattato con valenza effettiva ridotta (tipicamente 1) a meno che non ci sia forte supporto multi-vista per una seconda connessione. Questo evita di forzare connessioni che in realtà escono dal campo visivo.
 
 ### Coppie Vietate (`FORBIDDEN_PAIRS`)
 

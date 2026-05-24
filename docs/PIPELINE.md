@@ -80,7 +80,6 @@ Relevant data:
 - `COMPONENT_INFO`
 - `COOC_COUNTS`
 - `TRIPLET_COUNTS`
-- `DEGREE_SATURATION`
 - `FORBIDDEN_PAIRS`
 - thresholds such as `K_NEIGHBORS`, `DIST_MULTIPLIER`, `CONF_THRESHOLD`
 
@@ -493,16 +492,6 @@ Empirical local patterns of the form:
 - neighbor C
 
 Used to reward locally consistent neighborhoods, especially around valence-2 and valence-3 components.
-
-### `DEGREE_SATURATION`
-
-Observed fraction of times a component type reaches full degree in the annotated dataset.
-
-This affects:
-
-- `effective_valence()`
-- some older fallback behavior
-- interpretation of which components are commonly terminal in the visible scene
 
 ### `FORBIDDEN_PAIRS`
 
