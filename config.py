@@ -170,18 +170,11 @@ FORBIDDEN_PAIRS = frozenset([
     # ── Same-type pairs (anatomically impossible in hydraulics) ───────────────
     ( 11,  11),  # Giunto ↔ Giunto
     ( 15,  15),  # Saracinesca ↔ Saracinesca
-    ( 53,  53),  # Tubo ↔ Tubo
-    ( 54,  54),  # Curva 22 ↔ Curva 22
-    ( 75,  75),  # Riduzione ↔ Riduzione
     ( 77,  77),  # Tazza ↔ Tazza
     ( 83,  83),  # Rampa ab. ↔ Rampa ab.
     ( 95,  95),  # Bout bic. ↔ Bout bic.
-    (116, 116),  # Tee FL ↔ Tee FL
     (119, 119),  # Rubinetto ↔ Rubinetto
     (159, 159),  # Collare PVC ↔ Collare PVC
-    (190, 190),  # Curva 30 ↔ Curva 30
-    (192, 192),  # Croce ↔ Croce
-    (195, 195),  # Curva 45P ↔ Curva 45P
     (202, 202),  # Antisfilo ↔ Antisfilo
     (207, 207),  # Bout norm. ↔ Bout norm.
     # ── Cross-type forbidden pairs ────────────────────────────────────────────
