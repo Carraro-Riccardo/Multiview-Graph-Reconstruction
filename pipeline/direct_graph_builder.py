@@ -132,6 +132,27 @@ def build_direct_graph(
     degree_used: dict[str, int] = defaultdict(int)
     accepted_log: list[dict] = []
     rejected_log: list[dict] = []
+    rewired_log: list[dict] = []
+
+    def _edge_attrs(pair: tuple[str, str], combined_votes: float, vggt_hint: dict, vggt_votes: int) -> dict:
+        supporting_images = sorted(set(vggt_hint.get("supporting_images", [])))
+        evidence_sources = ["vggt_3d"] if vggt_votes > 0 else []
+        return {
+            "vote_count": combined_votes,
+            "support_count": combined_votes,
+            "supporting_images": supporting_images,
+            "vggt_support_count": vggt_votes,
+            "vggt_score": vggt_hint.get("score", 0.0),
+            "vggt_min_distance": vggt_hint.get("min_dist"),
+            "vggt_port_distance": vggt_hint.get("scene_port_dist", vggt_hint.get("min_port_dist")),
+            "vggt_axis_alignment": vggt_hint.get("scene_axis_alignment", vggt_hint.get("axis_alignment", 0.0)),
+            "cooc_count": 0,
+            "triplet_support": 0,
+            "forbidden_flag": False,
+            "evidence_sources": evidence_sources,
+            "forced": False,
+            "forced_reason": None,
+        }
 
     for pair in sorted_pairs:
         a, b = pair
@@ -160,26 +181,10 @@ def build_direct_graph(
         degree_used[b] += 1
         _uf_union(a, b)
 
-        supporting_images = sorted(set(vggt_hint.get("supporting_images", [])))
-        evidence_sources = ["vggt_3d"] if vggt_votes > 0 else []
-
         graph.add_edge(
             a,
             b,
-            vote_count=combined_votes,
-            support_count=combined_votes,
-            supporting_images=supporting_images,
-            vggt_support_count=vggt_votes,
-            vggt_score=vggt_hint.get("score", 0.0),
-            vggt_min_distance=vggt_hint.get("min_dist"),
-            vggt_port_distance=vggt_hint.get("scene_port_dist", vggt_hint.get("min_port_dist")),
-            vggt_axis_alignment=vggt_hint.get("scene_axis_alignment", vggt_hint.get("axis_alignment", 0.0)),
-            cooc_count=0,
-            triplet_support=0,
-            forbidden_flag=False,
-            evidence_sources=evidence_sources,
-            forced=False,
-            forced_reason=None,
+            **_edge_attrs(pair, combined_votes, vggt_hint, vggt_votes),
         )
         accepted_log.append(
             {
@@ -188,6 +193,75 @@ def build_direct_graph(
                 "vggt_votes": vggt_votes,
             }
         )
+
+    # Local structural repair for single/sparse-view scenes: the greedy pass can
+    # saturate a Tee with a weak valve edge before accepting a plausible Tee-Tee
+    # bridge. If replacing that weak edge preserves connectivity and improves
+    # evidence, prefer the anchor-anchor connection.
+    for pair in sorted_pairs:
+        a, b = pair
+        if graph.has_edge(a, b):
+            continue
+        if a not in anchor_ids or b not in anchor_ids:
+            continue
+        if not nx.has_path(graph, a, b):
+            continue
+
+        vggt_hint = vggt_edge_hints.get(pair, {})
+        vggt_votes = int(vggt_hint.get("vote_count", 0))
+        candidate_score = _vggt_score(pair)
+        if candidate_score <= 0:
+            continue
+
+        path = nx.shortest_path(graph, a, b)
+        removable_edges: list[tuple[float, str, str]] = []
+        for u, v in zip(path, path[1:]):
+            if u not in {a, b} and v not in {a, b}:
+                continue
+            other = v if u in {a, b} else u
+            if other in anchor_ids:
+                continue
+            if graph.degree(other) <= 1:
+                continue
+            edge_score = float(graph[u][v].get("support_count", 0.0))
+            if candidate_score <= edge_score * 1.2:
+                continue
+            removable_edges.append((edge_score, u, v))
+
+        if not removable_edges:
+            continue
+
+        removed_score, rem_u, rem_v = min(removable_edges, key=lambda item: item[0])
+        removed_attrs = dict(graph[rem_u][rem_v])
+        graph.remove_edge(rem_u, rem_v)
+        degree_used[rem_u] -= 1
+        degree_used[rem_v] -= 1
+
+        if degree_used[a] >= max_degree.get(a, 2) or degree_used[b] >= max_degree.get(b, 2):
+            graph.add_edge(rem_u, rem_v, **removed_attrs)
+            degree_used[rem_u] += 1
+            degree_used[rem_v] += 1
+            continue
+
+        graph.add_edge(a, b, **_edge_attrs(pair, candidate_score, vggt_hint, vggt_votes))
+        degree_used[a] += 1
+        degree_used[b] += 1
+        if not nx.is_connected(graph):
+            graph.remove_edge(a, b)
+            degree_used[a] -= 1
+            degree_used[b] -= 1
+            graph.add_edge(rem_u, rem_v, **removed_attrs)
+            degree_used[rem_u] += 1
+            degree_used[rem_v] += 1
+            continue
+
+        rewired_log.append({
+            "added": list(pair),
+            "removed": [rem_u, rem_v],
+            "added_score": candidate_score,
+            "removed_score": removed_score,
+            "reason": "anchor_bridge_rewire",
+        })
 
     bridge_edges: list[BridgeEdge] = []
     for a, b in sorted(vggt_pairs, key=lambda pair: _vggt_score(pair), reverse=True):
@@ -239,6 +313,7 @@ def build_direct_graph(
         )[:40],
         "accepted_edges": accepted_log[:30],
         "rejected_edges": rejected_log[:30],
+        "rewired_edges": rewired_log,
     }
 
     print(
