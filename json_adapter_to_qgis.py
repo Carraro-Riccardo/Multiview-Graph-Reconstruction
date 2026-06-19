@@ -3,7 +3,8 @@
 The fused graph produced by the pipeline is topological, not georeferenced: it
 stores components and connections but no real-world coordinates. This adapter
 creates temporary coordinates around an origin so the graph can be inspected in
-QGIS with a compact, readable attribute schema.
+QGIS with a compact, readable attribute schema. It exports one combined file
+whose geometry classes can be selected separately by QGIS.
 """
 
 from __future__ import annotations
@@ -38,6 +39,8 @@ DEFAULT_CRS_EPSG = 7795
 DEFAULT_BATCH_ROOT = Path("output") / "multiview"
 DEFAULT_LAYOUT = "cad"
 DEFAULT_EDGE_ROUTING = "orthogonal"
+DEFAULT_MASTER_ORIENTATION_DEG = None
+DEFAULT_MASTER_POLYGON_SIZE_FACTOR = 0.03
 
 
 def _load_json(path: Path) -> dict[str, Any]:
@@ -68,6 +71,12 @@ def _feature_properties(item: dict[str, Any], *, exclude: set[str] | None = None
 
 def _sorted_nodes(nodes: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return sorted(nodes, key=lambda node: (int(node.get("code", 0)), str(node.get("id", ""))))
+
+
+def _default_node_name(input_path: Path) -> str:
+    if input_path.stem == "fused_graph" and input_path.parent.name:
+        return input_path.parent.name
+    return input_path.stem
 
 
 def _fake_positions(
@@ -247,9 +256,12 @@ def _node_features(
         x, y = positions[node_id]
         props = {
             "id": node_id,
+            "tipo_layer": "componente",
             "nome": node.get("name"),
             "shurikode": node.get("code"),
             "etichetta": f"{node.get('code')} - {node.get('name')}",
+            "diametro": None,
+            "angolo_rotazione": None,
         }
         if include_technical_fields:
             props.update({
@@ -257,7 +269,6 @@ def _node_features(
                 for key, value in _feature_properties(node).items()
                 if key not in props
             })
-            props["qgis_layer"] = "nodes"
             props["qgis_x"] = x
             props["qgis_y"] = y
             props.update(geometry_properties.get(node_id, {}))
@@ -288,8 +299,12 @@ def _edge_features(
 
         props = {
             "id": f"edge#{edge_index}",
+            "tipo_layer": "collegamento",
             "da": node_a,
             "a": node_b,
+            "etichetta": f"{node_a} -> {node_b}",
+            "diametro": None,
+            "angolo_rotazione": None,
         }
         if include_technical_fields:
             props.update({
@@ -297,7 +312,6 @@ def _edge_features(
                 for key, value in _feature_properties(edge).items()
                 if key not in {"node_a", "node_b"}
             })
-            props["qgis_layer"] = "edges"
         ax, ay = positions[node_a]
         bx, by = positions[node_b]
         coordinates = [[ax, ay], [bx, by]]
@@ -314,18 +328,45 @@ def _edge_features(
     return features
 
 
-def _reference_feature(origin_x: float, origin_y: float, name: str) -> dict[str, Any]:
+def _master_geometry(origin_x: float, origin_y: float, *, size: float) -> dict[str, Any]:
+    half_size = max(size, 1e-9) / 2.0
+    ring = [
+        [origin_x - half_size, origin_y - half_size],
+        [origin_x + half_size, origin_y - half_size],
+        [origin_x + half_size, origin_y + half_size],
+        [origin_x - half_size, origin_y + half_size],
+        [origin_x - half_size, origin_y - half_size],
+    ]
+    return {
+        "type": "Polygon",
+        "coordinates": [ring],
+    }
+
+
+def _master_feature(
+    origin_x: float,
+    origin_y: float,
+    *,
+    node_name: str,
+    master_id: str,
+    master_date: str | None,
+    master_orientation_deg: float | None,
+    polygon_size: float,
+) -> dict[str, Any]:
     return {
         "type": "Feature",
-        "geometry": {
-            "type": "Point",
-            "coordinates": [origin_x, origin_y],
-        },
+        "geometry": _master_geometry(origin_x, origin_y, size=polygon_size),
         "properties": {
-            "id": f"{name}_reference",
-            "nome": "Centro scavo",
+            "id": master_id,
+            "tipo_layer": "master",
+            "nome": "Nodo master",
+            "node_id": master_id,
+            "etichetta": master_id,
+            "data": master_date,
+            "orientamento": master_orientation_deg,
             "coordinata_x": origin_x,
             "coordinata_y": origin_y,
+            "dimensione_poligono": polygon_size,
         },
     }
 
@@ -373,6 +414,10 @@ def convert_fused_graph_to_qgis(
     vggt_debug_path: Path | None = None,
     include_technical_fields: bool = False,
     edge_routing: str = DEFAULT_EDGE_ROUTING,
+    master_id: str | None = None,
+    master_date: str | None = None,
+    master_orientation_deg: float | None = DEFAULT_MASTER_ORIENTATION_DEG,
+    master_polygon_size_factor: float = DEFAULT_MASTER_POLYGON_SIZE_FACTOR,
 ) -> dict[str, Path]:
     graph = _load_json(input_path)
     nodes = graph.get("nodes", [])
@@ -382,6 +427,7 @@ def convert_fused_graph_to_qgis(
 
     output_dir = output_dir or input_path.parent
     stem = input_path.stem
+    node_name = _default_node_name(input_path)
     geometry_properties: dict[str, dict[str, Any]] = {}
     scene_geometry: dict[str, dict[str, Any]] = {}
     if geometry_source in {"auto", "vggt"}:
@@ -463,28 +509,29 @@ def convert_fused_graph_to_qgis(
         metadata=metadata,
         crs_epsg=crs_epsg,
     )
-    reference_payload = _feature_collection(
-        [_reference_feature(origin_lon, origin_lat, stem)],
-        name=f"{stem}_reference",
+    master_payload = _feature_collection(
+        [_master_feature(
+            origin_lon,
+            origin_lat,
+            node_name=node_name,
+            master_id=master_id or f"{node_name}_master",
+            master_date=master_date,
+            master_orientation_deg=master_orientation_deg,
+            polygon_size=radius_degrees * master_polygon_size_factor,
+        )],
+        name=f"{stem}_master",
         metadata=metadata,
         crs_epsg=crs_epsg,
     )
+    paths = {
+        "combined": output_dir / f"{stem}_qgis_combined.geojson",
+    }
     combined_payload = _feature_collection(
-        reference_payload["features"] + node_payload["features"] + edge_payload["features"],
+        node_payload["features"] + edge_payload["features"] + master_payload["features"],
         name=f"{stem}_combined",
         metadata=metadata,
         crs_epsg=crs_epsg,
     )
-
-    paths = {
-        "reference": output_dir / f"{stem}_qgis_reference.geojson",
-        "nodes": output_dir / f"{stem}_qgis_nodes.geojson",
-        "edges": output_dir / f"{stem}_qgis_edges.geojson",
-        "combined": output_dir / f"{stem}_qgis_combined.geojson",
-    }
-    _write_json(paths["reference"], reference_payload)
-    _write_json(paths["nodes"], node_payload)
-    _write_json(paths["edges"], edge_payload)
     _write_json(paths["combined"], combined_payload)
     return paths
 
@@ -506,6 +553,8 @@ def convert_all_fused_graphs_to_qgis(
     geometry_source: str = "fake",
     include_technical_fields: bool = False,
     edge_routing: str = DEFAULT_EDGE_ROUTING,
+    master_date: str | None = None,
+    master_orientation_deg: float | None = DEFAULT_MASTER_ORIENTATION_DEG,
 ) -> dict[Path, dict[str, Path]]:
     results: dict[Path, dict[str, Path]] = {}
     for input_path in find_fused_graphs(root):
@@ -521,6 +570,8 @@ def convert_all_fused_graphs_to_qgis(
             vggt_debug_path=None,
             include_technical_fields=include_technical_fields,
             edge_routing=edge_routing,
+            master_date=master_date,
+            master_orientation_deg=master_orientation_deg,
         )
     return results
 
@@ -628,6 +679,26 @@ def _parse_args() -> argparse.Namespace:
         default=DEFAULT_EDGE_ROUTING,
         help="Route edges as right-angle polylines or direct straight segments. Default: orthogonal.",
     )
+    parser.add_argument(
+        "--master-id",
+        default=None,
+        help=(
+            "Optional ID for the master node in single-file mode. Defaults to "
+            "'<node_folder>_master' for fused_graph.json inputs."
+        ),
+    )
+    parser.add_argument(
+        "--master-date",
+        default=None,
+        help="Optional date attribute for the master node, for example 2026-06-10.",
+    )
+    parser.add_argument(
+        "--master-orientation",
+        type=float,
+        default=DEFAULT_MASTER_ORIENTATION_DEG,
+        dest="master_orientation_deg",
+        help="Optional master-node orientation angle in degrees.",
+    )
     return parser.parse_args()
 
 
@@ -644,6 +715,8 @@ def main() -> None:
             geometry_source=args.geometry_source,
             include_technical_fields=args.include_technical_fields,
             edge_routing=args.edge_routing,
+            master_date=args.master_date,
+            master_orientation_deg=args.master_orientation_deg,
         )
         if not results:
             raise SystemExit(f"No fused_graph.json files found under {args.batch_root}")
@@ -667,6 +740,9 @@ def main() -> None:
         vggt_debug_path=args.vggt_debug,
         include_technical_fields=args.include_technical_fields,
         edge_routing=args.edge_routing,
+        master_id=args.master_id,
+        master_date=args.master_date,
+        master_orientation_deg=args.master_orientation_deg,
     )
     print("Generated QGIS GeoJSON files:")
     for layer_name, path in paths.items():
