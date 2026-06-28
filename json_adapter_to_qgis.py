@@ -260,7 +260,7 @@ def _node_features(
             "nome": node.get("name"),
             "shurikode": node.get("code"),
             "etichetta": f"{node.get('code')} - {node.get('name')}",
-            "diametro": None,
+            "diametro": node.get("diameter_mm"),
             "angolo_rotazione": None,
         }
         if include_technical_fields:
@@ -303,7 +303,7 @@ def _edge_features(
             "da": node_a,
             "a": node_b,
             "etichetta": f"{node_a} -> {node_b}",
-            "diametro": None,
+            "diametro": edge.get("diameter_mm"),
             "angolo_rotazione": None,
         }
         if include_technical_fields:

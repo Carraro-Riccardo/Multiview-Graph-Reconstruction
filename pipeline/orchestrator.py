@@ -10,6 +10,7 @@ import networkx as nx
 from config import IMAGES_DIR, MIN_IMAGES, SKIP_NODES, VGGT_EDGE_ENABLED, VGGT_SKIP_NODES, WORK_DIR
 from core.debug_utils import save_json
 from core.detection import discover_nodes
+from .diameter_annotation import annotate_graph_diameters
 from .direct_graph_builder import build_direct_graph
 from .graph_refinement import force_spanning_tree, serialize_fused_graph
 from .node_reid import identify_scene_nodes, merge_spurious_singletons, serialize_scene_nodes
@@ -210,6 +211,18 @@ def run_multiview_pipeline(node_id: str, image_paths: list, output_dir: Path | N
     print(f"  forced edges added : {n_forced}")
     for fe in span_debug["forced_edges"]:
         print(f"    {fe['a']}  --({fe['via']})->  {fe['b']}")
+
+    fused_graph, diameter_debug = annotate_graph_diameters(
+        fused_graph,
+        scene_nodes,
+        image_paths,
+    )
+    save_json(output_dir / "diameter_debug.json", diameter_debug)
+    print(
+        "  diameter labels: "
+        f"{diameter_debug['n_diameter_observations']} observations, "
+        f"{diameter_debug['n_seeded_edges']} seeded edge(s)"
+    )
 
     save_json(output_dir / "fused_graph.json", serialize_fused_graph(fused_graph, len(observed_graphs)))
 

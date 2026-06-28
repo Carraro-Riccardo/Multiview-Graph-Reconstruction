@@ -232,6 +232,9 @@ def serialize_fused_graph(graph: nx.Graph, n_total_views: int) -> dict:
             "degree": graph.degree(node_id),
             "max_degree": attrs["max_degree"],
             "is_anchor": attrs["is_anchor"],
+            "diameter_mm": attrs.get("diameter_mm"),
+            "diameter_candidates_mm": attrs.get("diameter_candidates_mm", []),
+            "diameter_conflict": attrs.get("diameter_conflict", False),
         })
 
     edges = []
@@ -252,6 +255,11 @@ def serialize_fused_graph(graph: nx.Graph, n_total_views: int) -> dict:
             "evidence_sources": attrs.get("evidence_sources", []),
             "forced": attrs.get("forced", False),
             "forced_reason": attrs.get("forced_reason", None),
+            "diameter_mm": attrs.get("diameter_mm"),
+            "diameter_source": attrs.get("diameter_source"),
+            "diameter_confidence": attrs.get("diameter_confidence", 0.0),
+            "diameter_observation_count": attrs.get("diameter_observation_count", 0),
+            "diameter_conflict": attrs.get("diameter_conflict", False),
         })
 
     return {

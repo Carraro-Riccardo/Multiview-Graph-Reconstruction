@@ -67,7 +67,21 @@ COMPONENT_INFO = {
     250: (0, "All.1\""), 252: (0, "All.2\""),
 }
 
-DIAMETER_CODES = {114, 125, 228, 231, 244, 247, 250, 252}
+DIAMETER_VALUE_BY_CODE = {
+    114: 50,
+    125: 65,
+    228: 80,
+    231: 100,
+    244: 150,
+    247: 200,
+}
+
+DIAMETER_CODES = set(DIAMETER_VALUE_BY_CODE) | {250, 252}
+
+# Components where a pipe line can legitimately change diameter.  Diameter
+# propagation does not cross these nodes unless explicit evidence appears on
+# the other side.
+DIAMETER_BREAK_CODES = {75, 95, 207, 255}
 
 VALENCE_COLORS = {
     0: "#555", 1: "#e74c3c", 2: "#3498db", 3: "#2ecc71", 4: "#f39c12"
