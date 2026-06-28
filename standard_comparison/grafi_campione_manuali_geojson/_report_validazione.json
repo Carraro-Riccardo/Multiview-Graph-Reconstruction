@@ -1,0 +1,373 @@
+{
+  "source_directory": "C:\\Users\\ricca\\Desktop\\GraphReconstruction\\standard_comparison\\grafi_campione_manuali",
+  "converted_directory": "C:\\Users\\ricca\\Desktop\\GraphReconstruction\\standard_comparison\\grafi_campione_manuali_geojson",
+  "files_found": 12,
+  "files_converted": 12,
+  "errors_total": 0,
+  "warnings_total": 0,
+  "graphs": [
+    {
+      "file": "nodo1.json",
+      "node_count": 14,
+      "edge_count": 13,
+      "is_connected": true,
+      "is_tree": true,
+      "inventory": {
+        "15": 4,
+        "53": 4,
+        "95": 4,
+        "116": 2
+      },
+      "degree_sequence": [
+        3,
+        3,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1
+      ],
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "file": "nodo2.json",
+      "node_count": 10,
+      "edge_count": 9,
+      "is_connected": true,
+      "is_tree": true,
+      "inventory": {
+        "15": 3,
+        "53": 3,
+        "95": 3,
+        "116": 1
+      },
+      "degree_sequence": [
+        3,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1
+      ],
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "file": "nodo3.json",
+      "node_count": 8,
+      "edge_count": 7,
+      "is_connected": true,
+      "is_tree": true,
+      "inventory": {
+        "15": 1,
+        "53": 3,
+        "95": 1,
+        "201": 1,
+        "237": 2
+      },
+      "degree_sequence": [
+        3,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1
+      ],
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "file": "nodo4.json",
+      "node_count": 13,
+      "edge_count": 12,
+      "is_connected": true,
+      "is_tree": true,
+      "inventory": {
+        "15": 4,
+        "53": 4,
+        "95": 4,
+        "192": 1
+      },
+      "degree_sequence": [
+        4,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1
+      ],
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "file": "nodo5.json",
+      "node_count": 8,
+      "edge_count": 7,
+      "is_connected": true,
+      "is_tree": true,
+      "inventory": {
+        "15": 1,
+        "53": 3,
+        "95": 3,
+        "116": 1
+      },
+      "degree_sequence": [
+        3,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1
+      ],
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "file": "nodo6.json",
+      "node_count": 11,
+      "edge_count": 10,
+      "is_connected": true,
+      "is_tree": true,
+      "inventory": {
+        "15": 2,
+        "53": 3,
+        "95": 4,
+        "116": 2
+      },
+      "degree_sequence": [
+        3,
+        3,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1
+      ],
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "file": "nodo7.json",
+      "node_count": 16,
+      "edge_count": 15,
+      "is_connected": true,
+      "is_tree": true,
+      "inventory": {
+        "11": 2,
+        "15": 4,
+        "53": 4,
+        "95": 2,
+        "116": 2,
+        "207": 2
+      },
+      "degree_sequence": [
+        3,
+        3,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1
+      ],
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "file": "nodo8.json",
+      "node_count": 9,
+      "edge_count": 8,
+      "is_connected": true,
+      "is_tree": true,
+      "inventory": {
+        "15": 1,
+        "37": 1,
+        "53": 3,
+        "95": 2,
+        "175": 1,
+        "201": 1
+      },
+      "degree_sequence": [
+        3,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1
+      ],
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "file": "nodo9.json",
+      "node_count": 12,
+      "edge_count": 11,
+      "is_connected": true,
+      "is_tree": true,
+      "inventory": {
+        "15": 3,
+        "53": 3,
+        "75": 2,
+        "95": 3,
+        "116": 1
+      },
+      "degree_sequence": [
+        3,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1
+      ],
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "file": "nodo10.json",
+      "node_count": 19,
+      "edge_count": 18,
+      "is_connected": true,
+      "is_tree": true,
+      "inventory": {
+        "15": 6,
+        "53": 3,
+        "95": 6,
+        "116": 4
+      },
+      "degree_sequence": [
+        3,
+        3,
+        3,
+        3,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "file": "nodo11.json",
+      "node_count": 14,
+      "edge_count": 13,
+      "is_connected": true,
+      "is_tree": true,
+      "inventory": {
+        "15": 3,
+        "53": 3,
+        "95": 3,
+        "175": 4,
+        "255": 1
+      },
+      "degree_sequence": [
+        3,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1
+      ],
+      "errors": [],
+      "warnings": []
+    },
+    {
+      "file": "nodo12.json",
+      "node_count": 16,
+      "edge_count": 15,
+      "is_connected": true,
+      "is_tree": true,
+      "inventory": {
+        "11": 2,
+        "15": 3,
+        "53": 3,
+        "95": 3,
+        "111": 4,
+        "116": 1
+      },
+      "degree_sequence": [
+        3,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1
+      ],
+      "errors": [],
+      "warnings": []
+    }
+  ]
+}

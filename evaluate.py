@@ -2,14 +2,15 @@
 Confronto scene nodes ricostruiti vs Ground Truth per ogni nodo idraulico.
 
 Uso:
-    python evaluate_reid.py           # tutti i nodi disponibili
-    python evaluate_reid.py 2 7 9     # solo i nodi specificati
+    python evaluate.py           # tutti i nodi disponibili
+    python evaluate.py 2 7 9     # solo i nodi specificati
 
 Output terminale per ogni nodo:
   - tabella GT instances (code, nome, n istanze)
   - tabella scene nodes  (code, nome, n predetti, support, conf)
   - confronto TP / FP / FN per codice
   - purity per ogni scene node (frazione di sue detection che matchano un unico GT)
+  - tabella di similarita strutturale verso tutti gli standard di riferimento
 
 GT format (labels_extended):
     <class> <cx_n> <cy_n> <w_n> <h_n> <instance_id> <hydraulic_code>
@@ -34,6 +35,10 @@ if hasattr(sys.stdout, "reconfigure"):
 import numpy as np
 
 from core.linear_assignment import linear_sum_assignment
+from standard_comparison.confronta_pipeline_con_standard import (
+    all_matches_table,
+    evaluate_pipeline_against_standards,
+)
 from config import (
     COMPONENT_INFO,
     CONF_THRESHOLD,
@@ -669,6 +674,23 @@ def main():
         r = evaluate_node(nid)
         if r:
             rows.append(r)
+
+    # Structural similarity is independent from detection GT: evaluate every
+    # requested reconstructed graph, including nodes skipped above.
+    print("\n\nConfronto strutturale con gli standard di riferimento")
+    try:
+        _, standard_rows = evaluate_pipeline_against_standards(
+            pipeline_dir=MULTIVIEW_DIR,
+            output_dir=WORK_DIR / "standard_comparison",
+            node_ids=node_ids,
+        )
+        if standard_rows:
+            print(all_matches_table(standard_rows))
+            print(f"\nTabella salvata in: {WORK_DIR / 'standard_comparison' / 'similarity_table.csv'}")
+        else:
+            print("  Nessun fused_graph_qgis_combined.geojson disponibile per i nodi richiesti.")
+    except (FileNotFoundError, ValueError) as exc:
+        print(f"  Confronto standard non disponibile: {exc}")
 
     if not rows:
         return

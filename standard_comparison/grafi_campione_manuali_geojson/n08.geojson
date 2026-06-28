@@ -1,0 +1,383 @@
+{
+  "type": "FeatureCollection",
+  "name": "standard_manuale_n08",
+  "metadata": {
+    "standard_id": "N08",
+    "authority": "annotazione manuale validata",
+    "source_annotation": "C:\\Users\\ricca\\Desktop\\GraphReconstruction\\standard_comparison\\grafi_campione_manuali\\nodo8.json",
+    "coordinate_mode": "schematic",
+    "coordinate_transform": "GeoJSON y = -annotation_y",
+    "source_summary": {
+      "n_nodes": 9,
+      "n_edges": 8,
+      "is_connected": true,
+      "is_tree": true
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "53#1",
+        "tipo_layer": "componente",
+        "nome": "tubo condotta",
+        "component_id": 22,
+        "shurikode": 53,
+        "etichetta": "53 - tubo condotta",
+        "annotation_x": 136,
+        "annotation_y": 418
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.0,
+          -418.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "53#2",
+        "tipo_layer": "componente",
+        "nome": "tubo condotta",
+        "component_id": 22,
+        "shurikode": 53,
+        "etichetta": "53 - tubo condotta",
+        "annotation_x": 530,
+        "annotation_y": 426
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          530.0,
+          -426.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "53#3",
+        "tipo_layer": "componente",
+        "nome": "tubo condotta",
+        "component_id": 22,
+        "shurikode": 53,
+        "etichetta": "53 - tubo condotta",
+        "annotation_x": 329,
+        "annotation_y": 229
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          329.0,
+          -229.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "201#1",
+        "tipo_layer": "componente",
+        "nome": "Tee bic-fl-bic",
+        "component_id": 4,
+        "shurikode": 201,
+        "etichetta": "201 - Tee bic-fl-bic",
+        "annotation_x": 324,
+        "annotation_y": 419
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          324.0,
+          -419.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "15#1",
+        "tipo_layer": "componente",
+        "nome": "saracinesca aperta",
+        "component_id": 1,
+        "shurikode": 15,
+        "etichetta": "15 - saracinesca aperta",
+        "annotation_x": 339,
+        "annotation_y": 375
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          339.0,
+          -375.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "95#1",
+        "tipo_layer": "componente",
+        "nome": "Bout a bicchiere",
+        "component_id": 6,
+        "shurikode": 95,
+        "etichetta": "95 - Bout a bicchiere",
+        "annotation_x": 328,
+        "annotation_y": 321
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          328.0,
+          -321.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "95#2",
+        "tipo_layer": "componente",
+        "nome": "Bout a bicchiere",
+        "component_id": 6,
+        "shurikode": 95,
+        "etichetta": "95 - Bout a bicchiere",
+        "annotation_x": 331,
+        "annotation_y": 136
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          331.0,
+          -136.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "175#1",
+        "tipo_layer": "componente",
+        "nome": "curva 90 flangiata",
+        "component_id": 13,
+        "shurikode": 175,
+        "etichetta": "175 - curva 90 flangiata",
+        "annotation_x": 340,
+        "annotation_y": 84
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          340.0,
+          -84.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "37#1",
+        "tipo_layer": "componente",
+        "nome": "idrante soprassuolo",
+        "component_id": 21,
+        "shurikode": 37,
+        "etichetta": "37 - idrante soprassuolo",
+        "annotation_x": 416,
+        "annotation_y": 79
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          416.0,
+          -79.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "edge#1",
+        "tipo_layer": "collegamento",
+        "da": "53#1",
+        "a": "201#1",
+        "etichetta": "53#1 -> 201#1"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            136.0,
+            -418.0
+          ],
+          [
+            324.0,
+            -419.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "edge#2",
+        "tipo_layer": "collegamento",
+        "da": "201#1",
+        "a": "15#1",
+        "etichetta": "201#1 -> 15#1"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            324.0,
+            -419.0
+          ],
+          [
+            339.0,
+            -375.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "edge#3",
+        "tipo_layer": "collegamento",
+        "da": "15#1",
+        "a": "95#1",
+        "etichetta": "15#1 -> 95#1"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            339.0,
+            -375.0
+          ],
+          [
+            328.0,
+            -321.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "edge#4",
+        "tipo_layer": "collegamento",
+        "da": "95#1",
+        "a": "53#3",
+        "etichetta": "95#1 -> 53#3"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            328.0,
+            -321.0
+          ],
+          [
+            329.0,
+            -229.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "edge#5",
+        "tipo_layer": "collegamento",
+        "da": "53#3",
+        "a": "95#2",
+        "etichetta": "53#3 -> 95#2"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            329.0,
+            -229.0
+          ],
+          [
+            331.0,
+            -136.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "edge#6",
+        "tipo_layer": "collegamento",
+        "da": "95#2",
+        "a": "175#1",
+        "etichetta": "95#2 -> 175#1"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            331.0,
+            -136.0
+          ],
+          [
+            340.0,
+            -84.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "edge#7",
+        "tipo_layer": "collegamento",
+        "da": "175#1",
+        "a": "37#1",
+        "etichetta": "175#1 -> 37#1"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            340.0,
+            -84.0
+          ],
+          [
+            416.0,
+            -79.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "edge#8",
+        "tipo_layer": "collegamento",
+        "da": "201#1",
+        "a": "53#2",
+        "etichetta": "201#1 -> 53#2"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            324.0,
+            -419.0
+          ],
+          [
+            530.0,
+            -426.0
+          ]
+        ]
+      }
+    }
+  ]
+}

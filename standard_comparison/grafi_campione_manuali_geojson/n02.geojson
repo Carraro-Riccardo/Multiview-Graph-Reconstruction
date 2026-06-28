@@ -1,0 +1,426 @@
+{
+  "type": "FeatureCollection",
+  "name": "standard_manuale_n02",
+  "metadata": {
+    "standard_id": "N02",
+    "authority": "annotazione manuale validata",
+    "source_annotation": "C:\\Users\\ricca\\Desktop\\GraphReconstruction\\standard_comparison\\grafi_campione_manuali\\nodo2.json",
+    "coordinate_mode": "schematic",
+    "coordinate_transform": "GeoJSON y = -annotation_y",
+    "source_summary": {
+      "n_nodes": 10,
+      "n_edges": 9,
+      "is_connected": true,
+      "is_tree": true
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "53#1",
+        "tipo_layer": "componente",
+        "nome": "tubo condotta",
+        "component_id": 22,
+        "shurikode": 53,
+        "etichetta": "53 - tubo condotta",
+        "annotation_x": 94,
+        "annotation_y": 73
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          94.0,
+          -73.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "95#1",
+        "tipo_layer": "componente",
+        "nome": "Bout a bicchiere",
+        "component_id": 6,
+        "shurikode": 95,
+        "etichetta": "95 - Bout a bicchiere",
+        "annotation_x": 182,
+        "annotation_y": 72
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          182.0,
+          -72.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "95#2",
+        "tipo_layer": "componente",
+        "nome": "Bout a bicchiere",
+        "component_id": 6,
+        "shurikode": 95,
+        "etichetta": "95 - Bout a bicchiere",
+        "annotation_x": 374,
+        "annotation_y": 69
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          374.0,
+          -69.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "95#3",
+        "tipo_layer": "componente",
+        "nome": "Bout a bicchiere",
+        "component_id": 6,
+        "shurikode": 95,
+        "etichetta": "95 - Bout a bicchiere",
+        "annotation_x": 269,
+        "annotation_y": 171
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          269.0,
+          -171.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "15#1",
+        "tipo_layer": "componente",
+        "nome": "saracinesca aperta",
+        "component_id": 1,
+        "shurikode": 15,
+        "etichetta": "15 - saracinesca aperta",
+        "annotation_x": 215,
+        "annotation_y": 70
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          215.0,
+          -70.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "15#2",
+        "tipo_layer": "componente",
+        "nome": "saracinesca aperta",
+        "component_id": 1,
+        "shurikode": 15,
+        "etichetta": "15 - saracinesca aperta",
+        "annotation_x": 307,
+        "annotation_y": 74
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          307.0,
+          -74.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "15#3",
+        "tipo_layer": "componente",
+        "nome": "saracinesca aperta",
+        "component_id": 1,
+        "shurikode": 15,
+        "etichetta": "15 - saracinesca aperta",
+        "annotation_x": 257,
+        "annotation_y": 128
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          257.0,
+          -128.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "53#2",
+        "tipo_layer": "componente",
+        "nome": "tubo condotta",
+        "component_id": 22,
+        "shurikode": 53,
+        "etichetta": "53 - tubo condotta",
+        "annotation_x": 269,
+        "annotation_y": 246
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          269.0,
+          -246.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "53#3",
+        "tipo_layer": "componente",
+        "nome": "tubo condotta",
+        "component_id": 22,
+        "shurikode": 53,
+        "etichetta": "53 - tubo condotta",
+        "annotation_x": 520,
+        "annotation_y": 75
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          520.0,
+          -75.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "116#1",
+        "tipo_layer": "componente",
+        "nome": "Tee fl-fl-fl",
+        "component_id": 2,
+        "shurikode": 116,
+        "etichetta": "116 - Tee fl-fl-fl",
+        "annotation_x": 267,
+        "annotation_y": 71
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          267.0,
+          -71.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "edge#1",
+        "tipo_layer": "collegamento",
+        "da": "53#1",
+        "a": "95#1",
+        "etichetta": "53#1 -> 95#1"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            94.0,
+            -73.0
+          ],
+          [
+            182.0,
+            -72.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "edge#2",
+        "tipo_layer": "collegamento",
+        "da": "95#1",
+        "a": "15#1",
+        "etichetta": "95#1 -> 15#1"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            182.0,
+            -72.0
+          ],
+          [
+            215.0,
+            -70.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "edge#3",
+        "tipo_layer": "collegamento",
+        "da": "15#1",
+        "a": "116#1",
+        "etichetta": "15#1 -> 116#1"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            215.0,
+            -70.0
+          ],
+          [
+            267.0,
+            -71.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "edge#4",
+        "tipo_layer": "collegamento",
+        "da": "116#1",
+        "a": "15#3",
+        "etichetta": "116#1 -> 15#3"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            267.0,
+            -71.0
+          ],
+          [
+            257.0,
+            -128.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "edge#5",
+        "tipo_layer": "collegamento",
+        "da": "15#3",
+        "a": "95#3",
+        "etichetta": "15#3 -> 95#3"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            257.0,
+            -128.0
+          ],
+          [
+            269.0,
+            -171.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "edge#6",
+        "tipo_layer": "collegamento",
+        "da": "95#3",
+        "a": "53#2",
+        "etichetta": "95#3 -> 53#2"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            269.0,
+            -171.0
+          ],
+          [
+            269.0,
+            -246.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "edge#7",
+        "tipo_layer": "collegamento",
+        "da": "116#1",
+        "a": "15#2",
+        "etichetta": "116#1 -> 15#2"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            267.0,
+            -71.0
+          ],
+          [
+            307.0,
+            -74.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "edge#8",
+        "tipo_layer": "collegamento",
+        "da": "15#2",
+        "a": "95#2",
+        "etichetta": "15#2 -> 95#2"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            307.0,
+            -74.0
+          ],
+          [
+            374.0,
+            -69.0
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "edge#9",
+        "tipo_layer": "collegamento",
+        "da": "95#2",
+        "a": "53#3",
+        "etichetta": "95#2 -> 53#3"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            374.0,
+            -69.0
+          ],
+          [
+            520.0,
+            -75.0
+          ]
+        ]
+      }
+    }
+  ]
+}
