@@ -34,12 +34,14 @@ if hasattr(sys.stdout, "reconfigure"):
 
 import numpy as np
 
-from core.linear_assignment import linear_sum_assignment
-from standard_comparison.confronta_pipeline_con_standard import (
+from graph_reconstruction.shared.linear_assignment import linear_sum_assignment
+from evaluation.standard_comparison.confronta_pipeline_con_standard import (
     all_matches_table,
     evaluate_pipeline_against_standards,
 )
-from config import (
+from json_adapter_to_qgis import convert_fused_graph_to_qgis
+from graph_reconstruction.config import (
+    ANNOTATIONS_DIR,
     COMPONENT_INFO,
     CONF_THRESHOLD,
     IMAGES_DIR,
@@ -49,7 +51,6 @@ from config import (
 
 MULTIVIEW_DIR   = WORK_DIR / "multiview"
 CACHE_DIR       = WORK_DIR / "detection_cache"
-ANNOTATIONS_DIR = Path("C:\\Users\\ricca\\Desktop\\annotations")
 
 # IoU minima per considerare un match detection→GT
 IOU_THRESH = 0.30
@@ -82,7 +83,7 @@ def load_gt_for_image(image_stem: str) -> list[dict]:
     Carica GT instances per una singola immagine, escludendo diameter codes.
     Ritorna lista di {instance_id, code, name, bbox_norm [x1y1x2y2]}.
     """
-    from config import DIAMETER_CODES
+    from graph_reconstruction.config import DIAMETER_CODES
     p = LABELS_EXT_DIR / f"{image_stem}_extended.txt"
     if not p.exists():
         return []
@@ -159,7 +160,7 @@ def load_detections_for_image(image_stem: str) -> list[dict]:
     solo quelle con confidence >= CONF_THRESHOLD e non diameter.
     L'indice nell'observed_node_id si riferisce a questa lista filtrata.
     """
-    from config import DIAMETER_CODES
+    from graph_reconstruction.config import DIAMETER_CODES
     p = CACHE_DIR / f"{image_stem}.json"
     if not p.exists():
         return []
@@ -679,14 +680,25 @@ def main():
     # requested reconstructed graph, including nodes skipped above.
     print("\n\nConfronto strutturale con gli standard di riferimento")
     try:
+        for nid in node_ids:
+            node_dir = MULTIVIEW_DIR / f"node{nid}"
+            fused_path = node_dir / "fused_graph.json"
+            if fused_path.exists():
+                convert_fused_graph_to_qgis(
+                    fused_path,
+                    node_dir,
+                    geometry_source="fake",
+                )
+
+        comparison_output = WORK_DIR / "standard_comparison"
         _, standard_rows = evaluate_pipeline_against_standards(
             pipeline_dir=MULTIVIEW_DIR,
-            output_dir=WORK_DIR / "standard_comparison",
+            output_dir=comparison_output,
             node_ids=node_ids,
         )
         if standard_rows:
             print(all_matches_table(standard_rows))
-            print(f"\nTabella salvata in: {WORK_DIR / 'standard_comparison' / 'similarity_table.csv'}")
+            print(f"\nTabella salvata in: {comparison_output / 'similarity_table.csv'}")
         else:
             print("  Nessun fused_graph_qgis_combined.geojson disponibile per i nodi richiesti.")
     except (FileNotFoundError, ValueError) as exc:

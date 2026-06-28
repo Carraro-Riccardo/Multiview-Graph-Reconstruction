@@ -16,9 +16,9 @@ if str(ROOT) not in sys.path:
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-from pipeline.orchestrator import run_multiview_all, run_multiview_pipeline
-from config import IMAGES_DIR
-from core.detection import discover_nodes
+from graph_reconstruction.pipeline.orchestrator import run_multiview_all, run_multiview_pipeline
+from graph_reconstruction.config import IMAGES_DIR
+from graph_reconstruction.shared.detection import discover_nodes
 
 
 def main() -> None:
