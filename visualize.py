@@ -8,7 +8,7 @@ Nodes are coloured by component code (same code → same hue), with opacity
 scaled by support_count / n_views so well-supported nodes pop.
 
 Usage:
-    python visualize.py            # uses NODE_ID defined below
+    python visualize.py            # all reconstructed nodes
     python visualize.py 9          # specific node
     python visualize.py 2 7 9      # multiple nodes
     python visualize.py --all      # all reconstructed nodes
@@ -37,7 +37,6 @@ from evaluation.standard_comparison.visualizza_best_match import generate_best_m
 from json_adapter_to_qgis import convert_fused_graph_to_qgis  # noqa: E402
 
 # ── CONFIG ───────────────────────────────────────────────────────────────────
-NODE_ID     = 2
 WORK_DIR    = _WORK_DIR / "multiview"
 SHOW_WINDOW = False
 # ─────────────────────────────────────────────────────────────────────────────
@@ -309,7 +308,7 @@ def _available_node_ids() -> list[str]:
 
 def main() -> None:
     args = sys.argv[1:]
-    node_ids = _available_node_ids() if args == ["--all"] else (args or [str(NODE_ID)])
+    node_ids = _available_node_ids() if not args or args == ["--all"] else args
     if not node_ids:
         raise SystemExit(f"No fused_graph.json found under {WORK_DIR}")
 

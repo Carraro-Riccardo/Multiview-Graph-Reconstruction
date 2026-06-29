@@ -24,12 +24,10 @@ from PIL import Image, ImageDraw, ImageFont
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from graph_reconstruction.config import COMPONENT_INFO, CONF_THRESHOLD, DEBUG_OUTPUT_DIR, DIAMETER_CODES, IMAGES_DIR, LABELS_EXT_DIR, WORK_DIR
+from graph_reconstruction.config import ANNOTATIONS_DIR, COMPONENT_INFO, CONF_THRESHOLD, DEBUG_OUTPUT_DIR, DIAMETER_CODES, IMAGES_DIR, LABELS_EXT_DIR, WORK_DIR
 
 MULTIVIEW_DIR = WORK_DIR / "multiview"
 OUT_DIR = DEBUG_OUTPUT_DIR
-ANNOTATIONS_DIR = Path("C:\\Users\\ricca\\Desktop\\annotations")
-
 PALETTE = [
     "#ff6b6b",
     "#4ecdc4",
