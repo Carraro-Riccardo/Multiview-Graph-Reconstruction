@@ -125,6 +125,17 @@ decoder Shurikode privato. I percorsi del dataset sono già quelli del job ETRA;
 `YOLO_MODEL_PATH` deve essere presente nella `.env` del cluster o esportato al
 submit.
 
+Per installare la stessa revisione VGGT usata nello sviluppo, eseguire una
+volta nel medesimo ambiente Python del job (tipicamente dal login node):
+
+```bash
+python -m pip install "numpy>=1.26,<2"
+python -m pip install "git+https://github.com/facebookresearch/vggt.git@44b3afbd1869d8bde4894dd8ea1e293112dd5eba"
+```
+
+`torch` e `torchvision` devono essere una coppia compatibile con CUDA e con i
+driver del cluster; non vengono reinstallati automaticamente dal job.
+
 ```bash
 mkdir -p /home/rcarraro/projects/Multiview-GraphReconstruction/slurm/logs
 sbatch slurm/benchmark_inference.slurm
