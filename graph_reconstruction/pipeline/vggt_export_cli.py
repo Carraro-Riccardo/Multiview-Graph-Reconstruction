@@ -14,6 +14,21 @@ from vggt.models.vggt import VGGT
 from vggt.utils.load_fn import load_and_preprocess_images
 
 
+def _cuda_memory_payload() -> dict | None:
+    if not torch.cuda.is_available():
+        return None
+    cuda_device = torch.cuda.current_device()
+    return {
+        "source": "torch_cuda_allocator",
+        "device_index": int(cuda_device),
+        "device_name": torch.cuda.get_device_name(cuda_device),
+        "current_allocated_bytes": int(torch.cuda.memory_allocated(cuda_device)),
+        "current_reserved_bytes": int(torch.cuda.memory_reserved(cuda_device)),
+        "peak_allocated_bytes": int(torch.cuda.max_memory_allocated(cuda_device)),
+        "peak_reserved_bytes": int(torch.cuda.max_memory_reserved(cuda_device)),
+    }
+
+
 def _save_predictions(output_dir: Path, image_paths: list[Path], predictions: dict) -> dict:
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -60,14 +75,37 @@ def main() -> int:
     device = "cuda" if torch.cuda.is_available() else "cpu"
     start = time.time()
 
-    images = load_and_preprocess_images([str(p) for p in image_paths], mode=preprocess_mode).to(device)
-    model = VGGT.from_pretrained(model_id).to(device)
-    model.eval()
+    if device == "cuda":
+        torch.cuda.reset_peak_memory_stats()
 
-    with torch.no_grad():
-        predictions = model(images)
+    try:
+        images = load_and_preprocess_images([str(p) for p in image_paths], mode=preprocess_mode).to(device)
+        model = VGGT.from_pretrained(model_id).to(device)
+        model.eval()
 
-    save_info = _save_predictions(output_dir, image_paths, predictions)
+        with torch.no_grad():
+            predictions = model(images)
+
+        save_info = _save_predictions(output_dir, image_paths, predictions)
+    except Exception as exc:
+        failure_summary = {
+            "status": "error",
+            "device": device,
+            "model_id": model_id,
+            "preprocess_mode": preprocess_mode,
+            "n_images": len(image_paths),
+            "elapsed_sec": round(time.time() - start, 3),
+            "error_type": type(exc).__name__,
+            "error": str(exc),
+        }
+        cuda_memory = _cuda_memory_payload()
+        if cuda_memory is not None:
+            failure_summary["cuda_memory"] = cuda_memory
+        output_dir.mkdir(parents=True, exist_ok=True)
+        (output_dir / "summary.json").write_text(
+            json.dumps(failure_summary, indent=2), encoding="utf-8"
+        )
+        raise
     summary = {
         "status": "ok",
         "device": device,
@@ -77,6 +115,9 @@ def main() -> int:
         "elapsed_sec": round(time.time() - start, 3),
         **save_info,
     }
+    cuda_memory = _cuda_memory_payload()
+    if cuda_memory is not None:
+        summary["cuda_memory"] = cuda_memory
     (output_dir / "summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
     print(json.dumps(summary, indent=2))
     return 0

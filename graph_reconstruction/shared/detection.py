@@ -4,6 +4,7 @@ Funzioni di discovery, pre-processing, detection YOLO e decodifica Shurikode.
 
 import re
 import json
+import os
 import cv2
 import numpy as np
 from PIL import Image
@@ -16,9 +17,54 @@ _MODEL_BUNDLE = None
 __all__ = ["discover_nodes", "detect_and_decode_cached"]
 
 
+def _resource_metrics_enabled() -> bool:
+    return os.getenv("PIPELINE_RESOURCE_METRICS", "0").strip().lower() in {"1", "true", "yes", "on"}
+
+
+def _reset_cuda_peak_metrics() -> None:
+    if not _resource_metrics_enabled():
+        return
+    try:
+        import torch  # noqa: PLC0415
+
+        if torch.cuda.is_available():
+            torch.cuda.reset_peak_memory_stats()
+    except Exception:
+        pass
+
+
+def _save_cuda_metrics(images_completed: int) -> None:
+    """Persist allocator metrics for benchmarks, including CUDA MPS jobs."""
+    if not _resource_metrics_enabled():
+        return
+    try:
+        import torch  # noqa: PLC0415
+
+        if not torch.cuda.is_available():
+            return
+        device = torch.cuda.current_device()
+        payload = {
+            "source": "torch_cuda_allocator",
+            "component": "yolo_parent_process",
+            "device_index": int(device),
+            "device_name": torch.cuda.get_device_name(device),
+            "images_completed": int(images_completed),
+            "current_allocated_bytes": int(torch.cuda.memory_allocated(device)),
+            "current_reserved_bytes": int(torch.cuda.memory_reserved(device)),
+            "peak_allocated_bytes": int(torch.cuda.max_memory_allocated(device)),
+            "peak_reserved_bytes": int(torch.cuda.max_memory_reserved(device)),
+        }
+        metrics_path = WORK_DIR / "benchmark_yolo_cuda.json"
+        metrics_path.parent.mkdir(parents=True, exist_ok=True)
+        metrics_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    except Exception:
+        pass
+
+
 def _get_model_bundle():
     global _MODEL_BUNDLE
     if _MODEL_BUNDLE is None:
+        _reset_cuda_peak_metrics()
         from shurikodecontext import Dec  # noqa: PLC0415
         from ultralytics import YOLO  # noqa: PLC0415
 
@@ -188,13 +234,18 @@ def _detect_and_decode(image_path: Path) -> tuple:
 
     models = _get_model_bundle()
     img_pre = cv2.cvtColor(np.array(models["augmentor"].augment(img_bgr)), cv2.COLOR_RGB2BGR)
-    results = models["yolo_model"](
-        img_pre,
-        conf=YOLO_CONF,
-        iou=YOLO_IOU,
-        imgsz=YOLO_IMGSZ,
-        verbose=False,
-    )
+    try:
+        results = models["yolo_model"](
+            img_pre,
+            conf=YOLO_CONF,
+            iou=YOLO_IOU,
+            imgsz=YOLO_IMGSZ,
+            verbose=False,
+        )
+    except Exception:
+        # Preserve the peak reached before a possible CUDA OOM.
+        _save_cuda_metrics(_load_json_metric_count())
+        raise
     dets = []
     yolo_boxes = 0
     for result in results:
@@ -222,7 +273,19 @@ def _detect_and_decode(image_path: Path) -> tuple:
         f"iou={YOLO_IOU:.2f} yolo_boxes={yolo_boxes} "
         f"decoded={len(dets)} accepted={sum(1 for d in dets if d['accepted'])}"
     )
+    previous = _load_json_metric_count()
+    _save_cuda_metrics(previous + 1)
     return dets, img_bgr
+
+
+def _load_json_metric_count() -> int:
+    if not _resource_metrics_enabled():
+        return 0
+    try:
+        payload = json.loads((WORK_DIR / "benchmark_yolo_cuda.json").read_text(encoding="utf-8"))
+        return int(payload.get("images_completed", 0))
+    except (OSError, ValueError, TypeError, json.JSONDecodeError):
+        return 0
 
 
 

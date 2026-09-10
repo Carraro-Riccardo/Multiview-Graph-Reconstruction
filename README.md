@@ -29,6 +29,12 @@ python visualize.py --all
 
 # Esportazione QGIS batch di tutti i fused_graph.json
 python json_adapter_to_qgis.py
+
+# Analisi di hardware, cache e requisiti RAM/VRAM/disco
+python tools/analyze_requirements.py
+
+# Benchmark cold dell'inferenza reale (sceglie il nodo con più viste)
+python tools/benchmark_inference.py --require-cuda
 ```
 
 Su Windows è disponibile anche il flusso completo ricostruzione → valutazione
@@ -103,6 +109,46 @@ incluso tra queste dipendenze e va fornito separatamente al setup.
 La directory `python312/` è il runtime embedded usato internamente per VGGT:
 non è il punto di ingresso normale del progetto.
 
+## Benchmark dei requisiti hardware
+
+`tools/benchmark_inference.py` misura un'inferenza reale senza cache. Se non
+vengono indicati nodi, seleziona automaticamente il nodo VGGT con più viste;
+nel dataset corrente è `node9`, con sette immagini. Il processo principale e
+il subprocess VGGT vengono campionati ogni 250 ms. Il benchmark combina la
+telemetria per processo di `nvidia-smi` con i contatori interni di PyTorch,
+necessari quando CUDA MPS attribuisce le allocazioni al server MPS.
+
+Il job Slurm usa la configurazione del cluster universitario: partizione
+`testing`, account `thesis`, `mps:30`, 20 GB RAM e otto CPU. Nel Python del job
+devono essere disponibili PyTorch CUDA, VGGT, le dipendenze pubbliche e il
+decoder Shurikode privato. I percorsi del dataset sono già quelli del job ETRA;
+`YOLO_MODEL_PATH` deve essere presente nella `.env` del cluster o esportato al
+submit.
+
+```bash
+mkdir -p /home/rcarraro/projects/Multiview-GraphReconstruction/slurm/logs
+sbatch slurm/benchmark_inference.slurm
+```
+
+Se il peso YOLO non è configurato nella `.env`:
+
+```bash
+sbatch --export=ALL,YOLO_MODEL_PATH=/percorso/modello.pt slurm/benchmark_inference.slurm
+```
+
+Il job genera sotto `output/benchmarks/<job-id>/`:
+
+- `benchmark_report.json`, con picchi RAM/VRAM, GPU e tempi;
+- `benchmark_samples.csv`, con la serie temporale grezza;
+- tutti gli artefatti della pipeline cold, utili a dimostrare che non sono
+  state usate cache pregresse.
+
+Il requisito di consegna va ricavato da `sizing_peak_mib`: è il massimo tra la
+misura `nvidia-smi` e la riserva concorrente rilevata internamente da PyTorch.
+Il report applica anche un margine del 20% e propone il taglio VRAM commerciale
+successivo. Dopo il job, `sacct` fornisce una misura indipendente di `MaxRSS`;
+il comando esatto viene stampato nel log Slurm.
+
 ## Struttura del repository
 
 ```text
@@ -127,7 +173,11 @@ GraphReconstruction/
 │   ├── examples/                  # dimostrazioni algoritmiche
 │   ├── qgis/                      # packaging degli export QGIS
 │   ├── reporting/                 # figure specialistiche per report
+│   ├── analyze_requirements.py    # stima requisiti hardware e stato cache
+│   ├── benchmark_inference.py      # misura cold-run di RAM, VRAM e tempi
 │   └── run_pipeline.cmd           # comando Windows end-to-end
+├── slurm/
+│   └── benchmark_inference.slurm   # benchmark GPU sul cluster universitario
 ├── output/                        # risultati e cache generati
 └── python312/                     # runtime embedded VGGT
 ```
