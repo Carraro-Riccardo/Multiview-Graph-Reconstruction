@@ -1,14 +1,9 @@
 #!/bin/bash
-
-# Cache-free inference benchmark for the university Slurm cluster.
-# Paths and scheduler settings follow the existing ETRA pipeline job.
-
 #SBATCH --job-name=ETRA_inference_bench
-#SBATCH --error=/home/rcarraro/projects/Multiview-GraphReconstruction/slurm/logs/benchmark_error_%j.err
-#SBATCH --output=/home/rcarraro/projects/Multiview-GraphReconstruction/slurm/logs/benchmark_output_%j.out
+#SBATCH --error=/home/rcarraro/projects/Multiview-Graph-Reconstruction/slurm/logs/benchmarks_errors_%j.err
+#SBATCH --output=/home/rcarraro/projects/Multiview-Graph-Reconstruction/slurm/logs/benchmarks_output_%j.out
 #SBATCH --partition=testing
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=8
 #SBATCH --mem=20G
 #SBATCH --time=00:30:00
 #SBATCH --gres=mps:30
@@ -16,12 +11,13 @@
 
 set -euo pipefail
 
-PROJECT_ROOT="/home/rcarraro/projects/Multiview-GraphReconstruction"
+PROJECT_ROOT="/home/rcarraro/projects/Multiview-Graph-Reconstruction"
 BENCHMARK_DIR="${PROJECT_ROOT}/output/benchmarks/${SLURM_JOB_ID}"
+mkdir -p "${BENCHMARK_DIR}"
 
 # Input paths used by the existing university-cluster job.
-export IMAGES_DIR="/home/rcarraro/projects/Multiview-GraphReconstruction/Dataset/images/val"
-export LABELS_EXT_DIR="/home/rcarraro/projects/Multiview-GraphReconstruction/Dataset/labels_ext/val"
+export IMAGES_DIR=/home/rcarraro/datasets/ds_operativo/images/val
+export LABELS_EXT_DIR=/home/rcarraro/datasets/ds_operativo/labels_extended
 
 # YOLO_MODEL_PATH must either be present in the cluster .env or exported when
 # submitting, for example:
