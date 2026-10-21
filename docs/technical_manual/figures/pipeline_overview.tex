@@ -1,0 +1,33 @@
+\begin{tikzpicture}[
+  node distance=5mm and 6mm,
+  block/.style={draw=ManualBlue, rounded corners, fill=ManualLight,
+                align=center, minimum height=10mm, text width=27mm,
+                font=\small},
+  artifact/.style={draw=ManualGreen, rounded corners, fill=white,
+                   align=center, minimum height=9mm, text width=27mm,
+                   font=\scriptsize},
+  arrow/.style={-{Latex[length=2mm]}, thick, draw=ManualDark},
+  artifactarrow/.style={-{Latex[length=2mm]}, dashed, draw=ManualGreen}
+]
+\node[block] (images) {Immagini\\multi-vista};
+\node[block, right=of images] (observed) {Detection e\\grafi osservati};
+\node[block, right=of observed] (artifacts) {Artefatti\\VGGT};
+\node[block, right=of artifacts] (reid) {ReID\\multi-vista};
+\node[artifact, below=of reid] (sceneout) {\code{scene_nodes.json}};
+
+\node[block, below=15mm of artifacts] (hints) {Geometria e\\indizi 3D};
+\node[block, left=of hints] (builder) {Costruzione\\diretta};
+\node[block, left=of builder] (refine) {Refinement e\\connettività};
+\node[block, left=of refine] (diam) {Annotazione\\diametri};
+\node[artifact, below=of diam] (out) {\code{fused_graph.json}\\\code{bird_view.png}};
+
+\draw[arrow] (images) -- (observed);
+\draw[arrow] (observed) -- (artifacts);
+\draw[arrow] (artifacts) -- (reid);
+\draw[arrow] (reid) -- (hints);
+\draw[artifactarrow] (reid) -- (sceneout);
+\draw[arrow] (hints) -- (builder);
+\draw[arrow] (builder) -- (refine);
+\draw[arrow] (refine) -- (diam);
+\draw[arrow] (diam) -- (out);
+\end{tikzpicture}

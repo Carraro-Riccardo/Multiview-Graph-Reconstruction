@@ -1,0 +1,23 @@
+\begin{tikzpicture}[
+  node distance=6mm and 7mm,
+  opstep/.style={draw=ManualBlue, rounded corners, fill=ManualLight,
+               align=center, minimum height=13mm, text width=29mm,
+               font=\small},
+  result/.style={draw=ManualGreen, rounded corners, fill=white,
+                 align=center, minimum height=13mm, text width=31mm,
+                 font=\small},
+  arrow/.style={-{Latex[length=2mm]}, thick, draw=ManualDark}
+]
+\node[opstep] (data) {\textbf{1.} Immagini\\multi-vista};
+\node[opstep, right=of data] (env) {\textbf{2.} Configurazione\\della lavorazione};
+\node[opstep, right=of env] (run) {\textbf{3.} Esecuzione\\della pipeline};
+\node[result, below=of run] (out) {\textbf{4.} Grafo\\ricostruito};
+\node[opstep, left=of out] (check) {\textbf{5.} Verifica e\\valutazione};
+\node[result, left=of check] (deliver) {\textbf{6.} Output per\\utilizzo e consegna};
+
+\draw[arrow] (data) -- (env);
+\draw[arrow] (env) -- (run);
+\draw[arrow] (run) -- (out);
+\draw[arrow] (out) -- (check);
+\draw[arrow] (check) -- (deliver);
+\end{tikzpicture}

@@ -1,0 +1,160 @@
+\chapter{Dati e configurazione}
+\label{chap:dati}
+
+\section{Organizzazione di codice e dati}
+
+Le immagini non devono essere copiate nel repository. Per una lavorazione
+industriale è più ordinato mantenere una directory esterna per dataset e
+risultati, usando \filepath{.env} per collegarla al codice. Il checkpoint YOLO
+è invece conservato nella directory \filepath{models/} del progetto. Una
+possibile organizzazione dei dati esterni è:
+
+\begin{lstlisting}[language={}]
+D:/GraphReconstructionData/
+  datasets/
+    impianto_A/
+      images/
+      labels_extended/
+  work/
+    impianto_A/
+\end{lstlisting}
+
+La separazione limita la commistione tra sorgenti, dati sensibili e cache e
+consente di conservare più lavorazioni indipendenti.
+
+\subsection{Convenzione di denominazione delle immagini}
+
+La discovery non visita sottocartelle e legge soltanto file con estensione
+minuscola \code{.jpg} presenti direttamente in \envvar{IMAGES_DIR}. Il nome
+deve rispettare la forma:
+
+\begin{center}
+  \code{node<id>_<frame_numerico>.jpg}
+\end{center}
+
+L'ultima parte prima dell'estensione è sempre il numero del frame. Tutto ciò che
+si trova tra \code{node} e l'ultimo underscore è l'ID della lavorazione. Sono
+quindi validi entrambi questi gruppi:
+
+\begin{lstlisting}[language={}]
+node7_0001.jpg
+node7_0002.jpg
+
+node15_1_0001.jpg
+node15_1_0002.jpg
+\end{lstlisting}
+
+File come \code{node7_frontale.jpg}, immagini PNG o estensioni \code{.JPG} non
+vengono rilevati. Se un nodo non viene trovato, verificare prima nomi ed
+estensioni.
+
+\section{Configurazione locale}
+
+Nella root del progetto è presente \filepath{.env.template}. Copiarlo in
+\filepath{.env}; il nuovo file resta locale e non deve contenere dati da
+versionare:
+
+\begin{lstlisting}[language={}]
+Copy-Item .env.template .env
+\end{lstlisting}
+
+Per l'esempio precedente, la parte principale del file diventa:
+
+\begin{lstlisting}[language={}]
+IMAGES_DIR=D:/GraphReconstructionData/datasets/impianto_A/images
+LABELS_EXT_DIR=D:/GraphReconstructionData/datasets/impianto_A/labels_extended
+YOLO_MODEL_PATH=./models/yolo_detector.pt
+
+ASSETS_DIR=./assets
+ANNOTATIONS_DIR=./annotations
+WORK_DIR=D:/GraphReconstructionData/work/impianto_A
+\end{lstlisting}
+
+Le prime tre variabili sono obbligatorie. \envvar{IMAGES_DIR} e
+\envvar{YOLO_MODEL_PATH} servono alla ricostruzione;
+\envvar{LABELS_EXT_DIR} è usata soprattutto da \filepath{evaluate.py}. In
+assenza di label può indicare una directory vuota; la valutazione supervisionata
+verrà omessa.
+
+\envvar{WORK_DIR} è la directory radice degli output: la pipeline vi crea le
+cache delle detection, i risultati multivista, i confronti e gli eventuali file
+diagnostici. \envvar{ASSETS_DIR} e \envvar{ANNOTATIONS_DIR} indicano invece le
+risorse di supporto descritte di seguito.
+
+I percorsi relativi, come \filepath{./assets}, sono risolti rispetto alla root
+del repository, non rispetto alla directory dalla quale è stato aperto il
+terminale. Per dataset e modelli esterni sono preferibili percorsi assoluti.
+
+Se una variabile omonima esiste nell'ambiente di Windows o nella sessione
+Conda, ha precedenza sul valore scritto in \filepath{.env}. In caso di percorsi
+inattesi, verificare sia i valori caricati sia le variabili della sessione.
+
+\subsection{Dati di riferimento}
+
+La directory indicata da \envvar{ASSETS_DIR} contiene mapping, porte e primitive
+SVG dei componenti Shurikode. Queste risorse servono a rappresentare
+correttamente i componenti nelle visualizzazioni CAD e QGIS, ma non modificano
+la topologia del grafo ricostruito. Le primitive attuali sono risorse di
+progetto e potranno essere aggiornate o adattate agli standard aziendali.
+
+La directory indicata da \envvar{ANNOTATIONS_DIR} contiene i grafi annotati con
+nome \code{node<id>_gt.json}. Questi file non servono a produrre
+\filepath{fused_graph.json}; servono a confrontare il risultato con un grafo
+atteso. Anche i grafi campione sotto
+\filepath{evaluation/standard_comparison/} appartengono alla fase di
+valutazione, non alla ricostruzione.
+
+\Needspace{17\baselineskip}
+\subsection{Formato delle annotazioni di grafo}
+
+Ogni file di annotazione descrive i componenti di un nodo idraulico e le
+connessioni attese tra essi. Il formato è il seguente:
+
+\begin{lstlisting}[language={}]
+{
+  "node_id":"11", "best_view":"node11_0003.jpg",
+  "nodes": [
+    {"nid":"95#1","code":95,"name":"Bout bic.","valence":2,"cx":0.58,"cy":0.31},
+    {"nid":"15#2","code":15,"name":"Saracinesca","valence":2,"cx":0.57,"cy":0.34}
+  ],
+  "edges": [["95#1", "15#2"]]
+}
+\end{lstlisting}
+
+\code{node_id} identifica il gruppo di immagini e \code{best_view} la vista
+usata come riferimento per l'annotazione. In \code{nodes}, \code{nid} è
+l'identificatore univoco nel formato \code{<code>\#<instance_id>}; \code{code}
+è il codice Shurikode, \code{valence} il numero atteso di connessioni e
+\code{cx}, \code{cy} le coordinate normalizzate del centro. \code{edges}
+contiene infine le coppie di \code{nid} collegate nel grafo atteso.
+
+\subsection{Opzioni VGGT e debug}
+
+Per il primo run si raccomanda di mantenere i valori VGGT del template. In particolare,
+\envvar{VGGT_EDGE_ENABLED=true} abilita la geometria 3D e
+\envvar{VGGT_GENERATE_IF_MISSING=true} consente di generare gli artefatti
+mancanti. La prima elaborazione può quindi essere sensibilmente più lenta delle
+successive.
+
+Il debug dettagliato va inizialmente lasciato spento:
+
+\begin{lstlisting}[language={}]
+DEBUG_OUTPUT_ENABLED=false
+DEBUG_OUTPUT_DIR=./output/debug
+\end{lstlisting}
+
+Il debug va abilitato soltanto per l'analisi di nodi problematici.
+
+\section{Verifica della configurazione}
+
+Con l'ambiente Conda attivo, si può verificare che la configurazione sia
+caricabile senza avviare YOLO:
+
+\begin{lstlisting}[language={}]
+python -c "from graph_reconstruction.config import IMAGES_DIR, WORK_DIR; print(IMAGES_DIR); print(WORK_DIR)"
+\end{lstlisting}
+
+I due percorsi stampati devono corrispondere alla lavorazione corrente. Se il
+comando segnala \code{Missing required path setting}, il file \filepath{.env}
+non esiste, non è nella root corretta oppure manca una delle variabili
+obbligatorie.

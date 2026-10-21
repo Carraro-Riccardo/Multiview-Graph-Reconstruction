@@ -1,0 +1,329 @@
+\chapter{Esecuzione, verifica e consegna}
+\label{chap:esecuzione}
+
+\section{Mappa della configurazione}
+
+Prima dell'esecuzione è utile distinguere le variabili di ambiente dai
+parametri globali del progetto. Il file \filepath{.env} locale contiene i
+valori specifici della macchina e della lavorazione corrente; non deve
+necessariamente ripetere tutte le opzioni facoltative presenti in
+\filepath{.env.template}. Quando una di queste opzioni è assente, viene usato
+il valore predefinito dichiarato in \filepath{graph_reconstruction/config.py}.
+
+\begin{contracttable}
+\envvar{IMAGES_DIR}, \envvar{LABELS_EXT_DIR},
+\envvar{YOLO_MODEL_PATH} & Variabili di ambiente in \filepath{.env} &
+Percorsi degli input, delle label estese e del checkpoint YOLO. Sono richiesti
+dal caricamento della configurazione. \\
+
+\envvar{WORK_DIR}, \envvar{ASSETS_DIR},
+\envvar{ANNOTATIONS_DIR} & Variabili di ambiente in \filepath{.env} &
+Directory degli output, delle risorse grafiche e delle annotazioni di grafo. \\
+
+\envvar{DEBUG_OUTPUT_ENABLED}, \envvar{DEBUG_OUTPUT_DIR} & Variabili di
+ambiente in \filepath{.env} & Abilitazione e destinazione dei file diagnostici
+facoltativi. \\
+\midrule
+
+Opzioni VGGT elencate in \filepath{.env.template} & Variabili di ambiente
+facoltative & Se non sono riportate nel \filepath{.env} locale, la pipeline usa
+i valori predefiniti di \filepath{config.py}, compreso il percorso
+dell'interprete VGGT. \\
+\midrule
+
+\code{CONF_THRESHOLD}, \code{YOLO_CONF}, \code{YOLO_IOU},
+\code{YOLO_IMGSZ} & Parametri globali in \filepath{config.py} & Soglie e
+dimensione di inferenza; non vengono lette dal file \filepath{.env}. \\
+
+\code{SKIP_NODES}, \code{VGGT_SKIP_NODES}, \code{MIN_IMAGES} & Parametri
+globali in \filepath{config.py} & Filtri applicati rispettivamente al batch,
+all'elaborazione VGGT e al numero minimo di viste. \\
+\midrule
+
+Tabelle dei componenti e vincoli strutturali & Dati globali in
+\filepath{config.py} & Comprendono codici, valenze, diametri, co-occorrenze,
+triplette e coppie vietate; non sono impostazioni operative del singolo run. \\
+\end{contracttable}
+
+\Needspace{10\baselineskip}
+\section{Elaborazione di un singolo nodo}
+
+Per validare un nuovo dataset si consiglia di iniziare da un ID con viste
+chiare. Per il nodo \code{7}:
+
+\begin{lstlisting}[language={}]
+conda activate graph_rec
+python run.py 7
+\end{lstlisting}
+
+\filepath{run.py} verifica che l'ID esista tra le immagini scoperte e passa le
+viste del nodo all'orchestratore. Se l'ID non viene trovato, stampa il percorso
+di \envvar{IMAGES_DIR} che ha controllato: è un'indicazione utile per capire se
+il problema è nel file \filepath{.env} o nei nomi delle immagini.
+
+L'exit code non è sufficiente a certificare il run. \filepath{run.py} può
+terminare con codice zero anche se l'ID non è stato trovato o se nessuna vista
+ha prodotto detection valide. Cerca nel log l'intestazione \code{NODE 7}, il
+blocco \code{FINAL GRAPH} e il percorso dell'output, poi verifica che
+\filepath{fused_graph.json} sia stato appena scritto.
+
+La prima elaborazione può richiedere più tempo per la generazione dei file
+VGGT. Prima di interromperla, verificare l'attività di CPU, GPU o disco e la
+creazione degli artefatti nella cartella del nodo.
+
+\subsection{Interpretazione del log}
+
+Il log articola la lavorazione in tre step principali. Nello
+\emph{Step 1} ogni immagine viene aperta, analizzata da YOLO e trasformata in un
+insieme di osservazioni valide. Una riga come
+\code{node7_0002.jpg -> 5 nodes} significa che, dopo i filtri, quella vista ha
+prodotto cinque componenti utilizzabili.
+
+Prima dello \emph{Step 2} possono comparire i messaggi VGGT. Se gli artefatti
+\code{.npz} mancano, l'interprete indicato da
+\envvar{VGGT_EMBEDDED_PYTHON} li genera; se sono già presenti, li riusa. Lo
+Step 2 è la ReID: raggruppa le osservazioni delle varie fotografie in
+\emph{scene node}, cioè nelle istanze fisiche che la pipeline ritiene presenti
+nella scena.
+
+Lo \emph{Step 3} costruisce gli archi a partire dagli indizi geometrici, prova a
+collegare le componenti rimaste separate e associa i diametri. Il riepilogo
+\code{FINAL GRAPH} indica quanti nodi e archi sono stati ottenuti, quanti nodi
+sono isolati e se il grafo finale è connesso.
+
+In fondo viene stampato il percorso della cartella di output. È il riferimento
+più affidabile quando \envvar{WORK_DIR} non coincide con
+\filepath{./output}.
+
+\section{Output prodotti}
+
+Con la configurazione del Capitolo~\ref{chap:dati}, il nodo \code{7} viene
+scritto in:
+
+\begin{center}
+\filepath{D:/GraphReconstructionData/work/impianto_A/multiview/node7/}
+\end{center}
+
+La struttura tipica, dopo ricostruzione e controllo visivo, è questa:
+
+\begin{lstlisting}[language={}]
+work/impianto_A/
+  detection_cache/
+    node7_0001.json
+    node7_0002.json
+  multiview/
+    node7/
+      fused_graph.json
+      scene_nodes.json
+      bird_view.png
+      vggt_geometry.json
+      vggt/
+        generation_request.json
+        generation_summary.json
+        summary.json
+        node7_0001.npz
+        node7_0002.npz
+      fused_graph_plot.png
+      fused_graph_qgis_combined.geojson
+      standard_similarity.json
+  standard_comparison/
+    similarity_table.csv
+    similarity_table.json
+    similarity_table.html
+    best_matches.csv
+    report_completo.html
+\end{lstlisting}
+
+Non tutti i file compaiono con il solo \filepath{run.py}.
+\filepath{fused_graph_plot.png}, il GeoJSON e i risultati di confronto vengono
+aggiunti dagli entrypoint di visualizzazione e valutazione. Inoltre VGGT può
+essere disabilitato o escluso per alcuni nodi; in quel caso i relativi file non
+sono un requisito di successo.
+
+\subsection{Output principale: \filepath{fused_graph.json}}
+
+Questo file è destinato alle applicazioni a valle. Riporta il
+numero totale di immagini, di nodi e di archi e indica se il grafo è connesso.
+Seguono due liste, \code{nodes} ed \code{edges}.
+
+Ogni elemento di \code{nodes} rappresenta un componente fisico. Oltre a codice
+e nome, conserva la confidenza, le immagini che lo supportano, il grado nel
+grafo e la valenza massima prevista. \code{support_count} è particolarmente
+utile nel controllo: un componente osservato in più viste è in genere meglio
+supportato di un componente derivato da una sola detection.
+
+Gli elementi di \code{edges} descrivono le connessioni. I campi
+\code{vggt_score}, \code{vggt_support_count} ed \code{evidence_sources}
+spiegano quale evidenza ha sostenuto l'arco. Se \code{forced} vale
+\code{true}, il collegamento è stato aggiunto dal refinement per rendere il
+grafo connesso. Non è necessariamente sbagliato, ma merita più attenzione nel
+controllo umano, soprattutto quando \code{forced_reason} indica un fallback
+strutturale.
+
+I diametri compaiono come \code{diameter_mm}. I campi di confidenza e conflitto
+permettono di distinguere un valore sostenuto in modo coerente da un ramo sul
+quale sono state osservate indicazioni discordanti.
+
+\subsection{Tracciabilità ReID: \filepath{scene_nodes.json}}
+
+\filepath{scene_nodes.json} è il ponte tra fotografie e grafo. Per ogni istanza
+fisica riporta le immagini di supporto e gli identificativi delle osservazioni
+che sono state fuse. Se nel grafo finale compaiono due componenti che sembrano
+lo stesso oggetto, questo è il primo file da aprire: permette di vedere se la
+ReID ha lasciato separate detection provenienti da viste diverse.
+
+È un artefatto di tracciabilità, normalmente escluso dalle interfacce
+applicative.
+
+\subsection{Geometria e render di controllo}
+
+I file nella directory \filepath{vggt/} sono dati numerici intermedi costosi da
+generare. \filepath{vggt_geometry.json} raccoglie invece la geometria aggregata,
+gli indizi di connessione e le eventuali correzioni di codice riutilizzabili nei
+run successivi.
+
+\filepath{bird_view.png} viene creato durante la ricostruzione quando esiste
+geometria sufficiente per almeno due scene node. La sua assenza non indica da
+sola un fallimento, soprattutto se VGGT è disabilitato. Quando esiste, offre una
+vista rapida della geometria ma non sostituisce il render del grafo. Per
+ottenere quest'ultimo eseguire:
+
+\begin{lstlisting}[language={}]
+python visualize.py 7
+\end{lstlisting}
+
+Il comando legge \filepath{fused_graph.json}, salva
+\filepath{fused_graph_plot.png}, crea un GeoJSON con layout di visualizzazione e
+prova a generare il report con lo standard più simile.
+
+Nel PNG verificare prima numero e tipo dei componenti, quindi gli archi. Se i
+componenti sono già duplicati o mancanti, il problema precede la
+costruzione del grafo ed è probabilmente nella detection o nella ReID.
+
+\section{Verifica del risultato}
+
+\subsection{Valutazione con ground truth}
+
+Se sono disponibili label estese e grafo annotato, eseguire:
+
+\begin{lstlisting}[language={}]
+python evaluate.py 7
+\end{lstlisting}
+
+Il terminale mostra true positive, false positive, false negative, precision,
+recall, F1 e purity delle istanze. Confronta inoltre il grafo con gli standard
+di riferimento e salva la tabella completa sotto
+\filepath{<WORK_DIR>/standard_comparison/}.
+
+Le metriche su istanze e archi vengono stampate nel terminale ma non sono
+salvate automaticamente in un report dedicato. Per una lavorazione tracciabile
+è quindi opportuno acquisire anche il log completo del comando. I file persistiti
+da questa fase riguardano soprattutto il confronto con gli standard.
+
+Se mancano le label, la parte supervisionata viene saltata. Il confronto
+strutturale con gli standard può comunque essere eseguito sul grafo ricostruito,
+perché non dipende dalle bounding box ground truth.
+
+I report aggregati sotto \filepath{standard_comparison/} descrivono gli ID
+passati nell'esecuzione corrente. Un comando limitato a un solo nodo può quindi
+sostituire un report creato in precedenza per l'intero batch. Genera i report di
+consegna soltanto dopo aver stabilito l'insieme definitivo di nodi.
+
+\section{Esecuzione batch e preparazione della consegna}
+
+\subsection{Elaborazione batch}
+
+Dopo la validazione del nodo campione, \filepath{run.py} senza argomenti
+elabora gli ID rilevati che non appartengono a \code{SKIP_NODES} e che hanno
+almeno il numero di viste definito da \code{MIN_IMAGES}; entrambi i valori si
+trovano in \filepath{graph_reconstruction/config.py}:
+
+\begin{lstlisting}[language={}]
+python run.py
+\end{lstlisting}
+
+Con Conda si raccomanda di eseguire i tre entrypoint nello stesso terminale:
+
+\begin{lstlisting}[language={}]
+python run.py
+python evaluate.py
+python visualize.py --all
+\end{lstlisting}
+
+Per limitare il flusso a un sottoinsieme, indicare gli stessi ID nei tre
+comandi:
+
+\begin{lstlisting}[language={}]
+python run.py 2 7 15_1
+python evaluate.py 2 7 15_1
+python visualize.py 2 7 15_1
+\end{lstlisting}
+
+\subsection{Export per QGIS}
+
+Per convertire tutti i grafi disponibili:
+
+\begin{lstlisting}[language={}]
+python json_adapter_to_qgis.py
+\end{lstlisting}
+
+Per scegliere la geometria disponibile su un solo nodo:
+
+\begin{lstlisting}[language={}]
+python json_adapter_to_qgis.py `
+  D:/GraphReconstructionData/work/impianto_A/multiview/node7/fused_graph.json `
+  --geometry-source auto
+\end{lstlisting}
+
+Il GeoJSON mantiene nodi, archi e attributi, ma le coordinate sono locali alla
+scena oppure sintetiche. Prima di sovrapporlo a cartografia reale occorre una
+georeferenziazione esterna.
+
+\filepath{evaluate.py} e \filepath{visualize.py} generano entrambi un GeoJSON
+con geometria \code{fake} e possono sovrascrivere un export creato in
+precedenza con \code{--geometry-source auto} o \code{vggt}. Se il GeoJSON fa
+parte della consegna, esegui l'export con la geometria desiderata come ultimo
+passaggio del flusso.
+
+\subsection{Cache e riesecuzioni}
+
+La cache delle detection si trova in
+\filepath{<WORK_DIR>/detection_cache/}; i file VGGT restano nella cartella del
+nodo. Questa scelta rende i run successivi più veloci, ma richiede disciplina:
+la cache di detection non riconosce ogni possibile cambio dell'immagine, del
+modello o del decoder.
+
+Quando cambia il dataset o il modello YOLO, utilizzare una nuova
+\envvar{WORK_DIR}. Questa scelta evita cancellazioni selettive e permette di
+confrontare le due lavorazioni senza perdere traccia di quale cache sia stata
+usata.
+
+\subsection{Checklist prima del batch completo}
+
+Prima di avviare un batch completo verifica che:
+
+\begin{itemize}
+  \item l'ambiente Conda corretto sia attivo e il decoder sia importabile;
+  \item \filepath{.env} punti al dataset, ai pesi e alla directory di lavoro
+        della commessa corrente;
+  \item i nomi delle immagini rispettino il pattern e un singolo ID venga
+        scoperto correttamente;
+  \item il volume di \envvar{WORK_DIR} abbia spazio per detection, point map e
+        report;
+  \item il nodo campione produca \filepath{fused_graph.json} e un render
+        leggibile;
+  \item gli archi forzati del campione siano stati controllati;
+  \item le metriche siano disponibili oppure sia registrato il motivo per cui
+        il ground truth manca;
+  \item versione del codice, configurazione e identificativo dei pesi YOLO
+        vengano conservati insieme agli output;
+  \item dati vecchi e nuovi non condividano la stessa directory di lavoro.
+\end{itemize}
+
+Una consegna minima comprende \filepath{fused_graph.json} e il relativo
+\filepath{fused_graph_plot.png}. A seconda del processo possono essere aggiunti
+il report di valutazione, \filepath{scene_nodes.json} per la tracciabilità e il
+GeoJSON per il passaggio a QGIS. Prima dell'invio esterno, verificare i
+metadati: request VGGT, summary e GeoJSON possono contenere percorsi assoluti
+della macchina di elaborazione. Cache detection e file \code{.npz} non fanno
+normalmente parte della consegna.

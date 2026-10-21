@@ -1,0 +1,12 @@
+# Main application runtime. VGGT uses the bundled python312 environment.
+numpy>=1.26
+scipy>=1.11
+opencv-python>=4.9
+Pillow>=10.0
+networkx>=3.2
+matplotlib>=3.8
+ultralytics>=8.2
+
+# The project also requires the private Shurikode decoder package exposing:
+#     from shurikodecontext import Dec
+# Install its wheel/source separately

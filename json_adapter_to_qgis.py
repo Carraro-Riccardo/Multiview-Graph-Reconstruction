@@ -23,7 +23,7 @@ ROOT = Path(__file__).resolve().parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from visualize_shurikode_symbols import (
+from graph_reconstruction.visualization.shurikode_symbols import (
     DEFAULT_EDGE_LENGTH_FACTOR,
     DEFAULT_ICON_SIZE,
     DEFAULT_PORT_CATALOG_PATH,
@@ -36,7 +36,9 @@ DEFAULT_ORIGIN_LON = 0.0
 DEFAULT_ORIGIN_LAT = 0.0
 DEFAULT_RADIUS_DEGREES = 1.0
 DEFAULT_CRS_EPSG = 7795
-DEFAULT_BATCH_ROOT = Path("output") / "multiview"
+from graph_reconstruction.config import WORK_DIR
+
+DEFAULT_BATCH_ROOT = WORK_DIR / "multiview"
 DEFAULT_LAYOUT = "cad"
 DEFAULT_EDGE_ROUTING = "orthogonal"
 DEFAULT_MASTER_ORIENTATION_DEG = None
@@ -178,7 +180,11 @@ def _cad_positions(
 
 
 def _load_vggt_scene_geometry(input_path: Path, debug_path: Path | None = None) -> dict[str, dict[str, Any]]:
-    debug_path = debug_path or input_path.parent / "vggt_edge_debug.json"
+    if debug_path is None:
+        debug_path = input_path.parent / "vggt_geometry.json"
+        legacy_path = input_path.parent / "vggt_edge_debug.json"
+        if not debug_path.exists() and legacy_path.exists():
+            debug_path = legacy_path
     if not debug_path.exists():
         return {}
     payload = _load_json_object(debug_path)
@@ -436,7 +442,7 @@ def convert_fused_graph_to_qgis(
         if geometry_source == "vggt" and not positions:
             raise ValueError(
                 "VGGT geometry requested, but no scene_geometry was found. "
-                "Expected vggt_edge_debug.json next to fused_graph.json."
+                "Expected vggt_geometry.json next to fused_graph.json."
             )
     else:
         positions = {}
@@ -483,7 +489,7 @@ def convert_fused_graph_to_qgis(
             "n_vggt_scene_geometries": len(scene_geometry),
             "geometry_source_requested": geometry_source,
             "geometry_source_used": effective_geometry_source,
-            "vggt_debug_path": str(vggt_debug_path or input_path.parent / "vggt_edge_debug.json"),
+            "vggt_debug_path": str(vggt_debug_path or input_path.parent / "vggt_geometry.json"),
         },
     }
 
@@ -660,7 +666,7 @@ def _parse_args() -> argparse.Namespace:
         "--vggt-debug",
         type=Path,
         default=None,
-        help="Optional path to vggt_edge_debug.json. Only used in single-file mode.",
+        help="Optional path to vggt_geometry.json. Only used in single-file mode.",
     )
     parser.add_argument(
         "--batch-root",

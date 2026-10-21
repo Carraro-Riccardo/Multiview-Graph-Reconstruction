@@ -8,9 +8,10 @@ Nodes are coloured by component code (same code → same hue), with opacity
 scaled by support_count / n_views so well-supported nodes pop.
 
 Usage:
-    python visualize.py            # uses NODE_ID defined below
+    python visualize.py            # all reconstructed nodes
     python visualize.py 9          # specific node
     python visualize.py 2 7 9      # multiple nodes
+    python visualize.py --all      # all reconstructed nodes
 """
 
 from __future__ import annotations
@@ -31,10 +32,11 @@ ROOT = Path(__file__).resolve().parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from config import WORK_DIR as _WORK_DIR  # noqa: E402
+from graph_reconstruction.config import WORK_DIR as _WORK_DIR  # noqa: E402
+from evaluation.standard_comparison.visualizza_best_match import generate_best_match_report  # noqa: E402
+from json_adapter_to_qgis import convert_fused_graph_to_qgis  # noqa: E402
 
 # ── CONFIG ───────────────────────────────────────────────────────────────────
-NODE_ID     = 2
 WORK_DIR    = _WORK_DIR / "multiview"
 SHOW_WINDOW = False
 # ─────────────────────────────────────────────────────────────────────────────
@@ -290,7 +292,45 @@ def _code_name(G: nx.Graph, code: int) -> str:
     return f"code_{code}"
 
 
-if __name__ == "__main__":
-    node_ids = sys.argv[1:] if len(sys.argv) > 1 else [str(NODE_ID)]
+def _available_node_ids() -> list[str]:
+    def sort_key(node_id: str):
+        return [int(part) if part.isdigit() else part for part in node_id.split("_")]
+
+    return sorted(
+        (
+            path.name[len("node"):]
+            for path in WORK_DIR.glob("node*")
+            if path.is_dir() and (path / "fused_graph.json").exists()
+        ),
+        key=sort_key,
+    )
+
+
+def main() -> None:
+    args = sys.argv[1:]
+    node_ids = _available_node_ids() if not args or args == ["--all"] else args
+    if not node_ids:
+        raise SystemExit(f"No fused_graph.json found under {WORK_DIR}")
+
     for nid in node_ids:
         plot_node_graph(nid)
+        node_dir = WORK_DIR / f"node{nid}"
+        convert_fused_graph_to_qgis(
+            node_dir / "fused_graph.json",
+            node_dir,
+            geometry_source="fake",
+        )
+
+    report_path = generate_best_match_report(
+        pipeline_dir=WORK_DIR,
+        output_dir=_WORK_DIR / "standard_comparison",
+        node_ids=node_ids,
+    )
+    if report_path:
+        print(f"[best-match] saved: {report_path.resolve()}")
+    else:
+        print("[best-match] report not generated: no comparable standard graph found")
+
+
+if __name__ == "__main__":
+    main()

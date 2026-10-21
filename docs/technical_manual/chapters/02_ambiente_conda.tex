@@ -1,0 +1,119 @@
+\chapter{Installazione e ambiente Conda}
+\label{chap:conda}
+
+\section{Architettura degli ambienti}
+
+Gli entrypoint nella root, come \filepath{run.py} ed
+\filepath{evaluate.py}, devono essere eseguiti nell'ambiente Conda principale
+\code{graph_rec}, descritto da \filepath{environment.yml}. L'interprete usato
+per VGGT è indicato da \envvar{VGGT_EMBEDDED_PYTHON} e può coincidere con quello
+di \code{graph_rec}; il valore predefinito punta al runtime nella directory
+\filepath{python312/}.
+
+La pipeline si avvia quindi dal normale ambiente Conda. Se viene mantenuto il
+runtime separato sotto \filepath{python312/}, questo va usato soltanto per VGGT.
+
+\manualnote[Due file diversi]{\filepath{environment.yml} descrive Python e
+pacchetti dell'ambiente Conda; \filepath{.env} contiene invece percorsi e
+opzioni della pipeline.}
+
+\subsection{Creazione dell'ambiente}
+
+Aprire un terminale nel quale il comando \code{conda} sia disponibile,
+spostarsi nella root del repository e creare l'ambiente dichiarato dal progetto:
+
+\begin{lstlisting}[language={}]
+conda env create -f environment.yml
+conda activate graph_rec
+\end{lstlisting}
+
+Per riallineare un ambiente già esistente al file versionato:
+
+\begin{lstlisting}[language={}]
+conda env update -n graph_rec -f environment.yml --prune
+\end{lstlisting}
+
+L'opzione \code{--prune} rimuove i pacchetti non più dichiarati nel file.
+
+\manualnote[Ambiente validato]{
+\filepath{environment.yml} fissa Python e lo stack Linux/CUDA usato nel
+benchmark. Non è direttamente portabile su Windows perché include pacchetti di
+sistema Linux.}
+
+\subsection{Installazione del decoder Shurikode}
+
+Il decoder, non incluso in \filepath{requirements.txt}, è disponibile nel
+\href{https://github.com/Carraro-Riccardo/Shurikode-Context}{repository GitHub
+Shurikode Context}. Dopo avere attivato \code{graph_rec}, clonarlo e installare
+il pacchetto dalla sorgente:
+
+\begin{lstlisting}[language={}]
+git clone https://github.com/Carraro-Riccardo/Shurikode-Context.git
+cd Shurikode-Context
+python -m pip install .
+\end{lstlisting}
+
+I tre checkpoint dei modelli sono inclusi nel pacchetto e non richiedono un
+download separato.
+
+L'import atteso dal codice è:
+
+\begin{lstlisting}[language={}]
+from shurikodecontext import Dec
+\end{lstlisting}
+
+Se questo import non funziona, la pipeline non riuscirà a decodificare i simboli
+anche se YOLO è installato correttamente.
+
+\subsection{Installazione e runtime VGGT}
+
+VGGT va installato dalla sorgente ufficiale
+\href{https://github.com/facebookresearch/vggt}{Facebook Research}. Dopo avere
+attivato \code{graph_rec}, installare la revisione usata nello sviluppo:
+
+\begin{lstlisting}[language={}]
+python -m pip install "git+https://github.com/facebookresearch/vggt.git@44b3afbd1869d8bde4894dd8ea1e293112dd5eba"
+\end{lstlisting}
+
+Il commit indicato nel comando rende riproducibile la versione di VGGT usata
+dal progetto.
+
+Al primo utilizzo, i pesi del modello configurato vengono scaricati
+automaticamente e salvati nella cache locale. La prima esecuzione può quindi
+richiedere una connessione Internet e risultare sensibilmente più lenta; le
+esecuzioni successive riutilizzano i file già scaricati.
+
+Nelle sessioni successive è sufficiente eseguire \cli{conda activate graph_rec}
+dalla directory del repository.
+
+\section{Requisiti hardware indicativi}
+
+Il dimensionamento è stato ricavato da un'esecuzione completa senza cache sul
+nodo \code{node9}, composto da sette viste. La tabella riporta sia i picchi
+misurati sia la configurazione consigliata con un margine operativo.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Sintesi del benchmark hardware}
+\label{tab:benchmark-hardware}
+\begin{tabularx}{\textwidth}{@{}>{\bfseries}p{0.34\textwidth}X@{}}
+\toprule
+Voce & Valore \\
+\midrule
+Scenario di prova & Cold run della pipeline su \code{node9}, con 7 viste \\
+GPU di prova & NVIDIA RTX A5000 con 24~GiB di VRAM \\
+Tempo di esecuzione & 81,9 secondi \\
+Picco RAM del processo & 11,2~GiB \\
+Picco VRAM misurato & 10,85~GiB \\
+VRAM con margine del 20\% & 13,02~GiB \\
+GPU consigliata & GPU NVIDIA compatibile con CUDA, con almeno 16~GiB di VRAM \\
+RAM di sistema & 16~GiB minimi; 32~GiB consigliati \\
+Stack validato & Python 3.10.21, PyTorch 2.6.0+cu126 e CUDA 12.6 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+I valori non costituiscono requisiti assoluti: il consumo di memoria e i tempi
+possono variare con il numero di viste, la risoluzione delle immagini, il
+modello e la configurazione software utilizzata.
