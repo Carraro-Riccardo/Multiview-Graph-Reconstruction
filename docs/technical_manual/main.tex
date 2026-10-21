@@ -1,0 +1,37 @@
+\documentclass[11pt,a4paper,openany]{report}
+
+\input{preamble}
+
+\title{\textbf{Graph Reconstruction}\\[0.5em]
+       \Large Manuale operativo e riferimento tecnico}
+\author{Progetto Borsa di Ricerca}
+\date{Versione documentale: \today}
+
+\begin{document}
+
+\hypersetup{pageanchor=false}
+\maketitle
+\clearpage
+\hypersetup{pageanchor=true}
+\pagenumbering{roman}
+
+\tableofcontents
+\clearpage
+\pagenumbering{arabic}
+
+\part{Guida operativa}
+\include{chapters/01_lavorazione_completa}
+\include{chapters/02_ambiente_conda}
+\include{chapters/03_preparare_dati}
+\include{chapters/04_eseguire_consegnare}
+
+\part{Architettura e riferimento tecnico}
+\include{chapters/05_repository_entrypoint}
+\include{chapters/06_flusso_codice}
+\include{chapters/07_oggetti_moduli}
+\include{chapters/08_valutazione_debug}
+
+\appendix
+\include{chapters/09_reference}
+
+\end{document}

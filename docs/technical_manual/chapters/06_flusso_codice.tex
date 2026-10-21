@@ -1,0 +1,120 @@
+\chapter{Flusso di elaborazione nel codice}
+\label{chap:flusso-codice}
+
+\section{Orchestrazione e sequenza generale}
+
+\filepath{run.py} seleziona gli ID richiesti e delega ogni lavorazione a
+\code{run_multiview_pipeline()} in \filepath{pipeline/orchestrator.py}. Da
+questo punto l'orchestratore coordina l'intera trasformazione, senza contenere
+direttamente gli algoritmi delle singole fasi.
+
+Per ciascun nodo vengono costruite prima le osservazioni delle singole viste.
+Gli artefatti VGGT, se abilitati, forniscono la geometria usata dalla ReID e
+dalla successiva stima delle connessioni. Le istanze riconciliate diventano
+quindi nodi di un grafo inizialmente privo di cicli; il refinement collega le
+componenti rimaste separate, prima dell'annotazione dei diametri e della
+serializzazione finale. La Figura~\ref{fig:pipeline-code-flow} riassume le
+dipendenze tra queste fasi.
+
+\begin{figure}[H]
+  \centering
+  \resizebox{\textwidth}{!}{\input{figures/pipeline_overview}}
+  \caption{Le trasformazioni coordinate da \filepath{orchestrator.py}.}
+  \label{fig:pipeline-code-flow}
+\end{figure}
+
+\section{Detection e riconciliazione delle osservazioni}
+
+\subsection{Detection e grafi osservati}
+
+\code{build_all_observed_graphs()} analizza ogni immagine tramite
+\code{detect_and_decode_cached()}. Le detection sotto la soglia vengono
+scartate, mentre i codici di diametro sono separati dai componenti topologici.
+Ogni detection restante diventa un \code{ObservedNode} e le osservazioni della
+stessa immagine vengono raccolte in un \code{ObservedLocalGraph}.
+
+In questa fase non vengono stimati archi locali. La suddivisione per vista
+conserva invece la provenienza delle osservazioni e introduce il primo vincolo
+della ReID: due detection presenti nella stessa immagine non possono
+rappresentare la stessa istanza fisica.
+
+\projectfigure[0.80\textwidth]{detection_overlay.png}{Detection filtrate in una vista del nodo 11}{Output reale ottenuto dalla cache delle detection: in azzurro i componenti topologici e in arancione i codici di diametro.}
+
+\subsection{Costruzione degli \code{SceneNode}}
+
+\code{identify_scene_nodes()} in \filepath{node_reid.py} raggruppa prima le
+osservazioni per codice. Per ogni codice costruisce un grafo di incompatibilità:
+le osservazioni della stessa fotografia devono restare in gruppi diversi. La
+colorazione greedy fornisce così un limite inferiore al numero di istanze
+fisiche necessario a spiegare le co-occorrenze.
+
+Quando la geometria è disponibile, il clustering agglomerativo parte dalle
+singole osservazioni e fonde iterativamente la coppia compatibile migliore in
+base alla distanza 3D tra le point cloud, senza unire detection della stessa
+immagine. Il codice prevede anche un segnale basato sui vicinati osservati, ma
+nella baseline corrente questo contributo resta inattivo per il limite descritto
+nel Capitolo~\ref{chap:oggetti}. Senza geometria viene usata direttamente
+l'assegnazione ottenuta dalla colorazione.
+
+Ogni gruppo risultante diventa un \code{SceneNode}; l'associazione con le
+osservazioni originali viene salvata in \filepath{scene_nodes.json}.
+
+\projectfigure[0.76\textwidth]{reid_clusters.png}{Osservazioni raggruppate dalla ReID}{Tre istanze distinte con codice Shurikode 15; ogni riga raccoglie i crop attribuiti allo stesso \code{SceneNode} in cinque viste.}
+
+\section{Geometria VGGT e costruzione degli indizi}
+
+\subsection{Artefatti e geometria delle osservazioni}
+
+Se VGGT è attivo per il nodo, l'orchestratore chiama
+\code{ensure_vggt_artifacts()}. Per ogni vista viene riutilizzata la point map
+già disponibile oppure, se consentito, viene generato il corrispondente file
+\code{.npz}. All'interno delle bounding box vengono quindi campionati i punti
+3D usati per stimare la geometria delle singole osservazioni.
+
+La stessa geometria interviene in due momenti: supporta la riconciliazione
+delle osservazioni durante la ReID e viene poi aggregata per \code{SceneNode}
+per valutare le possibili connessioni.
+
+\subsection{Indizi per le connessioni}
+
+\code{build_vggt_edge_hints()} confronta le coppie di \code{SceneNode}
+co-visibili. Per ciascuna raccoglie le viste di supporto e combina distanza tra
+le point cloud o le porte, allineamento degli assi e ranking reciproco tra
+vicini. Le coppie vietate vengono escluse, mentre le co-occorrenze note possono
+rafforzare il punteggio.
+
+Il risultato è ancora un insieme di \emph{hint}, non un insieme di archi. La
+geometria aggregata e gli indizi vengono salvati in
+\filepath{vggt_geometry.json} e possono essere riutilizzati quando la cache è
+compatibile con gli \code{SceneNode} del run corrente.
+
+\section{Costruzione, completamento e annotazione del grafo}
+
+\subsection{Costruzione diretta}
+
+Dopo il tentativo di riassorbire eventuali singleton spuri,
+\code{build_direct_graph()} crea un \code{networkx.Graph} con un nodo per ogni
+\code{SceneNode}. Le coppie suggerite da VGGT vengono ordinate per numero di
+voti e punteggio e valutate in ordine greedy.
+
+Una coppia viene accettata soltanto se non è vietata, se rispetta la valenza
+disponibile dei componenti e se non introduce un ciclo. Il risultato iniziale
+è quindi una foresta. Le coppie esaminate restano disponibili come
+\code{BridgeEdge} per il completamento successivo.
+
+\subsection{Completamento, diametri e output}
+
+Se la foresta non è connessa, \code{force_spanning_tree()} prova prima i
+\code{BridgeEdge} che uniscono componenti diverse. Se non bastano, applica un
+fallback strutturale basato su co-occorrenze, triplette e supporto delle
+istanze. Gli archi aggiunti in questa fase sono riconoscibili dall'attributo
+\code{forced=true}.
+
+\code{annotate_graph_diameters()} associa ogni codice diametro all'arco
+visibile più vicino e propaga il valore lungo il gruppo di archi contiguo. La
+propagazione si interrompe sui componenti configurati come possibili cambi di
+diametro.
+
+Infine \code{serialize_fused_graph()} salva struttura ed evidenze in
+\filepath{fused_graph.json}; \code{render_bird_view()} produce la vista
+d'insieme \filepath{bird_view.png}.

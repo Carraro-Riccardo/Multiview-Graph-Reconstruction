@@ -1,0 +1,89 @@
+\chapter{Flusso operativo}
+\label{chap:lavorazione}
+
+\section{Finalità e ambito}
+
+La pipeline ricostruisce un grafo a partire da fotografie multi-vista dello
+stesso nodo idraulico. Individua i simboli Shurikode, associa le detection
+riferite allo stesso oggetto fisico e, quando disponibile e abilitata, usa la
+geometria prodotta da VGGT come supporto per la riconciliazione delle istanze e
+la stima delle connessioni. Il risultato è un grafo JSON corredato da artefatti
+per il controllo e la valutazione.
+
+\begin{figure}[H]
+  \centering
+  \input{figures/operational_workflow}
+  \caption{Il percorso di una lavorazione, dalle fotografie ai file da controllare o consegnare.}
+  \label{fig:operational-workflow}
+\end{figure}
+
+La Parte I descrive l'utilizzo operativo, dalla preparazione dell'ambiente alla
+consegna. La Parte II presenta gli entrypoint, il flusso applicativo e gli
+oggetti Python che implementano le singole fasi.
+
+\subsection{Terminologia}
+
+Nel repository la parola \emph{nodo} compare con due significati. Un
+\emph{nodo del dataset} è una scena completa, per esempio il nodo \code{7},
+fotografata in più viste. Un \emph{nodo del grafo} è invece uno dei componenti
+fisici ricostruiti all'interno di quella scena. La distinzione diventa naturale
+guardando i nomi dei file:
+
+\begin{lstlisting}[language={}]
+node7_0001.jpg
+node7_0002.jpg
+node7_0003.jpg
+\end{lstlisting}
+
+Queste immagini formano una sola lavorazione, identificata da \code{7}. Nel
+file finale possono invece comparire, per esempio, i componenti
+\code{15}\#\code{1}, \code{95}\#\code{1} e
+\code{116}\#\code{1}. Sono gli identificativi delle istanze
+fisiche stimate dalla ReID, non nomi di immagini.
+
+Gli ID della lavorazione possono contenere underscore. I file
+\code{node15_1_0001.jpg} e \code{node15_1_0002.jpg}, per esempio, appartengono
+entrambi al nodo \code{15_1}.
+
+Nel seguito, il termine \emph{lavorazione} indica il gruppo di immagini
+identificato da uno stesso ID, mentre \emph{nodo} indica normalmente un
+componente del grafo.
+
+\section{Procedura operativa}
+
+Una normale esecuzione segue questo percorso:
+
+\begin{enumerate}
+  \item si attiva l'ambiente Conda del progetto;
+  \item si indica in \filepath{.env} dove si trovano immagini, modello e
+        directory di lavoro;
+  \item si esegue inizialmente un solo nodo, per esempio
+        \cli{python run.py 7};
+  \item si apre il risultato sotto
+        \filepath{<WORK_DIR>/multiview/node7/};
+  \item si genera il render del grafo;
+  \item si esegue la valutazione, se è disponibile il ground truth;
+  \item si esporta il GeoJSON per QGIS, se richiesto.
+\end{enumerate}
+
+\subsection{Risultati attesi}
+
+Se \envvar{WORK_DIR} conserva il valore predefinito \filepath{./output}, un run
+del nodo \code{7} termina nella cartella:
+
+\begin{center}
+  \filepath{output/multiview/node7/}
+\end{center}
+
+Il risultato principale è \filepath{fused_graph.json}, che contiene componenti
+e archi. \filepath{scene_nodes.json} collega le istanze fisiche alle detection
+originali; \filepath{bird_view.png} consente un primo controllo della
+disposizione spaziale. L'insieme degli output è descritto nel
+Capitolo~\ref{chap:esecuzione}.
+
+\manualnote[Criterio di completamento]{La sola presenza della cartella non
+certifica il risultato. Per considerare conclusa una lavorazione devono
+esistere \filepath{fused_graph.json} e, dopo l'esecuzione di
+\cli{python visualize.py <id>}, un render leggibile. Il riepilogo finale nel
+terminale deve inoltre essere coerente con il numero di viste elaborate e con
+i componenti attesi o osservabili.}

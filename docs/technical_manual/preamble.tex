@@ -1,0 +1,125 @@
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[utf8]{inputenc}
+\fi
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=25mm,headheight=15pt]{geometry}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\PassOptionsToPackage{hyphens,obeyspaces,spaces}{url}
+\usepackage[hypertexnames=false]{hyperref}
+\usepackage{bookmark}
+\usepackage{tikz}
+\usepackage{needspace}
+\usepackage{float}
+
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,fit,backgrounds}
+
+\definecolor{ManualBlue}{HTML}{155B8A}
+\definecolor{ManualDark}{HTML}{17324D}
+\definecolor{ManualLight}{HTML}{EAF3F8}
+\definecolor{ManualGreen}{HTML}{287D5A}
+\definecolor{ManualOrange}{HTML}{B96516}
+\definecolor{ManualRed}{HTML}{A23B3B}
+\definecolor{CodeBackground}{HTML}{F5F7F9}
+\definecolor{CodeBorder}{HTML}{D8E0E6}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=ManualBlue,
+  urlcolor=ManualBlue,
+  citecolor=ManualGreen,
+  pdftitle={Graph Reconstruction - Manuale operativo e riferimento tecnico},
+  pdfsubject={Installazione, utilizzo e architettura della pipeline}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Graph Reconstruction}
+\fancyhead[R]{\small Manuale operativo e tecnico}
+\fancyfoot[C]{\small Pagina \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries\color{ManualDark}}
+  {\filleft\Large\chaptername\ \thechapter}
+  {0.5ex}
+  {\titlerule\vspace{1ex}\Huge}
+
+\setcounter{secnumdepth}{1}
+\setcounter{tocdepth}{1}
+\setlist[itemize,enumerate]{nosep,leftmargin=*}
+\setlist[description]{style=nextline,font=\normalfont\bfseries,
+  leftmargin=0pt,labelindent=0pt,labelwidth=0pt,labelsep=0pt,nosep}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\renewcommand{\arraystretch}{1.18}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\newcommand{\code}[1]{\texorpdfstring{\nolinkurl{#1}}{\detokenize{#1}}}
+\newcommand{\filepath}[1]{\texorpdfstring{\nolinkurl{#1}}{\detokenize{#1}}}
+\newcommand{\envvar}[1]{\texorpdfstring{\nolinkurl{#1}}{\detokenize{#1}}}
+\newcommand{\cli}[1]{\texorpdfstring{\nolinkurl{#1}}{\detokenize{#1}}}
+\newcommand{\module}[1]{\texorpdfstring{\nolinkurl{#1}}{\detokenize{#1}}}
+\setlength{\emergencystretch}{2em}
+\Urlmuskip=0mu plus 1mu
+
+\newcommand{\manualnote}[2][Nota]{%
+  \begin{center}
+  \fcolorbox{ManualBlue}{ManualLight}{%
+    \begin{minipage}{0.91\textwidth}
+      \textbf{#1.} #2
+    \end{minipage}}
+  \end{center}}
+
+\newcommand{\projectfigure}[4][0.92\textwidth]{%
+  \begin{figure}[H]
+    \centering
+    \IfFileExists{figures/#2}{%
+      \includegraphics[width=#1]{figures/#2}%
+    }{%
+      \fcolorbox{ManualOrange}{white}{%
+        \begin{minipage}[c][0.22\textheight][c]{0.88\textwidth}
+          \centering
+          {\Large\bfseries Placeholder figura}\\[0.8em]
+          \filepath{figures/#2}\\[0.8em]
+          \textbf{Contenuto richiesto:} #4
+        \end{minipage}}%
+    }
+    \caption{#3}
+    \label{fig:#2}
+  \end{figure}}
+
+\lstdefinestyle{manualcode}{
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{CodeBackground},
+  frame=single,
+  rulecolor=\color{CodeBorder},
+  breaklines=true,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  upquote=true,
+  aboveskip=0.8em,
+  belowskip=0.8em
+}
+\lstset{style=manualcode}
+
+\newenvironment{contracttable}
+  {\small\begin{longtable}{P{0.21\textwidth}P{0.17\textwidth}P{0.47\textwidth}}\toprule
+   \textbf{Elemento} & \textbf{Tipo o origine} & \textbf{Descrizione}\\\midrule\endhead}
+  {\bottomrule\end{longtable}\normalsize}

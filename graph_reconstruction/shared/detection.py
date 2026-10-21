@@ -287,5 +287,3 @@ def _load_json_metric_count() -> int:
     except (OSError, ValueError, TypeError, json.JSONDecodeError):
         return 0
 
-
-

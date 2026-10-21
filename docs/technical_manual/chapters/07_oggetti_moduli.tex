@@ -1,0 +1,110 @@
+\chapter{Modello dati e mappa del codice}
+\label{chap:oggetti}
+
+Il Capitolo~\ref{chap:flusso-codice} descrive l'ordine delle elaborazioni. Qui
+sono raccolti soltanto gli oggetti scambiati tra le fasi e i moduli nei quali
+intervenire. Le procedure di diagnosi e gli strumenti accessori sono invece nel
+Capitolo~\ref{chap:debug}.
+
+\section{Rappresentazioni principali}
+
+Durante un run lo stesso componente passa da osservazione in una fotografia a
+istanza fisica riconciliata, quindi a nodo del grafo. Quando si analizza
+un'anomalia conviene individuare la prima rappresentazione nella quale il dato
+non corrisponde più a quello atteso.
+
+\begin{contracttable}
+\code{ObservedNode} & Dataclass in \filepath{pipeline/observed_graphs.py} &
+Rappresenta una detection valida in una singola immagine. Conserva codice,
+confidenza, bounding box, centro 2D e identificativo della vista. \\
+
+\code{ObservedLocalGraph} & Dataclass in
+\filepath{pipeline/observed_graphs.py} & Raggruppa gli \code{ObservedNode} di
+una vista. Nella baseline corrente \code{edges} e \code{local_patterns}
+restano vuoti: non contiene una topologia 2D stimata. \\
+\midrule
+
+\code{SceneNode} & Dataclass in \filepath{pipeline/node_reid.py} &
+Rappresenta un componente fisico ottenuto riconciliando osservazioni di viste
+diverse. Mantiene identità fusa, confidenza, osservazioni di supporto e valenza
+massima. Viene serializzato in \filepath{scene_nodes.json}. \\
+
+\code{BridgeEdge} & Dataclass in
+\filepath{pipeline/direct_graph_builder.py} & Descrive una connessione
+candidata con evidenze geometriche e viste di supporto. È un record distinto
+dall'arco NetworkX; l'elenco dei candidati viene riutilizzato dal refinement
+per collegare componenti separate. \\
+
+\code{networkx.Graph} & Struttura in memoria & È il grafo ricostruito. I nodi
+derivano dagli \code{SceneNode}; gli archi conservano evidenze, forcing ed
+eventuale diametro. La serializzazione produce \filepath{fused_graph.json}. \\
+\end{contracttable}
+
+\section{Moduli da conoscere}
+
+La tabella individua i punti di intervento della pipeline senza ripetere gli
+algoritmi già descritti nel capitolo precedente.
+
+\begin{contracttable}
+\filepath{shared/detection.py} & Acquisizione & Scopre gli ID disponibili,
+carica YOLO e il decoder e gestisce la cache delle detection per immagine. \\
+
+\filepath{pipeline/orchestrator.py} & Coordinamento & Implementa
+\code{run_multiview_pipeline()} e \code{run_multiview_all()}; ordina le fasi,
+crea le directory e salva gli artefatti. \\
+\midrule
+
+\filepath{pipeline/observed_graphs.py} & Osservazioni & Filtra le detection,
+esclude i codici diametro dalla topologia e costruisce gli oggetti per vista. \\
+
+\filepath{pipeline/node_reid.py} & ReID & Raggruppa le osservazioni in
+\code{SceneNode}, costruisce la mappa osservazione--istanza e prova a
+riassorbire i singleton spuri. \\
+
+\filepath{pipeline/vggt_runtime.py},
+\filepath{pipeline/vggt_export_cli.py} & Runtime VGGT & Controllano gli
+artefatti disponibili e avviano, tramite l'interprete configurato, la
+generazione delle point map mancanti. \\
+
+\filepath{pipeline/vggt_3d_edges.py} & Geometria & Stima la geometria delle
+osservazioni, la aggrega per \code{SceneNode} e produce gli hint usati per
+valutare le connessioni. \\
+\midrule
+
+\filepath{pipeline/direct_graph_builder.py} & Grafo iniziale & Costruisce la
+foresta rispettando coppie vietate, valenze e assenza di cicli; restituisce
+anche i bridge candidati. \\
+
+\filepath{pipeline/graph_refinement.py} & Completamento e output & Collega le
+componenti rimaste separate, marca gli archi forzati e serializza il grafo
+finale. \\
+
+\filepath{pipeline/diameter_annotation.py} & Diametri & Associa le detection di
+diametro agli archi visibili e propaga il valore lungo i rami compatibili. \\
+\end{contracttable}
+
+La configurazione operativa e i parametri globali sono riepilogati nel
+Capitolo~\ref{chap:esecuzione}. Valutazione, visualizzazione e strumenti di
+debug non appartengono alla pipeline principale e sono raccolti nel
+Capitolo~\ref{chap:debug}.
+
+\section{Limiti implementativi noti}
+
+\begin{description}
+  \item[Vicinato strutturale ReID.] Il vicinato viene attualmente ricavato da
+  una collezione già limitata alle osservazioni dello stesso codice. Dopo
+  l'esclusione del codice stesso, il vicinato risulta vuoto; la selezione delle
+  fusioni dipende quindi soprattutto dal vincolo sulla stessa immagine e dalla
+  distanza 3D.
+
+  \item[Correzioni codice VGGT.] Nei rami di
+  \filepath{vggt_3d_edges.py} che applicano o riproducono una correzione,
+  \code{COMPONENT_INFO} viene trattato come un dizionario con campo
+  \code{name}, mentre in \filepath{config.py} restituisce una tupla
+  \code{(valenza, nome)}. Se una correzione cambia realmente il codice, questo
+  ramo può sollevare un \code{AttributeError}.
+\end{description}
+
+Questi limiti non bloccano i casi che non attivano i relativi rami, ma devono
+essere coperti da casi di regressione prima di intervenire su ReID o correzioni
+VGGT.

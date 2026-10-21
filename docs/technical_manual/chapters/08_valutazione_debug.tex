@@ -1,0 +1,115 @@
+\chapter{Diagnosi e verifica delle modifiche}
+\label{chap:debug}
+
+Questo capitolo serve a localizzare un errore e a verificare una modifica. I
+comandi ordinari di esecuzione e valutazione restano nel
+Capitolo~\ref{chap:esecuzione}; qui sono riportati soltanto i controlli utili
+quando un risultato non è quello atteso.
+
+\section{Diagnosi di un nodo}
+
+La regola principale è cercare il primo artefatto errato: detection,
+riconciliazione delle istanze, geometria, archi e infine diametri. Per conservare
+lo stato intermedio, abilitare temporaneamente i dump in \filepath{.env}:
+
+\begin{lstlisting}[language={}]
+DEBUG_OUTPUT_ENABLED=true
+DEBUG_OUTPUT_DIR=./output/debug
+\end{lstlisting}
+
+Rieseguire quindi un solo nodo:
+
+\begin{lstlisting}[language={}]
+python run.py 7
+\end{lstlisting}
+
+I file interni vengono scritti sotto
+\filepath{<DEBUG_OUTPUT_DIR>/node7/}. Non fanno parte della consegna e gli
+strumenti che li leggono non sono eseguiti automaticamente da
+\filepath{run.py}. Al termine riportare \envvar{DEBUG_OUTPUT_ENABLED} a
+\code{false}.
+
+\begin{contracttable}
+Componente assente & \filepath{<WORK_DIR>/detection_cache/} & Verificare che il codice
+compaia nella cache della relativa immagine. Se manca, il problema precede la
+ReID ed è da cercare tra YOLO, crop e decoder. \\
+
+Componente duplicato &
+\filepath{<WORK_DIR>/multiview/node<id>/scene_nodes.json} & Confrontare le
+immagini di supporto delle istanze con lo stesso codice. Supporti complementari
+indicano una possibile mancata fusione. \\
+
+Separazione ReID errata &
+\filepath{<DEBUG_OUTPUT_DIR>/node<id>/reid_geometry.json} & Controllare
+posizione 3D, appartenenza dei crop e vincoli tra osservazioni prima di
+modificare il clustering. \\
+\midrule
+
+Arco mancante o errato &
+\filepath{<WORK_DIR>/multiview/node<id>/} & Verificare prima gli
+\code{SceneNode}, quindi \filepath{vggt_geometry.json} e infine gli archi in
+\filepath{fused_graph.json}. \\
+
+Diametro incoerente &
+\filepath{<DEBUG_OUTPUT_DIR>/node<id>/diameters.json} & Confrontare
+osservazioni, associazione iniziale e propagazione. I codici \code{250} e
+\code{252} non hanno un valore millimetrico nella mappa corrente. \\
+\end{contracttable}
+
+I comandi diagnostici più utili sono:
+
+\begin{lstlisting}[language={}]
+python tools/debug/debug_crops.py 7
+python tools/debug/analyze_reid_false_positives.py 7
+python tools/debug/plot_reid_geometry.py 7 15 95
+python tools/debug/debug_graph_projection.py 7
+\end{lstlisting}
+
+Il primo crea una tavola dei crop per \code{SceneNode}; il secondo, se sono
+disponibili label e annotazioni, confronta i cluster con il ground truth; il
+terzo visualizza la separazione 3D per i codici richiesti; l'ultimo proietta
+nodi e archi sulle immagini e salva un
+\filepath{consistency_report.json}. Le distanze 2D mostrate da quest'ultimo sono
+un aiuto visivo e non un'evidenza usata per costruire il grafo.
+
+\manualnote[ID composti]{Tra i comandi elencati,
+\filepath{debug_crops.py} e \filepath{debug_graph_projection.py} convertono
+l'argomento in numero intero e non accettano identificativi come \code{15_1}.
+Per questi nodi occorre adattare il parsing oppure richiamare la funzione
+interna passando l'ID come stringa.}
+
+\section{Verifica delle modifiche}
+
+Una modifica alla pipeline va confrontata sugli stessi nodi e sugli stessi
+input. Quando cambiano modello o dataset è preferibile usare una nuova
+\envvar{WORK_DIR}, così cache e risultati precedenti restano disponibili.
+
+La verifica minima consiste nel:
+
+\begin{enumerate}
+  \item rieseguire almeno un nodo che attraversi il ramo modificato;
+  \item confrontare il primo artefatto interessato e il
+  \filepath{fused_graph.json} finale;
+  \item eseguire valutazione e visualizzazione come descritto nel
+  Capitolo~\ref{chap:esecuzione};
+  \item conservare comando, configurazione e differenze osservate.
+\end{enumerate}
+
+L'edge F1 di \filepath{evaluate.py} usa il miglior abbinamento biunivoco trovato
+tra istanze predette e annotate, tenendo conto anche della struttura. Va quindi
+letto come misura della qualità del grafo sotto quel mapping, non come verifica
+della stabilità degli identificativi prodotti.
+
+Il repository non contiene una suite di test dedicata. Prima di rifattorizzare
+ReID, costruzione degli archi o diametri è opportuno congelare almeno un caso
+per ciascuno di questi comportamenti: fusione multi-vista con VGGT, fallback di
+connessione e propagazione del diametro.
+
+\section{Strumenti specialistici}
+
+\filepath{evaluation/standard_comparison/} mantiene il confronto strutturale
+richiamato da \filepath{evaluate.py}. \filepath{shurikode_symbols.py} gestisce
+simboli e porte condivisi con QGIS, mentre \filepath{package_qgis_geojson.py}
+prepara gli archivi. Gli script in \filepath{tools/reporting/} e
+\filepath{tools/examples/} sono specifici o dimostrativi: non fanno parte di
+\filepath{run.py} e non sono test.

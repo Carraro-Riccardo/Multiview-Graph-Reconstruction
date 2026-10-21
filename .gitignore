@@ -25,7 +25,15 @@ tmp/
 **/slurm/**
 !slurm/
 !slurm/benchmark_inference.slurm
-**/docs/technical_manual/**
+# Manuale LaTeX: sorgenti, figure usate e PDF verificato sono versionati;
+# restano esclusi soltanto gli artefatti intermedi della compilazione.
+docs/technical_manual/**/*.aux
+docs/technical_manual/*.log
+docs/technical_manual/*.toc
+docs/technical_manual/*.out
+docs/technical_manual/*.fls
+docs/technical_manual/*.fdb_latexmk
+docs/technical_manual/figures/vggt_geometry.png
 
 # Pipeline output — ignore all generated artifacts,
 # except VGGT point maps (expensive to recompute, ~minutes per node).

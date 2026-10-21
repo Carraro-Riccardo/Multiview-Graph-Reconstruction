@@ -1,0 +1,99 @@
+\chapter{Repository ed entrypoint}
+\label{chap:repository}
+
+\section{Punto di ingresso della ricostruzione}
+
+Dopo l'attivazione dell'ambiente \code{graph_rec}, la pipeline si avvia dalla
+directory principale del repository con un solo comando:
+
+\begin{lstlisting}[language={}]
+python run.py
+\end{lstlisting}
+
+Senza argomenti vengono elaborati tutti i nodi ammessi dalla configurazione;
+gli eventuali ID servono soltanto a limitare la lavorazione, come descritto nel
+Capitolo~\ref{chap:esecuzione}. \filepath{run.py} mantiene volutamente un ruolo
+ridotto: interpreta la richiesta e delega la ricostruzione a
+\code{run_multiview_all()} o \code{run_multiview_pipeline()}.
+
+Valutazione, visualizzazione aggiuntiva ed export QGIS sono operazioni separate
+e non sono necessarie per ottenere il grafo ricostruito.
+
+\section{Struttura del repository}
+
+La tabella riporta i percorsi utili per orientarsi nel codice, senza elencare
+ogni file di servizio presente nel repository.
+
+\begin{contracttable}
+\filepath{run.py} & Entrypoint principale & Avvia la ricostruzione completa o
+quella dei soli ID indicati. \\
+
+\filepath{graph_reconstruction/config.py} & Configurazione & Carica
+\filepath{.env} e definisce percorsi, soglie e vincoli globali. \\
+
+\filepath{graph_reconstruction/pipeline/} & Pipeline & Contiene
+l'orchestrazione e le fasi di detection, ReID, supporto VGGT e costruzione del
+grafo. \\
+
+\filepath{graph_reconstruction/shared/},
+\filepath{graph_reconstruction/visualization/} & Moduli condivisi & Raccolgono
+funzioni di supporto, accesso ai dati e visualizzazioni usate dalla pipeline. \\
+\midrule
+
+\filepath{models/}, \filepath{assets/}, \filepath{annotations/} & Risorse &
+Ospitano checkpoint, primitive grafiche e annotazioni quando mantenuti nel
+repository; i percorsi effettivi sono stabiliti dalla configurazione. \\
+
+\filepath{output/}, \filepath{python312/} & Artefatti e runtime & La prima è
+la destinazione predefinita dei risultati; la seconda contiene il runtime
+dedicato a VGGT. \\
+\end{contracttable}
+
+\subsection{Architettura funzionale}
+
+La pipeline è prevalentemente funzionale: l'orchestratore coordina funzioni
+che trasformano dataclass, dizionari e grafi NetworkX. Il flusso di chiamata è
+descritto nel Capitolo~\ref{chap:flusso-codice}, mentre gli oggetti scambiati tra le
+fasi sono raccolti nel Capitolo~\ref{chap:oggetti}.
+
+\section{Strumenti successivi alla ricostruzione}
+
+Gli script seguenti leggono gli artefatti già prodotti dalla pipeline. Sono
+utili per analisi o consegne specifiche, ma non fanno parte dell'esecuzione
+necessaria a ottenere il grafo.
+
+\subsection{Valutazione}
+
+\filepath{evaluate.py} usa \filepath{scene_nodes.json},
+\filepath{fused_graph.json}, la cache delle detection e, quando disponibili,
+le label estese e le annotazioni di riferimento. Calcola le metriche sulle
+istanze e sugli archi e avvia il confronto con gli standard. L'assenza dei dati
+di riferimento limita la valutazione, non la ricostruzione.
+
+\subsection{Visualizzazione ed export QGIS}
+
+\filepath{visualize.py} legge \filepath{fused_graph.json} e produce
+\filepath{fused_graph_plot.png}; può inoltre generare un GeoJSON sintetico e il
+report del best match. \filepath{json_adapter_to_qgis.py} gestisce invece
+l'export QGIS dedicato, per un singolo grafo o per tutti quelli disponibili,
+usando geometria VGGT quando richiesta e disponibile oppure coordinate
+sintetiche. Nessuno dei due modifica il JSON ricostruito.
+
+\subsection{Diagnostica e manutenzione}
+
+\filepath{visualize_pointcloud_bboxes.py} e le utility in \filepath{tools/}
+servono per ispezioni, debug e manutenzione. Non sono dipendenze operative del
+flusso normale e vanno eseguite soltanto quando richiesto dall'analisi.
+
+\section{Caricamento della configurazione}
+
+\filepath{graph_reconstruction/config.py} viene importato prima dell'avvio
+della pipeline. In questa fase legge il file \filepath{.env} nella root senza
+sovrascrivere eventuali valori già presenti nell'ambiente di processo: una
+variabile impostata dall'esterno ha quindi la precedenza.
+
+La funzione \code{_path_setting()} mantiene i percorsi assoluti e risolve quelli
+relativi rispetto alla root del progetto. Se manca un percorso obbligatorio,
+solleva un \code{RuntimeError} durante l'import, prima di \code{main()}. La mappa
+delle impostazioni operative e dei parametri globali è riportata nel
+Capitolo~\ref{chap:esecuzione} e non viene duplicata qui.

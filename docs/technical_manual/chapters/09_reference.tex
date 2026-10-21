@@ -1,0 +1,99 @@
+\chapter{Riferimento operativo}
+\label{chap:reference}
+
+I comandi riportati in questa appendice devono essere eseguiti dalla root del
+repository.
+
+\section{Ambiente e verifica}
+
+\begin{longtable}{P{0.48\textwidth}P{0.40\textwidth}}
+\toprule
+\textbf{Comando} & \textbf{Uso}\\
+\midrule\endhead
+\cli{conda env create -f environment.yml} & Crea l'ambiente principale dal file versionato.\\
+\cli{conda activate graph_rec} & Attiva l'ambiente prima degli entrypoint.\\
+\cli{conda env update -n graph_rec -f environment.yml --prune} & Riallinea l'ambiente da \filepath{environment.yml}.\\
+\cli{python -c "from graph_reconstruction.config import IMAGES_DIR, WORK_DIR; print(IMAGES_DIR, WORK_DIR)"} & Verifica i percorsi caricati da \filepath{.env}.\\
+\bottomrule
+\end{longtable}
+
+\section{Comandi principali}
+
+\begin{longtable}{P{0.43\textwidth}P{0.45\textwidth}}
+\toprule
+\textbf{Comando} & \textbf{Risultato}\\
+\midrule\endhead
+\cli{python run.py 7} & Ricostruisce soltanto il nodo \code{7}.\\
+\cli{python run.py 2 7 15_1} & Ricostruisce gli ID indicati.\\
+\cli{python run.py} & Ricostruisce tutti gli ID scoperti.\\
+\cli{python evaluate.py 7} & Stampa le metriche del nodo e aggiorna il confronto con gli standard.\\
+\cli{python evaluate.py} & Valuta tutti i risultati presenti.\\
+\cli{python visualize.py 7} & Genera il plot, il GeoJSON sintetico e il report visuale del nodo.\\
+\cli{python visualize.py --all} & Visualizza tutti i grafi disponibili.\\
+\cli{python json_adapter_to_qgis.py} & Esporta in batch i grafi disponibili. Eseguire per ultimo se serve una geometria non \code{fake}.\\
+\cli{python -m graph_reconstruction.visualization.shurikode_symbols --all} & Genera i render SVG con i simboli Shurikode.\\
+\bottomrule
+\end{longtable}
+
+\manualnote[Wrapper Windows]{\filepath{tools/run_pipeline.cmd} concatena run,
+evaluate e visualize, ma preferisce \code{py -3} quando il launcher è presente.
+Può quindi bypassare Conda e stampa percorsi finali basati sulla directory
+\filepath{output/}. Con una \envvar{WORK_DIR} esterna è preferibile eseguire i
+tre comandi \code{python} in modo esplicito.}
+
+\section{Percorsi e artefatti}
+
+\begin{longtable}{P{0.43\textwidth}P{0.45\textwidth}}
+\toprule
+\textbf{Percorso} & \textbf{Contenuto}\\
+\midrule\endhead
+\filepath{<IMAGES_DIR>/node<id>_<frame>.jpg} & Immagini della lavorazione; la ricerca non è ricorsiva.\\
+\filepath{<LABELS_EXT_DIR>/<image_stem>_extended.txt} & Label estese usate dalla valutazione.\\
+\filepath{<ANNOTATIONS_DIR>/node<id>_gt.json} & Ground truth del grafo.\\
+\filepath{<WORK_DIR>/detection_cache/<image_stem>.json} & Detection e decoding memorizzati per immagine.\\
+\filepath{<WORK_DIR>/multiview/node<id>/fused_graph.json} & Risultato principale.\\
+\filepath{<WORK_DIR>/multiview/node<id>/scene_nodes.json} & Tracciabilità della ReID.\\
+\filepath{<WORK_DIR>/multiview/node<id>/vggt/} & Artefatti geometrici per vista.\\
+\filepath{<WORK_DIR>/multiview/node<id>/vggt_geometry.json} & Geometria aggregata, hint e cache VGGT.\\
+\filepath{<WORK_DIR>/multiview/node<id>/fused_graph_plot.png} & Render prodotto da \filepath{visualize.py}.\\
+\filepath{<WORK_DIR>/multiview/node<id>/standard_similarity.json} & Ranking del nodo rispetto agli standard.\\
+\filepath{<WORK_DIR>/standard_comparison/} & Tabelle e report aggregati.\\
+\filepath{<DEBUG_OUTPUT_DIR>/node<id>/} & Dump interni presenti soltanto con debug attivo.\\
+\bottomrule
+\end{longtable}
+
+\section{Variabili di \filepath{.env}}
+
+\begin{longtable}{P{0.34\textwidth}P{0.18\textwidth}P{0.35\textwidth}}
+\toprule
+\textbf{Variabile} & \textbf{Default} & \textbf{Significato}\\
+\midrule\endhead
+\envvar{IMAGES_DIR} & obbligatoria & Cartella immediata delle immagini.\\
+\envvar{LABELS_EXT_DIR} & obbligatoria & Label estese per la valutazione.\\
+\envvar{YOLO_MODEL_PATH} & obbligatoria & File dei pesi YOLO.\\
+\envvar{ASSETS_DIR} & \filepath{./assets} & Mapping, porte e SVG Shurikode.\\
+\envvar{ANNOTATIONS_DIR} & \filepath{./annotations} & Grafi ground truth.\\
+\envvar{WORK_DIR} & \filepath{./output} & Root di risultati e cache.\\
+\envvar{DEBUG_OUTPUT_ENABLED} & \code{false} & Abilita i dump interni.\\
+\envvar{DEBUG_OUTPUT_DIR} & \filepath{./output/debug} & Root del debug.\\
+\envvar{VGGT_EDGE_ENABLED} & \code{true} & Abilita geometria e hint VGGT.\\
+\envvar{VGGT_GENERATE_IF_MISSING} & \code{true} & Genera i file \code{.npz} mancanti.\\
+\envvar{VGGT_EMBEDDED_PYTHON} & \filepath{./python312/python.exe} & Runtime separato usato da VGGT.\\
+\envvar{VGGT_MODEL_ID} & \code{facebook/VGGT-1B} & Identificativo del modello.\\
+\envvar{VGGT_PREPROCESS_MODE} & \code{crop} & Pre-processing delle immagini VGGT.\\
+\bottomrule
+\end{longtable}
+
+\section{Verifica minima del risultato}
+
+Prima di considerare concluso un nodo:
+
+\begin{itemize}
+  \item verificare che \filepath{fused_graph.json} sia stato aggiornato dal run;
+  \item controllare \code{is_connected}, il numero di nodi e il numero di archi;
+  \item individuare archi con \code{forced=true} e valori
+        \code{diameter_conflict=true};
+  \item aprire \filepath{fused_graph_plot.png};
+  \item conservare il log della valutazione;
+  \item eseguire per ultimo l'eventuale export QGIS definitivo.
+\end{itemize}
