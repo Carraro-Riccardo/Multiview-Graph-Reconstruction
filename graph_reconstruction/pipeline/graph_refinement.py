@@ -1,4 +1,4 @@
-"""Spanning-tree forcing and graph serialization."""
+"""Completamento della connettività e serializzazione del grafo finale."""
 
 from __future__ import annotations
 
@@ -20,20 +20,13 @@ def force_spanning_tree(
     graph: nx.Graph,
     candidate_edges: list,
 ) -> tuple[nx.Graph, dict]:
-    """
-    Guarantee the graph is connected (spanning tree, no new cycles).
+    """Collega le componenti senza introdurre nuovi cicli.
 
-    Strategy (in order of preference):
-    1. Candidate-bridge pass: among all candidate edges that cross two distinct
-       connected components, pick the best ones (by evidence score) using
-       Kruskal's algorithm.
-    2. Structural-fallback pass: for components still unconnected after step 1,
-       find the highest-COOC_COUNTS compatible pair of nodes (one per component)
-       and add a synthetic forced edge.
-
-    Degree constraints are relaxed for isolated nodes (they have no edges and
-    must be connected).  Diameter-code nodes (max_degree == 0) are skipped.
-    All added edges are marked forced=True.
+    Prima usa i ponti VGGT già ordinati per evidenza, con una variante di
+    Kruskal. Se non bastano, sceglie coppie strutturalmente compatibili usando
+    co-occorrenze e triplette osservate. Soltanto nell'ultimo tentativo rilassa
+    la valenza, senza attraversare coppie mai osservate; ogni arco aggiunto è
+    marcato con ``forced=True`` e con la relativa motivazione.
     """
     if graph.number_of_nodes() == 0 or nx.is_connected(graph):
         return graph, {"forced_edges": [], "already_connected": True, "n_forced": 0}
@@ -41,7 +34,7 @@ def force_spanning_tree(
     degree_used = {n: graph.degree(n) for n in graph.nodes()}
     max_deg     = {n: graph.nodes[n]["max_degree"] for n in graph.nodes()}
 
-    # ── Union-Find over node indices ─────────────────────────────────────────
+    # Union-Find rappresenta le componenti mentre vengono aggiunti i ponti.
     nodes   = list(graph.nodes())
     idx_map = {n: i for i, n in enumerate(nodes)}
     parent  = list(range(len(nodes)))
@@ -86,7 +79,7 @@ def force_spanning_tree(
 
     forced_log: list[dict] = []
 
-    # ── Pass 1: candidate bridges ─────────────────────────────────────────────
+    # Primo passaggio: ponti derivati dall'evidenza VGGT già disponibile.
     def _cand_priority(edge) -> tuple:
         return (
             edge.vggt_support_count,
@@ -126,7 +119,8 @@ def force_spanning_tree(
         if nx.is_connected(graph):
             break
 
-    # ── Pass 2: structural fallback (degree-respecting) ───────────────────────
+    # Secondo passaggio: fallback strutturale, prima rispettando la valenza e
+    # poi rilassandola solo se il grafo rimane ancora disconnesso.
     if not nx.is_connected(graph):
         _max_cooc   = max(COOC_COUNTS.values())   if COOC_COUNTS   else 1
         _max_triplet = max(TRIPLET_COUNTS.values()) if TRIPLET_COUNTS else 1
@@ -220,6 +214,7 @@ def force_spanning_tree(
 
 
 def serialize_fused_graph(graph: nx.Graph, n_total_views: int) -> dict:
+    """Converte il grafo NetworkX nel contratto JSON esposto agli altri tool."""
     nodes = []
     for node_id, attrs in graph.nodes(data=True):
         nodes.append({

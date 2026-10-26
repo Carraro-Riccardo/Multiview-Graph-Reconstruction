@@ -28,7 +28,7 @@ ROOT = Path(__file__).resolve().parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-# Force UTF-8 output on Windows (avoids cp1252 UnicodeEncodeError for box-drawing chars)
+# I separatori tabellari usano caratteri Unicode non rappresentabili in cp1252.
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
@@ -58,7 +58,7 @@ IOU_THRESH = 0.30
 W = 72  # larghezza separatori
 
 
-# ── GT loading ────────────────────────────────────────────────────────────────
+# ── Caricamento del ground truth ──────────────────────────────────────────────
 
 def _iou(b1: list, b2: list) -> float:
     """bbox normalizzate [x1,y1,x2,y2]."""
@@ -145,7 +145,7 @@ def load_gt_for_node(node_id: str) -> dict:
     }
 
 
-# ── Scene node loading ────────────────────────────────────────────────────────
+# ── Caricamento degli scene node ──────────────────────────────────────────────
 
 def load_scene_nodes(node_id: str) -> list[dict]:
     p = MULTIVIEW_DIR / f"node{node_id}" / "scene_nodes.json"
@@ -173,7 +173,7 @@ def load_detections_for_image(image_stem: str) -> list[dict]:
     ]
 
 
-# ── Matching detection → GT ───────────────────────────────────────────────────
+# ── Abbinamento detection → ground truth ──────────────────────────────────────
 
 def match_detections_to_gt(
     det_bbox: list,
@@ -197,7 +197,7 @@ def match_detections_to_gt(
     return best_iid, best_iou
 
 
-# ── Per-scene-node purity ─────────────────────────────────────────────────────
+# ── Purezza per scene node ────────────────────────────────────────────────────
 
 def compute_scene_node_purity(
     scene_node: dict,
@@ -218,7 +218,7 @@ def compute_scene_node_purity(
     n_matched = 0
 
     for obs_id in scene_node["supporting_observed_ids"]:
-        # obs_id format: node{nid}_{imgsfx}_{det_idx}
+        # Formato obs_id: node{nid}_{imgsfx}_{det_idx}.
         # image_stem = tutto tranne l'ultimo segmento
         parts = obs_id.rsplit("_", 1)
         if len(parts) != 2:
@@ -254,7 +254,7 @@ def compute_scene_node_purity(
     }
 
 
-# ── GT graph loading ──────────────────────────────────────────────────────────
+# ── Caricamento del grafo annotato ────────────────────────────────────────────
 
 def load_gt_graph(node_id: str) -> dict | None:
     """Carica il grafo GT da annotations/node{id}_gt.json."""
@@ -267,7 +267,7 @@ def load_gt_graph(node_id: str) -> dict | None:
     return {"nodes": nodes, "edges": edges}
 
 
-# ── Bijective pred→GT mapping via Hungarian matching ─────────────────────────
+# ── Mappatura biunivoca predizione→GT tramite algoritmo ungherese ─────────────
 
 def build_bijective_mapping(sn_purities: list, gt_data: dict) -> dict[str, str]:
     """
@@ -314,7 +314,7 @@ def build_bijective_mapping(sn_purities: list, gt_data: dict) -> dict[str, str]:
     return sn_to_gt
 
 
-# ── Edge evaluation ───────────────────────────────────────────────────────────
+# ── Valutazione degli archi ───────────────────────────────────────────────────
 
 def _edge_f1_from_mapping(
     sn_to_gt: dict[str, str],
@@ -363,13 +363,13 @@ def _optimize_mapping_for_edges(
 
     mapping = dict(sn_to_gt)  # mutable copy
 
-    # Only optimise codes where we have ≥2 pred AND ≥2 GT instances
+    # L'ottimizzazione è utile solo con almeno due istanze predette e due GT.
     opt_codes = [
         code for code, sn_ids in by_code.items()
         if len(sn_ids) >= 2 and len(gt_by_code.get(code, [])) >= 2
         and len(sn_ids) <= max_k_bruteforce
     ]
-    # Sort by k descending (largest groups have most impact)
+    # Si parte dai gruppi più grandi, che influenzano maggiormente il risultato.
     opt_codes.sort(key=lambda c: -len(by_code[c]))
 
     improved = True
@@ -378,7 +378,7 @@ def _optimize_mapping_for_edges(
         for code in opt_codes:
             sn_ids = by_code[code]
             gt_iids = gt_by_code.get(code, [])
-            # Current GT labels assigned to these sn_ids
+            # Etichette GT attualmente assegnate agli scene node selezionati.
             current_gt = [mapping.get(sid) for sid in sn_ids]
             assigned_gt = [g for g in current_gt if g is not None]
             if not assigned_gt:
@@ -387,10 +387,10 @@ def _optimize_mapping_for_edges(
             best_f1 = _edge_f1_from_mapping(mapping, pred_edges, gt_edges_set)
             best_perm = None
 
-            # Build the pool of GT labels that were assigned to this code's nodes
+            # Pool delle etichette GT assegnate ai nodi predetti di questo codice.
             pool = [f"{code}#{iid}" for iid in gt_iids
                     if f"{code}#{iid}" in assigned_gt or mapping.get(sn_ids[0]) is None]
-            # Actually: try all permutations of the currently assigned GT labels
+            # Si provano tutte le permutazioni delle etichette GT correnti.
             assigned_labels = [mapping[sid] for sid in sn_ids if sid in mapping]
             if len(assigned_labels) < 2:
                 continue
@@ -493,7 +493,7 @@ def evaluate_graph_edges(
     }
 
 
-# ── Per-node evaluation ───────────────────────────────────────────────────────
+# ── Valutazione del singolo nodo ──────────────────────────────────────────────
 
 def evaluate_node(node_id: str) -> dict | None:
     scene_nodes = load_scene_nodes(node_id)
@@ -561,7 +561,7 @@ def evaluate_node(node_id: str) -> dict | None:
           f"|  {len(gt_data['image_stems'])} viste")
     print(f"{'═' * (W + 4)}")
 
-    # GT table
+    # Tabella delle istanze annotate.
     print(f"\n  {'── GT instances ':─<{W}}")
     print(f"  {'code':<6}{'name':<18}{'n_instances':>12}{'n_images':>10}")
     print(f"  {'─' * W}")
@@ -571,7 +571,7 @@ def evaluate_node(node_id: str) -> dict | None:
         imgs  = len({i for inst in insts for i in inst["images"]})
         print(f"  {code:<6}{name:<18}{len(insts):>12}{imgs:>10}")
 
-    # Scene nodes vs GT comparison
+    # Confronto aggregato tra scene node e ground truth.
     print(f"\n  {'── Code-level comparison (GT vs Pred) ':─<{W}}")
     print(f"  {'code':<6}{'name':<18}{'GT':>5}{'pred':>6}{'TP':>5}{'FP':>5}{'FN':>5}  status")
     print(f"  {'─' * W}")
@@ -594,7 +594,7 @@ def evaluate_node(node_id: str) -> dict | None:
     pur_s  = f"{avg_purity:.3f}" if avg_purity is not None else "n/a"
     print(f"\n  precision={prec_s}  recall={rec_s}  F1={f1_s}  avg_purity={pur_s}")
 
-    # Per-scene-node purity detail
+    # Dettaglio della purezza per scene node.
     print(f"\n  {'── Scene node purity ':─<{W}}")
     print(f"  {'scene_node_id':<18}{'name':<18}{'code':>6}{'supp':>6}"
           f"{'matched':>9}{'purity':>8}  majority_gt_id")
@@ -609,7 +609,7 @@ def evaluate_node(node_id: str) -> dict | None:
               f"{pur['n_matched']:>9}{p_str:>8}  {mid}{flag}")
     print(f"  {'─' * W}")
 
-    # ── Edge evaluation ───────────────────────────────────────────────────────
+    # ── Valutazione degli archi ───────────────────────────────────────────────
     edge_res = evaluate_graph_edges(node_id, sn_purities, gt_data)
     edge_f1 = None
     if edge_res is not None:
@@ -654,7 +654,7 @@ def evaluate_node(node_id: str) -> dict | None:
     }
 
 
-# ── Main ──────────────────────────────────────────────────────────────────────
+# ── Punto di ingresso ─────────────────────────────────────────────────────────
 
 def main():
     if len(sys.argv) > 1:
@@ -676,8 +676,8 @@ def main():
         if r:
             rows.append(r)
 
-    # Structural similarity is independent from detection GT: evaluate every
-    # requested reconstructed graph, including nodes skipped above.
+    # La similarità strutturale non dipende dalle label delle detection: vengono
+    # quindi valutati tutti i grafi richiesti, inclusi quelli saltati sopra.
     print("\n\nConfronto strutturale con gli standard di riferimento")
     try:
         for nid in node_ids:
@@ -707,7 +707,7 @@ def main():
     if not rows:
         return
 
-    # ── Summary table ─────────────────────────────────────────────────────────
+    # ── Tabella riepilogativa ─────────────────────────────────────────────────
     print(f"\n\n{'═' * (W + 4)}")
     print(f"  SUMMARY  —  {len(rows)} nodes")
     print(f"{'═' * (W + 4)}")

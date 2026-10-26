@@ -1,17 +1,15 @@
-"""Visualize the fused graph for a specific node.
+"""Visualizzazione dei grafi fusi prodotti dalla pipeline.
 
-Layout: kamada-kawai weighted by edge support_count, so nodes with strong
-evidence cluster naturally. Forced / structural-fallback edges are clearly
-de-emphasised (dashed, faded, thin).
+Il layout Kamada-Kawai usa il supporto degli archi come peso; gli archi forzati
+o di fallback restano graficamente attenuati. Colore e opacità distinguono il
+codice del componente e il numero di viste che lo supportano.
 
-Nodes are coloured by component code (same code → same hue), with opacity
-scaled by support_count / n_views so well-supported nodes pop.
+Uso::
 
-Usage:
-    python visualize.py            # all reconstructed nodes
-    python visualize.py 9          # specific node
-    python visualize.py 2 7 9      # multiple nodes
-    python visualize.py --all      # all reconstructed nodes
+    python visualize.py            # tutti i nodi ricostruiti
+    python visualize.py 9          # un nodo specifico
+    python visualize.py 2 7 9      # più nodi
+    python visualize.py --all      # tutti i nodi ricostruiti
 """
 
 from __future__ import annotations
@@ -36,12 +34,12 @@ from graph_reconstruction.config import WORK_DIR as _WORK_DIR  # noqa: E402
 from evaluation.standard_comparison.visualizza_best_match import generate_best_match_report  # noqa: E402
 from json_adapter_to_qgis import convert_fused_graph_to_qgis  # noqa: E402
 
-# ── CONFIG ───────────────────────────────────────────────────────────────────
+# ── Configurazione del rendering ──────────────────────────────────────────────
 WORK_DIR    = _WORK_DIR / "multiview"
 SHOW_WINDOW = False
 # ─────────────────────────────────────────────────────────────────────────────
 
-# Palette for component codes (up to 20 distinct codes per scene)
+# Tavolozza ciclica per un massimo pratico di 20 codici distinti per scena.
 _PALETTE = [
     "#e74c3c", "#3498db", "#2ecc71", "#f39c12", "#9b59b6",
     "#1abc9c", "#e67e22", "#e91e63", "#00bcd4", "#cddc39",
@@ -50,7 +48,7 @@ _PALETTE = [
 ]
 
 
-# ── Graph loading ─────────────────────────────────────────────────────────────
+# ── Caricamento del grafo ─────────────────────────────────────────────────────
 
 def load_fused_graph(node_id: str) -> tuple[nx.Graph, dict]:
     json_path = WORK_DIR / f"node{node_id}" / "fused_graph.json"
@@ -79,7 +77,7 @@ def _weighted_layout(G: nx.Graph) -> dict[str, tuple[float, float]]:
     if G.number_of_nodes() == 0:
         return {}
 
-    # Build weighted graph for layout
+    # Il layout usa una copia pesata e non modifica gli attributi persistiti.
     H = nx.Graph()
     H.add_nodes_from(G.nodes())
     for u, v, a in G.edges(data=True):
@@ -96,7 +94,7 @@ def _weighted_layout(G: nx.Graph) -> dict[str, tuple[float, float]]:
             dist = 1.0 / (sc + 0.5)
         H.add_edge(u, v, weight=dist)
 
-    # Separate isolated nodes
+    # I nodi isolati vengono esclusi dal layout principale.
     isolated  = [n for n in G.nodes() if G.degree(n) == 0]
     connected = [n for n in G.nodes() if G.degree(n) > 0]
 
@@ -112,13 +110,13 @@ def _weighted_layout(G: nx.Graph) -> dict[str, tuple[float, float]]:
             sub_pos = nx.spring_layout(sub, weight="weight",
                                        k=2.5 / max(n_conn ** 0.5, 1), seed=42,
                                        iterations=200, scale=scale)
-        # Nudge overlapping nodes apart with a short spring pass
+        # Un breve passaggio spring separa eventuali coordinate sovrapposte.
         sub_pos = nx.spring_layout(sub, pos=sub_pos, fixed=None,
                                    k=1.5 / max(n_conn ** 0.5, 1),
                                    iterations=30, scale=scale, seed=0)
         pos.update(sub_pos)
 
-    # Place isolated nodes in a row below
+    # Gli isolati vengono disposti in una riga sotto il grafo principale.
     if isolated:
         ys = [p[1] for p in pos.values()] if pos else [0.0]
         y_bottom = min(ys) - 1.5
@@ -129,7 +127,7 @@ def _weighted_layout(G: nx.Graph) -> dict[str, tuple[float, float]]:
     return pos
 
 
-# ── Color helpers ─────────────────────────────────────────────────────────────
+# ── Utilità per i colori ──────────────────────────────────────────────────────
 
 def _build_code_color_map(G: nx.Graph) -> dict[int, str]:
     codes = sorted({G.nodes[n].get("code", 0) for n in G.nodes()})
@@ -171,7 +169,7 @@ def _edge_label(attrs: dict, n_views: int) -> str:
     return f"{sc}/{n_views}"
 
 
-# ── Main plot ─────────────────────────────────────────────────────────────────
+# ── Rendering principale ──────────────────────────────────────────────────────
 
 def plot_node_graph(node_id: str) -> Path:
     G, data   = load_fused_graph(node_id)
@@ -187,7 +185,7 @@ def plot_node_graph(node_id: str) -> Path:
     code_colors = _build_code_color_map(G)
     pos = _weighted_layout(G)
 
-    # ── Draw edges by category ────────────────────────────────────────────────
+    # Gli archi vengono separati per categoria per evidenziare i fallback.
     fig, ax = plt.subplots(figsize=(16, 12), facecolor="#0d1117")
     ax.set_facecolor("#0d1117")
 
@@ -198,7 +196,7 @@ def plot_node_graph(node_id: str) -> Path:
             edge_color=color, width=width, alpha=alpha, style=style,
         )
 
-    # Edge labels (only observed edges with support)
+    # Le etichette sono mostrate solo sugli archi con supporto osservato.
     edge_labels = {
         (u, v): _edge_label(a, n_views)
         for u, v, a in G.edges(data=True)
@@ -210,17 +208,17 @@ def plot_node_graph(node_id: str) -> Path:
         bbox={"alpha": 0},
     )
 
-    # ── Draw nodes ────────────────────────────────────────────────────────────
+    # Rendering dei nodi.
     for nid in G.nodes():
         color, alpha = _node_face(G, nid, code_colors, n_views)
         supp  = G.nodes[nid].get("support_count", 0)
         size  = 600 + 150 * G.degree(nid) + 60 * supp
 
-        # Border: gold if full support, grey otherwise
+        # Bordo dorato con supporto completo, grigio negli altri casi.
         border = "#f1c40f" if supp >= n_views else "#444444"
         border_w = 2.5 if supp >= n_views else 1.2
 
-        # Convert hex+alpha to RGBA for draw
+        # NetworkX richiede il colore RGBA già composto con l'opacità.
         rgb  = mcolors.to_rgb(color)
         rgba = [*rgb, alpha]
 
@@ -230,7 +228,7 @@ def plot_node_graph(node_id: str) -> Path:
             linewidths=border_w, edgecolors=border,
         )
 
-    # ── Node labels ───────────────────────────────────────────────────────────
+    # Etichette dei nodi.
     node_labels = {}
     for nid in G.nodes():
         name = G.nodes[nid].get("name", "?")
@@ -241,7 +239,7 @@ def plot_node_graph(node_id: str) -> Path:
     nx.draw_networkx_labels(G, pos, labels=node_labels, ax=ax,
                             font_size=6.5, font_color="white")
 
-    # ── Legend ────────────────────────────────────────────────────────────────
+    # Legenda.
     code_patches = [
         mpatches.Patch(color=c, label=f"[{code}] {_code_name(G, code)}")
         for code, c in sorted(code_colors.items())
@@ -262,7 +260,7 @@ def plot_node_graph(node_id: str) -> Path:
               framealpha=0.7, facecolor="#1a1a2e",
               labelcolor="white", fontsize=7.5)
 
-    # ── Title ─────────────────────────────────────────────────────────────────
+    # Titolo e riepilogo del grafo.
     conn_str = "CONNECTED" if connected else "DISCONNECTED"
     ax.set_title(
         f"Fused Graph — node {node_id}  |  "

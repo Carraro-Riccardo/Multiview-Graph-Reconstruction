@@ -1,4 +1,4 @@
-"""Diameter-label association and propagation for fused hydraulic graphs."""
+"""Associazione e propagazione delle etichette di diametro sul grafo fuso."""
 
 from __future__ import annotations
 
@@ -87,6 +87,7 @@ def _collect_edge_seeds(
     *,
     max_segment_distance: float,
 ) -> tuple[dict[tuple[str, str], list[dict[str, Any]]], list[dict[str, Any]]]:
+    """Associa ogni etichetta al segmento visibile più vicino nella stessa vista."""
     seeds: dict[tuple[str, str], list[dict[str, Any]]] = defaultdict(list)
     all_observations: list[dict[str, Any]] = []
 
@@ -128,6 +129,7 @@ def _collect_edge_seeds(
 
 
 def _edge_components(graph: nx.Graph) -> list[list[tuple[str, str]]]:
+    """Raggruppa gli archi lungo linee continue, fermandosi ai cambi diametro."""
     edges = [_edge_key(a, b) for a, b in graph.edges()]
     if not edges:
         return []
@@ -163,6 +165,7 @@ def _edge_components(graph: nx.Graph) -> list[list[tuple[str, str]]]:
 
 
 def _choose_diameter(observations: list[dict[str, Any]]) -> tuple[int | None, dict[str, Any]]:
+    """Sceglie il diametro pesando confidenza e distanza dall'arco."""
     if not observations:
         return None, {"confidence": 0.0, "observations": 0, "candidates": {}}
 
@@ -196,12 +199,12 @@ def annotate_graph_diameters(
     *,
     max_segment_distance: float = 0.14,
 ) -> tuple[nx.Graph, dict[str, Any]]:
-    """Attach diameter_mm to graph edges and nodes using detected labels.
+    """Associa ``diameter_mm`` ad archi e nodi usando le etichette rilevate.
 
-    Diameter labels are not topological components.  They seed the closest
-    visible graph edge in each image, then the chosen diameter is propagated
-    across contiguous pipe-line edge groups.  Propagation stops at reducer and
-    adapter-like components listed in DIAMETER_BREAK_CODES.
+    Le etichette di diametro non sono nodi topologici: inizializzano l'arco
+    visibile più vicino e il valore scelto viene propagato lungo la stessa linea.
+    Riduzioni e adattatori elencati in ``DIAMETER_BREAK_CODES`` interrompono la
+    propagazione.
     """
 
     obs_to_scene = build_observed_to_scene_map(scene_nodes)
@@ -212,6 +215,8 @@ def annotate_graph_diameters(
         max_segment_distance=max_segment_distance,
     )
 
+    # La scelta avviene per intera linea, non per singolo arco: viste diverse
+    # possono quindi contribuire allo stesso diametro propagato.
     edge_debug: dict[str, dict[str, Any]] = {}
     for group_index, component_edges in enumerate(_edge_components(graph), start=1):
         component_observations: list[dict[str, Any]] = []
@@ -241,6 +246,8 @@ def annotate_graph_diameters(
                 **choice_debug,
             }
 
+    # Un nodo espone il diametro solo se tutti gli archi incidenti concordano;
+    # in caso contrario conserva i candidati e segnala il conflitto.
     for node_id in graph.nodes():
         incident_diameters = sorted({
             graph[a][b].get("diameter_mm")

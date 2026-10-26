@@ -1,18 +1,9 @@
-"""Optional VGGT-backed 3D edge evidence for the direct graph builder.
+"""Estrazione della geometria 3D e degli indizi di arco da VGGT.
 
-This module is intentionally conservative:
-- if no VGGT artefacts are found, it returns an empty payload
-- if a point map cannot be parsed, that view is skipped
-- if VGGT is disabled or skipped, the pipeline falls back to structural-only re-ID
-
-Supported point-map formats
----------------------------
-- `.npy` / `.npz` with an array shaped `(H, W, 3)`
-- `.json` containing one of:
-  - `{"world_points": [[[x, y, z], ...], ...]}`
-  - `{"points3d": ...}`
-  - `{"points": ...}`
-  - a raw nested list shaped `(H, W, 3)`
+Il modulo è intenzionalmente conservativo: una point map mancante o illeggibile
+esclude soltanto la vista interessata. Se non rimane geometria utilizzabile,
+restituisce un payload vuoto e lascia agli stadi successivi la gestione del
+fallback. Sono accettati array ``.npy``/``.npz`` e JSON con forma ``(H, W, 3)``.
 """
 
 from __future__ import annotations
@@ -56,7 +47,7 @@ def _unique_paths(paths: list[Path]) -> list[Path]:
 
 
 def build_vggt_search_roots(node_id: int, output_dir: Path, work_dir: Path) -> list[Path]:
-    """Return a conservative list of places where VGGT artefacts may live."""
+    """Restituisce, senza duplicati, i percorsi compatibili con cache vecchie e nuove."""
     vggt_dir_name = VGGT_EDGE_SEARCH_GLOB
     roots = [
         output_dir / vggt_dir_name,
@@ -68,7 +59,7 @@ def build_vggt_search_roots(node_id: int, output_dir: Path, work_dir: Path) -> l
 
 
 def build_vggt_artifact_request(image_ids: list[str]) -> dict:
-    """Describe the minimal artefacts expected from a future VGGT export."""
+    """Descrive il contratto minimo dei file attesi dal processo di export."""
     return {
         "format_version": 1,
         "description": "Per-view VGGT point maps required by the edge builder.",
@@ -232,8 +223,8 @@ def _estimate_observation_geometry(
         port_a = (centroid + axis * lo).astype(np.float32)
         port_b = (centroid + axis * hi).astype(np.float32)
 
-    # Keep a compact point-cloud sample for min-distance re-id matching.
-    # 128 points is enough to detect cloud overlap while staying lightweight.
+    # Il campione compatto serve soltanto alla distanza minima della ReID:
+    # 128 punti mantengono il confronto leggero senza conservare l'intero crop.
     if len(pts) > 128:
         idx = np.linspace(0, len(pts) - 1, 128, dtype=int)
         pts_sample = pts[idx].astype(np.float32)
@@ -343,10 +334,10 @@ def _pair_geometry_stats(geom_a: dict, geom_b: dict) -> dict:
 def _build_view_rank_maps(
     pair_view_stats: dict[tuple[str, str], dict[str, dict]],
 ) -> dict[str, dict[str, list[tuple[str, float]]]]:
-    """For each view, build sorted neighbor lists (by port_dist) for each scene node.
+    """Ordina, per ogni vista e nodo, i vicini in base alla distanza tra porte.
 
-    Returns: img_id → sid → [(other_sid, port_dist), ...] sorted ascending.
-    Used for rank-based edge scoring — no distance thresholds.
+    Il risultato alimenta un punteggio basato sui ranghi, evitando una soglia
+    assoluta in metri che dipenderebbe dalla scala della scena.
     """
     view_neighbors: dict = defaultdict(lambda: defaultdict(list))
     for (a, b), view_stats in pair_view_stats.items():
@@ -360,18 +351,17 @@ def _build_view_rank_maps(
     return view_neighbors
 
 
-# ── Majority-vote code correction ─────────────────────────────────────────────
+# ── Correzione del codice per voto di maggioranza ─────────────────────────────
 
 def _majority_vote_code(
     obs_ids: list[str],
     obs_to_code: dict[str, int],
     neighbor_codes: list[int],
 ) -> int | None:
-    """Return the majority-vote hydraulic code for a set of observations.
+    """Sceglie il codice idraulico più votato tra le osservazioni.
 
-    When votes are tied, use COOC_COUNTS compatibility with co-occurring
-    neighbor codes to break the tie. Falls back to the first winner if no
-    COOC data is available.
+    In caso di parità usa la compatibilità con i codici co-visibili; se non
+    esistono dati di co-occorrenza mantiene il primo vincitore.
     """
     votes: Counter = Counter(obs_to_code[oid] for oid in obs_ids if oid in obs_to_code)
     if not votes:
@@ -396,17 +386,17 @@ def _apply_majority_vote_codes(
     scene_nodes: list,
     observed_graphs: list,
 ) -> tuple[list, list[dict]]:
-    """Recompute fused_code / fused_name for each scene node via majority vote.
+    """Ricalcola codice e nome fusi, registrando soltanto le correzioni.
 
-    Returns (scene_nodes, vote_log) where vote_log records nodes whose code
-    was corrected.  scene_nodes is the same list, mutated in place.
+    La lista viene modificata in-place; ``vote_log`` permette di riprodurre le
+    stesse correzioni quando la geometria viene caricata dalla cache.
     """
     obs_to_code: dict[str, int] = {}
     for og in observed_graphs:
         for obs_id, obs_node in og.nodes.items():
             obs_to_code[obs_id] = obs_node.code
 
-    # Build image → set-of-scene-nodes map for neighbour-code lookup
+    # La co-visibilità per immagine fornisce il contesto usato negli spareggi.
     img_to_sn_ids: dict[str, set[str]] = defaultdict(set)
     for sn in scene_nodes:
         for oid in sn.supporting_observed_ids:
@@ -417,7 +407,7 @@ def _apply_majority_vote_codes(
 
     vote_log: list[dict] = []
     for sn in scene_nodes:
-        # Neighbour codes: codes of other scene nodes co-visible in the same images
+        # Codici degli altri nodi visibili nelle stesse immagini.
         neighbour_codes: list[int] = []
         for oid in sn.supporting_observed_ids:
             img = oid.rsplit("_", 1)[0]
@@ -431,8 +421,7 @@ def _apply_majority_vote_codes(
 
         old_code = sn.fused_code
         sn.fused_code = new_code
-        info = COMPONENT_INFO.get(new_code, {})
-        sn.fused_name = info.get("name", str(new_code))
+        _, sn.fused_name = COMPONENT_INFO.get(new_code, (2, str(new_code)))
         vote_log.append({
             "scene_node_id": sn.scene_node_id,
             "old_code":      old_code,
@@ -444,23 +433,24 @@ def _apply_majority_vote_codes(
 
 
 def replay_vote_log(scene_nodes: list, vote_log: list[dict]) -> list:
-    """Re-apply a previously computed vote_log to a fresh set of SceneNodes.
+    """Riapplica a una ReID corrente le correzioni salvate nella cache VGGT.
 
-    Used when loading VGGT results from cache: the code corrections are stored
-    in vggt_geometry.json and replayed here. Entries whose IDs are not found
-    in the current scene_nodes are silently skipped.
+    Le voci riferite a ID assenti o a un codice iniziale differente vengono
+    ignorate: in quel caso la cache non descrive più lo stesso raggruppamento.
     """
     sn_by_id = {sn.scene_node_id: sn for sn in scene_nodes}
     for entry in vote_log:
         sn = sn_by_id.get(entry["scene_node_id"])
         if sn is None:
             continue
-        # Only apply if the node still has the expected old code (sanity check)
+        # Il codice iniziale è parte del contratto della cache, non solo l'ID.
         if sn.fused_code != entry["old_code"]:
             continue
         sn.fused_code = entry["new_code"]
-        info = COMPONENT_INFO.get(entry["new_code"], {})
-        sn.fused_name = info.get("name", str(entry["new_code"]))
+        _, sn.fused_name = COMPONENT_INFO.get(
+            entry["new_code"],
+            (2, str(entry["new_code"])),
+        )
     return scene_nodes
 
 
@@ -469,7 +459,7 @@ def build_vggt_edge_hints(
     observed_graphs: list,
     search_roots: list[Path],
 ) -> dict:
-    """Estimate scene-node 3D geometry and candidate edge hints from VGGT point maps."""
+    """Stima geometria delle istanze e indizi di arco dalle point map VGGT."""
     obs_to_scene: dict[str, str] = {}
     sn_code: dict[str, int] = {}
     for sn in scene_nodes:
@@ -510,11 +500,12 @@ def build_vggt_edge_hints(
     scene_geom = _aggregate_scene_geometry(obs_geometry, scene_nodes)
     cutoff = _scene_cutoff(scene_geom)
 
-    # ── Majority-vote code correction ────────────────────────────────────────
+    # La correzione del codice precede lo scoring degli archi, perché prior e
+    # coppie proibite dipendono dal codice fuso aggiornato.
     scene_nodes, vote_log = _apply_majority_vote_codes(scene_nodes, observed_graphs)
 
     if vote_log:
-        # Rebuild obs→scene and code maps after code corrections
+        # Dopo una correzione si rigenerano le mappe derivate dai codici.
         obs_to_scene = {}
         sn_code = {}
         for sn in scene_nodes:
@@ -524,7 +515,7 @@ def build_vggt_edge_hints(
         scene_geom = _aggregate_scene_geometry(obs_geometry, scene_nodes)
         cutoff = _scene_cutoff(scene_geom)
 
-    # ── Per-view pair geometry stats ─────────────────────────────────────────
+    # Statistiche geometriche delle coppie co-visibili, mantenute per vista.
     pair_view_stats: dict[tuple[str, str], dict[str, dict]] = defaultdict(dict)
     for og in observed_graphs:
         image_id = og.image_id
@@ -545,11 +536,9 @@ def build_vggt_edge_hints(
                     obs_geometry[per_scene_obs[b]],
                 )
 
-    # ── Rank-based edge scoring (zero distance thresholds) ───────────────────
-    # For each pair co-visible in V views, compute a mutual-rank vote per view:
-    #   view_vote = 1 / (rank_AB * rank_BA)  where rank is position in port_dist
-    #   sorted neighbor list (1-indexed). Max = 1.0 when mutual nearest neighbors.
-    # Domain prior: COOC_COUNTS boosts plausible code pairs; FORBIDDEN_PAIRS hard-vetoes.
+    # Il voto di una vista è 1/(rango_AB * rango_BA): vale 1 quando i nodi sono
+    # primi vicini reciproci. Le co-occorrenze premiano coppie plausibili, mentre
+    # FORBIDDEN_PAIRS resta un veto assoluto.
     _max_cooc = max(COOC_COUNTS.values()) if COOC_COUNTS else 1
     view_rank_maps = _build_view_rank_maps(pair_view_stats)
 

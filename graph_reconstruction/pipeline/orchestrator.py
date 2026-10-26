@@ -1,4 +1,9 @@
-"""Image-only multi-view hydraulic reconstruction - direct adjacency pipeline."""
+"""Orchestrazione della ricostruzione idraulica multi-vista.
+
+Questo modulo collega detection, ReID, geometria VGGT, costruzione del grafo e
+annotazione dei diametri. Le singole fasi restano nei moduli dedicati; qui si
+gestiscono ordine di esecuzione, cache, artefatti e riepiloghi operativi.
+"""
 
 from __future__ import annotations
 
@@ -32,11 +37,18 @@ def _output_dir(node_id: str) -> Path:
 
 
 def _save_debug(node_id: str, name: str, payload: object) -> None:
+    """Salva un artefatto diagnostico solo quando il debug è abilitato."""
     if DEBUG_OUTPUT_ENABLED:
         save_json(DEBUG_OUTPUT_DIR / f"node{node_id}" / name, payload)
 
 
 def run_multiview_pipeline(node_id: str, image_paths: list, output_dir: Path | None = None) -> dict:
+    """Ricostruisce un nodo a partire da tutte le sue viste.
+
+    Gli artefatti persistenti vengono scritti in ``output_dir``; i dump interni
+    passano invece da :func:`_save_debug`. Il dizionario restituito contiene un
+    riepilogo adatto sia al batch sia al benchmark.
+    """
     if output_dir is None:
         output_dir = _output_dir(node_id)
     output_dir = Path(output_dir)
@@ -57,7 +69,8 @@ def run_multiview_pipeline(node_id: str, image_paths: list, output_dir: Path | N
     print(f"  views accepted : {len(observed_graphs)}/{len(image_paths)}")
     print(f"  total detections (post-filter) : {total_obs}")
 
-    # ── VGGT artefacts (needed for both re-id 3D constraints and edge hints) ───
+    # Gli artefatti VGGT sono condivisi tra vincoli 3D della ReID e stima archi:
+    # generarli prima evita due esecuzioni dello stesso modello.
     vggt_edge_payload = {"enabled": False, "pair_hints": {}}
     vggt_generation = {"status": "not_requested", "generated": False}
     search_roots: list = []
@@ -93,10 +106,9 @@ def run_multiview_pipeline(node_id: str, image_paths: list, output_dir: Path | N
 
     if _vggt_active:
 
-        # ── Cache check ────────────────────────────────────────────────────────
-        # If all .npz files were already present AND vggt_geometry.json exists
-        # with the same set of scene-node IDs as the current ReID output, we can
-        # skip the expensive build_vggt_edge_hints() call entirely.
+        # La cache geometrica è valida soltanto se versione e insieme degli ID
+        # coincidono con la ReID corrente. Gli NPZ da soli non bastano: la ReID
+        # può produrre un raggruppamento diverso a parità di point map.
         debug_path = output_dir / "vggt_geometry.json"
         legacy_debug_path = output_dir / "vggt_edge_debug.json"
         if not debug_path.exists() and legacy_debug_path.exists():
@@ -114,7 +126,9 @@ def run_multiview_pipeline(node_id: str, image_paths: list, output_dir: Path | N
                 if _current_ids == _cached_ids:
                     _cache_hit = True
             except Exception:
-                pass  # malformed or legacy cache → fall through to full recompute
+                # Cache legacy o corrotta: il ricalcolo completo è più sicuro
+                # che tentare di usare un payload parziale.
+                pass
 
         if _cache_hit:
             _vote_log = _cached.get("vote_log", [])
@@ -140,11 +154,12 @@ def run_multiview_pipeline(node_id: str, image_paths: list, output_dir: Path | N
                 f"cache=hit  corrected={n_corrected}  "
                 f"edge_hints={len(_pair_hints)}"
             )
-        # ── Full recompute ─────────────────────────────────────────────────────
+        # Cache assente o non compatibile: ricostruzione completa degli indizi.
         else:
             vggt_edge_payload = build_vggt_edge_hints(scene_nodes, observed_graphs, search_roots)
 
-            # Apply VGGT-based code corrections (no merges — re-id handles duplicates)
+            # VGGT può correggere il codice per voto, ma non fonde le istanze:
+            # la responsabilità dei raggruppamenti resta alla ReID.
             n_corrected = vggt_edge_payload.get("n_code_corrections", 0)
             if n_corrected > 0:
                 scene_nodes = vggt_edge_payload["_scene_nodes_after_vote"]
@@ -188,7 +203,8 @@ def run_multiview_pipeline(node_id: str, image_paths: list, output_dir: Path | N
                 f"edge_hints={len(vggt_edge_payload.get('pair_hints', {}))}"
             )
 
-    # ── Spurious singleton merge (post-VGGT, uses 3D geometry when available) ──
+    # La pulizia dei singleton avviene dopo VGGT, così può sfruttare geometria e
+    # partner 3D. Senza questi dati la funzione mantiene un comportamento cauto.
     _scene_geom   = vggt_edge_payload.get("scene_geometry") or {}
     _scene_cutoff = vggt_edge_payload.get("scene_cutoff")
     scene_nodes, _spur_log = merge_spurious_singletons(
@@ -256,7 +272,8 @@ def run_multiview_pipeline(node_id: str, image_paths: list, output_dir: Path | N
     print(f"  {'-' * _W}")
     print(f"  output: {output_dir}")
 
-    # ── Bird's-eye view ───────────────────────────────────────────────────────
+    # La vista dall'alto è un artefatto di controllo: il grafo finale è già
+    # stato salvato e non dipende dalla riuscita del rendering.
     from graph_reconstruction.visualization.bird_view import render_bird_view
     bv_path = render_bird_view(output_dir)
     if bv_path:
@@ -278,6 +295,7 @@ def run_multiview_pipeline(node_id: str, image_paths: list, output_dir: Path | N
 
 
 def run_multiview_all(images_dir: Path | None = None) -> dict:
+    """Scopre i nodi eleggibili e li elabora in ordine numerico stabile."""
     if images_dir is None:
         images_dir = IMAGES_DIR
 

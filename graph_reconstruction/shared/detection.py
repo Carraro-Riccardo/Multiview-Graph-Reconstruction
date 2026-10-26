@@ -34,7 +34,7 @@ def _reset_cuda_peak_metrics() -> None:
 
 
 def _save_cuda_metrics(images_completed: int) -> None:
-    """Persist allocator metrics for benchmarks, including CUDA MPS jobs."""
+    """Salva i contatori dell'allocatore PyTorch usati dai benchmark CUDA/MPS."""
     if not _resource_metrics_enabled():
         return
     try:
@@ -62,6 +62,11 @@ def _save_cuda_metrics(images_completed: int) -> None:
 
 
 def _get_model_bundle():
+    """Inizializza modelli e pre-processing una sola volta per processo.
+
+    Gli import pesanti restano locali: comandi che leggono soltanto cache o
+    configurazione non devono caricare preventivamente PyTorch e Ultralytics.
+    """
     global _MODEL_BUNDLE
     if _MODEL_BUNDLE is None:
         _reset_cuda_peak_metrics()
@@ -120,7 +125,7 @@ def discover_nodes(images_dir: Path) -> dict:
             node_map[m.group(1)].append(img)
 
     def _sort_key(node_id: str):
-        # Sort numerically on numeric parts, lexicographically on others
+        # Gli ID composti, ad esempio 15_2, devono mantenere un ordine numerico.
         return [int(p) if p.isdigit() else p for p in node_id.split("_")]
 
     return dict(sorted(node_map.items(), key=lambda kv: _sort_key(kv[0])))
@@ -135,6 +140,7 @@ CACHE_VERSION = 2
 
 
 def _cache_signature() -> dict:
+    """Parametri che invalidano una detection salvata quando cambiano."""
     return {
         "version": CACHE_VERSION,
         "yolo_conf": float(YOLO_CONF),
@@ -146,6 +152,7 @@ def _cache_signature() -> dict:
 
 
 def _load_cached_detections(image_path: Path) -> list | None:
+    """Restituisce ``None`` per cache assente, obsoleta o non leggibile."""
     cache_path = _cache_path(image_path)
     if not cache_path.exists():
         return None
@@ -174,9 +181,10 @@ def _save_cached_detections(image_path: Path, dets: list) -> None:
 
 
 def detect_and_decode_cached(image_path: Path, force: bool = False) -> tuple:
-    """
-    Ritorna detection+decoding da cache locale se disponibile.
-    Se manca la cache, esegue il passo completo una sola volta e la salva.
+    """Restituisce detection e immagine, riutilizzando la cache quando valida.
+
+    ``force=True`` ricalcola il risultato e sovrascrive la cache della sola
+    immagine richiesta.
     """
     img_bgr = cv2.imread(str(image_path))
     if img_bgr is None:
@@ -203,8 +211,8 @@ def _bbox_center(bbox_norm: list) -> tuple:
 def _decode_patch(img_bgr: np.ndarray, bbox_norm: list) -> tuple:
     """
     Estrae la patch dall'immagine BGR e la decodifica.
-    Ritorna (code, conf) oppure (None, 0.0) se la patch Ã¨ troppo piccola
-    o il codice non Ã¨ valido.
+    Ritorna ``(code, conf)`` oppure ``(None, 0.0)`` se la patch è troppo piccola
+    o il codice non è valido.
     """
     h, w = img_bgr.shape[:2]
     x1, y1, x2, y2 = bbox_norm
@@ -243,7 +251,8 @@ def _detect_and_decode(image_path: Path) -> tuple:
             verbose=False,
         )
     except Exception:
-        # Preserve the peak reached before a possible CUDA OOM.
+        # Prima di propagare un possibile OOM si conserva il picco raggiunto,
+        # altrimenti il benchmark perderebbe proprio il dato più significativo.
         _save_cuda_metrics(_load_json_metric_count())
         raise
     dets = []

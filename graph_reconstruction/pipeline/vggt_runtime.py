@@ -1,4 +1,9 @@
-"""Runtime helpers to generate VGGT artefacts with the embedded Python env."""
+"""Gestione del processo separato usato per generare gli artefatti VGGT.
+
+Il processo principale non importa direttamente il modello: prepara una
+richiesta JSON e delega l'inferenza all'interprete configurato. Questo mantiene
+isolato il runtime e rende diagnosticabili comando, output ed errori.
+"""
 
 from __future__ import annotations
 
@@ -19,7 +24,12 @@ def _expected_files(output_dir: Path, image_paths: list[Path]) -> list[Path]:
 
 
 def ensure_vggt_artifacts(output_dir: Path, image_paths: list[Path], force: bool = False) -> dict:
-    """Generate per-view VGGT files if they are missing and generation is enabled."""
+    """Garantisce la presenza di una point map VGGT per ogni immagine.
+
+    Se tutti i file sono già presenti non avvia alcun subprocess. Le condizioni
+    non eseguibili, come generazione disabilitata o interprete assente, vengono
+    restituite come stato strutturato invece di interrompere l'intera pipeline.
+    """
     output_dir = Path(output_dir)
     image_paths = [Path(p) for p in image_paths]
     artifact_dir = _artifact_dir(output_dir)
@@ -53,6 +63,8 @@ def ensure_vggt_artifacts(output_dir: Path, image_paths: list[Path], force: bool
             "python_exe": str(python_exe),
         }
 
+    # Il file di richiesta è il contratto tra ambiente principale e runtime
+    # VGGT; conservarlo accanto agli output facilita la diagnosi dei run.
     payload = {
         "output_dir": str(artifact_dir),
         "image_paths": [str(path.resolve()) for path in image_paths],
@@ -73,6 +85,8 @@ def ensure_vggt_artifacts(output_dir: Path, image_paths: list[Path], force: bool
     )
 
     summary_path = artifact_dir / "generation_summary.json"
+    # Si conservano solo le code dei log per evitare summary molto grandi senza
+    # perdere il messaggio d'errore conclusivo del subprocess.
     summary = {
         "status": "ok" if completed.returncode == 0 else "error",
         "artifact_dir": str(artifact_dir),

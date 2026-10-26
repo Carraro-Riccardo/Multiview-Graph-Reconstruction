@@ -3,10 +3,18 @@
 import os
 
 
+# Il file .env contiene impostazioni dipendenti dalla macchina, soprattutto
+# percorsi e opzioni del runtime VGGT. Soglie, codici e prior strutturali restano
+# invece costanti versionate in questo modulo.
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 
 def _load_simple_dotenv(dotenv_path: Path = PROJECT_ROOT / ".env") -> None:
+    """Carica un semplice file ``KEY=VALUE`` senza sovrascrivere l'ambiente.
+
+    Le variabili già esportate dal processo hanno precedenza sul file locale;
+    in questo modo uno script o un job può sostituire una singola impostazione.
+    """
     if not dotenv_path.exists():
         return
     for raw_line in dotenv_path.read_text(encoding="utf-8").splitlines():
@@ -24,6 +32,7 @@ _load_simple_dotenv()
 
 
 def _path_setting(name: str, default: str | Path | None = None) -> Path:
+    """Restituisce un percorso assoluto, risolto dalla root del repository."""
     value = os.getenv(name)
     if value is None:
         if default is None:
@@ -32,7 +41,8 @@ def _path_setting(name: str, default: str | Path | None = None) -> Path:
     path = Path(value).expanduser()
     return path if path.is_absolute() else (PROJECT_ROOT / path).resolve()
 
-# ── Paths ─────────────────────────────────────────────────────
+# ── Percorsi e opzioni dipendenti dall'ambiente ───────────────
+# I valori vengono letti una sola volta, al primo import di questo modulo.
 IMAGES_DIR      = _path_setting("IMAGES_DIR")
 LABELS_EXT_DIR  = _path_setting("LABELS_EXT_DIR")
 WORK_DIR        = _path_setting("WORK_DIR", "output")
@@ -53,6 +63,8 @@ VGGT_3D_MIN_POINTS_PER_OBSERVATION = int(os.getenv("VGGT_3D_MIN_POINTS_PER_OBSER
 VGGT_3D_MAX_POINTS_PER_OBSERVATION = int(os.getenv("VGGT_3D_MAX_POINTS_PER_OBSERVATION", "256"))
 
 # ── Soglie e parametri ────────────────────────────────────────
+# Questi valori descrivono il comportamento algoritmico e sono versionati.
+# Modificarli richiede una nuova valutazione sui casi di riferimento.
 CONF_THRESHOLD  = 0.5
 YOLO_CONF       = 0.05
 YOLO_IOU        = 0.3
@@ -95,9 +107,8 @@ DIAMETER_VALUE_BY_CODE = {
 
 DIAMETER_CODES = set(DIAMETER_VALUE_BY_CODE) | {250, 252}
 
-# Components where a pipe line can legitimately change diameter.  Diameter
-# propagation does not cross these nodes unless explicit evidence appears on
-# the other side.
+# Componenti sui quali il diametro può cambiare legittimamente. La propagazione
+# non attraversa questi nodi senza un'evidenza esplicita sul lato opposto.
 DIAMETER_BREAK_CODES = {75, 95, 207, 255}
 
 VALENCE_COLORS = {
@@ -198,7 +209,7 @@ TRIPLET_COUNTS = {
 # ── Coppie proibite (empiriche dal dataset) ───────────────────
 # Nessuna di queste coppie è mai stata osservata connessa nel dataset.
 FORBIDDEN_PAIRS = frozenset([
-    # ── Same-type pairs (anatomically impossible in hydraulics) ───────────────
+    # ── Coppie dello stesso tipo, non ammesse dalla topologia idraulica ────────
     ( 11,  11),  # Giunto ↔ Giunto
     ( 15,  15),  # Saracinesca ↔ Saracinesca
     ( 77,  77),  # Tazza ↔ Tazza
@@ -208,7 +219,7 @@ FORBIDDEN_PAIRS = frozenset([
     (159, 159),  # Collare PVC ↔ Collare PVC
     (202, 202),  # Antisfilo ↔ Antisfilo
     (207, 207),  # Bout norm. ↔ Bout norm.
-    # ── Cross-type forbidden pairs ────────────────────────────────────────────
+    # ── Coppie proibite tra tipi differenti ───────────────────────────────────
     ( 11,  54),  # Giunto ↔ Curva 22
     ( 11,  75),  # Giunto ↔ Riduzione
     ( 11,  77),  # Giunto ↔ Tazza

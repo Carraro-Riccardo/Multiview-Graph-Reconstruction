@@ -1,14 +1,9 @@
-"""pipeline/direct_graph_builder.py
+"""Costruzione diretta del grafo usando soltanto gli indizi 3D di VGGT.
 
-3D-only graph builder: edges come exclusively from VGGT edge hints.
-Per-image 2D adjacency votes are no longer used.
-
-Algorithm
----------
-1. Sort VGGT hint pairs by priority (vote_count, cooc-weighted score).
-2. Build the final graph greedily, respecting forbidden pairs,
-   cycle avoidance, and physical degree constraints.
-3. Return BridgeEdge objects for the spanning-tree pass.
+I vecchi voti di adiacenza 2D per immagine non partecipano più alla scelta.
+Le coppie VGGT vengono ordinate per supporto, poi accettate in modo greedy
+rispettando coppie proibite, assenza di cicli e valenza fisica. Le coppie non
+selezionate restano disponibili al successivo completamento di connettività.
 """
 
 from __future__ import annotations
@@ -43,7 +38,7 @@ def _norm_code(ca: int, cb: int) -> tuple[int, int]:
 
 @dataclass
 class BridgeEdge:
-    """Lightweight drop-in replacement for CandidateEdge used by force_spanning_tree."""
+    """Candidato leggero usato dal completamento del grafo disconnesso."""
 
     scene_node_a: str
     scene_node_b: str
@@ -68,7 +63,12 @@ def build_direct_graph(
     n_total_views: int,
     vggt_edge_hints: dict | None = None,
 ) -> tuple[nx.Graph, list, dict]:
-    """Build the fused graph from VGGT 3D edge hints only."""
+    """Costruisce il grafo fuso dagli indizi 3D e restituisce il debug.
+
+    Il primo risultato è volutamente aciclico. ``bridge_edges`` conserva anche
+    candidati scartati dal passaggio greedy, utili a ``force_spanning_tree`` per
+    collegare eventuali componenti senza perdere l'evidenza originale.
+    """
 
     sn_code: dict[str, int] = {}
     for sn in scene_nodes:
@@ -115,6 +115,8 @@ def build_direct_graph(
         )
 
     all_nodes = [sn.scene_node_id for sn in scene_nodes]
+    # Union-Find permette di scartare un arco ciclico senza eseguire ogni volta
+    # una ricerca completa dei cammini sul grafo in costruzione.
     uf_parent = {n: n for n in all_nodes}
 
     def _uf_find(x: str) -> str:
@@ -154,6 +156,8 @@ def build_direct_graph(
             "forced_reason": None,
         }
 
+    # Passaggio greedy: ogni rifiuto viene registrato per rendere spiegabile il
+    # risultato senza alterare il formato essenziale del grafo finale.
     for pair in sorted_pairs:
         a, b = pair
         vggt_hint = vggt_edge_hints.get(pair, {})
@@ -194,10 +198,10 @@ def build_direct_graph(
             }
         )
 
-    # Local structural repair for single/sparse-view scenes: the greedy pass can
-    # saturate a Tee with a weak valve edge before accepting a plausible Tee-Tee
-    # bridge. If replacing that weak edge preserves connectivity and improves
-    # evidence, prefer the anchor-anchor connection.
+    # Riparazione locale per scene con poche viste: il passaggio greedy può
+    # saturare una Tee con un arco debole prima di incontrare un ponte Tee-Tee
+    # più plausibile. La sostituzione è accettata solo se migliora l'evidenza e
+    # mantiene il grafo connesso.
     for pair in sorted_pairs:
         a, b = pair
         if graph.has_edge(a, b):
@@ -263,6 +267,8 @@ def build_direct_graph(
             "reason": "anchor_bridge_rewire",
         })
 
+    # Tutte le coppie VGGT diventano candidati per il passaggio di connettività,
+    # incluse quelle che qui non potevano essere accettate per ciclo o valenza.
     bridge_edges: list[BridgeEdge] = []
     for a, b in sorted(vggt_pairs, key=lambda pair: _vggt_score(pair), reverse=True):
         pair = _norm(a, b)

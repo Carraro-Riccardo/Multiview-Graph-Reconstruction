@@ -1,18 +1,10 @@
-"""Step 2 – node re-identification via graph coloring + constrained agglomerative clustering.
+"""Riconcilia le detection di più viste nelle istanze fisiche della scena.
 
-For every component code the algorithm:
-  1. Loads VGGT 3D geometry (centroid + point-cloud sample) for every detection.
-  2. Computes k_min via greedy graph coloring of the incompatibility graph:
-     two detections are incompatible iff they appear in the same image.
-     k_min = minimum physical instances required to explain the co-occurrence pattern.
-  3. Runs constrained single-linkage agglomerative clustering:
-     - starts from N singleton clusters
-     - iteratively merges the closest pair (by _cloud_min_dist) that shares no image
-     - stops when exactly k_min clusters remain
-  4. Zero tunable parameters — k is determined by scene structure (cannot-link graph),
-     not thresholds.
-
-Fallback when VGGT geometry is unavailable: use graph coloring assignment directly.
+Per ciascun codice il numero minimo di istanze deriva dalla colorazione del
+grafo di incompatibilità: due osservazioni nella stessa immagine non possono
+appartenere allo stesso oggetto. Se la geometria VGGT è disponibile, un
+clustering agglomerativo fonde poi le osservazioni compatibili usando distanza
+3D e contesto; altrimenti rimane valida l'assegnazione ottenuta dalla colorazione.
 """
 
 from __future__ import annotations
@@ -29,9 +21,11 @@ from graph_reconstruction.config import COMPONENT_INFO
 VGGT_REID_ENABLED = True
 
 
-# ── SceneNode (downstream-compatible) ────────────────────────────────────────
+# ── SceneNode, contratto condiviso con gli stadi successivi ──────────────────
 @dataclass
 class SceneNode:
+    """Istanza fisica fusa, costruita da una o più osservazioni 2D."""
+
     scene_node_id: str
     fused_code: int
     fused_name: str
@@ -46,11 +40,12 @@ class SceneNode:
     representative_triplet_hints: list[list[int]]
 
 
-# ── Items: ObservedNode metadata (no visual embedding) ───────────────────────
+# ── Metadati degli ObservedNode, senza embedding visuale ─────────────────────
 def _build_items(
     observed_graphs: list,
     image_paths: list[Path] | None = None,  # kept for API compat, unused
 ) -> tuple[list[dict], dict[str, list[dict]]]:
+    """Appiattisce i grafi osservati mantenendo il legame con ogni immagine."""
     all_items: list[dict] = []
     items_by_image: dict[str, list[dict]] = defaultdict(list)
 
@@ -71,9 +66,9 @@ def _build_items(
     return all_items, dict(items_by_image)
 
 
-# ── VGGT geometry ─────────────────────────────────────────────────────────────
+# ── Geometria VGGT ────────────────────────────────────────────────────────────
 def _load_obs_geometry(observed_graphs: list, search_roots: list) -> dict[str, dict]:
-    """Extract per-detection 3D centroid from VGGT point maps."""
+    """Estrae geometria e campione 3D di ogni detection dalle point map VGGT."""
     try:
         from .vggt_3d_edges import (
             _candidate_files_for_image,
@@ -108,15 +103,13 @@ def _load_obs_geometry(observed_graphs: list, search_roots: list) -> dict[str, d
     return obs_geometry
 
 
-# ── 3D cloud distance ────────────────────────────────────────────────────────
+# ── Distanza tra campioni 3D ─────────────────────────────────────────────────
 def _cloud_min_dist(ga: dict, gb: dict) -> float:
-    """Minimum Euclidean distance between two point-cloud samples.
+    """Calcola la distanza euclidea minima tra due campioni di nuvola.
 
-    Using the minimum rather than centroid-centroid distance is view-invariant:
-    the same physical component seen from different angles exposes different
-    surfaces, so centroids may differ by 0.3-0.6 m, but the closest points on
-    the two clouds are always within the component's physical size (~5-15 cm).
-    Falls back to centroid distance if no point-cloud sample is available.
+    La distanza tra i punti più vicini è più stabile dei centroidi quando lo
+    stesso componente è osservato da angoli diversi. Se il campione non è
+    disponibile, viene usata la distanza tra i centroidi.
     """
     pa = ga.get("pts_sample")
     pb = gb.get("pts_sample")
@@ -128,32 +121,20 @@ def _cloud_min_dist(ga: dict, gb: dict) -> float:
     return float(np.sqrt((diff * diff).sum(axis=2)).min())
 
 
-# ── Agglomerative per-code clustering (zero thresholds) ──────────────────────
+# ── Clustering agglomerativo per codice, senza soglie metriche ────────────────
 def _cluster_code_agglomerative(
     code: int,
     code_ids: list[str],
     item_by_id: dict,
     obs_geometry: dict[str, dict],
 ) -> list[list[str]]:
-    """Cluster detections of one component code into scene-node groups.
+    """Raggruppa le detection dello stesso codice in istanze di scena.
 
-    Algorithm:
-      1. Graph coloring → k_min (hard lower bound from same-image cannot-link).
-      2. Constrained agglomerative to natural stopping with two cannot-link types:
-           a. Same-image CL (standard): observations in the same image never merge.
-           b. Structural CL (new): two clusters with completely disjoint combined
-              neighborhoods (Jaccard=0) and each >= MIN_SUPPORT members never merge.
-              Cluster neighborhood = union of co-detected codes across all views.
-              MIN_SUPPORT=2 prevents false positives from singleton occlusion.
-      3. Merge selection uses rank fusion of two signals:
-           - rank_3d: ascending sort by _cloud_min_dist
-           - rank_sim: descending sort by Jaccard of combined neighborhoods
-         Score = 1/(rank_3d × rank_sim). Pairs without neighborhood data: 1/rank_3d.
-
-    Natural stopping guarantees k >= k_min (same-image CL is a hard floor).
-    Structural CL can raise k beyond k_min for never-co-visible instances.
-    Zero hard-coded weights or thresholds in metres.
-    Fallback (no VGGT geometry): return graph coloring assignment directly.
+    La colorazione impone il limite inferiore ``k_min`` dovuto alle osservazioni
+    simultanee. Il clustering successivo vieta sia le fusioni tra elementi della
+    stessa immagine sia quelle tra cluster supportati con contesti disgiunti.
+    Tra le coppie ammissibili combina il rango della distanza 3D con quello della
+    similarità di Jaccard, evitando soglie metriche dipendenti dalla scena.
     """
     n = len(code_ids)
     if n == 1:
@@ -161,7 +142,8 @@ def _cluster_code_agglomerative(
 
     img_of = {oid: item_by_id[oid]["image_id"] for oid in code_ids}
 
-    # Graph coloring → k_min (lower bound, same-image cannot-link) ─────────────
+    # La colorazione fornisce k_min: osservazioni co-visibili devono ricevere
+    # colori diversi e rappresentano quindi istanze fisiche distinte.
     img_to_obs: dict[str, list[str]] = defaultdict(list)
     for oid in code_ids:
         img_to_obs[img_of[oid]].append(oid)
@@ -177,15 +159,16 @@ def _cluster_code_agglomerative(
         color[oid] = next(c for c in range(n) if c not in used)
     k_min = len(set(color.values()))
 
-    # Fallback: no VGGT geometry → return graph coloring assignment directly ──
+    # Senza geometria non esiste un criterio affidabile per ulteriori fusioni:
+    # si conserva direttamente l'assegnazione prodotta dalla colorazione.
     if not obs_geometry:
         groups: dict[int, list[str]] = defaultdict(list)
         for oid in code_ids:
             groups[color[oid]].append(oid)
         return list(groups.values())
 
-    # Per-observation co-detection set: other codes visible in the same image,
-    # excluding the current code (avoid self-reference).
+    # Il contesto di un'osservazione contiene gli altri codici visibili nella
+    # stessa immagine, escludendo il codice corrente per evitare auto-riferimenti.
     codet_of: dict[str, frozenset[int]] = {
         oid: frozenset(
             item_by_id[other]["code"]
@@ -195,14 +178,14 @@ def _cluster_code_agglomerative(
         for oid in code_ids
     }
 
-    # Cluster neighborhood = union of member co-detection sets (grows on merge)
+    # Il contesto del cluster è l'unione dei contesti dei membri e cresce a ogni
+    # fusione, diventando più stabile rispetto alle occlusioni di una singola vista.
     cluster_neigh: dict[int, set[int]] = {
         i: set(codet_of[code_ids[i]]) for i in range(n)
     }
 
-    # Structural CL threshold: min cluster size before structural CL is applied.
-    # Singletons can always merge — one view is not enough to establish a stable
-    # neighborhood fingerprint (partial occlusion may hide shared codes).
+    # Il vincolo strutturale vale solo con almeno due osservazioni per cluster:
+    # una singola vista non basta a definire un contesto stabile.
     MIN_SUPPORT = 2
 
     clusters: dict[int, list[str]] = {i: [code_ids[i]] for i in range(n)}
@@ -211,24 +194,25 @@ def _cluster_code_agglomerative(
     while len(clusters) > 1:
         cids = list(clusters.keys())
 
-        # Collect all compatible pairs with their 3D distance and neigh sim ───
+        # Si valutano soltanto coppie compatibili, conservando separatamente
+        # distanza 3D e similarità del contesto per la fusione dei ranghi.
         candidates: list[tuple[int, int, float, float | None]] = []
         for ci_idx in range(len(cids)):
             for cj_idx in range(ci_idx + 1, len(cids)):
                 ci, cj = cids[ci_idx], cids[cj_idx]
 
-                # Same-image cannot-link
+                # Vincolo forte: due detection nella stessa immagine sono distinte.
                 if cluster_images[ci] & cluster_images[cj]:
                     continue
 
-                # Structural cannot-link: only when both clusters have >= MIN_SUPPORT
+                # Vincolo strutturale: contesti supportati e disgiunti non si fondono.
                 na, nb = cluster_neigh[ci], cluster_neigh[cj]
                 if (len(clusters[ci]) >= MIN_SUPPORT and
                         len(clusters[cj]) >= MIN_SUPPORT and
                         na and nb and not (na & nb)):
                     continue  # disjoint combined neighborhoods
 
-                # Min 3D cloud distance
+                # Distanza minima tra i campioni 3D disponibili nei due cluster.
                 best_d = float('inf')
                 for oa in clusters[ci]:
                     ga = obs_geometry.get(oa)
@@ -245,7 +229,7 @@ def _cluster_code_agglomerative(
                 if not np.isfinite(best_d):
                     continue
 
-                # Jaccard similarity of combined neighborhoods
+                # Similarità di Jaccard tra i contesti aggregati.
                 union = na | nb
                 sim: float | None = (len(na & nb) / len(union)) if union else None
                 candidates.append((ci, cj, best_d, sim))
@@ -253,7 +237,7 @@ def _cluster_code_agglomerative(
         if not candidates:
             break  # natural stopping (same-image CL or structural CL blocks all merges)
 
-        # Rank fusion: 1/(rank_3d × rank_sim) ─────────────────────────────────
+        # La fusione dei ranghi evita di fissare pesi tra metri e similarità.
         sorted_3d = sorted(range(len(candidates)), key=lambda i: candidates[i][2])
         rank_3d = [0] * len(candidates)
         for r, i in enumerate(sorted_3d):
@@ -289,7 +273,7 @@ def _cluster_code_agglomerative(
     return sorted(clusters.values(), key=_sort_key)
 
 
-# ── SceneNode assembly ────────────────────────────────────────────────────────
+# ── Costruzione degli SceneNode ───────────────────────────────────────────────
 def _build_scene_nodes(groups: dict, item_by_id: dict, observed_graphs: list) -> list[SceneNode]:
     obs_node_by_id = {nid: node for og in observed_graphs for nid, node in og.nodes.items()}
     scene_nodes: list[SceneNode] = []
@@ -344,12 +328,17 @@ def _build_scene_nodes(groups: dict, item_by_id: dict, observed_graphs: list) ->
     return scene_nodes
 
 
-# ── Main entry point ──────────────────────────────────────────────────────────
+# ── Punto di ingresso della ReID ──────────────────────────────────────────────
 def identify_scene_nodes(
     observed_graphs: list,
     image_paths: list[Path] | None = None,
     search_roots: list[Path] | None = None,
 ) -> tuple[list[SceneNode], dict]:
+    """Costruisce gli ``SceneNode`` e restituisce anche il payload diagnostico.
+
+    Gli ID sono assegnati per codice e ordinamento spaziale del cluster; non
+    costituiscono identificativi persistenti tra configurazioni differenti.
+    """
     from graph_reconstruction.config import IMAGES_DIR
 
     if image_paths is None:
@@ -383,7 +372,8 @@ def identify_scene_nodes(
 
     scene_nodes = _build_scene_nodes(groups, item_by_id, observed_graphs)
 
-    # Build obs→scene_node map for debug output
+    # La mappa inversa viene prodotta solo per rendere leggibile il debug della
+    # geometria; la pipeline usa direttamente supporting_observed_ids.
     obs_to_scene: dict[str, str] = {
         oid: sn.scene_node_id
         for sn in scene_nodes
@@ -396,7 +386,7 @@ def identify_scene_nodes(
         "n_detections":      len(all_items),
         "n_images":          n_images,
         "n_vggt_geometries": len(obs_geometry),
-        # per-detection geometry + assignment — used by plot_reid_geometry.py
+        # Geometria e assegnazione per detection, consumate dagli strumenti di debug.
         "obs_geometry": {
             oid: {
                 "centroid":   list(geom["centroid"]),
@@ -410,7 +400,7 @@ def identify_scene_nodes(
     }
 
 
-# ── Summary printer ───────────────────────────────────────────────────────────
+# ── Riepilogo a terminale ─────────────────────────────────────────────────────
 def _print_reid_summary(scene_nodes: list, all_items: list) -> None:
     n_obs   = len(all_items)
     n_scene = len(scene_nodes)
@@ -437,8 +427,9 @@ def _print_reid_summary(scene_nodes: list, all_items: list) -> None:
     print(f"  {'─' * 62}\n")
 
 
-# ── Utilities used by downstream modules ─────────────────────────────────────
+# ── Utilità condivise con i moduli successivi ─────────────────────────────────
 def build_observed_to_scene_map(scene_nodes: list[SceneNode]) -> dict[str, str]:
+    """Indicizza ogni osservazione con l'istanza fisica alla quale appartiene."""
     return {
         obs_id: sn.scene_node_id
         for sn in scene_nodes
@@ -447,6 +438,7 @@ def build_observed_to_scene_map(scene_nodes: list[SceneNode]) -> dict[str, str]:
 
 
 def serialize_scene_nodes(scene_nodes: list[SceneNode]) -> list[dict]:
+    """Converte gli ``SceneNode`` nel formato JSON persistito dalla pipeline."""
     return [
         {
             "scene_node_id":              sn.scene_node_id,
@@ -466,7 +458,7 @@ def serialize_scene_nodes(scene_nodes: list[SceneNode]) -> list[dict]:
     ]
 
 
-# ── Post-VGGT spurious singleton removal ─────────────────────────────────────
+# ── Rimozione dei singleton spuri dopo VGGT ───────────────────────────────────
 def merge_spurious_singletons(
     scene_nodes: list[SceneNode],
     observed_graphs: list,
@@ -476,15 +468,11 @@ def merge_spurious_singletons(
     pos_factor: float = 0.5,
     iou_threshold: float = 0.30,  # kept for API compat, unused
 ) -> tuple[list[SceneNode], list[dict]]:
-    """Merge singleton scene nodes that are likely spurious duplicates.
+    """Fonde singleton compatibili che sembrano duplicati della stessa istanza.
 
-    Level 1 – 3D positional duplicate: centroid within pos_factor * scene_cutoff
-    of a higher-support same-code node.
-
-    Level 3 – shared VGGT edge partner: two low-support nodes of the same code
-    that share a strong VGGT-confirmed neighbour and are within scene_cutoff.
-
-    (Level 2 — 2D bounding-box IoU — removed in 3D-only pipeline.)
+    Il primo criterio usa la vicinanza 3D a un nodo dello stesso codice con più
+    supporto. Il secondo richiede anche un vicino VGGT forte condiviso. Il
+    precedente criterio IoU 2D non è più usato nella pipeline solo-3D.
     """
     obs_by_id: dict[str, object] = {}
     for og in observed_graphs:
@@ -503,7 +491,8 @@ def merge_spurious_singletons(
     def _union(dropped: str, kept: str) -> None:
         parent[_find(dropped)] = _find(kept)
 
-    # Build strong-partner index from VGGT pair hints
+    # Si indicizzano solo partner VGGT forti: un hint debole non è sufficiente
+    # per eliminare definitivamente un singleton.
     strong_partners: dict[str, set[str]] = defaultdict(set)
     if isinstance(pair_hints, dict):
         pair_hint_entries = []
@@ -555,7 +544,7 @@ def merge_spurious_singletons(
 
         kept_id, reason = None, None
 
-        # Level 1: 3D positional duplicate
+        # Livello 1: duplicato posizionale 3D vicino a un nodo più supportato.
         if scene_geom and scene_cutoff and sn.scene_node_id in scene_geom:
             ca = scene_geom[sn.scene_node_id]["centroid"]
             max_dist = scene_cutoff * pos_factor
@@ -569,7 +558,7 @@ def merge_spurious_singletons(
                     reason = f"3d_pos_dup  dist={dist:.4f}m  ({dist/scene_cutoff:.2f}x)"
                     break
 
-        # Level 3: shared VGGT edge partner
+        # Livello 3: stessa posizione compatibile e partner VGGT forte condiviso.
         if (
             kept_id is None
             and scene_geom and scene_cutoff

@@ -1,8 +1,8 @@
-"""
-Step 1 - per-view detection loading.
+"""Caricamento delle detection e costruzione della vista osservata.
 
-KNN adjacency is no longer built here — graph edges come exclusively from
-VGGT 3D geometry in the new 3D-only pipeline.
+In questo stadio non vengono più ipotizzati archi 2D: ``ObservedLocalGraph``
+mantiene soltanto le osservazioni necessarie alla ReID. Gli archi finali
+derivano dalla geometria VGGT negli stadi successivi.
 """
 
 from __future__ import annotations
@@ -21,6 +21,8 @@ from graph_reconstruction.shared.detection import detect_and_decode_cached
 
 @dataclass
 class ObservedNode:
+    """Rappresentazione di una singola detection in una specifica immagine."""
+
     observed_node_id: str
     image_id: str
     code: int
@@ -34,6 +36,8 @@ class ObservedNode:
 
 @dataclass
 class ObservedLocalGraph:
+    """Contenitore delle osservazioni valide estratte da una vista."""
+
     image_id: str
     nodes: dict
     edges: list = field(default_factory=list)
@@ -41,6 +45,7 @@ class ObservedLocalGraph:
 
 
 def build_observed_graph(image_path: Path) -> Optional[ObservedLocalGraph]:
+    """Filtra componenti topologici e diametri, restituendo una singola vista."""
     image_id = image_path.stem
     dets_raw, _ = detect_and_decode_cached(image_path)
     if not dets_raw:
@@ -75,6 +80,7 @@ def build_observed_graph(image_path: Path) -> Optional[ObservedLocalGraph]:
 
 
 def build_all_observed_graphs(image_paths: list) -> list:
+    """Costruisce le viste valide, ignorando immagini senza detection accettate."""
     graphs: list = []
     for image_path in image_paths:
         path = Path(image_path)
@@ -89,6 +95,7 @@ def build_all_observed_graphs(image_paths: list) -> list:
 
 
 def serialize_observed_graphs(graphs: list) -> dict:
+    """Serializza le osservazioni senza introdurre informazioni topologiche."""
     serialized_graphs = []
     for graph in graphs:
         serialized_graphs.append({
