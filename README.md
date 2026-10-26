@@ -21,8 +21,9 @@ Per aggiornare un ambiente esistente:
 conda env update -n graph_rec -f environment.yml --prune
 ```
 
-Il file riproduce lo stack Linux/CUDA validato dal benchmark e non è
-direttamente portabile su Windows, perché include pacchetti di sistema Linux.
+Il file riproduce lo stack Linux/CUDA validato dal benchmark.
+Le build PyTorch 2.6.0+cu126 vengono prelevate dall'indice ufficiale CUDA 12.6
+dichiarato in `environment.yml`.
 
 Il decoder Shurikode va installato dal repository dedicato:
 

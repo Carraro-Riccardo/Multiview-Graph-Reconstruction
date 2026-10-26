@@ -37,6 +37,7 @@ dependencies:
   - xz=5.8.2
   - zlib=1.3.2
   - pip:
+      - --extra-index-url https://download.pytorch.org/whl/cu126
       - anyio==4.15.1
       - certifi==2026.7.22
       - charset-normalizer==3.5.1
@@ -107,7 +108,6 @@ dependencies:
       - safetensors==0.8.0
       - scikit-learn==1.7.2
       - scipy==1.15.3
-      - shurikodecontext==0.1.0
       - six==1.17.0
       - sympy==1.13.1
       - threadpoolctl==3.6.0
@@ -120,4 +120,3 @@ dependencies:
       - ultralytics==8.4.142
       - ultralytics-thop==2.1.6
       - urllib3==2.7.0
-      - vggt==0.0.1
