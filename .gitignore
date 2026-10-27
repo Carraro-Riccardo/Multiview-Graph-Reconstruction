@@ -33,7 +33,14 @@ docs/technical_manual/*.toc
 docs/technical_manual/*.out
 docs/technical_manual/*.fls
 docs/technical_manual/*.fdb_latexmk
+docs/technical_manual/*.synctex.gz
 docs/technical_manual/figures/vggt_geometry.png
+
+# Dataset locale: si mantiene soltanto la struttura delle directory.
+data/images/*
+!data/images/.gitkeep
+data/labels_extended/*
+!data/labels_extended/.gitkeep
 
 # Pipeline output — ignore all generated artifacts,
 # except VGGT point maps (expensive to recompute, ~minutes per node).

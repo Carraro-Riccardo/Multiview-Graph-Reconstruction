@@ -39,7 +39,7 @@ from evaluation.standard_comparison.confronta_pipeline_con_standard import (
     all_matches_table,
     evaluate_pipeline_against_standards,
 )
-from json_adapter_to_qgis import convert_fused_graph_to_qgis
+from graph_reconstruction.qgis import convert_fused_graph_to_qgis
 from graph_reconstruction.config import (
     ANNOTATIONS_DIR,
     COMPONENT_INFO,

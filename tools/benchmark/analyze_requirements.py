@@ -5,10 +5,10 @@ the packages in ``requirements.txt``.  Values derived from files and hardware
 are reported separately from conservative heuristic estimates.
 
 Examples:
-    python tools/analyze_requirements.py
-    python tools/analyze_requirements.py 2 9 15_2
-    python tools/analyze_requirements.py --json
-    python tools/analyze_requirements.py --output output/requirements_report.json
+    python tools/benchmark/analyze_requirements.py
+    python tools/benchmark/analyze_requirements.py 2 9 15_2
+    python tools/benchmark/analyze_requirements.py --json
+    python tools/benchmark/analyze_requirements.py --output output/requirements_report.json
 """
 
 from __future__ import annotations
@@ -30,7 +30,7 @@ from typing import Any
 
 
 GIB = 1024**3
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 CONFIG_PATH = PROJECT_ROOT / "graph_reconstruction" / "config.py"
 DOTENV_PATH = PROJECT_ROOT / ".env"
 
@@ -532,7 +532,7 @@ def analyze(selected_node_ids: list[str]) -> dict[str, Any]:
     images_dir = _path_setting(env, "IMAGES_DIR")
     work_dir = _path_setting(env, "WORK_DIR", "output") or PROJECT_ROOT / "output"
     yolo_model = _path_setting(env, "YOLO_MODEL_PATH")
-    embedded_python = _path_setting(env, "VGGT_EMBEDDED_PYTHON", "python312/python.exe")
+    embedded_python = _path_setting(env, "VGGT_EMBEDDED_PYTHON", sys.executable)
     vggt_enabled = _bool_setting(env, "VGGT_EDGE_ENABLED", True)
     vggt_generate = _bool_setting(env, "VGGT_GENERATE_IF_MISSING", True)
     vggt_model_id = _setting(env, "VGGT_MODEL_ID", "facebook/VGGT-1B") or "facebook/VGGT-1B"

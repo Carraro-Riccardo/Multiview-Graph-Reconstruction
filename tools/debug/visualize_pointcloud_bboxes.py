@@ -1,6 +1,6 @@
 ﻿"""Immagine di riferimento e centroidi fusi multi-vista VGGT.
 
-Uso: python312/python.exe visualize_pointcloud_bboxes.py 7
+Uso: python tools/debug/visualize_pointcloud_bboxes.py 7
 """
 from __future__ import annotations
 import argparse,json,sys
@@ -9,7 +9,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 
-ROOT=Path(__file__).resolve().parent; sys.path.insert(0,str(ROOT))
+ROOT=Path(__file__).resolve().parents[2]; sys.path.insert(0,str(ROOT))
 from graph_reconstruction.config import DEBUG_OUTPUT_DIR,IMAGES_DIR,WORK_DIR
 from graph_reconstruction.pipeline.observed_graphs import build_all_observed_graphs
 from graph_reconstruction.pipeline.vggt_3d_edges import (_candidate_files_for_image,

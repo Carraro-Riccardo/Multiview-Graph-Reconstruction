@@ -43,8 +43,8 @@ una connessione Internet e può essere sensibilmente più lento.
 
 ## Configurazione
 
-La configurazione della macchina e della lavorazione vive in `.env`, che non
-viene versionato. Crearlo dal template:
+La configurazione della macchina e della lavorazione può essere personalizzata
+in `.env`, che non viene versionato. Crearlo dal template:
 
 ```powershell
 Copy-Item .env.template .env
@@ -53,26 +53,40 @@ Copy-Item .env.template .env
 Impostare almeno:
 
 ```dotenv
-IMAGES_DIR=C:/percorso/dataset/images
-LABELS_EXT_DIR=C:/percorso/dataset/labels_extended
-YOLO_MODEL_PATH=./models/modello.pt
+IMAGES_DIR=./data/images
+LABELS_EXT_DIR=./data/labels_extended
+YOLO_MODEL_PATH=./models/yolo_detector.pt
 WORK_DIR=./output
-ASSETS_DIR=./assets
-ANNOTATIONS_DIR=C:/percorso/dataset/graph_annotations
+ASSETS_DIR=./graph_reconstruction/assets
+ANNOTATIONS_DIR=./data/graph_annotations
 DEBUG_OUTPUT_ENABLED=false
 DEBUG_OUTPUT_DIR=./output/debug
 ```
 
-`IMAGES_DIR`, `LABELS_EXT_DIR` e `YOLO_MODEL_PATH` sono obbligatorie. Le label
-e le annotazioni servono alla valutazione, non alla ricostruzione. I percorsi
-relativi sono risolti rispetto alla root del repository.
+Questi valori coincidono con i default del progetto. Le label e le annotazioni
+servono alla valutazione, non alla ricostruzione. I percorsi relativi sono
+risolti rispetto alla root del repository.
 
 Le opzioni VGGT facoltative sono già documentate in `.env.template`. Se viene
-usato un runtime dedicato, `VGGT_EMBEDDED_PYTHON` deve indicarne l'interprete.
+usato un runtime dedicato, `VGGT_EMBEDDED_PYTHON` deve indicarne l'interprete;
+se la variabile è omessa viene usato il Python dell'ambiente Conda attivo.
 Soglie, codici, valenze e vincoli strutturali sono invece definiti in
 [`graph_reconstruction/config.py`](graph_reconstruction/config.py).
 
-## Primo avvio
+## Inferenza
+
+Per ricostruire tutti i nodi presenti in una cartella e produrre direttamente
+i GeoJSON importabili in QGIS:
+
+```powershell
+python infer.py C:/percorso/immagini
+```
+
+Il comando non richiede label o annotazioni. I risultati vengono salvati sotto
+`output/multiview/node<id>/`; il file finale per QGIS è
+`fused_graph_qgis_combined.geojson`.
+
+## Strumenti tecnici
 
 Iniziare da un solo nodo e controllare il risultato prima del batch:
 
@@ -108,29 +122,31 @@ stack software.
 Per ripetere la misura senza cache:
 
 ```powershell
-python tools/benchmark_inference.py --require-cuda
+python tools/benchmark/benchmark_inference.py --require-cuda
 ```
 
-`tools/analyze_requirements.py` esegue invece un controllo non distruttivo di
-hardware, cache e spazio disponibile.
+`tools/benchmark/analyze_requirements.py` esegue invece un controllo non
+distruttivo di hardware, cache e spazio disponibile.
 
 ## Struttura del repository
 
 ```text
 GraphReconstruction/
+├── infer.py                  # inferenza ed export QGIS
 ├── run.py                    # ricostruzione
 ├── evaluate.py               # metriche e confronto con gli standard
 ├── visualize.py              # rendering del grafo finale
-├── json_adapter_to_qgis.py   # export GeoJSON
 ├── graph_reconstruction/
 │   ├── config.py             # configurazione, soglie e vincoli
+│   ├── qgis.py               # conversione GeoJSON
+│   ├── assets/               # primitive grafiche
 │   ├── pipeline/             # fasi della ricostruzione
 │   ├── shared/               # detection e funzioni comuni
 │   └── visualization/        # bird view e simboli
 ├── evaluation/               # confronto con i grafi di riferimento
-├── tools/                    # diagnostica, benchmark e packaging
+├── tools/                    # debug e benchmark
 ├── models/                   # checkpoint YOLO
-├── assets/                   # primitive grafiche
+├── data/                     # immagini, label e annotazioni di riferimento
 └── output/                   # destinazione predefinita dei risultati
 ```
 
@@ -166,6 +182,7 @@ output/
 │       ├── scene_nodes.json        # tracciabilità della ReID
 │       ├── vggt_geometry.json      # geometria aggregata
 │       ├── vggt/*.npz              # point map per vista
+│       ├── fused_graph_qgis_combined.geojson
 │       └── fused_graph_plot.png    # creato da visualize.py
 ├── standard_comparison/            # report di evaluate.py
 └── debug/                           # dump facoltativi
@@ -194,13 +211,13 @@ solo dopo avere stabilito il batch finale.
 Per esportare tutti i grafi disponibili:
 
 ```powershell
-python json_adapter_to_qgis.py
+python -m graph_reconstruction.qgis
 ```
 
 Per un singolo grafo, preferendo la geometria VGGT quando disponibile:
 
 ```powershell
-python json_adapter_to_qgis.py `
+python -m graph_reconstruction.qgis `
   output/multiview/node2/fused_graph.json `
   --geometry-source auto
 ```

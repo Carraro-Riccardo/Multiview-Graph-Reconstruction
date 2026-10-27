@@ -1,10 +1,17 @@
 \chapter{Repository ed entrypoint}
 \label{chap:repository}
 
-\section{Punto di ingresso della ricostruzione}
+\section{Punti di ingresso}
 
-Dopo l'attivazione dell'ambiente \code{graph_rec}, la pipeline si avvia dalla
-directory principale del repository con un solo comando:
+Per l'uso operativo, \filepath{infer.py} riceve direttamente la cartella delle
+immagini, ricostruisce tutti i nodi trovati ed esporta il risultato per QGIS:
+
+\begin{lstlisting}[language={}]
+python infer.py D:/percorso/immagini
+\end{lstlisting}
+
+Non richiede label o annotazioni. \filepath{run.py} rimane l'entrypoint tecnico
+per avviare la sola ricostruzione usando la configurazione del progetto:
 
 \begin{lstlisting}[language={}]
 python run.py
@@ -25,8 +32,11 @@ La tabella riporta i percorsi utili per orientarsi nel codice, senza elencare
 ogni file di servizio presente nel repository.
 
 \begin{contracttable}
-\filepath{run.py} & Entrypoint principale & Avvia la ricostruzione completa o
-quella dei soli ID indicati. \\
+\filepath{infer.py} & Entrypoint operativo & Riceve le immagini, avvia la
+ricostruzione ed esporta il GeoJSON per QGIS. \\
+
+\filepath{run.py} & Entrypoint tecnico & Avvia la sola ricostruzione completa
+o quella dei soli ID indicati. \\
 
 \filepath{graph_reconstruction/config.py} & Configurazione & Carica
 \filepath{.env} e definisce percorsi, soglie e vincoli globali. \\
@@ -40,13 +50,13 @@ grafo. \\
 funzioni di supporto, accesso ai dati e visualizzazioni usate dalla pipeline. \\
 \midrule
 
-\filepath{models/}, \filepath{assets/}, \filepath{annotations/} & Risorse &
-Ospitano checkpoint, primitive grafiche e annotazioni quando mantenuti nel
-repository; i percorsi effettivi sono stabiliti dalla configurazione. \\
+\filepath{models/}, \filepath{graph_reconstruction/assets/},
+\filepath{data/} & Risorse & Ospitano checkpoint, primitive grafiche e la
+struttura di immagini, label e annotazioni; i percorsi effettivi sono stabiliti
+dalla configurazione. \\
 
-\filepath{output/}, \filepath{python312/} & Artefatti e runtime & La prima è
-la destinazione predefinita dei risultati; la seconda contiene il runtime
-dedicato a VGGT. \\
+\filepath{output/} & Artefatti & Destinazione predefinita di risultati, cache
+e file diagnostici. \\
 \end{contracttable}
 
 \subsection{Architettura funzionale}
@@ -74,16 +84,16 @@ di riferimento limita la valutazione, non la ricostruzione.
 
 \filepath{visualize.py} legge \filepath{fused_graph.json} e produce
 \filepath{fused_graph_plot.png}; può inoltre generare un GeoJSON sintetico e il
-report del best match. \filepath{json_adapter_to_qgis.py} gestisce invece
+report del best match. \filepath{graph_reconstruction/qgis.py} gestisce invece
 l'export QGIS dedicato, per un singolo grafo o per tutti quelli disponibili,
 usando geometria VGGT quando richiesta e disponibile oppure coordinate
 sintetiche. Nessuno dei due modifica il JSON ricostruito.
 
 \subsection{Diagnostica e manutenzione}
 
-\filepath{visualize_pointcloud_bboxes.py} e le utility in \filepath{tools/}
-servono per ispezioni, debug e manutenzione. Non sono dipendenze operative del
-flusso normale e vanno eseguite soltanto quando richiesto dall'analisi.
+Le utility in \filepath{tools/debug/} servono per ispezioni mirate. Gli script
+in \filepath{tools/benchmark/} controllano invece requisiti e consumo di
+risorse. Non sono dipendenze operative del flusso normale.
 
 \section{Caricamento della configurazione}
 

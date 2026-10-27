@@ -36,6 +36,7 @@ prerequisiti principali.
 | `debug_crops.py` | Crop raggruppati per scene node | PNG | no |
 | `debug_graph_projection.py` | Proietta nodi e archi sulle immagini | PNG + JSON | no |
 | `plot_reid_geometry.py` | Cluster 3D separati per codice | PNG | sì |
+| `visualize_pointcloud_bboxes.py` | Point cloud e centroidi fusi | PNG + finestra | no |
 | `visualize_reid_3d.py` | Scatter 3D multi-nodo | PNG + finestra | no |
 | `visualize_vggt_cluster_projections.py` | Cluster VGGT proiettati per vista | PNG + JSON | no |
 
@@ -198,15 +199,14 @@ DEBUG_OUTPUT_DIR/node<id>/cluster_projections/cluster_projection_report.json
 Il report contiene assegnazioni, conteggi, match ground truth e percorso delle
 immagini generate.
 
-## Strumenti correlati fuori da `debug`
+## `visualize_pointcloud_bboxes.py`
 
-Gli script che non diagnosticano direttamente la pipeline sono separati:
+Mostra una vista originale insieme alla point cloud VGGT e ai centroidi fusi
+delle istanze ricostruite:
 
-- `tools/examples/demo_structural_cannot_link.py`: dimostrazione sintetica del
-  vincolo structural cannot-link;
-- `tools/reporting/generate_report_figures.py`: figure specialistiche del
-  report ReID, attualmente tarate sul nodo 8;
-- `tools/qgis/package_qgis_geojson.py`: crea uno ZIP piatto degli export QGIS.
+```powershell
+python tools/debug/visualize_pointcloud_bboxes.py 7
+```
 
 ## Pulizia
 

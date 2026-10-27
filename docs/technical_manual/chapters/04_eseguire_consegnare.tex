@@ -14,7 +14,7 @@ il valore predefinito dichiarato in \filepath{graph_reconstruction/config.py}.
 \envvar{IMAGES_DIR}, \envvar{LABELS_EXT_DIR},
 \envvar{YOLO_MODEL_PATH} & Variabili di ambiente in \filepath{.env} &
 Percorsi degli input, delle label estese e del checkpoint YOLO. Sono richiesti
-dal caricamento della configurazione. \\
+solo per sostituire i percorsi predefiniti del repository. \\
 
 \envvar{WORK_DIR}, \envvar{ASSETS_DIR},
 \envvar{ANNOTATIONS_DIR} & Variabili di ambiente in \filepath{.env} &
@@ -250,6 +250,13 @@ python evaluate.py
 python visualize.py --all
 \end{lstlisting}
 
+Per la sola inferenza, senza dati annotati, è disponibile l'entrypoint
+semplificato che esegue anche l'export QGIS:
+
+\begin{lstlisting}[language={}]
+python infer.py D:/percorso/immagini
+\end{lstlisting}
+
 Per limitare il flusso a un sottoinsieme, indicare gli stessi ID nei tre
 comandi:
 
@@ -264,13 +271,13 @@ python visualize.py 2 7 15_1
 Per convertire tutti i grafi disponibili:
 
 \begin{lstlisting}[language={}]
-python json_adapter_to_qgis.py
+python -m graph_reconstruction.qgis
 \end{lstlisting}
 
 Per scegliere la geometria disponibile su un solo nodo:
 
 \begin{lstlisting}[language={}]
-python json_adapter_to_qgis.py `
+python -m graph_reconstruction.qgis `
   D:/GraphReconstructionData/work/impianto_A/multiview/node7/fused_graph.json `
   --geometry-source auto
 \end{lstlisting}

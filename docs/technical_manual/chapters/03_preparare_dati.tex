@@ -3,24 +3,21 @@
 
 \section{Organizzazione di codice e dati}
 
-Le immagini non devono essere copiate nel repository. Per una lavorazione
-industriale è più ordinato mantenere una directory esterna per dataset e
-risultati, usando \filepath{.env} per collegarla al codice. Il checkpoint YOLO
-è invece conservato nella directory \filepath{models/} del progetto. Una
-possibile organizzazione dei dati esterni è:
+La directory \filepath{data/} contiene la struttura attesa dalla pipeline. I
+grafi annotati sono versionati; le directory delle immagini e delle label sono
+predisposte ma vuote. Il checkpoint YOLO è conservato in \filepath{models/}.
+La struttura iniziale è:
 
 \begin{lstlisting}[language={}]
-D:/GraphReconstructionData/
-  datasets/
-    impianto_A/
-      images/
-      labels_extended/
-  work/
-    impianto_A/
+data/
+  images/
+  labels_extended/
+  graph_annotations/
 \end{lstlisting}
 
-La separazione limita la commistione tra sorgenti, dati sensibili e cache e
-consente di conservare più lavorazioni indipendenti.
+Le immagini e le label possono essere copiate nelle directory predisposte. Per
+dataset aziendali o più lavorazioni indipendenti è comunque possibile usare
+percorsi esterni, indicandoli nel file \filepath{.env}.
 
 \subsection{Convenzione di denominazione delle immagini}
 
@@ -58,20 +55,22 @@ versionare:
 Copy-Item .env.template .env
 \end{lstlisting}
 
-Per l'esempio precedente, la parte principale del file diventa:
+Per usare la struttura predisposta nel repository, la parte principale del
+file diventa:
 
 \begin{lstlisting}[language={}]
-IMAGES_DIR=D:/GraphReconstructionData/datasets/impianto_A/images
-LABELS_EXT_DIR=D:/GraphReconstructionData/datasets/impianto_A/labels_extended
+IMAGES_DIR=./data/images
+LABELS_EXT_DIR=./data/labels_extended
 YOLO_MODEL_PATH=./models/yolo_detector.pt
 
-ASSETS_DIR=./assets
-ANNOTATIONS_DIR=./annotations
-WORK_DIR=D:/GraphReconstructionData/work/impianto_A
+ASSETS_DIR=./graph_reconstruction/assets
+ANNOTATIONS_DIR=./data/graph_annotations
+WORK_DIR=./output
 \end{lstlisting}
 
-Le prime tre variabili sono obbligatorie. \envvar{IMAGES_DIR} e
-\envvar{YOLO_MODEL_PATH} servono alla ricostruzione;
+I valori mostrati coincidono con i percorsi predefiniti del repository e vanno
+modificati soltanto quando input o modello si trovano altrove.
+\envvar{IMAGES_DIR} e \envvar{YOLO_MODEL_PATH} servono alla ricostruzione;
 \envvar{LABELS_EXT_DIR} è usata soprattutto da \filepath{evaluate.py}. In
 assenza di label può indicare una directory vuota; la valutazione supervisionata
 verrà omessa.
@@ -81,7 +80,7 @@ cache delle detection, i risultati multivista, i confronti e gli eventuali file
 diagnostici. \envvar{ASSETS_DIR} e \envvar{ANNOTATIONS_DIR} indicano invece le
 risorse di supporto descritte di seguito.
 
-I percorsi relativi, come \filepath{./assets}, sono risolti rispetto alla root
+I percorsi relativi, come \filepath{./graph_reconstruction/assets}, sono risolti rispetto alla root
 del repository, non rispetto alla directory dalla quale è stato aperto il
 terminale. Per dataset e modelli esterni sono preferibili percorsi assoluti.
 

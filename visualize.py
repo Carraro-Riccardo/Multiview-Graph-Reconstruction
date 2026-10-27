@@ -32,7 +32,7 @@ if str(ROOT) not in sys.path:
 
 from graph_reconstruction.config import WORK_DIR as _WORK_DIR  # noqa: E402
 from evaluation.standard_comparison.visualizza_best_match import generate_best_match_report  # noqa: E402
-from json_adapter_to_qgis import convert_fused_graph_to_qgis  # noqa: E402
+from graph_reconstruction.qgis import convert_fused_graph_to_qgis  # noqa: E402
 
 # ── Configurazione del rendering ──────────────────────────────────────────────
 WORK_DIR    = _WORK_DIR / "multiview"

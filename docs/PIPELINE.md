@@ -1,7 +1,8 @@
 # Pipeline di ricostruzione
 
 Questo documento descrive la pipeline attiva dopo il refactoring strutturale.
-Il punto di ingresso è `run.py`; l’implementazione vive interamente in
+`infer.py` è l'entrypoint operativo che collega ricostruzione ed export QGIS.
+Il punto di ingresso tecnico della sola ricostruzione è `run.py`; l’implementazione vive interamente in
 `graph_reconstruction/pipeline/`.
 
 ## Flusso generale

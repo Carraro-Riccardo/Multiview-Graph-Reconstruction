@@ -27,7 +27,7 @@ if [[ ! -d "${PROJECT_ROOT}" ]]; then
     echo "ERRORE: progetto non trovato: ${PROJECT_ROOT}" >&2
     exit 1
 fi
-if [[ ! -f "${PROJECT_ROOT}/tools/benchmark_inference.py" ]]; then
+if [[ ! -f "${PROJECT_ROOT}/tools/benchmark/benchmark_inference.py" ]]; then
     echo "ERRORE: benchmark_inference.py non trovato" >&2
     exit 1
 fi
@@ -82,7 +82,7 @@ PY
 # With no node IDs the benchmark automatically chooses node9 (seven views),
 # the largest non-skipped VGGT case in the current dataset. WORK_DIR is unique,
 # so both YOLO and VGGT run without inference artefact caches.
-python tools/benchmark_inference.py \
+python tools/benchmark/benchmark_inference.py \
     --require-cuda \
     --sample-interval 0.25 \
     --output-dir "${BENCHMARK_DIR}"

@@ -1,6 +1,7 @@
 ﻿from pathlib import Path
 
 import os
+import sys
 
 
 # Il file .env contiene impostazioni dipendenti dalla macchina, soprattutto
@@ -43,18 +44,18 @@ def _path_setting(name: str, default: str | Path | None = None) -> Path:
 
 # ── Percorsi e opzioni dipendenti dall'ambiente ───────────────
 # I valori vengono letti una sola volta, al primo import di questo modulo.
-IMAGES_DIR      = _path_setting("IMAGES_DIR")
-LABELS_EXT_DIR  = _path_setting("LABELS_EXT_DIR")
+IMAGES_DIR      = _path_setting("IMAGES_DIR", "data/images")
+LABELS_EXT_DIR  = _path_setting("LABELS_EXT_DIR", "data/labels_extended")
 WORK_DIR        = _path_setting("WORK_DIR", "output")
-ASSETS_DIR      = _path_setting("ASSETS_DIR", "assets")
-ANNOTATIONS_DIR = _path_setting("ANNOTATIONS_DIR", "annotations")
-YOLO_MODEL_PATH = _path_setting("YOLO_MODEL_PATH")
+ASSETS_DIR      = _path_setting("ASSETS_DIR", "graph_reconstruction/assets")
+ANNOTATIONS_DIR = _path_setting("ANNOTATIONS_DIR", "data/graph_annotations")
+YOLO_MODEL_PATH = _path_setting("YOLO_MODEL_PATH", "models/yolo_detector.pt")
 DEBUG_OUTPUT_ENABLED = os.getenv("DEBUG_OUTPUT_ENABLED", "0").strip().lower() in {"1", "true", "yes", "on"}
 DEBUG_OUTPUT_DIR = _path_setting("DEBUG_OUTPUT_DIR", WORK_DIR / "debug")
 VGGT_EDGE_ENABLED = os.getenv("VGGT_EDGE_ENABLED", "1").strip().lower() not in {"0", "false", "no", "off"}
 VGGT_EDGE_SEARCH_GLOB = os.getenv("VGGT_EDGE_SEARCH_GLOB", "vggt")
 VGGT_GENERATE_IF_MISSING = os.getenv("VGGT_GENERATE_IF_MISSING", "1").strip().lower() not in {"0", "false", "no", "off"}
-VGGT_EMBEDDED_PYTHON = _path_setting("VGGT_EMBEDDED_PYTHON", "python312/python.exe")
+VGGT_EMBEDDED_PYTHON = _path_setting("VGGT_EMBEDDED_PYTHON", sys.executable)
 VGGT_MODEL_ID = os.getenv("VGGT_MODEL_ID", "facebook/VGGT-1B")
 VGGT_PREPROCESS_MODE = os.getenv("VGGT_PREPROCESS_MODE", "crop").strip().lower()
 VGGT_3D_ADJACENCY_FACTOR = float(os.getenv("VGGT_3D_ADJACENCY_FACTOR", "1.35"))
@@ -117,7 +118,7 @@ VALENCE_COLORS = {
 
 # ── Co-occorrenze empiriche ───────────────────────────────────
 # Conteggio di coppie di tipi connesse osservate nel dataset reale.
-# Ricalcolate su tutti i file annotations/node*_gt.json disponibili.
+# Ricalcolate su tutti i file data/graph_annotations/node*_gt.json disponibili.
 COOC_COUNTS = {
     ( 15,  95): 27,  # Saracinesca ↔ Bout bic.
     ( 15, 116): 26,  # Saracinesca ↔ Tee FL
@@ -155,7 +156,7 @@ COOC_COUNTS = {
 # Strutture locali osservate nel dataset: il nodo centrale ha due vicini A e C.
 # Chiave: (min(a,c), centro, max(a,c)) — la simmetria è normalizzata.
 # Usate per valutare la compatibilità contestuale di un arco proposto.
-# Ricalcolate su tutti i file annotations/node*_gt.json disponibili.
+# Ricalcolate su tutti i file data/graph_annotations/node*_gt.json disponibili.
 TRIPLET_COUNTS = {
     ( 15, 116,  15): 23,  # Saracinesca — Tee FL — Saracinesca
     ( 95,  15, 116): 14,  # Bout bic. — Saracinesca — Tee FL

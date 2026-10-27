@@ -7,11 +7,11 @@ Gli entrypoint nella root, come \filepath{run.py} ed
 \filepath{evaluate.py}, devono essere eseguiti nell'ambiente Conda principale
 \code{graph_rec}, descritto da \filepath{environment.yml}. L'interprete usato
 per VGGT è indicato da \envvar{VGGT_EMBEDDED_PYTHON} e può coincidere con quello
-di \code{graph_rec}; il valore predefinito punta al runtime nella directory
-\filepath{python312/}.
+di \code{graph_rec}; se la variabile non è impostata viene usato l'interprete
+dell'ambiente attivo.
 
-La pipeline si avvia quindi dal normale ambiente Conda. Se viene mantenuto il
-runtime separato sotto \filepath{python312/}, questo va usato soltanto per VGGT.
+La pipeline si avvia quindi dal normale ambiente Conda. Un runtime separato,
+quando necessario, va indicato esplicitamente nella configurazione locale.
 
 \manualnote[Due file diversi]{\filepath{environment.yml} descrive Python e
 pacchetti dell'ambiente Conda; \filepath{.env} contiene invece percorsi e

@@ -1,4 +1,5 @@
-# Main application runtime. VGGT uses the bundled python312 environment.
+# Main application runtime. PyTorch and VGGT are installed separately so that
+# the CUDA build and the VGGT revision remain explicit.
 numpy>=1.26
 scipy>=1.11
 opencv-python>=4.9

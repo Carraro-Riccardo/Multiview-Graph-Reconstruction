@@ -8,7 +8,8 @@ existing color-based plot intact and adds a symbol-based SVG view:
     python visualize_shurikode_symbols.py --all
 
 For every graph node, the component ``code`` is matched against
-``assets/shurikode_svgs/shurikode_mapping.csv`` and ``<code>.svg``.
+``graph_reconstruction/assets/shurikode_svgs/shurikode_mapping.csv`` and
+``<code>.svg``.
 If the SVG is missing, the node is rendered as a red dot.
 """
 
@@ -56,7 +57,7 @@ DIR_SE = (math.sqrt(0.5), math.sqrt(0.5))
 CANONICAL_DIRS = (DIR_E, DIR_W, DIR_N, DIR_S, DIR_NE, DIR_NW, DIR_SE, DIR_SW)
 
 # Fallback local ports in the orientation used by the SVG asset. The primary
-# source is assets/shurikode_component_ports.json; this dict keeps old renders
+# source is graph_reconstruction/assets/shurikode_component_ports.json; this dict keeps old renders
 # working if the catalog is missing or incomplete.
 PORT_TEMPLATES: dict[int, tuple[tuple[float, float], ...]] = {
     37: (DIR_W,),

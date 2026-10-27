@@ -12,16 +12,11 @@ from __future__ import annotations
 import argparse
 import json
 import math
-import sys
 from pathlib import Path
 from typing import Any
 
 import networkx as nx
 import numpy as np
-
-ROOT = Path(__file__).resolve().parent
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
 
 from graph_reconstruction.visualization.shurikode_symbols import (
     DEFAULT_EDGE_LENGTH_FACTOR,

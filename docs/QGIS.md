@@ -1,6 +1,6 @@
 # Esportazione QGIS
 
-`json_adapter_to_qgis.py` converte `fused_graph.json` in una FeatureCollection
+`graph_reconstruction.qgis` converte `fused_graph.json` in una FeatureCollection
 GeoJSON combinata con componenti, archi e poligono master.
 
 ## Batch
@@ -9,26 +9,26 @@ Senza input esplicito vengono cercati tutti i grafi sotto
 `WORK_DIR/multiview/`:
 
 ```powershell
-python json_adapter_to_qgis.py
+python -m graph_reconstruction.qgis
 ```
 
 Per cambiare la root:
 
 ```powershell
-python json_adapter_to_qgis.py --batch-root D:/risultati/multiview
+python -m graph_reconstruction.qgis --batch-root D:/risultati/multiview
 ```
 
 ## Singolo grafo
 
 ```powershell
-python json_adapter_to_qgis.py `
+python -m graph_reconstruction.qgis `
   output/multiview/node2/fused_graph.json
 ```
 
 La directory di output predefinita è quella del grafo. È possibile separarla:
 
 ```powershell
-python json_adapter_to_qgis.py `
+python -m graph_reconstruction.qgis `
   output/multiview/node2/fused_graph.json `
   --output-dir output/qgis/node2
 ```
@@ -51,7 +51,7 @@ Il file prodotto segue il pattern:
 Esempio consigliato per ispezione spaziale:
 
 ```powershell
-python json_adapter_to_qgis.py `
+python -m graph_reconstruction.qgis `
   output/multiview/node2/fused_graph.json `
   --geometry-source auto
 ```
@@ -67,7 +67,7 @@ Quando non viene usata la geometria VGGT, `--layout` controlla la disposizione:
 - `zero`: colloca tutti i nodi sull’origine, utile soltanto per test.
 
 ```powershell
-python json_adapter_to_qgis.py `
+python -m graph_reconstruction.qgis `
   output/multiview/node2/fused_graph.json `
   --layout cad
 ```
@@ -103,7 +103,7 @@ L’export normale espone attributi orientati all’uso GIS. Per includere anche
 campi interni della pipeline con prefisso `src_`:
 
 ```powershell
-python json_adapter_to_qgis.py `
+python -m graph_reconstruction.qgis `
   output/multiview/node2/fused_graph.json `
   --include-technical-fields
 ```
@@ -111,31 +111,11 @@ python json_adapter_to_qgis.py `
 Il master supporta ID, data e orientamento:
 
 ```powershell
-python json_adapter_to_qgis.py `
+python -m graph_reconstruction.qgis `
   output/multiview/node2/fused_graph.json `
   --master-id nodo_2_master `
   --master-date 2026-06-28 `
   --master-orientation 90
-```
-
-## Packaging
-
-Dopo aver generato gli export combinati per i nodi:
-
-```powershell
-python tools/qgis/package_qgis_geojson.py --overwrite
-```
-
-Il comando cerca i file combinati sotto `output/multiview/node*/` e produce:
-
-```text
-output/qgis_geojson_layers.zip
-```
-
-Opzioni disponibili:
-
-```powershell
-python tools/qgis/package_qgis_geojson.py --help
 ```
 
 ## Import in QGIS
