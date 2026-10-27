@@ -10,7 +10,9 @@ immagini, ricostruisce tutti i nodi trovati ed esporta il risultato per QGIS:
 python infer.py D:/percorso/immagini
 \end{lstlisting}
 
-Non richiede label o annotazioni. \filepath{run.py} rimane l'entrypoint tecnico
+Non richiede label o annotazioni. L'export usa la geometria VGGT quando
+disponibile e ripiega automaticamente sul layout CAD. \filepath{run.py} rimane
+l'entrypoint tecnico
 per avviare la sola ricostruzione usando la configurazione del progetto:
 
 \begin{lstlisting}[language={}]

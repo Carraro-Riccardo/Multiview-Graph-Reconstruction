@@ -82,8 +82,9 @@ i GeoJSON importabili in QGIS:
 python infer.py C:/percorso/immagini
 ```
 
-Il comando non richiede label o annotazioni. I risultati vengono salvati sotto
-`output/multiview/node<id>/`; il file finale per QGIS è
+Il comando non richiede label o annotazioni. Per l'export usa la geometria VGGT
+quando disponibile e ripiega automaticamente sul layout CAD. I risultati vengono
+salvati sotto `output/multiview/node<id>/`; il file finale per QGIS è
 `fused_graph_qgis_combined.geojson`.
 
 ## Strumenti tecnici

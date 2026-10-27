@@ -34,12 +34,6 @@ def _parse_args() -> argparse.Namespace:
         default=None,
         help="Checkpoint YOLO alternativo. Default: ./models/yolo_detector.pt.",
     )
-    parser.add_argument(
-        "--geometry-source",
-        choices=["fake", "auto", "vggt"],
-        default="fake",
-        help="Geometria dell'export QGIS. Default: fake, con layout CAD.",
-    )
     return parser.parse_args()
 
 
@@ -80,7 +74,7 @@ def main() -> None:
         paths = convert_fused_graph_to_qgis(
             fused_graph,
             node_dir,
-            geometry_source=args.geometry_source,
+            geometry_source="auto",
         )
         generated.append(paths["combined"])
 
